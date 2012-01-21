@@ -57,7 +57,7 @@ root {
     display: block;
 }
 
-body {line-height: 18px;}
+body {line-height: 18px; overflow-x: hidden;}
 html {font-family: 'Arial', helvetica, sans-serif; color: #5F5F5F; font-size: 12px;}
 
 .login {background: #ECECDB; color: #414141; font-size: 17px;height:100%;} 
