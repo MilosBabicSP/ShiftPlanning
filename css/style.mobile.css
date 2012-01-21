@@ -1,0 +1,111 @@
+/* 
+    Document   : phone
+    Created on : Dec 15, 2011, 12:41:34 AM
+    Author     : ezelohar
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* http://meyerweb.com/eric/tools/css/reset/
+v2.0 | 20110126
+License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+margin: 0;
+padding: 0;
+border: 0;
+font-size: 100%;
+font: inherit;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+display: block;
+}
+body {
+line-height: 1;
+}
+ol, ul {
+list-style: none;
+}
+blockquote, q {
+quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+content: '';
+content: none;
+}
+table {
+border-collapse: collapse;
+border-spacing: 0;
+}
+root { 
+    display: block;
+}
+
+body {line-height: 18px;}
+html {font-family: 'Arial', helvetica, sans-serif; color: #5F5F5F; font-size: 12px;}
+
+.login {background: #ECECDB; color: #414141; font-size: 17px;height:100%;} 
+.login .logo {margin: 5px auto; display: block;}
+.login table {min-width: 320px;height:100%;}
+.login table td {text-align:center;}
+.login label {display: block; line-height: 20px;margin: 15px 0 10px 0;}
+.login .holder {background-color: #F6F6F6; border: 1px solid #999997; box-shadow: 0 1px 0 #DCDBCC, 0 3px 0 #F0F0E8 inset; color: #920000; font-size: 14px; line-height: 1.6; outline: medium none;width: 100%;}
+.login input {width:100%; background-color: #F6F6F6; border:none;margin:10px 0px; text-align:center;}
+.login button {background: -webkit-gradient(linear, left top, left bottom, from(#ac2929), to(#982121)); background-image: -moz-linear-gradient(top,#ac2929, #982121);margin:30px 0; font-size: 17px; border: 1px solid #610000; color: #fff; cursor: pointer; float: right; font-weight: 300; height: 45px; line-height: 30px; text-align: center; text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.9); width: 100%;}
+.login button:hover {background: -webkit-gradient(linear, left top, left bottom, from(#911e1e), to(#831919)); background-image: -moz-linear-gradient(top,#911e1e, #831919);}
+.login td {vertical-align: middle;}
+.login .error {display: none; width: 300px; padding: 10px; background-repeat: repeat-x; border: 1px solid #610000; background-position: 0 -158px; color: #fff; border-radius: 6px; margin: 0 auto; text-align: center; text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.9);}
+
+.login .loginForm {overflow: hidden;}
+.login .loginForm a {margin:30px 0; font-size: 18px; text-decoration:none; color: #aaa; float: left; font-weight: 300; height: 45px; line-height: 40px; text-align: center;}
+.login .footerTxt {text-align:center;}
+.login .footerTxt {font-size:12px;}
+.login .footerTxt a {color: #920000; line-height:20px;}
+
+
+
+/*
+    Application css
+*/
+
+/*menu*/
+#menu {float:left; margin-left:-190px;}
+#menu.open {margin-left:0px;}
+
+
+.icon {background-image: url(../images/spriteN.png); background-repeat: no-repeat;}
+.icon.iDashboard {background-position:-0px -0px;}
+.icon.iTimeClock {background-position:-0px -29px;}
+.icon.iSchedule {background-position:-0px -59px;}
+.icon.iStaff {background-position:-0px -89px;}
+.icon.iReports {background-position:-0px -119px;}
+
+.applicationContainer {display:none;}
+#menu li {background-color:#a52626;padding:15px; width:160px;text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.9);color:#fff; font-size:16px;font-weight:bold;border-bottom:1px solid #7c1616;border-top:1px solid #b24242; cursor:pointer;}
+#menu li.first{border-top:none;}
+#menu li.active {background-color:#8f1c1c;} 
+#menu li div.title {display:inline-block;line-height:35px;}
+#menu .icon {width:44px; height:29px;display:inline-block;vertical-align: middle;margin-right:10px;}
+
+/*content global*/
+#content {float:left;width:100%;}
+#content.open {margin-right:-190px;}
+#content .header {background-color:#f0f0f0;width:100%;}
+#content .header ul {overflow: hidden;}
+#content .header ul li {float:left;}
