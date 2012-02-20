@@ -11,54 +11,21 @@ v2.0 | 20110126
 License: none (public domain)
 */
 
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-margin: 0;
-padding: 0;
-border: 0;
-font-size: 100%;
-font: inherit;
-}
-/* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {
-display: block;
-}
-body {
-line-height: 1;
-}
-ol, ul {
-list-style: none;
-}
-blockquote, q {
-quotes: none;
-}
-blockquote:before, blockquote:after,
-q:before, q:after {
-content: '';
-content: none;
-}
-table {
-border-collapse: collapse;
-border-spacing: 0;
-}
-root { 
-    display: block;
-}
 
-body {line-height: 18px; overflow-x: hidden;}
-html {font-family: 'Arial', helvetica, sans-serif; color: #5F5F5F; font-size: 12px;}
+
+/*RESET*/
+html {height:100%;}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td {margin:0; padding:0;}
+table {border-collapse:separate;}
+fieldset,img {border:0;}
+address,caption,cite,code,dfn,th,var {font-style:normal; font-weight:normal;}
+em,strong{}
+ol,ul {list-style:none;}
+caption {text-align:center;}
+th {text-align:left;}
+h1,h2,h3,h4,h5,h6 {font-size:100%; margin:0; padding:0;}
+q:before,q:after {content:'';}
+abbr,acronym { border:0;}
 
 .login {background: #ECECDB; color: #414141; font-size: 17px;height:100%;} 
 .login .logo {margin: 5px auto; display: block;}
@@ -83,29 +50,101 @@ html {font-family: 'Arial', helvetica, sans-serif; color: #5F5F5F; font-size: 12
 /*
     Application css
 */
-
-/*menu*/
-#menu {float:left; margin-left:-190px;}
-#menu.open {margin-left:0px;}
-
-
-.icon {background-image: url(../images/spriteN.png); background-repeat: no-repeat;}
-.icon.iDashboard {background-position:-0px -0px;}
-.icon.iTimeClock {background-position:-0px -29px;}
-.icon.iSchedule {background-position:-0px -59px;}
-.icon.iStaff {background-position:-0px -89px;}
-.icon.iReports {background-position:-0px -119px;}
-
 .applicationContainer {display:none;}
-#menu li {background-color:#a52626;padding:15px; width:160px;text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.9);color:#fff; font-size:16px;font-weight:bold;border-bottom:1px solid #7c1616;border-top:1px solid #b24242; cursor:pointer;}
-#menu li.first{border-top:none;}
-#menu li.active {background-color:#8f1c1c;} 
-#menu li div.title {display:inline-block;line-height:35px;}
-#menu .icon {width:44px; height:29px;display:inline-block;vertical-align: middle;margin-right:10px;}
 
-/*content global*/
-#content {float:left;width:100%;}
-#content.open {margin-right:-190px;}
-#content .header {background-color:#f0f0f0;width:100%;}
-#content .header ul {overflow: hidden;}
-#content .header ul li {float:left;}
+
+
+
+
+/*MAIN*/
+body {font-size:13px; color:#555; font-family:"Arial",sans-serif; background-color:#a32525;}
+a {color:#333; outline:none; text-decoration:none;}
+img {border: none; vertical-align: middle;}
+p {line-height:120%;}
+.cl {clear:both; line-height:0;}
+.fl {float:left;}
+.fr {float:right;}
+label {font-size:13px; display:block; padding:3px 0;}
+
+
+h1 {}
+h2 {}
+h3 {font-size:14px;}
+h4 {font-size:14px; line-height:20px;}
+
+/*SPRITE*/
+.msgDel, .msgRpl, .cmtCount span.tip, ul.cmts, ul.cmts li.last input[type=submit]  {background-image:url(../images/icos.png); background-repeat:no-repeat;}
+.cmtCount span.ico {background-image:url(../images/sprite.png); background-repeat:no-repeat;}
+.dash, .ticl, .sche, .requ, .staf, .repo {background-image:url(../images/mainNav_bg.png); background-repeat:no-repeat;}
+
+.dash {background-position:10px 0;}
+.ticl {background-position:10px -50px;}
+.sche {background-position:10px -100px;}
+.requ {background-position:10px -150px;}
+.staf {background-position:10px -200px;}
+.repo {background-position:10px -250px;}
+
+/*BUILD*/
+.wrapper { background-color:#FFF;}
+.wrapper.extended {margin:0 0 0 190px; border-left:solid 1px #711111;}
+.mainMenu {background-color:#a32525; width:190px; float:left;}
+.subNavigation {padding:15px 20px 15px 60px; background-color:#F2F2F2; border-top:solid 1px #FFF; border-bottom:solid 1px #DBDBDB; position:relative;}
+.main {padding:10px 20px 20px;}
+
+
+.toggleMenu {position:absolute; top:17px; left:19px;}
+.title {overflow:hidden; padding:10px 0 20px; line-height:30px; border-bottom:solid 1px #DBDBDB;}
+.title span a {display:block; padding:0 10px; background-color:#f0f0f0; border:solid 1px #DBDBDB;}
+.welcome {font-size:14px; padding:10px 0;}
+.welcome span {color:#a52626;}
+
+.cmtCount {display:block; background-color:#f1f1f1; padding:5px 15px; color:#999; position:relative;}
+.cmtCount span.ico {background-position:0 0; padding:0 0 0 20px; line-height:20px; display:block; text-shadow:0 1px 0 #FFF;}
+.cmtCount span.tip {display:block; width:20px; height:10px; position:absolute; top:-10px; left:10px; background-position:-50px 0;}
+
+span.input {padding:5px; border:solid 1px #dbdbdb; display:block; background:#FFF url(../images/input_bg.png) scroll repeat-x 0 0;}
+span.input input[type=text] {font-family:"Arial", sans-serif; font-size:13px; color:#999; background-color:transparent; width:100%; border:none;}
+span.input textarea {font-family:"Arial", sans-serif; font-size:13px; color:#999; background-color:transparent; min-width:100%; max-width:100%; border:none;}
+span.input input[type=text]:focus, span.input textarea:focus {color:#444;}
+
+.newMsg {overflow:hidden; padding:10px 0 0;}
+.newMsg span.input {margin:2px 0 10px;}
+
+.msgDel, .msgRpl {display:block; width:13px; height:13px; position:absolute; }
+ul.msgWall .msgRpl {top:20px; right:40px; background-position:0 0;}
+ul.msgWall .msgDel {top:20px; right:0; background-position:-13px 0;}
+ul.cmts .msgDel {top:15px; right:15px; background-position:-13px 0;}
+
+ul.mainNav {border-top:solid 1px #841717; border-bottom:solid 1px #b23939;}
+ul.mainNav > li > a {display:block; line-height:50px; padding:0 20px 0 60px; color:#FFF; font-size:14px; font-weight:bold; text-shadow:0 1px 2px #841717; border-bottom:solid 1px #841717; border-top:solid 1px #b23939;}
+ul.mainNav > li.active > a {background-color:#8f1a1a; border-top-color:#8f1a1a;}
+ul.mainNav ul li a {display:block; line-height:20px; padding:5px 10px 5px 20px; color:#FFF; border-bottom:solid 1px #841717; border-top:solid 1px #b23939; text-shadow:0 1px 2px #841717;}
+ul.mainNav ul li a span {display:block; float:right; padding:4px; font-size:11px; line-height:10px; background-color:#7c1515; border:solid 1px #691010; border-radius:2px;}
+
+
+ul.subNav {overflow:hidden; width:246px; margin:0 auto;}
+ul.subNav li {float:left;}
+ul.subNav li a {display:block; padding:6px 16px; text-align:center; border:solid 1px #d8d8d8; border-left:none; background-color:#FFF;}
+ul.subNav li.active a {background-color:#e8e8e8;}
+ul.subNav li.first a {border-radius:3px 0 0 3px; border-left:solid 1px #d8d8d8;}
+ul.subNav li.last a {border-radius:0 3px 3px 0;}
+
+ul.msgWall {overflow:hidden;}
+ul.msgWall > li {padding:15px 0 0; border-bottom:solid 1px #DBDBDB; overflow:hidden; position:relative;}
+ul.msgWall > li > img {float:left; padding:5px 0 20px;}
+ul.msgWall > li > .msg {margin:0 0 0 60px; padding:0 0 20px;}
+ul.msgWall > li p {padding:5px 0;}
+ul.msgWall > li .msg span{color:#999; display:block; line-height:20px;}
+
+ul.cmts {background-position:-40px 0; padding:10px 0 0; display:none;}
+ul.cmts li {padding:10px 15px 0; background-color:#f1f1f1; position:relative; overflow:hidden; border-bottom:solid 1px #e1e1e1; border-top:solid 1px #fbfbfb;}
+ul.cmts li img {float:left; padding:5px 0 15px;}
+ul.cmts li .msg {margin:0 0 0 60px; padding:0 0 15px;}
+ul.cmts li.first {border-top:none;}
+ul.cmts li.last {border-bottom:none;}
+ul.cmts li.last span.input {margin:5px 30px 15px 0;}
+ul.cmts li.last input[type=submit] {float:right; margin:13px 0 0; display:block; width:13px; height:0; padding:13px 0 0; overflow:hidden; background-color:transparent; border:none; background-position:-26px 0;}
+.hidden {display:none;}
+
+
+@CHARSET "UTF-8";

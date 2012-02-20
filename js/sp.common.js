@@ -97,25 +97,14 @@ ShiftPlanning.prototype = {
     loadPage: function(page){
         //Load the page from the module, handle this a little better
         if(user.loggedIn){
-            $('#menu li').removeClass('active');
-            $('#menu_' + page).addClass('active');
-            $('#scroller > div, .footerInner > ul').fadeOut(0, function(){
-                $('.' + page).show();
-                $('.footer').show();
-                if($('.footerInner > ul:visible').length == 0){
-                    $('.footer').hide();
-                    $('#wrapper').css('bottom',0);
-                    
-                } else {
-                    $('.footer').show();
-                    $('#wrapper').css('bottom',53);
-                    
-                }
-            });
+            $('#pages > div').hide();
+            $('#pages #' + page + ' > div').hide();
+            $('#pages #' + page).show();
+            $('.subNavigation > div').hide();
+            $('.subNavigation > .' + page).show();
+            $('.subNavigation > .' + page + ' li:first a').trigger(clickEvent);
             if(typeof this[page] != 'undefined'){
                 sp.hash(page);
-                $('#scroller #'+page).fadeIn(0);
-                scroller.scrollTo(0.0,0);
                 this[page].loadPage();
             } else {
                 console.log(page+ ' page does not exist.');
