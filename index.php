@@ -164,38 +164,37 @@ if ($vtoken['data'] != '1') {
                             </li>
                         </ul>
                     </div>
+                    <div class="timeClock">
+                        <a href="#" class="toggleMenu">
+                            <img width="24" height="24" src="images/ShowHideMenu.png" />
+                        </a>
+                        <ul class="subNav timeclock">
+                            <li class="first active">
+                                <a href="#">
+                                    <img width="16" height="16" src="images/timeclock_1.png" />
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img width="16" height="16" src="images/timeclock_2.png" />
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img width="16" height="16" src="images/timeclock_3.png" />
+                                </a>
+                            </li>
+                            <li class="last">
+                                <a href="#">
+                                    <img width="16" height="16" src="images/timeclock_4.png" />
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
                 <div id="pages">
                     <div class="dashboard" id="dashboard">
-                        <div class="main wall" id="da_wa">
-                            <div class="welcome">
-                                <p>Welcome Back,<br/>
-                                    <span>Ryan Fyfe</span> with ShiftPlanning Inc.
-                                </p>
-                            </div>
-                            <div class="title">
-                                <span class="fr"><a href="#" id="da_wa_nm_b">New Message</a></span>
-                                <h3>Message Wall</h3>
-                            </div>
-                            <div class="newMsg hidden" id="da_wa_nm_f">
-                                <label>Title</label>
-                                <span class="input">
-                                    <input type="text" name="" value="" id="da_wa_nm_ti" />
-                                </span>
-                                <label>Message</label>
-                                <span class="input">
-                                    <textarea id="da_wa_nm_me"></textarea>
-                                </span>
-
-                                <div class="title">
-                                    <span class="fr"><a href="#" id="da_wa_nm_sa">Save Message</a></span>
-                                    <span class="fl"><a href="#" id="da_wa_nm_ca">Cancel</a></span>
-                                </div>
-                            </div>
-                            <ul class="msgWall" id="da_wa_li">
-                                
-                            </ul>
-                        </div>
+                        <?php Functions::getInstance()->loadFile('dashboard_wall') ?>
                         <div class="main upcomingShifts" id="da_up">
                             asdf
                         </div>

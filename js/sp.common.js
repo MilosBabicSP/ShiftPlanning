@@ -101,8 +101,8 @@ ShiftPlanning.prototype = {
             $('#pages #' + page + ' > div').hide();
             $('#pages #' + page).show();
             $('.subNavigation > div').hide();
-            $('.subNavigation > .' + page).show();
-            $('.subNavigation > .' + page + ' li:first a').trigger(clickEvent);
+            $('.subNavigation > div.' + page).show();
+            $('.subNavigation > div.' + page + ' li:first a').trigger(clickEvent);
             if(typeof this[page] != 'undefined'){
                 sp.hash(page);
                 this[page].loadPage();
