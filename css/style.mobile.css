@@ -30,7 +30,7 @@ h3 {font-size:14px;}
 h4 {font-size:14px; line-height:20px;}
 
 
-.login {background: #ECECDB; color: #414141; font-size: 17px;height:100%;} 
+.login {background: #ECECDB; color: #414141; font-size: 17px;height:100%;background-image: url(../images/mainBg.png)} 
 .login .logo {margin: 5px auto; display: block;}
 .login table {min-width: 320px;height:100%;}
 .login table td {text-align:center;}

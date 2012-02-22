@@ -54,7 +54,7 @@ ShiftPlanningDashboard.prototype.wallEvents = function(){
             }
         } else {
             if ($(this).hasClass('msgRpl')){
-                ('#da_wa_msg_' + id).find('input[type=text]').val($('#da_wa_msg_' + id).find('input[type=text]').attr('origin'));
+                $('#da_wa_msg_' + id).find('input[type=text]').val($('#da_wa_msg_' + id).find('input[type=text]').attr('origin'));
             }
             $('#da_wa_msg_' + id).find('.cmtCount').show();
             $('#da_wa_msg_' + id).find('.cmts').hide();
@@ -123,6 +123,7 @@ ShiftPlanningDashboard.prototype.wallEvents = function(){
 //sub page events
 ShiftPlanningDashboard.prototype.wallSubEvents = function(){
     spModel.messaging.get('wall', {}, function(response){
+        console.log($.tmpl($('#te_da_wa_me'), response.data));
         $('#da_wa_li').html($.tmpl($('#te_da_wa_me'), response.data));
     }, function(){
         
@@ -134,12 +135,12 @@ ShiftPlanningDashboard.prototype.wallSubEvents = function(){
 ShiftPlanningDashboard.prototype.openComments = function(id){
     
     
-    }
+}
 
 
 ShiftPlanningDashboard.prototype.loadPage = function(){
     
-    }
+}
 
 
 

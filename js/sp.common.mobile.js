@@ -59,6 +59,7 @@ ShiftPlanning.prototype.toggleMenu = function(){
 }
 
 ShiftPlanning.prototype.loadSubPage = function(obj, page, subpage){
+    console.log(obj, page, subpage);
     if (subpage == 'logout'){
         sp.staff.logout();
         return false;
@@ -84,7 +85,9 @@ ShiftPlanning.prototype.initialize = function(){
         if (sp.hash().length > 0) {
             if ($('#menu [page=' + sp.hash() + ']').length > 0){
                 setTimeout(function(){
-                    $('#menu [page=' + sp.hash() + ']').trigger(clickEvent);
+                    $('#menu [page=' + sp.hash() + ']').parent().parent().find('li').removeClass('active');
+                    $('#menu [page=' + sp.hash() + ']').parent().addClass('active');
+                    self.loadPage(sp.hash());
                 }, 50);
             }
         }
@@ -118,9 +121,6 @@ ShiftPlanning.prototype.initialize = function(){
         
         $('#menu .mainNav > li > a').bind(clickEvent, function(e){
             e.preventDefault();
-            $(this).parent().parent().find('li').removeClass('active');
-            $(this).parent().addClass('active');
-            self.loadPage($(this).attr('page'));
             sp.hash($(this).attr('page'));
         });
         
@@ -140,3 +140,4 @@ var sp = new ShiftPlanning();
 ShiftPlanning.prototype.staff = new ShiftPlanningStaff();
 ShiftPlanning.prototype.schedule = new ShiftPlanningSchedule();
 ShiftPlanning.prototype.dashboard = new ShiftPlanningDashboard();
+ShiftPlanning.prototype.timeClock = new ShiftPlanningTimeClock();

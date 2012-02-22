@@ -45,6 +45,7 @@ if ($vtoken['data'] != '1') {
         <script src="js/models/sp.requests.model.js" type="text/javascript"></script>
         <script src="js/models/sp.admin.model.js" type="text/javascript"></script>
         <script src="js/models/sp.messaging.model.js" type="text/javascript"></script>
+        <script src="js/models/sp.timeclock.model.js" type="text/javascript"></script>
 
         <!-- Plugins -->
         <script src="js/plugins/date.js" type="text/javascript"></script>
@@ -55,15 +56,18 @@ if ($vtoken['data'] != '1') {
         <!-- System -->
         <script src="js/sp.common.js" type="text/javascript"></script>
         <script src="js/sp.model.js" type="text/javascript"></script>
+        <script src="js/sp.view.js" type="text/javascript"></script>
 
         <!-- Base -->
         <script src="js/sp.staff.js" type="text/javascript"></script>
         <script src="js/sp.schedule.js" type="text/javascript"></script>
         <script src="js/sp.dashboard.js" type="text/javascript"></script>
+        <script src="js/sp.timeclock.js" type="text/javascript"></script>
 
         <!-- Extension -->
         <script src="js/sp.staff.mobile.js" type="text/javascript"></script>
         <script src="js/sp.dashboard.mobile.js" type="text/javascript"></script>
+        <script src="js/sp.timeclock.mobile.js" type="text/javascript"></script>
 
 
         <!-- Loader -->
@@ -168,24 +172,24 @@ if ($vtoken['data'] != '1') {
                         <a href="#" class="toggleMenu">
                             <img width="24" height="24" src="images/ShowHideMenu.png" />
                         </a>
-                        <ul class="subNav timeclock">
+                        <ul class="subNav timeClock" page="timeClock">
                             <li class="first active">
-                                <a href="#">
+                                <a href="#" subpage="overview">
                                     <img width="16" height="16" src="images/timeclock_1.png" />
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
+                                <a href="#" subpage="manageTimeSheets">
                                     <img width="16" height="16" src="images/timeclock_2.png" />
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
+                                <a href="#" subpage="addClockTime">
                                     <img width="16" height="16" src="images/timeclock_3.png" />
                                 </a>
                             </li>
                             <li class="last">
-                                <a href="#">
+                                <a href="#" subpage="editClockTime">
                                     <img width="16" height="16" src="images/timeclock_4.png" />
                                 </a>
                             </li>
@@ -197,6 +201,36 @@ if ($vtoken['data'] != '1') {
                         <?php Functions::getInstance()->loadFile('dashboard_wall') ?>
                         <div class="main upcomingShifts" id="da_up">
                             asdf
+                        </div>
+                    </div>
+                    <div class="timeClock" id="timeClock">
+                        <div class="main overview">
+                            <div class="title">
+                                <span class="fr"><a href="#">Clock Out</a></span>
+                                <div class="icoClock fl">
+                                    january 8, 2012
+                                    <span>13:55</span>
+                                </div>
+                            </div>
+                            <div class="newMsg hidden" id="tc_ov_cf">
+                                <label>Schedule</label>
+                                <span class="input">
+                                    <select name="" id="tc_ov_ss">
+                                        <option>Select Schedule</option>
+                                        <option>Lorem ipsum</option>
+                                        <option>Lorem ipsum</option>
+                                    </select>
+                                </span>
+                                <label>Notes</label>
+                                <span class="input">
+                                    <textarea>Write Notes...</textarea>
+                                </span>
+
+                                <div class="title">
+                                    <span class="fr"><a href="#">Cancel</a></span>
+                                    <span class="fl"><a href="#">Save</a></span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

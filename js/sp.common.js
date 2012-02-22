@@ -44,8 +44,8 @@ ShiftPlanning.prototype = {
             return false;
         }
         var data = {
-                module: module,
-                method: method
+            module: module,
+            method: method
         };
         $.each(arguments,function(index, item){
             data[index] = item;
@@ -95,16 +95,17 @@ ShiftPlanning.prototype = {
         });
     },
     loadPage: function(page){
+        console.log(page);
         //Load the page from the module, handle this a little better
         if(user.loggedIn){
-            $('#pages > div').hide();
-            $('#pages #' + page + ' > div').hide();
-            $('#pages #' + page).show();
-            $('.subNavigation > div').hide();
-            $('.subNavigation > div.' + page).show();
-            $('.subNavigation > div.' + page + ' li:first a').trigger(clickEvent);
             if(typeof this[page] != 'undefined'){
-                sp.hash(page);
+                $('#pages > div').hide();
+                $('#pages #' + page + ' > div').hide();
+                $('#pages #' + page).show();
+                $('.subNavigation > div').hide();
+                $('.subNavigation > div.' + page).show();
+                $('.subNavigation > div.' + page + ' li:first a').trigger(clickEvent);
+                console.log('#pages #' + page + ' > div','.subNavigation > div.' + page + ' li:first a');
                 this[page].loadPage();
             } else {
                 console.log(page+ ' page does not exist.');
@@ -164,16 +165,16 @@ ShiftPlanning.prototype = {
     },
     strReplace: function(search, replace, subject, count) {
         var i = 0,
-            j = 0,
-            temp = '',
-            repl = '',
-            sl = 0,
-            fl = 0,
-            f = [].concat(search),
-            r = [].concat(replace),
-            s = subject,
-            ra = Object.prototype.toString.call(r) === '[object Array]',
-            sa = Object.prototype.toString.call(s) === '[object Array]';
+        j = 0,
+        temp = '',
+        repl = '',
+        sl = 0,
+        fl = 0,
+        f = [].concat(search),
+        r = [].concat(replace),
+        s = subject,
+        ra = Object.prototype.toString.call(r) === '[object Array]',
+        sa = Object.prototype.toString.call(s) === '[object Array]';
         s = [].concat(s);
         if (count) {
             this.window[count] = 0;
