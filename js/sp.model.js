@@ -202,3 +202,4 @@ spModel.addModel('requests', SPModelRequests);
 spModel.addModel('admin', SPModelAdmin);
 spModel.addModel('messaging', SPModelMessaging);
 spModel.addModel('timeclock', SPModelTimeClock);
+spModel.addModel('staff', SPModelStaff);

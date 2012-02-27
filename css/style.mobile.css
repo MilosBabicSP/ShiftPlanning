@@ -28,6 +28,142 @@ h1 {}
 h2 {}
 h3 {font-size:14px;}
 h4 {font-size:14px; line-height:20px;}
+h5 {font-size:14px; font-weight:normal; color:#333;}
+/*SPRITE*/
+.msgDel, .msgRpl, .cmtCount span.tip, ul.cmts, ul.cmts li.last input[type=submit], .search input[type=submit] {background-image:url(../images/icos.png); background-repeat:no-repeat;}
+.cmtCount span.ico {background-image:url(../images/sprite.png); background-repeat:no-repeat;}
+span.check, .dash, .ticl, .sche, .requ, .staf, .repo, .icoClock {background-image:url(../images/mainNav_bg.png); background-repeat:no-repeat;}
+
+.dash {background-position:10px 0;}
+.ticl {background-position:10px -50px;}
+.sche {background-position:10px -100px;}
+.requ {background-position:10px -150px;}
+.staf {background-position:10px -200px;}
+.repo {background-position:10px -250px;}
+
+.icoClock {background-position:10px -310px; padding:0 0 0 50px;}
+.shift {padding:0 0 0 25px; background:transparent url(../images/Dashboard_UpcomingShifts16x16.png) scroll no-repeat 0 50%;}
+
+span.check {display:block; line-height:30px; padding:5px 0 5px 40px; background-position:0 -555px;}
+/*BUILD*/
+html {overflow-x:hidden;}
+.wrapper { background-color:#FFF;}
+.wrapper.extended {margin:0 0 0 190px; border-left:solid 1px #711111; /*width:100%;*/} 
+.mainMenu {background-color:#a32525; width:190px; float:left;}
+.subWrapp {overflow:hidden; margin:0 auto;}
+.subNavigation {padding:15px 20px 15px 60px; background-color:#F2F2F2; border-top:solid 1px #FFF; border-bottom:solid 1px #DBDBDB; position:relative;}
+.main {padding:0 20px 20px;}
+
+.notif {line-height:20px; font-size:14px; color:#888; padding:15px 0;}
+
+.toggleMenu {position:absolute; top:17px; left:19px;}
+.backMenu {position:absolute; top:15px; left:15px;}
+.title {overflow:hidden; padding:15px 0 15px; line-height:30px; border-bottom:solid 1px #DBDBDB; }
+.title span a {display:block; padding:0 10px; background-color:#f0f0f0; border:solid 1px #DBDBDB; border-radius:2px;}
+.title div {line-height:15px; font-size:14px;}
+.title div span {display:block; font-weight:bold;}
+.welcome {font-size:14px; padding:10px 0;}
+.welcome span {color:#a52626;}
+
+.search {padding:15px 20px; background-color:#f7f7f7; border-top:solid 1px #FFF; border-bottom:solid 1px #DBDBDB; position:relative;}
+.search span.input {margin:0 30px 0 0;}
+.search input[type=submit] {float:right; margin:8px 0 0; display:block; width:13px; height:0; padding:13px 0 0; overflow:hidden; background-color:transparent; border:none; background-position:0 -13px;}
+
+
+.cmtCount {display:block; background-color:#f1f1f1; padding:5px 15px; color:#999; position:relative;}
+.cmtCount span.ico {background-position:0 0; padding:0 0 0 20px; line-height:20px; display:block; text-shadow:0 1px 0 #FFF;}
+.cmtCount span.tip {display:block; width:20px; height:10px; position:absolute; top:-10px; left:10px; background-position:-50px 0;}
+
+span.input {padding:5px; border:solid 1px #dbdbdb; display:block; background:#FFF url(../images/input_bg.png) scroll repeat-x 0 0;}
+span.input input[type=text] {font-family:"Arial", sans-serif; font-size:13px; color:#999; background-color:transparent; width:100%; border:none;}
+span.input select {font-family:"Arial", sans-serif; font-size:13px; color:#999; background-color:transparent; width:100%; border:none;}
+span.input textarea {font-family:"Arial", sans-serif; font-size:13px; color:#999; background-color:transparent; min-width:100%; max-width:100%; border:none;}
+span.input input[type=text]:focus, span.input textarea:focus {color:#444;}
+
+.newMsg {overflow:hidden; padding:10px 0 0;}
+.newMsg span.input {margin:2px 0 5px;}
+
+.msgHead {padding:15px 0;}
+
+.butDel {padding-left:30px !important; background:transparent url(../images/inbox_1.png) scroll no-repeat 7px 50%;}
+.butRpl {padding-left:30px !important; background:transparent  url(../images/inbox_2.png) scroll no-repeat 7px 50%;}
+.msgDel, .msgRpl {display:block; width:13px; height:13px; position:absolute; }
+ul.msgWall .msgRpl {top:20px; right:40px; background-position:0 0;}
+ul.msgWall .msgDel {top:20px; right:0; background-position:-13px 0;}
+ul.cmts .msgDel {top:15px; right:15px; background-position:-13px 0;}
+
+ul.mainNav {border-top:solid 1px #841717; border-bottom:solid 1px #b23939;}
+ul.mainNav > li > a {display:block; line-height:50px; padding:0 20px 0 60px; color:#FFF; font-size:14px; font-weight:bold; text-shadow:0 1px 2px #841717; border-bottom:solid 1px #841717; border-top:solid 1px #b23939;}
+ul.mainNav > li.active > a {background-color:#8f1a1a; border-top-color:#8f1a1a;}
+ul.mainNav ul li a {display:block; line-height:20px; padding:5px 10px 5px 20px; color:#FFF; border-bottom:solid 1px #841717; border-top:solid 1px #b23939; text-shadow:0 1px 2px #841717;}
+ul.mainNav ul li a span {display:block; float:right; padding:4px; font-size:11px; line-height:10px; background-color:#7c1515; border:solid 1px #691010; border-radius:2px;}
+
+
+ul.subNav {overflow:hidden; margin:0 auto;}
+ul.subNav li {float:left;}
+ul.subNav li a {display:block; padding:6px 16px; text-align:center; border:solid 1px #d8d8d8; border-left:none; background-color:#FFF;}
+ul.subNav li.active a {background-color:#e8e8e8;}
+ul.subNav li.first a {border-radius:2px 0 0 2px; border-left:solid 1px #d8d8d8;}
+ul.subNav li.last a {border-radius:0 2px 2px 0;}
+
+ul.inbox {overflow:hidden;}
+ul.inbox li {border-bottom:solid 1px #DBDBDB;}
+ul.inbox li.unread {background-color:#FFFFCC;}
+ul.inbox li.extended {border:none;}
+ul.inbox li .msgBody {display:none;}
+ul.inbox li.extended .msgBody {display:block;}
+
+
+ul.filters {overflow:hidden; margin:0 auto;}
+ul.filters li {float:left; width:100px;}
+ul.filters li a {display:block; padding:6px 0; line-height:16px; text-align:center; color:#666; border:solid 1px #d8d8d8; border-left:none; background-color:#FFF;}
+ul.filters li.active a {background-color:#e8e8e8;}
+ul.filters li.first a {border-radius:2px 0 0 2px; border-left:solid 1px #d8d8d8;}
+ul.filters li.last a {border-radius:0 2px 2px 0;}
+
+ul.msgWall {overflow:hidden;}
+ul.msgWall > li {padding:15px 0 0; border-bottom:solid 1px #DBDBDB; overflow:hidden; position:relative;}
+ul.msgWall > li > img {float:left; padding:5px 0 20px;}
+ul.msgWall > li > .msg {margin:0 0 0 60px; padding:0 0 20px;}
+ul.msgWall > li p {padding:5px 0;}
+ul.msgWall > li .msg span{color:#999; display:block; line-height:20px;}
+
+ul.multiInput {overflow:hidden; padding:10px 0; margin:10px 0; }
+ul.multiInput.borTB {border-bottom:solid 1px #DBDBDB; border-top:solid 1px #DBDBDB;}
+ul.multiInput li {width:50%; float:left;}
+ul.multiInput li.even div {margin:0 10px 0 0;}
+ul.multiInput li.odd div {margin:0 0 0 10px;}
+
+ul.detailsGrid {overflow:hidden; border-bottom:solid 1px #DBDBDB; padding:5px 0;}
+ul.detailsGrid > li {padding:5px 0;}
+ul.detailsGrid ul {margin:-5px 0; overflow:hidden;}
+ul.detailsGrid ul li {float:left; width:50%; padding:5px 0;}
+ul.detailsGrid ul li.even div {margin:0 10px 0 0;}
+ul.detailsGrid ul li.odd div {margin:0 0 0 10px;}
+
+ul.cmts {background-position:-40px 0; padding:10px 0 0;display:none;}
+ul.cmts li {padding:10px 15px 0; background-color:#f1f1f1; position:relative; overflow:hidden; border-bottom:solid 1px #e1e1e1; border-top:solid 1px #fbfbfb;}
+ul.cmts li img {float:left; padding:5px 0 15px;}
+ul.cmts li .msg {margin:0 0 0 60px; padding:0 0 15px;}
+ul.cmts li.first {border-top:none;}
+ul.cmts li.last {border-bottom:none;}
+ul.cmts li.last span.input {margin:5px 30px 15px 0;}
+ul.cmts li.last input[type=submit] {float:right; margin:13px 0 0; display:block; width:13px; height:0; padding:13px 0 0; overflow:hidden; background-color:transparent; border:none; background-position:-26px 0;}
+
+ul.timeSheet {overflow:hidden; font-size:14px;}
+ul.timeSheet li {border-bottom:solid 1px #dbdbdb; line-height:50px;}
+ul.timeSheet li span {width:33%; display:inline-block;}
+ul.timeSheet li .time {text-align:center; color:#888;}
+ul.timeSheet li .last {text-align:right;}
+ul.timeSheet li a {margin:10px 0;}
+
+ul.staff.big {overflow:hidden; padding:15px 10px; font-size:14px;}
+ul.staff.big li {float:left; padding:5px 10px; width:80px;}
+ul.staff.big li span {display:block; text-align:center; padding:3px 0;}
+ul.staff.small {overflow:hidden; font-size:14px; }
+ul.staff.small li {float:left; padding:10px 0 10px 20px; width:140px; border-bottom:solid 1px #DBDBDB;}
+ul.staff.small li img {float:left; width:30px; height:30px;}
+ul.staff.small li span {display:block; margin:0 0 0 40px; line-height:15px;}
 
 
 .login {background: #ECECDB; color: #414141; font-size: 17px;height:100%;background-image: url(../images/mainBg.png)} 
@@ -55,99 +191,5 @@ h4 {font-size:14px; line-height:20px;}
 */
 .applicationContainer {display:none;}
 
-/*SPRITE*/
-.msgDel, .msgRpl, .cmtCount span.tip, ul.cmts, ul.cmts li.last input[type=submit]  {background-image:url(../images/icos.png); background-repeat:no-repeat;}
-.cmtCount span.ico {background-image:url(../images/sprite.png); background-repeat:no-repeat;}
-.dash, .ticl, .sche, .requ, .staf, .repo, .icoClock {background-image:url(../images/mainNav_bg.png); background-repeat:no-repeat;}
-
-.dash {background-position:10px 0;}
-.ticl {background-position:10px -50px;}
-.sche {background-position:10px -100px;}
-.requ {background-position:10px -150px;}
-.staf {background-position:10px -200px;}
-.repo {background-position:10px -250px;}
-
-.icoClock {background-position:10px -310px; padding:0 0 0 50px;}
-
-/*BUILD*/
-html {overflow-x:hidden;}
-.wrapper { background-color:#FFF;}
-.wrapper.extended {margin:0 0 0 190px; border-left:solid 1px #711111; width:100%;} 
-.mainMenu {background-color:#a32525; width:190px; float:left;}
-.subNavigation {padding:15px 20px 15px 60px; background-color:#F2F2F2; border-top:solid 1px #FFF; border-bottom:solid 1px #DBDBDB; position:relative;}
-.main {padding:10px 20px 20px;}
-
-
-.toggleMenu {position:absolute; top:17px; left:19px;}
-.title {overflow:hidden; padding:10px 0 20px; line-height:30px; border-bottom:solid 1px #DBDBDB; }
-.title span a {display:block; padding:0 10px; background-color:#f0f0f0; border:solid 1px #DBDBDB; border-radius:2px;}
-.title div {line-height:15px; font-size:14px;}
-.title div span {display:block; font-weight:bold;}
-.welcome {font-size:14px; padding:10px 0;}
-.welcome span {color:#a52626;}
-
-.cmtCount {display:block; background-color:#f1f1f1; padding:5px 15px; color:#999; position:relative;}
-.cmtCount span.ico {background-position:0 0; padding:0 0 0 20px; line-height:20px; display:block; text-shadow:0 1px 0 #FFF;}
-.cmtCount span.tip {display:block; width:20px; height:10px; position:absolute; top:-10px; left:10px; background-position:-50px 0;}
-
-span.input {padding:5px; border:solid 1px #dbdbdb; display:block; background:#FFF url(../images/input_bg.png) scroll repeat-x 0 0;}
-span.input input[type=text] {font-family:"Arial", sans-serif; font-size:13px; color:#999; background-color:transparent; width:100%; border:none;}
-span.input select {font-family:"Arial", sans-serif; font-size:13px; color:#999; background-color:transparent; width:100%; border:none;}
-span.input textarea {font-family:"Arial", sans-serif; font-size:13px; color:#999; background-color:transparent; min-width:100%; max-width:100%; border:none;}
-span.input input[type=text]:focus, span.input textarea:focus {color:#444;}
-
-.newMsg {overflow:hidden; padding:10px 0 0;}
-.newMsg span.input {margin:2px 0 10px;}
-
-.msgDel, .msgRpl {display:block; width:13px; height:13px; position:absolute; }
-ul.msgWall .msgRpl {top:20px; right:40px; background-position:0 0;}
-ul.msgWall .msgDel {top:20px; right:0; background-position:-13px 0;}
-ul.cmts .msgDel {top:15px; right:15px; background-position:-13px 0;}
-
-ul.mainNav {border-top:solid 1px #841717; border-bottom:solid 1px #b23939;}
-ul.mainNav > li > a {display:block; line-height:50px; padding:0 20px 0 60px; color:#FFF; font-size:14px; font-weight:bold; text-shadow:0 1px 2px #841717; border-bottom:solid 1px #841717; border-top:solid 1px #b23939;}
-ul.mainNav > li.active > a {background-color:#8f1a1a; border-top-color:#8f1a1a;}
-ul.mainNav ul li a {display:block; line-height:20px; padding:5px 10px 5px 20px; color:#FFF; border-bottom:solid 1px #841717; border-top:solid 1px #b23939; text-shadow:0 1px 2px #841717;}
-ul.mainNav ul li a span {display:block; float:right; padding:4px; font-size:11px; line-height:10px; background-color:#7c1515; border:solid 1px #691010; border-radius:2px;}
-
-
-ul.subNav {overflow:hidden; margin:0 auto;}
-ul.subNav li {float:left;}
-ul.subNav li a {display:block; padding:6px 16px; text-align:center; border:solid 1px #d8d8d8; border-left:none; background-color:#FFF;}
-ul.subNav li.active a {background-color:#e8e8e8;}
-ul.subNav li.first a {border-radius:2px 0 0 2px; border-left:solid 1px #d8d8d8;}
-ul.subNav li.last a {border-radius:0 2px 2px 0;}
-ul.subNav.dashboard {width:246px;}
-ul.subNav.timeclock {width:197px;}
-
-ul.msgWall {overflow:hidden;}
-ul.msgWall > li {padding:15px 0 0; border-bottom:solid 1px #DBDBDB; overflow:hidden; position:relative;}
-ul.msgWall > li > img {float:left; padding:5px 0 20px;}
-ul.msgWall > li > .msg {margin:0 0 0 60px; padding:0 0 20px;}
-ul.msgWall > li p {padding:5px 0;}
-ul.msgWall > li .msg span{color:#999; display:block; line-height:20px;}
-
-ul.multiInput {overflow:hidden; padding:10px 0; margin:10px 0; }
-ul.multiInput.borTB {border-bottom:solid 1px #DBDBDB; border-top:solid 1px #DBDBDB;}
-ul.multiInput li {width:50%; float:left;}
-ul.multiInput li.even div {margin:0 10px 0 0;}
-ul.multiInput li.odd div {margin:0 0 0 10px;}
-
-ul.cmts {background-position:-40px 0; padding:10px 0 0; display:none;}
-ul.cmts li {padding:10px 15px 0; background-color:#f1f1f1; position:relative; overflow:hidden; border-bottom:solid 1px #e1e1e1; border-top:solid 1px #fbfbfb;}
-ul.cmts li img {float:left; padding:5px 0 15px;}
-ul.cmts li .msg {margin:0 0 0 60px; padding:0 0 15px;}
-ul.cmts li.first {border-top:none;}
-ul.cmts li.last {border-bottom:none;}
-ul.cmts li.last span.input {margin:5px 30px 15px 0;}
-ul.cmts li.last input[type=submit] {float:right; margin:13px 0 0; display:block; width:13px; height:0; padding:13px 0 0; overflow:hidden; background-color:transparent; border:none; background-position:-26px 0;}
-
-ul.timeSheet {overflow:hidden;}
-ul.timeSheet li {border-bottom:solid 1px #dbdbdb; line-height:40px;}
-ul.timeSheet li span {width:33%; display:inline-block;}
-ul.timeSheet li .time {text-align:center;}
-ul.timeSheet li .last {text-align:right;}
-
-
-
 .hidden {display:none;}
+#da_up_li li a {margin:0px;}

@@ -1,6 +1,45 @@
 
 <!-- ID rulez first is "te" shorten from template, next is 2 letter from module name, than 2 letter from page name, than 2 letters from page method -->
 <div id="templates">
+    <script id="te_da_up_li" type="text/x-jquery-tmpl">
+        <li>
+            <a class="fr" href="#">
+                <img width="43" height="30" src="images/NextMenu.png" />
+            </a>
+            <span class="date">${start_date.formatted}</span>
+            <span class="time">${start_time.time} - ${end_time.time}</span>
+        </li>
+    </script>
+    <script id="te_da_wa_in" type="text/x-jquery-tmpl">
+        <li id="da_in_msg_${id}" class="{{if date_read == 0}}unread{{/if}}">
+            <div class="msgHead" messageId="${id}">
+                <h5>${subject}</h5>
+                <p><span class="fr">Oct 15</span>From: ${from.name}</p>
+            </div>
+            <div class="msgBody">
+                <p>{{html message_formatted}}</p>
+                <div class="newMsg hidden">
+                    <input type="hidden" value="${from.id}" />
+                    <label>Subject</label>
+                    <span class="input">
+                        <input type="text" name="" value=""/>
+                    </span>
+                    <label>Message</label>
+                    <span class="input">
+                        <textarea></textarea>
+                    </span>
+                    <div class="title">
+                        <span class="fr"><a href="#">Send Message</a></span>
+                        <span class="fl"><a href="#">Cancel</a></span>
+                    </div>
+                </div>
+                <div class="title">
+                    <span class="fr"><a class="butDel" href="#" rel="${id}">Delete</a></span>
+                    <span class="fl"><a class="butRpl" href="#" rel="${id}">Reply</a></span>
+                </div>
+            </div>
+        </li>
+    </script>
     <script id="te_da_wa_me" type="text/x-jquery-tmpl">
         <li id="da_wa_msg_${id}">
             <img width="50" height="50" title="user name" src="${avatar}" />
