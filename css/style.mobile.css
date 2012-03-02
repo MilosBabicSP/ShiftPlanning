@@ -23,7 +23,6 @@ p {line-height:120%;}
 .hidden {display:none;}
 label {font-size:14px; display:block; padding:3px 0;}
 
-
 h1 {}
 h2 {}
 h3 {font-size:14px;}
@@ -44,7 +43,7 @@ span.check, span.checkbox, .dash, .ticl, .sche, .requ, .staf, .repo, .icoClock {
 .icoClock {background-position:10px -310px; padding:0 0 0 50px;}
 .shift {padding:0 0 0 25px; background:transparent url(../images/Dashboard_UpcomingShifts16x16.png) scroll no-repeat 0 50%;}
 
-span.check {display:block; line-height:30px; padding:5px 0 5px 40px; background-position:0 -555px;}
+span.check {display:block; line-height:30px; padding:5px 0 5px 40px; background-position:0 -605px;}
 span.checkbox {display:block; line-height:30px; padding:5px 0 5px 40px; background-position:0 -555px;}
 /*BUILD*/
 html {overflow-x:hidden;}
@@ -69,7 +68,6 @@ html {overflow-x:hidden;}
 .search {padding:15px 20px; background-color:#f7f7f7; border-top:solid 1px #FFF; border-bottom:solid 1px #DBDBDB; position:relative;}
 .search span.input {margin:0 30px 0 0;}
 .search input[type=submit] {float:right; margin:8px 0 0; display:block; width:13px; height:0; padding:13px 0 0; overflow:hidden; background-color:transparent; border:none; background-position:0 -13px;}
-
 
 .cmtCount {display:block; background-color:#f1f1f1; padding:5px 15px; color:#999; position:relative;}
 .cmtCount span.ico {background-position:0 0; padding:0 0 0 20px; line-height:20px; display:block; text-shadow:0 1px 0 #FFF;}
@@ -113,7 +111,6 @@ ul.inbox li.unread {background-color:#FFFFCC;}
 ul.inbox li.extended {border:none;}
 ul.inbox li .msgBody {display:none;}
 ul.inbox li.extended .msgBody {display:block;}
-
 
 ul.filters {overflow:hidden; margin:0 auto;}
 ul.filters li {float:left; width:100px;}
@@ -165,7 +162,6 @@ ul.staff.small {overflow:hidden; font-size:14px; }
 ul.staff.small li {float:left; padding:10px 0 10px 20px; width:140px; border-bottom:solid 1px #DBDBDB;}
 ul.staff.small li img {float:left; width:30px; height:30px;}
 ul.staff.small li span {display:block; margin:0 0 0 40px; line-height:15px;}
-
 
 .login {background: #ECECDB; color: #414141; font-size: 17px;height:100%;background-image: url(../images/mainBg.png)} 
 .login .logo {margin: 5px auto; display: block;}
