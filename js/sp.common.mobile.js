@@ -1,4 +1,5 @@
 //creation of touchmove event used for tablet/mobile devices
+var cal;
 var lastTouch;
 var clickEvent = 'click';
 var deviceAgent = navigator.userAgent.toLowerCase();
@@ -59,7 +60,6 @@ ShiftPlanning.prototype.toggleMenu = function(){
 }
 
 ShiftPlanning.prototype.loadSubPage = function(obj, page, subpage){
-    console.log(obj, page, subpage);
     if (subpage == 'logout'){
         sp.staff.logout();
         return false;

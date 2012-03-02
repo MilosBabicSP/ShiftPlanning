@@ -8,7 +8,7 @@ function ShiftPlanning(){
     return true;
 }
 
-ShiftPlanning.prototype = { 
+ShiftPlanning.prototype = {
     multiApi: function(calls, callback){
         var data = [];
         $.each(calls,function(index,item){
@@ -95,7 +95,6 @@ ShiftPlanning.prototype = {
         });
     },
     loadPage: function(page){
-        console.log(page);
         //Load the page from the module, handle this a little better
         if(user.loggedIn){
             if(typeof this[page] != 'undefined'){
@@ -105,7 +104,6 @@ ShiftPlanning.prototype = {
                 $('.subNavigation > div').hide();
                 $('.subNavigation > div.' + page).show();
                 $('.subNavigation > div.' + page + ' li:first a').trigger(clickEvent);
-                console.log('#pages #' + page + ' > div','.subNavigation > div.' + page + ' li:first a');
                 this[page].loadPage();
             } else {
                 console.log(page+ ' page does not exist.');

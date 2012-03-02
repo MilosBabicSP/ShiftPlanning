@@ -11,6 +11,7 @@ require_once('functions.php');
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;">
         <link rel="stylesheet" type="text/css" href="css/style.mobile.css" />
+        <link rel="stylesheet" type="text/css" href="css/mobiscroll.css" />
         <script src="js/sp.user.js" type="text/javascript"></script>
         <script type="text/javascript">
 <?
@@ -18,15 +19,15 @@ $vtoken = _iapi(array('module' => 'api.vtoken', 'method' => 'GET', 'token' => $_
 if ($vtoken['data'] != '1') {
     unset($_SESSION['api']['token']);
     ?>
-            user.loggedIn = 0;
+                    user.loggedIn = 0;
     <?
 } else {
     ?>
-            user.loggedIn = 1;
+                    user.loggedIn = 1;
 <? } ?>
-    user.name = '<?= ($_SESSION['api']['token']) ? $_SESSION['user']['employee']['name'] : '' ?>';
-    user.company = '<?= ($_SESSION['api']['token']) ? $_SESSION['user']['business']['name'] : '' ?>';
-    user.phone = '<?= ($_SESSION['api']['token']) ? $_SESSION['user']['business']['phone'] : '' ?>';
+            user.name = '<?= ($_SESSION['api']['token']) ? $_SESSION['user']['employee']['name'] : '' ?>';
+            user.company = '<?= ($_SESSION['api']['token']) ? $_SESSION['user']['business']['name'] : '' ?>';
+            user.phone = '<?= ($_SESSION['api']['token']) ? $_SESSION['user']['business']['phone'] : '' ?>';
             
         </script>
 
@@ -37,9 +38,12 @@ if ($vtoken['data'] != '1') {
         <script src="js/jquery/jquery.timeago.js" type="text/javascript"></script>
         <script src="js/jquery/jquery.tmpl.js" type="text/javascript"></script>
         <script src="js/jquery/jquery.ba-hashchange.min.js" type="text/javascript"></script>
-        <!-- Specially for mobile devices -->
 
-        <!-- Models -->
+
+        <!-- Specially for mobile devices -->
+        <script src="js/plugins/mobiscroll.js" type="text/javascript"></script>
+
+
         <!-- Models -->
         <script src="js/models/sp.schedule.model.js" type="text/javascript"></script>
         <script src="js/models/sp.requests.model.js" type="text/javascript"></script>
@@ -184,12 +188,12 @@ if ($vtoken['data'] != '1') {
                                     <img width="16" height="16" src="images/timeclock_2.png" />
                                 </a>
                             </li>
-                            <li>
+                            <li class="last">
                                 <a href="#" subpage="addClockTime">
                                     <img width="16" height="16" src="images/timeclock_3.png" />
                                 </a>
                             </li>
-                            <li class="last">
+                            <li class="hidden">
                                 <a href="#" subpage="editClockTime">
                                     <img width="16" height="16" src="images/timeclock_4.png" />
                                 </a>
@@ -200,178 +204,50 @@ if ($vtoken['data'] != '1') {
                 <div id="pages">
                     <div class="dashboard" id="dashboard">
                         <?php Functions::getInstance()->loadFile('dashboard_wall') ?>
-                        <div class="main upcomingShifts" id="da_up">
-                            <div class="title">
-                                <h3>Upcoming Shifts</h3>
-                            </div>
-                            <ul class="timeSheet" id="da_up_li">
-
-                            </ul>
-                            <div class="notif hidden">You are not scheduled on any shifts.</div>
-                        </div>
+                        <?php Functions::getInstance()->loadFile('dashboard_upcomingShifts'); ?>
                         <?php Functions::getInstance()->loadFile('dashboard_inbox') ?>
-                        <div class="main settings" id="da_se">
-                            <div class="title">
-                                <h3 class="icoClock">Employee Details</h3>
-                            </div>
-                            <ul class="detailsGrid">
-                                <li>
-                                    <ul>    
-
-                                        <li class="even">
-                                            <div>
-                                                <label>Full name:</label>
-                                                <h4>Jordan Michales</h4>
-                                            </div>
-                                        </li>
-                                        <li class="odd">
-                                            <div>
-                                                <label>Username:</label>
-                                                <h4>Ryan</h4>
-                                            </div>
-                                        </li>
-                                        <li class="even">
-                                            <div>
-                                                <label>Mobile:</label>
-                                                <h4>Jordan Michales</h4>
-                                            </div>
-                                        </li>
-                                        <li class="odd">
-                                            <div>
-                                                <label>Home:</label>
-                                                <h4>Jordan Michales</h4>
-                                            </div>
-                                        </li>
-                                        <li class="even">
-                                            <div>
-                                                <label>Birthday:</label>
-                                                <h4>Jordan Michales</h4>
-                                            </div>
-                                        </li>
-                                        <li class="odd">
-                                            <div>
-                                                <label>Wage:</label>
-                                                <h4>Jordan Michales</h4>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <label>Email:</label>
-                                    <h4>ryanpaulfyfe@gmail.com</h4>
-                                </li>
-                                <li>
-                                    <label>Positions:</label>
-                                    <h4>Management, Development, Happy Town</h4> 
-                                </li>
-                            </ul>
-                            <div class="title">
-                                <h3 class="icoClock">Admin actions</h3>
-                            </div>
-                            <ul class="detailsGrid">
-                                <li>
-                                    <label>Status:</label>
-                                    <h4>User has actived his/her account.</h4>
-                                </li>
-                                <li>
-                                    <label>Activation:</label>
-                                    <h4>Administrative accounts can’t be de-activated.</h4>
-                                </li>
-                            </ul>
-                            <div class="title">
-                                <h3 class="icoClock">Employee Positions</h3>
-                            </div>
-                            <ul class="detailsGrid">
-                                <ul>    
-                                    <li class="even">
-                                        <div>
-                                            <span class="check">Development</span>
-                                        </div>
-                                    </li>
-                                    <li class="odd">
-                                        <div>
-                                            <span class="check">Development</span>
-                                        </div>
-                                    </li>
-                                    <li class="even">
-                                        <div>
-                                            <span class="check">Development</span>
-                                        </div>
-                                    </li>
-                                    <li class="odd">
-                                        <div>
-                                            <span class="check">Development</span>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </ul>
-                            <div class="title">
-                                <h3 class="icoClock">Employee Skills</h3>
-                            </div>
-                            <ul class="detailsGrid">
-                                <li>
-                                    <ul>    
-                                        <li class="even">
-                                            <div>
-                                                <span class="check">Development</span>
-                                            </div>
-                                        </li>
-                                        <li class="odd">
-                                            <div>
-                                                <span class="check">Development</span>
-                                            </div>
-                                        </li>
-                                        <li class="even">
-                                            <div>
-                                                <span class="check">Development</span>
-                                            </div>
-                                        </li>
-                                        <li class="odd">
-                                            <div>
-                                                <span class="check">Development</span>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                            <ul class="detailsGrid">
-                                <li>
-                                    <label>Notes</label>
-                                    <span class="input">
-                                        <textarea>Write Notes...</textarea>
-                                    </span>
-                                </li>
-                            </ul>
-                        </div>
+                        <?php Functions::getInstance()->loadFile('dashboard_settings'); ?>
                     </div>
                     <div class="timeClock" id="timeClock">
-                        <div class="main overview">
+                        <?php Functions::getInstance()->loadFile('timeClock_overview'); ?>
+                        <?php Functions::getInstance()->loadFile('timeClock_addClockTime'); ?>
+                        <div class="main manageTimeSheets" id="tc_mts">
                             <div class="title">
-                                <span class="fr"><a href="#">Clock Out</a></span>
-                                <div class="icoClock fl">
-                                    january 8, 2012
-                                    <span>13:55</span>
-                                </div>
+                                <h3 class="fl">My Timesheet</h3>
+                                <span class="fr"><a id="tc_mts_adv" href="#" style="display: block;">Advanced</a></span>
                             </div>
-                            <div class="newMsg hidden" id="tc_ov_cf">
-                                <label>Schedule</label>
-                                <span class="input">
-                                    <select name="" id="tc_ov_ss">
-                                        <option>Select Schedule</option>
-                                        <option>Lorem ipsum</option>
-                                        <option>Lorem ipsum</option>
-                                    </select>
-                                </span>
-                                <label>Notes</label>
-                                <span class="input">
-                                    <textarea>Write Notes...</textarea>
-                                </span>
-
-                                <div class="title">
-                                    <span class="fr"><a href="#">Cancel</a></span>
-                                    <span class="fl"><a href="#">Save</a></span>
-                                </div>
-                            </div>
+                            <ul class="multiInput">
+                                <li class="even">
+                                    <div>
+                                        <span class="input">
+                                            <select name="">
+                                                <option>Select Schedule</option>
+                                                <option>Lorem ipsum</option>
+                                                <option>Lorem ipsum</option>
+                                            </select>
+                                        </span>
+                                    </div>
+                                </li>
+                                <li class="odd">
+                                    <div>
+                                        <span class="input">
+                                            <select name="">
+                                                <option>Select Schedule</option>
+                                                <option>Lorem ipsum</option>
+                                                <option>Lorem ipsum</option>
+                                            </select>
+                                        </span>
+                                    </div>
+                                </li>
+                            </ul>
+                            <ul class="timeSheet">
+                                <li><span class="date">jan 8, 2012</span><span class="time">08:00 - 10:34</span><span class="last">2h, 34min</span></li>
+                                <li><span class="date">jan 8, 2012</span><span class="time">08:00 - 10:34</span><span class="last">2h, 34min</span></li>
+                                <li><span class="date">jan 8, 2012</span><span class="time">08:00 - 10:34</span><span class="last">2h, 34min</span></li>
+                                <li><span class="date">jan 8, 2012</span><span class="time">08:00 - 10:34</span><span class="last">2h, 34min</span></li>
+                                <li><span class="date">jan 8, 2012</span><span class="time">08:00 - 10:34</span><span class="last">2h, 34min</span></li>
+                                <li><span class="date">jan 8, 2012</span><span class="time">08:00 - 10:34</span><span class="last">2h, 34min</span></li>
+                            </ul>
                         </div>
                     </div>
                 </div>
