@@ -1,6 +1,6 @@
 <div class="main settings" id="da_se">
     <div class="title">
-        <h3 class="icoClock">Employee Details</h3>
+        <h3 class="icoEmpDet">Employee Details</h3>
     </div>
     <ul class="detailsGrid">
         <li>
@@ -53,7 +53,7 @@
         </li>
     </ul>
     <div class="title">
-        <h3 class="icoClock">Admin actions</h3>
+        <h3 class="icoAdmAct">Admin actions</h3>
     </div>
     <ul class="detailsGrid">
         <li>
@@ -93,7 +93,7 @@
         </ul>
     </ul>
     <div class="title">
-        <h3 class="icoClock">Employee Skills</h3>
+        <h3 class="icoEmpSki">Employee Skills</h3>
     </div>
     <ul class="detailsGrid">
         <li>
