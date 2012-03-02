@@ -77,17 +77,17 @@
             </li>
             <li class="odd">
                 <div>
-                    <span class="check">Development</span>
+                    <span class="checkbox">Development</span>
                 </div>
             </li>
             <li class="even">
                 <div>
-                    <span class="check">Development</span>
+                    <span class="checkbox">Development</span>
                 </div>
             </li>
             <li class="odd">
                 <div>
-                    <span class="check">Development</span>
+                    <span class="checkbox">Development</span>
                 </div>
             </li>
         </ul>
@@ -100,22 +100,22 @@
             <ul>    
                 <li class="even">
                     <div>
-                        <span class="check">Development</span>
+                        <span class="checkbox">Development</span>
                     </div>
                 </li>
                 <li class="odd">
                     <div>
-                        <span class="check">Development</span>
+                        <span class="checkbox">Development</span>
                     </div>
                 </li>
                 <li class="even">
                     <div>
-                        <span class="check">Development</span>
+                        <span class="checkbox">Development</span>
                     </div>
                 </li>
                 <li class="odd">
                     <div>
-                        <span class="check">Development</span>
+                        <span class="checkbox">Development</span>
                     </div>
                 </li>
             </ul>
