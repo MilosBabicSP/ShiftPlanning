@@ -31,7 +31,7 @@ h5 {font-size:14px; font-weight:normal; color:#333;}
 /*SPRITE*/
 .msgDel, .msgRpl, .cmtCount span.tip, ul.cmts, ul.cmts li.last input[type=submit], .search input[type=submit] {background-image:url(../images/icos.png); background-repeat:no-repeat;}
 .cmtCount span.ico {background-image:url(../images/sprite.png); background-repeat:no-repeat;}
-span.check, span.checkbox, .dash, .ticl, .sche, .requ, .staf, .repo, .icoClock {background-image:url(../images/mainNav_bg.png); background-repeat:no-repeat;}
+span.checkbox, .dash, .ticl, .sche, .requ, .staf, .repo, .icoClock {background-image:url(../images/mainNav_bg.png); background-repeat:no-repeat;}
 
 .dash {background-position:10px 0;}
 .ticl {background-position:10px -50px;}
@@ -43,8 +43,9 @@ span.check, span.checkbox, .dash, .ticl, .sche, .requ, .staf, .repo, .icoClock {
 .icoClock {background-position:10px -310px; padding:0 0 0 50px;}
 .shift {padding:0 0 0 25px; background:transparent url(../images/Dashboard_UpcomingShifts16x16.png) scroll no-repeat 0 50%;}
 
-span.check {display:block; line-height:30px; padding:5px 0 5px 40px; background-position:0 -555px;}
 span.checkbox {display:block; line-height:30px; padding:5px 0 5px 40px; background-position:0 -605px;}
+span.checkbox.check {background-position:0 -555px;}
+
 /*BUILD*/
 html {overflow-x:hidden;}
 .wrapper { background-color:#FFF;}
