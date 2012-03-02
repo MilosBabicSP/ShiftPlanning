@@ -72,7 +72,7 @@
         <ul>    
             <li class="even">
                 <div>
-                    <span class="check">Development</span>
+                    <span class="checkbox">Development</span>
                 </div>
             </li>
             <li class="odd">
