@@ -66,7 +66,7 @@
         </li>
     </ul>
     <div class="title">
-        <h3 class="icoClock">Employee Positions</h3>
+        <h3 class="icoEmpPos">Employee Positions</h3>
     </div>
     <ul class="detailsGrid">
         <ul>    
