@@ -121,6 +121,9 @@ ShiftPlanning.prototype.initialize = function(){
         
         $('#menu .mainNav > li > a').bind(clickEvent, function(e){
             e.preventDefault();
+            if ($(this).attr('page') == sp.hash()){
+                return false;
+            }
             sp.hash($(this).attr('page'));
         });
         
