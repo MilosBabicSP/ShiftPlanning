@@ -14,6 +14,9 @@ ShiftPlanningStaff.prototype = {
     },
     login: function(username, password){
         console.log('Implement staff.login for this device. ');
+    },
+    loadPage : function(){
+        
     }
     
 }

@@ -10,6 +10,11 @@ ShiftPlanningStaff.prototype.initialize = function(){
     });
 }
 
+
+ShiftPlanningStaff.prototype.loadSubPageEvents = function(){
+    
+}
+
 ShiftPlanningStaff.prototype.login = function(){
     var u = $('#lo_u').val();
     var p = $('#lo_p').val();
