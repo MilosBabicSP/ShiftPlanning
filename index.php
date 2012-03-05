@@ -19,15 +19,15 @@ $vtoken = _iapi(array('module' => 'api.vtoken', 'method' => 'GET', 'token' => $_
 if ($vtoken['data'] != '1') {
     unset($_SESSION['api']['token']);
     ?>
-                    user.loggedIn = 0;
+            user.loggedIn = 0;
     <?
 } else {
     ?>
-                    user.loggedIn = 1;
+            user.loggedIn = 1;
 <? } ?>
-            user.name = '<?= ($_SESSION['api']['token']) ? $_SESSION['user']['employee']['name'] : '' ?>';
-            user.company = '<?= ($_SESSION['api']['token']) ? $_SESSION['user']['business']['name'] : '' ?>';
-            user.phone = '<?= ($_SESSION['api']['token']) ? $_SESSION['user']['business']['phone'] : '' ?>';
+    user.name = '<?= ($_SESSION['api']['token']) ? $_SESSION['user']['employee']['name'] : '' ?>';
+    user.company = '<?= ($_SESSION['api']['token']) ? $_SESSION['user']['business']['name'] : '' ?>';
+    user.phone = '<?= ($_SESSION['api']['token']) ? $_SESSION['user']['business']['phone'] : '' ?>';
             
         </script>
 
@@ -57,11 +57,13 @@ if ($vtoken['data'] != '1') {
         <script src="js/plugins/sp.cache.js" type="text/javascript"></script>
         <script src="js/schedule/date.js" type="text/javascript"></script>
         <script src="js/schedule/date.extras.js" type="text/javascript"></script>
+        <script src="js/plugins/objSort.js" type="text/javascript"></script>
 
         <!-- System -->
         <script src="js/sp.common.js" type="text/javascript"></script>
         <script src="js/sp.model.js" type="text/javascript"></script>
         <script src="js/sp.view.js" type="text/javascript"></script>
+        <script src="js/sp.ranges.js" type="text/javascript"></script>
 
         <!-- Base -->
         <script src="js/sp.staff.js" type="text/javascript"></script>
@@ -216,38 +218,69 @@ if ($vtoken['data'] != '1') {
                                 <h3 class="fl">My Timesheet</h3>
                                 <span class="fr"><a id="tc_mts_adv" href="#" style="display: block;">Advanced</a></span>
                             </div>
-                            <ul class="multiInput">
-                                <li class="even">
-                                    <div>
-                                        <span class="input">
-                                            <select name="">
-                                                <option>Select Schedule</option>
-                                                <option>Lorem ipsum</option>
-                                                <option>Lorem ipsum</option>
-                                            </select>
-                                        </span>
-                                    </div>
-                                </li>
-                                <li class="odd">
-                                    <div>
-                                        <span class="input">
-                                            <select name="">
-                                                <option>Select Schedule</option>
-                                                <option>Lorem ipsum</option>
-                                                <option>Lorem ipsum</option>
-                                            </select>
-                                        </span>
-                                    </div>
+                            <ul class="detailsGrid">
+                                <li>
+                                    <ul>
+                                        <li class="even">
+                                            <div>
+                                                <span class="input">
+                                                    <select id="tc_mts_au">
+                                                        <option value="0" >All</option>
+                                                        <option value="1" >Approved</option>
+                                                        <option value="2" selected="selected">Unapproved</option>
+                                                    </select>
+                                                </span>
+                                            </div>
+                                        </li>
+                                        <li class="odd">
+                                            <div>
+                                                <span class="input">
+                                                    <select id="tc_mts_tr">
+                                                        
+                                                    </select>
+                                                </span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <ul class="hidden" id="tc_mts_hiin">
+                                        <li class="even">
+                                            <div>
+                                                <span class="input">
+                                                    <select id="tc_mts_eml">
+                                                    </select>
+                                                </span>
+                                            </div>
+                                        </li>
+                                        <li class="odd">
+                                            <div>
+                                                <span class="input">
+                                                    <select id="tc_mts_scl">
+                                                    </select>
+                                                </span>
+                                            </div>
+                                        </li>
+                                        <li class="even">
+                                            <div>
+                                                <label>From:</label>
+                                                <span class="input">
+                                                    <input id="tc_mts_sd_i" type="text" />
+                                                </span>
+                                            </div>
+                                        </li>
+                                        <li class="odd">
+                                            <div>
+                                                <label>To:</label>
+                                                <span class="input">
+                                                    <input id="tc_mts_ed_i"  type="text" />
+                                                </span>
+                                            </div>
+                                        </li>
+                                    </ul>
                                 </li>
                             </ul>
-                            <ul class="timeSheet">
-                                <li><span class="date">jan 8, 2012</span><span class="time">08:00 - 10:34</span><span class="last">2h, 34min</span></li>
-                                <li><span class="date">jan 8, 2012</span><span class="time">08:00 - 10:34</span><span class="last">2h, 34min</span></li>
-                                <li><span class="date">jan 8, 2012</span><span class="time">08:00 - 10:34</span><span class="last">2h, 34min</span></li>
-                                <li><span class="date">jan 8, 2012</span><span class="time">08:00 - 10:34</span><span class="last">2h, 34min</span></li>
-                                <li><span class="date">jan 8, 2012</span><span class="time">08:00 - 10:34</span><span class="last">2h, 34min</span></li>
-                                <li><span class="date">jan 8, 2012</span><span class="time">08:00 - 10:34</span><span class="last">2h, 34min</span></li>
-                            </ul>
+                            <div id="tc_mts_sh">
+
+                            </div>
                         </div>
                     </div>
                 </div>

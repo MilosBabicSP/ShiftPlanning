@@ -1,8 +1,8 @@
 <div class="main inbox" id="da_in">
     <!-- Inbox -->
     <div class="title">
-        <h3>Inbox</h3>
         <span class="fr"><a href="#" id="da_in_nm_b">New Message</a></span>
+        <h3>Inbox</h3>
     </div>
     <div class="newMsg hidden" id="da_in_nm_f">
         <label>Subject</label>

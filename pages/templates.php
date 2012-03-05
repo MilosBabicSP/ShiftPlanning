@@ -1,6 +1,17 @@
 
 <!-- ID rulez first is "te" shorten from template, next is 2 letter from module name, than 2 letter from page name, than 2 letters from page method -->
 <div id="templates">
+    <script id="te_tc_mts_li_in" type="text/x-jquery-tmpl">
+        <li class="s_${status} e_${user} sc_${schedule}"><span class="date">${name}</span><span class="time">${st.time} - ${out.time}</span><span class="last">2h, 34min</span></li>
+    </script>
+    <script id="te_tc_mts_li" type="text/x-jquery-tmpl">
+        <div class="title">
+            <h3 class="fl">${month}</h3>
+        </div>
+        <ul class="timeSheet">
+             {{tmpl(rest) "#te_tc_mts_li_in"}}
+        </ul>
+    </script>
     <script id="te_da_up_li" type="text/x-jquery-tmpl">
         <li>
             <a class="fr" href="#">
