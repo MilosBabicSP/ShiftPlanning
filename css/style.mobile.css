@@ -61,7 +61,7 @@ html {overflow-x:hidden;}
 .subNavigation {padding:15px 20px 15px 60px; background-color:#F2F2F2; border-top:solid 1px #FFF; border-bottom:solid 1px #DBDBDB; position:relative;}
 .main {padding:0 20px 20px;}
 
-.notification {padding:10px; text-align:center; color:#FFF; display:none;}
+.notification {padding:10px; text-align:center; color:#FFF; display:none; position:absolute; width:100%; top:0;}
 .error {background-color:red;}
 .success {background-color:green;}
 .info {background-color:blue;}
