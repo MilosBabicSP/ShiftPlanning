@@ -97,11 +97,12 @@ if ($vtoken['data'] != '1') {
         </script>
     </head>
     <body onload="setTimeout(function() { window.scrollTo(0, 1) }, 100);" class="login">
+        <div class="notification error"></div>
         <table height="100%" class="loginContainer" width="100%">
             <tr>
                 <td width="100%">
                     <img class="logo" src="images/logo.png" alt="ShiftPlanning" />
-                    <div class="error"></div>
+                    
                     <form class="loginForm" method="post" id="lo_f" onsubmit="return false;">
                         <label>Email or Username</label>
                         <div class="holder">
@@ -113,8 +114,8 @@ if ($vtoken['data'] != '1') {
                         </div>
                         <button id="lo_b">Login</button>
                     </form>
-                    <div class="footerTxt">View in: Mobile | <a href="/app/?fullapp=true">Full Version</a><br>
-                        <a href="/terms/">Terms of Use</a> | <a href="/privacy/">Privacy Policy</a><br>
+                    <div class="footerTxt">View in: Mobile | <a href="/app/?fullapp=true">Full Version</a><br/>
+                        <a href="/terms/">Terms of Use</a> | <a href="/privacy/">Privacy Policy</a><br/>
                         &copy; <?php echo date('Y'); ?> ShiftPlanning</div>
                 </td>
             </tr>
