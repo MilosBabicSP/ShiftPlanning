@@ -35,6 +35,16 @@ ShiftPlanningView.prototype.staffOption = function(notAdmin){
     return opt;
 }
 
+ShiftPlanningView.prototype.timeRanges = function(){
+    var times = spRanges.createSelector('times');
+    var res = '<option value="-1">Select</option>';
+    $.each(times, function(i, item){
+        res += '<option value="' + i + '" >' + item + '</option>'; 
+    });
+    
+    return res;
+}
+
 
 
 var spView = new ShiftPlanningView();
