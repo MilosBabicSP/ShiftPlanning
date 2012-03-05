@@ -1,6 +1,16 @@
 
 <!-- ID rulez first is "te" shorten from template, next is 2 letter from module name, than 2 letter from page name, than 2 letters from page method -->
 <div id="templates">
+    <script id="te_st_list" type="text/x-jquery-tmpl">
+        <li>
+            {{if typeof avatar.medium != 'undefined'}}
+            <img src="${avatar.medium}" />
+            {{else}}
+            <img src="images/no-avatar.png" />
+            {{/if}}
+            <span>${name}</span>
+        </li>
+    </script>
     <script id="te_tc_mts_li_in" type="text/x-jquery-tmpl">
         <li class="s_${status} e_${user} sc_${schedule}"><span class="date">${name}</span><span class="time">${st.time} - ${out.time}</span><span class="last">2h, 34min</span></li>
     </script>
