@@ -11,8 +11,13 @@ ShiftPlanningStaff.prototype.initialize = function(){
 }
 
 
-ShiftPlanningStaff.prototype.loadSubPageEvents = function(){
-    
+ShiftPlanningStaff.prototype.loadSubPageEvents = function(subpage){
+    console.log(subpage + 'SubEvents');
+    this[subpage + 'SubEvents']();
+}
+
+ShiftPlanningStaff.prototype.listSubPageEvents = function(){
+    console.log('test');
 }
 
 ShiftPlanningStaff.prototype.login = function(){

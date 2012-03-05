@@ -129,8 +129,6 @@ ShiftPlanning.prototype.initialize = function(){
         
         
         $(window).hashchange();
-        
-        
     });
 }
 
