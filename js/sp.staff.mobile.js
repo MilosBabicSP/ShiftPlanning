@@ -16,7 +16,7 @@ ShiftPlanningStaff.prototype.loadSubPageEvents = function(subpage){
     this[subpage + 'SubEvents']();
 }
 
-ShiftPlanningStaff.prototype.listSubPageEvents = function(){
+ShiftPlanningStaff.prototype.listSubEvents = function(){
     console.log('test');
 }
 
