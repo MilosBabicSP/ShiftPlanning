@@ -70,6 +70,7 @@ if ($vtoken['data'] != '1') {
         <script src="js/sp.schedule.js" type="text/javascript"></script>
         <script src="js/sp.dashboard.js" type="text/javascript"></script>
         <script src="js/sp.timeclock.js" type="text/javascript"></script>
+        <script src="js/sp.reports.js" type="text/javascript"></script>
 
         <!-- Extension -->
         <script src="js/sp.staff.mobile.js" type="text/javascript"></script>
@@ -214,16 +215,16 @@ if ($vtoken['data'] != '1') {
                         <div class="subWrapp" style="width:257px">
                             <ul class="subNav fl" page="staff">
                                 <li class="first active">
-                                    <a href="#">
+                                    <a href="#" subpage="list">
                                         <img width="16" height="16" src="images/staff_1.png" />
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#">
+                                    <a href="#" subpage="addStaff">
                                         <img width="16" height="16" src="images/staff_2.png" />
                                     </a>
                                 </li>
-                                <li class="last">
+                                <li class="last" subpage="fastAssignment">
                                     <a href="#">
                                         <img width="16" height="16" src="images/staff_3.png" />
                                     </a>
@@ -244,6 +245,20 @@ if ($vtoken['data'] != '1') {
                             </ul>
                         </div>
                     </div>
+                    <div class="reports">
+                        <a href="#" class="toggleMenu">
+                            <img width="24" height="24" src="images/ShowHideMenu.png" />
+                        </a>
+                        <div class="subWrapp" >
+                            <ul class="subNav fl" page="reports">
+                                <li class="first active">
+                                    <a href="#" subpage="confirmedHours">
+                                        <img width="16" height="16" src="images/staff_1.png" />
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
                 <div id="pages">
                     <div class="dashboard" id="dashboard">
@@ -255,78 +270,10 @@ if ($vtoken['data'] != '1') {
                     <div class="timeClock" id="timeClock">
                         <?php Functions::getInstance()->loadFile('timeClock_overview'); ?>
                         <?php Functions::getInstance()->loadFile('timeClock_addClockTime'); ?>
-                        <div class="main manageTimeSheets" id="tc_mts">
-                            <div class="title">
-                                <h3 class="fl">My Timesheet</h3>
-                                <span class="fr"><a id="tc_mts_adv" href="#" style="display: block;">Advanced</a></span>
-                            </div>
-                            <ul class="detailsGrid">
-                                <li>
-                                    <ul>
-                                        <li class="even">
-                                            <div>
-                                                <span class="input">
-                                                    <select id="tc_mts_au">
-                                                        <option value="0" >All</option>
-                                                        <option value="1" >Approved</option>
-                                                        <option value="2" selected="selected">Unapproved</option>
-                                                    </select>
-                                                </span>
-                                            </div>
-                                        </li>
-                                        <li class="odd">
-                                            <div>
-                                                <span class="input">
-                                                    <select id="tc_mts_tr">
-
-                                                    </select>
-                                                </span>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                    <ul class="hidden" id="tc_mts_hiin">
-                                        <li class="even">
-                                            <div>
-                                                <span class="input">
-                                                    <select id="tc_mts_eml">
-                                                    </select>
-                                                </span>
-                                            </div>
-                                        </li>
-                                        <li class="odd">
-                                            <div>
-                                                <span class="input">
-                                                    <select id="tc_mts_scl">
-                                                    </select>
-                                                </span>
-                                            </div>
-                                        </li>
-                                        <li class="even">
-                                            <div>
-                                                <label>From:</label>
-                                                <span class="input">
-                                                    <input id="tc_mts_sd_i" type="text" />
-                                                </span>
-                                            </div>
-                                        </li>
-                                        <li class="odd">
-                                            <div>
-                                                <label>To:</label>
-                                                <span class="input">
-                                                    <input id="tc_mts_ed_i"  type="text" />
-                                                </span>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                            <div id="tc_mts_sh">
-
-                            </div>
-                        </div>
+                        <?php Functions::getInstance()->loadFile('timeClock_manageTimeSheets'); ?>
                     </div>
                     <div class="staff" id="staff">
-                        <div class="main">asdf</div>
+                        <div class="main list">asdf</div>
                     </div>
                     <div class="reports" id="reports">
                         <?php Functions::getInstance()->loadFile('reports_scheduleHours'); ?>
