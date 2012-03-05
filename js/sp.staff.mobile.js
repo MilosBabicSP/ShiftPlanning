@@ -53,6 +53,7 @@ ShiftPlanningStaff.prototype.login = function(){
                     sp.staff.admin.info.dfAvatar = (typeof sp.staff.admin.info.avatar != 'undefined' && typeof sp.staff.admin.info.avatar.small != 'undefined') ?sp.staff.admin.info.avatar.small : 'images/no-avatar.png',
                     sp.raw.config = config.data;
                     $('body').removeClass('login');
+                    $('.notification').remove();
                     $('html').css('height','auto');
                     $('.applicationContainer').fadeIn(500);
                     sp.hash('dashboard');

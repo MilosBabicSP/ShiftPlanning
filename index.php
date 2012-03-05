@@ -104,7 +104,7 @@ if ($vtoken['data'] != '1') {
             <tr>
                 <td width="100%">
                     <img class="logo" src="images/logo.png" alt="ShiftPlanning" />
-                    
+
                     <form class="loginForm" method="post" id="lo_f" onsubmit="return false;">
                         <label>Email or Username</label>
                         <div class="holder">
@@ -148,60 +148,101 @@ if ($vtoken['data'] != '1') {
                         <a href="#" class="toggleMenu">
                             <img width="24" height="24" src="images/ShowHideMenu.png" />
                         </a>
-                        <ul class="subNav" page="dashboard">
-                            <li class="first active">
-                                <a href="#" subpage="wall">
-                                    <img width="16" height="16" src="images/Dashboard_Home16x16.png" />
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" subpage="upcomingShifts">
-                                    <img width="16" height="16" src="images/Dashboard_UpcomingShifts16x16.png" />
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" subpage="inbox">
-                                    <img width="16" height="16" src="images/Dashboard_Inbox16x16.png" />
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" subpage="settings">
-                                    <img width="16" height="16" src="images/Dashboard_Settings16x16.png" />
-                                </a>
-                            </li>
-                            <li class="last">
-                                <a href="#" subpage="logout">
-                                    <img width="16" height="16" src="images/Dashboard_Logout16x16.png" />
-                                </a>
-                            </li>
-                        </ul>
+                        <div class="subWrapp">
+                            <ul class="subNav" page="dashboard">
+                                <li class="first active">
+                                    <a href="#" subpage="wall">
+                                        <img width="16" height="16" src="images/Dashboard_Home16x16.png" />
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" subpage="upcomingShifts">
+                                        <img width="16" height="16" src="images/Dashboard_UpcomingShifts16x16.png" />
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" subpage="inbox">
+                                        <img width="16" height="16" src="images/Dashboard_Inbox16x16.png" />
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" subpage="settings">
+                                        <img width="16" height="16" src="images/Dashboard_Settings16x16.png" />
+                                    </a>
+                                </li>
+                                <li class="last">
+                                    <a href="#" subpage="logout">
+                                        <img width="16" height="16" src="images/Dashboard_Logout16x16.png" />
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                     <div class="timeClock">
                         <a href="#" class="toggleMenu">
                             <img width="24" height="24" src="images/ShowHideMenu.png" />
                         </a>
-                        <ul class="subNav timeClock" page="timeClock">
-                            <li class="first active">
-                                <a href="#" subpage="overview">
-                                    <img width="16" height="16" src="images/timeclock_1.png" />
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" subpage="manageTimeSheets">
-                                    <img width="16" height="16" src="images/timeclock_2.png" />
-                                </a>
-                            </li>
-                            <li class="last">
-                                <a href="#" subpage="addClockTime">
-                                    <img width="16" height="16" src="images/timeclock_3.png" />
-                                </a>
-                            </li>
-                            <li class="hidden">
-                                <a href="#" subpage="editClockTime">
-                                    <img width="16" height="16" src="images/timeclock_4.png" />
-                                </a>
-                            </li>
-                        </ul>
+                        <div class="subWrapp">
+                            <ul class="subNav timeClock" page="timeClock">
+                                <li class="first active">
+                                    <a href="#" subpage="overview">
+                                        <img width="16" height="16" src="images/timeclock_1.png" />
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" subpage="manageTimeSheets">
+                                        <img width="16" height="16" src="images/timeclock_2.png" />
+                                    </a>
+                                </li>
+                                <li class="last">
+                                    <a href="#" subpage="addClockTime">
+                                        <img width="16" height="16" src="images/timeclock_3.png" />
+                                    </a>
+                                </li>
+                                <li class="hidden">
+                                    <a href="#" subpage="editClockTime">
+                                        <img width="16" height="16" src="images/timeclock_4.png" />
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="staff">
+                        <a href="#" class="toggleMenu">
+                            <img width="24" height="24" src="images/ShowHideMenu.png" />
+                        </a>
+                        <div class="subWrapp" style="width:257px">
+                            <ul class="subNav fl" page="staff">
+                                <li class="first active">
+                                    <a href="#">
+                                        <img width="16" height="16" src="images/staff_1.png" />
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img width="16" height="16" src="images/staff_2.png" />
+                                    </a>
+                                </li>
+                                <li class="last">
+                                    <a href="#">
+                                        <img width="16" height="16" src="images/staff_3.png" />
+                                    </a>
+                                </li>
+                            </ul>
+                            <!-- staff filters -->
+                            <ul class="subNav fr"  page="staff">
+                                <li class="first active">
+                                    <a href="#">
+                                        <img width="16" height="16" src="images/filterS.png" />
+                                    </a>
+                                </li>
+                                <li class="last">
+                                    <a href="#">
+                                        <img width="16" height="16" src="images/filterL.png" />
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
                 <div id="pages">
@@ -237,7 +278,7 @@ if ($vtoken['data'] != '1') {
                                             <div>
                                                 <span class="input">
                                                     <select id="tc_mts_tr">
-                                                        
+
                                                     </select>
                                                 </span>
                                             </div>
@@ -283,6 +324,14 @@ if ($vtoken['data'] != '1') {
 
                             </div>
                         </div>
+                    </div>
+                    <div class="staff" id="staff">
+                        <div class="main">asdf</div>
+                    </div>
+                    <div class="reports" id="reports">
+                        <?php Functions::getInstance()->loadFile('reports_scheduleHours'); ?>
+                        <?php Functions::getInstance()->loadFile('reports_confirmedHours'); ?>
+                        <?php Functions::getInstance()->loadFile('reports_confirmedTimeSheets'); ?>
                     </div>
                 </div>
             </div>
