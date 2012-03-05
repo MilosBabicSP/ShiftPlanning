@@ -71,8 +71,10 @@ ShiftPlanning.prototype.loadSubPage = function(obj, page, subpage){
     
     $('#pages > div').hide();
     $('#pages #' + page + ' .main').hide();
+    $('#pages #' + page + ' .mainSub').hide();
     $('#pages #' + page).show();
     $('#pages #' + page + ' .main.' + subpage).show();
+    $('#pages #' + page + ' .mainSub.' + subpage).show();
     
     if (typeof this[page] != 'undefined' && 'loadSubPageEvents' in this[page]){
         this[page].loadSubPageEvents(subpage);
@@ -114,7 +116,7 @@ ShiftPlanning.prototype.initialize = function(){
             $('#lo_u').focus();
         }
         
-        $('#wrapper .subNavigation .subNav a').bind(clickEvent, function(e){
+        $('#wrapper .subNavigation .subNav:not(.notMain) a').bind(clickEvent, function(e){
             e.preventDefault();
             self.loadSubPage($(this), $(this).parent().parent().attr('page'), $(this).attr('subpage'));
         });

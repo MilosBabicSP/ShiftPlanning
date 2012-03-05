@@ -7,6 +7,8 @@ ShiftPlanningStaff.prototype.initialize = function(){
         $('#lo_b').bind('click', function(){
             self.login(); 
         });
+        
+        self.listEvents();
     });
 }
 
@@ -16,8 +18,24 @@ ShiftPlanningStaff.prototype.loadSubPageEvents = function(subpage){
     this[subpage + 'SubEvents']();
 }
 
+ShiftPlanningStaff.prototype.listEvents = function(){
+    $('#st_sn_ga').bind(clickEvent, function(e){
+        e.preventDefault();
+        $(this).parents('ul').find('li').removeClass('active');
+        $(this).parent().addClass('active');
+        $('#st_li_ga').removeClass('small').addClass('big')
+    });
+    
+    $('#st_sn_li').bind(clickEvent, function(e){
+        e.preventDefault();
+        $(this).parents('ul').find('li').removeClass('active');
+        $(this).parent().addClass('active');
+        $('#st_li_ga').removeClass('big').addClass('small')
+    })
+}
+
 ShiftPlanningStaff.prototype.listSubEvents = function(){
-    console.log('test');
+    $('#st_li_ga').html($.tmpl($('#te_st_list'), spModel.staff.allStaff()));
 }
 
 ShiftPlanningStaff.prototype.login = function(){

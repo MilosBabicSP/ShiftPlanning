@@ -14,21 +14,21 @@
                     <img width="16" height="16" src="images/staff_2.png" />
                 </a>
             </li>
-            <li class="last" subpage="fastAssignment">
-                <a href="#">
+            <li class="last">
+                <a href="#" subpage="fastAssignment">
                     <img width="16" height="16" src="images/staff_3.png" />
                 </a>
             </li>
         </ul>
         <!-- staff filters -->
-        <ul class="subNav fr"  page="staff">
+        <ul class="subNav fr notMain"  page="staff">
             <li class="first active">
-                <a href="#">
+                <a href="#" id="st_sn_ga">
                     <img width="16" height="16" src="images/filterS.png" />
                 </a>
             </li>
             <li class="last">
-                <a href="#">
+                <a href="#" id="st_sn_li">
                     <img width="16" height="16" src="images/filterL.png" />
                 </a>
             </li>

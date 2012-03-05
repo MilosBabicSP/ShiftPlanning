@@ -163,7 +163,15 @@ if ($vtoken['data'] != '1') {
                         <?php Functions::getInstance()->loadFile('timeClock_manageTimeSheets'); ?>
                     </div>
                     <div class="staff" id="staff">
-                        <div class="main list">asdf</div>
+                        <div class="search list mainSub">
+                            <input type="submit" value="search" />
+                            <span class="input">
+                                <input type="text" value="Search..." name="" />
+                            </span>
+                        </div>
+                        <?php Functions::getInstance()->loadFile('staff_list'); ?>
+                        <?php Functions::getInstance()->loadFile('staff_addStaff'); ?>
+                        <?php Functions::getInstance()->loadFile('staff_fastAssignment'); ?>
                     </div>
                     <div class="reports" id="reports">
                         <?php Functions::getInstance()->loadFile('reports_scheduleHours'); ?>
