@@ -69,7 +69,7 @@ html {overflow-x:hidden;}
 .error {background-color:red;}
 .success {background-color:green;}
 .info {background-color:blue;}
-
+.noResults {padding:20px; background-color:#adecff; color:#333; font-size:14px;}
 .notif {line-height:20px; font-size:14px; color:#888; padding:15px 0;}
 .additional {font-size:13px; color:#888; padding:5px 0; border-bottom:solid 1px #DBDBDB;}
 .additional p {padding:5px 0;}
