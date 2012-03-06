@@ -38,6 +38,7 @@ if ($vtoken['data'] != '1') {
         <script src="js/jquery/jquery.timeago.js" type="text/javascript"></script>
         <script src="js/jquery/jquery.tmpl.js" type="text/javascript"></script>
         <script src="js/jquery/jquery.ba-hashchange.min.js" type="text/javascript"></script>
+        <script src="js/jquery/jquery.contains.js" type="text/javascript"></script>
 
 
         <!-- Specially for mobile devices -->
@@ -152,6 +153,13 @@ if ($vtoken['data'] != '1') {
                 </div>
                 <div id="pages">
                     <div class="dashboard" id="dashboard">
+                        <div class="search settings mainSub">
+                            <ul class="filters" style="width:300px">
+                                <li class="first active"><a href="#" subpage="overview">Overview</a></li>
+                                <li><a href="#" subpage="edit">Edit</a></li>
+                                <li class="last" ><a href="#" subpage="password">Password</a></li>
+                            </ul>
+                        </div>
                         <?php Functions::getInstance()->loadFile('dashboard_wall') ?>
                         <?php Functions::getInstance()->loadFile('dashboard_upcomingShifts'); ?>
                         <?php Functions::getInstance()->loadFile('dashboard_inbox') ?>
@@ -164,9 +172,9 @@ if ($vtoken['data'] != '1') {
                     </div>
                     <div class="staff" id="staff">
                         <div class="search list mainSub">
-                            <input type="submit" value="search" />
+                            <input type="submit" value="search" id="st_li_se_b"/>
                             <span class="input">
-                                <input type="text" value="Search..." name="" />
+                                <input type="text" value="Search..." name="" onblur="if(this.value=='')this.value=this.defaultValue;" onfocus="if(this.value==this.defaultValue)this.value='';" id="st_li_se_te" />
                             </span>
                         </div>
                         <?php Functions::getInstance()->loadFile('staff_list'); ?>

@@ -14,3 +14,18 @@ SPModelStaff.prototype.allStaff = function(scheduleId){
         });
     }
 }
+
+SPModelStaff.prototype.allSkills = function(r){
+    if (typeof r == 'undefined'){
+        return sp.staff.raw.skills;
+    } else {
+        spModel.schedule.get('schedules', {}, function(response){
+            sp.staff.raw.skills = response.data;
+            sp.staff.data.skills = sp.map(response.data);
+            return sp.staff.raw.skills;
+        }, function(response){
+            Log.log('implement');
+            return {};
+        })
+    }
+}
