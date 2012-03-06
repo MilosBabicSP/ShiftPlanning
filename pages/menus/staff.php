@@ -21,7 +21,7 @@
             </li>
         </ul>
         <!-- staff filters -->
-        <ul class="subNav fr notMain"  page="staff">
+        <ul class="subNav fr notMain"  page="staff" id="st_tp_menu">
             <li class="first active">
                 <a href="#" id="st_sn_ga">
                     <img width="16" height="16" src="images/filterS.png" />

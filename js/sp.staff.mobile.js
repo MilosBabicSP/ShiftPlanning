@@ -14,6 +14,7 @@ ShiftPlanningStaff.prototype.initialize = function(){
 
 
 ShiftPlanningStaff.prototype.loadSubPageEvents = function(subpage){
+    $('#st_tp_menu').hide();
     this[subpage + 'SubEvents']();
 }
 
@@ -54,6 +55,7 @@ ShiftPlanningStaff.prototype.listEvents = function(){
 }
 
 ShiftPlanningStaff.prototype.listSubEvents = function(){
+    $('#st_tp_menu').show();
     $('#st_li_ga').html($.tmpl($('#te_st_list'), spModel.staff.allStaff()));
     $('#st_li_ga li').show();
     $('#st_li_se_te').val('').trigger('blur');
