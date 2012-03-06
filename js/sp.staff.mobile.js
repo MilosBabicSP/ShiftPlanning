@@ -61,6 +61,14 @@ ShiftPlanningStaff.prototype.listSubEvents = function(){
     $('#st_li_se_te').val('').trigger('blur');
 }
 
+ShiftPlanningStaff.prototype.addEmployeeSubEvents = function(){
+    
+}
+
+ShiftPlanningStaff.prototype.fastAssignmentSubEvents = function(){
+    
+}
+
 ShiftPlanningStaff.prototype.login = function(){
     var u = $('#lo_u').val();
     var p = $('#lo_p').val();
