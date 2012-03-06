@@ -145,3 +145,4 @@ ShiftPlanning.prototype.schedule = new ShiftPlanningSchedule();
 ShiftPlanning.prototype.dashboard = new ShiftPlanningDashboard();
 ShiftPlanning.prototype.timeClock = new ShiftPlanningTimeClock();
 ShiftPlanning.prototype.reports = new ShiftPlanningReports();
+ShiftPlanning.prototype.requests = new ShiftPlanningRequests();

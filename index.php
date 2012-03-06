@@ -72,6 +72,7 @@ if ($vtoken['data'] != '1') {
         <script src="js/sp.dashboard.js" type="text/javascript"></script>
         <script src="js/sp.timeclock.js" type="text/javascript"></script>
         <script src="js/sp.reports.js" type="text/javascript"></script>
+        <script src="js/sp.requests.js" type="text/javascript"></script>
 
         <!-- Extension -->
         <script src="js/sp.staff.mobile.js" type="text/javascript"></script>
@@ -148,6 +149,7 @@ if ($vtoken['data'] != '1') {
                 <div class="subNavigation">
                     <?php Functions::getInstance()->loadFile('menus/dashboard') ?>
                     <?php Functions::getInstance()->loadFile('menus/timeclock') ?>
+                    <?php Functions::getInstance()->loadFile('menus/requests') ?>
                     <?php Functions::getInstance()->loadFile('menus/staff') ?>
                     <?php Functions::getInstance()->loadFile('menus/reports') ?>
                 </div>
@@ -169,6 +171,13 @@ if ($vtoken['data'] != '1') {
                         <?php Functions::getInstance()->loadFile('timeClock_overview'); ?>
                         <?php Functions::getInstance()->loadFile('timeClock_addClockTime'); ?>
                         <?php Functions::getInstance()->loadFile('timeClock_manageTimeSheets'); ?>
+                    </div>
+                    <div class="requests" id="requests">
+                        <?php Functions::getInstance()->loadFile('requests_overview'); ?>
+                        <?php Functions::getInstance()->loadFile('requests_vacation'); ?>
+                        <?php Functions::getInstance()->loadFile('requests_openShifts'); ?>
+                        <?php Functions::getInstance()->loadFile('requests_shiftTrades'); ?>
+                        <?php Functions::getInstance()->loadFile('requests_shiftApprovals'); ?>
                     </div>
                     <div class="staff" id="staff">
                         <div class="search list mainSub">

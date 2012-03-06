@@ -242,7 +242,7 @@ ShiftPlanningDashboard.prototype.settingsEvents = function(){
         })
     });
     
-    $('#da_se_ed_ue').delegate('#da_se_ed_ue', clickEvent, function(e){
+    $('#da_se_ed_ue').bind(clickEvent, function(e){
         e.preventDefault();
         self.saveEditForm();
     });
