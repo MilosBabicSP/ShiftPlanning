@@ -14,7 +14,6 @@ ShiftPlanningStaff.prototype.initialize = function(){
 
 
 ShiftPlanningStaff.prototype.loadSubPageEvents = function(subpage){
-    console.log(subpage + 'SubEvents');
     this[subpage + 'SubEvents']();
 }
 
@@ -38,9 +37,17 @@ ShiftPlanningStaff.prototype.listEvents = function(){
         var s = $('#st_li_se_te').val();
         if (s.length == 0 || s == 'Search...'){
             $('#st_li_ga li').show();
+            $('#st_li_ga').show();
+            $('#st_li .noResults').hide();
         } else {
             $('#st_li_ga li').hide();
+            $('#st_li_ga').show();
+            $('#st_li .noResults').hide();
             $('#st_li_ga li').find('span:Contains("'+s+'")').parents('li').show();
+            if ($('#st_li_ga li').find('span:Contains("'+s+'")').parents('li').length == 0){
+                $('#st_li .noResults').show();
+                $('#st_li_ga').hide();
+            }
         }
     });
 
