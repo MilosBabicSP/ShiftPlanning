@@ -3,6 +3,7 @@ ShiftPlanningDashboard.prototype.initialize = function(){
     $(document).ready(function(){
         self.wallEvents();
         self.inboxEvents();
+        self.settingsEvents();
     });
 }
 
@@ -12,10 +13,13 @@ ShiftPlanningDashboard.prototype.loadSubPageEvents = function(subpage){
             this.wallSubEvents();
             break;
         case 'upcomingShifts':
-            this.upcomingShifts();
+            this.upcomingShiftsSubEvents();
             break;
         case 'inbox':
             this.inboxSubEvents();
+            break;
+        case 'settings':
+            this.settingsSubEvents();
             break;
         case 'logout':
             sp.staff.logout();
@@ -197,6 +201,48 @@ ShiftPlanningDashboard.prototype.inboxEvents = function(){
     });
 }
 
+ShiftPlanningDashboard.prototype.settingsEvents = function(){
+    var self = this;
+    $('#dashboard .search.settings.mainSub li a').bind(clickEvent, function(e){
+        e.preventDefault();
+        $('#da_se > div').hide();
+        $('#dashboard .search.settings.mainSub li').removeClass('active');
+        $('#da_se_' + $(this).attr('subpage')).show();
+        $(this).parent().addClass('active');
+    });
+    
+    $('#da_se').delegate('.checkbox', clickEvent, function(){
+        var id = $(this).attr('id');
+        var skills = ($(this).parents('.skills').length > 0) ? true : false;
+        var checked = ($(this).hasClass('check')) ? true : false;
+        var obj = this;
+        var data = {
+            id : $('#da_se_cur_us_id').val()
+        }
+        if (skills){
+            if (checked) {
+                data.removeSkill = id;
+            } else {
+                data.addSkill = id;
+            }
+        } else {
+            if (checked) {
+                data.removeSchedule = id;
+            } else {
+                data.addSchedule = id;
+            }
+        }
+        spModel.staff.update('employee', data, function(response){
+            if (checked) {
+                $(obj).removeClass('check');
+            } else {
+                $(obj).addClass('check');
+            }
+            self.updateUser($('#da_se_cur_us_id').val(), response);
+        })
+    });
+}
+
 
 //sub page events
 ShiftPlanningDashboard.prototype.wallSubEvents = function(){
@@ -207,7 +253,8 @@ ShiftPlanningDashboard.prototype.wallSubEvents = function(){
     });
 }
 
-ShiftPlanningDashboard.prototype.upcomingShifts = function(){
+
+ShiftPlanningDashboard.prototype.upcomingShiftsSubEvents = function(){
     var send = {
         start_date: 'today', 
         end_date: 'today +2 months', 
@@ -243,8 +290,116 @@ ShiftPlanningDashboard.prototype.inboxSubEvents = function(){
     $('#da_in_nm_to').html(spView.staffOption());
 }
 
+ShiftPlanningDashboard.prototype.settingsSubEvents = function(employee){
+    var self = this;
+    
+    if (typeof employee == 'undefined'){
+        employee = sp.staff.admin.info;
+    }
+
+
+    //prefill
+    self.prefillOverview(employee);
+    self.prepareEditDetails(employee);
+    
+    $('#dashboard .search.settings.mainSub li a:first').trigger(clickEvent);
+}
+
 //functions
-ShiftPlanningDashboard.prototype.openComments = function(id){
+ShiftPlanningDashboard.prototype.prefillOverview = function(employee){
+    //this page needs to be cached after first load and to be reprepared if data are changed - DONE
+    $('#da_se_cur_us_id').val(employee.id);
+    
+    $('#da_se_ov_fn').html(employee.name);
+    $('#da_se_ov_id').html(employee.id);
+    $('#da_se_ov_un').html(employee.username);
+    $('#da_se_ov_mo').html(employee.cell_phone);
+    $('#da_se_ov_ho').html(employee.home_phone);
+    $('#da_se_ov_em').html(employee.email);
+    if ($.trim(employee.wage).length != 0){
+        $('#da_se_ov_wa').html('$' + employee.wage);
+    }
+    
+    var status_name = 'Administrative accounts cannot be de-activated.';
+    var status = 'User has actived his/her account.';
+    
+    if (parseInt(employee.status) == 1 && parseInt(employee.group) > 2){
+        status_name = 'User Account is Enabled.';
+    } else if (parseInt(employee.status) == 0 && parseInt(employee.group) > 2){
+        status_name = 'User Account is Enabled.';
+        status = 'User account is not activated.';
+    }
+    
+    if (employee.group <= 2){
+        $('#da_se_ov_aa').hide();
+        $('#da_se_ov_aa').prev().hide();
+    } else {
+        $('#da_se_ov_aa').prev().show();
+        $('#da_se_ov_aa').show();
+    }
+    if (employee.status == 0){
+        $('#da_se_ov_aa a[type=activate]').show();
+        $('#da_se_ov_aa a[type=manualyActivate]').show();
+    } else {
+        $('#da_se_ov_aa a[type=activate]').hide();
+        $('#da_se_ov_aa a[type=manualyActivate]').hide();
+    }
+    
+    $('#da_se_ov_st').html(status);
+    $('#da_se_ov_ac').html(status_name);
+    
+    //transfer month number into month name
+    if (employee.birth_month != 0 && employee.birth_day != 0)
+        $('#da_se_ov_bd').html(months[employee.birth_month-1] + ' ' + employee.birth_day);
+    
+
+
+    $('#da_se_ov_po').html(spView.editableSchedules(employee));
+
+    $('#da_se_ov_sk').html(spView.editableSkills(employee));
+    $('#da_se_ov_no').html((employee.notes.length > 0) ? employee.notes : '');
+    $('#da_se_ov_pos').html('');
+    if (typeof employee.schedules != 'undefined'){
+        var pos = '';
+        $.each(employee.schedules, function(i, item){
+            pos += item + ', ';
+        });
+        $('#da_se_ov_pos').html(pos.substr(0,pos.length - 2));
+    }
+    //approvers missing
+}
+
+ShiftPlanningDashboard.prototype.prepareEditDetails = function(employee){
+    
+    //this page needs to be cached after first load and to be reprepared if data are changed
+    $('#da_se_ed_na').val(employee.name);
+    $('#da_se_ed_em').val(employee.email);
+    $('#da_se_ed_nn').val(employee.nick_name);
+    $('#da_se_ed_us').val(employee.username);
+    //mobile phone
+    var mphone = employee.cell_phone.split('-');
+    $('#da_se_ed_mph_0').val(mphone[0]);
+    $('#da_se_ed_mph_1').val(mphone[1]);
+    $('#da_se_ed_mph_2').val(mphone[2]);
+    //home phone
+    var hphone = employee.home_phone.split('-');
+    $('#da_se_ed_hph_0').val(hphone[0]);
+    $('#da_se_ed_hph_1').val(hphone[1]);
+    $('#da_se_ed_hph_2').val(hphone[2]);
+    
+    $('#da_se_ed_ad').val(employee.address);
+    $('#da_se_ed_ci').val(employee.city);
+    $('#da_se_ed_sp').val(employee.state);
+    $('#da_se_ed_pz').val(employee.zip);
+    
+    $('#da_se_ed_bday_m').val(employee.birth_month);
+    $('#da_se_ed_bday_d').val(employee.birth_day);
+    $('#da_se_ed_no').val(employee.notes);
+    
+    
+    $('#da_se_ed_po').html(spView.editableSchedules(employee));
+    $('#da_se_ed_sk').html(spView.editableSkills(employee));
+    $('#da_se_ed_no').html((employee.notes.length > 0) ? employee.notes : '');
     
 }
 
@@ -262,7 +417,79 @@ ShiftPlanningDashboard.prototype.sendMessage = function(){
     });
 }
 
+ShiftPlanningDashboard.prototype.changePassword = function (){
+    var self = this;
+    var eId = $('#da_se_cur_us_id').val();
+    if ($('#da_se_pa_np').val().length > 6 && $('#da_se_pa_np').val() == $('#da_se_pa_cp').val()){
+        sp.api('staff.employee','update',{id : eId, password: $('#da_se_pa_np').val()},function(response){
+            self.updateUser(eId, response);
+            sp.showSuccess('Password changed.');
+        }, function(response){
+            sp.showError(response.error);
+        });
+    } else {
+        //add other error type
+        sp.showError('Passwords don\'t match');
+    }
+}
 
+ShiftPlanningDashboard.prototype.saveEditForm = function(){
+    //missing wage
+    //missing location, mininum weekly hours, maximum weekly hours, auto approve shift requests
+    // mising calendar size
+    //privacy settings
+    var eId = $('#da_se_cur_us_id').val();
+    var self = this;
+    var data = {};
+   
+    data.id = eId;
+    data.name = $('#da_se_ed_na').val();
+    data.email = $('#da_se_ed_em').val();
+    
+    if ($('#da_se_ed_nn').val().length > 0){
+        data.nick_name = $('#da_se_ed_nn').val();
+    }
+    
+    if ($('#da_se_ed_ad').val().length > 0){
+        data.address = $('#da_se_ed_ad').val();
+    }
+    
+    if ($('#da_se_ed_ci').val().length > 0){
+        data.city = $('#da_se_ed_ci').val();
+    }
+
+    if ($('#da_se_ed_sp').val().length > 0){
+        data.state = $('#da_se_ed_sp').val();
+    }
+    if ($('#da_se_ed_pz').val().length > 0){
+        data.zip = $('#da_se_ed_pz').val();
+    }
+    
+    data.birth_day = $('#da_se_ed_bday_d').val();
+    data.birth_month = $('#da_se_ed_bday_m').val();
+    
+    if ($('#da_se_ed_mph_0').val().length > 0 && $('#da_se_ed_mph_1').val().length > 0 && $('#da_se_ed_mph_2').val().length > 0){
+        data.cell_phone = $('#da_se_ed_mph_0').val() + '-' + $('#da_se_ed_mph_1').val() + '-' + $('#da_se_ed_mph_2').val();
+    }
+    
+    if ($('#da_se_ed_hph_0').val().length > 0 && $('#da_se_ed_hph_1').val().length > 0 && $('#da_se_ed_hph_2').val().length > 0){
+        data.home_phone = $('#da_se_ed_hph_0').val() + '-' + $('#da_se_ed_hph_1').val() + '-' + $('#da_se_ed_hph_2').val();
+    }
+    
+    sp.api('staff.employee','update',data,function(response){
+        self.updateUser(eId, response);
+        sp.showSuccess('Employee saved.');
+    }, function(response){
+        sp.showError(response.error);
+    });
+}
+
+ShiftPlanningDashboard.prototype.updateUser = function(id, res){
+    if (id == sp.staff.admin.info.id){
+        sp.staff.admin.info = res.data;
+    }
+    sp.staff.data.employees['' + id] = res.data;
+}
 
 ShiftPlanningDashboard.prototype.loadPage = function(){
     

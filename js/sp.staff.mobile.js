@@ -23,19 +23,33 @@ ShiftPlanningStaff.prototype.listEvents = function(){
         e.preventDefault();
         $(this).parents('ul').find('li').removeClass('active');
         $(this).parent().addClass('active');
-        $('#st_li_ga').removeClass('small').addClass('big')
+        $('#st_li_ga').removeClass('small').addClass('big');
     });
     
     $('#st_sn_li').bind(clickEvent, function(e){
         e.preventDefault();
         $(this).parents('ul').find('li').removeClass('active');
         $(this).parent().addClass('active');
-        $('#st_li_ga').removeClass('big').addClass('small')
-    })
+        $('#st_li_ga').removeClass('big').addClass('small');
+    });
+    
+    $('#st_li_se_b').bind(clickEvent, function(e){
+        e.preventDefault();
+        var s = $('#st_li_se_te').val();
+        if (s.length == 0 || s == 'Search...'){
+            $('#st_li_ga li').show();
+        } else {
+            $('#st_li_ga li').hide();
+            $('#st_li_ga li').find('span:Contains("'+s+'")').parents('li').show();
+        }
+    });
+
 }
 
 ShiftPlanningStaff.prototype.listSubEvents = function(){
     $('#st_li_ga').html($.tmpl($('#te_st_list'), spModel.staff.allStaff()));
+    $('#st_li_ga li').show();
+    $('#st_li_se_te').val('').trigger('blur');
 }
 
 ShiftPlanningStaff.prototype.login = function(){

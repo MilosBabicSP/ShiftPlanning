@@ -45,6 +45,34 @@ ShiftPlanningView.prototype.timeRanges = function(){
     return res;
 }
 
+ShiftPlanningView.prototype.editableSchedules = function(employee){
+    var l = '';
+    $.each(spModel.schedule.allSchedules(), function(i, item){
+        var c = (typeof employee.schedules != 'undefined' && typeof employee.schedules[item.id] != 'undefined') ? 'check"' : '';
+        l += '<li class="even">';
+        l += '  <div>';
+        l += '      <span class="checkbox ' + c + '" itemId=' + item.id + '>' + item.name + '</span>';
+        l += '  </div>';
+        l += '</li>';
+    });
+    
+    return l;
+}
+
+ShiftPlanningView.prototype.editableSkills = function(employee){
+    var l = '';
+    $.each(spModel.staff.allSkills(), function(i, item){
+        var c = (typeof employee.skills != 'undefined' && typeof employee.skills[item.id] != 'undefined') ? 'checked="checked"' : '';
+        l += '<li class="even">';
+        l += '  <div>';
+        l += '      <span class="checkbox ' + c + '" itemId=' + item.id + '>' + item.name + '</span>';
+        l += '  </div>';
+        l += '</li>';
+    });
+    
+    return l;
+}
+
 
 
 var spView = new ShiftPlanningView();
