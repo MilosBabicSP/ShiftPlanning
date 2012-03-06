@@ -105,7 +105,7 @@ if ($vtoken['data'] != '1') {
         <table height="100%" class="loginContainer" width="100%">
             <tr>
                 <td width="100%">
-                    <img class="logo" src="images/logo.png" alt="ShiftPlanning" />
+                    <img class="logo" src="images/logo1.png" alt="ShiftPlanning" />
 
                     <form class="loginForm" method="post" id="lo_f" onsubmit="return false;">
                         <label>Email or Username</label>

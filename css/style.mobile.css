@@ -31,7 +31,7 @@ h5 {font-size:14px; font-weight:normal; color:#333;}
 /*SPRITE*/
 .msgDel, .msgRpl, .cmtCount span.tip, ul.cmts, ul.cmts li.last input[type=submit], .search input[type=submit] {background-image:url(../images/icos.png); background-repeat:no-repeat;}
 .cmtCount span.ico {background-image:url(../images/sprite.png); background-repeat:no-repeat;}
-span.checkbox, .dash, .ticl, .sche, .requ, .staf, .repo, .icoClock, .icoEmpDet, .icoAdmAct, .icoEmpPos, .icoEmpSki {background-image:url(../images/mainNav_bg.png); background-repeat:no-repeat;}
+span.checkbox, .dash, .ticl, .sche, .requ, .staf, .repo, .icoClock, .icoEmpDet, .icoAdmAct, .icoEmpPos, .icoEmpSki, .icoEmpAdd, .icoNot, .icoAct, .icoSta {background-image:url(../images/mainNav_bg.png); background-repeat:no-repeat;}
 
 
 .dash {background-position:10px 0;}
@@ -47,8 +47,12 @@ span.checkbox, .dash, .ticl, .sche, .requ, .staf, .repo, .icoClock, .icoEmpDet, 
 .icoAdmAct {background-position:0 -410px; padding:0 0 0 40px;}
 .icoEmpPos {background-position:0 -460px; padding:0 0 0 40px;}
 .icoEmpSki {background-position:0 -510px; padding:0 0 0 40px;}
+.icoEmpAdd {background-position:0 -660px; padding:0 0 0 40px;}
+.icoNot {background-position:0 -710px; padding:0 0 0 40px;}
+.icoAct {background-position:0 -760px; padding:0 0 0 40px;}
+.icoSta {background-position:0 -810px; padding:0 0 0 40px;}
 
-span.checkbox {display:block; line-height:30px; padding:5px 0 5px 40px; background-position:0 -605px;}
+span.checkbox {display:block; line-height:30px; padding:5px 0 5px 35px; background-position:-5px -605px;}
 span.checkbox.check {background-position:0 -555px;}
 a.button {line-height:30px; display:block; padding:0 10px; background-color:#f0f0f0; border:solid 1px #DBDBDB; border-radius:2px;}
 
@@ -58,7 +62,7 @@ html {overflow-x:hidden;}
 .wrapper.extended {margin:0 0 0 190px; border-left:solid 1px #711111; width:100%;} 
 .mainMenu {background-color:#a32525; width:190px; float:left;}
 .subWrapp {overflow:hidden; margin:0 auto;}
-.subNavigation {padding:15px 20px 15px 60px; background-color:#F2F2F2; border-top:solid 1px #FFF; border-bottom:solid 1px #DBDBDB; position:relative;}
+.subNavigation {padding:15px 20px 15px 60px; height:30px; background-color:#F2F2F2; border-top:solid 1px #FFF; border-bottom:solid 1px #DBDBDB; position:relative;}
 .main {padding:0 20px 20px;}
 
 .notification {padding:10px; text-align:center; color:#FFF; display:none; position:absolute; width:100%; top:0;}
@@ -67,6 +71,9 @@ html {overflow-x:hidden;}
 .info {background-color:blue;}
 
 .notif {line-height:20px; font-size:14px; color:#888; padding:15px 0;}
+.additional {font-size:13px; color:#888; padding:5px 0; border-bottom:solid 1px #DBDBDB;}
+.additional p {padding:5px 0;}
+
 
 .toggleMenu {position:absolute; top:17px; left:19px;}
 .backMenu {position:absolute; top:15px; left:15px;}
@@ -74,6 +81,7 @@ html {overflow-x:hidden;}
 .title span a {display:block; padding:0 10px; background-color:#f0f0f0; border:solid 1px #DBDBDB; border-radius:2px;}
 .title div {line-height:15px; font-size:14px;}
 .title div span {display:block; font-weight:bold;}
+.title div img {float:left; margin:0 10px 0 0;}
 .welcome {font-size:14px; padding:10px 0;}
 .welcome span {color:#a52626;}
 
@@ -138,9 +146,8 @@ ul.msgWall > li > .msg {margin:0 0 0 60px; padding:0 0 20px;}
 ul.msgWall > li p {padding:5px 0;}
 ul.msgWall > li .msg span{color:#999; display:block; line-height:20px;}
 
-ul.multiInput {overflow:hidden; padding:10px 0; margin:10px 0; }
-ul.multiInput.borTB {border-bottom:solid 1px #DBDBDB; border-top:solid 1px #DBDBDB;}
-ul.multiInput li {width:50%; float:left;}
+ul.multiInput {overflow:hidden; font-size:14px;}
+ul.multiInput li {width:50%; float:left; border-bottom:solid 1px #DBDBDB; padding:10px 0;}
 ul.multiInput li.even div {margin:0 10px 0 0;}
 ul.multiInput li.odd div {margin:0 0 0 10px;}
 
@@ -161,11 +168,11 @@ ul.cmts li.last span.input {margin:5px 30px 15px 0;}
 ul.cmts li.last input[type=submit] {float:right; margin:13px 0 0; display:block; width:13px; height:0; padding:13px 0 0; overflow:hidden; background-color:transparent; border:none; background-position:-26px 0;}
 
 ul.timeSheet {overflow:hidden; font-size:14px;}
-ul.timeSheet li {border-bottom:solid 1px #dbdbdb; line-height:50px;}
-ul.timeSheet li span {width:33%; display:inline-block;}
-ul.timeSheet li .time {text-align:center; color:#888;}
-ul.timeSheet li .last {text-align:right;}
-ul.timeSheet li a {margin:10px 0;}
+ul.timeSheet li {border-bottom:solid 1px #dbdbdb; padding:10px 0; overflow:hidden; line-height:30px;}
+ul.timeSheet li span {display:inline-block;}
+ul.timeSheet li .date {width:33%;}
+ul.timeSheet li .time {width:33%; text-align:center; color:#888;}
+ul.timeSheet li .last {width:33%; text-align:right;}
 
 ul.staff.big {overflow:hidden; padding:15px 10px; font-size:14px;}
 ul.staff.big li {float:left; padding:5px 10px; width:80px; height:120px; overflow: hidden;}
@@ -192,13 +199,10 @@ ul.staff.small li span {display:block; margin:0 0 0 40px; line-height:15px;}
 .login .footerTxt {font-size:12px;}
 .login .footerTxt a {color: #920000; line-height:20px;}
 
-
-
 /*
     Application css
 */
 .applicationContainer {display:none;}
-
 .hidden {display:none;}
 .nonVisible {visibility: hidden;}
 #da_up_li li a {margin:0px;}

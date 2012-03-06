@@ -14,36 +14,40 @@
             <select id="tc_act_sc">
             </select>
         </span>
-        <ul class="multiInput borTB">
-            <li class="even">
-                <div>
-                    <label>Clock in</label>
-                    <span class="input">
-                        <input type="text" id="tc_act_tclin" />
-                    </span>
-                </div>
-            </li>
-            <li class="odd">
-                <div>
-                    <label>Clock out</label>
-                    <span class="input">
-                        <input type="text" id="tc_act_tclou" />
-                    </span>
-                </div>
-            </li>
-            <li class="even">
-                <div>
-                    <span class="input">
-                        <input type="text" id="tc_act_c_cl_dp_i" />
-                    </span>
-                </div>
-            </li>
-            <li class="odd">
-                <div>
-                    <span class="input">
-                        <input type="text" id="tc_act_c_co_dp_i" />
-                    </span>
-                </div>
+        <ul class="detailsGrid borTB">
+            <li>
+                <ul>                
+                    <li class="even">
+                        <div>
+                            <label>Clock in</label>
+                            <span class="input">
+                                <input type="text" id="tc_act_tclin" />
+                            </span>
+                        </div>
+                    </li>
+                    <li class="odd">
+                        <div>
+                            <label>Clock out</label>
+                            <span class="input">
+                                <input type="text" id="tc_act_tclou" />
+                            </span>
+                        </div>
+                    </li>
+                    <li class="even">
+                        <div>
+                            <span class="input">
+                                <input type="text" id="tc_act_c_cl_dp_i" />
+                            </span>
+                        </div>
+                    </li>
+                    <li class="odd">
+                        <div>
+                            <span class="input">
+                                <input type="text" id="tc_act_c_co_dp_i" />
+                            </span>
+                        </div>
+                    </li>
+                </ul>
             </li>
         </ul>
         <label>Notes</label>
