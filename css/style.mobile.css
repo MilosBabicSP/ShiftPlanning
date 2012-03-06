@@ -31,7 +31,7 @@ h5 {font-size:14px; font-weight:normal; color:#333;}
 /*SPRITE*/
 .msgDel, .msgRpl, .cmtCount span.tip, ul.cmts, ul.cmts li.last input[type=submit], .search input[type=submit] {background-image:url(../images/icos.png); background-repeat:no-repeat;}
 .cmtCount span.ico {background-image:url(../images/sprite.png); background-repeat:no-repeat;}
-span.checkbox, .dash, .ticl, .sche, .requ, .staf, .repo, .icoClock, .icoEmpDet, .icoAdmAct, .icoEmpPos, .icoEmpSki {background-image:url(../images/mainNav_bg.png); background-repeat:no-repeat;}
+span.checkbox, .dash, .ticl, .sche, .requ, .staf, .repo, .icoClock, .icoEmpDet, .icoAdmAct, .icoEmpPos, .icoEmpSki, .icoEmpAdd, .icoNot, .icoAct, .icoSta {background-image:url(../images/mainNav_bg.png); background-repeat:no-repeat;}
 
 
 .dash {background-position:10px 0;}
@@ -47,8 +47,12 @@ span.checkbox, .dash, .ticl, .sche, .requ, .staf, .repo, .icoClock, .icoEmpDet, 
 .icoAdmAct {background-position:0 -410px; padding:0 0 0 40px;}
 .icoEmpPos {background-position:0 -460px; padding:0 0 0 40px;}
 .icoEmpSki {background-position:0 -510px; padding:0 0 0 40px;}
+.icoEmpAdd {background-position:0 -660px; padding:0 0 0 40px;}
+.icoNot {background-position:0 -710px; padding:0 0 0 40px;}
+.icoAct {background-position:0 -760px; padding:0 0 0 40px;}
+.icoSta {background-position:0 -810px; padding:0 0 0 40px;}
 
-span.checkbox {display:block; line-height:30px; padding:5px 0 5px 40px; background-position:0 -605px;}
+span.checkbox {display:block; line-height:30px; padding:5px 0 5px 35px; background-position:-5px -605px;}
 span.checkbox.check {background-position:0 -555px;}
 a.button {line-height:30px; display:block; padding:0 10px; background-color:#f0f0f0; border:solid 1px #DBDBDB; border-radius:2px;}
 
@@ -67,6 +71,9 @@ html {overflow-x:hidden;}
 .info {background-color:blue;}
 
 .notif {line-height:20px; font-size:14px; color:#888; padding:15px 0;}
+.additional {font-size:13px; color:#888; padding:5px 0; border-bottom:solid 1px #DBDBDB;}
+.additional p {padding:5px 0;}
+
 
 .toggleMenu {position:absolute; top:17px; left:19px;}
 .backMenu {position:absolute; top:15px; left:15px;}
@@ -161,7 +168,7 @@ ul.cmts li.last span.input {margin:5px 30px 15px 0;}
 ul.cmts li.last input[type=submit] {float:right; margin:13px 0 0; display:block; width:13px; height:0; padding:13px 0 0; overflow:hidden; background-color:transparent; border:none; background-position:-26px 0;}
 
 ul.timeSheet {overflow:hidden; font-size:14px;}
-ul.timeSheet li {border-bottom:solid 1px #dbdbdb; padding:10px 0;}
+ul.timeSheet li {border-bottom:solid 1px #dbdbdb; padding:10px 0; overflow:hidden; line-height:30px;}
 ul.timeSheet li span {display:inline-block;}
 ul.timeSheet li .date {width:33%;}
 ul.timeSheet li .time {width:33%; text-align:center; color:#888;}
