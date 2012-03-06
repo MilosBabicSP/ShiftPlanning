@@ -241,6 +241,11 @@ ShiftPlanningDashboard.prototype.settingsEvents = function(){
             self.updateUser($('#da_se_cur_us_id').val(), response);
         })
     });
+    
+    $('#da_se_ed_ue').delegate('#da_se_ed_ue', clickEvent, function(e){
+        e.preventDefault();
+        self.saveEditForm();
+    });
 }
 
 
@@ -476,9 +481,46 @@ ShiftPlanningDashboard.prototype.saveEditForm = function(){
         data.home_phone = $('#da_se_ed_hph_0').val() + '-' + $('#da_se_ed_hph_1').val() + '-' + $('#da_se_ed_hph_2').val();
     }
     
-    sp.api('staff.employee','update',data,function(response){
+    
+    spModel.staff.update('employee', data, function(response){
         self.updateUser(eId, response);
-        sp.showSuccess('Employee saved.');
+    });
+}
+
+ShiftPlanningDashboard.prototype.adminActions = function(obj){
+    var eId = $('#da_se_cur_us_id').val();
+    var type = $(obj).attr('type');
+    var method = 'update';
+    var data = {
+        id : eId
+    }
+    if (type == 'deactivate'){
+        data.status = -1
+    } else if (type == 'delete'){
+        method = 'delete'
+    } else if (type == 'activate'){
+        data.send_activation = 1;
+    } else {
+        data.status = 1;
+    }
+    sp.api('staff.employee',method,data,function(response){
+        sp.staff.getStaff(function(){
+            if (type == 'deactivate'){
+                sp.showSuccess('User deactivated!');
+                $('#menu_staff').trigger(clickEvent);
+            } else if (type == 'delete'){
+                $('#menu_staff').trigger(clickEvent);
+                sp.showSuccess('User deleted!');
+            } else if (type == 'activate'){
+                sp.showSuccess('Activation successfully sent.');
+                $(obj).hide();
+            } else {
+                sp.showSuccess('Employee activated successfully.');
+                $('#da_se_ov_aa a[type=activate]').hide();
+                $(obj).hide();
+                $('#da_se_ov_st').html('User Account is Enabled.');
+            }
+        });
     }, function(response){
         sp.showError(response.error);
     });
