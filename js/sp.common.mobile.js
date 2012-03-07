@@ -76,6 +76,8 @@ ShiftPlanning.prototype.loadSubPage = function(obj, page, subpage){
     $('#pages #' + page + ' .main.' + subpage).show();
     $('#pages #' + page + ' .mainSub.' + subpage).show();
     
+    console.log('#pages #' + page + ' .mainSub.' + subpage);
+    
     if (typeof this[page] != 'undefined' && 'loadSubPageEvents' in this[page]){
         this[page].loadSubPageEvents(subpage);
     }
@@ -136,6 +138,30 @@ ShiftPlanning.prototype.initialize = function(){
 
 ShiftPlanning.prototype.globalLoader = function(){
     console.log('implement global loader');
+}
+
+ShiftPlanning.prototype.showSuccess = function(text){
+    $('body').append('<div class="notification success hidden">' + text + '</div>');
+    $('body > .notification').css('top', $(document).scrollTop());
+    $('body > .notification').fadeIn('fast', function(){
+        setTimeout(function(){
+            $('body > .notification').fadeOut('fast', function(){
+                $('body > .notification').remove();
+            });
+        }, 3000);
+    });
+}
+
+ShiftPlanning.prototype.showError = function(text){
+    $('body').append('<div class="notification error hidden">' + text + '</div>');
+    $('body > .notification').css('top', $(document).scrollTop());
+    $('body > .notification').fadeIn('fast', function(){
+        setTimeout(function(){
+            $('body > .notification').fadeOut('fast', function(){
+                $('body > .notification').remove();
+            });
+        }, 3000);
+    });
 }
 
 //Initalizing javascript library

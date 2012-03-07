@@ -19,6 +19,7 @@ ShiftPlanningStaff.prototype.loadSubPageEvents = function(subpage){
 }
 
 ShiftPlanningStaff.prototype.listEvents = function(){
+    var self = this;
     $('#st_sn_ga').bind(clickEvent, function(e){
         e.preventDefault();
         $(this).parents('ul').find('li').removeClass('active');
@@ -51,6 +52,10 @@ ShiftPlanningStaff.prototype.listEvents = function(){
             }
         }
     });
+    $('#st_li_ga').delegate('li', clickEvent, function(){
+        var id = $(this).attr('staffId');
+        self.displayEmployee(id);
+    });
 
 }
 
@@ -68,6 +73,26 @@ ShiftPlanningStaff.prototype.addEmployeeSubEvents = function(){
 ShiftPlanningStaff.prototype.fastAssignmentSubEvents = function(){
     
 }
+
+
+
+//Functions
+
+ShiftPlanningStaff.prototype.displayEmployee = function(id){
+    $('#pages > div').hide();
+    $('#pages #dashboard .main').hide();
+    $('#pages #dashboard .mainSub').hide();
+    $('#pages #dashboard').show();
+    $('#pages #dashboard .main.settings').show();
+    $('#pages #dashboard .mainSub.settings').show();
+    
+    sp.staff.settingsSubEvents(spModel.staff.getEmployeeById(id));
+}
+
+
+
+
+//Rest
 
 ShiftPlanningStaff.prototype.login = function(){
     var u = $('#lo_u').val();

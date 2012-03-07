@@ -62,7 +62,7 @@ ShiftPlanningView.prototype.editableSchedules = function(employee){
 ShiftPlanningView.prototype.editableSkills = function(employee){
     var l = '';
     $.each(spModel.staff.allSkills(), function(i, item){
-        var c = (typeof employee.skills != 'undefined' && typeof employee.skills[item.id] != 'undefined') ? 'checked="checked"' : '';
+        var c = (typeof employee.skills != 'undefined' && typeof employee.skills[item.id] != 'undefined') ? 'check' : '';
         l += '<li class="even">';
         l += '  <div>';
         l += '      <span class="checkbox ' + c + '" itemId=' + item.id + '>' + item.name + '</span>';

@@ -26,6 +26,21 @@ SPModelStaff.prototype.allSkills = function(r){
         }, function(response){
             Log.log('implement');
             return {};
-        })
+        });
     }
+}
+
+SPModelStaff.prototype.reset = function(){
+    spModel.staff.get('employees', {}, function(response){
+        sp.staff.raw.employees = response.data;
+        sp.staff.data.employees = sp.map(response.data);
+    });
+}
+
+SPModelStaff.prototype.getEmployeeById = function(id){
+    if (typeof sp.staff.data.employees[id] == 'undefined'){
+        sp.showError('Employee doesn\'t exists');
+        return sp.staff.admin.info;
+    }
+    return sp.staff.data.employees[id];
 }
