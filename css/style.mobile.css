@@ -13,8 +13,8 @@ q:before,q:after {content:'';}
 abbr,acronym { border:0;}
 
 /*MAIN*/
-body {font-size:13px; color:#555; font-family:"Arial",sans-serif; background-color:#a32525;}
-a {color:#333; outline:none; text-decoration:none;}
+body {font-size:13px; color:#555; font-family:"Arial",sans-serif;}
+a {color:#8C1919; outline:none; text-decoration:none;}
 img {border: none; vertical-align: middle;}
 p {line-height:120%;}
 .cl {clear:both; line-height:0;}
@@ -59,26 +59,28 @@ a.button {line-height:30px; display:block; padding:0 10px; background-color:#f0f
 /*BUILD*/
 html {overflow-x:hidden;}
 .wrapper { background-color:#FFF;}
-.wrapper.extended {margin:0 0 0 190px; border-left:solid 1px #711111; width:100%;} 
-.mainMenu {background-color:#a32525; width:190px; float:left;}
+.wrapper.extended {margin:0 0 0 190px; width:100%;} 
+.mainMenu {background-color:#a32525; width:189px; float:left; border-right:solid 1px #711111;}
 .subWrapp {overflow:hidden; margin:0 auto;}
 .subNavigation {padding:15px 20px 15px 60px; height:30px; background-color:#F2F2F2; border-top:solid 1px #FFF; border-bottom:solid 1px #DBDBDB; position:relative;}
 .main {padding:0 20px 20px;}
+#pages {overflow:hidden;}
 
-.notification {padding:10px; text-align:center; color:#FFF; display:none; position:absolute; width:100%; top:0;}
-.error {background-color:red;}
-.success {background-color:green;}
-.info {background-color:blue;}
-.noResults {padding:20px; background-color:#adecff; color:#333; font-size:14px;}
+.notification {padding:15px; text-align:center; color:#FFF; display:none; position:absolute; width:100%; top:0;}
+.error {background-color:#D15050;}
+.success {background-color:#75BE66;}
+.info {background-color:#66A0BB;}
+.noResults {padding:10px; margin:10px; border:solid 1px #B1CAE4; color:#B1CAE4; font-size:14px; display:block;}
 .notif {line-height:20px; font-size:14px; color:#888; padding:15px 0;}
 .additional {font-size:13px; color:#888; padding:5px 0; border-bottom:solid 1px #DBDBDB;}
 .additional p {padding:5px 0;}
+.centered {text-align:center;}
 
 
 .toggleMenu {position:absolute; top:17px; left:19px;}
 .backMenu {position:absolute; top:15px; left:15px;}
 .title {overflow:hidden; padding:15px 0 15px; line-height:30px; border-bottom:solid 1px #DBDBDB; }
-.title span a {display:block; padding:0 10px; background-color:#f0f0f0; border:solid 1px #DBDBDB; border-radius:2px;}
+.title span a {display:block; padding:0 10px; background-color:#f0f0f0; border:solid 1px #DBDBDB; color:#333; border-radius:2px;}
 .title div {line-height:15px; font-size:14px;}
 .title div span {display:block; font-weight:bold;}
 .title div img {float:left; margin:0 10px 0 0;}
@@ -112,7 +114,7 @@ ul.msgWall .msgDel {top:20px; right:0; background-position:-13px 0;}
 ul.cmts .msgDel {top:15px; right:15px; background-position:-13px 0;}
 
 ul.mainNav {border-top:solid 1px #841717; border-bottom:solid 1px #b23939;}
-ul.mainNav > li > a {display:block; line-height:50px; padding:0 20px 0 60px; color:#FFF; font-size:14px; font-weight:bold; text-shadow:0 1px 2px #841717; border-bottom:solid 1px #841717; border-top:solid 1px #b23939;}
+ul.mainNav > li > a {display:block; line-height:50px; height:50px; padding:0 20px 0 60px; color:#FFF; font-size:14px; font-weight:bold; text-shadow:0 1px 2px #841717; border-bottom:solid 1px #841717; border-top:solid 1px #b23939;}
 ul.mainNav > li.active > a {background-color:#8f1a1a; border-top-color:#8f1a1a;}
 ul.mainNav ul li a {display:block; line-height:20px; padding:5px 10px 5px 20px; color:#FFF; border-bottom:solid 1px #841717; border-top:solid 1px #b23939; text-shadow:0 1px 2px #841717;}
 ul.mainNav ul li a span {display:block; float:right; padding:4px; font-size:11px; line-height:10px; background-color:#7c1515; border:solid 1px #691010; border-radius:2px;}
@@ -182,6 +184,12 @@ ul.staff.small {overflow:hidden; font-size:14px; }
 ul.staff.small li {float:left; padding:10px 0 10px 20px; width:140px; border-bottom:solid 1px #DBDBDB;}
 ul.staff.small li img {float:left; width:30px; height:30px;}
 ul.staff.small li span {display:block; margin:0 0 0 40px; line-height:15px;}
+
+ul.requests {overflow:hidden; font-size:14px;}
+ul.requests li {padding:10px 53px 10px 0; border-bottom:solid 1px #DBDBDB; position:relative;}
+ul.requests li span {display:block; font-weight:bold; line-height:20px;}
+ul.requests li a {position:absolute; top:50%; right:0; margin:-15px 0 0;}
+
 
 .login {background-color:#ECECDB; color: #414141; font-size:17px; height:100%; background-image: url(../images/mainBg.png)} 
 .login .logo {margin: 5px auto; display: block;}
