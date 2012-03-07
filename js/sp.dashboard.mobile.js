@@ -212,7 +212,7 @@ ShiftPlanningDashboard.prototype.settingsEvents = function(){
     });
     
     $('#da_se').delegate('.checkbox', clickEvent, function(){
-        var id = $(this).attr('id');
+        var sid = $(this).attr('itemId');
         var skills = ($(this).parents('.skills').length > 0) ? true : false;
         var checked = ($(this).hasClass('check')) ? true : false;
         var obj = this;
@@ -221,15 +221,15 @@ ShiftPlanningDashboard.prototype.settingsEvents = function(){
         }
         if (skills){
             if (checked) {
-                data.removeSkill = id;
+                data.removeskill = sid;
             } else {
-                data.addSkill = id;
+                data.addskill = sid;
             }
         } else {
             if (checked) {
-                data.removeSchedule = id;
+                data.removeschedule = sid;
             } else {
-                data.addSchedule = id;
+                data.addschedule = sid;
             }
         }
         spModel.staff.update('employee', data, function(response){
@@ -239,12 +239,21 @@ ShiftPlanningDashboard.prototype.settingsEvents = function(){
                 $(obj).addClass('check');
             }
             self.updateUser($('#da_se_cur_us_id').val(), response);
-        })
+        });
     });
     
     $('#da_se_ed_ue').bind(clickEvent, function(e){
         e.preventDefault();
         self.saveEditForm();
+    });
+    
+    $('textarea#da_se_ov_no, textarea#da_se_ed_no').bind('blur', function(){
+        self.updateNotes($(this).val());
+    });
+    
+    $('#da_se_pa_up').bind(clickEvent, function(e){
+        e.preventDefault();
+        self.changePassword();
     });
 }
 
@@ -265,11 +274,7 @@ ShiftPlanningDashboard.prototype.upcomingShiftsSubEvents = function(){
         end_date: 'today +2 months', 
         mode: 'employee'
     };
-    if (typeof employee != 'undefined'){
-        send.employees = sp.staff.admin.info.id
-    } else {
-        send.employees = sp.staff.admin.info.id;
-    }
+    send.employees = sp.staff.admin.info.id;
     spModel.schedule.get('shifts', send, function(response){
         var data = [];
         if(typeof response.data != 'undefined' && response.data.length > 0){
@@ -306,6 +311,7 @@ ShiftPlanningDashboard.prototype.settingsSubEvents = function(employee){
     //prefill
     self.prefillOverview(employee);
     self.prepareEditDetails(employee);
+    self.preparePasswordField(employee);
     
     $('#dashboard .search.settings.mainSub li a:first').trigger(clickEvent);
 }
@@ -408,6 +414,11 @@ ShiftPlanningDashboard.prototype.prepareEditDetails = function(employee){
     
 }
 
+ShiftPlanningDashboard.prototype.preparePasswordField = function(){
+    $('#da_se_pa_np').val('');
+    $('#da_se_pa_cp').val('');
+}
+
 ShiftPlanningDashboard.prototype.sendMessage = function(){
     var self = this;
     var data = {
@@ -426,15 +437,12 @@ ShiftPlanningDashboard.prototype.changePassword = function (){
     var self = this;
     var eId = $('#da_se_cur_us_id').val();
     if ($('#da_se_pa_np').val().length > 6 && $('#da_se_pa_np').val() == $('#da_se_pa_cp').val()){
-        sp.api('staff.employee','update',{id : eId, password: $('#da_se_pa_np').val()},function(response){
+        spModel.staff.update('employee', {id : eId, password: $('#da_se_pa_np').val()}, function(response){
             self.updateUser(eId, response);
-            sp.showSuccess('Password changed.');
-        }, function(response){
-            sp.showError(response.error);
         });
     } else {
         //add other error type
-        sp.showError('Passwords don\'t match');
+        sp.showError('Password length must be over 6 chars and passwords must match.');
     }
 }
 
@@ -531,6 +539,18 @@ ShiftPlanningDashboard.prototype.updateUser = function(id, res){
         sp.staff.admin.info = res.data;
     }
     sp.staff.data.employees['' + id] = res.data;
+    this.settingsSubEvents(sp.staff.data.employees['' + id]);
+    sp.showSuccess('Selected user updated.');
+}
+
+ShiftPlanningDashboard.prototype.updateNotes = function(text){
+    if (sp.hasPermission(4) || parseInt($('#da_se_cur_us_id').val()) == sp.staff.admin.info.id){
+        var self = this;
+        var eId = $('#da_se_cur_us_id').val();
+        spModel.staff.update('employee', {id : eId, notes : text}, function(response){
+            self.updateUser(eId, response);
+        });
+    }
 }
 
 ShiftPlanningDashboard.prototype.loadPage = function(){

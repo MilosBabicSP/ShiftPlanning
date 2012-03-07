@@ -103,7 +103,7 @@ html {overflow-x:hidden;}
 .cmtCount span.tip {display:block; width:20px; height:10px; position:absolute; top:-10px; left:10px; background-position:-50px 0;}
 
 span.input {padding:5px; border:solid 1px #dbdbdb; display:block; background:#FFF url(../images/input_bg.png) scroll repeat-x 0 0;}
-span.input input[type=text] {font-family:"Arial", sans-serif; font-size:13px; color:#999; background-color:transparent; width:100%; border:none;}
+span.input input[type=text], span.input input[type=password] {font-family:"Arial", sans-serif; font-size:13px; color:#999; background-color:transparent; width:100%; border:none;}
 span.input select {font-family:"Arial", sans-serif; font-size:13px; color:#999; background-color:transparent; width:100%; border:none;}
 span.input textarea {font-family:"Arial", sans-serif; font-size:13px; color:#999; background-color:transparent; min-width:100%; max-width:100%; border:none;}
 span.input input[type=text]:focus, span.input textarea:focus {color:#444;}

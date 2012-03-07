@@ -306,9 +306,9 @@
         <ul class="detailsGrid">
             <li>
                 <div>
-                    <label>Name:</label>
+                    <label>Password:</label>
                     <span class="input">
-                        <input type="text" name="" value="" id="da_se_pa_np">
+                        <input type="password" name="" value="" id="da_se_pa_np">
                     </span>
                 </div>
             </li>
@@ -317,9 +317,9 @@
             </li>
             <li>
                 <div>
-                    <label>Nick Name:</label>
+                    <label>Confirm Password:</label>
                     <span class="input">
-                        <input type="text" name="" value="" id="da_se_pa_cp">
+                        <input type="password" name="" value="" id="da_se_pa_cp">
                     </span>
                 </div>
             </li>
