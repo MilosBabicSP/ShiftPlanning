@@ -113,7 +113,7 @@ ShiftPlanningTimeClock.prototype.manageTimeSheetsSubEvents = function(){
     $('#tc_mts_sd_i').val(s.toString(cal.dformat));
     $('#tc_mts_sd_i').scroller({
         preset : 'date',
-        dateFormat : sp.strReplace(['MM','yyyy'],['mm','yy'],cal.dformat),
+        dateFormat : (sp.strReplace(['MM','yyyy'],['mm','yy'],cal.dformat) == 'mmM d, yy') ? sp.strReplace(['MM','yyyy'],['mm','yy'],cal.dformat).substr(2, sp.strReplace(['MM','yyyy'],['mm','yy'],cal.dformat).length) : sp.strReplace(['MM','yyyy'],['mm','yy'],cal.dformat),
         dateOrder: sp.strReplace(['MM','yyyy',' ','-','/'],['mm','yy','','',''],cal.dformat)
     });
     
@@ -121,8 +121,8 @@ ShiftPlanningTimeClock.prototype.manageTimeSheetsSubEvents = function(){
     $('#tc_mts_ed_i').val(e.toString(cal.dformat));
     $('#tc_mts_ed_i').scroller({
         preset : 'date',
-        dateFormat : sp.strReplace(['MM','yyyy'],['mm','yy'],cal.dformat),
-        dateOrder: sp.strReplace(['MM','yyyy',' ','-','/'],['mm','yy','','',''],cal.dformat),
+        dateFormat : (sp.strReplace(['MM','yyyy'],['mm','yy'],cal.dformat) == 'mmM d, yy') ? sp.strReplace(['MM','yyyy'],['mm','yy'],cal.dformat).substr(2, sp.strReplace(['MM','yyyy'],['mm','yy'],cal.dformat).length) : sp.strReplace(['MM','yyyy'],['mm','yy'],cal.dformat),
+        dateOrder: sp.strReplace(['MM','yyyy',' ','-','/'],['mm','yy','','',''],cal.dformat)
     });
     
     

@@ -5,7 +5,7 @@
     <div class="subWrapp" >
         <ul class="subNav fl" page="reports">
             <li class="first active">
-                <a href="#" subpage="scheduleHours">
+                <a href="#" subpage="scheduledHours">
                     <img width="16" height="16" src="images/staff_1.png" />
                 </a>
             </li>

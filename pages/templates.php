@@ -1,6 +1,15 @@
 
 <!-- ID rulez first is "te" shorten from template, next is 2 letter from module name, than 2 letter from page name, than 2 letters from page method -->
 <div id="templates">
+    <script id="te_re_info" type="text/x-jquery-tmpl">
+        <li>
+            <a href="#" class="fr"><img width="43" height="30" src="images/NextMenu.png"></a>
+            <span>
+                <img width="30" height="30" src="images/staff.jpg">
+                Mike
+            </span>
+        </li>
+    </script>
     <script id="te_st_list" type="text/x-jquery-tmpl">
         <li staffId="${id}">
             {{if typeof avatar.medium != 'undefined'}}

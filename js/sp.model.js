@@ -27,6 +27,7 @@ ShiftPlanningModel.prototype.get = function(module, data, success, error){
                 }
             }, function(response){
                 //self.clearCache(module);
+                sp.showError(response.error);
                 if(typeof error == 'function'){
                     error.call(this, error);
                 }
@@ -39,6 +40,7 @@ ShiftPlanningModel.prototype.get = function(module, data, success, error){
                 }
             }, function(response){
                 //self.clearCache(module);
+                sp.showError(response.error);
                 if(typeof error == 'function'){
                     error.call(this, response);
                 }
@@ -205,3 +207,4 @@ spModel.addModel('admin', SPModelAdmin);
 spModel.addModel('messaging', SPModelMessaging);
 spModel.addModel('timeclock', SPModelTimeClock);
 spModel.addModel('staff', SPModelStaff);
+spModel.addModel('payroll', SPModelPayroll);
