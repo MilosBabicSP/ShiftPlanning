@@ -1,9 +1,9 @@
-<div class="subNavigation">
-    <a class="backMenu" href="#">
-        <img width="41" height="30" src="images/BackMenu.png">
-    </a>
-</div>
 <div class="main confirmedHours">
+    <div class="subLevel">
+        <a class="backMenu" href="#">
+            <img width="41" height="30" src="images/BackMenu.png">
+        </a>
+    </div>
     <div class="title">
         <span class="fr"><a href="#">Advanced</a></span>
         <div class="fl">
