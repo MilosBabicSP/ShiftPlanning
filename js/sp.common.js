@@ -98,7 +98,6 @@ ShiftPlanning.prototype = {
         //Load the page from the module, handle this a little better
         if(user.loggedIn){
             if(typeof this[page] != 'undefined'){
-                $('#pages > div').hide();
                 $('#pages #' + page + ' > div').hide();
                 $('#pages #' + page).show();
                 $('.subNavigation > div').hide();

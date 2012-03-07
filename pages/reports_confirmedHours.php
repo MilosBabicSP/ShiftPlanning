@@ -1,13 +1,8 @@
-<div class="main confirmedHours">
-    <div class="subLevel">
-        <a class="backMenu" href="#">
-            <img width="41" height="30" src="images/BackMenu.png">
-        </a>
-    </div>
+<div class="main confirmedHours" id="re_ch">
     <div class="title">
         <span class="fr"><a href="#">Advanced</a></span>
         <div class="fl">
-            <span>Payroll - Scheduled Hours</span>
+            <span>Payroll - Confirmed Hours</span>
             January 23, 2012 - January 29, 2012
         </div>
     </div>
@@ -86,6 +81,8 @@
         </li>
     </ul>
     <div class="title">
+        <span class="fr"><span class="checkbox">Show Empty</span></span>
+        <span class="fr"><span class="checkbox">Group Results</span></span>
         <span class="fr"><span class="checkbox">Deduct Breaks</span></span>
     </div>
     <div class="title">

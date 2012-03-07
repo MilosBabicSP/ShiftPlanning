@@ -111,7 +111,6 @@ ShiftPlanningDashboard.prototype.wallEvents = function(){
             post: post, 
             id: id
         }, function(response) {
-            console.log(response);
             var d = {
                 avatar : sp.staff.admin.info.dfAvatar,
                 id : id,

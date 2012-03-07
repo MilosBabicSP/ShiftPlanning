@@ -46,7 +46,7 @@ ShiftPlanningView.prototype.timeRanges = function(){
 ShiftPlanningView.prototype.editableSchedules = function(employee){
     var l = '';
     var i = 2;
-    $.each(spModel.schedule.allSchedules(), function(i, item){
+    $.each(spModel.schedule.allSchedules(), function(i2, item){
         var c = (typeof employee.schedules != 'undefined' && typeof employee.schedules[item.id] != 'undefined') ? 'check"' : '';
         l += '<li class="' + ((i % 2 == 0) ? 'even' : 'odd') + '">';
         l += '  <div>';
@@ -62,7 +62,7 @@ ShiftPlanningView.prototype.editableSchedules = function(employee){
 ShiftPlanningView.prototype.editableSkills = function(employee){
     var l = '';
     var i = 2;
-    $.each(spModel.staff.allSkills(), function(i, item){
+    $.each(spModel.staff.allSkills(), function(i2, item){
         var c = (typeof employee.skills != 'undefined' && typeof employee.skills[item.id] != 'undefined') ? 'check' : '';
         l += '<li class="' + ((i % 2 == 0) ? 'even' : 'odd') + '">';
         l += '  <div>';

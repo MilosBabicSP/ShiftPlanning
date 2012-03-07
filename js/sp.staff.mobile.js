@@ -10,6 +10,7 @@ ShiftPlanningStaff.prototype.initialize = function(){
         
         self.listEvents();
         self.addStaffEvents();
+        self.fastAssignmentEvents();
     });
 }
 
@@ -71,6 +72,44 @@ ShiftPlanningStaff.prototype.addStaffEvents = function(){
     });
 }
 
+ShiftPlanningStaff.prototype.fastAssignmentEvents = function(){
+    var self = this;
+    $('#st_fa_el').bind('change', function(){
+        self.loadFastAssignment($(this).val());
+    });
+    
+    $('#st_fa ul.detailsGrid ul').delegate('.checkbox', clickEvent, function(e){
+        var sid = $(this).attr('itemId');
+        var skills = ($(this).parents('.skills').length > 0) ? true : false;
+        var checked = ($(this).hasClass('check')) ? true : false;
+        var obj = this;
+        var data = {
+            id : $('#st_fa_cu').val()
+        }
+        if (skills){
+            if (checked) {
+                data.removeskill = sid;
+            } else {
+                data.addskill = sid;
+            }
+        } else {
+            if (checked) {
+                data.removeschedule = sid;
+            } else {
+                data.addschedule = sid;
+            }
+        }
+        spModel.staff.update('employee', data, function(response){
+            if (checked) {
+                $(obj).removeClass('check');
+            } else {
+                $(obj).addClass('check');
+            }
+            sp.dashboard.updateUser($('#st_fa_cu').val(), response);
+        });
+    });
+}
+
 ShiftPlanningStaff.prototype.listSubEvents = function(){
     $('#st_tp_menu').show();
     $('#st_li_ga').html($.tmpl($('#te_st_list'), spModel.staff.allStaff()));
@@ -84,6 +123,8 @@ ShiftPlanningStaff.prototype.addStaffSubEvents = function(){
 
 ShiftPlanningStaff.prototype.fastAssignmentSubEvents = function(){
     $('#st_fa_el').html(spView.staffOption());
+    $('#st_fa_po').hide();
+    $('#st_fa_sk').hide();
 }
 
 //Functions
@@ -97,6 +138,17 @@ ShiftPlanningStaff.prototype.displayEmployee = function(id){
     sp.dashboard.settingsSubEvents(spModel.staff.getEmployeeById(id));
 }
 
+
+//Get all fast assignment info.
+ShiftPlanningStaff.prototype.loadFastAssignment = function(id){
+    var employee = spModel.staff.getEmployeeById(id);
+    $('#st_fa_cu').val(id);
+    $('#st_fa_po ul.detailsGrid ul').html(spView.editableSchedules(employee));
+    $('#st_fa_sk ul.detailsGrid ul').html(spView.editableSkills(employee));
+    
+    $('#st_fa_po').show();
+    $('#st_fa_sk').show();
+}
 
 ShiftPlanningStaff.prototype.createEmployee = function(c){
     var self = this;

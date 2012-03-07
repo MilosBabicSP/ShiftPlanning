@@ -182,7 +182,7 @@ if ($vtoken['data'] != '1') {
                     </div>
                     <div class="staff" id="staff">
                         <div class="search list mainSub">
-                            <input type="submit" value="search" id="st_li_se_b"/>
+                            <input type="submit" value="search" id="st_li_se_b" />
                             <span class="input">
                                 <input type="text" value="Search..." name="" onblur="if(this.value=='')this.value=this.defaultValue;" onfocus="if(this.value==this.defaultValue)this.value='';" id="st_li_se_te" />
                             </span>
@@ -192,6 +192,11 @@ if ($vtoken['data'] != '1') {
                         <?php Functions::getInstance()->loadFile('staff_fastAssignment'); ?>
                     </div>
                     <div class="reports" id="reports">
+                        <div class="subLevel hidden" id="re_si_inf">
+                            <a class="backMenu" href="#">
+                                <img width="41" height="30" src="images/BackMenu.png">
+                            </a>
+                        </div>
                         <?php Functions::getInstance()->loadFile('reports_scheduleHours'); ?>
                         <?php Functions::getInstance()->loadFile('reports_confirmedHours'); ?>
                         <?php Functions::getInstance()->loadFile('reports_confirmedTimeSheets'); ?>

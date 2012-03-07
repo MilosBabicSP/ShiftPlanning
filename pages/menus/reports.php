@@ -5,17 +5,17 @@
     <div class="subWrapp" >
         <ul class="subNav fl" page="reports">
             <li class="first active">
+                <a href="#" subpage="scheduleHours">
+                    <img width="16" height="16" src="images/staff_1.png" />
+                </a>
+            </li>
+            <li>
                 <a href="#" subpage="confirmedHours">
                     <img width="16" height="16" src="images/staff_1.png" />
                 </a>
             </li>
-            <li>
+            <li class="last">
                 <a href="#" subpage="confirmedTimeSheets">
-                    <img width="16" height="16" src="images/staff_1.png" />
-                </a>
-            </li>
-            <li>
-                <a href="#" subpage="scheduleHours">
                     <img width="16" height="16" src="images/staff_1.png" />
                 </a>
             </li>

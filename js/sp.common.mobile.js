@@ -86,6 +86,7 @@ ShiftPlanning.prototype.initialize = function(){
     $(window).hashchange(function(){
         if (sp.hash().length > 0) {
             if ($('#menu [page=' + sp.hash() + ']').length > 0){
+                $('#pages > div').hide();
                 setTimeout(function(){
                     $('#menu [page=' + sp.hash() + ']').parent().parent().find('li').removeClass('active');
                     $('#menu [page=' + sp.hash() + ']').parent().addClass('active');
