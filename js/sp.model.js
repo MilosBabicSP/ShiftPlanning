@@ -95,6 +95,7 @@ ShiftPlanningModel.prototype.create = function(module, data, success, error){
             }
         }, function(response){
             //self.clearCache(module);
+            sp.showError(response.error);
             if(typeof error == 'function'){
                 error.call(this, error);
             }
@@ -105,10 +106,11 @@ ShiftPlanningModel.prototype.create = function(module, data, success, error){
             if(typeof success == 'function'){
                 success.call(this, response);
             }
-        }, function(e){
+        }, function(response){
             //self.clearCache(module);
+            sp.showError(response.error);
             if(typeof error == 'function'){
-                error.call(this, error);
+                error.call(this, response);
             }
         });
     }

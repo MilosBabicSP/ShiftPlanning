@@ -9,6 +9,16 @@
                     <img width="16" height="16" src="images/staff_1.png" />
                 </a>
             </li>
+            <li>
+                <a href="#" subpage="confirmedTimeSheets">
+                    <img width="16" height="16" src="images/staff_1.png" />
+                </a>
+            </li>
+            <li>
+                <a href="#" subpage="scheduleHours">
+                    <img width="16" height="16" src="images/staff_1.png" />
+                </a>
+            </li>
         </ul>
     </div>
 </div>

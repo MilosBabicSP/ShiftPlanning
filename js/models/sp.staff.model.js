@@ -44,3 +44,8 @@ SPModelStaff.prototype.getEmployeeById = function(id){
     }
     return sp.staff.data.employees[id];
 }
+
+SPModelStaff.prototype.addEmployee = function(data){
+    sp.staff.raw.employees.push(data);
+    sp.staff.data.employees['' + data.id] = data
+}

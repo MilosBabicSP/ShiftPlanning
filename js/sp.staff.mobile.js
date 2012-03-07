@@ -9,6 +9,7 @@ ShiftPlanningStaff.prototype.initialize = function(){
         });
         
         self.listEvents();
+        self.addStaffEvents();
     });
 }
 
@@ -56,7 +57,18 @@ ShiftPlanningStaff.prototype.listEvents = function(){
         var id = $(this).attr('staffId');
         self.displayEmployee(id);
     });
+}
 
+ShiftPlanningStaff.prototype.addStaffEvents = function(){
+    var self = this;
+    $('#st_ae_sa').bind(clickEvent, function(){
+        $(this).toggleClass('check');
+    });
+    
+    $('#st_ae_ce_b').bind(clickEvent, function(e){
+        e.preventDefault();
+        self.createEmployee();
+    });
 }
 
 ShiftPlanningStaff.prototype.listSubEvents = function(){
@@ -66,18 +78,15 @@ ShiftPlanningStaff.prototype.listSubEvents = function(){
     $('#st_li_se_te').val('').trigger('blur');
 }
 
-ShiftPlanningStaff.prototype.addEmployeeSubEvents = function(){
-    
+ShiftPlanningStaff.prototype.addStaffSubEvents = function(){
+    this.resetAddEmployee();
 }
 
 ShiftPlanningStaff.prototype.fastAssignmentSubEvents = function(){
-    
+    $('#st_fa_el').html(spView.staffOption());
 }
 
-
-
 //Functions
-
 ShiftPlanningStaff.prototype.displayEmployee = function(id){
     $('#pages > div').hide();
     $('#pages #dashboard .main').hide();
@@ -85,15 +94,61 @@ ShiftPlanningStaff.prototype.displayEmployee = function(id){
     $('#pages #dashboard').show();
     $('#pages #dashboard .main.settings').show();
     $('#pages #dashboard .mainSub.settings').show();
-    
-    sp.staff.settingsSubEvents(spModel.staff.getEmployeeById(id));
+    sp.dashboard.settingsSubEvents(spModel.staff.getEmployeeById(id));
 }
 
 
+ShiftPlanningStaff.prototype.createEmployee = function(c){
+    var self = this;
+    var data = {};
+    data.name = $('#st_ae_i_n').val();
+    //if ($.trim($('#st_ae_i_nn').val()).length > 0){
+        data.nick_name = $('#st_ae_i_nn').val();
+    //}
+    //if ($.trim($('#st_ae_i_e').val()).length > 0){
+        data.email = $('#st_ae_i_e').val();
+    //}
+    
+    //if ($.trim($('#st_ae_i_eid').val()).length > 0){
+        data.eid = $('#st_ae_i_eid').val();
+    //}
+    
+    //if ($.trim($('#st_ae_i_eid').val()).length > 0){
+        data.username = $('#st_ae_i_un').val();
+    //}
+    
+    //if ($.trim($('#st_ae_i_hw').val()).length > 0){
+        data.wage = $('#st_ae_i_hw').val();
+    //}
+    
+    //if ($.trim($('#st_ae_i_no').val()).length > 0){
+        data.notes = $('#st_ae_i_no').val();
+    //}
+    
+    if ($('#st_ae_sa').hasClass('check')){
+        data.send_activation = 1;
+    }
+    
+    spModel.staff.create('employee', data, function(response){
+        spModel.staff.addEmployee(response.data);
+        self.displayEmployee(response.data.id);
+        sp.showSuccess('Employee successfully created!');
+    });
+}
 
+
+ShiftPlanningStaff.prototype.resetAddEmployee = function(){
+    $('#st_ae_i_n').val('');
+    $('#st_ae_i_nn').val('');
+    $('#st_ae_i_e').val('');
+    $('#st_ae_i_eid').val('');
+    $('#st_ae_i_un').val('');
+    $('#st_ae_i_hw').val('');
+    $('#st_ae_i_no').val('');
+    $('#st_ae_sa').removeClass('check');
+}
 
 //Rest
-
 ShiftPlanningStaff.prototype.login = function(){
     var u = $('#lo_u').val();
     var p = $('#lo_p').val();

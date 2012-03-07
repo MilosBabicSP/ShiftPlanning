@@ -381,19 +381,18 @@ ShiftPlanningDashboard.prototype.prefillOverview = function(employee){
 }
 
 ShiftPlanningDashboard.prototype.prepareEditDetails = function(employee){
-    
     //this page needs to be cached after first load and to be reprepared if data are changed
     $('#da_se_ed_na').val(employee.name);
     $('#da_se_ed_em').val(employee.email);
     $('#da_se_ed_nn').val(employee.nick_name);
     $('#da_se_ed_us').val(employee.username);
     //mobile phone
-    var mphone = employee.cell_phone.split('-');
+    var mphone = (employee.cell_phone == null) ? '---'.split('-') : employee.cell_phone.split('-');
     $('#da_se_ed_mph_0').val(mphone[0]);
     $('#da_se_ed_mph_1').val(mphone[1]);
     $('#da_se_ed_mph_2').val(mphone[2]);
     //home phone
-    var hphone = employee.home_phone.split('-');
+    var hphone = (employee.home_phone == null) ? '---'.split('-') : employee.home_phone.split('-');
     $('#da_se_ed_hph_0').val(hphone[0]);
     $('#da_se_ed_hph_1').val(hphone[1]);
     $('#da_se_ed_hph_2').val(hphone[2]);
