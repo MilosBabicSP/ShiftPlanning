@@ -11,24 +11,18 @@
             <ul>
                 <li class="even">
                     <div>
-                        <label>Time</label>
                         <span class="input">
-                            <select>
-                                <option value="0" >All</option>
-                                <option value="1" >Approved</option>
-                                <option value="2" selected="selected">Unapproved</option>
+                            <select class="timeSelector">
+
                             </select>
                         </span>
                     </div>
                 </li>
                 <li class="odd">
                     <div>
-                        <label>Employees</label>
                         <span class="input">
-                            <select>
-                                <option value="0" >All</option>
-                                <option value="1" >Approved</option>
-                                <option value="2" selected="selected">Unapproved</option>
+                            <select class="employeeSelector">
+
                             </select>
                         </span>
                     </div>
@@ -39,24 +33,18 @@
             <ul>
                 <li class="even">
                     <div>
-                        <label>Locations</label>
                         <span class="input">
-                            <select>
-                                <option value="0" >All</option>
-                                <option value="1" >Approved</option>
-                                <option value="2" selected="selected">Unapproved</option>
+                            <select class="positionsSelector">
+
                             </select>
                         </span>
                     </div>
                 </li>
                 <li class="odd">
                     <div>
-                        <label>Positions</label>
                         <span class="input">
-                            <select>
-                                <option value="0" >All</option>
-                                <option value="1" >Approved</option>
-                                <option value="2" selected="selected">Unapproved</option>
+                            <select class="skillsSelector">
+
                             </select>
                         </span>
                     </div>
