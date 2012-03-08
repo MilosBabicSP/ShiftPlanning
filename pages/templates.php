@@ -21,7 +21,7 @@
         </li>
     </script>
     <script id="te_tc_mts_li_in" type="text/x-jquery-tmpl">
-        <li class="s_${status} e_${user} sc_${schedule}"><span class="date">${name}</span><span class="time">${st.time} - ${out.time}</span><span class="last">2h, 34min</span></li>
+        <li class="s_${status} e_${user} sc_${schedule}"><span class="names">${name}</span><span class="time"><span class="tStart">${st.time}</span><img width="16" height="16" src="images/tc_sm_clock.png"><span class="tEnd">${out.time}</span></span><span class="last">2h, 34min</span></li>
     </script>
     <script id="te_tc_mts_li" type="text/x-jquery-tmpl">
         <div class="title">
@@ -36,7 +36,7 @@
             <a class="fr" href="#">
                 <img width="43" height="30" src="images/NextMenu.png" />
             </a>
-            <span class="date">${start_date.formatted}</span>
+            <span class="names">${start_date.formatted}</span>
             <span class="time">${start_time.time} - ${end_time.time}</span>
         </li>
     </script>
