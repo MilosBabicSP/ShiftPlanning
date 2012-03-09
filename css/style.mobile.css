@@ -60,7 +60,7 @@ a.button {line-height:30px; display:block; padding:0 10px; color:#333; backgroun
 
 /*BUILD*/
 html {overflow-x:hidden;}
-.wrapper { background-color:#FFF;}
+.wrapper { background-color:#FFF; width:320px;}
 .wrapper.extended {margin:0 0 0 190px; width:100%;} 
 .mainMenu {background-color:#a32525; width:189px; float:left; border-right:solid 1px #711111;}
 .subWrapp {overflow:hidden; margin:0 auto;}
@@ -130,17 +130,18 @@ ul.mainNav ul li a span {display:block; float:right; padding:4px; font-size:11px
 
 ul.subNav {overflow:hidden; margin:0 auto;}
 ul.subNav li {float:left;}
-ul.subNav li a {display:block; padding:6px 15px; text-align:center; border:solid 1px #d8d8d8; border-left:none; background-color:#FFF;}
+ul.subNav li a {display:block; padding:6px 15px; line-height:16px; color:#333; text-align:center; border:solid 1px #d8d8d8; border-left:none; background-color:#FFF;}
+ul.subNav li a span {margin:0 -7px;}
 ul.subNav li.active a {background-color:#e8e8e8;}
 ul.subNav li.first a {border-radius:2px 0 0 2px; border-left:solid 1px #d8d8d8;}
 ul.subNav li.last a {border-radius:0 2px 2px 0;}
 
 ul.subMenu {overflow:hidden; position:absolute; right:15px; top:15px;}
 ul.subMenu li {float:left;}
-ul.subMenu li a {display:block; padding:6px 20px; text-align:center; color:#333; border:solid 1px #d8d8d8; border-left:none; background-color:#FFF;}
-ul.subMenu li.first a {padding:6px 20px; border-radius:2px 0 0 2px; border-left:solid 1px #d8d8d8;}
-ul.subMenu li.last a {padding:6px 20px; border-radius:0 2px 2px 0;}
-ul.subMenu li.single a {padding:6px 20px 6px 35px; border-radius:2px; border-left:solid 1px #d8d8d8;}
+ul.subMenu li a {display:block; padding:6px 10px; text-align:center; color:#333; border:solid 1px #d8d8d8; border-left:none; background-color:#FFF;}
+ul.subMenu li.first a {border-radius:2px 0 0 2px; border-left:solid 1px #d8d8d8;}
+ul.subMenu li.last a {border-radius:0 2px 2px 0;}
+ul.subMenu li.single a {padding:6px 10px 6px 35px; border-radius:2px; border-left:solid 1px #d8d8d8;}
 
 ul.inbox {overflow:hidden;}
 ul.inbox li {border-bottom:solid 1px #DBDBDB;}
