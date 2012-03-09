@@ -152,6 +152,7 @@ if ($vtoken['data'] != '1') {
                 <div class="subNavigation">
                     <?php Functions::getInstance()->loadFile('menus/dashboard') ?>
                     <?php Functions::getInstance()->loadFile('menus/timeclock') ?>
+                    <?php Functions::getInstance()->loadFile('menus/schedule') ?>
                     <?php Functions::getInstance()->loadFile('menus/requests') ?>
                     <?php Functions::getInstance()->loadFile('menus/staff') ?>
                     <?php Functions::getInstance()->loadFile('menus/reports') ?>
@@ -174,6 +175,11 @@ if ($vtoken['data'] != '1') {
                         <?php Functions::getInstance()->loadFile('timeClock_overview'); ?>
                         <?php Functions::getInstance()->loadFile('timeClock_addClockTime'); ?>
                         <?php Functions::getInstance()->loadFile('timeClock_manageTimeSheets'); ?>
+                    </div>
+                    <div class="schedule" id="schedule">
+                        <div class="main today">
+                            
+                        </div>
                     </div>
                     <div class="requests" id="requests">
                         <?php Functions::getInstance()->loadFile('requests_overview'); ?>

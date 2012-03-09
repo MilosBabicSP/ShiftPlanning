@@ -76,14 +76,23 @@
     <div class="title">
         <h3>Upcoming Shifts</h3>
     </div>
-    <ul class="timeSheet">
+    <ul class="timeSheet listReports">
     </ul>
     <ul class="timeSheet">
-        <li>
-            <span><b>Total:</b> 123.8 Hours</span>
+        <li class="TSregular">
+            <span><b>Regular:</b> <span></span></span>
         </li>
-        <li>
-            <span><b>Cost:</b> $9,123.45</span>
+        <li class="TSspecial">
+            <span><b>Special:</b> <span></span></span>
+        </li>
+        <li class="TSovertime">
+            <span><b>Overtime:</b> <span></span></span>
+        </li>
+        <li class="TStotal">
+            <span><b>Total:</b> <span></span></span>
+        </li>
+        <li class="TScost">
+            <span><b>Cost:</b> <span></span></span>
         </li>
     </ul>
 </div>

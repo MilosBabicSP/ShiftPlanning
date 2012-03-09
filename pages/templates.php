@@ -6,7 +6,7 @@
             <a href="#" class="fr"><img width="43" height="30" src="images/NextMenu.png"></a>
             <span>
                 <img width="30" height="30" src="images/staff.jpg">
-                Mike
+                ${employee}
             </span>
         </li>
     </script>

@@ -10,6 +10,9 @@ function ShiftPlanningSchedule(){
 ShiftPlanningSchedule.prototype = {
     initialize: function(){
         
+    },
+    loadPage : function(){
+        
     }
     
 }
