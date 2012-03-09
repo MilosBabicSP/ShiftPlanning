@@ -69,9 +69,9 @@
         </li>
     </ul>
     <div class="title">
-        <span class="fr"><span class="checkbox re_deductBreaks">Show Empty</span></span>
-        <span class="fr"><span class="checkbox re_groupResults">Group Results</span></span>
-        <span class="fr"><span class="checkbox re_showEmpty">Deduct Breaks</span></span>
+        <span class="fl"><span class="checkbox re_deductBreaks">Show Empty</span></span>
+        <span class="fl"><span class="checkbox re_groupResults">Group Results</span></span>
+        <span class="fl"><span class="checkbox re_showEmpty">Deduct Breaks</span></span>
     </div>
     <div class="title">
         <h3>Upcoming Shifts</h3>

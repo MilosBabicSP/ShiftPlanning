@@ -4,7 +4,7 @@
             <img width="41" height="30" src="images/BackMenu.png">
         </a>
         <ul class="subMenu">
-            <li class="first active">
+            <li class="first">
                 <a href="#">
                     <img width="16" height="16" src="images/request_1.png">
                 </a>

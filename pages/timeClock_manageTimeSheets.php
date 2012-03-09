@@ -66,4 +66,36 @@
     <div id="tc_mts_sh">
 
     </div>
+    <div class="subLevel">
+        <a class="backMenu" href="#">
+            <img width="41" height="30" src="images/BackMenu.png">
+        </a>
+        <ul class="subMenu">
+            <li class="first">
+                <a href="#">
+                    <img width="16" height="16" src="images/tc_approve.png">
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img width="16" height="16" src="images/tc_edit.png">
+                </a>
+            </li>
+            <li class="last">
+                <a href="#">
+                    <img width="16" height="16" src="images/tc_delete.png">
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="title">
+        <div>
+            <img width="30" height="30" src="images/staff.jpg">
+            <span>Danijel Zec</span>
+            Board Test
+        </div>
+    </div>
+    <div class="additional">
+        <p>Notes go here.</p>
+    </div>
 </div>
