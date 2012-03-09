@@ -177,9 +177,7 @@ if ($vtoken['data'] != '1') {
                         <?php Functions::getInstance()->loadFile('timeClock_manageTimeSheets'); ?>
                     </div>
                     <div class="schedule" id="schedule">
-                        <div class="main today">
-                            
-                        </div>
+                        <?php Functions::getInstance()->loadFile('schedule_today');?>
                     </div>
                     <div class="requests" id="requests">
                         <?php Functions::getInstance()->loadFile('requests_overview'); ?>
