@@ -1,5 +1,6 @@
 ShiftPlanningReports.prototype.initialize = function(){
     var self = this;
+    this.reports = [];
     $(document).ready(function(){
         self.allReportsEvents();
     });
@@ -26,36 +27,41 @@ ShiftPlanningReports.prototype.allReportsEvents = function(){
             var times = spRanges.getRange('times', val);
             var s = new Date(times.start_time);
             var e = new Date(times.end_time);
-            
             $('#reports .' + self.page +' .timeFromSelector').val(s.toString(cal.dformat));
             $('#reports .' + self.page +' .timeToSelector').val(e.toString(cal.dformat));
-            
             self.displayReports();
         }
     });
     
     $('#reports .checkbox').bind(clickEvent, function(){
         $(this).toggleClass('check');
-        
         self.displayReports();
     });
     
     $('#reports .employeeSelector, #reports .advancedMenu select').bind('change', function(){
         self.displayReports();
     });
+    
+    $('#reports .listReports').delegate('a.fr', clickEvent, function(e){
+        e.preventDefault();
+        self.cId = $(this).attr('rel');
+        sp.loadSubPage('', 'reports', 'singleViewDisplay');
+    });
+    
+    $('#re_si_inf').bind(clickEvent, function(e){
+        e.preventDefault();
+        $('#wrapper > .subNavigation').show();
+        $('#wrapper > .subNavigation .reports li.active a').trigger(clickEvent);
+    });
 }
 
 ShiftPlanningReports.prototype.allReportsSubEvents = function(){
     $('#reports .timeSelector').html(spView.timeRanges());
     $('#reports .timeSelector').val(3);
-    
-    
     $('#reports .employeeSelector').html(spView.staffFilter());
     $('#reports .positionsSelector').html(spView.scheduleFilter());
     $('#reports .skillsSelector').html(spView.skillsFilter());
-    
     var times = spRanges.getRange('times', $('#reports .timeSelector:visible').val());
-    
     var s = new Date(times.start_time);
     var e = new Date(times.end_time);
     $('#reports .timeFromSelector').scroller('destroy');
@@ -76,8 +82,16 @@ ShiftPlanningReports.prototype.allReportsSubEvents = function(){
 }
 
 ShiftPlanningReports.prototype.displayReports = function(){
+    if (this.page == 'singleViewDisplay'){
+        return false;
+    }
+    
+    var self = this;
     var page = this.page;
     var origin = this.page;
+    
+    $('#reports .' + origin + ' .totals').show();
+    $('#reports .' + origin + ' .noResults').hide();
 
     var data = {
         type : page.toLowerCase()
@@ -110,39 +124,26 @@ ShiftPlanningReports.prototype.displayReports = function(){
     } else {
         data.show_empty = 0;
     }
-    
     spModel.payroll.get('report', data, function(response){
-        var total = {
-            colspan : 5,
-            regular : 0,
-            special : 0,
-            overtime : 0,
-            total : 0,
-            cost : 0
+        if (response.data.length == 0){
+            $('#reports .' + origin + ' .totals').hide();
+            $('#reports .' + origin + ' .noResults').show();
         }
-        //        if (data.group_results == "1"){
-        //            $('#re_' + page + ' table.re_groupedResults').show();
-        //            $('#re_' + page + ' table.re_groupedResults .re_table_data').html($('#templateReportsPayrollG').tmpl(response.data));
-        //        } else {
-        //            if (data.type == 'timesheets'){
-        //                total.colspan = 4;
-        //                $('#re_' + page + ' table.re_ungroupedResults .re_table_data').html($('#templateReportsPayrollCTS').tmpl(response.data));
-        //            } else {
-        //                total.colspan = 9;
-        //                $('#re_' + page + ' table.re_ungroupedResults .re_table_data').html($('#templateReportsPayroll').tmpl(response.data));
-        //            }
-        //            $('#re_' + page + ' table.re_ungroupedResults').show();         
-        //        }   
+        
+        var total = { colspan : 5, regular : 0, special : 0, overtime : 0, total : 0, cost : 0 }
         var d = []
-        $('#reports .' + origin + ' .listReports').html($.tmpl($('#te_re_info'), response.data));
         $.each(response.data, function(i, item){
             total.regular = total.regular + Number(item.hours.regular);
             total.special = total.special + Number(item.hours.special);
             total.overtime = total.overtime + Number(item.hours.overtime);
             total.total = total.total + Number(item.hours.total);
             total.cost = total.cost + Number(item.hours.cost);
-            //if (typeof sp.staff.data.employee[item.])
+            d[i] = item;
+            d[i].avatar = (typeof sp.staff.data.employees[item.userid] != 'undefined' && typeof sp.staff.data.employees[item.userid].avatar != 'undefined' && sp.staff.data.employees[item.userid].avatar != '' && typeof sp.staff.data.employees[item.userid].avatar.small != 'undefined') ? sp.staff.data.employees[item.userid].avatar.small : 'images/no-avatar.png',
+            d[i].rId = i;
         });
+        self.reports = d;
+        $('#reports .' + origin + ' .listReports').html($.tmpl($('#te_re_info'), d));
         $('#reports .' + origin + ' .TSregular > span > span').html(total.regular);
         $('#reports .' + origin + ' .TSspecial > span > span').html(total.special);
         $('#reports .' + origin + ' .TSovertime > span > span').html(total.overtime);
@@ -151,12 +152,23 @@ ShiftPlanningReports.prototype.displayReports = function(){
     });
 }
 
+ShiftPlanningReports.prototype.singleViewDisplay = function(id){
+    $('#wrapper > .subNavigation').hide();
+    var item = this.reports[id];
+    $('#re_di_item').html($.tmpl($('#te_re_' + this.page + '_' + (($('#reports .' + this.page + ' .re_groupResults').hasClass('check')) ? '1' : '0')), item));
+}
+
 ShiftPlanningReports.prototype.loadSubPageEvents = function(subpage){
-    var self = this;
-    this.page = subpage;
-    setTimeout(function(){
-        self.displayReports();
-    }, 100);
+    console.log(subpage);
+    if (subpage == 'singleViewDisplay'){
+        this.singleViewDisplay(this.cId);
+    } else {
+        var self = this;
+        this.page = subpage;
+        setTimeout(function(){
+            self.displayReports();
+        }, 100);
+    }
 }
 
 ShiftPlanningReports.prototype.loadPage = function(){

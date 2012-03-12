@@ -149,7 +149,9 @@
     <div class="newMsg">
         <label>Employee</label>
         <span class="input">
-            <select><option>Aly</option></select>
+            <select id="rq_va_en">
+                
+            </select>
         </span>
         <ul class="detailsGrid borTB">
             <li>
@@ -158,7 +160,7 @@
                         <div>
                             <label>From</label>
                             <span class="input">
-                                <input type="text">
+                                <input type="text" id="rq_va_fr" />
                             </span>
                         </div>
                     </li>
@@ -166,7 +168,7 @@
                         <div>
                             <label>To</label>
                             <span class="input">
-                                <input type="text">
+                                <input type="text" id="rq_va_to" />
                             </span>
                         </div>
                     </li>
@@ -175,12 +177,12 @@
             <li>
                 <label>Comments</label>
                 <span class="input">
-                    <textarea></textarea>
+                    <textarea id="rq_va_wc"></textarea>
                 </span>
             </li>
         </ul>
         <div class="title">
-            <span class="fr"><a href="#">Submit Request</a></span>
+            <span class="fr"><a href="#" id="rq_va_sr"><span>Submit Request</span></a></span>
         </div>
     </div>
 </div>

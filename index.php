@@ -81,6 +81,7 @@ if ($vtoken['data'] != '1') {
         <script src="js/sp.dashboard.mobile.js" type="text/javascript"></script>
         <script src="js/sp.timeclock.mobile.js" type="text/javascript"></script>
         <script src="js/sp.reports.mobile.js" type="text/javascript"></script>
+        <script src="js/sp.requests.mobile.js" type="text/javascript"></script>
 
 
         <!-- Loader -->
@@ -198,7 +199,7 @@ if ($vtoken['data'] != '1') {
                         <?php Functions::getInstance()->loadFile('staff_fastAssignment'); ?>
                     </div>
                     <div class="reports" id="reports">
-                        <div class="subLevel hidden" id="re_si_inf">
+                        <div class="subLevel hidden mainSub singleViewDisplay" id="re_si_inf">
                             <a class="backMenu" href="#">
                                 <img width="41" height="30" src="images/BackMenu.png">
                             </a>
@@ -206,58 +207,8 @@ if ($vtoken['data'] != '1') {
                         <?php Functions::getInstance()->loadFile('reports_scheduleHours'); ?>
                         <?php Functions::getInstance()->loadFile('reports_confirmedHours'); ?>
                         <?php Functions::getInstance()->loadFile('reports_confirmedTimeSheets'); ?>
-                        <div class="main singleViewDisplay">
-                            <div class="title">
-                                <div>
-                                    <img width="30" height="30" src="images/staff.jpg">
-                                    <span>Danijel Zec</span>
-                                    January 23, 2012 - January 29, 2012
-                                </div>
-                            </div>
-                            <ul class="multiInput">
-                                <li class="even">
-                                    <div>
-                                        <label>Start Date</label>
-                                        <b>1 May 2012</b>
-                                    </div>
-                                </li>
-                                <li class="odd">
-                                    <div>
-                                        <label>End Date</label>
-                                        <b>1 Feb 2012</b>
-                                    </div>
-                                </li>
-                                <li class="even">
-                                    <div>
-                                        <label>Regular</label>
-                                        <b>1 May 2012</b>
-                                    </div>
-                                </li>
-                                <li class="odd">
-                                    <div>
-                                        <label>Special</label>
-                                        <b>1 Feb 2012</b>
-                                    </div>
-                                </li>
-                                <li class="even">
-                                    <div>
-                                        <label>Overtime</label>
-                                        <b>1 May 2012</b>
-                                    </div>
-                                </li>
-                                <li class="odd">
-                                    <div>
-                                        <label>Total</label>
-                                        <b>1 Feb 2012</b>
-                                    </div>
-                                </li>
-                                <li class="even">
-                                    <div>
-                                        <label>Cost</label>
-                                        <b>1 May 2012</b>
-                                    </div>
-                                </li>
-                            </ul>
+                        <div class="main singleViewDisplay" id="re_di_item">
+                            
                         </div>
                     </div>
                 </div>

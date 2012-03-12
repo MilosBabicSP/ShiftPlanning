@@ -94,7 +94,7 @@
     </div>
     <ul class="timeSheet listReports">
     </ul>
-    <ul class="timeSheet">
+    <ul class="timeSheet totals">
         <li class="TSregular">
             <span><b>Regular:</b> <span></span></span>
         </li>
@@ -111,4 +111,5 @@
             <span><b>Cost:</b> <span></span></span>
         </li>
     </ul>
+    <div class="noResults hidden">No data to display for selected filters.</div>
 </div>

@@ -1,29 +1,29 @@
 <div class="main overview" id="rq_ov">
     <ul class="requests">
         <li>
-            <a class="fr" href="#"><img width="43" height="30" src="images/NextMenu.png"></a>
+            <a class="fr" href="#" id="rq_rl_va" subpage="vacation"><img width="43" height="30" src="images/NextMenu.png"></a>
             <span>Vacation Requests</span>
-            1 Vacation Request(s) needing approval
+            <info>0</info> Vacation Request(s) needing approval
         </li>
         <li>
-            <a class="fr" href="#"><img width="43" height="30" src="images/NextMenu.png"></a>
+            <a class="fr" href="#" id="rq_rl_sp" subpage="shiftApprovals"><img width="43" height="30" src="images/NextMenu.png"></a>
             <span>Shift Approvals</span>
-            316 Shift(s) needing approval
+            <info>0</info> Shift(s) needing approval
         </li>
         <li>
-            <a class="fr" href="#"><img width="43" height="30" src="images/NextMenu.png"></a>
+            <a class="fr" href="#" id="rq_rl_sr" subpage="openShifts"><img width="43" height="30" src="images/NextMenu.png"></a>
             <span>Shift Requests Waiting</span>
-            There are 1 shift pickup request(s) waiting approval
+            There are <info>0</info> shift pickup request(s) waiting approval
         </li>
         <li>
-            <a class="fr" href="#"><img width="43" height="30" src="images/NextMenu.png"></a>
+            <a class="fr" href="#" id="rq_rl_ast" subpage="shiftTrades"><img width="43" height="30" src="images/NextMenu.png"></a>
+            <span>Approve Shift Trades</span>
+            There is <info>0</info> open trade request(s) needing approval
+        </li>
+        <li>
+            <a class="fr" href="#" id="rq_rl_sv" subpage="openShifts"><img width="43" height="30" src="images/NextMenu.png"></a>
             <span>Shift Available</span>
-            There is 158 Shift(s) available for pickup
-        </li>
-        <li>
-            <a class="fr" href="#"><img width="43" height="30" src="images/NextMenu.png"></a>
-            <span>Vacation Requests</span>
-            1 Vacation Request(s) needing approval
+            There is <info>0</info>  Shifts(s) available for pickup
         </li>
     </ul>
 </div>

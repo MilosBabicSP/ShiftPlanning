@@ -1,11 +1,377 @@
 
 <!-- ID rulez first is "te" shorten from template, next is 2 letter from module name, than 2 letter from page name, than 2 letters from page method -->
 <div id="templates">
+    <script id="te_re_confirmedTimeSheets_1" type="text/x-jquery-tmpl">
+        <div class="title">
+            <img width="30" height="30" src="${avatar}" />
+            <span>${employee}</span>
+            ${start_date.formatted} - ${end_date.formatted}
+        </div>
+        <ul class="multiInput">
+            <li class="even">
+                <div>
+                    <label>Eid</label>
+                    <b>${eid}&nbsp;</b>
+                </div>
+            </li>
+            <li class="odd">
+                <div>
+                    <label>Ratecard</label>
+                    <b>{{if typeof hours.ratecard != 'undefined'}}${hours.ratecard.name}{{/if}}&nbsp;</b>
+                </div>
+            </li>
+            <li class="even">
+                <div>
+                    <label>Regular</label>
+                    <b>${hours.regular}&nbsp;</b>
+                </div>
+            </li>
+            <li class="odd">
+                <div>
+                    <label>Special</label>
+                    <b>${hours.special}&nbsp;</b>
+                </div>
+            </li>
+            <li class="even">
+                <div>
+                    <label>Overtime</label>
+                    <b>${hours.overtime}&nbsp;</b>
+                </div>
+            </li>
+            <li class="odd">
+                <div>
+                    <label>Total</label>
+                    <b>${hours.total}&nbsp;</b>
+                </div>
+            </li>
+            <li class="even">
+                <div>
+                    <label>Cost</label>
+                    <b>$${hours.cost}&nbsp;</b>
+                </div>
+            </li>
+        </ul>
+    </script>
+    <script id="te_re_confirmedTimeSheets_0" type="text/x-jquery-tmpl">
+        <div class="title">
+            <img width="30" height="30" src="${avatar}" />
+            <span>${employee}</span>
+            ${date.formatted}
+        </div>
+        <ul class="multiInput">
+            <li class="even">
+                <div>
+                    <label>Eid</label>
+                    <b>${eid}&nbsp;</b>
+                </div>
+            </li>
+            <li class="odd">
+                <div>
+                    <label>Rate</label>
+                    <b>${hours.rate}&nbsp;</b>
+                </div>
+            </li>
+            <li class="even">
+                <div>
+                    <label>Regular</label>
+                    <b>${hours.regular}&nbsp;</b>
+                </div>
+            </li>
+            <li class="odd">
+                <div>
+                    <label>Special</label>
+                    <b>${hours.special}&nbsp;</b>
+                </div>
+            </li>
+            <li class="even">
+                <div>
+                    <label>Overtime</label>
+                    <b>${hours.overtime}&nbsp;</b>
+                </div>
+            </li>
+            <li class="odd">
+                <div>
+                    <label>Total</label>
+                    <b>${hours.total}&nbsp;</b>
+                </div>
+            </li>
+            <li class="even">
+                <div>
+                    <label>Cost</label>
+                    <b>$${hours.cost}&nbsp;</b>
+                </div>
+            </li>
+        </ul>
+    </script>
+    <script id="te_re_confirmedHours_0" type="text/x-jquery-tmpl">
+        <div class="title">
+            <img width="30" height="30" src="${avatar}" />
+            <span>${employee}</span>
+            ${date.formatted}
+        </div>
+        <ul class="multiInput">
+            <li class="even">
+                <div>
+                    <label>Eid</label>
+                    <b>${eid}&nbsp;</b>
+                </div>
+            </li>
+            <li class="odd">
+                <div>
+                    <label>Position</label>
+                    <b>${position.name}&nbsp;</b>
+                </div>
+            </li>
+            <li class="even">
+                <div>
+                    <label>Location</label>
+                    <b>${hours.location.name}&nbsp;</b>
+                </div>
+            </li>
+            <li class="odd">
+                <div>
+                    <label>Rate</label>
+                    <b>${hours.rate}&nbsp;</b>
+                </div>
+            </li>
+            <li class="even">
+                <div>
+                    <label>Ratecard</label>
+                    <b>{{if typeof hours.ratecard != 'undefined'}}${hours.ratecard.name}{{/if}}&nbsp;</b>
+                </div>
+            </li>
+            <li class="odd">
+                <div>
+                    <label>Start Time</label>
+                    <b>${start_time.time}&nbsp;</b>
+                </div>
+            </li>
+            <li class="even">
+                <div>
+                    <label>End Time</label>
+                    <b>${end_time.time}&nbsp;</b>
+                </div>
+            </li>
+            <li class="odd">
+                <div>
+                    <label>Regular</label>
+                    <b>${hours.regular}&nbsp;</b>
+                </div>
+            </li>
+            <li class="even">
+                <div>
+                    <label>Special</label>
+                    <b>${hours.special}&nbsp;</b>
+                </div>
+            </li>
+            <li class="odd">
+                <div>
+                    <label>Overtime</label>
+                    <b>${hours.overtime}&nbsp;</b>
+                </div>
+            </li>
+            <li class="even">
+                <div>
+                    <label>Total</label>
+                    <b>${hours.total}&nbsp;</b>
+                </div>
+            </li>
+            <li class="odd">
+                <div>
+                    <label>Cost</label>
+                    <b>$${hours.cost}&nbsp;</b>
+                </div>
+            </li>
+        </ul>
+    </script>
+    <script id="te_re_confirmedHours_1" type="text/x-jquery-tmpl">
+        <div class="title">
+            <img width="30" height="30" src="${avatar}">
+            <span>${employee}</span>
+            ${start_date.formatted} - ${end_date.formatted}
+        </div>
+        <ul class="multiInput">
+            <li class="even">
+                <div>
+                    <label>Eid</label>
+                    <b>${eid}&nbsp;</b>
+                </div>
+            </li>
+            <li class="odd">
+                <div>
+                    <label>Rate</label>
+                    <b>&nbsp;</b>
+                </div>
+            </li>
+            <li class="even">
+                <div>
+                    <label>Regular</label>
+                    <b>${hours.regular}</b>
+                </div>
+            </li>
+            <li class="odd">
+                <div>
+                    <label>Special</label>
+                    <b>${hours.special}</b>
+                </div>
+            </li>
+            <li class="even">
+                <div>
+                    <label>Overtime</label>
+                    <b>${hours.overtime}</b>
+                </div>
+            </li>
+            <li class="odd">
+                <div>
+                    <label>Total</label>
+                    <b>${hours.total}</b>
+                </div>
+            </li>
+            <li class="even">
+                <div>
+                    <label>Cost</label>
+                    <b>$${hours.cost}</b>
+                </div>
+            </li>
+        </ul>
+    </script>
+    <script id="te_re_scheduledHours_0" type="text/x-jquery-tmpl">
+        <div class="title">
+            <img width="30" height="30" src="${avatar}">
+            <span>${employee}</span>
+            ${date.formatted}
+        </div>
+        <ul class="multiInput">
+            <li class="even">
+                <div>
+                    <label>Eid</label>
+                    <b>${eid}&nbsp;</b>
+                </div>
+            </li>
+            <li class="odd">
+                <div>
+                    <label>Position</label>
+                    <b>${position.name}&nbsp;</b>
+                </div>
+            </li>
+            <li class="even">
+                <div>
+                    <label>Location</label>
+                    <b>${hours.location.name}&nbsp;</b>
+                </div>
+            </li>
+            <li class="odd">
+                <div>
+                    <label>Rate</label>
+                    <b>${hours.rate}&nbsp;</b>
+                </div>
+            </li>
+            <li class="even">
+                <div>
+                    <label>Ratecard</label>
+                    <b>{{if typeof hours.ratecard != 'undefined'}}${hours.ratecard.name}{{/if}}&nbsp;</b>
+                </div>
+            </li>
+            <li class="odd">
+                <div>
+                    <label>Start Time</label>
+                    <b>${start_time.time}&nbsp;</b>
+                </div>
+            </li>
+            <li class="even">
+                <div>
+                    <label>End Time</label>
+                    <b>${end_time.time}&nbsp;</b>
+                </div>
+            </li>
+            <li class="odd">
+                <div>
+                    <label>Regular</label>
+                    <b>${hours.regular}&nbsp;</b>
+                </div>
+            </li>
+            <li class="even">
+                <div>
+                    <label>Special</label>
+                    <b>${hours.special}&nbsp;</b>
+                </div>
+            </li>
+            <li class="odd">
+                <div>
+                    <label>Overtime</label>
+                    <b>${hours.overtime}&nbsp;</b>
+                </div>
+            </li>
+            <li class="even">
+                <div>
+                    <label>Total</label>
+                    <b>${hours.total}&nbsp;</b>
+                </div>
+            </li>
+            <li class="odd">
+                <div>
+                    <label>Cost</label>
+                    <b>$${hours.cost}&nbsp;</b>
+                </div>
+            </li>
+        </ul>
+    </script>
+    <script id="te_re_scheduledHours_1" type="text/x-jquery-tmpl">
+        <div class="title">
+            <img width="30" height="30" src="${avatar}">
+            <span>${employee}</span>
+            ${start_date.formatted} - ${end_date.formatted}
+        </div>
+        <ul class="multiInput">
+            <li class="even">
+                <div>
+                    <label>Eid</label>
+                    <b>${eid}&nbsp;</b>
+                </div>
+            </li>
+            <li class="odd">
+                <div>
+                    <label>Rate</label>
+                    <b>&nbsp;</b>
+                </div>
+            </li>
+            <li class="even">
+                <div>
+                    <label>Regular</label>
+                    <b>${hours.regular}</b>
+                </div>
+            </li>
+            <li class="odd">
+                <div>
+                    <label>Special</label>
+                    <b>${hours.special}</b>
+                </div>
+            </li>
+            <li class="even">
+                <div>
+                    <label>Overtime</label>
+                    <b>${hours.overtime}</b>
+                </div>
+            </li>
+            <li class="odd">
+                <div>
+                    <label>Total</label>
+                    <b>${hours.total}</b>
+                </div>
+            </li>
+            <li class="even">
+                <div>
+                    <label>Cost</label>
+                    <b>$${hours.cost}</b>
+                </div>
+            </li>
+        </ul>
+    </script>
     <script id="te_re_info" type="text/x-jquery-tmpl">
         <li>
-            <a href="#" class="fr"><img width="43" height="30" src="images/NextMenu.png"></a>
+            <a href="#" class="fr" rel="${rId}"><img width="43" height="30" src="images/NextMenu.png"></a>
             <span>
-                <img width="30" height="30" src="images/staff.jpg">
+                <img width="30" height="30" src="${avatar}">
                 ${employee}
             </span>
         </li>

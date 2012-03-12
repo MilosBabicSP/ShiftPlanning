@@ -7,6 +7,7 @@ var agentID = deviceAgent.match(/(iphone|ipod|ipad)/);
 if (agentID) {
     clickEvent = 'touch';
 }
+
 jQuery.event.special.touch = {
     setup: function(data,namespaces){
         var elem = this, $elem = jQuery(elem);
@@ -17,7 +18,6 @@ jQuery.event.special.touch = {
         } else {
             $elem.bind('click', jQuery.event.special.touch.click);
         }
-
     },
     click: function (event) {
         event.type = "touch";
@@ -26,7 +26,6 @@ jQuery.event.special.touch = {
 
     teardown: function (namespaces) {
         var elem = this, $elem = jQuery(elem);
-
         if (window.Touch) {
             $elem.unbind('touchstart', jQuery.event.special.touch.onTouchStart);
             $elem.unbind('touchmove', jQuery.event.special.touch.onTouchMove);
@@ -39,7 +38,6 @@ jQuery.event.special.touch = {
     onTouchStart: function (e) {
         this.moved = false;
         lastTouch = e.originalEvent.targetTouches[0];
-
     },
 
     onTouchMove: function (e) {
