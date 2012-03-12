@@ -60,6 +60,9 @@ span.checkbox.check {background-position:-5px -555px;}
 span.checkbox.disabled {background-position:-5px -605px;}
 
 a.button {line-height:30px; display:block; padding:0 10px; color:#333; background-color:#f0f0f0; border:solid 1px #DBDBDB; border-radius:2px;}
+a.loading {background:#FFF url(../images/loader.gif) scroll no-repeat 50% 50% !important;}
+a.loading span {visibility:hidden;}
+div.loading {background:transparent url(../images/loader.gif) scroll no-repeat 50% 50% !important; height:60px;}
 
 /*BUILD*/
 html {overflow-x:hidden;}
@@ -92,8 +95,6 @@ html {overflow-x:hidden;}
 .title {overflow:hidden; padding:15px 0; line-height:30px; border-bottom:solid 1px #DBDBDB; position:relative;}
 .title.wide {padding:15px 20px;}
 .title span a {display:block; padding:0 10px; background-color:#f0f0f0; border:solid 1px #DBDBDB; color:#333; border-radius:2px;}
-a.loading {background:#FFF url(../images/loader.gif) scroll no-repeat 50% 50% !important; cursor:progress;}
-a.loading span {visibility:hidden;}
 .title div {line-height:15px; font-size:14px;}
 .title div span {display:block; font-weight:bold;}
 .title div img {float:left; margin:0 10px 0 0;}
@@ -160,7 +161,7 @@ ul.inbox li .msgBody {display:none;}
 ul.inbox li.extended .msgBody {display:block;}
 
 ul.filters {overflow:hidden; margin:0 auto;}
-ul.filters li {float:left; width:100px;}
+ul.filters li {float:left; width:90px;}
 ul.filters li a {display:block; padding:6px 0; line-height:16px; text-align:center; color:#666; border:solid 1px #d8d8d8; border-left:none; background-color:#FFF;}
 ul.filters li.active a {background-color:#e8e8e8;}
 ul.filters li.first a {border-radius:2px 0 0 2px; border-left:solid 1px #d8d8d8;}
@@ -186,7 +187,7 @@ ul.detailsGrid ul li.even div {margin:0 10px 0 0;}
 ul.detailsGrid ul li.odd div {margin:0 0 0 10px;}
 
 ul.cmts {background-position:-40px 0; padding:10px 0 0;display:none;}
-ul.cmts li {padding:10px 15px 0; background-color:#f1f1f1; position:relative; overflow:hidden; border-bottom:solid 1px #e1e1e1; border-top:solid 1px #fbfbfb;}
+ul.cmts li {padding:10px 15px 0; background-color:#f1f1f1; position:relative; overflow:hidden; border-bottom:solid 1px #e1e1e1;}
 ul.cmts li img {float:left; padding:5px 0 15px;}
 ul.cmts li .msg {margin:0 0 0 60px; padding:0 0 15px;}
 ul.cmts li.first {border-top:none;}
