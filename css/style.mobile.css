@@ -7,7 +7,7 @@ address,caption,cite,code,dfn,th,var {font-style:normal; font-weight:normal;}
 em,strong{}
 ol,ul {list-style:none;}
 caption {text-align:center;}
-th {text-align:left;}
+th {font-weight:bold;}
 h1,h2,h3,h4,h5,h6 {font-size:100%; margin:0; padding:0;}
 q:before,q:after {content:'';}
 abbr,acronym { border:0;}
@@ -25,14 +25,14 @@ label {font-size:14px; display:block; padding:3px 0;}
 
 h1 {}
 h2 {}
-h3 {font-size:14px;}
+h3 {font-size:14px; line-height:30px;}
 h4 {font-size:14px; line-height:20px;}
 h5 {font-size:14px; font-weight:normal; color:#333;}
 /*SPRITE*/
 .msgDel, .msgRpl, .cmtCount span.tip, ul.cmts, ul.cmts li.last input[type=submit], .search input[type=submit] {background-image:url(../images/icos.png); background-repeat:no-repeat;}
 .cmtCount span.ico {background-image:url(../images/sprite.png); background-repeat:no-repeat;}
-span.checkbox, .dash, .ticl, .sche, .requ, .staf, .repo, .icoClock, .icoEmpDet, .icoAdmAct, .icoEmpPos, .icoEmpSki, .icoEmpAdd, .icoNot, .icoAct, .icoSta, .icoReqWor {background-image:url(../images/mainNav_bg.png); background-repeat:no-repeat;}
-
+span.checkbox, .dash, .ticl, .sche, .requ, .staf, .repo, .icoClock, .icoEmpDet, .icoAdmAct, .icoEmpPos, .icoEmpSki, .icoEmpAdd, .icoNot, .icoAct, .icoSta, .icoReqWor, .icoLoc, .icoSch {background-image:url(../images/mainNav_bg.png); background-repeat:no-repeat;}
+.calendar td.today, .calendar th {background-image: url(../images/callendar_bg.png); background-repeat:repeat-x;}
 
 .dash {background-position:10px 0;}
 .ticl {background-position:10px -50px;}
@@ -51,10 +51,13 @@ span.checkbox, .dash, .ticl, .sche, .requ, .staf, .repo, .icoClock, .icoEmpDet, 
 .icoNot {background-position:0 -710px; padding:0 0 0 40px;}
 .icoAct {background-position:0 -760px; padding:0 0 0 40px;}
 .icoSta {background-position:0 -810px; padding:0 0 0 40px;}
+.icoSch {background-position:0 -1010px; padding:0 0 0 40px;}
+.icoLoc {background-position:0 -810px; padding:0 0 0 40px;}
 .icoReqWor {background-position:0 -860px;}
 
-span.checkbox {display:block; line-height:30px; padding:5px 0 5px 35px; background-position:-5px -605px;}
+span.checkbox {display:block; line-height:30px; padding:5px 0 5px 35px; background-position:-5px -905px;}
 span.checkbox.check {background-position:-5px -555px;}
+span.checkbox.disabled {background-position:-5px -605px;}
 
 a.button {line-height:30px; display:block; padding:0 10px; color:#333; background-color:#f0f0f0; border:solid 1px #DBDBDB; border-radius:2px;}
 
@@ -82,20 +85,26 @@ html {overflow-x:hidden;}
 .toggleMenu {position:absolute; top:17px; left:19px;}
 .backMenu {position:absolute; top:15px; left:15px;}
 .title1 {overflow:hidden; padding:5px 0; line-height:30px; border-bottom:solid 1px #DBDBDB;}
-.title1.wide {margin:0 -20px; padding:5px 20px;}
+.title1.wide {padding:5px 20px;}
 .title1.regular {background-color:#F5F5F5;}
 .title1.sales {background-color:#e7e2f4;}
 
-.title {overflow:hidden; padding:15px 0; line-height:30px; border-bottom:solid 1px #DBDBDB; }
-.title.wide {margin:0 -20px; padding:15px 20px;}
+.title {overflow:hidden; padding:15px 0; line-height:30px; border-bottom:solid 1px #DBDBDB; position:relative;}
+.title.wide {padding:15px 20px;}
 .title span a {display:block; padding:0 10px; background-color:#f0f0f0; border:solid 1px #DBDBDB; color:#333; border-radius:2px;}
+a.loading {background:#FFF url(../images/loader.gif) scroll no-repeat 50% 50% !important; cursor:progress;}
+a.loading span {visibility:hidden;}
 .title div {line-height:15px; font-size:14px;}
 .title div span {display:block; font-weight:bold;}
 .title div img {float:left; margin:0 10px 0 0;}
 .welcome {font-size:14px; padding:10px 0;}
 .welcome span {color:#a52626;}
 
-.search {padding:15px 20px; background-color:#f7f7f7; border-top:solid 1px #FFF; border-bottom:solid 1px #DBDBDB; position:relative;}
+.search > div {line-height:15px; color:#999;}
+.search > div.ver {padding:7px 0;}
+.search > div span {display:block; font-weight:bold; font-size:14px; color:#333;}
+
+.search {padding:15px 20px; background-color:#f7f7f7; height:30px; border-top:solid 1px #FFF; border-bottom:solid 1px #DBDBDB; position:relative;}
 .search span.input {margin:0 30px 0 0;}
 .search input[type=submit] {float:right; margin:8px 0 0; display:block; width:13px; height:0; padding:13px 0 0; overflow:hidden; background-color:transparent; border:none; background-position:0 -13px;}
 
@@ -115,7 +124,7 @@ span.input input[type=text]:focus, span.input textarea:focus {color:#444;}
 .msgHead {padding:15px 0;}
 
 .butDel {padding-left:30px !important; background:transparent url(../images/inbox_1.png) scroll no-repeat 7px 50%;}
-.butRpl {padding-left:30px !important; background:transparent  url(../images/inbox_2.png) scroll no-repeat 7px 50%;}
+.butRpl {padding-left:30px !important; background:transparent url(../images/inbox_2.png) scroll no-repeat 7px 50%;}
 .msgDel, .msgRpl {display:block; width:13px; height:13px; position:absolute; }
 ul.msgWall .msgRpl {top:20px; right:40px; background-position:0 0;}
 ul.msgWall .msgDel {top:20px; right:0; background-position:-13px 0;}
@@ -136,7 +145,7 @@ ul.subNav li.active a {background-color:#e8e8e8;}
 ul.subNav li.first a {border-radius:2px 0 0 2px; border-left:solid 1px #d8d8d8;}
 ul.subNav li.last a {border-radius:0 2px 2px 0;}
 
-ul.subMenu {overflow:hidden; position:absolute; right:15px; top:15px;}
+ul.subMenu {overflow:hidden; position:absolute; right:15px; top:15px; line-height:15px;}
 ul.subMenu li {float:left;}
 ul.subMenu li a {display:block; padding:6px 10px; text-align:center; color:#333; border:solid 1px #d8d8d8; border-left:none; background-color:#FFF;}
 ul.subMenu li.first a {border-radius:2px 0 0 2px; border-left:solid 1px #d8d8d8;}
@@ -213,6 +222,7 @@ ul.staff.small li img {float:left; width:30px; height:30px;}
 ul.staff.small li span {display:block; margin:0 0 0 40px; line-height:15px;}
 
 ul.acceptors {overflow:hidden; font-size:14px; }
+ul.acceptors.wide {padding:0 20px;}
 ul.acceptors li {float:left; padding:10px 10px 10px 0; width:130px;}
 ul.acceptors li img {float:left; width:30px; height:30px;}
 ul.acceptors li span {display:block; margin:0 0 0 40px; line-height:15px;}
@@ -237,6 +247,22 @@ ul.requests li a {position:absolute; top:50%; right:0; margin:-15px 0 0;}
 .login .footerTxt {text-align:center;}
 .login .footerTxt {font-size:12px;}
 .login .footerTxt a {color: #920000; line-height:20px;}
+
+table.calendar {font-size:14px; font-weight:bold; background-color:#F7F7F7;}
+table.calendar th {line-height:30px; text-align:center; border-bottom:solid 1px #DBDBDB; background-color:#E8E8E8; width:14%; background-position:0 -96px;}
+table.calendar td {line-height:40px; text-align:center; border:solid 1px #DBDBDB;  border-right:none; border-top:none;}
+table.calendar td:first-child {border-left:none;}
+table.calendar td.notM {color:#999;}
+table.calendar td.today {color:#AD2828; background-color:#FFF; background-position:0 -20px;}
+
+table.day {font-size:14px; font-weight:bold;}
+table.day td {border:solid 1px #DBDBDB;  border-right:none; border-top:none;}
+table.day td:first-child {border-left:none;}
+table.day td.dTime {line-height:40px; width:28%; padding:0 5px 0 20px;}
+table.day td.dTitle {text-align:left; line-height:15px; padding:0 10px;}
+
+
+
 /*
     Application css
 */

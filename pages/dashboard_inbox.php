@@ -18,7 +18,7 @@
             <textarea id="da_in_nm_me"></textarea>
         </span>
         <div class="title">
-            <span class="fr"><a href="#" id="da_in_nm_sa">Send Message</a></span>
+            <span class="fr"><a href="#" id="da_in_nm_sa"><span>Send Message</span></a></span>
             <span class="fl"><a href="#" id="da_in_nm_ca">Cancel</a></span>
         </div>
     </div>
