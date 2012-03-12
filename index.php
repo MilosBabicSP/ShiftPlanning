@@ -178,14 +178,105 @@ if ($vtoken['data'] != '1') {
                         <?php Functions::getInstance()->loadFile('timeClock_manageTimeSheets'); ?>
                     </div>
                     <div class="schedule" id="schedule">
-                        <?php Functions::getInstance()->loadFile('schedule_today');?>
+                        <?php Functions::getInstance()->loadFile('schedule_today'); ?>
                     </div>
                     <div class="requests" id="requests">
+                        <div class="subLevel">
+                            <a class="backMenu" href="#">
+                                <img width="41" height="30" src="images/BackMenu.png">
+                            </a>
+                            <ul class="subMenu">
+                                <li class="first">
+                                    <a href="#">
+                                        <img width="16" height="16" src="images/request_1.png" />
+                                    </a>
+                                </li>
+                                <li class="last">
+                                    <a href="#">
+                                        <img width="16" height="16" src="images/request_2.png" />
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="subLevel">
+                            <a class="backMenu" href="#">
+                                <img width="41" height="30" src="images/BackMenu.png">
+                            </a>
+                            <ul class="subMenu">
+                                <li class="single"><a class="icoReqWor" href="#">Request to work</a></li>
+                            </ul>
+                        </div>
                         <?php Functions::getInstance()->loadFile('requests_overview'); ?>
                         <?php Functions::getInstance()->loadFile('requests_vacation'); ?>
                         <?php Functions::getInstance()->loadFile('requests_openShifts'); ?>
                         <?php Functions::getInstance()->loadFile('requests_shiftTrades'); ?>
                         <?php Functions::getInstance()->loadFile('requests_shiftApprovals'); ?>
+                        <div class="main tradeRequestSingle">
+                            <div class="title wide">
+                                <div>
+                                    <img width="30" height="30" src="images/staff.jpg">
+                                    <span>Danijel Zec</span>
+                                    January 23, 2012 - January 29, 2012
+                                </div>
+                            </div>
+                            <div class="title1 sales wide">
+                                <h3>Sales</h3>
+                            </div>
+
+                            <div class="title1 regular wide">
+                                <h3>Potentional Acceptors</h3>
+                            </div>
+                            <ul class="acceptors">
+                                <li>
+                                    <img src="images/staff.jpg">
+                                    <span>Mike</span>
+                                </li>
+                                <li>
+                                    <img src="images/staff.jpg">
+                                    <span>Zoranica Lazicevic</span>
+                                </li>
+                                <li>
+                                    <img src="images/staff.jpg">
+                                    <span>Dejan</span>
+                                </li>
+                                <li>
+                                    <img src="images/staff.jpg">
+                                    <span>Michael</span>
+                                </li>
+                                <li>
+                                    <img src="images/staff.jpg">
+                                    <span>Michael</span>
+                                </li>
+                                <li>
+                                    <img src="images/staff.jpg">
+                                    <span>Dejan</span>
+                                </li>
+                                <li>
+                                    <img src="images/staff.jpg">
+                                    <span>Mike</span>
+                                </li>
+                                <li>
+                                    <img src="images/staff.jpg">
+                                    <span>Zoranica Lazicevic</span>
+                                </li>
+                                <li>
+                                    <img src="images/staff.jpg">
+                                    <span>Dejan</span>
+                                </li>
+                                <li>
+                                    <img src="images/staff.jpg">
+                                    <span>Michael</span>
+                                </li>
+                                <li>
+                                    <img src="images/staff.jpg">
+                                    <span>Michael</span>
+                                </li>
+                                <li>
+                                    <img src="images/staff.jpg">
+                                    <span>Dejan</span>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                     <div class="staff" id="staff">
                         <div class="search list mainSub">
@@ -208,7 +299,7 @@ if ($vtoken['data'] != '1') {
                         <?php Functions::getInstance()->loadFile('reports_confirmedHours'); ?>
                         <?php Functions::getInstance()->loadFile('reports_confirmedTimeSheets'); ?>
                         <div class="main singleViewDisplay" id="re_di_item">
-                            
+
                         </div>
                     </div>
                 </div>

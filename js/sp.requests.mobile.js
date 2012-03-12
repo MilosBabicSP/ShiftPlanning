@@ -162,20 +162,29 @@ ShiftPlanningRequests.prototype.vacationSubEvents = function(){
     var self = this;
     $('#rq_va_en').html(spView.staffOption((sp.staff.admin.info.group < 4) ? false : true));
 
-//    $('#rq_va_rq table').hide();
-//    $('#rq_va_rq .wr').hide();
-//    if (sp.staff.admin.info.group <= 4){
-//        spModel.schedule.get('vacations', {
-//            mode: 'manage'
-//        }, function(response){
-//            self.renderVacationRequests(response.data);
-//        }, function(response){
-//            sp.showError(response.error);
-//        });
-//    }
-//    
-//    $('#rq_va_aa table').hide();
-//    $('#rq_va_aa .wr').show();
+    $('#rq_va_rq').hide();
+    $('#rq_va_rq').next().hide();
+    
+    $('#rq_va_aa').hide();
+    $('#rq_va_aa').next().hide();
+    
+    $('#rq_va_up').hide();
+    $('#rq_va_up').next().hide();
+    if (sp.staff.admin.info.group <= 4){
+        spModel.schedule.get('vacations', {
+            mode: 'manage'
+        }, function(response){
+            if (response.data.length > 0){
+                $('#rq_va_rq').hide();
+                $('#rq_va_rq').next().show();
+            } else {
+                
+            }
+            //self.renderVacationRequests(response.data);
+        });
+    }
+    
+
 //    //awaiting approvals
 //    spModel.schedule.get('vacations', {
 //        mode: 'requested'
@@ -201,11 +210,13 @@ ShiftPlanningRequests.prototype.addVacationRequest = function(obj){
     var self = this;
     if ($.trim($('#rq_va_fr').val()).length == 0){
         sp.showError('Please select FROM time');
+        obj.removeClass('loading');
         return false;
     }
     
     if ($.trim($('#rq_va_to').val()).length == 0){
         sp.showError('Please select TO time');
+        obj.removeClass('loading');
         return false;
     }
     
