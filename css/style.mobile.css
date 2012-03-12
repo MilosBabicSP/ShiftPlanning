@@ -66,7 +66,7 @@ div.loading {background:transparent url(../images/loader.gif) scroll no-repeat 5
 
 /*BUILD*/
 html {overflow-x:hidden;}
-.wrapper { background-color:#FFF; width:320px;}
+.wrapper { background-color:#FFF;}
 .wrapper.extended {margin:0 0 0 190px; width:100%;} 
 .mainMenu {background-color:#a32525; width:189px; float:left; border-right:solid 1px #711111;}
 .subWrapp {overflow:hidden; margin:0 auto;}

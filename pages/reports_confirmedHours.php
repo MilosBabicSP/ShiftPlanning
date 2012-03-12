@@ -68,17 +68,33 @@
             </ul>
         </li>
     </ul>
-    <div class="title">
-        <span class="fr"><span class="checkbox re_deductBreaks">Show Empty</span></span>
-        <span class="fr"><span class="checkbox re_groupResults">Group Results</span></span>
-        <span class="fr"><span class="checkbox re_showEmpty">Deduct Breaks</span></span>
-    </div>
+    <ul class="detailsGrid">
+        <li>
+            <ul>
+                <li class="even">
+                    <div>
+                        <span class="checkbox re_deductBreaks">Show Empty</span>  
+                    </div>
+                </li>
+                <li class="odd"> 
+                    <div>     
+                        <span class="checkbox re_groupResults">Group Results</span>
+                    </div>
+                </li>
+                <li class="even">
+                    <div>     
+                        <span class="checkbox re_showEmpty">Deduct Breaks</span>
+                    </div>
+                </li>
+            </ul>
+        </li>
+    </ul>
     <div class="title">
         <h3>Upcoming Shifts</h3>
     </div>
     <ul class="timeSheet listReports">
     </ul>
-    <ul class="timeSheet">
+    <ul class="timeSheet totals">
         <li class="TSregular">
             <span><b>Regular:</b> <span></span></span>
         </li>
@@ -95,4 +111,5 @@
             <span><b>Cost:</b> <span></span></span>
         </li>
     </ul>
+    <div class="noResults hidden">No data to display for selected filters.</div>
 </div>
