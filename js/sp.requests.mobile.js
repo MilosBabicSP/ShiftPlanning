@@ -3,9 +3,9 @@ ShiftPlanningRequests.prototype.initialize = function(){
     $(document).ready(function(){
         self.overviewEvents();
         self.vacationEvents();
-//        self.openShiftsEvents();
-//        self.shiftApprovalsEvents();
-//        self.shiftTradesEvents();
+        //        self.openShiftsEvents();
+        //        self.shiftApprovalsEvents();
+        self.shiftTradesEvents();
     });
 }
 
@@ -31,6 +31,10 @@ ShiftPlanningRequests.prototype.loadSubPageEvents = function(subpage){
         case 'vacationRequestManage':
             $('.subNavigation').hide();
             this.displayVacationRequest();
+            break;
+        case 'shiftTradeManager':
+            $('.subNavigation').hide();
+            this.displayShiftTradeManager();
             break;
     }
 }
@@ -93,47 +97,15 @@ ShiftPlanningRequests.prototype.vacationEvents = function(){
         e.preventDefault();
         self.cancelVacationRequest($(this).attr('rel'));
     });
-//    
-//    t.delegate('.options a', clickEvent, function(e){
-//        var c = false;
-//        e.preventDefault();
-//        if ($(this).hasClass('approve')){
-//            c = confirm('Are you sure you want to APPROVE this request?');
-//            if (c){
-//                self.approveVacationRequest($(this).attr('rel'));
-//            }
-//        } else if ($(this).hasClass('remove')){
-//            c = confirm('Are you sure you want to DECLINE this request?');
-//            if (c){
-//                self.declineVacationRequest($(this).attr('rel'));
-//            }
-//        } else {
-//            c = confirm('Are you sure you want to CANCEL this request?');
-//            if (c){
-//                self.cancelVacationRequest($(this).attr('rel'));
-//            }
-//        }
-//    });
-//    
-//    t.delegate('a.conf', clickEvent, function(e){
-//        e.preventDefault();
-//        $(this).hide();
-//        $(this).next().removeClass('appHidden');
-//    });
-//    
-//    t.delegate('a.shifts', clickEvent, function(e){
-//        e.preventDefault();
-//        sp.shift.open($(this).attr('rel'));
-//    });
-//    
-//    $('#rq_va_up a.more').bind(clickEvent, function(e){
-//        e.preventDefault();
-//        $(this).parent().find('tr.pastDate').toggleClass('hidden');
-//    });
-//    
-//    $('#rq_va_rq .details').bind(clickEvent, function(e){
-//        $('#rq_va_rq table .hidden').removeClass('hidden');
-//    });
+}
+
+ShiftPlanningRequests.prototype.shiftTradesEvents = function(){
+    var self = this;
+    $('#rq_st_mst').delegate('a', clickEvent, function(e){
+        e.preventDefault();
+        self.current = self.trades['manage'][$(this).attr('rel')];
+        sp.loadSubPage('', 'requests', 'shiftTradeManager');
+    });
 }
 
 //sub events
@@ -202,10 +174,15 @@ ShiftPlanningRequests.prototype.vacationSubEvents = function(){
     var self = this;
     $('#rq_va_en').html(spView.staffOption((sp.staff.admin.info.group < 4) ? false : true));
 
+
     $('#rq_va_rq').html(spView.ulLoader());
     $('#rq_va_aa').html(spView.ulLoader());
     $('#rq_va_up').html(spView.ulLoader());
-    
+
+    $('#rq_va_rq').show();
+    $('#rq_va_aa').show();
+    $('#rq_va_up').show();
+
     $('#rq_va_rq').next().hide();
     $('#rq_va_aa').next().hide();
     $('#rq_va_up').next().hide();
@@ -251,9 +228,11 @@ ShiftPlanningRequests.prototype.vacationSubEvents = function(){
         sp.showError(response.error);
     });
     
-//    
-//    //getting upcoming confirmed vacations
-    spModel.schedule.get('vacations', {mode : 'upcoming'}, function(response){
+    //    
+    //    //getting upcoming confirmed vacations
+    spModel.schedule.get('vacations', {
+        mode : 'upcoming'
+    }, function(response){
         if (response.data.length == 0){
             $('#rq_va_up').hide();
             $('#rq_va_up').next().show();
@@ -267,6 +246,90 @@ ShiftPlanningRequests.prototype.vacationSubEvents = function(){
     });
 //    
 //    $('#rq_va_up').addClass('appHidden');
+}
+
+ShiftPlanningRequests.prototype.shiftTradesSubEvents = function(){
+    var self = this;
+    $('#rq_st_mst').html(spView.ulLoader());
+    $('#rq_st_ap').html(spView.ulLoader());
+    $('#rq_st_im').html(spView.ulLoader());
+    
+    $('#rq_st_mst').show();
+    $('#rq_st_ap').show();
+    $('#rq_st_im').show();
+    
+    $('#rq_st_mst').next().hide();
+    $('#rq_st_ap').next().hide();
+    $('#rq_st_im').next().hide();
+    if (sp.staff.admin.info.group <= 4){
+        spModel.schedule.get('trades', {
+            mode : 'manage'
+        }, function(response){
+            if (response.data.length == 0){
+                $('#rq_st_mst').hide();
+                $('#rq_st_mst').next().show();
+            } else {
+                $('#rq_st_mst').show();
+                $('#rq_st_mst').next().hide();
+                var d = [];
+                $.each(response.data, function(i, item){
+                    d[i] = item;
+                    d[i].avatar = (typeof sp.staff.data.employees[item.userid] != 'undefined' && typeof sp.staff.data.employees[item.userid].avatar != 'undefined' && sp.staff.data.employees[item.userid].avatar != '' && typeof sp.staff.data.employees[item.userid].avatar.small != 'undefined') ? sp.staff.data.employees[item.userid].avatar.small : 'images/no-avatar.png',
+                    d[i].rId = i;
+                });
+                self.trades['manage'] = d;
+                $('#rq_st_mst').html($.tmpl($('#te_rq_st_mst'), d));
+            }
+        }, function(response){
+            sp.showError(response.error);
+        });
+    } else {
+        $('#rq_st_mst').hide();
+        $('#rq_st_mst').next().show();
+    }
+    //    
+    spModel.schedule.get('trades', {}, function(response){
+        if (response.data.length == 0){
+            $('#rq_st_ap').hide();
+            $('#rq_st_ap').next().show();
+        } else {
+            $('#rq_st_ap').show();
+            $('#rq_st_ap').next().hide();
+            var d = [];
+            $.each(response.data, function(i, item){
+                d[i] = item;
+                d[i].avatar = (typeof sp.staff.data.employees[item.userid] != 'undefined' && typeof sp.staff.data.employees[item.userid].avatar != 'undefined' && sp.staff.data.employees[item.userid].avatar != '' && typeof sp.staff.data.employees[item.userid].avatar.small != 'undefined') ? sp.staff.data.employees[item.userid].avatar.small : 'images/no-avatar.png',
+                d[i].rId = i;
+            });
+            self.trades['avaiting'] = d;
+            $('#rq_st_ap').html($.tmpl($('#te_rq_st_ap'), d));
+        }
+    }, function(response){
+        sp.showError(response.error);
+    });
+        
+    spModel.schedule.get('trades', {
+        mode : 'requested'
+    }, function(response){
+        if (response.data.length == 0){
+            $('#rq_st_im').hide();
+            $('#rq_st_im').next().show();
+        } else {
+            $('#rq_st_im').show();
+            $('#rq_st_im').next().hide();
+            var d = [];
+            $.each(response.data, function(i, item){
+                d[i] = item;
+                d[i].avatar = (typeof sp.staff.data.employees[item.userid] != 'undefined' && typeof sp.staff.data.employees[item.userid].avatar != 'undefined' && sp.staff.data.employees[item.userid].avatar != '' && typeof sp.staff.data.employees[item.userid].avatar.small != 'undefined') ? sp.staff.data.employees[item.userid].avatar.small : 'images/no-avatar.png',
+                d[i].rId = i;
+            });
+            self.trades['requested'] = d;
+            $('#rq_st_im').html($.tmpl($('#te_rq_st_ap'), d));
+        }
+    }, function(response){
+        sp.showError(response.error);
+    });
+
 }
 
 //functions
@@ -302,6 +365,11 @@ ShiftPlanningRequests.prototype.displayVacationRequest = function(){
     $('#rq_va_ma_s').html($.tmpl($('#te_rq_va_ma_s'), this.current));
 }
 
+ShiftPlanningRequests.prototype.displayShiftTradeManager = function(){
+    console.log(this.current);
+    $('#rq_st_mst_s').html($.tmpl($('#te_rq_st_mst_s'), this.current));
+}
+
 ShiftPlanningRequests.prototype.approveVacationRequest = function(obj){
     var self = this;
     spModel.schedule.update('vacation', {
@@ -331,11 +399,6 @@ ShiftPlanningRequests.prototype.cancelVacationRequest = function(id){
     });
 }
 
-
-ShiftPlanningRequests.prototype.fixSubMenu = function(subpage){
-    
-}
-
 ShiftPlanningRequests.prototype.loadPage = function(){
     
-}
+    }

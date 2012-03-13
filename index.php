@@ -183,7 +183,7 @@ if ($vtoken['data'] != '1') {
                     <div class="requests" id="requests">
                         <div class="subLevel mainSub vacationRequestManage">
                             <a class="backMenu" href="#" subpage="vacation">
-                                <img width="41" height="30" src="images/BackMenu.png">
+                                <img width="41" height="30" src="images/BackMenu.png" />
                             </a>
                             <ul class="subMenu">
                                 <li class="first">
@@ -194,6 +194,28 @@ if ($vtoken['data'] != '1') {
                                 <li class="last">
                                     <a href="#" id="rq_va_ma_dec">
                                         <span><img width="16" height="16" src="images/request_2.png" /></span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="subLevel mainSub shiftTradeManager">
+                            <a class="backMenu" href="#" subpage="shiftTrades">
+                                <img width="41" height="30" src="images/BackMenu.png">
+                            </a>
+                            <ul class="subMenu">
+                                <li class="first">
+                                    <a href="#" id="rq_st_mts_acp">
+                                        <span><img width="16" height="16" src="images/request_1.png" /></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" id="rq_st_mts_dec">
+                                        <span><img width="16" height="16" src="images/request_2.png" /></span>
+                                    </a>
+                                </li>
+                                <li class="last">
+                                    <a href="#" id="rq_st_mts_can">
+                                        <span><img width="16" height="16" src="images/tc_delete.png" /></span>
                                     </a>
                                 </li>
                             </ul>
@@ -214,71 +236,8 @@ if ($vtoken['data'] != '1') {
                         <div class="main vacationRequestManage" id="rq_va_ma_s">
                             
                         </div>
-                        <div class="main tradeRequestSingle">
-                            <div class="title wide">
-                                <div>
-                                    <img width="30" height="30" src="images/staff.jpg">
-                                    <span>Danijel Zec</span>
-                                    January 23, 2012 - January 29, 2012
-                                </div>
-                            </div>
-                            <div class="title1 sales wide">
-                                <h3>Sales</h3>
-                            </div>
-
-                            <div class="title1 regular wide">
-                                <h3>Potentional Acceptors</h3>
-                            </div>
-                            <ul class="acceptors">
-                                <li>
-                                    <img src="images/staff.jpg">
-                                    <span>Mike</span>
-                                </li>
-                                <li>
-                                    <img src="images/staff.jpg">
-                                    <span>Zoranica Lazicevic</span>
-                                </li>
-                                <li>
-                                    <img src="images/staff.jpg">
-                                    <span>Dejan</span>
-                                </li>
-                                <li>
-                                    <img src="images/staff.jpg">
-                                    <span>Michael</span>
-                                </li>
-                                <li>
-                                    <img src="images/staff.jpg">
-                                    <span>Michael</span>
-                                </li>
-                                <li>
-                                    <img src="images/staff.jpg">
-                                    <span>Dejan</span>
-                                </li>
-                                <li>
-                                    <img src="images/staff.jpg">
-                                    <span>Mike</span>
-                                </li>
-                                <li>
-                                    <img src="images/staff.jpg">
-                                    <span>Zoranica Lazicevic</span>
-                                </li>
-                                <li>
-                                    <img src="images/staff.jpg">
-                                    <span>Dejan</span>
-                                </li>
-                                <li>
-                                    <img src="images/staff.jpg">
-                                    <span>Michael</span>
-                                </li>
-                                <li>
-                                    <img src="images/staff.jpg">
-                                    <span>Michael</span>
-                                </li>
-                                <li>
-                                    <img src="images/staff.jpg">
-                                    <span>Dejan</span>
-                                </li>
-                            </ul>
+                        <div class="main shiftTradeManager" id="rq_st_mst_s">
+                            
                         </div>
                     </div>
                     <div class="staff" id="staff">

@@ -1,6 +1,55 @@
 
 <!-- ID rulez first is "te" shorten from template, next is 2 letter from module name, than 2 letter from page name, than 2 letters from page method -->
 <div id="templates">
+    <script id="te_rq_st_mst_s" type="text/x-jquery-tmpl">
+        <div class="title wide">
+            <div>
+                <img width="30" height="30" src="images/staff.jpg">
+                <span>${user_name}</span>
+                ${requested.formatted}
+            </div>
+        </div>
+        <div class="title1 sales wide">
+            <h3>${schedule_name}</h3>
+        </div>
+        <ul class="requests">
+            <li>
+                <span>${shift_start_time} - ${shift_end_time}</span>
+            </li>
+        </ul>
+        <div class="additional">
+            <p>${reason}</p>
+        </div>
+        <div class="title1 regular wide">
+            <h3>Potentional Acceptors</h3>
+        </div>
+        <ul class="acceptors">
+            {{tmpl(traders.data) "#te_rq_st_mst_s_l"}}
+        </ul>
+    </script>
+    <script id="te_rq_st_mst_s_l" type="text/x-jquery-tmpl">
+        <li>
+            <img src="images/staff.jpg">
+            <span>Mike</span>
+        </li>
+    </script>
+    <script id="te_rq_st_ap" type="text/x-jquery-tmpl">
+        <li>
+            <a href="#" rel="${rId}"><img width="43" height="30" src="images/NextMenu.png"></a>
+            <span>${schedule_name}</span>
+            ${shift_start_date.formatted} <br />
+            ${shift_start_time}
+        </li>
+    </script>
+    <script id="te_rq_st_mst" type="text/x-jquery-tmpl">
+        <li>
+            <a class="fr" href="#" rel="${rId}"><img width="43" height="30" src="images/NextMenu.png"></a>
+            <span>
+                <img width="30" height="30" src="${avatar}">
+                ${user_name}
+            </span>
+        </li>
+    </script>
     <script id="te_rq_va_up" type="text/x-jquery-tmpl">
         <li {{if start_day.id < sp.raw.config.today.id}} class="hidden pastDate"{{/if}} id="rq_va_tb_tr_${id}">
             {{if start_day.id >= sp.raw.config.today.id}}<a class="fr deleteVacation" href="#" rel="${id}"><img width="43" height="30" src="images/DelMenu.png"></a>{{/if}}
