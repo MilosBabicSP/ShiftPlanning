@@ -36,6 +36,10 @@ ShiftPlanningRequests.prototype.loadSubPageEvents = function(subpage){
             $('.subNavigation').hide();
             this.displayShiftTradeManager();
             break;
+        case 'shiftTradeManagerAP':
+            $('.subNavigation').hide();
+            this.displayShiftTradeManagerAP();
+            break;    
     }
 }
 
@@ -105,6 +109,12 @@ ShiftPlanningRequests.prototype.shiftTradesEvents = function(){
         e.preventDefault();
         self.current = self.trades['manage'][$(this).attr('rel')];
         sp.loadSubPage('', 'requests', 'shiftTradeManager');
+    });
+    
+    $('#rq_st_ap').delegate('a', clickEvent, function(e){
+        e.preventDefault();
+        self.current = self.trades['manage'][$(this).attr('rel')];
+        sp.loadSubPage('', 'requests', 'shiftTradeManagerAP');
     });
 }
 
@@ -368,6 +378,11 @@ ShiftPlanningRequests.prototype.displayVacationRequest = function(){
 ShiftPlanningRequests.prototype.displayShiftTradeManager = function(){
     console.log(this.current);
     $('#rq_st_mst_s').html($.tmpl($('#te_rq_st_mst_s'), this.current));
+}
+
+ShiftPlanningRequests.prototype.displayShiftTradeManagerAP = function(){
+    console.log(this.current);
+    $('#rq_st_ap_s').html($.tmpl($('#te_rq_st_ap_s'), this.current));
 }
 
 ShiftPlanningRequests.prototype.approveVacationRequest = function(obj){

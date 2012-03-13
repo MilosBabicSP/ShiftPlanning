@@ -1,6 +1,26 @@
 
 <!-- ID rulez first is "te" shorten from template, next is 2 letter from module name, than 2 letter from page name, than 2 letters from page method -->
 <div id="templates">
+    <script id="te_rq_st_ap_s" type="text/x-jquery-tmpl">
+        <div class="title wide">
+            <div>
+                <img width="30" height="30" src="images/staff.jpg">
+                <span>${user_name}</span>
+                ${requested.formatted}
+            </div>
+        </div>
+        <div class="title1 sales wide">
+            <h3>${schedule_name}</h3>
+        </div>
+        <ul class="requests">
+            <li>
+                <span>${shift_start_time} - ${shift_end_time}</span>
+            </li>
+        </ul>
+        <div class="additional">
+            <p>${reason}</p>
+        </div>
+    </script>
     <script id="te_rq_st_mst_s" type="text/x-jquery-tmpl">
         <div class="title wide">
             <div>
@@ -30,7 +50,7 @@
     <script id="te_rq_st_mst_s_l" type="text/x-jquery-tmpl">
         <li>
             <img src="images/staff.jpg">
-            <span>Mike</span>
+            <span>${user_name}</span>
         </li>
     </script>
     <script id="te_rq_st_ap" type="text/x-jquery-tmpl">

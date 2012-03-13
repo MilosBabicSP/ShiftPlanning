@@ -220,6 +220,23 @@ if ($vtoken['data'] != '1') {
                                 </li>
                             </ul>
                         </div>
+                        <div class="subLevel mainSub shiftTradeManagerAP">
+                            <a class="backMenu" href="#" subpage="shiftTrades">
+                                <img width="41" height="30" src="images/BackMenu.png">
+                            </a>
+                            <ul class="subMenu">
+                                <li class="first">
+                                    <a href="#" id="rq_st_ap_acp">
+                                        <span><img width="16" height="16" src="images/request_1.png" /></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" id="rq_st_ap_dec">
+                                        <span><img width="16" height="16" src="images/request_2.png" /></span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                         <div class="subLevel">
                             <a class="backMenu" href="#">
                                 <img width="41" height="30" src="images/BackMenu.png">
@@ -237,6 +254,9 @@ if ($vtoken['data'] != '1') {
                             
                         </div>
                         <div class="main shiftTradeManager" id="rq_st_mst_s">
+                            
+                        </div>
+                        <div class="main shiftTradeManagerAP" id="rq_st_ap_s">
                             
                         </div>
                     </div>
