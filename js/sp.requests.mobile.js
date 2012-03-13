@@ -202,14 +202,14 @@ ShiftPlanningRequests.prototype.vacationSubEvents = function(){
     var self = this;
     $('#rq_va_en').html(spView.staffOption((sp.staff.admin.info.group < 4) ? false : true));
 
-    $('#rq_va_rq').hide();
+    $('#rq_va_rq').html(spView.ulLoader());
+    $('#rq_va_aa').html(spView.ulLoader());
+    $('#rq_va_up').html(spView.ulLoader());
+    
     $('#rq_va_rq').next().hide();
-    
-    $('#rq_va_aa').hide();
     $('#rq_va_aa').next().hide();
-    
-    $('#rq_va_up').hide();
     $('#rq_va_up').next().hide();
+    
     
     $('#rq_va_ma_acp, #rq_va_ma_dec').removeClass('loading');
     
