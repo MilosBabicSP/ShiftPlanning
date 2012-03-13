@@ -150,7 +150,9 @@ ul.subNav li.first a {border-radius:2px 0 0 2px; border-left:solid 1px #d8d8d8;}
 ul.subNav li.last a {border-radius:0 2px 2px 0;}
 
 ul.subMenu {overflow:hidden; position:absolute; right:15px; top:15px; line-height:15px;}
+.title ul.subMenu {right:0;}
 ul.subMenu li {float:left;}
+ul.subMenu li > span {padding:6px 6px 6px 0; display:block;}
 ul.subMenu li a {display:block; padding:6px 10px; text-align:center; color:#333; border:solid 1px #d8d8d8; border-left:none; background-color:#FFF;}
 ul.subMenu li.first a {border-radius:2px 0 0 2px; border-left:solid 1px #d8d8d8;}
 ul.subMenu li.last a {border-radius:0 2px 2px 0;}

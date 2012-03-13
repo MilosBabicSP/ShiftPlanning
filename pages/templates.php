@@ -23,15 +23,29 @@
         <div class="title1 regular wide">
             <h3>Potentional Acceptors</h3>
         </div>
-        <ul class="acceptors">
-            {{tmpl(traders.data) "#te_rq_st_mst_s_l"}}
-        </ul>
+        {{tmpl(traders.data) "#te_rq_st_mst_s_l"}}
     </script>
     <script id="te_rq_st_mst_s_l" type="text/x-jquery-tmpl">
-        <li>
-            <img src="images/staff.jpg">
-            <span>Mike</span>
-        </li>
+        <div class="title">
+            <ul class="subMenu">
+                <li><span>Accepted</span></li>
+                <li class="first">
+                    <a id="rq_st_mts_acp" href="#">
+                        <span><img width="16" height="16" src="images/request_1.png"></span>
+                    </a>
+                </li>
+                <li class="last">
+                    <a id="rq_st_mts_dec" href="#">
+                        <span><img width="16" height="16" src="images/request_2.png"></span>
+                    </a>
+                </li>
+            </ul>
+            <span class="fr">Awaiting response</span>
+            <div>
+                <img width="30" height="30" src="images/staff.jpg">
+                <span>Mike</span>
+            </div>
+        </div>
     </script>
     <script id="te_rq_st_ap" type="text/x-jquery-tmpl">
         <li>
