@@ -39,7 +39,7 @@ ShiftPlanning.prototype = {
     api: function(module, method, arguments, callback, errorCallback){
         var self = this;
         //check is same api call runing and if it's running don't alow new one
-        var a = module + '.' + method;
+        var a = module + '.' + method + '.' + JSON.stringify(arguments);
         if (typeof this.apiCalls[a] != 'undefined' && this.apiCalls[a] != null){
             return false;
         }
@@ -83,6 +83,9 @@ ShiftPlanning.prototype = {
                     });
                 } else if(response.status == 1){
                     if(typeof callback == 'function'){
+                        if (response.data == false){
+                            response.data = [];
+                        }
                         callback.call(this,response);
                     }
                 } else {
