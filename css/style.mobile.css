@@ -51,8 +51,8 @@ span.checkbox, .dash, .ticl, .sche, .requ, .staf, .repo, .icoClock, .icoEmpDet, 
 .icoNot {background-position:0 -710px; padding:0 0 0 40px;}
 .icoAct {background-position:0 -760px; padding:0 0 0 40px;}
 .icoSta {background-position:0 -810px; padding:0 0 0 40px;}
-.icoSch {background-position:0 -1010px; padding:0 0 0 40px;}
-.icoLoc {background-position:0 -810px; padding:0 0 0 40px;}
+.icoSch {background-position:0 -960px; padding:0 0 0 40px;}
+.icoLoc {background-position:0 -1010px; padding:0 0 0 40px;}
 .icoReqWor {background-position:0 -860px;}
 
 span.checkbox {display:block; line-height:30px; padding:5px 0 5px 35px; background-position:-5px -905px;}
