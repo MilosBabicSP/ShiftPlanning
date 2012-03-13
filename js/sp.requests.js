@@ -5,11 +5,16 @@ var ShiftPlanningRequests = function(){
     this.shifts = {};
     this.vacations = [];
     this.current = {};
+    this.trades = {
+        'manage': [],
+        'requested' : [],
+        'avaiting' : []
+    };
 }
 
 ShiftPlanningRequests.prototype = {
     initialize: function(){
-    //some event
+        //some event
     },
     loadPage : function(){
         
