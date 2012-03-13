@@ -19,31 +19,29 @@
         <div class="title">
             <div>
                 <img width="30" height="30" src="${avatar}">
-                <span>${employee_name}</span>
+                <h3>${employee_name}</h3>
             </div>
         </div>
         <ul class="multiInput">
             <li class="even">
                 <div>
-                    <b>From</b>
+                    <b class="from">From</b><br/>
                     <span>${start_day.formatted}</span>
                 </div>
             </li>
             <li class="odd">
                 <div>
-                    <b>To</b>
+                    <b class="until">Until</b><br/>
                     <span>${end_day.formatted}</span>
                 </div>
             </li>
         </ul>
-        <ul class="requests">
-            <li>
-                <span>Status: </span>Pending
-            </li>
-            <li>
-                <span>Conflicts: </span> <a href="#">${conflicts.count}</a>
-            </li>
-        </ul>
+        <div class="title1">
+            <b>Status:</b> Pending
+        </div>
+        <div class="title1">
+            <b>Conflicts:</b> <a href="#">${conflicts.count}</a>
+        </div>
     </script>
     <script id="te_rq_va_ma" type="text/x-jquery-tmpl">
         <li>
@@ -447,7 +445,7 @@
             <h3 class="fl">${month}</h3>
         </div>
         <ul class="timeSheet">
-             {{tmpl(rest) "#te_tc_mts_li_in"}}
+            {{tmpl(rest) "#te_tc_mts_li_in"}}
         </ul>
     </script>
     <script id="te_da_up_li" type="text/x-jquery-tmpl">
@@ -500,7 +498,7 @@
             <a href="#" class="msgDel" rel="${id}"></a>
             <a href="#" class="msgRpl" rel="${id}"></a>
             {{if comments.length > 0}}
-                <a href="#" class="cmtCount" rel="${id}"><span class="ico">${comments.length} Comments</span><span class="tip"></span></a>
+            <a href="#" class="cmtCount" rel="${id}"><span class="ico">${comments.length} Comments</span><span class="tip"></span></a>
             {{/if}}
             <ul class="cmts">
                 {{tmpl(comments) "#te_da_wa_me_co"}}
@@ -514,16 +512,16 @@
         </li>
     </script>
     <script id="te_da_wa_me_co" type="text/x-jquery-tmpl">
-            <li class="first">
-                <img width="50" height="50" title="user name" src="${avatar}" />
-                <div class="msg">
-                    <h4>${userName}</h4>
-                    <p>${comment}</p>
-                    <span>${time}</span>
-                </div>
-                {{if full}}
-                    <a href="#" class="msgDel comment" rel="${id}"></a>
-                {{/if}}
-            </li>
+        <li class="first">
+            <img width="50" height="50" title="user name" src="${avatar}" />
+            <div class="msg">
+                <h4>${userName}</h4>
+                <p>${comment}</p>
+                <span>${time}</span>
+            </div>
+            {{if full}}
+            <a href="#" class="msgDel comment" rel="${id}"></a>
+            {{/if}}
+        </li>
     </script>
 </div>
