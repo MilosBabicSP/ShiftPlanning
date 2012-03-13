@@ -3,12 +3,7 @@
         <h3>Vacation Management</h3>
     </div>
     <ul class="timeSheet" id="rq_va_rq">
-        <li>
-            <a class="fr" href="#"><img width="43" height="30" src="images/NextMenu.png"></a>
-            <span>
-                <img width="30" height="30" src="images/staff.jpg">
-                Mike
-            </span>
+        <li class="loading">
         </li>
     </ul>
     <div class="additional">
@@ -18,7 +13,8 @@
         <h3>Awaiting Approval</h3>
     </div>
     <ul class="requests" id="rq_va_aa">
-
+        <li class="loading">
+        </li>
     </ul>
     <div class="additional">
         <p>You have no vacation requests awaiting approval.</p>
@@ -27,7 +23,8 @@
         <h3>Upcoming time off</h3>
     </div>
     <ul class="requests" id="rq_va_up">
-
+        <li class="loading">
+        </li>
     </ul>
     <div class="additional">
         <p>You have no upcoming vacations.</p>

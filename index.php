@@ -188,12 +188,12 @@ if ($vtoken['data'] != '1') {
                             <ul class="subMenu">
                                 <li class="first">
                                     <a href="#" id="rq_va_ma_acp">
-                                        <img width="16" height="16" src="images/request_1.png" />
+                                        <span><img width="16" height="16" src="images/request_1.png" /></span>
                                     </a>
                                 </li>
                                 <li class="last">
                                     <a href="#" id="rq_va_ma_dec">
-                                        <img width="16" height="16" src="images/request_2.png" />
+                                        <span><img width="16" height="16" src="images/request_2.png" /></span>
                                     </a>
                                 </li>
                             </ul>

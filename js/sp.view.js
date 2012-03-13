@@ -122,6 +122,14 @@ ShiftPlanningView.prototype.editableSkills = function(employee){
     return l;
 }
 
+ShiftPlanningView.prototype.ulLoader = function(){
+    return '<li class="loading"></li>';
+}
+
+ShiftPlanningView.prototype.divLoader = function(){
+    return '<div class="loading"></div>';
+}
+
 
 
 var spView = new ShiftPlanningView();
