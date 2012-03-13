@@ -11,6 +11,7 @@ ShiftPlanningRequests.prototype.initialize = function(){
 
 
 ShiftPlanningRequests.prototype.loadSubPageEvents = function(subpage){
+    $('.subNavigation').show();
     switch (subpage){
         case 'overview':
             this.overviewSubEvents();
@@ -27,6 +28,10 @@ ShiftPlanningRequests.prototype.loadSubPageEvents = function(subpage){
         case 'openShifts':
             this.openShiftsSubEvents();
             break;
+        case 'vacationRequestManage':
+            $('.subNavigation').hide();
+            this.displayVacationRequest();
+            break;
     }
 }
 
@@ -35,6 +40,11 @@ ShiftPlanningRequests.prototype.loadSubPageEvents = function(subpage){
 ShiftPlanningRequests.prototype.overviewEvents = function(){
     //we open page based on subpage found in a tag
     $('#requests #rq_ov a').bind(clickEvent, function(e){
+        e.preventDefault();
+        $('.subNavigation .requests li a[subpage=' + $(this).attr('subpage') + ']').trigger(clickEvent);
+    });
+    
+    $('#requests .backMenu').bind(clickEvent, function(e){
         e.preventDefault();
         $('.subNavigation .requests li a[subpage=' + $(this).attr('subpage') + ']').trigger(clickEvent);
     });
@@ -53,6 +63,36 @@ ShiftPlanningRequests.prototype.vacationEvents = function(){
     
     $('#rq_va_fr').scroller();
     $('#rq_va_to').scroller();
+    
+    
+    $('#rq_va_rq').delegate('a', clickEvent, function(e){
+        e.preventDefault();
+        self.current = self.vacations[$(this).attr('rel')];
+        sp.loadSubPage('', 'requests', 'vacationRequestManage');
+    });
+    
+    
+    $('#rq_va_ma_acp').bind(clickEvent, function(e){
+        e.preventDefault();
+        $(this).addClass('loading');
+        self.approveVacationRequest($(this));
+    });
+    
+    $('#rq_va_ma_dec').bind(clickEvent, function(e){
+        e.preventDefault();
+        $(this).addClass('loading');
+        self.declineVacationRequest($(this));
+    });
+    
+    $('#rq_va_spd').bind(clickEvent, function(e){
+        e.preventDefault();
+        $('#rq_va_up .pastDate').toggleClass('hidden');
+    });
+    
+    $('#rq_va').delegate('a.deleteVacation', clickEvent, function(e){
+        e.preventDefault();
+        self.cancelVacationRequest($(this).attr('rel'));
+    });
 //    
 //    t.delegate('.options a', clickEvent, function(e){
 //        var c = false;
@@ -170,6 +210,10 @@ ShiftPlanningRequests.prototype.vacationSubEvents = function(){
     
     $('#rq_va_up').hide();
     $('#rq_va_up').next().hide();
+    
+    $('#rq_va_ma_acp, #rq_va_ma_dec').removeClass('loading');
+    
+    
     if (sp.staff.admin.info.group <= 4){
         spModel.schedule.get('vacations', {
             mode: 'manage'
@@ -178,28 +222,49 @@ ShiftPlanningRequests.prototype.vacationSubEvents = function(){
                 $('#rq_va_rq').hide();
                 $('#rq_va_rq').next().show();
             } else {
-                
+                $('#rq_va_rq').show();
+                $('#rq_va_rq').next().hide();
+                var d = [];
+                $.each(response.data, function(i, item){
+                    d[i] = item;
+                    d[i].avatar = (typeof sp.staff.data.employees[item.userid] != 'undefined' && typeof sp.staff.data.employees[item.userid].avatar != 'undefined' && sp.staff.data.employees[item.userid].avatar != '' && typeof sp.staff.data.employees[item.userid].avatar.small != 'undefined') ? sp.staff.data.employees[item.userid].avatar.small : 'images/no-avatar.png',
+                    d[i].rId = i;
+                });
+                self.vacations = d;
+                $('#rq_va_rq').html($.tmpl($('#te_rq_va_ma'), d));
             }
-            //self.renderVacationRequests(response.data);
         });
     }
-    
 
-//    //awaiting approvals
-//    spModel.schedule.get('vacations', {
-//        mode: 'requested'
-//    }, function(response){
-//        self.renderAwaitingApprovals(response.data);
-//    }, function(response){
-//        sp.showError(response.error);
-//    });
+    spModel.schedule.get('vacations', {
+        mode: 'requested'
+    }, function(response){
+        if (response.data.length == 0){
+            $('#rq_va_aa').hide();
+            $('#rq_va_aa').next().show();
+        } else {
+            $('#rq_va_aa').show();
+            $('#rq_va_aa').next().hide();
+            $('#rq_va_aa').html($.tmpl($('#te_rq_va_aa'), response.data));
+        }
+    }, function(response){
+        sp.showError(response.error);
+    });
+    
 //    
 //    //getting upcoming confirmed vacations
-//    spModel.schedule.get('vacations', {mode : 'upcoming'}, function(response){
-//        self.renderUpcomingTimeOff(response.data);
-//    }, function(response){
-//        sp.showError(response.error);
-//    });
+    spModel.schedule.get('vacations', {mode : 'upcoming'}, function(response){
+        if (response.data.length == 0){
+            $('#rq_va_up').hide();
+            $('#rq_va_up').next().show();
+        } else {
+            $('#rq_va_up').show();
+            $('#rq_va_up').next().hide();
+            $('#rq_va_up').html($.tmpl($('#te_rq_va_up'), response.data));
+        }
+    }, function(response){
+        sp.showError(response.error);
+    });
 //    
 //    $('#rq_va_up').addClass('appHidden');
 }
@@ -231,6 +296,44 @@ ShiftPlanningRequests.prototype.addVacationRequest = function(obj){
         self.vacationSubEvents();
         obj.removeClass('loading');
     });
+}
+
+ShiftPlanningRequests.prototype.displayVacationRequest = function(){
+    $('#rq_va_ma_s').html($.tmpl($('#te_rq_va_ma_s'), this.current));
+}
+
+ShiftPlanningRequests.prototype.approveVacationRequest = function(obj){
+    var self = this;
+    spModel.schedule.update('vacation', {
+        id: self.current.id, 
+        status : 1
+    }, function(){
+        $('.subNavigation .requests li a[subpage=vacation]').trigger(clickEvent);
+    });
+}
+
+ShiftPlanningRequests.prototype.declineVacationRequest = function(obj){
+    var self = this;
+    spModel.schedule.update('vacation', {
+        id: self.current.id, 
+        status : -1
+    }, function(){
+        $('.subNavigation .requests li a[subpage=vacation]').trigger(clickEvent);
+    });
+}
+
+ShiftPlanningRequests.prototype.cancelVacationRequest = function(id){
+    spModel.schedule.update('vacation', {
+        id: id, 
+        status : -2
+    }, function(){
+        $('#rq_va_tb_tr_' + id).remove();
+    });
+}
+
+
+ShiftPlanningRequests.prototype.fixSubMenu = function(subpage){
+    
 }
 
 ShiftPlanningRequests.prototype.loadPage = function(){

@@ -1,6 +1,59 @@
 
 <!-- ID rulez first is "te" shorten from template, next is 2 letter from module name, than 2 letter from page name, than 2 letters from page method -->
 <div id="templates">
+    <script id="te_rq_va_up" type="text/x-jquery-tmpl">
+        <li {{if start_day.id < sp.raw.config.today.id}} class="hidden pastDate"{{/if}} id="rq_va_tb_tr_${id}">
+            {{if start_day.id >= sp.raw.config.today.id}}<a class="fr deleteVacation" href="#" rel="${id}"><img width="43" height="30" src="images/DelMenu.png"></a>{{/if}}
+            <span>${start_day.formatted} - ${end_day.formatted}</span>
+            ${total_days} Day(s), Approved
+        </li>
+    </script>
+    <script id="te_rq_va_aa" type="text/x-jquery-tmpl">
+        <li id="rq_va_tb_tr_${id}">
+            <a class="fr deleteVacation" href="#" rel="${id}"><img width="43" height="30" src="images/DelMenu.png"></a>
+            <span>${start_day.formatted} - ${end_day.formatted}</span>
+            ${length} Day(s), Pending
+        </li>
+    </script>
+    <script id="te_rq_va_ma_s" type="text/x-jquery-tmpl">
+        <div class="title">
+            <div>
+                <img width="30" height="30" src="${avatar}">
+                <span>${employee_name}</span>
+            </div>
+        </div>
+        <ul class="multiInput">
+            <li class="even">
+                <div>
+                    <b>From</b>
+                    <span>${start_day.formatted}</span>
+                </div>
+            </li>
+            <li class="odd">
+                <div>
+                    <b>To</b>
+                    <span>${end_day.formatted}</span>
+                </div>
+            </li>
+        </ul>
+        <ul class="requests">
+            <li>
+                <span>Status: </span>Pending
+            </li>
+            <li>
+                <span>Conflicts: </span> <a href="#">${conflicts.count}</a>
+            </li>
+        </ul>
+    </script>
+    <script id="te_rq_va_ma" type="text/x-jquery-tmpl">
+        <li>
+            <a class="fr" href="#" rel="${rId}"><img width="43" height="30" src="images/NextMenu.png"></a>
+            <span>
+                <img width="30" height="30" src="${avatar}">
+                ${employee_name}
+            </span>
+        </li>
+    </script>
     <script id="te_re_confirmedTimeSheets_1" type="text/x-jquery-tmpl">
         <div class="title">
             <img width="30" height="30" src="${avatar}" />

@@ -181,18 +181,18 @@ if ($vtoken['data'] != '1') {
                         <?php Functions::getInstance()->loadFile('schedule_today'); ?>
                     </div>
                     <div class="requests" id="requests">
-                        <div class="subLevel">
-                            <a class="backMenu" href="#">
+                        <div class="subLevel mainSub vacationRequestManage">
+                            <a class="backMenu" href="#" subpage="vacation">
                                 <img width="41" height="30" src="images/BackMenu.png">
                             </a>
                             <ul class="subMenu">
                                 <li class="first">
-                                    <a href="#">
+                                    <a href="#" id="rq_va_ma_acp">
                                         <img width="16" height="16" src="images/request_1.png" />
                                     </a>
                                 </li>
                                 <li class="last">
-                                    <a href="#">
+                                    <a href="#" id="rq_va_ma_dec">
                                         <img width="16" height="16" src="images/request_2.png" />
                                     </a>
                                 </li>
@@ -211,6 +211,9 @@ if ($vtoken['data'] != '1') {
                         <?php Functions::getInstance()->loadFile('requests_openShifts'); ?>
                         <?php Functions::getInstance()->loadFile('requests_shiftTrades'); ?>
                         <?php Functions::getInstance()->loadFile('requests_shiftApprovals'); ?>
+                        <div class="main vacationRequestManage" id="rq_va_ma_s">
+                            
+                        </div>
                         <div class="main tradeRequestSingle">
                             <div class="title wide">
                                 <div>

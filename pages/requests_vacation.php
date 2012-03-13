@@ -18,11 +18,7 @@
         <h3>Awaiting Approval</h3>
     </div>
     <ul class="requests" id="rq_va_aa">
-        <li>
-            <a class="fr" href="#"><img width="43" height="30" src="images/DelMenu.png"></a>
-            <span>Jan 7, 2012 - Jan 8, 2012</span>
-            2 Day(s), Approved
-        </li>
+
     </ul>
     <div class="additional">
         <p>You have no vacation requests awaiting approval.</p>
@@ -31,17 +27,13 @@
         <h3>Upcoming time off</h3>
     </div>
     <ul class="requests" id="rq_va_up">
-        <li>
-            <a class="fr" href="#"><img width="43" height="30" src="images/DelMenu.png"></a>
-            <span>Jan 7, 2012 - Jan 8, 2012</span>
-            2 Day(s), Approved
-        </li>
+
     </ul>
     <div class="additional">
         <p>You have no upcoming vacations.</p>
     </div>
     <div class="additional centered">
-        <p><a href="#">Show past dates</a></p>
+        <p><a href="#" id="rq_va_spd">Show past dates</a></p>
     </div>
     <div class="newMsg">
         <label>Employee</label>
