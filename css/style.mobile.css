@@ -51,8 +51,8 @@ span.checkbox, .dash, .ticl, .sche, .requ, .staf, .repo, .icoClock, .icoEmpDet, 
 .icoNot {background-position:0 -710px; padding:0 0 0 40px;}
 .icoAct {background-position:0 -760px; padding:0 0 0 40px;}
 .icoSta {background-position:0 -810px; padding:0 0 0 40px;}
-.icoSch {background-position:0 -1010px; padding:0 0 0 40px;}
-.icoLoc {background-position:0 -810px; padding:0 0 0 40px;}
+.icoSch {background-position:0 -960px; padding:0 0 0 40px;}
+.icoLoc {background-position:0 -1010px; padding:0 0 0 40px;}
 .icoReqWor {background-position:0 -860px;}
 
 span.checkbox {display:block; line-height:30px; padding:5px 0 5px 35px; background-position:-5px -905px;}
@@ -62,7 +62,7 @@ span.checkbox.disabled {background-position:-5px -605px;}
 a.button {line-height:30px; display:block; padding:0 10px; color:#333; background-color:#f0f0f0; border:solid 1px #DBDBDB; border-radius:2px;}
 a.loading {background:#FFF url(../images/loader.gif) scroll no-repeat 50% 50% !important;}
 a.loading span {visibility:hidden;}
-div.loading {background:transparent url(../images/loader.gif) scroll no-repeat 50% 50% !important; height:60px;}
+div.loading, li.loading {background:transparent url(../images/loader.gif) scroll no-repeat 50% 50% !important; height:60px;}
 
 /*BUILD*/
 html {overflow-x:hidden;}
