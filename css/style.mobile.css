@@ -66,6 +66,8 @@ a.button {line-height:30px; display:block; padding:0 10px; color:#333; backgroun
 a.loading {background:#FFF url(../images/loader.gif) scroll no-repeat 50% 50% !important;}
 a.loading span {visibility:hidden;}
 div.loading, li.loading {background:transparent url(../images/loader.gif) scroll no-repeat 50% 50% !important; height:30px;}
+table.loading, ul.loading {background:transparent url(../images/loader.gif) scroll no-repeat 50% 50% !important;}
+table.loading tr, ul.loading li {opacity:0.25;}
 
 /*BUILD*/
 html {overflow-x:hidden;}

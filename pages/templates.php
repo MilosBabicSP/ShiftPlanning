@@ -40,7 +40,7 @@
                     </a>
                 </li>
             </ul>
-            <span class="fr">Awaiting response</span>
+            d /<span class="fr">Awaiting response</span>
             <div>
                 <img width="30" height="30" src="images/staff.jpg">
                 <span>Mike</span>
