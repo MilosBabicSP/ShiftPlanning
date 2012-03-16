@@ -1,10 +1,10 @@
 
 <!-- ID rulez first is "te" shorten from template, next is 2 letter from module name, than 2 letter from page name, than 2 letters from page method -->
 <div id="templates">
-    <script id="te_rq_st_mst_s" type="text/x-jquery-tmpl">
+    <script id="te_rq_st_im_s" type="text/x-jquery-tmpl">
         <div class="title wide">
             <div>
-                <img width="30" height="30" src="images/staff.jpg">
+                <img width="30" height="30" src="${avatar}">
                 <span>${user_name}</span>
                 ${requested.formatted}
             </div>
@@ -14,7 +14,56 @@
         </div>
         <ul class="requests">
             <li>
-                <span>${shift_start_time} - ${shift_end_time}</span>
+                <span>${shift_start_time} - ${shift_end_time}</span> <span>${shift_start_date.formatted}</span>
+            </li>
+        </ul>
+        {{if reason.length > 0}}
+        <div class="additional">
+            <p>${reason}</p>
+        </div>
+        {{/if}}
+    </script>
+    <script id="te_rq_st_ap_s" type="text/x-jquery-tmpl">
+        <div class="title wide">
+            <div>
+                <img width="30" height="30" src="${avatar}">
+                <span>${user_name}</span>
+                ${requested.formatted}
+            </div>
+        </div>
+        <div class="title1 sales wide">
+            <h3>${schedule_name}</h3>
+        </div>
+        <ul class="requests">
+            <li>
+                <span>${shift_start_time} - ${shift_end_time}</span> <span>${shift_start_date.formatted}</span>
+            </li>
+        </ul>
+        {{if trade_reason.length > 0}}
+        <div class="additional">
+            <p>${trade_reason}</p>
+        </div>
+        {{/if}}
+        {{if confirmed.length == 1}}
+        <div class="additional">
+            <p>Waiting for Manager to Approve. </p>
+        </div>
+        {{/if}}
+    </script>
+    <script id="te_rq_st_mst_s" type="text/x-jquery-tmpl">
+        <div class="title wide">
+            <div>
+                <img width="30" height="30" src="${avatar}">
+                <span>${user_name}</span>
+                ${requested.formatted}
+            </div>
+        </div>
+        <div class="title1 sales wide">
+            <h3>${schedule_name}</h3>
+        </div>
+        <ul class="requests">
+            <li>
+                <span>${shift_start_time} - ${shift_end_time}</span> <span>${shift_start_date.formatted}</span>
             </li>
         </ul>
         <div class="additional">
@@ -23,27 +72,37 @@
         <div class="title1 regular wide">
             <h3>Potentional Acceptors</h3>
         </div>
-        {{tmpl(traders.data) "#te_rq_st_mst_s_l"}}
+        <div class="traders {{if confirm_before == 1}}confirmBefore{{/if}}">
+            {{tmpl(traders.data) "#te_rq_st_mst_s_l"}}
+        </div>
     </script>
     <script id="te_rq_st_mst_s_l" type="text/x-jquery-tmpl">
         <div class="title">
-            <ul class="subMenu">
-                <li><span>Accepted</span></li>
-                <li class="first">
-                    <a id="rq_st_mts_acp" href="#">
-                        <span><img width="16" height="16" src="images/request_1.png"></span>
-                    </a>
-                </li>
-                <li class="last">
-                    <a id="rq_st_mts_dec" href="#">
-                        <span><img width="16" height="16" src="images/request_2.png"></span>
-                    </a>
-                </li>
-            </ul>
-            d /<span class="fr">Awaiting response</span>
+            {{if confirmed == 1 && approved == 0}}  
+                <ul class="subMenu">
+                    <li><span>Accepted</span></li>
+                    <li class="first">
+                        <a href="#" tradeId="${trade_id}" userId="${user}" class="accept" >
+                            <span><img width="16" height="16" src="images/request_1.png"></span>
+                        </a>
+                    </li>
+                    <li class="last">
+                        <a href="#" tradeId="${trade_id}" userId="${user}" class="reject" >
+                            <span><img width="16" height="16" src="images/request_2.png"></span>
+                        </a>
+                    </li>
+                </ul>
+            {{/if}}
+            {{if (confirmed == -1 && approved == -1) || (confirmed == 1 && approved == -1)}}
+                <span class="fr">Rejected</span>
+            {{else}}
+                {{if confirmed == 0 && approved == 0}}
+                <span class="fr avaitingST">Awaiting response</span>
+                {{/if}}
+            {{/if}}
             <div>
-                <img width="30" height="30" src="images/staff.jpg">
-                <span>Mike</span>
+                <img width="30" height="30" src="${avatar}">
+                <span>${user_name}</span>
             </div>
         </div>
     </script>
