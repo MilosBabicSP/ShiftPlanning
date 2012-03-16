@@ -198,41 +198,60 @@ if ($vtoken['data'] != '1') {
                                 </li>
                             </ul>
                         </div>
-                        <div class="subLevel mainSub shiftTradeManager">
+                        <div class="subLevel mainSub shiftTradeManager" id="rq_st_mts_sub">
                             <a class="backMenu" href="#" subpage="shiftTrades">
                                 <img width="41" height="30" src="images/BackMenu.png">
                             </a>
-                            <ul class="subMenu">
+                            <ul class="subMenu" id="rq_st_mts_fm">
                                 <li class="first">
-                                    <a href="#" id="rq_st_mts_acp">
+                                    <a href="#" class="activate">
                                         <span><img width="16" height="16" src="images/request_1.png" /></span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" id="rq_st_mts_dec">
+                                    <a href="#" class="deactivate">
                                         <span><img width="16" height="16" src="images/request_2.png" /></span>
                                     </a>
                                 </li>
                                 <li class="last">
-                                    <a href="#" id="rq_st_mts_can">
+                                    <a href="#" class="cancel">
                                         <span><img width="16" height="16" src="images/tc_delete.png" /></span>
                                     </a>
                                 </li>
                             </ul>
+                            <ul class="subMenu hidden" id="rq_st_mts_sm">
+                                <li class="single">
+                                    <a href="#" class="icoReqCan cancel">
+                                        <span>Cancel</span>
+                                    </a>
+                                </li>
+                            </ul>
                         </div>
-                        <div class="subLevel mainSub shiftTradeManagerAP">
+                        <div class="subLevel mainSub shiftTradeManagerAP" id="rq_st_ap_sub">
                             <a class="backMenu" href="#" subpage="shiftTrades">
                                 <img width="41" height="30" src="images/BackMenu.png">
                             </a>
                             <ul class="subMenu">
                                 <li class="first">
-                                    <a href="#" id="rq_st_ap_acp">
+                                    <a href="#" class="accept">
                                         <span><img width="16" height="16" src="images/request_1.png" /></span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" id="rq_st_ap_dec">
+                                    <a href="#" class="reject">
                                         <span><img width="16" height="16" src="images/request_2.png" /></span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="subLevel mainSub shiftTradeManagerIM">
+                            <a class="backMenu" href="#" subpage="shiftTrades">
+                                <img width="41" height="30" src="images/BackMenu.png">
+                            </a>
+                            <ul class="subMenu" id="rq_st_im_sm">
+                                <li class="single">
+                                    <a href="#" class="icoReqCan cancel">
+                                        <span>Cancel</span>
                                     </a>
                                 </li>
                             </ul>
@@ -257,6 +276,9 @@ if ($vtoken['data'] != '1') {
                             
                         </div>
                         <div class="main shiftTradeManagerAP" id="rq_st_ap_s">
+                            
+                        </div>
+                        <div class="main shiftTradeManagerIM" id="rq_st_im_s">
                             
                         </div>
                     </div>

@@ -40,6 +40,10 @@ ShiftPlanningRequests.prototype.loadSubPageEvents = function(subpage){
             $('.subNavigation').hide();
             this.displayShiftTradeManagerAP();
             break;    
+        case 'shiftTradeManagerIM':
+            $('.subNavigation').hide();
+            this.displayShiftTradeManagerIM();
+            break;
     }
 }
 
@@ -113,8 +117,121 @@ ShiftPlanningRequests.prototype.shiftTradesEvents = function(){
     
     $('#rq_st_ap').delegate('a', clickEvent, function(e){
         e.preventDefault();
-        self.current = self.trades['manage'][$(this).attr('rel')];
+        self.current = self.trades['avaiting'][$(this).attr('rel')];
         sp.loadSubPage('', 'requests', 'shiftTradeManagerAP');
+    });
+    
+    $('#rq_st_im').delegate('a', clickEvent, function(e){
+        e.preventDefault();
+        self.current = self.trades['requested'][$(this).attr('rel')];
+        sp.loadSubPage('', 'requests', 'shiftTradeManagerIM');
+    });
+    
+    $('#rq_st_mst_s').delegate('.traders a', clickEvent, function(e){
+        var obj = $(this);
+        obj.addClass('loading');
+        e.preventDefault();
+        var id = $(this).attr('tradeId');
+        var uId = $(this).attr('userId');
+        var data = {
+            trade: id,
+            user: uId
+        }
+        
+        if ($(this).hasClass('accept')){
+            data.action = 'accept';
+        } else {
+            data.action = 'reject';
+        }
+        
+        spModel.schedule.update('trade', data, function(response){
+            obj.removeClass('loading');
+            $('.subNavigation .requests li a[subpage=shiftTrades]').trigger(clickEvent);
+        }, function(response){
+            sp.showError(response.error);
+        });
+    });
+    
+    $('#rq_st_mts_sub ul a').bind(clickEvent, function(e){
+        e.preventDefault();
+        var obj = $(this);
+        obj.addClass('loading');
+        var id = $(this).attr('rel');
+        var data = {
+            trade : id
+        }
+        
+        if ($(this).hasClass('activate')){
+            data.action = 'activate';
+        }
+        
+        if ($(this).hasClass('cancel')){
+            data.action = 'cancel';
+            var c = confirm('Are you sure you want to cancel this request?');
+            if (!c){
+                obj.removeClass('loading');
+                return false;
+            }
+        }
+        
+        if ($(this).hasClass('deactivate')){
+            data.action = 'deactivate';
+        }
+        
+        spModel.schedule.update('trade', data, function(response){
+            obj.removeClass('loading');
+            $('.subNavigation .requests li a[subpage=shiftTrades]').trigger(clickEvent);
+        }, function(response){
+            sp.showError(response.error);
+        });
+    });
+    
+    $('#rq_st_ap_sub ul a').bind(clickEvent, function(e){
+        var obj = $(this);
+        obj.addClass('loading');
+        e.preventDefault();
+        var id = $(this).attr('rel');
+        var data = {
+            trade : id
+        }
+        
+        if ($(this).hasClass('accept')){
+            data.action = 'accept';
+        } else {
+            data.action = 'reject';
+        }
+        
+        spModel.schedule.update('trade', data, function(response){
+            obj.removeClass('loading');
+            $('.subNavigation .requests li a[subpage=shiftTrades]').trigger(clickEvent);
+        }, function(response){
+            sp.showError(response.error);
+        });
+    });
+    
+    $('#rq_st_im_sm a').bind(clickEvent, function(e){
+        e.preventDefault();
+        var obj = $(this);
+        obj.addClass('loading');
+        var id = $(this).attr('rel');
+        var data = {
+            trade : id
+        }
+        
+        if ($(this).hasClass('cancel')){
+            var c = confirm('Are you sure you want to cancel this request?');
+            if (!c){
+                obj.removeClass('loading');
+                return false;
+            }
+            data.action = 'cancel';
+        }
+        spModel.schedule.update('trade', data, function(response){
+            obj.removeClass('loading');
+            $('.subNavigation .requests li a[subpage=shiftTrades]').trigger(clickEvent);
+        }, function(response){
+            sp.showError(response.error);
+        });
     });
 }
 
@@ -377,12 +494,37 @@ ShiftPlanningRequests.prototype.displayVacationRequest = function(){
 
 ShiftPlanningRequests.prototype.displayShiftTradeManager = function(){
     console.log(this.current);
-    $('#rq_st_mst_s').html($.tmpl($('#te_rq_st_mst_s'), this.current));
+    $('#rq_st_mst_s').html($.tmpl($('#te_rq_st_mst_s'), this.prepareSingleViewTrade(this.current)));
+    
+    $('#rq_st_mts_sub ul a').attr('rel', this.current.id);
+    
+    if (parseInt(this.current.confirm_before) == 0){
+        $('#rq_st_mts_fm').show();
+        $('#rq_st_mts_sm').hide();
+    } else {
+        $('#rq_st_mts_sm').show();
+        $('#rq_st_mts_fm').hide();
+    }
+}
+
+ShiftPlanningRequests.prototype.displayShiftTradeManagerIM = function(){
+    console.log(this.current);
+    $('#rq_st_im_s').html($.tmpl($('#te_rq_st_im_s'), this.current));
+    
+    $('#rq_st_im_sm a').attr('rel', this.current.id);
 }
 
 ShiftPlanningRequests.prototype.displayShiftTradeManagerAP = function(){
     console.log(this.current);
     $('#rq_st_ap_s').html($.tmpl($('#te_rq_st_ap_s'), this.current));
+    
+    $('#rq_st_ap_sub ul a').attr('rel', this.current.trade_id);
+    
+    if (parseInt(this.current.confirmed) == 1){
+        $('#rq_st_ap_sub ul').hide();
+    } else {
+        $('#rq_st_ap_sub ul').show();
+    }
 }
 
 ShiftPlanningRequests.prototype.approveVacationRequest = function(obj){
@@ -412,6 +554,21 @@ ShiftPlanningRequests.prototype.cancelVacationRequest = function(id){
     }, function(){
         $('#rq_va_tb_tr_' + id).remove();
     });
+}
+
+ShiftPlanningRequests.prototype.prepareSingleViewTrade = function(data){
+    if (data.traders.count == 0){
+        data.traders.data = [];
+    }
+    var d = [];
+    $.each(data.traders.data, function(i, item){
+        var p = item;
+        p.avatar = (typeof sp.staff.data.employees[item.user] != 'undefined' && typeof sp.staff.data.employees[item.user].avatar != 'undefined' && sp.staff.data.employees[item.user].avatar != '' && typeof sp.staff.data.employees[item.user].avatar.small != 'undefined') ? sp.staff.data.employees[item.user].avatar.small : 'images/no-avatar.png';
+        d.push(p);
+    });
+    
+    data.traders.data = d;
+    return data;
 }
 
 ShiftPlanningRequests.prototype.loadPage = function(){

@@ -31,7 +31,7 @@ h5 {font-size:14px; font-weight:normal; color:#333;}
 /*SPRITE*/
 .msgDel, .msgRpl, .cmtCount span.tip, ul.cmts, ul.cmts li.last input[type=submit], .search input[type=submit] {background-image:url(../images/icos.png); background-repeat:no-repeat;}
 .cmtCount span.ico {background-image:url(../images/sprite.png); background-repeat:no-repeat;}
-.from, .until, span.checkbox, .dash, .ticl, .sche, .requ, .staf, .repo, .icoClock, .icoEmpDet, .icoAdmAct, .icoEmpPos, .icoEmpSki, .icoEmpAdd, .icoNot, .icoAct, .icoSta, .icoReqWor, .icoLoc, .icoSch {background-image:url(../images/mainNav_bg.png); background-repeat:no-repeat;}
+.from, .until, span.checkbox, .dash, .ticl, .sche, .requ, .staf, .repo, .icoClock, .icoEmpDet, .icoAdmAct, .icoEmpPos, .icoEmpSki, .icoEmpAdd, .icoNot, .icoAct, .icoSta, .icoReqWor, .icoReqCan, .icoLoc, .icoSch {background-image:url(../images/mainNav_bg.png); background-repeat:no-repeat;}
 .calendar td.today, .calendar th {background-image: url(../images/callendar_bg.png); background-repeat:repeat-x;}
 
 .dash {background-position:10px 0;}
@@ -54,6 +54,7 @@ h5 {font-size:14px; font-weight:normal; color:#333;}
 .icoSch {background-position:0 -960px; padding:0 0 0 40px;}
 .icoLoc {background-position:0 -1010px; padding:0 0 0 40px;}
 .icoReqWor {background-position:0 -860px;}
+.icoReqCan {background-position:0 -1160px;}
 .from {background-position:-10px -1065px; padding:0 0 0 20px;}
 .until {background-position:-10px -1115px; padding:0 0 0 20px;}
 
@@ -64,7 +65,7 @@ span.checkbox.disabled {background-position:-5px -605px;}
 a.button {line-height:30px; display:block; padding:0 10px; color:#333; background-color:#f0f0f0; border:solid 1px #DBDBDB; border-radius:2px;}
 a.loading {background:#FFF url(../images/loader.gif) scroll no-repeat 50% 50% !important;}
 a.loading span {visibility:hidden;}
-div.loading, li.loading {background:transparent url(../images/loader.gif) scroll no-repeat 50% 50% !important; height:60px;}
+div.loading, li.loading {background:transparent url(../images/loader.gif) scroll no-repeat 50% 50% !important; height:30px;}
 
 /*BUILD*/
 html {overflow-x:hidden;}
@@ -149,7 +150,9 @@ ul.subNav li.first a {border-radius:2px 0 0 2px; border-left:solid 1px #d8d8d8;}
 ul.subNav li.last a {border-radius:0 2px 2px 0;}
 
 ul.subMenu {overflow:hidden; position:absolute; right:15px; top:15px; line-height:15px;}
+.title ul.subMenu {right:0;}
 ul.subMenu li {float:left;}
+ul.subMenu li > span {padding:6px 6px 6px 0; display:block;}
 ul.subMenu li a {display:block; padding:6px 10px; text-align:center; color:#333; border:solid 1px #d8d8d8; border-left:none; background-color:#FFF;}
 ul.subMenu li.first a {border-radius:2px 0 0 2px; border-left:solid 1px #d8d8d8;}
 ul.subMenu li.last a {border-radius:0 2px 2px 0;}
@@ -275,3 +278,5 @@ table.day td.dTitle {text-align:left; line-height:15px; padding:0 10px;}
 #da_up_li li a {margin:0px;}
 #da_se > div {display:none;}
 #st_li {padding:0px;}
+#requests .avaitingST {display:none;}
+#requests .confirmBefore .avaitingST {display:inline;}
