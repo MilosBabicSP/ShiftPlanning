@@ -48,6 +48,10 @@ ShiftPlanningRequests.prototype.loadSubPageEvents = function(subpage){
             $('.subNavigation').hide();
             this.displayOpenShifts();
             break;
+        case 'openShiftsRequests':
+            $('.subNavigation').hide();
+            this.displayOpenRequests();
+            break;
     }
 }
 
@@ -117,6 +121,36 @@ ShiftPlanningRequests.prototype.openShiftsEvents = function(){
         e.preventDefault();
         self.current = self.shifts[$(this).attr('rel')];
         sp.loadSubPage('', 'requests', 'openShiftsOpen');
+    });
+    
+    $('#rq_os_spr').delegate('a', clickEvent, function(e){
+        e.preventDefault();
+        self.current = self.shiftsR[$(this).attr('rel')];
+        sp.loadSubPage('', 'requests', 'openShiftsRequest');
+    });
+    
+    $('#rq_os_sub').delegate('#rq_os_rtw.icoReqWor', clickEvent, function(e){
+        e.preventDefault();
+        var obj = $(this);
+        obj.addClass('loading');
+        spModel.schedule.update('shift', {
+            id : $(this).attr('rel'), 
+            add : sp.staff.admin.info.id
+        }, function(response){
+            obj.removeClass('loading').removeClass('icoReqWork').addClass('icoReqCan').html('Cancel pending request');
+        });
+    });
+    
+    $('#rq_os_sub').delegate('#rq_os_rtw.icoReqCan', clickEvent, function(e){
+        e.preventDefault();
+        var obj = $(this);
+        obj.addClass('loading');
+        spModel.schedule.update('shift', {
+            id : $(this).attr('rel'), 
+            remove : sp.staff.admin.info.id
+        }, function(response){
+            obj.removeClass('loading').removeClass('icoReqCan').removeClass('icoReqWork').html('Request Removed');
+        });
     });
 }
 
@@ -242,8 +276,6 @@ ShiftPlanningRequests.prototype.shiftTradesEvents = function(){
         spModel.schedule.update('trade', data, function(response){
             obj.removeClass('loading');
             $('.subNavigation .requests li a[subpage=shiftTrades]').trigger(clickEvent);
-        }, function(response){
-            sp.showError(response.error);
         });
     });
 }
@@ -395,6 +427,11 @@ ShiftPlanningRequests.prototype.openShiftsSubEvents = function(){
     
     $('#rq_os_os').next().hide();
     
+    $('#rq_os_spr').prev().show();
+    $('#rq_os_spr').html(spView.ulLoader());
+    $('#rq_os_spr').next().hide();
+    
+    
     
     spModel.schedule.get('shifts', {
         mode: 'open', 
@@ -419,23 +456,36 @@ ShiftPlanningRequests.prototype.openShiftsSubEvents = function(){
     });
     
     
-//    if (sp.staff.admin.info.group < 4){
-//        spModel.schedule.get('shifts', {
-//            mode: 'openapproval',
-//            detailed : 1
-//        }, function(response){
-//            $('#rq_os .waiting').show();
-//            if (response.data.length == 0 ){
-//                $('#rq_os .waiting').hide();
-//            } else {
-//                $('#rq_os .waiting table tbody').html($.tmpl($('#templateOpenShiftsNA'), self.prepareOpenShiftsNA(response.data)));
-//            }
-//        }, function(response){
-//            sp.showError(response.error);
-//        });
-//    } else {
-//        $('#rq_os .waiting').hide();
-//    }
+    if (sp.staff.admin.info.group < 4){
+        spModel.schedule.get('shifts', {
+            mode: 'openapproval',
+            detailed : 1
+        }, function(response){
+            if (response.data.length == 0){
+                $('#rq_os_spr').hide();
+                $('#rq_os_spr').next().show();
+            } else {
+                $('#rq_os_spr').show();
+                $('#rq_os_spr').next().hide();
+                response.data = self.prepareOpenShiftsNA(response.data);
+                console.log(response.data);
+                var d = [];
+                $.each(response.data, function(i, item){
+                    d[i] = item;
+                    d[i].avatar = (typeof sp.staff.data.employees[item.userid] != 'undefined' && typeof sp.staff.data.employees[item.userid].avatar != 'undefined' && sp.staff.data.employees[item.userid].avatar != '' && typeof sp.staff.data.employees[item.userid].avatar.small != 'undefined') ? sp.staff.data.employees[item.userid].avatar.small : 'images/no-avatar.png',
+                    d[i].rId = i;
+                });
+                self.shiftsR = d;
+                $('#rq_os_spr').html($.tmpl($('#te_rq_os_spr'), response.data));
+            }
+        }, function(response){
+            sp.showError(response.error);
+        });
+    } else {
+        $('#rq_os_spr').prev().hide();
+        $('#rq_os_spr').hide();
+        $('#rq_os_spr').next().hide();
+    }
 }
 
 ShiftPlanningRequests.prototype.shiftTradesSubEvents = function(){
@@ -592,7 +642,30 @@ ShiftPlanningRequests.prototype.displayShiftTradeManagerAP = function(){
 
 ShiftPlanningRequests.prototype.displayOpenShifts = function(){
     console.log(this.current);
+    
+    $('#rq_os_rtw').removeClass('icoReqCan').addClass('icoReqWork').html('Request to work');
+    
     $('#rq_os_os_s').html($.tmpl($('#te_rq_os_os_s'), this.current));
+    
+    var h = '';
+    var s = this.current.status;
+    if (s == 10 || s == 4){
+        h = '<a class="icoReqWor" href="#" id="rq_os_rtw" rel="' + this.current.id + '">Request to work</a>';
+    } else if (s == 1){
+        h = 'Management rejected your request for this shift';
+    } else if (s == 0){
+        h = '<a class="icoReqCan" href="#" id="rq_os_rtw" rel="' + this.current.id + '">Cancel pending request</a>';
+    } else if (s == 2){
+        h = 'Already on this shift';
+    } else {
+        h = 'Will put you into overtime';
+    }
+    
+    $('#rq_os_sub .subMenu .single').html(h);
+}
+
+ShiftPlanningRequests.prototype.displayOpenRequests = function(){
+    
 }
 
 ShiftPlanningRequests.prototype.approveVacationRequest = function(obj){
@@ -645,7 +718,8 @@ ShiftPlanningRequests.prototype.prepareOpenShiftsNA = function(data){
         $.each(item.requests, function(iV2, itemV2){
             item.user_name = itemV2.name;
             item.user_id = itemV2.id;
-            res[item.user_id + item.start_date.formatted + item.start_time.time + item.end_time.time + ''] = {
+            item.avatar = sp.getAvatar(itemV2.id);
+            res[item.user_id + item.start_date.formatted + item.start_time.time + item.end_time.time + item.schedule_name] = {
                 user_name : itemV2.name,
                 user_id : itemV2.id,
                 start_date : item.start_date.formatted,
@@ -653,7 +727,8 @@ ShiftPlanningRequests.prototype.prepareOpenShiftsNA = function(data){
                 schedule_name : item.schedule_name,
                 notes : item.notes,
                 id : item.id,
-                rId : item.request_id
+                rId : item.request_id,
+                full : item
             };
         });
     });
@@ -663,6 +738,8 @@ ShiftPlanningRequests.prototype.prepareOpenShiftsNA = function(data){
     });
     return p;
 }
+
+
 
 ShiftPlanningRequests.prototype.loadPage = function(){
     

@@ -194,6 +194,9 @@ ShiftPlanning.prototype = {
             }
         }
         return sa ? s : s[0];
+    },
+    getAvatar : function(id){
+        return (typeof sp.staff.data.employees[id] != 'undefined' && typeof sp.staff.data.employees[id].avatar != 'undefined' && sp.staff.data.employees[id].avatar != '' && typeof sp.staff.data.employees[id].avatar.small != 'undefined') ? sp.staff.data.employees[id].avatar.small : 'images/no-avatar.png';
     }
 }
 
