@@ -2,7 +2,7 @@ var ShiftPlanningRequests = function(){
     this.initialize();
     this.positions = '';
     this.employees = '';
-    this.shifts = {};
+    this.shifts = [];
     this.vacations = [];
     this.current = {};
     this.trades = {

@@ -3,7 +3,7 @@ ShiftPlanningRequests.prototype.initialize = function(){
     $(document).ready(function(){
         self.overviewEvents();
         self.vacationEvents();
-        //        self.openShiftsEvents();
+        self.openShiftsEvents();
         //        self.shiftApprovalsEvents();
         self.shiftTradesEvents();
     });
@@ -43,6 +43,10 @@ ShiftPlanningRequests.prototype.loadSubPageEvents = function(subpage){
         case 'shiftTradeManagerIM':
             $('.subNavigation').hide();
             this.displayShiftTradeManagerIM();
+            break;
+        case 'openShiftsOpen':
+            $('.subNavigation').hide();
+            this.displayOpenShifts();
             break;
     }
 }
@@ -104,6 +108,15 @@ ShiftPlanningRequests.prototype.vacationEvents = function(){
     $('#rq_va').delegate('a.deleteVacation', clickEvent, function(e){
         e.preventDefault();
         self.cancelVacationRequest($(this).attr('rel'));
+    });
+}
+
+ShiftPlanningRequests.prototype.openShiftsEvents = function(){
+    var self = this;
+    $('#rq_os_os').delegate('a', clickEvent, function(e){
+        e.preventDefault();
+        self.current = self.shifts[$(this).attr('rel')];
+        sp.loadSubPage('', 'requests', 'openShiftsOpen');
     });
 }
 
@@ -375,6 +388,56 @@ ShiftPlanningRequests.prototype.vacationSubEvents = function(){
 //    $('#rq_va_up').addClass('appHidden');
 }
 
+ShiftPlanningRequests.prototype.openShiftsSubEvents = function(){
+    var self = this;
+    
+    $('#rq_os_os').html(spView.ulLoader());
+    
+    $('#rq_os_os').next().hide();
+    
+    
+    spModel.schedule.get('shifts', {
+        mode: 'open', 
+        detailed : 1
+    }, function(response){
+        if (response.data.length == 0){
+            $('#rq_os_os').hide();
+            $('#rq_os_os').next().show();
+        } else {
+            $('#rq_os_os').show();
+            $('#rq_os_os').next().hide();
+            var d = [];
+            $.each(response.data, function(i, item){
+                d[i] = item;
+                d[i].rId = i;
+            });
+            self.shifts = d;
+            $('#rq_os_os').html($.tmpl($('#te_rq_os_os'), response.data));
+        }
+    }, function(response){
+        sp.showError(response.error);
+    });
+    
+    
+//    if (sp.staff.admin.info.group < 4){
+//        spModel.schedule.get('shifts', {
+//            mode: 'openapproval',
+//            detailed : 1
+//        }, function(response){
+//            $('#rq_os .waiting').show();
+//            if (response.data.length == 0 ){
+//                $('#rq_os .waiting').hide();
+//            } else {
+//                $('#rq_os .waiting table tbody').html($.tmpl($('#templateOpenShiftsNA'), self.prepareOpenShiftsNA(response.data)));
+//            }
+//        }, function(response){
+//            sp.showError(response.error);
+//        });
+//    } else {
+//        $('#rq_os .waiting').hide();
+//    }
+}
+
 ShiftPlanningRequests.prototype.shiftTradesSubEvents = function(){
     var self = this;
     $('#rq_st_mst').html(spView.ulLoader());
@@ -527,6 +590,11 @@ ShiftPlanningRequests.prototype.displayShiftTradeManagerAP = function(){
     }
 }
 
+ShiftPlanningRequests.prototype.displayOpenShifts = function(){
+    console.log(this.current);
+    $('#rq_os_os_s').html($.tmpl($('#te_rq_os_os_s'), this.current));
+}
+
 ShiftPlanningRequests.prototype.approveVacationRequest = function(obj){
     var self = this;
     spModel.schedule.update('vacation', {
@@ -569,6 +637,31 @@ ShiftPlanningRequests.prototype.prepareSingleViewTrade = function(data){
     
     data.traders.data = d;
     return data;
+}
+
+ShiftPlanningRequests.prototype.prepareOpenShiftsNA = function(data){
+    var res = {};
+    $.each(data, function(i, item){
+        $.each(item.requests, function(iV2, itemV2){
+            item.user_name = itemV2.name;
+            item.user_id = itemV2.id;
+            res[item.user_id + item.start_date.formatted + item.start_time.time + item.end_time.time + ''] = {
+                user_name : itemV2.name,
+                user_id : itemV2.id,
+                start_date : item.start_date.formatted,
+                hours : item.start_time.time + ' - ' + item.end_time.time,
+                schedule_name : item.schedule_name,
+                notes : item.notes,
+                id : item.id,
+                rId : item.request_id
+            };
+        });
+    });
+    var p = [];
+    $.each(res, function(i, item){
+        p.push(item);
+    });
+    return p;
 }
 
 ShiftPlanningRequests.prototype.loadPage = function(){

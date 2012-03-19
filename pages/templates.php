@@ -1,6 +1,35 @@
 
 <!-- ID rulez first is "te" shorten from template, next is 2 letter from module name, than 2 letter from page name, than 2 letters from page method -->
 <div id="templates">
+    <script id="te_rq_os_os_s" type="text/x-jquery-tmpl">
+        <div class="title wide">
+            <div>
+                <span>${user_name}</span>
+                ${requested.formatted}
+            </div>
+        </div>
+        <div class="title1 sales wide">
+            <h3>${schedule_name}</h3>
+        </div>
+        <ul class="requests">
+            <li>
+                <span>${shift_start_time} - ${shift_end_time}</span> <span>${shift_start_date.formatted}</span>
+            </li>
+        </ul>
+        {{if reason.length > 0}}
+        <div class="additional">
+            <p>${reason}</p>
+        </div>
+        {{/if}}
+    </script>
+    <script id="te_rq_os_os" type="text/x-jquery-tmpl">
+        <li>
+            <a href="#" rel="${rId}"><img width="43" height="30" src="images/NextMenu.png"></a>
+            <span>${start_date.formatted}</span>
+            ${schedule_name}<br/>
+            ${start_time.time} - ${end_time.time}
+        </li>
+    </script>
     <script id="te_rq_st_im_s" type="text/x-jquery-tmpl">
         <div class="title wide">
             <div>

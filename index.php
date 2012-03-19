@@ -256,8 +256,8 @@ if ($vtoken['data'] != '1') {
                                 </li>
                             </ul>
                         </div>
-                        <div class="subLevel">
-                            <a class="backMenu" href="#">
+                        <div class="subLevel mainSub openShiftsOpen">
+                            <a class="backMenu" href="#" subpage="openShifts">
                                 <img width="41" height="30" src="images/BackMenu.png">
                             </a>
                             <ul class="subMenu">
@@ -269,17 +269,20 @@ if ($vtoken['data'] != '1') {
                         <?php Functions::getInstance()->loadFile('requests_openShifts'); ?>
                         <?php Functions::getInstance()->loadFile('requests_shiftTrades'); ?>
                         <?php Functions::getInstance()->loadFile('requests_shiftApprovals'); ?>
+                        <div class="main openShiftsOpen" id="rq_os_os_s">
+
+                        </div>
                         <div class="main vacationRequestManage" id="rq_va_ma_s">
-                            
+
                         </div>
                         <div class="main shiftTradeManager" id="rq_st_mst_s">
-                            
+
                         </div>
                         <div class="main shiftTradeManagerAP" id="rq_st_ap_s">
-                            
+
                         </div>
                         <div class="main shiftTradeManagerIM" id="rq_st_im_s">
-                            
+
                         </div>
                     </div>
                     <div class="staff" id="staff">
