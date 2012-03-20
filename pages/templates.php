@@ -1,11 +1,23 @@
 
 <!-- ID rulez first is "te" shorten from template, next is 2 letter from module name, than 2 letter from page name, than 2 letters from page method -->
 <div id="templates">
-    <script id="te_rq_os_os_s" type="text/x-jquery-tmpl">
+    <script id="te_rq_sa_in" type="text/x-jquery-tmpl">
+        <li><span class="names">${schedule_name}</span><span class="time">${start_time.time} - ${end_time.time}</span><span class="last"><span class="checkbox" shiftId="${id}"></span></span></li>
+    </script>
+    <script id="te_rq_sa" type="text/x-jquery-tmpl">
+        <div class="title">
+            <h3 class="fl">${shiftDate}</h3>
+        </div>
+        <ul class="timeSheet">
+            {{tmpl(shifts) "#te_rq_sa_in"}}
+        </ul>
+    </script>
+    <script id="te_rq_os_spr_s" type="text/x-jquery-tmpl">
         <div class="title wide">
             <div>
+                <img width="30" height="30" src="${avatar}">
                 <span>${user_name}</span>
-                ${requested.formatted}
+                ${start_date.formatted}
             </div>
         </div>
         <div class="title1 wide">
@@ -13,12 +25,46 @@
         </div>
         <ul class="requests">
             <li>
-                <span>${shift_start_time} - ${shift_end_time}</span> <span>${shift_start_date.formatted}</span>
+                <span>${start_time.time} - ${end_time.time}</span>
             </li>
         </ul>
-        {{if reason.length > 0}}
+        {{if notes.length > 0}}
+        <div class="title1 regular wide">
+            <h3>Title / Notes</h3>
+        </div>
         <div class="additional">
-            <p>${reason}</p>
+            <p>${notes}</p>
+        </div>
+        {{/if}}
+    </script>
+    <script id="te_rq_os_spr" type="text/x-jquery-tmpl">
+        <li>
+            <a href="#" rel="${rId}"><img width="43" height="30" src="images/NextMenu.png"></a>
+            <span>${start_date}</span>
+            ${schedule_name}<br/>
+            ${hours}
+        </li>
+    </script>
+    <script id="te_rq_os_os_s" type="text/x-jquery-tmpl">
+        <div class="title wide">
+            <div>
+                <span>${start_date.formatted}</span>
+            </div>
+        </div>
+        <div class="title1 sales wide">
+            <h3>${schedule_name}</h3>
+        </div>
+        <ul class="requests">
+            <li>
+                <span>${start_time.time} - ${end_time.time}</span>
+            </li>
+        </ul>
+        {{if notes.length > 0}}
+        <div class="title1 regular wide">
+            <h3>Title / Notes</h3>
+        </div>
+        <div class="additional">
+            <p>${notes}</p>
         </div>
         {{/if}}
     </script>
@@ -147,7 +193,7 @@
         <li>
             <a class="fr" href="#" rel="${rId}"><img width="43" height="30" src="images/NextMenu.png"></a>
             <span>
-                <img width="30" height="30" src="${avatar}">
+                <img width="30" height="30" src="${avatar}" />
                 ${user_name}
             </span>
         </li>

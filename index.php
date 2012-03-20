@@ -256,12 +256,29 @@ if ($vtoken['data'] != '1') {
                                 </li>
                             </ul>
                         </div>
-                        <div class="subLevel mainSub openShiftsOpen">
+                        <div class="subLevel mainSub openShiftsOpen" id="rq_os_sub">
                             <a class="backMenu" href="#" subpage="openShifts">
                                 <img width="41" height="30" src="images/BackMenu.png">
                             </a>
                             <ul class="subMenu">
-                                <li class="single"><a class="icoReqWor" href="#">Request to work</a></li>
+                                <li class="single"><a class="icoReqWor" href="#" id="rq_os_rtw">Request to work</a></li>
+                            </ul>
+                        </div>
+                        <div class="subLevel mainSub openShiftsRequest" id="rq_os_spr_sub">
+                            <a class="backMenu" href="#" subpage="openShifts">
+                                <img width="41" height="30" src="images/BackMenu.png">
+                            </a>
+                            <ul class="subMenu">
+                                <li class="first">
+                                    <a href="#" class="accept">
+                                        <span><img width="16" height="16" src="images/request_1.png" /></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="reject">
+                                        <span><img width="16" height="16" src="images/request_2.png" /></span>
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                         <?php Functions::getInstance()->loadFile('requests_overview'); ?>
@@ -270,6 +287,9 @@ if ($vtoken['data'] != '1') {
                         <?php Functions::getInstance()->loadFile('requests_shiftTrades'); ?>
                         <?php Functions::getInstance()->loadFile('requests_shiftApprovals'); ?>
                         <div class="main openShiftsOpen" id="rq_os_os_s">
+
+                        </div>
+                        <div class="main openShiftsRequest" id="rq_os_spr_s">
 
                         </div>
                         <div class="main vacationRequestManage" id="rq_va_ma_s">
