@@ -1,6 +1,17 @@
 
 <!-- ID rulez first is "te" shorten from template, next is 2 letter from module name, than 2 letter from page name, than 2 letters from page method -->
 <div id="templates">
+    <script id="te_rq_sa_in" type="text/x-jquery-tmpl">
+        <li><span class="names">${schedule_name}</span><span class="time">${start_time.time} - ${end_time.time}</span><span class="last"><span class="checkbox" shiftId="${id}"></span></span></li>
+    </script>
+    <script id="te_rq_sa" type="text/x-jquery-tmpl">
+        <div class="title">
+            <h3 class="fl">${shiftDate}</h3>
+        </div>
+        <ul class="timeSheet">
+            {{tmpl(shifts) "#te_rq_sa_in"}}
+        </ul>
+    </script>
     <script id="te_rq_os_spr_s" type="text/x-jquery-tmpl">
         <div class="title wide">
             <div>

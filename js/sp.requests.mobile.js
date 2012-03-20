@@ -569,10 +569,64 @@ ShiftPlanningRequests.prototype.shiftTradesSubEvents = function(){
     }, function(response){
         sp.showError(response.error);
     });
+}
 
+ShiftPlanningRequests.prototype.shiftApprovalsSubEvents = function(){
+    $('#rq_sa_po').html(spView.scheduleFilter());
+    $('#rq_sa_em').html(spView.staffFilter());
+    $('#rq_sa_ho').html(spView.divLoader());
+    this.shiftApproveList();
 }
 
 //functions
+
+ShiftPlanningRequests.prototype.shiftApproveList = function(){
+    var self = this;
+    var data = {
+        mode: 'confirm'
+    }
+    
+    if ($('#rq_sa_po').val() != 0){
+        data.schedule = $('#rq_sa_po').val();
+    }
+    
+    if ($('#rq_sa_em').val() != 0){
+        data.employees = $('#rq_sa_em').val();
+    }
+    
+    spModel.schedule.get('shifts', data, function(response){
+        if (response.data.length > 0){
+            $('#rq_sa_ho').html($.tmpl($('#te_rq_sa'), self.prepareShiftApprovals(response.data)));
+        } else {
+            $('#rq_sa_ho').html('');
+        }
+    }, function(response){
+        sp.showError(response.error);
+    });
+}
+
+ShiftPlanningRequests.prototype.prepareShiftApprovals = function(data){
+    var res = {};
+    $.each(data, function(i, item){
+        var t = item.start_date.formatted + '';
+        console.log(t);
+        if (typeof res[t] == 'undefined'){
+            res[t] = {
+                shiftDate : item.start_date.formatted,
+                shifts : [item]
+            }
+        } else {
+            res[t].shifts.push(item);
+        }
+    });
+    var a = [];
+    
+    $.each(res, function(i, item){
+        a.push(item);
+    });
+    console.log(a);
+    return a;
+}
 
 ShiftPlanningRequests.prototype.addVacationRequest = function(obj){
     var self = this;
