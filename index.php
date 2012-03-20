@@ -43,7 +43,7 @@ if ($vtoken['data'] != '1') {
 
 
         <!-- Specially for mobile devices -->
-        <script src="js/plugins/mobiscroll.js" type="text/javascript"></script>
+        <script src="js/plugins/mobiscroll.min.js" type="text/javascript"></script>
 
 
         <!-- Models -->
@@ -281,6 +281,14 @@ if ($vtoken['data'] != '1') {
                                 </li>
                             </ul>
                         </div>
+                        <div class="subLevel mainSub shiftApprovalsSingle" id="rq_sa_sub">
+                            <a href="#" class="backMenu" subpage="shiftApprovals">
+                                <img width="41" height="30" src="images/BackMenu.png">
+                            </a>
+                            <ul class="subMenu">
+                                <li class="single"><a href="#" class="icoReqWor">Save & Close</a></li>
+                            </ul>
+                        </div>
                         <?php Functions::getInstance()->loadFile('requests_overview'); ?>
                         <?php Functions::getInstance()->loadFile('requests_vacation'); ?>
                         <?php Functions::getInstance()->loadFile('requests_openShifts'); ?>
@@ -303,6 +311,9 @@ if ($vtoken['data'] != '1') {
                         </div>
                         <div class="main shiftTradeManagerIM" id="rq_st_im_s">
 
+                        </div>
+                        <div class="main shiftApprovalsSingle" id="rq_sa_s">
+                            
                         </div>
                     </div>
                     <div class="staff" id="staff">

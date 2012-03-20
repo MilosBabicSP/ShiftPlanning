@@ -130,6 +130,8 @@ ShiftPlanningView.prototype.divLoader = function(){
     return '<div class="loading"></div>';
 }
 
-
+ShiftPlanningView.prototype.emptyResult = function(){
+    return '<div class="additional">Na data for selected criteria!</div>'
+}
 
 var spView = new ShiftPlanningView();

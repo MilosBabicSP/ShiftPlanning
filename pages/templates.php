@@ -1,6 +1,30 @@
 
 <!-- ID rulez first is "te" shorten from template, next is 2 letter from module name, than 2 letter from page name, than 2 letters from page method -->
 <div id="templates">
+    <script id="te_rq_sa_s_in" type="text/x-jquery-tmpl">
+        <li shiftId="{{if typeof shift.id != 'undefined'}}${shift.id}{{else}}${shift.shift}{{/if}}" userId="${id}">
+            <span class="quarter">${name}</span>
+            <span class="quarter even">
+                <span class="input">
+                    <input type="text" value="${shift.start_time.time}" class="shiftStartInput" />
+                </span>
+            </span>
+            <span class="quarter odd">
+                <span class="input">
+                    <input type="text" value="${shift.end_time.time}" class="shiftEndInput" />
+                </span>
+            </span>
+            <span class="quarter"><span class="checkbox {{if shift.absent == 0}}check{{/if}}"></span></span>
+        </li>
+    </script>
+    <script id="te_rq_sa_s" type="text/x-jquery-tmpl">
+        <ul class="timeSheet">
+            <li><span class="date"><b>Shift:</b></span><span class="time">${start_time.time} - ${end_time.time}</span><span class="last">Worked?</span></li> 
+            {{if employees != null}}
+            {{tmpl(employees) "#te_rq_sa_s_in"}}
+            {{/if}}
+        </ul>
+    </script>
     <script id="te_rq_sa_in" type="text/x-jquery-tmpl">
         <li><span class="names">${schedule_name}</span><span class="time">${start_time.time} - ${end_time.time}</span><span class="last"><span class="checkbox" shiftId="${id}"></span></span></li>
     </script>
@@ -25,7 +49,7 @@
         </div>
         <ul class="requests">
             <li>
-                <span>${start_time.time} - ${end_time.time}</span>
+                <span>${full.start_time.time} - ${full.end_time.time}</span>
             </li>
         </ul>
         {{if notes.length > 0}}

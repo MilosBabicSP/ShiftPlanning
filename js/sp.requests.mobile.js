@@ -4,8 +4,8 @@ ShiftPlanningRequests.prototype.initialize = function(){
         self.overviewEvents();
         self.vacationEvents();
         self.openShiftsEvents();
-        //        self.shiftApprovalsEvents();
         self.shiftTradesEvents();
+        self.shiftApprovalsEvents();
     });
 }
 
@@ -48,9 +48,13 @@ ShiftPlanningRequests.prototype.loadSubPageEvents = function(subpage){
             $('.subNavigation').hide();
             this.displayOpenShifts();
             break;
-        case 'openShiftsRequests':
+        case 'openShiftsRequest':
             $('.subNavigation').hide();
             this.displayOpenRequests();
+            break;
+        case 'shiftApprovalsSingle':
+            $('.subNavigation').hide();
+            this.shiftApprovalsSingle();
             break;
     }
 }
@@ -150,6 +154,28 @@ ShiftPlanningRequests.prototype.openShiftsEvents = function(){
             remove : sp.staff.admin.info.id
         }, function(response){
             obj.removeClass('loading').removeClass('icoReqCan').removeClass('icoReqWork').html('Request Removed');
+        });
+    });
+    
+    $('#rq_os_spr_sub a').bind(clickEvent, function(e){
+        e.preventDefault();
+        var obj = $(this);
+        obj.addClass('loading');
+        var data = {
+            id : $(this).attr('rel'),
+            type : 'openshifts'
+        }
+        
+        if ($(this).hasClass('approve')){
+            data.mode = 'approve';
+        } else {
+            data.mode = 'reject';
+        }
+        spModel.schedule.update('requests', data, function(response){
+            obj.removeClass('loading');
+            $('.subNavigation .requests li a[subpage=openShifts]').trigger(clickEvent);
+        }, function(response){
+            obj.removeClass('loading');
         });
     });
 }
@@ -277,6 +303,71 @@ ShiftPlanningRequests.prototype.shiftTradesEvents = function(){
             obj.removeClass('loading');
             $('.subNavigation .requests li a[subpage=shiftTrades]').trigger(clickEvent);
         });
+    });
+}
+
+ShiftPlanningRequests.prototype.shiftApprovalsEvents = function(){
+    var self = this;
+    $('#rq_sa select').bind('change', function(){
+        self.shiftApproveList();
+    });
+    
+    $('#rq_sa_ho').delegate('.checkbox', clickEvent, function(){
+        var obj = $(this);
+        if (!obj.hasClass('check')){
+            var id = obj.attr('shiftId');
+            spModel.schedule.update('shiftapprove', {
+                id: id
+            }, function(){
+                obj.addClass('check');
+            }, function(response){
+                sp.showError(response.error);
+            });
+        }
+    });
+    
+    $('#rq_sa_ho').delegate('span.names, span.time', clickEvent, function(){
+        var main = $(this).parent();
+        main.addClass('loading');
+        var id = main.find('.checkbox').attr('shiftId');
+        var check = main.find('.checkbox').hasClass('check');
+        if (check){
+            spModel.schedule.get('shiftapprove', {
+                id : id
+            }, function(response){
+                var shift = self.getShift(id);
+                if (shift.employees != null){
+                    $.each(response.data, function(i, item){
+                        $.each(shift.employees, function(i2, item2){
+                            if (item2.id == item.employee){
+                                shift.employees[i2].shift = item
+                            }
+                        });
+                    });
+                }
+                self.current = self.fixShiftsApproval(shift);
+                sp.loadSubPage('', 'requests', 'shiftApprovalsSingle');
+            }, function(response){
+                main.removeClass('loading');
+                sp.showError(response.data);
+            });
+        } else {
+            spModel.schedule.update('shiftapprove', {
+                id : id
+            }, function(response){
+                main.find('.checkbox').addClass('check');
+                self.addShift(id, response.data);
+                self.current = self.fixShiftsApproval(response.data);
+                sp.loadSubPage('', 'requests', 'shiftApprovalsSingle');
+            }, function(response){
+                main.removeClass('loading');
+                sp.showError(response.data);
+            });
+        }
+    });
+    
+    $('#rq_sa_s').delegate('.checkbox', clickEvent, function(){
+        $(this).toggleClass('check');
     });
 }
 
@@ -468,7 +559,6 @@ ShiftPlanningRequests.prototype.openShiftsSubEvents = function(){
                 $('#rq_os_spr').show();
                 $('#rq_os_spr').next().hide();
                 response.data = self.prepareOpenShiftsNA(response.data);
-                console.log(response.data);
                 var d = [];
                 $.each(response.data, function(i, item){
                     d[i] = item;
@@ -581,6 +671,8 @@ ShiftPlanningRequests.prototype.shiftApprovalsSubEvents = function(){
 //functions
 
 ShiftPlanningRequests.prototype.shiftApproveList = function(){
+    this.shifts = [];
+    $('#rq_sa_ho').html(spView.divLoader());
     var self = this;
     var data = {
         mode: 'confirm'
@@ -598,7 +690,7 @@ ShiftPlanningRequests.prototype.shiftApproveList = function(){
         if (response.data.length > 0){
             $('#rq_sa_ho').html($.tmpl($('#te_rq_sa'), self.prepareShiftApprovals(response.data)));
         } else {
-            $('#rq_sa_ho').html('');
+            $('#rq_sa_ho').html(spView.emptyResult());
         }
     }, function(response){
         sp.showError(response.error);
@@ -609,7 +701,6 @@ ShiftPlanningRequests.prototype.prepareShiftApprovals = function(data){
     var res = {};
     $.each(data, function(i, item){
         var t = item.start_date.formatted + '';
-        console.log(t);
         if (typeof res[t] == 'undefined'){
             res[t] = {
                 shiftDate : item.start_date.formatted,
@@ -624,7 +715,7 @@ ShiftPlanningRequests.prototype.prepareShiftApprovals = function(data){
     $.each(res, function(i, item){
         a.push(item);
     });
-    console.log(a);
+    
     return a;
 }
 
@@ -657,10 +748,12 @@ ShiftPlanningRequests.prototype.addVacationRequest = function(obj){
 
 ShiftPlanningRequests.prototype.displayVacationRequest = function(){
     $('#rq_va_ma_s').html($.tmpl($('#te_rq_va_ma_s'), this.current));
+    
+    
 }
 
 ShiftPlanningRequests.prototype.displayShiftTradeManager = function(){
-    console.log(this.current);
+    
     $('#rq_st_mst_s').html($.tmpl($('#te_rq_st_mst_s'), this.prepareSingleViewTrade(this.current)));
     
     $('#rq_st_mts_sub ul a').attr('rel', this.current.id);
@@ -675,14 +768,14 @@ ShiftPlanningRequests.prototype.displayShiftTradeManager = function(){
 }
 
 ShiftPlanningRequests.prototype.displayShiftTradeManagerIM = function(){
-    console.log(this.current);
+    
     $('#rq_st_im_s').html($.tmpl($('#te_rq_st_im_s'), this.current));
     
     $('#rq_st_im_sm a').attr('rel', this.current.id);
 }
 
 ShiftPlanningRequests.prototype.displayShiftTradeManagerAP = function(){
-    console.log(this.current);
+    
     $('#rq_st_ap_s').html($.tmpl($('#te_rq_st_ap_s'), this.current));
     
     $('#rq_st_ap_sub ul a').attr('rel', this.current.trade_id);
@@ -695,8 +788,6 @@ ShiftPlanningRequests.prototype.displayShiftTradeManagerAP = function(){
 }
 
 ShiftPlanningRequests.prototype.displayOpenShifts = function(){
-    console.log(this.current);
-    
     $('#rq_os_rtw').removeClass('icoReqCan').addClass('icoReqWork').html('Request to work');
     
     $('#rq_os_os_s').html($.tmpl($('#te_rq_os_os_s'), this.current));
@@ -719,7 +810,30 @@ ShiftPlanningRequests.prototype.displayOpenShifts = function(){
 }
 
 ShiftPlanningRequests.prototype.displayOpenRequests = function(){
+    console.log(this.current);
+    $('#rq_os_spr_s').html($.tmpl($('#te_rq_os_spr_s'), this.current));
     
+    $('#rq_os_spr_sub a').attr('rel',this.current.full.request_id);
+}
+
+ShiftPlanningRequests.prototype.shiftApprovalsSingle = function(){
+    console.log(this.current);
+    $('#rq_sa_s').html($.tmpl($('#te_rq_sa_s'), this.current));
+    $('#rq_sa_s .shiftStartInput').scroller('destroy');
+    $('#rq_sa_s .shiftEndInput').scroller('destroy');
+    
+    $('#rq_sa_s .shiftStartInput').scroller({
+        preset : 'time',
+        ampm: (cal.tmode==24?false:true),
+        stepMinute: 15,
+        timeFormat: sp.strReplace(['tt','mm'],['A','ii'],cal.tstring)
+    });
+    $('#rq_sa_s .shiftEndInput').scroller({
+        preset : 'time',
+        ampm: (cal.tmode==24?false:true),
+        stepMinute: 15,
+        timeFormat: sp.strReplace(['tt','mm'],['A','ii'],cal.tstring)
+    });
 }
 
 ShiftPlanningRequests.prototype.approveVacationRequest = function(obj){
@@ -793,7 +907,54 @@ ShiftPlanningRequests.prototype.prepareOpenShiftsNA = function(data){
     return p;
 }
 
+ShiftPlanningRequests.prototype.saveShiftApproveFromModal = function(uId){
+    var self = this;
+    var data = [];
+    $.each($('#shiftApproveModalSection table tbody tr'), function(){
+        var t = {
+            employee: $(this).attr('userId'),
+            id : $(this).attr('shiftId'),
+            start_time : $(this).find('.shiftStartInput').val(),
+            end_time : $(this).find('.shiftEndInput').val()
+        }
+        if (!$(this).find('.checkbox').hasClass('checked')){
+            t.absent = 1
+        }
+        var tmp = ['schedule.shiftapprove', 'update', t];
+        data.push(tmp);
+    });
+    
+    sp.modal.close();
+    sp.multiApi(data, function(response){
+        $.each(response, function(i, item){
+            self.addShift(item.data.id, item.data);
+        });
+    });
+}
 
+ShiftPlanningRequests.prototype.addShift = function(id, data, field){
+    if (typeof field != 'undefined'){
+        this.shifts[parseInt(id) + ''][field] = data;
+    } else {
+        this.shifts[parseInt(id) + ''] = data;
+    }
+}
+
+ShiftPlanningRequests.prototype.getShift = function(id){
+    return this.shifts[id];
+}
+
+ShiftPlanningRequests.prototype.fixShiftsApproval = function(data){
+    if (data.employees != null){
+        $.each(data.employees, function(i, item){
+            if (typeof data.employees[i].shift == 'undefined'){
+                data.employees[i].shift = data;
+                data.employees[i].shift.absent = 0;
+            }
+        });
+    }
+    return data;
+}
 
 ShiftPlanningRequests.prototype.loadPage = function(){
     
