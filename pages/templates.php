@@ -8,7 +8,7 @@
                 ${requested.formatted}
             </div>
         </div>
-        <div class="title1 sales wide">
+        <div class="title1 wide">
             <h3>${schedule_name}</h3>
         </div>
         <ul class="requests">
@@ -24,7 +24,7 @@
     </script>
     <script id="te_rq_os_os" type="text/x-jquery-tmpl">
         <li>
-            <a href="#" rel="${rId}"><img width="43" height="30" src="images/NextMenu.png"></a>
+            <a href="#" rel="${rId}"><img width="43" height="30" src="images/NextMideenu.png"></a>
             <span>${start_date.formatted}</span>
             ${schedule_name}<br/>
             ${start_time.time} - ${end_time.time}
@@ -80,14 +80,14 @@
         {{/if}}
     </script>
     <script id="te_rq_st_mst_s" type="text/x-jquery-tmpl">
-        <div class="title wide">
+        <div class="title wide mar">
             <div>
                 <img width="30" height="30" src="${avatar}">
                 <span>${user_name}</span>
                 ${requested.formatted}
             </div>
         </div>
-        <div class="title1 sales wide">
+        <div class="title1 sales wide mar">
             <h3>${schedule_name}</h3>
         </div>
         <ul class="requests">
@@ -95,10 +95,10 @@
                 <span>${shift_start_time} - ${shift_end_time}</span> <span>${shift_start_date.formatted}</span>
             </li>
         </ul>
-        <div class="additional">
+        <div class="additional wide">
             <p>${reason}</p>
         </div>
-        <div class="title1 regular wide">
+        <div class="title1 regular wide mar">
             <h3>Potentional Acceptors</h3>
         </div>
         <div class="traders {{if confirm_before == 1}}confirmBefore{{/if}}">
