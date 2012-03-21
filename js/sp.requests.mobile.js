@@ -318,8 +318,9 @@ ShiftPlanningRequests.prototype.shiftApprovalsEvents = function(){
             var id = obj.attr('shiftId');
             spModel.schedule.update('shiftapprove', {
                 id: id
-            }, function(){
+            }, function(response){
                 obj.addClass('check');
+                self.addShift(id, response.data);
             }, function(response){
                 sp.showError(response.error);
             });
@@ -369,6 +370,11 @@ ShiftPlanningRequests.prototype.shiftApprovalsEvents = function(){
     $('#rq_sa_s').delegate('.checkbox', clickEvent, function(){
         $(this).toggleClass('check');
     });
+    
+    $('#rq_sa_sub .icoReqWor').bind(clickEvent, function(e){
+        e.preventDefault();
+        self.saveShiftApprove();
+    })
 }
 
 //sub events
@@ -810,14 +816,12 @@ ShiftPlanningRequests.prototype.displayOpenShifts = function(){
 }
 
 ShiftPlanningRequests.prototype.displayOpenRequests = function(){
-    console.log(this.current);
     $('#rq_os_spr_s').html($.tmpl($('#te_rq_os_spr_s'), this.current));
     
     $('#rq_os_spr_sub a').attr('rel',this.current.full.request_id);
 }
 
 ShiftPlanningRequests.prototype.shiftApprovalsSingle = function(){
-    console.log(this.current);
     $('#rq_sa_s').html($.tmpl($('#te_rq_sa_s'), this.current));
     $('#rq_sa_s .shiftStartInput').scroller('destroy');
     $('#rq_sa_s .shiftEndInput').scroller('destroy');
@@ -865,7 +869,7 @@ ShiftPlanningRequests.prototype.cancelVacationRequest = function(id){
     });
 }
 
-ShiftPlanningRequests.prototype.prepareSingleViewTrade = function(data){
+ShiftPlanningRequests.prototype.prepareSingleViewTrade = function (data){
     if (data.traders.count == 0){
         data.traders.data = [];
     }
@@ -907,28 +911,25 @@ ShiftPlanningRequests.prototype.prepareOpenShiftsNA = function(data){
     return p;
 }
 
-ShiftPlanningRequests.prototype.saveShiftApproveFromModal = function(uId){
+ShiftPlanningRequests.prototype.saveShiftApprove = function(){
     var self = this;
     var data = [];
-    $.each($('#shiftApproveModalSection table tbody tr'), function(){
+    $.each($('#rq_sa_s .save'), function(){
         var t = {
             employee: $(this).attr('userId'),
             id : $(this).attr('shiftId'),
             start_time : $(this).find('.shiftStartInput').val(),
             end_time : $(this).find('.shiftEndInput').val()
         }
-        if (!$(this).find('.checkbox').hasClass('checked')){
+        if (!$(this).find('.checkbox').hasClass('check')){
             t.absent = 1
         }
         var tmp = ['schedule.shiftapprove', 'update', t];
         data.push(tmp);
     });
     
-    sp.modal.close();
     sp.multiApi(data, function(response){
-        $.each(response, function(i, item){
-            self.addShift(item.data.id, item.data);
-        });
+        $('.subNavigation .requests li a[subpage=shiftApprovals]').trigger(clickEvent);
     });
 }
 

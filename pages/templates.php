@@ -2,7 +2,7 @@
 <!-- ID rulez first is "te" shorten from template, next is 2 letter from module name, than 2 letter from page name, than 2 letters from page method -->
 <div id="templates">
     <script id="te_rq_sa_s_in" type="text/x-jquery-tmpl">
-        <li shiftId="{{if typeof shift.id != 'undefined'}}${shift.id}{{else}}${shift.shift}{{/if}}" userId="${id}">
+        <li shiftId="{{if typeof shift.id != 'undefined'}}${shift.id}{{else}}${shift.shift}{{/if}}" userId="${id}" class="save">
             <span class="quarter">${name}</span>
             <span class="quarter even">
                 <span class="input">
