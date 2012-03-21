@@ -483,3 +483,14 @@ function now(timestamp){
         return new Date();
     }
 }
+
+function formatted(type){
+    var res = '';
+    switch (type){
+        case 'today':
+            var s = Date.parse('today');
+            res = s.toString('dddd, ' + cal.dformat);
+            break;
+    }
+    return res;
+}

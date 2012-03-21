@@ -82,6 +82,7 @@ if ($vtoken['data'] != '1') {
         <script src="js/sp.timeclock.mobile.js" type="text/javascript"></script>
         <script src="js/sp.reports.mobile.js" type="text/javascript"></script>
         <script src="js/sp.requests.mobile.js" type="text/javascript"></script>
+        <script src="js/sp.schedule.mobile.js" type="text/javascript"></script>
 
 
         <!-- Loader -->
@@ -178,7 +179,81 @@ if ($vtoken['data'] != '1') {
                         <?php Functions::getInstance()->loadFile('timeClock_manageTimeSheets'); ?>
                     </div>
                     <div class="schedule" id="schedule">
+                        <div class="myHiddenStash">
+                            <input type="hidden" id="sc_start_day" />
+                            <input type="hidden" id="sc_end_day" />
+                            <input type="hidden" id="sc_mode" />
+                            <input type="hidden" id="sc_schedule" />
+                        </div>
+                        <div class="search today day month mainSub" style="display: block;">
+                            <span class="input">
+                                <select id="sc_fl"></select>
+                            </span>
+                        </div>
+                        <div class="search mainSub month">
+                            <div class="fl ver">
+                                <span>January 2012</span>
+                            </div>
+                            <ul class="subMenu">
+                                <li class="first">
+                                    <a href="#">
+                                        <img width="16" height="16" src="images/sch_pre.png" />
+                                    </a>
+                                </li>
+                                <li class="last">
+                                    <a href="#">
+                                        <img width="16" height="16" src="images/sch_nex.png" />
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <table class="calendar mainSub month" cellpadding="0" cellspacing="0" width="100%">
+                            <thead>
+                                <tr>
+                                    <th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="notM">25</td><td>26</td><td>27</td><td>28</td><td>29</td><td>30</td><td>31</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td><td class="today">2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="search mainSub today day">
+                            <div class="fl">
+                                <span>Today</span>
+                                <time id="sc_to_sub">Monday, January 09, 2012</time>
+                            </div>
+                            <ul class="subMenu">
+                                <li class="first">
+                                    <a href="#">
+                                        <img width="16" height="16" src="images/sch_pre.png">
+                                    </a>
+                                </li>
+                                <li class="last">
+                                    <a href="#">
+                                        <img width="16" height="16" src="images/sch_nex.png">
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                         <?php Functions::getInstance()->loadFile('schedule_today'); ?>
+                        <?php Functions::getInstance()->loadFile('schedule_day'); ?>
                     </div>
                     <div class="requests" id="requests">
                         <div class="subLevel mainSub vacationRequestManage">
@@ -313,7 +388,7 @@ if ($vtoken['data'] != '1') {
 
                         </div>
                         <div class="main shiftApprovalsSingle" id="rq_sa_s">
-                            
+
                         </div>
                     </div>
                     <div class="staff" id="staff">

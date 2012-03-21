@@ -10,12 +10,12 @@
                 </a>
             </li>
             <li>
-                <a href="#" subpage="today">
-                    <span>Week</span>
+                <a href="#" subpage="day">
+                    <span>Day</span>
                 </a>
             </li>
             <li class="last active">
-                <a href="#" subpage="today">
+                <a href="#" subpage="month">
                     <span>Month</span>
                 </a>
             </li>

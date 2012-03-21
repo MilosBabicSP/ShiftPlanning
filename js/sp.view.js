@@ -64,6 +64,21 @@ ShiftPlanningView.prototype.scheduleFilter = function(id){
     return opt;
 }
 
+ShiftPlanningView.prototype.schedulerFilter = function(id){
+    var data;
+    if (typeof id == 'undefined' || id == 0){
+        data = spModel.schedule.allSchedules();
+    } else {
+        data = spModel.schedule.schedulesByUser(id);
+    }
+    var opt = '';
+    $.each(data, function(i, item){
+        opt += '<option value="' + i + '">' + ((typeof item == 'object') ? item.name : item) + '</option>';
+    });
+    
+    return opt;
+}
+
 ShiftPlanningView.prototype.skillsFilter = function(notAdmin){
     if (typeof notAdmin == 'undefined'){
         notAdmin = false;

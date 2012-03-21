@@ -1,6 +1,12 @@
 
 <!-- ID rulez first is "te" shorten from template, next is 2 letter from module name, than 2 letter from page name, than 2 letters from page method -->
 <div id="templates">
+    <script id="te_sc_shifts" type="text/x-jquery-tmpl">
+        <tr>
+            <td class="dTime" style="background-color: #${sp.schedule.getColorsBySchedule(schedule)[1]}">${start_time.time}</td>
+            <td class="dTitle">${schedule_name}</td>
+        </tr>
+    </script>
     <script id="te_rq_sa_s_in" type="text/x-jquery-tmpl">
         <li shiftId="{{if typeof shift.id != 'undefined'}}${shift.id}{{else}}${shift.shift}{{/if}}" userId="${id}" class="save">
             <span class="quarter">${name}</span>
@@ -19,7 +25,7 @@
     </script>
     <script id="te_rq_sa_s" type="text/x-jquery-tmpl">
         <ul class="timeSheet">
-            <li><span class="date"><b>Shift:</b></span><span class="time">${start_time.time} - ${end_time.time}</span><span class="last">Worked?</span></li> 
+            <li><span class="date"><b>Shift:</b></span><span class="time">${start_time.time} - ${end_time.time}</span><span class="last">Worked?</span></li>
             {{if employees != null}}
             {{tmpl(employees) "#te_rq_sa_s_in"}}
             {{/if}}

@@ -283,3 +283,5 @@ table.day td.dTitle {text-align:left; line-height:15px; padding:0 10px;}
 #st_li {padding:0px;}
 #requests .avaitingST {display:none;}
 #requests .confirmBefore .avaitingST {display:inline;}
+#schedule .main.today {padding: 0 0 20px;}
+#schedule span.input {margin:0px;}

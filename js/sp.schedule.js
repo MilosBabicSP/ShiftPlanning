@@ -4,6 +4,11 @@ function ShiftPlanningSchedule(){
     this.data = {};
     this.prepared = {};
     this.loaded = false;
+    this.settings = {
+        mode : 'employee',
+        start_date : 'today',
+        end_date : 'today'
+    };
     return true;
 }
 
