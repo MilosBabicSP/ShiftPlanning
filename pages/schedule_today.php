@@ -106,7 +106,7 @@
             </li>
         </ul>
     </div>
-    <div class="title1 sales wide">
+    <div class="title1 wide">
         <h3>Sales</h3>
     </div>
     <div class="title wide">

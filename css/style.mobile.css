@@ -87,6 +87,7 @@ html {overflow-x:hidden;}
 .noResults {padding:10px; margin:10px; border:solid 1px #B1CAE4; color:#B1CAE4; font-size:14px; display:block;}
 .notif {line-height:20px; font-size:14px; color:#888; padding:15px 0;}
 .additional {font-size:13px; color:#888; padding:5px 0; border-bottom:solid 1px #DBDBDB;}
+.additional.wide {padding:5px 20px; margin:0 -20px;}
 .additional p {padding:5px 0;}
 .centered {text-align:center;}
 
@@ -96,7 +97,6 @@ html {overflow-x:hidden;}
 .title1.wide {padding:5px 20px;}
 .title1.mar, .title.mar {margin:0 -20px;}
 .title1.regular {background-color:#F5F5F5;}
-.title1.sales {background-color:#e7e2f4;}
 
 .title {overflow:hidden; padding:15px 0; line-height:30px; border-bottom:solid 1px #DBDBDB; position:relative;}
 .title.wide {padding:15px 20px;}
