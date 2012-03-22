@@ -111,5 +111,5 @@
             <span><b>Cost:</b> <span></span></span>
         </li>
     </ul>
-    <div class="noResults hidden">No data to display for selected filters.</div>
+    <div class="notif hidden">No data to display for selected filters.</div>
 </div>
