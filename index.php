@@ -101,6 +101,7 @@ if ($vtoken['data'] != '1') {
             sp.staff.raw.locations = <?= _iapi(array('module' => 'location.locations', 'method' => 'GET'), 'json', true) ?>;
             sp.staff.data.locations = sp.map(sp.staff.raw.locations);
             sp.raw.config = <?= _iapi(array('module' => 'api.config', 'method' => 'GET'), 'json', true) ?>;
+            sp.schedule.dateId = sp.raw.config.today.id;
             sp.staff.admin.info.dfAvatar = (typeof sp.staff.admin.info.avatar != 'undefined' && typeof sp.staff.admin.info.avatar.small != 'undefined') ? sp.staff.admin.info.avatar.small : 'images/no-avatar.png';
 <? } ?>
     }
@@ -192,16 +193,16 @@ if ($vtoken['data'] != '1') {
                         </div>
                         <div class="search mainSub month">
                             <div class="fl ver">
-                                <span>January 2012</span>
+                                <span id="sc_mo_di">January 2012</span>
                             </div>
                             <ul class="subMenu">
                                 <li class="first">
-                                    <a href="#">
+                                    <a href="#" id="sc_prev_month">
                                         <img width="16" height="16" src="images/sch_pre.png" />
                                     </a>
                                 </li>
                                 <li class="last">
-                                    <a href="#">
+                                    <a href="#" id="sc_next_month">
                                         <img width="16" height="16" src="images/sch_nex.png" />
                                     </a>
                                 </li>
@@ -209,45 +210,44 @@ if ($vtoken['data'] != '1') {
                         </div>
                         <table class="calendar mainSub month" cellpadding="0" cellspacing="0" width="100%">
                             <thead>
-                                <tr>
+                                <tr id="sc_ca_he">
                                     <th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="notM">25</td><td>26</td><td>27</td><td>28</td><td>29</td><td>30</td><td>31</td>
-                                </tr>
-                                <tr>
-                                    <td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td>
-                                </tr>
-                                <tr>
-                                    <td>1</td><td class="today">2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td>
-                                </tr>
-                                <tr>
-                                    <td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td>
-                                </tr>
-                                <tr>
-                                    <td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td>
-                                </tr>
-                                <tr>
-                                    <td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td>
-                                </tr>
+                            <tbody id="sc_ca_bo">
                             </tbody>
                         </table>
-                        <div class="search mainSub today day">
+                        <div class="search mainSub today day" id="sc_days_m">
                             <div class="fl">
                                 <span>Today</span>
                                 <time id="sc_to_sub">Monday, January 09, 2012</time>
                             </div>
                             <ul class="subMenu">
                                 <li class="first">
-                                    <a href="#">
+                                    <a href="#" id="sc_prev_day">
                                         <img width="16" height="16" src="images/sch_pre.png">
                                     </a>
                                 </li>
                                 <li class="last">
-                                    <a href="#">
+                                    <a href="#" id="sc_next_day">
                                         <img width="16" height="16" src="images/sch_nex.png">
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="subLevel mainSub shiftDisplay">
+                            <a href="#" class="backMenu">
+                                <img width="41" height="30" src="images/BackMenu.png">
+                            </a>
+                            <ul class="subMenu">
+                                <li class="first">
+                                    <a href="#">
+                                        <img width="16" height="16" src="images/tc_edit.png">
+                                    </a>
+                                </li>
+                                <li class="last">
+                                    <a href="#">
+                                        <img width="16" height="16" src="images/tc_delete.png">
                                     </a>
                                 </li>
                             </ul>

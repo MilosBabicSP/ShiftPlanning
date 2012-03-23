@@ -1,4 +1,4 @@
-<div class="main today" id="sc_td">
+<div class="main today day month" id="sc_td">
     <table class="day" cellpadding="0" cellspacing="0" width="100%">
         <tbody id="sc_td_list">
 
