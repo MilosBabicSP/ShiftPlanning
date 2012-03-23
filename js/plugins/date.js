@@ -486,11 +486,15 @@ function now(timestamp){
 
 function formatted(type){
     var res = '';
+    var s;
     switch (type){
         case 'today':
-            var s = Date.parse('today');
+            s = Date.parse('today');
             res = s.toString('dddd, ' + cal.dformat);
             break;
+       default:
+           console.log(type);
+           res = type.toString('dddd, ' + cal.dformat);
     }
     return res;
 }

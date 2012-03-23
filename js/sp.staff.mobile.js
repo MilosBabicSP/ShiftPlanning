@@ -238,6 +238,7 @@ ShiftPlanningStaff.prototype.login = function(){
                     sp.staff.data.locations = sp.map(response[4].data);
                     sp.staff.admin.info.dfAvatar = (typeof sp.staff.admin.info.avatar != 'undefined' && typeof sp.staff.admin.info.avatar.small != 'undefined') ?sp.staff.admin.info.avatar.small : 'images/no-avatar.png',
                     sp.raw.config = config.data;
+                    sp.schedule.dateId = sp.raw.config.today.id;
                     $('body').removeClass('login');
                     $('.notification').remove();
                     $('html').css('height','auto');
