@@ -100,7 +100,7 @@
     </script>
     <script id="te_rq_os_os" type="text/x-jquery-tmpl">
         <li>
-            <a href="#" rel="${rId}"><img width="43" height="30" src="images/NextMideenu.png"></a>
+            <a href="#" rel="${rId}"><img width="43" height="30" src="images/NextMenu.png"></a>
             <span>${start_date.formatted}</span>
             ${schedule_name}<br/>
             ${start_time.time} - ${end_time.time}
@@ -470,9 +470,11 @@
     </script>
     <script id="te_re_confirmedHours_1" type="text/x-jquery-tmpl">
         <div class="title">
-            <img width="30" height="30" src="${avatar}">
-            <span>${employee}</span>
-            ${start_date.formatted} - ${end_date.formatted}
+            <div>
+                <img width="30" height="30" src="${avatar}">
+                <span>${employee}</span>
+                ${start_date.formatted} - ${end_date.formatted}
+            </div>
         </div>
         <ul class="multiInput">
             <li class="even">
@@ -521,9 +523,11 @@
     </script>
     <script id="te_re_scheduledHours_0" type="text/x-jquery-tmpl">
         <div class="title">
-            <img width="30" height="30" src="${avatar}">
-            <span>${employee}</span>
-            ${date.formatted}
+            <div>
+                <img width="30" height="30" src="${avatar}">
+                <span>${employee}</span>
+                ${date.formatted}
+            </div>
         </div>
         <ul class="multiInput">
             <li class="even">
@@ -602,9 +606,11 @@
     </script>
     <script id="te_re_scheduledHours_1" type="text/x-jquery-tmpl">
         <div class="title">
-            <img width="30" height="30" src="${avatar}">
-            <span>${employee}</span>
-            ${start_date.formatted} - ${end_date.formatted}
+            <div>
+                <img width="30" height="30" src="${avatar}">
+                <span>${employee}</span>
+                ${start_date.formatted} - ${end_date.formatted}
+            </div>
         </div>
         <ul class="multiInput">
             <li class="even">

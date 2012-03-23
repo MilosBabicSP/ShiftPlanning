@@ -32,7 +32,7 @@ h5 {font-size:14px; font-weight:normal; color:#333;}
 .msgDel, .msgRpl, .cmtCount span.tip, ul.cmts, ul.cmts li.last input[type=submit], .search input[type=submit] {background-image:url(../images/icos.png); background-repeat:no-repeat;}
 .cmtCount span.ico {background-image:url(../images/sprite.png); background-repeat:no-repeat;}
 .from, .until, span.checkbox, .dash, .ticl, .sche, .requ, .staf, .repo, .icoClock, .icoEmpDet, .icoAdmAct, .icoEmpPos, .icoEmpSki, .icoEmpAdd, .icoNot, .icoAct, .icoSta, .icoReqWor, .icoReqCan, .icoLoc, .icoSch {background-image:url(../images/mainNav_bg.png); background-repeat:no-repeat;}
-.calendar td.today, .calendar th {background-image: url(../images/callendar_bg.png); background-repeat:repeat-x;}
+.calendar td.today, .calendar th, .calendar td.hasAny {background-image: url(../images/callendar_bg.png); background-repeat:repeat-x;}
 
 .dash {background-position:10px 0;}
 .ticl {background-position:10px -50px;}
@@ -87,7 +87,8 @@ html {overflow-x:hidden;}
 .noResults {padding:10px; margin:10px; border:solid 1px #B1CAE4; color:#B1CAE4; font-size:14px; display:block;}
 .notif {line-height:20px; font-size:14px; color:#888; padding:15px 0;}
 .additional {font-size:13px; color:#888; padding:5px 0; border-bottom:solid 1px #DBDBDB;}
-.additional.wide {padding:5px 20px; margin:0 -20px;}
+.additional.wide {padding:5px 20px;}
+.additional.mar {margin:0 -20px;}
 .additional p {padding:5px 0;}
 .centered {text-align:center;}
 
@@ -258,11 +259,12 @@ ul.requests li a {position:absolute; top:50%; right:0; margin:-15px 0 0;}
 .login .footerTxt a {color: #920000; line-height:20px;}
 
 table.calendar {font-size:14px; font-weight:bold; background-color:#F7F7F7;}
-table.calendar th {line-height:30px; text-align:center; border-bottom:solid 1px #DBDBDB; background-color:#E8E8E8; width:14%; background-position:0 -96px;}
+table.calendar th {line-height:30px; text-align:center; border-bottom:solid 1px #DBDBDB; background-color:#E8E8E8; width:14%; background-position:0 -147px;}
 table.calendar td {line-height:40px; text-align:center; border:solid 1px #DBDBDB;  border-right:none; border-top:none;}
 table.calendar td:first-child {border-left:none;}
 table.calendar td.notM {color:#999;}
 table.calendar td.today {color:#AD2828; background-color:#FFF; background-position:0 -20px;}
+table.calendar td.hasAny {background-position:0 -101px;}
 
 table.day {font-size:14px; font-weight:bold;}
 table.day td {border:solid 1px #DBDBDB;  border-right:none; border-top:none;}
