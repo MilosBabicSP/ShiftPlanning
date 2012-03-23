@@ -1,6 +1,14 @@
 
 <!-- ID rulez first is "te" shorten from template, next is 2 letter from module name, than 2 letter from page name, than 2 letters from page method -->
 <div id="templates">
+    <script id="te_sc_shifts_months" type="text/x-jquery-tmpl">
+        <tr>
+            <td colspan="2" class="dTime" >${dateToday}</td>
+        </tr>
+        {{if typeof shifts != 'undefined'}}
+            {{tmpl(shifts) "#te_sc_shifts"}}
+        {{/if}}
+    </script>
     <script id="te_sc_shift_display_u" type="text/x-jquery-tmpl">
         <li>
             <img src="${avatar}" />

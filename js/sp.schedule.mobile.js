@@ -33,6 +33,14 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
     
     $('#sc_prev_month').bind(clickEvent, function(e){
         e.preventDefault();
+        $('#sc_mo_di').html(Date.parse($.trim($('#sc_mo_di').html())).addMonths(-1).toString('MMMM yyyy'));
+        self.displayShifts();
+    });
+    
+    $('#sc_next_month').bind(clickEvent, function(e){
+        e.preventDefault();
+        $('#sc_mo_di').html(Date.parse($.trim($('#sc_mo_di').html())).addMonths(1).toString('MMMM yyyy'));
+        self.displayShifts();
     });
     
     
@@ -112,6 +120,7 @@ ShiftPlanningSchedule.prototype.shiftDisplaySubEvents = function(){
 }
 
 ShiftPlanningSchedule.prototype.nextPrevPrepare = function(){
+    $('#sc_mo_di').html(Date.parse($.trim($('#sc_to_sub').html())).toString('MMMM yyyy'));
     if (this.page == 'today'){
         $('.subNavigation .schedule li a[subpage=day]').trigger(clickEvent);
     } else if (this.page == 'day'){
@@ -124,7 +133,7 @@ ShiftPlanningSchedule.prototype.nextPrevPrepare = function(){
 ShiftPlanningSchedule.prototype.displayShifts = function(){
     var self = this;
     if (this.page == 'month'){
-        
+        this.generateCalendar();
     }
     $('#sc_td_list').parent().hide();
     $('#sc_td .loading').show();
@@ -139,10 +148,13 @@ ShiftPlanningSchedule.prototype.displayShifts = function(){
         if (response.data.length > 0){
             if (self.page == 'month'){
                 self.fillCalendar(response.data);
+                $('#sc_td_list').html($.tmpl($('#te_sc_shifts_months'), self.shifts));
+            } else {
+                $('#sc_td_list').html($.tmpl($('#te_sc_shifts'), response.data));
             }
             $('#sc_td_list').parent().show();
             $('#sc_td .loading').hide();
-            $('#sc_td_list').html($.tmpl($('#te_sc_shifts'), response.data));
+            
         } else {
             $('#sc_td_list').parent().hide();
             $('#sc_td .loading').hide();
@@ -155,23 +167,30 @@ ShiftPlanningSchedule.prototype.fillCalendar = function(data){
     var res = {};
     $.each(data, function(i, item){
         if (typeof res[item.start_date.day + ''] == 'undefined'){
-            res[item.start_date.day + ''] = [];
+            res[item.start_date.day + ''] = {
+                dateToday : item.start_date.formatted,
+                shifts : []
+            };
         }
-        res[item.start_date.day+ ''].push(item);
+        res[item.start_date.day+ ''].shifts.push(item);
     });
-    
+    console.log(res);
     $('#sc_ca_bo td').removeClass('hasAny');
     
+    var fin = []
     $.each(res, function(i, item){
+        fin[i] = item;
         $('#sc_ca_fi_' + i).addClass('hasAny');
     });
     
-    this.shifts = res;
+    
+    
+    this.shifts = fin;
 }
 
 ShiftPlanningSchedule.prototype.getColorsBySchedule = function(id){
     if (typeof sp.schedule.data.schedules[id] != 'undefined'){
-        return sp.raw.config.colorsets[sp.schedule.data.schedules[id].color];
+        return sp.raw.config.newcolorsets[sp.schedule.data.schedules[id].color];
     } else {
         return ['000', 'aaa', 'fff', 'fff', '000'];
     }
