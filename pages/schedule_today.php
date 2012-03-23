@@ -5,7 +5,7 @@
         </tbody>
     </table>
     <div class="loading"></div>
-    <div class="additional">
+    <div class="additional wide">
         <p>No schedules for selected filters.</p>
     </div>
 </div>

@@ -495,9 +495,11 @@
     </script>
     <script id="te_re_confirmedHours_1" type="text/x-jquery-tmpl">
         <div class="title">
-            <img width="30" height="30" src="${avatar}">
-            <span>${employee}</span>
-            ${start_date.formatted} - ${end_date.formatted}
+            <div>
+                <img width="30" height="30" src="${avatar}">
+                <span>${employee}</span>
+                ${start_date.formatted} - ${end_date.formatted}
+            </div>
         </div>
         <ul class="multiInput">
             <li class="even">
@@ -546,9 +548,11 @@
     </script>
     <script id="te_re_scheduledHours_0" type="text/x-jquery-tmpl">
         <div class="title">
-            <img width="30" height="30" src="${avatar}">
-            <span>${employee}</span>
-            ${date.formatted}
+            <div>
+                <img width="30" height="30" src="${avatar}">
+                <span>${employee}</span>
+                ${date.formatted}
+            </div>
         </div>
         <ul class="multiInput">
             <li class="even">
@@ -627,9 +631,11 @@
     </script>
     <script id="te_re_scheduledHours_1" type="text/x-jquery-tmpl">
         <div class="title">
-            <img width="30" height="30" src="${avatar}">
-            <span>${employee}</span>
-            ${start_date.formatted} - ${end_date.formatted}
+            <div>
+                <img width="30" height="30" src="${avatar}">
+                <span>${employee}</span>
+                ${start_date.formatted} - ${end_date.formatted}
+            </div>
         </div>
         <ul class="multiInput">
             <li class="even">
