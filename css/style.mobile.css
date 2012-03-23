@@ -66,8 +66,8 @@ a.button {line-height:30px; display:block; padding:0 10px; color:#333; backgroun
 a.loading {background:#FFF url(../images/loader.gif) scroll no-repeat 50% 50% !important;}
 a.loading span {visibility:hidden;}
 div.loading, li.loading {background:transparent url(../images/loader.gif) scroll no-repeat 50% 50% !important; height:30px;}
-table.loading, ul.loading {background:transparent url(../images/loader.gif) scroll no-repeat 50% 50% !important;}
-table.loading tr, ul.loading li {opacity:0.25;}
+table.loading, tr.loading, ul.loading {background:transparent url(../images/loader.gif) scroll no-repeat 50% 50% !important;}
+table.loading tr, ul.loading li, tr.loading td {opacity:0.25;}
 
 /*BUILD*/
 html {overflow-x:hidden;}
@@ -263,7 +263,7 @@ table.calendar th {line-height:30px; text-align:center; border-bottom:solid 1px 
 table.calendar td {line-height:40px; text-align:center; border:solid 1px #DBDBDB;  border-right:none; border-top:none;}
 table.calendar td:first-child {border-left:none;}
 table.calendar td.notM {color:#999;}
-table.calendar td.today {color:#AD2828; background-color:#FFF; background-position:0 -20px;}
+table.calendar td.today {color:#AD2828; background-color:#FFF; background-position:0 -20px !important;}
 table.calendar td.hasAny {background-position:0 -101px;}
 
 table.day {font-size:14px; font-weight:bold;}
@@ -285,6 +285,5 @@ table.day td.dTitle {text-align:left; line-height:15px; padding:0 10px;}
 #st_li {padding:0px;}
 #requests .avaitingST {display:none;}
 #requests .confirmBefore .avaitingST {display:inline;}
-#schedule .main.today {padding: 0 0 20px;}
 #schedule span.input {margin:0px;}
-#schedule td.hasAny {font-weight: bold; color: #633996; text-shadow: 3px 3px 10px #CCCCCC;}
+#schedule .main {margin:0px; padding:0;}
