@@ -254,6 +254,9 @@ if ($vtoken['data'] != '1') {
                         </div>
                         <?php Functions::getInstance()->loadFile('schedule_today'); ?>
                         <?php Functions::getInstance()->loadFile('schedule_day'); ?>
+                        <div class="main shiftDisplay" id="sc_shift_display">
+                            
+                        </div>
                     </div>
                     <div class="requests" id="requests">
                         <div class="subLevel mainSub vacationRequestManage">

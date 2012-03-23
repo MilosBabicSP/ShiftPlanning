@@ -5,6 +5,7 @@ function ShiftPlanningSchedule(){
     this.data = {};
     this.prepared = {};
     this.shifts = {};
+    this.shift = {};
     this.loaded = false;
     this.settings = {
         mode : 'employee',

@@ -31,6 +31,10 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
         self.nextPrevPrepare();
     });
     
+    $('#sc_prev_month').bind(clickEvent, function(e){
+        e.preventDefault();
+    });
+    
     
     $('#sc_ca_bo').delegate('td:not(.notM)', clickEvent, function(){
         $('#sc_ca_bo td').removeClass('today');
@@ -47,12 +51,28 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
             $('#sc_td .loading').hide();
             $('#sc_td .additional').show();
         }
-        
+    });
+    
+    $('#sc_td_list').delegate('tr', clickEvent, function(e){
+        $(this).addClass('loading');
+        spModel.schedule.get('shift', {id : $(this).attr('shiftId'), detailed : 1}, function(response){
+            self.shift = response.data;
+            sp.loadSubPage('', 'schedule', 'shiftDisplay');
+        });
+    });
+    
+    $('#schedule .shiftDisplay .backMenu').bind(clickEvent, function(e){
+        e.preventDefault();
+        $('.subNavigation .schedule li.active a').trigger(clickEvent);
     });
 }
 
 ShiftPlanningSchedule.prototype.loadSubPageEvents = function(subpage){
     console.log(subpage + 'SubEvents');
+    $('.subNavigation').show();
+    if (subpage == 'shiftDisplay'){
+        $('.subNavigation').hide();
+    }
     this[subpage + 'SubEvents']();
 }
 
@@ -74,10 +94,21 @@ ShiftPlanningSchedule.prototype.monthSubEvents = function(){
     this.page = 'month';
     $('#sc_to_sub').prev().html('Selected Day');
     $('#sc_mo_di').html(Date.parse($.trim($('#sc_to_sub').html())).add(1).day().toString('MMMM yyyy'));
-    
-    
-    
     this.displayShifts();
+}
+
+ShiftPlanningSchedule.prototype.shiftDisplaySubEvents = function(){
+    var e = [];
+    if (typeof this.shift.employees != 'undefined' && this.shift.employees != null){
+        $.each(this.shift.employees, function(i, item){
+            e[i] = item;
+            e[i].avatar = (typeof sp.staff.data.employees[item.userid] != 'undefined' && typeof sp.staff.data.employees[item.userid].avatar != 'undefined' && sp.staff.data.employees[item.userid].avatar != '' && typeof sp.staff.data.employees[item.userid].avatar.small != 'undefined') ? sp.staff.data.employees[item.userid].avatar.small : 'images/no-avatar.png';
+        });
+        this.shift.employees = e;
+    } else {
+        this.shift.employees = [];
+    }
+    $('#sc_shift_display').html($.tmpl($('#te_sc_shift_display'), this.shift))
 }
 
 ShiftPlanningSchedule.prototype.nextPrevPrepare = function(){
@@ -148,7 +179,7 @@ ShiftPlanningSchedule.prototype.getColorsBySchedule = function(id){
 
 ShiftPlanningSchedule.prototype.getSettings = function(){
     if (this.page != 'month'){
-        this.settings.start_date = Date.parse($.trim($('#sc_to_sub').html())).add(-1).day().toString(cal.dformat);
+        this.settings.start_date = Date.parse($.trim($('#sc_to_sub').html())).toString(cal.dformat);
         this.settings.end_date = Date.parse($.trim($('#sc_to_sub').html())).toString(cal.dformat);
     } else {
         this.settings.start_date = Date.parse($.trim($('#sc_to_sub').html())).moveToFirstDayOfMonth().toString(cal.dformat);

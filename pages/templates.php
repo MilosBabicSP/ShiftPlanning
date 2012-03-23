@@ -1,154 +1,34 @@
 
 <!-- ID rulez first is "te" shorten from template, next is 2 letter from module name, than 2 letter from page name, than 2 letters from page method -->
 <div id="templates">
-    <script id="te_sc_shift" type="text/x-jquery-tmpl">
-        <div class="title1 wide">
+    <script id="te_sc_shift_display_u" type="text/x-jquery-tmpl">
+        <li>
+            <img src="${avatar}" />
+            <span>${name}</span>
+        </li>
+    </script>
+    <script id="te_sc_shift_display" type="text/x-jquery-tmpl">
+        <div class="title1 wide mar" style="background-color: #${sp.schedule.getColorsBySchedule(schedule)[0]}">
             <h3>Sales</h3>
         </div>
-        <div class="title wide">
+        <div class="title wide mar">
             <div>
-                <span>Monday, January 9, 2012</span>
-                7:30 PM - 8:30 PM
+                <span>${start_date.weekday}, ${start_date.formatted}</span>
+                ${start_time.time} - ${end_time.time}
             </div>
         </div>
-        <div class="title1 regular wide">
-            <h3>Who's Working</h3>
-        </div>
-        <div class="title wide">
+        {{if employees.length > 0 }}
+        <div class="title1 regular wide mar">
             <h3>Who's Working</h3>
         </div>
         <ul class="acceptors wide">
-            <li>
-                <img src="images/staff.jpg">
-                <span>Mike</span>
-            </li>
-            <li>
-                <img src="images/staff.jpg">
-                <span>Zoranica Lazicevic</span>
-            </li>
-            <li>
-                <img src="images/staff.jpg">
-                <span>Dejan</span>
-            </li>
-            <li>
-                <img src="images/staff.jpg">
-                <span>Michael</span>
-            </li>
-            <li>
-                <img src="images/staff.jpg">
-                <span>Michael</span>
-            </li>
-            <li>
-                <img src="images/staff.jpg">
-                <span>Dejan</span>
-            </li>
-            <li>
-                <img src="images/staff.jpg">
-                <span>Mike</span>
-            </li>
-            <li>
-                <img src="images/staff.jpg">
-                <span>Zoranica Lazicevic</span>
-            </li>
-            <li>
-                <img src="images/staff.jpg">
-                <span>Dejan</span>
-            </li>
-            <li>
-                <img src="images/staff.jpg">
-                <span>Michael</span>
-            </li>
-            <li>
-                <img src="images/staff.jpg">
-                <span>Michael</span>
-            </li>
-            <li>
-                <img src="images/staff.jpg">
-                <span>Dejan</span>
-            </li>
+            {{tmpl(employees) "#te_sc_shift_display_u"}}
         </ul>
-        <h3>Who's working</h3>
-        <ul class="detailsGrid">
-            <ul>
-                <li class="even"><div><span class="checkbox check">Development</span></div></li>
-                <li class="odd"><div><span class="checkbox check">Board Test</span></div></li>
-                <li class="even"><div><span class="checkbox check">Management</span></div></li>
-                <li class="odd"><div><span class="checkbox check">Finance</span></div></li>
-                <li class="even"><div><span class="checkbox check">Happy Town</span></div></li>
-                <li class="odd"><div><span class="checkbox check">Sales</span></div></li>
-                <li class="even"><div><span  class="checkbox check">Test by Eric</span></div></li>
-                <li class="odd"><div><span  class="checkbox check">Support</span></div></li>
-                <li class="even"><div><span class="checkbox check">Jos Jedan Test</span></div></li>
-                <li class="odd"><div><span class="checkbox check">Steve OT Test</span></div></li>
-                <li class="even"><div><span class="checkbox check">Test 4</span></div></li>
-            </ul>
-        </ul>
-        <h3>Available</h3>
-        <ul class="detailsGrid">
-            <ul>
-                <li class="even"><div><span class="checkbox">Development</span></div></li>
-                <li class="odd"><div><span class="checkbox">Board Test</span></div></li>
-                <li class="even"><div><span class="checkbox">Management</span></div></li>
-                <li class="odd"><div><span class="checkbox">Finance</span></div></li>
-            </ul>
-        </ul>
-        <h3>Unavailable</h3>
-        <ul class="detailsGrid">
-            <ul>
-                <li class="even"><div><span class="checkbox disabled">Development</span></div></li>
-                <li class="odd"><div><span class="checkbox disabled">Board Test</span></div></li>
-                <li class="even"><div><span class="checkbox disabled">Management</span></div></li>
-                <li class="odd"><div><span class="checkbox disabled">Finance</span></div></li>
-            </ul>
-        </ul>
-        <ul class="detailsGrid">
-            <li>
-                <div class="title">
-                    <h3 class="icoSch">Schedule</h3>
-                </div>
-            </li>
-            <li>
-                <span class="input">
-                    <select>
-                        <option selected="selected" disabled="disabled">Select Employee</option>
-                        <option>Alicia M.</option>
-                        <option>Aly</option>
-                        <option>Asdf</option>
-                        <option>Ashley</option>
-                        <option>Bakuta</option>
-                    </select>
-                </span>
-            </li>
-            <li>
-                <span class="input">
-                    <input type="text" name="" value="" />
-                </span>
-            </li>
-            <li>
-                <div class="title">
-                    <h3 class="icoLoc">Location</h3>
-                </div>
-            </li>
-            <li>
-                <span class="input">
-                    <input type="text" name="" value="" />
-                </span>
-            </li>
-            <li>
-                <div class="title">
-                    <h3 class="icoNot">Notes</h3>
-                </div>
-            </li>
-            <li>
-                <span class="input">
-                    <textarea id="st_ae_i_no">Add Notes...</textarea>
-                </span>
-            </li>
-        </ul>
+        {{/if}}
     </script>
     <script id="te_sc_shifts" type="text/x-jquery-tmpl">
-        <tr>
-            <td class="dTime" style="background-color: #${sp.schedule.getColorsBySchedule(schedule)[1]}">${start_time.time}</td>
+        <tr shiftId="${id}">
+            <td class="dTime" style="background-color: #${sp.schedule.getColorsBySchedule(schedule)[0]}">${start_time.time}</td>
             <td class="dTitle">${schedule_name}</td>
         </tr>
     </script>
