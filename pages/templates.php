@@ -8,17 +8,17 @@
         </li>
     </script>
     <script id="te_sc_shift_display" type="text/x-jquery-tmpl">
-        <div class="title1 wide mar" style="background-color: #${sp.schedule.getColorsBySchedule(schedule)[0]}">
+        <div class="title1 wide" style="background-color: #${sp.schedule.getColorsBySchedule(schedule)[1]}; color: #${sp.schedule.getColorsBySchedule(schedule)[2]}">
             <h3>Sales</h3>
         </div>
-        <div class="title wide mar">
+        <div class="title wide">
             <div>
                 <span>${start_date.weekday}, ${start_date.formatted}</span>
                 ${start_time.time} - ${end_time.time}
             </div>
         </div>
         {{if employees.length > 0 }}
-        <div class="title1 regular wide mar">
+        <div class="title1 regular wide">
             <h3>Who's Working</h3>
         </div>
         <ul class="acceptors wide">
@@ -28,7 +28,7 @@
     </script>
     <script id="te_sc_shifts" type="text/x-jquery-tmpl">
         <tr shiftId="${id}">
-            <td class="dTime" style="background-color: #${sp.schedule.getColorsBySchedule(schedule)[0]}">${start_time.time}</td>
+            <td class="dTime" style="background-color: #${sp.schedule.getColorsBySchedule(schedule)[1]}; color: #${sp.schedule.getColorsBySchedule(schedule)[2]}">${start_time.time}</td>
             <td class="dTitle">${schedule_name}</td>
         </tr>
     </script>
