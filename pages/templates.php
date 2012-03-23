@@ -329,26 +329,26 @@
     <script id="te_rq_st_mst_s_l" type="text/x-jquery-tmpl">
         <div class="title">
             {{if confirmed == 1 && approved == 0}}  
-                <ul class="subMenu">
-                    <li><span>Accepted</span></li>
-                    <li class="first">
-                        <a href="#" tradeId="${trade_id}" userId="${user}" class="accept" >
-                            <span><img width="16" height="16" src="images/request_1.png"></span>
-                        </a>
-                    </li>
-                    <li class="last">
-                        <a href="#" tradeId="${trade_id}" userId="${user}" class="reject" >
-                            <span><img width="16" height="16" src="images/request_2.png"></span>
-                        </a>
-                    </li>
-                </ul>
+            <ul class="subMenu">
+                <li><span>Accepted</span></li>
+                <li class="first">
+                    <a href="#" tradeId="${trade_id}" userId="${user}" class="accept" >
+                        <span><img width="16" height="16" src="images/request_1.png"></span>
+                    </a>
+                </li>
+                <li class="last">
+                    <a href="#" tradeId="${trade_id}" userId="${user}" class="reject" >
+                        <span><img width="16" height="16" src="images/request_2.png"></span>
+                    </a>
+                </li>
+            </ul>
             {{/if}}
             {{if (confirmed == -1 && approved == -1) || (confirmed == 1 && approved == -1)}}
-                <span class="fr">Rejected</span>
+            <span class="fr">Rejected</span>
             {{else}}
-                {{if confirmed == 0 && approved == 0}}
-                <span class="fr avaitingST">Awaiting response</span>
-                {{/if}}
+            {{if confirmed == 0 && approved == 0}}
+            <span class="fr avaitingST">Awaiting response</span>
+            {{/if}}
             {{/if}}
             <div>
                 <img width="30" height="30" src="${avatar}">
@@ -426,9 +426,11 @@
     </script>
     <script id="te_re_confirmedTimeSheets_1" type="text/x-jquery-tmpl">
         <div class="title">
-            <img width="30" height="30" src="${avatar}" />
-            <span>${employee}</span>
-            ${start_date.formatted} - ${end_date.formatted}
+            <div>
+                <img width="30" height="30" src="${avatar}" />
+                <span>${employee}</span>
+                ${start_date.formatted} - ${end_date.formatted}
+            </div>
         </div>
         <ul class="multiInput">
             <li class="even">
@@ -477,9 +479,11 @@
     </script>
     <script id="te_re_confirmedTimeSheets_0" type="text/x-jquery-tmpl">
         <div class="title">
-            <img width="30" height="30" src="${avatar}" />
-            <span>${employee}</span>
-            ${date.formatted}
+            <div>
+                <img width="30" height="30" src="${avatar}" />
+                <span>${employee}</span>
+                ${date.formatted}
+            </div>
         </div>
         <ul class="multiInput">
             <li class="even">
@@ -528,9 +532,11 @@
     </script>
     <script id="te_re_confirmedHours_0" type="text/x-jquery-tmpl">
         <div class="title">
-            <img width="30" height="30" src="${avatar}" />
-            <span>${employee}</span>
-            ${date.formatted}
+            <div>
+                <img width="30" height="30" src="${avatar}" />
+                <span>${employee}</span>
+                ${date.formatted}
+            </div>
         </div>
         <ul class="multiInput">
             <li class="even">
