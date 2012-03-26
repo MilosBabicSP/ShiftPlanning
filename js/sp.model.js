@@ -134,7 +134,7 @@ ShiftPlanningModel.prototype.del = function(module, data, success, error){
                 success.call(this, response);
             }
         }, function(response){
-            //self.clearCache(module);
+            sp.showError(response.error);
             if(typeof error == 'function'){
                 error.call(this, error);
             }
@@ -145,8 +145,8 @@ ShiftPlanningModel.prototype.del = function(module, data, success, error){
             if(typeof success == 'function'){
                 success.call(this, response);
             }
-        }, function(e){
-            //self.clearCache(module);
+        }, function(response){
+            sp.showError(response.error);
             if(typeof error == 'function'){
                 error.call(this, error);
             }

@@ -103,6 +103,7 @@ if ($vtoken['data'] != '1') {
             sp.raw.config = <?= _iapi(array('module' => 'api.config', 'method' => 'GET'), 'json', true) ?>;
             sp.schedule.dateId = sp.raw.config.today.id;
             sp.staff.admin.info.dfAvatar = (typeof sp.staff.admin.info.avatar != 'undefined' && typeof sp.staff.admin.info.avatar.small != 'undefined') ? sp.staff.admin.info.avatar.small : 'images/no-avatar.png';
+            $('body').css('display', 'block');
 <? } ?>
     }
         </script>
@@ -175,9 +176,34 @@ if ($vtoken['data'] != '1') {
                         <?php Functions::getInstance()->loadFile('dashboard_settings'); ?>
                     </div>
                     <div class="timeClock" id="timeClock">
+                        <div class="subLevel mainSub displayTimeClock">
+                            <a class="backMenu" href="#">
+                                <img width="41" height="30" src="images/BackMenu.png">
+                            </a>
+                            <ul class="subMenu" id="tc_dtc_buttons">
+                                <li class="first">
+                                    <a href="#" class="approve">
+                                        <img width="16" height="16" src="images/tc_approve.png">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="edit">
+                                        <img width="16" height="16" src="images/tc_edit.png">
+                                    </a>
+                                </li>
+                                <li class="last" class="delete">
+                                    <a href="#">
+                                        <img width="16" height="16" src="images/tc_delete.png">
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                         <?php Functions::getInstance()->loadFile('timeClock_overview'); ?>
                         <?php Functions::getInstance()->loadFile('timeClock_addClockTime'); ?>
                         <?php Functions::getInstance()->loadFile('timeClock_manageTimeSheets'); ?>
+                        <div class="main displayTimeClock" id="tc_dtc">
+                            
+                        </div>
                     </div>
                     <div class="schedule" id="schedule">
                         <div class="myHiddenStash">
@@ -255,7 +281,7 @@ if ($vtoken['data'] != '1') {
                         <?php Functions::getInstance()->loadFile('schedule_today'); ?>
                         <?php Functions::getInstance()->loadFile('schedule_day'); ?>
                         <div class="main shiftDisplay" id="sc_shift_display">
-                            
+
                         </div>
                     </div>
                     <div class="requests" id="requests">

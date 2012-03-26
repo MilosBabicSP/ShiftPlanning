@@ -2,6 +2,7 @@ function ShiftPlanningTimeClock(){
     this.initialize();
     this.timeSheetsData = {};
     this.actco = false;
+    this.current = {};
     return true;
 }
 

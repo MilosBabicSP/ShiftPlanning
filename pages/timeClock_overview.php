@@ -3,7 +3,7 @@
         <span class="fr"><a href="#" id="tc_ov_ci">Clock In</a></span>
         <span class="fr"><a href="#" id="tc_ov_co">Clock Out</a></span>
         <div class="icoClock fl">
-            january 8, 2012
+            <time>january 8, 2012</time>
             <span>13:55</span>
         </div>
     </div>

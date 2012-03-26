@@ -278,6 +278,7 @@ table.day td.dTitle {text-align:left; line-height:15px; padding:0 10px;}
     Application css
 */
 .applicationContainer {display:none;}
+body {display:none;}
 .hidden {display:none;}
 .nonVisible {visibility: hidden;}
 #da_up_li li a {margin:0px;}
@@ -287,3 +288,4 @@ table.day td.dTitle {text-align:left; line-height:15px; padding:0 10px;}
 #requests .confirmBefore .avaitingST {display:inline;}
 #schedule span.input {margin:0px;}
 #schedule .main {margin:0px; padding:0;}
+#tc_dtc_buttons .unapprove {opacity: 0.5}

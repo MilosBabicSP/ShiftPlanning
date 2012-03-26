@@ -44,12 +44,13 @@ ShiftPlanningDashboard.prototype.wallEvents = function(){
     $('#da_wa_nm_sa').bind(clickEvent, function(e){
         e.preventDefault();
         spModel.messaging.create('wall', {
-            post : $.trim($('#da_wa_nm_ti').val()), 
-            title: $.trim($('#da_wa_nm_me').val())
+            post : $.trim($('#da_wa_nm_me').val()), 
+            title: $.trim($('#da_wa_nm_ti').val())
             }, function(response){
+            $('#da_wa_nm_f').toggleClass('hidden');
+            $('#da_wa_nm_ti').val('');
+            $('#da_wa_nm_me').val('');
             self.wallSubEvents();
-        }, function(response){
-            console.log(response);
         });
     })
     
@@ -88,8 +89,6 @@ ShiftPlanningDashboard.prototype.wallEvents = function(){
                 obj.parent().fadeOut('fast', function(){
                     $(this).remove();
                 });
-            }, function(response){
-                console.log(response);
             });
         }
     });
@@ -103,7 +102,7 @@ ShiftPlanningDashboard.prototype.wallEvents = function(){
         var obj = $(this);
         var id = $(this).attr('rel');
         var post = $.trim($('#da_wa_msg_' + id + ' input[type=text]').val());
-        if (post.length == 0){
+        if (post.length == 0 || post == 'Write a comment...'){
             alert('Please write your message');
             return false;
         }
@@ -111,6 +110,7 @@ ShiftPlanningDashboard.prototype.wallEvents = function(){
             post: post, 
             id: id
         }, function(response) {
+            console.log(response);
             var d = {
                 avatar : sp.staff.admin.info.dfAvatar,
                 id : id,
@@ -119,8 +119,7 @@ ShiftPlanningDashboard.prototype.wallEvents = function(){
                 time : 'Now'
             }
             obj.parent().before($.tmpl($('#te_da_wa_me_co'), d));
-        }, function(response){
-            console.log(response);
+            $('#da_wa_msg_' + id + ' input[type=text]').val('Write a comment...');
         });
         
         return true;
@@ -317,6 +316,18 @@ ShiftPlanningDashboard.prototype.settingsSubEvents = function(employee){
 
 //functions
 ShiftPlanningDashboard.prototype.prefillOverview = function(employee){
+    var p = {};
+    
+    $.each(employee, function(i, item){
+        console.log(i, item, item.length);
+        if (item.length == 0){
+            item = '&nbsp;';
+        }
+        p[i] = item;
+    })
+    
+    employee = p;
+    console.log(employee);
     //this page needs to be cached after first load and to be reprepared if data are changed - DONE
     $('#da_se_cur_us_id').val(employee.id);
     
@@ -359,8 +370,12 @@ ShiftPlanningDashboard.prototype.prefillOverview = function(employee){
     $('#da_se_ov_ac').html(status_name);
     
     //transfer month number into month name
-    if (employee.birth_month != 0 && employee.birth_day != 0)
+    if (employee.birth_month != 0 && employee.birth_day != 0) {
         $('#da_se_ov_bd').html(months[employee.birth_month-1] + ' ' + employee.birth_day);
+    } else {
+        $('#da_se_ov_bd').html('&nbsp;');
+    }
+        
     
 
 

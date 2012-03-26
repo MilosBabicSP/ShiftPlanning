@@ -709,8 +709,24 @@
             <span>${name}</span>
         </li>
     </script>
+    <script id="te_tc_dtc" type="text/x-jquery-tmpl">
+        <div class="title">
+            <div>
+                <img width="30" height="30" src="images/staff.jpg">
+                <span>${employee.name}</span>
+                {{if schedule != null}}
+                    ${schedule.name}}
+                {{/if}}
+            </div>
+        </div>
+        {{if notes != null}}
+            <div class="additional">
+                <p>${notes}</p>
+            </div>
+        {{/if}}
+    </script>
     <script id="te_tc_mts_li_in" type="text/x-jquery-tmpl">
-        <li class="s_${status} e_${user} sc_${schedule}"><span class="names">${name}</span><span class="time"><span class="tStart">${st.time}</span><img width="16" height="16" src="images/tc_sm_clock.png"><span class="tEnd">${out.time}</span></span><span class="last">2h, 34min</span></li>
+        <li class="s_${status} e_${user} sc_${schedule}" timeclockId="${id}"><span class="names">${name}</span><span class="time"><span class="tStart">${st.time}</span><img width="16" height="16" src="images/tc_sm_clock.png"><span class="tEnd">${out.time}</span></span><span class="last">${length.hours}h, ${length.mins}min</span></li>
     </script>
     <script id="te_tc_mts_li" type="text/x-jquery-tmpl">
         <div class="title">
