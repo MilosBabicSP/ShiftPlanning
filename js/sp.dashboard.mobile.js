@@ -4,6 +4,7 @@ ShiftPlanningDashboard.prototype.initialize = function(){
         self.wallEvents();
         self.inboxEvents();
         self.settingsEvents();
+        self.upcomingShiftsEvents();
     });
 }
 
@@ -48,7 +49,7 @@ ShiftPlanningDashboard.prototype.wallEvents = function(){
         spModel.messaging.create('wall', {
             post : $.trim($('#da_wa_nm_me').val()), 
             title: $.trim($('#da_wa_nm_ti').val())
-            }, function(response){
+        }, function(response){
             obj.removeClass('loading');
             $('#da_wa_nm_f').toggleClass('hidden');
             $('#da_wa_nm_ti').val('');
@@ -131,6 +132,20 @@ ShiftPlanningDashboard.prototype.wallEvents = function(){
     });
 }
 
+ShiftPlanningDashboard.prototype.upcomingShiftsEvents = function(){
+    $('#da_up_li').delegate('li a', clickEvent, function(e){
+        e.preventDefault();
+        $(this).addClass('loading');
+        spModel.schedule.get('shift', {
+            id : $(this).attr('rel'), 
+            detailed : 1
+        }, function(response){
+            sp.schedule.shift = response.data;
+            sp.loadSubPage('', 'schedule', 'shiftDisplay');
+        });
+    });
+}
+
 ShiftPlanningDashboard.prototype.inboxEvents = function(){
     var self = this;
     $('#da_in_me').delegate('.msgHead', clickEvent, function(e){
@@ -141,7 +156,10 @@ ShiftPlanningDashboard.prototype.inboxEvents = function(){
             obj.parent().toggleClass('extended');
         } else {
             $(obj).addClass('loading');
-            spModel.messaging.update('message', {id : id, read : 1}, function(response){
+            spModel.messaging.update('message', {
+                id : id, 
+                read : 1
+            }, function(response){
                 obj.parent().toggleClass('extended');
                 obj.parent().removeClass('unread');
                 $(obj).removeClass('loading');
@@ -177,7 +195,9 @@ ShiftPlanningDashboard.prototype.inboxEvents = function(){
             return false;
         }
         var id = $(this).attr('rel');
-        spModel.messaging.del('message', {id : id}, function(response){
+        spModel.messaging.del('message', {
+            id : id
+        }, function(response){
             $('#da_in_msg_' + id).fadeOut('fast', function(){
                 $(this).remove();
             });
@@ -320,7 +340,9 @@ ShiftPlanningDashboard.prototype.upcomingShiftsSubEvents = function(){
 
 ShiftPlanningDashboard.prototype.inboxSubEvents = function(){
     $('#da_in_me').html(spView.ulLoader());
-    spModel.messaging.get('messages', {mode : 'to'}, function(response){
+    spModel.messaging.get('messages', {
+        mode : 'to'
+    }, function(response){
         if (response.data.length > 0){
             $('#da_in_me').html($.tmpl($('#te_da_wa_in'), response.data));
         } else {
@@ -426,7 +448,7 @@ ShiftPlanningDashboard.prototype.prefillOverview = function(employee){
         });
         $('#da_se_ov_pos').html(pos.substr(0,pos.length - 2));
     }
-    //approvers missing
+//approvers missing
 }
 
 ShiftPlanningDashboard.prototype.prepareEditDetails = function(employee){
@@ -485,7 +507,10 @@ ShiftPlanningDashboard.prototype.changePassword = function (){
     var self = this;
     var eId = $('#da_se_cur_us_id').val();
     if ($('#da_se_pa_np').val().length > 6 && $('#da_se_pa_np').val() == $('#da_se_pa_cp').val()){
-        spModel.staff.update('employee', {id : eId, password: $('#da_se_pa_np').val()}, function(response){
+        spModel.staff.update('employee', {
+            id : eId, 
+            password: $('#da_se_pa_np').val()
+            }, function(response){
             self.updateUser(eId, response);
         });
     } else {
@@ -598,7 +623,10 @@ ShiftPlanningDashboard.prototype.updateNotes = function(text){
     if (sp.hasPermission(4) || parseInt($('#da_se_cur_us_id').val()) == sp.staff.admin.info.id){
         var self = this;
         var eId = $('#da_se_cur_us_id').val();
-        spModel.staff.update('employee', {id : eId, notes : text}, function(response){
+        spModel.staff.update('employee', {
+            id : eId, 
+            notes : text
+        }, function(response){
             self.updateUser(eId, response);
         });
     }
@@ -606,7 +634,7 @@ ShiftPlanningDashboard.prototype.updateNotes = function(text){
 
 ShiftPlanningDashboard.prototype.loadPage = function(){
     
-}
+    }
 
 
 

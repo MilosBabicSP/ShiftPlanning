@@ -3,7 +3,7 @@
         <span class="fr"><a href="#" class="advancedButton">Advanced</a></span>
         <div class="fl">
             <span>Payroll - Confirmed Time Sheets</span>
-            January 23, 2012 - January 29, 2012
+            <time class="from">January 23, 2012</time> - <time class="to">January 29, 2012</time>
         </div>
     </div>
     <ul class="detailsGrid">

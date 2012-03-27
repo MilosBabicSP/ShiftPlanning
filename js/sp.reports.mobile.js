@@ -56,6 +56,7 @@ ShiftPlanningReports.prototype.allReportsEvents = function(){
 }
 
 ShiftPlanningReports.prototype.allReportsSubEvents = function(){
+    var self = this;
     $('#reports .timeSelector').html(spView.timeRanges());
     $('#reports .timeSelector').val(3);
     $('#reports .employeeSelector').html(spView.staffFilter());
@@ -69,7 +70,11 @@ ShiftPlanningReports.prototype.allReportsSubEvents = function(){
     $('#reports .timeFromSelector').scroller({
         preset : 'date',
         dateFormat : (sp.strReplace(['MM','yyyy'],['mm','yy'],cal.dformat) == 'mmM d, yy') ? sp.strReplace(['MM','yyyy'],['mm','yy'],cal.dformat).substr(2, sp.strReplace(['MM','yyyy'],['mm','yy'],cal.dformat).length) : sp.strReplace(['MM','yyyy'],['mm','yy'],cal.dformat),
-        dateOrder: sp.strReplace(['MM','yyyy',' ','-','/'],['mm','yy','','',''],cal.dformat)
+        dateOrder: sp.strReplace(['MM','yyyy',' ','-','/'],['mm','yy','','',''],cal.dformat),
+        onSelect : function(){
+            $('#reports .' + self.page +' .timeSelector').val(-1);
+            self.displayReports();
+        }
     });
     
     $('#reports .timeToSelector').scroller('destroy');
@@ -77,7 +82,11 @@ ShiftPlanningReports.prototype.allReportsSubEvents = function(){
     $('#reports .timeToSelector').scroller({
         preset : 'date',
         dateFormat : (sp.strReplace(['MM','yyyy'],['mm','yy'],cal.dformat) == 'mmM d, yy') ? sp.strReplace(['MM','yyyy'],['mm','yy'],cal.dformat).substr(2, sp.strReplace(['MM','yyyy'],['mm','yy'],cal.dformat).length) : sp.strReplace(['MM','yyyy'],['mm','yy'],cal.dformat),
-        dateOrder: sp.strReplace(['MM','yyyy',' ','-','/'],['mm','yy','','',''],cal.dformat)
+        dateOrder: sp.strReplace(['MM','yyyy',' ','-','/'],['mm','yy','','',''],cal.dformat),
+        onSelect : function(){
+            $('#reports .' + self.page +' .timeSelector').val(-1);
+            self.displayReports();
+        }
     });
 }
 
@@ -103,6 +112,8 @@ ShiftPlanningReports.prototype.displayReports = function(){
     
     data.start_date = $('#reports .' + origin +' .timeFromSelector').val();
     data.end_date = $('#reports .' + origin +' .timeToSelector').val();
+    $('#reports .' + origin +' time.from').html($('#reports .' + origin +' .timeFromSelector').val());
+    $('#reports .' + origin +' time.to').html($('#reports .' + origin +' .timeToSelector').val());
     data.schedule = $('#reports .' + origin + ' .positionsSelector').val();
     data.employee = $('#reports .' + origin + ' .employeeSelector').val();
     data.skill = $('#reports .' + origin + ' .skillsSelector').val();
@@ -127,9 +138,8 @@ ShiftPlanningReports.prototype.displayReports = function(){
     spModel.payroll.get('report', data, function(response){
         if (response.data.length == 0){
             $('#reports .' + origin + ' .totals').hide();
-            $('#reports .' + origin + ' .noResults').show();
+            $('#reports .' + origin + ' .notif').show();
         }
-        
         var total = { colspan : 5, regular : 0, special : 0, overtime : 0, total : 0, cost : 0 }
         var d = []
         $.each(response.data, function(i, item){
@@ -144,11 +154,11 @@ ShiftPlanningReports.prototype.displayReports = function(){
         });
         self.reports = d;
         $('#reports .' + origin + ' .listReports').html($.tmpl($('#te_re_info'), d));
-        $('#reports .' + origin + ' .TSregular > span > span').html(total.regular);
-        $('#reports .' + origin + ' .TSspecial > span > span').html(total.special);
-        $('#reports .' + origin + ' .TSovertime > span > span').html(total.overtime);
-        $('#reports .' + origin + ' .TStotal > span > span').html(total.total + ' Hours');
-        $('#reports .' + origin + ' .TScost > span > span').html('$'+total.cost);
+        $('#reports .' + origin + ' .TSregular > span > span').html(total.regular.toFixed(2));
+        $('#reports .' + origin + ' .TSspecial > span > span').html(total.special.toFixed(2));
+        $('#reports .' + origin + ' .TSovertime > span > span').html(total.overtime.toFixed(2));
+        $('#reports .' + origin + ' .TStotal > span > span').html(total.total.toFixed(2) + ' Hours');
+        $('#reports .' + origin + ' .TScost > span > span').html('$'+total.cost.toFixed(2));
     });
 }
 

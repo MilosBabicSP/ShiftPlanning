@@ -264,19 +264,14 @@ if ($vtoken['data'] != '1') {
                                 </li>
                             </ul>
                         </div>
-                        <div class="subLevel mainSub shiftDisplay">
+                        <div class="subLevel mainSub shiftDisplay" id="sc_sub_shift_display">
                             <a href="#" class="backMenu">
                                 <img width="41" height="30" src="images/BackMenu.png">
                             </a>
                             <ul class="subMenu">
-                                <li class="first">
-                                    <a href="#">
-                                        <img width="16" height="16" src="images/tc_edit.png">
-                                    </a>
-                                </li>
-                                <li class="last">
-                                    <a href="#">
-                                        <img width="16" height="16" src="images/tc_delete.png">
+                                <li class="single">
+                                    <a href="#" class="icoReqEdi edit">
+                                        <span>Edit</span>
                                     </a>
                                 </li>
                             </ul>

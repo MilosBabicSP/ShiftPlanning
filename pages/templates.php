@@ -35,7 +35,7 @@
         {{/if}}
     </script>
     <script id="te_sc_shifts" type="text/x-jquery-tmpl">
-        <tr shiftId="${id}">
+        <tr shiftId="${id}" class="shift">
             <td class="dTime" style="background-color: #${sp.schedule.getColorsBySchedule(schedule)[1]}; color: #${sp.schedule.getColorsBySchedule(schedule)[2]}">${start_time.time}</td>
             <td class="dTitle">${schedule_name}</td>
         </tr>
@@ -336,31 +336,31 @@
             <li class="even">
                 <div>
                     <label>Regular</label>
-                    <b>${hours.regular}&nbsp;</b>
+                    <b>${hours.regular.toFixed(2)}&nbsp;</b>
                 </div>
             </li>
             <li class="odd">
                 <div>
                     <label>Special</label>
-                    <b>${hours.special}&nbsp;</b>
+                    <b>${hours.special.toFixed(2)}&nbsp;</b>
                 </div>
             </li>
             <li class="even">
                 <div>
                     <label>Overtime</label>
-                    <b>${hours.overtime}&nbsp;</b>
+                    <b>${hours.overtime.toFixed(2)}&nbsp;</b>
                 </div>
             </li>
             <li class="odd">
                 <div>
                     <label>Total</label>
-                    <b>${hours.total}&nbsp;</b>
+                    <b>${hours.total.toFixed(2)}&nbsp;</b>
                 </div>
             </li>
             <li class="even">
                 <div>
                     <label>Cost</label>
-                    <b>$${hours.cost}&nbsp;</b>
+                    <b>$${hours.cost.toFixed(2)}&nbsp;</b>
                 </div>
             </li>
         </ul>
@@ -389,31 +389,31 @@
             <li class="even">
                 <div>
                     <label>Regular</label>
-                    <b>${hours.regular}&nbsp;</b>
+                    <b>${hours.regular.toFixed(2)}&nbsp;</b>
                 </div>
             </li>
             <li class="odd">
                 <div>
                     <label>Special</label>
-                    <b>${hours.special}&nbsp;</b>
+                    <b>${hours.special.toFixed(2)}&nbsp;</b>
                 </div>
             </li>
             <li class="even">
                 <div>
                     <label>Overtime</label>
-                    <b>${hours.overtime}&nbsp;</b>
+                    <b>${hours.overtime.toFixed(2)}&nbsp;</b>
                 </div>
             </li>
             <li class="odd">
                 <div>
                     <label>Total</label>
-                    <b>${hours.total}&nbsp;</b>
+                    <b>${hours.total.toFixed(2)}&nbsp;</b>
                 </div>
             </li>
             <li class="even">
                 <div>
                     <label>Cost</label>
-                    <b>$${hours.cost}&nbsp;</b>
+                    <b>$${hours.cost.toFixed(2)}&nbsp;</b>
                 </div>
             </li>
         </ul>
@@ -472,31 +472,31 @@
             <li class="odd">
                 <div>
                     <label>Regular</label>
-                    <b>${hours.regular}&nbsp;</b>
+                    <b>${hours.regular.toFixed(2)}&nbsp;</b>
                 </div>
             </li>
             <li class="even">
                 <div>
                     <label>Special</label>
-                    <b>${hours.special}&nbsp;</b>
+                    <b>${hours.special.toFixed(2)}&nbsp;</b>
                 </div>
             </li>
             <li class="odd">
                 <div>
                     <label>Overtime</label>
-                    <b>${hours.overtime}&nbsp;</b>
+                    <b>${hours.overtime.toFixed(2)}&nbsp;</b>
                 </div>
             </li>
             <li class="even">
                 <div>
                     <label>Total</label>
-                    <b>${hours.total}&nbsp;</b>
+                    <b>${hours.total.toFixed(2)}&nbsp;</b>
                 </div>
             </li>
             <li class="odd">
                 <div>
                     <label>Cost</label>
-                    <b>$${hours.cost}&nbsp;</b>
+                    <b>$${hours.cost.toFixed(2)}&nbsp;</b>
                 </div>
             </li>
         </ul>
@@ -525,31 +525,31 @@
             <li class="even">
                 <div>
                     <label>Regular</label>
-                    <b>${hours.regular}</b>
+                    <b>${hours.regular.toFixed(2)}</b>
                 </div>
             </li>
             <li class="odd">
                 <div>
                     <label>Special</label>
-                    <b>${hours.special}</b>
+                    <b>${hours.special.toFixed(2)}</b>
                 </div>
             </li>
             <li class="even">
                 <div>
                     <label>Overtime</label>
-                    <b>${hours.overtime}</b>
+                    <b>${hours.overtime.toFixed(2)}</b>
                 </div>
             </li>
             <li class="odd">
                 <div>
                     <label>Total</label>
-                    <b>${hours.total}</b>
+                    <b>${hours.total.toFixed(2)}</b>
                 </div>
             </li>
             <li class="even">
                 <div>
                     <label>Cost</label>
-                    <b>$${hours.cost}</b>
+                    <b>$${hours.cost.toFixed(2)}</b>
                 </div>
             </li>
         </ul>
@@ -608,31 +608,31 @@
             <li class="odd">
                 <div>
                     <label>Regular</label>
-                    <b>${hours.regular}&nbsp;</b>
+                    <b>${hours.regular.toFixed(2)}&nbsp;</b>
                 </div>
             </li>
             <li class="even">
                 <div>
                     <label>Special</label>
-                    <b>${hours.special}&nbsp;</b>
+                    <b>${hours.special.toFixed(2)}&nbsp;</b>
                 </div>
             </li>
             <li class="odd">
                 <div>
                     <label>Overtime</label>
-                    <b>${hours.overtime}&nbsp;</b>
+                    <b>${hours.overtime.toFixed(2)}&nbsp;</b>
                 </div>
             </li>
             <li class="even">
                 <div>
                     <label>Total</label>
-                    <b>${hours.total}&nbsp;</b>
+                    <b>${hours.total.toFixed(2)}&nbsp;</b>
                 </div>
             </li>
             <li class="odd">
                 <div>
                     <label>Cost</label>
-                    <b>$${hours.cost}&nbsp;</b>
+                    <b>$${hours.cost.toFixed(2)}&nbsp;</b>
                 </div>
             </li>
         </ul>
@@ -661,31 +661,31 @@
             <li class="even">
                 <div>
                     <label>Regular</label>
-                    <b>${hours.regular}</b>
+                    <b>${hours.regular.toFixed(2)}</b>
                 </div>
             </li>
             <li class="odd">
                 <div>
                     <label>Special</label>
-                    <b>${hours.special}</b>
+                    <b>${hours.special.toFixed(2)}</b>
                 </div>
             </li>
             <li class="even">
                 <div>
                     <label>Overtime</label>
-                    <b>${hours.overtime}</b>
+                    <b>${hours.overtime.toFixed(2)}</b>
                 </div>
             </li>
             <li class="odd">
                 <div>
                     <label>Total</label>
-                    <b>${hours.total}</b>
+                    <b>${hours.total.toFixed(2)}</b>
                 </div>
             </li>
             <li class="even">
                 <div>
                     <label>Cost</label>
-                    <b>$${hours.cost}</b>
+                    <b>$${hours.cost.toFixed(2)}</b>
                 </div>
             </li>
         </ul>
@@ -750,7 +750,7 @@
     </script>
     <script id="te_da_up_li" type="text/x-jquery-tmpl">
         <li>
-            <a class="fr" href="#">
+            <a class="fr" href="#" rel="${id}">
                 <img width="43" height="30" src="images/NextMenu.png" />
             </a>
             <span class="names">${start_date.formatted}</span>

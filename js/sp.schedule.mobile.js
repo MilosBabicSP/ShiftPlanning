@@ -15,7 +15,6 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
             self.settings.mode = 'schedule';
             self.settings.schedule = val;
         }
-        
         self.displayShifts();
     });
     
@@ -49,10 +48,11 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
         $(this).addClass('today');
         var i = $(this).attr('time');
         if (typeof self.shifts[i] != 'undefined'){
+            console.log(self.shifts[i]);
             $('#sc_td_list').parent().show();
             $('#sc_td .loading').hide();
             $('#sc_td .additional').hide();
-            $('#sc_td_list').html($.tmpl($('#te_sc_shifts'), self.shifts[i]));
+            $('#sc_td_list').html($.tmpl($('#te_sc_shifts'), self.shifts[i].shifts));
             $('#sc_days_m').show();
         } else {
             $('#sc_td_list').parent().hide();
@@ -62,6 +62,9 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
     });
     
     $('#sc_td_list').delegate('tr', clickEvent, function(e){
+        if (!$(this).hasClass('shift')){
+            return false;
+        }
         $(this).addClass('loading');
         spModel.schedule.get('shift', {id : $(this).attr('shiftId'), detailed : 1}, function(response){
             self.shift = response.data;
@@ -73,6 +76,19 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
         e.preventDefault();
         $('.subNavigation .schedule li.active a').trigger(clickEvent);
     });
+    
+    $('#sc_sub_shift_display ul a').bind(clickEvent, function(e){
+        e.preventDefault();
+        var o = $(this);
+        o.addClass('loading');
+        spModel.schedule.get('shift', {id : $(this).attr('rel'), detailed:  1}, function(response){
+            o.removeClass('loading');
+            self.shift = response.data;
+            sp.loadSubPage('', 'schedule', 'editShift');
+        }, function(){
+            o.removeClass('loading');
+        });
+    })
 }
 
 ShiftPlanningSchedule.prototype.loadSubPageEvents = function(subpage){

@@ -197,7 +197,11 @@ ShiftPlanningTimeClock.prototype.manageTimeSheetsSubEvents = function(){
     $('#tc_mts_sd_i').scroller({
         preset : 'date',
         dateFormat : (sp.strReplace(['MM','yyyy'],['mm','yy'],cal.dformat) == 'mmM d, yy') ? sp.strReplace(['MM','yyyy'],['mm','yy'],cal.dformat).substr(2, sp.strReplace(['MM','yyyy'],['mm','yy'],cal.dformat).length) : sp.strReplace(['MM','yyyy'],['mm','yy'],cal.dformat),
-        dateOrder: sp.strReplace(['MM','yyyy',' ','-','/'],['mm','yy','','',''],cal.dformat)
+        dateOrder: sp.strReplace(['MM','yyyy',' ','-','/'],['mm','yy','','',''],cal.dformat),
+        onSelect : function(){
+            $('#tc_mts_tr').val(-1);
+            self.getTimeSheets();
+        }
     });
     
     $('#tc_mts_ed_i').scroller('destroy');
@@ -205,7 +209,11 @@ ShiftPlanningTimeClock.prototype.manageTimeSheetsSubEvents = function(){
     $('#tc_mts_ed_i').scroller({
         preset : 'date',
         dateFormat : (sp.strReplace(['MM','yyyy'],['mm','yy'],cal.dformat) == 'mmM d, yy') ? sp.strReplace(['MM','yyyy'],['mm','yy'],cal.dformat).substr(2, sp.strReplace(['MM','yyyy'],['mm','yy'],cal.dformat).length) : sp.strReplace(['MM','yyyy'],['mm','yy'],cal.dformat),
-        dateOrder: sp.strReplace(['MM','yyyy',' ','-','/'],['mm','yy','','',''],cal.dformat)
+        dateOrder: sp.strReplace(['MM','yyyy',' ','-','/'],['mm','yy','','',''],cal.dformat),
+        onSelect : function(){
+            $('#tc_mts_tr').val(-1);
+            self.getTimeSheets();
+        }
     });
     
     
@@ -326,8 +334,8 @@ ShiftPlanningTimeClock.prototype.getTimeSheets = function(){
         times = spRanges.getRange('times', period);
     } else {
         times = {
-            start_time : strtotime($('#tc_mts_sd_i').val()),
-            end_time : strtotime($('#tc_mts_ed_i').val())
+            start_time : Date.parse($('#tc_mts_sd_i').val()).getTime(),
+            end_time : Date.parse($('#tc_mts_ed_i').val()).getTime()
         }
     }
     var p = new Date(times.start_time);
