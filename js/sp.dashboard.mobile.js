@@ -43,14 +43,19 @@ ShiftPlanningDashboard.prototype.wallEvents = function(){
     
     $('#da_wa_nm_sa').bind(clickEvent, function(e){
         e.preventDefault();
+        var obj = $(this);
+        obj.addClass('loading');
         spModel.messaging.create('wall', {
             post : $.trim($('#da_wa_nm_me').val()), 
             title: $.trim($('#da_wa_nm_ti').val())
             }, function(response){
+            obj.removeClass('loading');
             $('#da_wa_nm_f').toggleClass('hidden');
             $('#da_wa_nm_ti').val('');
             $('#da_wa_nm_me').val('');
             self.wallSubEvents();
+        }, function(){
+            obj.removeClass('loading');
         });
     })
     
@@ -135,9 +140,11 @@ ShiftPlanningDashboard.prototype.inboxEvents = function(){
         if (obj.hasClass('extended')){
             obj.parent().toggleClass('extended');
         } else {
+            $(obj).addClass('loading');
             spModel.messaging.update('message', {id : id, read : 1}, function(response){
                 obj.parent().toggleClass('extended');
                 obj.parent().removeClass('unread');
+                $(obj).removeClass('loading');
             });
         }
     });
@@ -157,7 +164,8 @@ ShiftPlanningDashboard.prototype.inboxEvents = function(){
         e.preventDefault();
         var id = $(this).attr('rel');
         $('#da_in_msg_' + id).find('.newMsg').show(function(){
-            var obj = $(this).parents('.newMsg');
+            var obj = $(this);
+            console.log(obj);
             obj.find('input[type=text]').val('re: ' + $('#da_in_msg_' + id).find('.msgHead h5').html());
         });
     });
@@ -178,7 +186,10 @@ ShiftPlanningDashboard.prototype.inboxEvents = function(){
     });
     
     $('#da_in_me').delegate('.msgBody .newMsg .title .fr', clickEvent, function(e){
+        e.preventDefault();
         var obj = $(this).parents('.newMsg');
+        var curr = $(this).find('a');
+        curr.addClass('loading');
         var data = {
             subject : obj.find('input[type=text]').val(),
             message : obj.find('textarea').val(),
@@ -187,6 +198,8 @@ ShiftPlanningDashboard.prototype.inboxEvents = function(){
         
         spModel.messaging.create('message', data, function(resonse){
             self.inboxSubEvents();
+        }, function(){
+            curr.removeClass('loading');
         });
     });
     
@@ -241,8 +254,9 @@ ShiftPlanningDashboard.prototype.settingsEvents = function(){
     });
     
     $('#da_se_ed_ue').bind(clickEvent, function(e){
+        $(this).addClass('loading');
         e.preventDefault();
-        self.saveEditForm();
+        self.saveEditForm($(this));
     });
     
     $('textarea#da_se_ov_no, textarea#da_se_ed_no').bind('blur', function(){
@@ -253,20 +267,36 @@ ShiftPlanningDashboard.prototype.settingsEvents = function(){
         e.preventDefault();
         self.changePassword();
     });
+    
+    $('#da_se_ov_aa a').bind(clickEvent, function(e){
+        e.preventDefault();
+        var c = confirm('Are you sure?');
+        if (c){
+            self.adminActions(this);
+        }
+    })
 }
 
 
 //sub page events
 ShiftPlanningDashboard.prototype.wallSubEvents = function(){
+    $('#da_wa_li').html(spView.ulLoader());
     spModel.messaging.get('wall', {}, function(response){
-        $('#da_wa_li').html($.tmpl($('#te_da_wa_me'), response.data));
+        if (response.data.length > 0){
+            $('#da_wa_li').html($.tmpl($('#te_da_wa_me'), response.data));
+        } else {
+            $('#da_wa_li').html(spView.emptyResult('No wall messages', 'li'));
+        }
     }, function(){
-        
+        $('#da_wa_li').html(spView.emptyResult('Something went wrong', 'li'));
     });
 }
 
 
 ShiftPlanningDashboard.prototype.upcomingShiftsSubEvents = function(){
+    $('#da_up_li').html(spView.ulLoader());
+    $('#da_up_li').show();
+    $('#da_up_li').next().hide();
     var send = {
         start_date: 'today', 
         end_date: 'today +2 months', 
@@ -289,10 +319,15 @@ ShiftPlanningDashboard.prototype.upcomingShiftsSubEvents = function(){
 }
 
 ShiftPlanningDashboard.prototype.inboxSubEvents = function(){
+    $('#da_in_me').html(spView.ulLoader());
     spModel.messaging.get('messages', {mode : 'to'}, function(response){
-        $('#da_in_me').html($.tmpl($('#te_da_wa_in'), response.data));
+        if (response.data.length > 0){
+            $('#da_in_me').html($.tmpl($('#te_da_wa_in'), response.data));
+        } else {
+            $('#da_in_me').html(spView.emptyResult('No messages in your inbox', 'li'));
+        }
     }, function(response){
-        console.log(response);
+        $('#da_in_me').html(spView.emptyResult('Something went wrong', 'li'));
     });
     
     $('#da_in_nm_to').html(spView.staffOption());
@@ -459,7 +494,7 @@ ShiftPlanningDashboard.prototype.changePassword = function (){
     }
 }
 
-ShiftPlanningDashboard.prototype.saveEditForm = function(){
+ShiftPlanningDashboard.prototype.saveEditForm = function(obj){
     //missing wage
     //missing location, mininum weekly hours, maximum weekly hours, auto approve shift requests
     // mising calendar size
@@ -504,7 +539,10 @@ ShiftPlanningDashboard.prototype.saveEditForm = function(){
     
     
     spModel.staff.update('employee', data, function(response){
+        obj.removeClass('loading');
         self.updateUser(eId, response);
+    }, function(){
+        obj.removeClass('loading');
     });
 }
 

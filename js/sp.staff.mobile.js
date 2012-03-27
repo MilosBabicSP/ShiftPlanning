@@ -68,7 +68,7 @@ ShiftPlanningStaff.prototype.addStaffEvents = function(){
     
     $('#st_ae_ce_b').bind(clickEvent, function(e){
         e.preventDefault();
-        self.createEmployee();
+        self.createEmployee($(this));
     });
 }
 
@@ -129,6 +129,7 @@ ShiftPlanningStaff.prototype.fastAssignmentSubEvents = function(){
 
 //Functions
 ShiftPlanningStaff.prototype.displayEmployee = function(id){
+    $('#st_tp_menu').hide();
     $('#pages > div').hide();
     $('#pages #dashboard .main').hide();
     $('#pages #dashboard .mainSub').hide();
@@ -151,6 +152,7 @@ ShiftPlanningStaff.prototype.loadFastAssignment = function(id){
 }
 
 ShiftPlanningStaff.prototype.createEmployee = function(c){
+    $(c).addClass('loading');
     var self = this;
     var data = {};
     data.name = $('#st_ae_i_n').val();
@@ -182,9 +184,12 @@ ShiftPlanningStaff.prototype.createEmployee = function(c){
     }
     
     spModel.staff.create('employee', data, function(response){
+        $(c).removeClass('loading');
         spModel.staff.addEmployee(response.data);
         self.displayEmployee(response.data.id);
         sp.showSuccess('Employee successfully created!');
+    }, function(){
+        $(c).removeClass('loading');
     });
 }
 

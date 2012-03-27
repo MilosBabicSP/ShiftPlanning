@@ -1,7 +1,7 @@
 <div class="main wall" id="da_wa">
     <div class="welcome">
         <p>Welcome Back,<br/>
-            <span>Ryan Fyfe</span> with ShiftPlanning Inc.
+            <span class="userName">Ryan Fyfe</span> with <company>ShiftPlanning Inc</company>
         </p>
     </div>
     <div class="title">
@@ -19,7 +19,7 @@
         </span>
 
         <div class="title">
-            <span class="fr"><a href="#" id="da_wa_nm_sa">Save Message</a></span>
+            <span class="fr"><a href="#" id="da_wa_nm_sa"><span>Save Message</span></a></span>
             <span class="fl"><a href="#" id="da_wa_nm_ca">Cancel</a></span>
         </div>
     </div>

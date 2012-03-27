@@ -715,7 +715,7 @@
                 <img width="30" height="30" src="images/staff.jpg">
                 <span>${employee.name}</span>
                 {{if schedule != null}}
-                    ${schedule.name}}
+                    ${schedule.name}
                 {{/if}}
             </div>
         </div>
@@ -726,7 +726,19 @@
         {{/if}}
     </script>
     <script id="te_tc_mts_li_in" type="text/x-jquery-tmpl">
-        <li class="s_${status} e_${user} sc_${schedule}" timeclockId="${id}"><span class="names">${name}</span><span class="time"><span class="tStart">${st.time}</span><img width="16" height="16" src="images/tc_sm_clock.png"><span class="tEnd">${out.time}</span></span><span class="last">${length.hours}h, ${length.mins}min</span></li>
+        <li class="s_${status} e_${user} sc_${schedule}" timeclockId="${id}">
+            <span class="names">${name}</span>
+            <span class="time">
+                <span class="tStart">${st.time}</span>
+                <img width="16" height="16" src="images/tc_sm_clock.png" />
+                {{if length.total_hours == ""}}
+                    <span class="tPending" user="${user}">Clock Out</span>
+                {{else}}
+                    <span class="tEnd">${out.time}</span>
+                {{/if}}
+                
+            </span>
+            <span class="last">${length.hours}h, ${length.mins}min</span></li>
     </script>
     <script id="te_tc_mts_li" type="text/x-jquery-tmpl">
         <div class="title">
@@ -764,12 +776,12 @@
                         <textarea></textarea>
                     </span>
                     <div class="title">
-                        <span class="fr"><a href="#">Send Message</a></span>
+                        <span class="fr"><a href="#"><span>Send Message</span></a></span>
                         <span class="fl"><a href="#">Cancel</a></span>
                     </div>
                 </div>
                 <div class="title">
-                    <span class="fr"><a class="butDel" href="#" rel="${id}">Delete</a></span>
+                    <span class="fr"><a class="butDel" href="#" rel="${id}"><span>Delete</span></a></span>
                     <span class="fl"><a class="butRpl" href="#" rel="${id}">Reply</a></span>
                 </div>
             </div>

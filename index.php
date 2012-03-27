@@ -103,8 +103,11 @@ if ($vtoken['data'] != '1') {
             sp.raw.config = <?= _iapi(array('module' => 'api.config', 'method' => 'GET'), 'json', true) ?>;
             sp.schedule.dateId = sp.raw.config.today.id;
             sp.staff.admin.info.dfAvatar = (typeof sp.staff.admin.info.avatar != 'undefined' && typeof sp.staff.admin.info.avatar.small != 'undefined') ? sp.staff.admin.info.avatar.small : 'images/no-avatar.png';
-            $('body').css('display', 'block');
+            $('.userName').html(user.name);
+            $('company').html(user.company);
+            
 <? } ?>
+    $('body').css('display', 'block');
     }
         </script>
     </head>
@@ -182,7 +185,7 @@ if ($vtoken['data'] != '1') {
                             </a>
                             <ul class="subMenu" id="tc_dtc_buttons">
                                 <li class="first">
-                                    <a href="#" class="approve">
+                                    <a href="#" class="approve" id="tc_dtc_ap">
                                         <img width="16" height="16" src="images/tc_approve.png">
                                     </a>
                                 </li>
@@ -191,8 +194,8 @@ if ($vtoken['data'] != '1') {
                                         <img width="16" height="16" src="images/tc_edit.png">
                                     </a>
                                 </li>
-                                <li class="last" class="delete">
-                                    <a href="#">
+                                <li class="last">
+                                    <a href="#" class="delete">
                                         <img width="16" height="16" src="images/tc_delete.png">
                                     </a>
                                 </li>

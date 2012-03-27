@@ -23,7 +23,7 @@ ShiftPlanningView.prototype.staffOption = function(notAdmin){
     }
     var opt;
     if (notAdmin == false){
-        opt = '<option disabled="disabled" selected="selected">Select Employee</option>';
+        opt = '<option disabled="disabled" selected="selected" value="0">Select Employee</option>';
         $.each(spModel.staff.allStaff(), function(i, item){
             opt += '<option value="' + item.id + '">' + ((typeof item == 'object') ? item.name : item) + '</option>';
         });
@@ -145,8 +145,14 @@ ShiftPlanningView.prototype.divLoader = function(){
     return '<div class="loading"></div>';
 }
 
-ShiftPlanningView.prototype.emptyResult = function(){
-    return '<div class="additional">Na data for selected criteria!</div>'
+ShiftPlanningView.prototype.emptyResult = function(text, tag){
+    if (typeof tag == 'undefined'){
+        tag = 'div'
+    }
+    if (typeof text == 'undefined'){
+        text = 'Na data for selected criteria!';
+    }
+    return '<' + tag + ' class="additional">' + text + '</' + tag + '>'
 }
 
 var spView = new ShiftPlanningView();

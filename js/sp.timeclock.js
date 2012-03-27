@@ -3,6 +3,7 @@ function ShiftPlanningTimeClock(){
     this.timeSheetsData = {};
     this.actco = false;
     this.current = {};
+    this.edit = false;
     return true;
 }
 

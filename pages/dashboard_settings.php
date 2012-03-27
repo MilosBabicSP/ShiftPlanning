@@ -296,7 +296,7 @@
             </li>
         </ul>
         <div class="title">
-            <span class="fr"><a id="da_se_ed_ue" href="#">Update Employee</a></span>
+            <span class="fr"><a id="da_se_ed_ue" href="#"><span>Update Employee</span></a></span>
         </div>
     </div>
     <div id="da_se_password">
