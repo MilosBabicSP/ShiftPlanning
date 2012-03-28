@@ -100,13 +100,24 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
         $(this).parent().parent().parent().find('li').removeClass('active');
         sp.loadSubPage('', 'schedule', 'addShift');
     });
+    
+    $('#sc_add_add').bind(clickEvent, function(e){
+        e.preventDefault();
+        spModel.schedule.create('shift', {}, function(response){
+            
+        });
+    });
 }
 
 ShiftPlanningSchedule.prototype.loadSubPageEvents = function(subpage){
     console.log(subpage + 'SubEvents');
     $('.subNavigation').show();
+    $('#sc_additional_menu').show();
     if (subpage == 'shiftDisplay'){
         $('.subNavigation').hide();
+    }
+    if (subpage == 'addShift'){
+        $('#sc_additional_menu').hide();
     }
     this[subpage + 'SubEvents']();
 }
@@ -147,9 +158,10 @@ ShiftPlanningSchedule.prototype.shiftDisplaySubEvents = function(){
 }
 
 ShiftPlanningSchedule.prototype.addShiftSubEvents = function(){
-    $('#sc_add_sc').html(spView.optionSchedules());
-    console.log(spView.locationSelector());
+    $('#sc_add_sc').html(spView.schedulerFilter());
     $('#sc_add_lo').html(spView.locationSelector());
+    
+    
 }
 
 ShiftPlanningSchedule.prototype.nextPrevPrepare = function(){

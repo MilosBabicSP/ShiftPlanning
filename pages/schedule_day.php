@@ -8,7 +8,7 @@
         <li>
             <span class="input">
                 <select id="sc_add_sc">
-                    
+
                 </select>
             </span>
         </li>
@@ -19,13 +19,21 @@
         </li>
         <li>
             <div class="title">
+                <h3 class="icoSch">Date</h3>
+            </div>
+        </li>
+        <li>
+            Ovde ide ostatak
+        </li>
+        <li>
+            <div class="title">
                 <h3 class="icoLoc">Location</h3>
             </div>
         </li>
         <li>
             <span class="input">
                 <select id="sc_add_lo" class="locations">
-                    
+
                 </select>
             </span>
         </li>
@@ -40,38 +48,37 @@
             </span>
         </li>
     </ul>
-    <h3>Who's working</h3>
-    <ul class="detailsGrid">
-        <ul>
-            <li class="even"><div><span class="checkbox check">Development</span></div></li>
-            <li class="odd"><div><span class="checkbox check">Board Test</span></div></li>
-            <li class="even"><div><span class="checkbox check">Management</span></div></li>
-            <li class="odd"><div><span class="checkbox check">Finance</span></div></li>
-            <li class="even"><div><span class="checkbox check">Happy Town</span></div></li>
-            <li class="odd"><div><span class="checkbox check">Sales</span></div></li>
-            <li class="even"><div><span  class="checkbox check">Test by Eric</span></div></li>
-            <li class="odd"><div><span  class="checkbox check">Support</span></div></li>
-            <li class="even"><div><span class="checkbox check">Jos Jedan Test</span></div></li>
-            <li class="odd"><div><span class="checkbox check">Steve OT Test</span></div></li>
-            <li class="even"><div><span class="checkbox check">Test 4</span></div></li>
+    <div class="title">
+        <span class="fl">
+            <a href="#" id="sc_add_ca">
+                <span>Cancel</span>
+            </a>
+        </span>
+        <span class="fr">
+            <a href="#" id="sc_add_add">
+                <span>Save Shift And Add user</span>
+            </a>
+        </span>
+    </div>
+    <div id="sc_add_user" class="hidden">
+        <h3>Who's working</h3>
+        <ul class="detailsGrid">
+            <ul>
+                <li class="even"><div><span class="checkbox check">Development</span></div></li>
+                <li class="odd"><div><span class="checkbox check">Board Test</span></div></li>
+            </ul>
         </ul>
-    </ul>
-    <h3>Available</h3>
-    <ul class="detailsGrid">
-        <ul>
-            <li class="even"><div><span class="checkbox">Development</span></div></li>
-            <li class="odd"><div><span class="checkbox">Board Test</span></div></li>
-            <li class="even"><div><span class="checkbox">Management</span></div></li>
-            <li class="odd"><div><span class="checkbox">Finance</span></div></li>
+        <h3>Available</h3>
+        <ul class="detailsGrid">
+            <ul>
+
+            </ul>
         </ul>
-    </ul>
-    <h3>Unavailable</h3>
-    <ul class="detailsGrid">
-        <ul>
-            <li class="even"><div><span class="checkbox disabled">Development</span></div></li>
-            <li class="odd"><div><span class="checkbox disabled">Board Test</span></div></li>
-            <li class="even"><div><span class="checkbox disabled">Management</span></div></li>
-            <li class="odd"><div><span class="checkbox disabled">Finance</span></div></li>
+        <h3>Unavailable</h3>
+        <ul class="detailsGrid">
+            <ul>
+
+            </ul>
         </ul>
-    </ul>
+    </div>
 </div>

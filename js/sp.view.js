@@ -96,11 +96,11 @@ ShiftPlanningView.prototype.skillsFilter = function(notAdmin){
 }
 
 ShiftPlanningView.prototype.locationSelector = function(){
-    var opt = '';
+    var opt = '<optgroup lable="locations">';
     $.each(spModel.location.locationsList(), function(i, item){
         opt += '<option value="' + item.id + '">' + item.name + '</option>';
     });
-    opt += '<option value="add">New Location?</option>';
+    opt += '</optgroup><optgroup><option value="add">New Location?</option></optgroup>';
     return opt;
 }
 
