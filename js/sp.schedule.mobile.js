@@ -148,7 +148,8 @@ ShiftPlanningSchedule.prototype.shiftDisplaySubEvents = function(){
 
 ShiftPlanningSchedule.prototype.addShiftSubEvents = function(){
     $('#sc_add_sc').html(spView.optionSchedules());
-    
+    console.log(spView.locationSelector());
+    $('#sc_add_lo').html(spView.locationSelector());
 }
 
 ShiftPlanningSchedule.prototype.nextPrevPrepare = function(){

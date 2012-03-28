@@ -76,6 +76,7 @@ if ($vtoken['data'] != '1') {
         <script src="js/sp.timeclock.js" type="text/javascript"></script>
         <script src="js/sp.reports.js" type="text/javascript"></script>
         <script src="js/sp.requests.js" type="text/javascript"></script>
+        <script src="js/sp.location.js" type="text/javascript"></script>
 
         <!-- Extension -->
         <script src="js/sp.staff.mobile.js" type="text/javascript"></script>

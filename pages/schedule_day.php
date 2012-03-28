@@ -8,12 +8,7 @@
         <li>
             <span class="input">
                 <select id="sc_add_sc">
-                    <option selected="selected" disabled="disabled">Select Employee</option>
-                    <option>Alicia M.</option>
-                    <option>Aly</option>
-                    <option>Asdf</option>
-                    <option>Ashley</option>
-                    <option>Bakuta</option>
+                    
                 </select>
             </span>
         </li>
@@ -29,7 +24,9 @@
         </li>
         <li>
             <span class="input">
-                <input type="text" name="" value="" />
+                <select id="sc_add_lo" class="locations">
+                    
+                </select>
             </span>
         </li>
         <li>
