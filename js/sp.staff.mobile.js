@@ -264,6 +264,10 @@ ShiftPlanningStaff.prototype.login = function(){
 
 
 ShiftPlanningStaff.prototype.logout = function(){
+    var c = confirm('Are you sure you want to logout?');
+    if (!c){
+        return false;
+    }
     sp.api('staff.logout', 'GET', {}, function(response){
         window.location.reload();
     }, function(response){

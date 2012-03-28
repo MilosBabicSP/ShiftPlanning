@@ -499,9 +499,7 @@ ShiftPlanningRequests.prototype.vacationSubEvents = function(){
     
     //    
     //    //getting upcoming confirmed vacations
-    spModel.schedule.get('vacations', {
-        mode : 'upcoming'
-    }, function(response){
+    spModel.schedule.get('vacations', {}, function(response){
         if (response.data.length == 0){
             $('#rq_va_up').hide();
             $('#rq_va_up').next().show();

@@ -54,6 +54,7 @@ if ($vtoken['data'] != '1') {
         <script src="js/models/sp.timeclock.model.js" type="text/javascript"></script>
         <script src="js/models/sp.staff.model.js" type="text/javascript"></script>
         <script src="js/models/sp.payroll.model.js" type="text/javascript"></script>
+        <script src="js/models/sp.location.model.js" type="text/javascript"></script>
 
         <!-- Plugins -->
         <script src="js/plugins/date.js" type="text/javascript"></script>

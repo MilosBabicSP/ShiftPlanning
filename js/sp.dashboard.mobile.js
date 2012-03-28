@@ -116,7 +116,6 @@ ShiftPlanningDashboard.prototype.wallEvents = function(){
             post: post, 
             id: id
         }, function(response) {
-            console.log(response);
             var d = {
                 avatar : sp.staff.admin.info.dfAvatar,
                 id : id,
@@ -376,8 +375,7 @@ ShiftPlanningDashboard.prototype.prefillOverview = function(employee){
     var p = {};
     
     $.each(employee, function(i, item){
-        console.log(i, item, item.length);
-        if (item.length == 0){
+        if (item == null || item.length == 0){
             item = '&nbsp;';
         }
         p[i] = item;

@@ -210,3 +210,4 @@ spModel.addModel('messaging', SPModelMessaging);
 spModel.addModel('timeclock', SPModelTimeClock);
 spModel.addModel('staff', SPModelStaff);
 spModel.addModel('payroll', SPModelPayroll);
+spModel.addModel('location', SPModelLocation);

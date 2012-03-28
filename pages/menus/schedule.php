@@ -22,12 +22,12 @@
         </ul>
         <ul class="subMenu">
             <li class="first">
-                <a href="#">
+                <a href="#" id="sc_refresh">
                     <img width="16" height="16" src="images/sch_ref.png">
                 </a>
             </li>
             <li class="last">
-                <a href="#">
+                <a href="#" id="sc_add">
                     <img width="16" height="16" src="images/sch_add.png">
                 </a>
             </li>
