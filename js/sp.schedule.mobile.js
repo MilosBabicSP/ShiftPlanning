@@ -84,7 +84,8 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
         spModel.schedule.get('shift', {id : $(this).attr('rel'), detailed:  1}, function(response){
             o.removeClass('loading');
             self.shift = response.data;
-            sp.loadSubPage('', 'schedule', 'editShift');
+            self.edit = true;
+            sp.loadSubPage('', 'schedule', 'addShift');
         }, function(){
             o.removeClass('loading');
         });
@@ -102,9 +103,40 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
     });
     
     $('#sc_add_add').bind(clickEvent, function(e){
+        var obj = $(this);
+        var isEdit = ($('#sc_edit_id').val() != 0) ? true : false;
+        obj.addClass('loading');
         e.preventDefault();
-        spModel.schedule.create('shift', {}, function(response){
-            
+        var data = {
+            schedule : $('#sc_add_sc').val(),
+            location : $('#sc_add_lo').val(),
+            title : $('#sc_add_ti').val(),
+            start_time : $('#sc_date_st').val(),
+            end_time : $('#sc_date_et').val(),
+            start_date : $('#sc_date_sd').val(),
+            end_date : $('#sc_date_ed').val(),
+            notes : $('#sc_add_no').val()
+        }
+        
+        var method = 'create';
+        if (isEdit){
+            method = 'update';
+            data.id = $('#sc_edit_id')
+        }
+        
+        spModel.schedule[method]('shift', data, function(response){
+            if (!isEdit){
+                spModel.schedule.get('shift', {id : response.data.id, detailed : 1}, function(){
+                    obj.removeClass('loading');
+                    self.shift = response.data;
+                    self.edit = true;
+                    sp.loadSubPage('', 'schedule', 'addShift');
+                })
+            } else {
+                obj.removeClass('loading');
+            }
+        }, function(){
+            obj.removeClass('loading');
         });
     });
 }
@@ -155,13 +187,78 @@ ShiftPlanningSchedule.prototype.shiftDisplaySubEvents = function(){
         this.shift.employees = [];
     }
     $('#sc_shift_display').html($.tmpl($('#te_sc_shift_display'), this.shift))
+    
+    $('#sc_sub_shift_display ul a').attr('rel', this.shift.id);
 }
 
 ShiftPlanningSchedule.prototype.addShiftSubEvents = function(){
     $('#sc_add_sc').html(spView.schedulerFilter());
     $('#sc_add_lo').html(spView.locationSelector());
     
+    var emp = {};
+    if (this.edit != false){
+        emp = this.shift;
+        console.log(this.shift);
+        emp.start_date.formatted = Date.parse(emp.start_date.formatted + ' ' + emp.start_time.time).getTime()/1000;
+        emp.end_date.formatted = Date.parse(emp.end_date.formatted + ' ' + emp.end_time.time).getTime()/1000;
+        if (emp.schedule != null) $('#sc_add_sc').val(emp.schedule);
+        if (emp.schedule != null) $('#sc_add_sc').val(emp.schedule);
+    } else {
+        emp.start_date = {}
+        emp.end_date = {}
+        emp.start_date.formatted = Date.parse('today at 9am').getTime()/1000;
+        emp.end_date.formatted = Date.parse('today at 5pm').getTime()/1000;
+    }
     
+    var s = new Date(emp.start_date.formatted*1000);
+    var e = new Date(emp.start_date.formatted*1000);
+    
+    var tf = (cal.tmode == 24)? 'HH:mm' : 'hh:mm tt';
+    
+    $('#sc_date_st').scroller('destroy');
+    $('#sc_date_st').val(s.toString(tf));
+    $("#sc_date_st").scroller({
+        preset : 'time',
+        ampm: (cal.tmode==24?false:true),
+        stepMinute: 15,
+        timeFormat: sp.strReplace(['tt','mm'],['A','ii'],cal.tstring)
+    });
+    
+
+    
+    //$('#tc_act_c_co_dp_i').val(outD.toString(cal.dformat));
+    
+    $('#sc_date_et').scroller('destroy');
+    $('#sc_date_et').val(e.toString(tf));
+    $("#sc_date_et").scroller({
+        preset : 'time',
+        ampm: (cal.tmode==24?false:true),
+        stepMinute: 15,
+        timeFormat: sp.strReplace(['tt','mm'],['A','ii'],cal.tstring)
+    });
+    
+    $('#sc_date_sd').scroller('destroy');
+    $('#sc_date_sd').val(s.toString(cal.dformat));
+    $('#sc_date_sd').scroller({
+        preset : 'date',
+        dateFormat : (sp.strReplace(['MM','yyyy'],['mm','yy'],cal.dformat) == 'mmM d, yy') ? sp.strReplace(['MM','yyyy'],['mm','yy'],cal.dformat).substr(2, sp.strReplace(['MM','yyyy'],['mm','yy'],cal.dformat).length) : sp.strReplace(['MM','yyyy'],['mm','yy'],cal.dformat),
+        dateOrder: sp.strReplace(['MM','yyyy',' ','-','/'],['mm','yy','','',''],cal.dformat)
+    });
+    
+    $('#sc_date_ed').scroller('destroy');
+    $('#sc_date_ed').val(e.toString(cal.dformat));
+    $('#sc_date_ed').scroller({
+        preset : 'date',
+        dateFormat : (sp.strReplace(['MM','yyyy'],['mm','yy'],cal.dformat) == 'mmM d, yy') ? sp.strReplace(['MM','yyyy'],['mm','yy'],cal.dformat).substr(2, sp.strReplace(['MM','yyyy'],['mm','yy'],cal.dformat).length) : sp.strReplace(['MM','yyyy'],['mm','yy'],cal.dformat),
+        dateOrder: sp.strReplace(['MM','yyyy',' ','-','/'],['mm','yy','','',''],cal.dformat)
+    });
+    
+    
+//    $('#tc_act_no').val((this.edit) ? emp.notes : '');
+//    $('#tc_act_em').val((this.edit) ? emp.employee.id : 0);
+//    $('#tc_act_sc').val((this.edit) ? (emp.schedule != null) ? emp.schedule.id : 0 : 0);
+
+    this.edit = false;
 }
 
 ShiftPlanningSchedule.prototype.nextPrevPrepare = function(){

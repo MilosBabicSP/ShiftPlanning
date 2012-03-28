@@ -10,12 +10,12 @@
                 </a>
             </li>
             <li>
-                <a href="#" subpage="manageTimeSheets">
+                <a href="#" subpage="manageTimeSheets" id="tc_mts_sub_button">
                     <img width="16" height="16" src="images/timeclock_2.png" />
                 </a>
             </li>
             <li class="last">
-                <a href="#" subpage="addClockTime">
+                <a href="#" subpage="addClockTime" id="tc_act_sub_button">
                     <img width="16" height="16" src="images/timeclock_3.png" />
                 </a>
             </li>

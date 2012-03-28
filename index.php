@@ -143,18 +143,18 @@ if ($vtoken['data'] != '1') {
                     <img height="61" width="190" src="images/logo.png" />
                 </a>
                 <ul class="mainNav">
-                    <li><a class="dash" href="#" page="dashboard">Dashboard</a></li>
-                    <li><a class="ticl" href="#" page="timeClock">Time Clock</a></li>
-                    <li><a class="sche" href="#" page="schedule">Schedule</a></li>
-                    <li class="active"><a class="requ" href="#" page="requests">Requests</a>
-                        <ul>
+                    <li id="menu_dashboard"><a class="dash" href="#" page="dashboard">Dashboard</a></li>
+                    <li id="menu_timeClock"><a class="ticl" href="#" page="timeClock">Time Clock</a></li>
+                    <li id="menu_schedule"><a class="sche" href="#" page="schedule">Schedule</a></li>
+                    <li class="active" id="menu_requests"><a class="requ" href="#" page="requests">Requests</a>
+                        <ul class="hidden">
                             <li><a href="#"><span>4</span>Vacation requests</a></li>
                             <li><a href="#"><span>208</span>Shift Approvals</a></li>
                             <li><a href="#"><span>126</span>Shifts Available</a></li>
                         </ul>
                     </li>
-                    <li><a class="staf" href="#" page="staff">Staff</a></li>
-                    <li><a class="repo" href="#" page="reports">Reports</a></li>
+                    <li id="menu_staff"><a class="staf" href="#" page="staff" >Staff</a></li>
+                    <li id="menu_reports"><a class="repo" href="#" page="reports" >Reports</a></li>
                 </ul>
             </div>
             <div id="wrapper" class="wrapper">

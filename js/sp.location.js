@@ -12,11 +12,13 @@ ShiftPlanningLocation.prototype = {
                 var obj = $(this);
                 if ($(this).val() == 'add'){
                     var loc = prompt ("Enter location name.","");
-                    spModel.location.create('location', {name : loc, type : 1}, function(response){
-                        obj.find('optgroup:first').append('<option val="' + response.data.id + '">' + response.data.name + '</option>');
-                        obj.val(obj.find('optgroup:first option:last').val());
-                        spModel.location.locationsList(true);
-                    });
+                    if (loc != null){
+                        spModel.location.create('location', {name : loc, type : 1}, function(response){
+                            obj.find('optgroup:first').append('<option val="' + response.data.id + '">' + response.data.name + '</option>');
+                            obj.val(obj.find('optgroup:first option:last').val());
+                            spModel.location.locationsList(true);
+                        });
+                    }
                 }
             });
         });

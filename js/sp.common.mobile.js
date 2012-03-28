@@ -67,6 +67,11 @@ ShiftPlanning.prototype.loadSubPage = function(obj, page, subpage){
         obj.parent().addClass('active');
     }
     
+    
+    
+    $('.subNavigation > div').hide();
+    $('.subNavigation > div.' + page).show();
+    
     $('#pages > div').hide();
     $('#pages #' + page + ' .main').hide();
     $('#pages #' + page + ' .mainSub').hide();
