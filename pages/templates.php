@@ -285,13 +285,13 @@
         <ul class="multiInput">
             <li class="even">
                 <div>
-                    <b class="from">From</b><br/>
+                    <b class="fromI">From</b><br/>
                     <span>${start_day.formatted}</span>
                 </div>
             </li>
             <li class="odd">
                 <div>
-                    <b class="until">Until</b><br/>
+                    <b class="untilI">Until</b><br/>
                     <span>${end_day.formatted}</span>
                 </div>
             </li>
@@ -693,9 +693,11 @@
     <script id="te_re_info" type="text/x-jquery-tmpl">
         <li>
             <a href="#" class="fr" rel="${rId}"><img width="43" height="30" src="images/NextMenu.png"></a>
-            <span>
+            
                 <img width="30" height="30" src="${avatar}">
-                ${employee}
+                <span class="twoLine">
+                ${employee}<br/>
+                additional info here
             </span>
         </li>
     </script>

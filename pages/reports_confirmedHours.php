@@ -90,7 +90,7 @@
         </li>
     </ul>
     <div class="title">
-        <h3>Upcoming Shifts</h3>
+        <h3>Report</h3>
     </div>
     <ul class="timeSheet listReports">
     </ul>
