@@ -24,7 +24,7 @@ SPModelMessaging.prototype.prepareWallMessages = function(response){
             $.each(this.comments,function(){
                 comments.push({
                     id: this.id,
-                    avatar: (typeof sp.staff.data.employees[this.user.id] != 'undefined' && typeof sp.staff.data.employees[this.user.id].avatar != 'undefined' && typeof sp.staff.data.employees[this.user.id].avatar.small != 'undefined') ? sp.staff.data.employees[this.user.id].avatar.small : 'images/no-avatar.png',
+                    avatar: sp.getAvatar(this.user.id),
                     userName: this.user.name,
                     userId : this.user.id,
                     time: $.timeago(new Date(this.date*1000)),
@@ -36,7 +36,7 @@ SPModelMessaging.prototype.prepareWallMessages = function(response){
         }
         data.push({
             id: this.id,
-            avatar: (typeof sp.staff.data.employees[this.user.id] != 'undefined' && typeof sp.staff.data.employees[this.user.id].avatar != 'undefined' && typeof sp.staff.data.employees[this.user.id].avatar.small != 'undefined') ? sp.staff.data.employees[this.user.id].avatar.small : 'images/no-avatar.png',
+            avatar: sp.getAvatar(this.user.id),
             userName: this.user.name,
             userId : this.user.id,
             time: $.timeago(new Date(this.date*1000)),

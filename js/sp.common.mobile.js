@@ -138,6 +138,13 @@ ShiftPlanning.prototype.initialize = function(){
         setInterval(function(){
             $('#menu').css('height', ($(window).height() > $(document).height() ? $(window).height() : $(document).height()));
         }, 1000);
+        $('#wrapper').width($(window).width());
+        $('body').width($(window).width());
+    });
+    
+    $(window).bind('resize', function(){
+        $('#wrapper').width($(window).width());
+        $('body').width($(window).width());
     });
 }
 

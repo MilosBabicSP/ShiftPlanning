@@ -211,7 +211,7 @@ ShiftPlanningSchedule.prototype.addShiftSubEvents = function(){
     }
     
     var s = new Date(emp.start_date.formatted*1000);
-    var e = new Date(emp.start_date.formatted*1000);
+    var e = new Date(emp.end_date.formatted*1000);
     
     var tf = (cal.tmode == 24)? 'HH:mm' : 'hh:mm tt';
     
@@ -224,9 +224,6 @@ ShiftPlanningSchedule.prototype.addShiftSubEvents = function(){
         timeFormat: sp.strReplace(['tt','mm'],['A','ii'],cal.tstring)
     });
     
-
-    
-    //$('#tc_act_c_co_dp_i').val(outD.toString(cal.dformat));
     
     $('#sc_date_et').scroller('destroy');
     $('#sc_date_et').val(e.toString(tf));
@@ -254,9 +251,15 @@ ShiftPlanningSchedule.prototype.addShiftSubEvents = function(){
     });
     
     
-//    $('#tc_act_no').val((this.edit) ? emp.notes : '');
-//    $('#tc_act_em').val((this.edit) ? emp.employee.id : 0);
+    $('#sc_add_no').val((this.edit) ? emp.notes : '');
+    $('#sc_add_ti').val((this.edit) ? emp.title : '');
 //    $('#tc_act_sc').val((this.edit) ? (emp.schedule != null) ? emp.schedule.id : 0 : 0);
+
+    if (this.edit){
+        $('#sc_add_add span').html('Save Shift');
+    } else {
+        $('#sc_add_add span').html('Add Shift And Set Users');
+    }
 
     this.edit = false;
 }

@@ -250,6 +250,7 @@ ShiftPlanningStaff.prototype.login = function(){
                     $('.applicationContainer').fadeIn(500);
                     sp.hash('dashboard');
                     self.prepareConfig();
+                    $('.userName').html(user.name);
                 });
             });
         });

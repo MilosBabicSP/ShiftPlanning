@@ -13,7 +13,7 @@ q:before,q:after {content:'';}
 abbr,acronym { border:0;}
 
 /*MAIN*/
-body {font-size:13px; color:#555; font-family:"Arial",sans-serif;}
+body {font-size:13px; color:#555; font-family:"Arial",sans-serif; overflow: hidden;}
 a {color:#8C1919; outline:none; text-decoration:none;}
 img {border: none; vertical-align: middle;}
 p {line-height:120%;}
