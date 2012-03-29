@@ -35,7 +35,7 @@
         {{/if}}
     </script>
     <script id="te_sc_shifts" type="text/x-jquery-tmpl">
-        <tr shiftId="${id}" class="shift">
+        <tr shiftId="${id}" class="isShift">
             <td class="dTime" style="background-color: #${sp.schedule.getColorsBySchedule(schedule)[1]}; color: #${sp.schedule.getColorsBySchedule(schedule)[2]}">${start_time.time}</td>
             <td class="dTitle">${schedule_name}</td>
         </tr>
@@ -794,7 +794,7 @@
             <img width="50" height="50" title="user name" src="${avatar}" />
             <div class="msg">
                 <h4>${userName}</h4>
-                <p>${title}<br />${post}</p>
+                <p>${title}<br /><p>{{html post}}</p></p>
                 <span>${time}</span>
             </div>
             <a href="#" class="msgDel" rel="${id}"></a>
@@ -818,7 +818,7 @@
             <img width="50" height="50" title="user name" src="${avatar}" />
             <div class="msg">
                 <h4>${userName}</h4>
-                <p>${comment}</p>
+                <p>{{html comment}}</p>
                 <span>${time}</span>
             </div>
             {{if full}}

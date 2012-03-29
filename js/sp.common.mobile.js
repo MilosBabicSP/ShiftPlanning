@@ -147,7 +147,6 @@ ShiftPlanning.prototype.initialize = function(){
         });
         
         $('#wrapper').bind(clickEvent, function(e){
-            console.log(e);
             if ($('#wrapper').hasClass('extended') && !$(e.target.parentElement).hasClass('toggleMenu')){
                 self.toggleMenu();
             }

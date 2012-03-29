@@ -62,7 +62,7 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
     });
     
     $('#sc_td_list').delegate('tr', clickEvent, function(e){
-        if (!$(this).hasClass('shift')){
+        if (!$(this).hasClass('isShift')){
             return false;
         }
         $(this).addClass('loading');
