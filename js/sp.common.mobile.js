@@ -136,7 +136,7 @@ ShiftPlanning.prototype.initialize = function(){
         $(window).hashchange();
         
         setInterval(function(){
-            $('#menu').css('height', ($(window).height() > $('body').height() ? $(window).height() : $('body').height()));
+            $('#menu').css('height', ($(window).height() > $(document).height() ? $(window).height() : $(document).height()));
         }, 1000);
         $('#wrapper').width($(window).width());
         $('body').width($(window).width());
