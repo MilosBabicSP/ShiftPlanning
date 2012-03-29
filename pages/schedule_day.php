@@ -21,7 +21,7 @@
         </li>
         <li>
             <div class="title">
-                <h3 class="icoSch">Date</h3>
+                <h3 class="icoDat">Date</h3>
             </div>
         </li>
         <li>

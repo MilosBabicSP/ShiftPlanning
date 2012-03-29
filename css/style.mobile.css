@@ -31,7 +31,7 @@ h5 {font-size:14px; font-weight:normal; color:#333;}
 /*SPRITE*/
 .msgDel, .msgRpl, .cmtCount span.tip, ul.cmts, ul.cmts li.last input[type=submit], .search input[type=submit] {background-image:url(../images/icos.png); background-repeat:no-repeat;}
 .cmtCount span.ico {background-image:url(../images/sprite.png); background-repeat:no-repeat;}
-.from, .until, span.checkbox, .dash, .ticl, .sche, .requ, .staf, .repo, .icoClock, .icoEmpDet, .icoAdmAct, .icoEmpPos, .icoEmpSki, .icoEmpAdd, .icoNot, .icoAct, .icoSta, .icoReqWor, .icoReqCan, .icoLoc, .icoSch {background-image:url(../images/mainNav_bg.png); background-repeat:no-repeat;}
+.fromI, .untilI, span.checkbox, .dash, .ticl, .sche, .requ, .staf, .repo, .icoClock, .icoEmpDet, .icoAdmAct, .icoEmpPos, .icoEmpSki, .icoEmpAdd, .icoDat, .icoNot, .icoAct, .icoSta, .icoReqWor, .icoReqCan, .icoLoc, .icoSch {background-image:url(../images/mainNav_bg.png); background-repeat:no-repeat;}
 .calendar td.today, .calendar th, .calendar td.hasAny {background-image: url(../images/callendar_bg.png); background-repeat:repeat-x;}
 
 .dash {background-position:10px 0;}
@@ -53,11 +53,12 @@ h5 {font-size:14px; font-weight:normal; color:#333;}
 .icoSta {background-position:0 -810px; padding:0 0 0 40px;}
 .icoSch {background-position:0 -960px; padding:0 0 0 40px;}
 .icoLoc {background-position:0 -1010px; padding:0 0 0 40px;}
+.icoDat {background-position:0 -1210px; padding:0 0 0 40px;}
 .icoReqWor {background-position:0 -860px;}
 .icoReqCan {background-position:0 -1160px;}
 .icoReqEdi {background-position:0 -1160px;}
-.from {background-position:-10px -1065px; padding:0 0 0 20px;}
-.until {background-position:-10px -1115px; padding:0 0 0 20px;}
+.fromI {background-position:-10px -1065px; padding:0 0 0 20px;}
+.untilI {background-position:-10px -1115px; padding:0 0 0 20px;}
 
 span.checkbox {display:block; line-height:30px; padding:5px 0 5px 35px; background-position:-5px -905px;}
 span.checkbox.check {background-position:-5px -555px;}
@@ -207,9 +208,11 @@ ul.cmts li.last input[type=submit] {float:right; margin:13px 0 0; display:block;
 
 ul.timeSheet {overflow:hidden; font-size:14px;}
 ul.timeSheet li {border-bottom:solid 1px #dbdbdb; padding:5px 0; overflow:hidden;}
+ul.timeSheet li > img {float:left;}
 ul.timeSheet li > span {display:inline-block; float:left;}
 ul.timeSheet li .date {width:25%; line-height:30px;}
 ul.timeSheet li .names {width:25%; line-height:15px;}
+ul.timeSheet li .twoLine {line-height:15px; padding:0 0 0 5px;}
 ul.timeSheet li .time {width:50%; text-align:center; color:#888; line-height:20px; font-size:13px;}
 ul.timeSheet li .time .tStart {background-color:#75BE66; display:inline-block; padding:5px; border-radius:2px; color:#FFF;}
 ul.timeSheet li .time .tEnd {background-color:#D15050; display:inline-block; padding:5px; border-radius:2px; color:#FFF;}
