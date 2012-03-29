@@ -17,7 +17,7 @@
     </script>
     <script id="te_sc_shift_display" type="text/x-jquery-tmpl">
         <div class="title1 wide" style="background-color: #${sp.schedule.getColorsBySchedule(schedule)[1]}; color: #${sp.schedule.getColorsBySchedule(schedule)[2]}">
-            <h3>Sales</h3>
+            <h3>${schedule_name}</h3>
         </div>
         <div class="title wide">
             <div>
