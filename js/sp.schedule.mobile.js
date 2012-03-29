@@ -204,8 +204,8 @@ ShiftPlanningSchedule.prototype.addShiftSubEvents = function(){
         if (emp.schedule != null) $('#sc_add_sc').val(emp.schedule);
         if (emp.schedule != null) $('#sc_add_sc').val(emp.schedule);
     } else {
-        emp.start_date = {}
-        emp.end_date = {}
+        emp.start_date = {};
+        emp.end_date = {};
         emp.start_date.formatted = Date.parse('today at 9am').getTime()/1000;
         emp.end_date.formatted = Date.parse('today at 5pm').getTime()/1000;
     }

@@ -14,6 +14,7 @@
             </span>
         </li>
         <li>
+            <label>Title</label>
             <span class="input">
                 <input type="text" name="" id="sc_add_ti" />
             </span>
