@@ -1,6 +1,9 @@
 
 <!-- ID rulez first is "te" shorten from template, next is 2 letter from module name, than 2 letter from page name, than 2 letters from page method -->
 <div id="templates">
+    <script id="te_sc_users" type="text/x-jquery-tmpl">
+        <li class="even"><div><span class="checkbox check" user="${id}">${name}</span></div></li>
+    </script>
     <script id="te_sc_shifts_months" type="text/x-jquery-tmpl">
         <tr>
             <td colspan="2" class="dTime" >${dateToday}</td>
@@ -35,8 +38,8 @@
         {{/if}}
     </script>
     <script id="te_sc_shifts" type="text/x-jquery-tmpl">
-        <tr shiftId="${id}" class="shift">
-            <td class="dTime" style="background-color: #${sp.schedule.getColorsBySchedule(schedule)[1]}; color: #${sp.schedule.getColorsBySchedule(schedule)[2]}">${start_time.time}</td>
+        <tr shiftId="${id}" class="isShift">
+            <td class="dTime" style="background-color: #${sp.schedule.getColorsBySchedule(schedule)[1]}; color: #${sp.schedule.getColorsBySchedule(schedule)[2]}">${start_time.time} - ${end_time.time}</td>
             <td class="dTitle">${schedule_name}<br/><span>name one, name two, Gayan Gelimirovic</span></td>
         </tr>
     </script>
@@ -794,7 +797,7 @@
             <img width="50" height="50" title="user name" src="${avatar}" />
             <div class="msg">
                 <h4>${userName}</h4>
-                <p>${title}<br />${post}</p>
+                <p>${title}<br /><p>{{html post}}</p></p>
                 <span>${time}</span>
             </div>
             <a href="#" class="msgDel" rel="${id}"></a>
@@ -818,7 +821,7 @@
             <img width="50" height="50" title="user name" src="${avatar}" />
             <div class="msg">
                 <h4>${userName}</h4>
-                <p>${comment}</p>
+                <p>{{html comment}}</p>
                 <span>${time}</span>
             </div>
             {{if full}}

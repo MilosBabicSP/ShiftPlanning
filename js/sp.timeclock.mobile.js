@@ -153,7 +153,7 @@ ShiftPlanningTimeClock.prototype.addClockTimeEvents = function(){
     var self = this;
     $('#tc_act_onci').bind(clickEvent, function(){
         $(this).toggleClass('check');
-        $('#tc_act .multiInput .odd').toggleClass('nonVisible');
+        $('#tc_act .detailsGrid .odd').toggleClass('nonVisible');
     });
     
     $('#tc_act_sa_b').bind(clickEvent, function(e){

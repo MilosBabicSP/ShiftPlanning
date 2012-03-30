@@ -14,6 +14,7 @@
             </span>
         </li>
         <li>
+            <label>Title</label>
             <span class="input">
                 <input type="text" name="" id="sc_add_ti" />
             </span>
@@ -82,20 +83,19 @@
     </ul>
     <div id="sc_add_user" class="hidden">
         <h3>Who's working</h3>
-        <ul class="detailsGrid">
+        <ul class="detailsGrid working">
             <ul>
                 <li class="even"><div><span class="checkbox check">Development</span></div></li>
-                <li class="odd"><div><span class="checkbox check">Board Test</span></div></li>
             </ul>
         </ul>
         <h3>Available</h3>
-        <ul class="detailsGrid">
+        <ul class="detailsGrid available">
             <ul>
 
             </ul>
         </ul>
         <h3>Unavailable</h3>
-        <ul class="detailsGrid">
+        <ul class="detailsGrid unavailable">
             <ul>
 
             </ul>

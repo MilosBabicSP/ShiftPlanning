@@ -62,6 +62,7 @@ if ($vtoken['data'] != '1') {
         <script src="js/schedule/date.js" type="text/javascript"></script>
         <script src="js/schedule/date.extras.js" type="text/javascript"></script>
         <script src="js/plugins/objSort.js" type="text/javascript"></script>
+        <script src="js/plugins/outerClick.js" type="text/javascript"></script>
 
         <!-- System -->
         <script src="js/sp.common.js" type="text/javascript"></script>

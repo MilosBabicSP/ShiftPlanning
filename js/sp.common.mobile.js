@@ -140,6 +140,17 @@ ShiftPlanning.prototype.initialize = function(){
         }, 1000);
         $('#wrapper').width($(window).width());
         $('body').width($(window).width());
+        
+        //all mainUser names to lead to settings 
+        $('.userName').bind(clickEvent, function(){
+            sp.loadSubPage('', 'dashboard', 'settings');
+        });
+        
+        $('#wrapper').bind(clickEvent, function(e){
+            if ($('#wrapper').hasClass('extended') && !$(e.target.parentElement).hasClass('toggleMenu')){
+                self.toggleMenu();
+            }
+        })
     });
     
     $(window).bind('resize', function(){
