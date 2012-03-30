@@ -263,6 +263,7 @@ ShiftPlanningSchedule.prototype.addShiftSubEvents = function(){
     //prepare users
     if (this.edit){
         $('#sc_add_user .working').html($.tmpl($('#te_sc_users'), this.prepareStaff(emp.staff.scheduled)));
+        $('#sc_add_user .available').html($.tmpl($('#te_sc_users'), this.prepareStaff(emp.staff.available)));
         $('#sc_add_user').show();
     }
 
