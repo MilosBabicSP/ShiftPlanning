@@ -2,7 +2,7 @@
 <!-- ID rulez first is "te" shorten from template, next is 2 letter from module name, than 2 letter from page name, than 2 letters from page method -->
 <div id="templates">
     <script id="te_sc_users" type="text/x-jquery-tmpl">
-        <li ><div><span class="checkbox check" user="${id}">${name}</span></div></li>
+        <li ><div><span class="checkbox" user="${id}">${name}</span></div></li>
     </script>
     <script id="te_sc_shifts_months" type="text/x-jquery-tmpl">
         <tr>

@@ -135,9 +135,9 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
                 spModel.schedule.get('shift', {
                     id : response.data.id, 
                     detailed : 1
-                }, function(){
+                }, function(r1){
                     obj.removeClass('loading');
-                    self.shift = response.data;
+                    self.shift = r1.data;
                     self.edit = true;
                     sp.loadSubPage('', 'schedule', 'addShift');
                 })
@@ -200,12 +200,12 @@ ShiftPlanningSchedule.prototype.shiftDisplaySubEvents = function(){
 }
 
 ShiftPlanningSchedule.prototype.addShiftSubEvents = function(){
+    $('#sc_add_user').hide();
     $('#sc_add_sc').html(spView.schedulerFilter());
     $('#sc_add_lo').html(spView.locationSelector());
     
     var emp = {};
-    if (this.edit != false){
-        console.log(this.shift);
+    if (this.edit != false){    
         emp = this.shift;
         emp.start_date.formatted = Date.parse(emp.start_date.formatted + ' ' + emp.start_time.time).getTime()/1000;
         emp.end_date.formatted = Date.parse(emp.end_date.formatted + ' ' + emp.end_time.time).getTime()/1000;
@@ -269,11 +269,20 @@ ShiftPlanningSchedule.prototype.addShiftSubEvents = function(){
         $('#sc_add_add span').html('Add Shift And Set Users');
     }
     
+    console.log(emp);
     //prepare users
     if (this.edit){
-        $('#sc_add_user .working ul').html($.tmpl($('#te_sc_users'), this.prepareStaff(emp.staff.scheduled)));
-        $('#sc_add_user .available ul').html($.tmpl($('#te_sc_users'), this.prepareStaff(emp.staff.available)));
-        $('#sc_add_user .unavailable ul').html($.tmpl($('#te_sc_users'), this.prepareStaff(emp.staff.unavail)));
+//        if (typeof emp.staff == 'undefined'){
+//            emp.staff = {
+//                scheduled : [],
+//                available : [],
+//                unavail : []
+//            }
+//        }
+//        
+        $('#sc_add_user .working ul').html((emp.staff.scheduled == null) ? spView.emptyResult('No scheduled employees for selected shift', 'li') : $.tmpl($('#te_sc_users'), this.prepareStaff(emp.staff.scheduled)));
+        $('#sc_add_user .available ul').html((emp.staff.available == null) ? spView.emptyResult('No available employees for selected shift', 'li') : $.tmpl($('#te_sc_users'), this.prepareStaff(emp.staff.available)));
+        $('#sc_add_user .unavailable ul').html((emp.staff.unavail == null) ? spView.emptyResult('No unavail employees for selected shift', 'li') : $.tmpl($('#te_sc_users'), this.prepareStaff(emp.staff.unavail)));
         
         $('#sc_add_user .working ul li').each(function(i, item){
             if (i % 2 == 0){
