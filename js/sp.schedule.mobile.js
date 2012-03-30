@@ -66,7 +66,10 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
             return false;
         }
         $(this).addClass('loading');
-        spModel.schedule.get('shift', {id : $(this).attr('shiftId'), detailed : 1}, function(response){
+        spModel.schedule.get('shift', {
+            id : $(this).attr('shiftId'), 
+            detailed : 1
+        }, function(response){
             self.shift = response.data;
             sp.loadSubPage('', 'schedule', 'shiftDisplay');
         });
@@ -81,7 +84,10 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
         e.preventDefault();
         var o = $(this);
         o.addClass('loading');
-        spModel.schedule.get('shift', {id : $(this).attr('rel'), detailed:  1}, function(response){
+        spModel.schedule.get('shift', {
+            id : $(this).attr('rel'), 
+            detailed:  1
+        }, function(response){
             o.removeClass('loading');
             self.shift = response.data;
             self.edit = true;
@@ -126,7 +132,10 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
         
         spModel.schedule[method]('shift', data, function(response){
             if (!isEdit){
-                spModel.schedule.get('shift', {id : response.data.id, detailed : 1}, function(){
+                spModel.schedule.get('shift', {
+                    id : response.data.id, 
+                    detailed : 1
+                }, function(){
                     obj.removeClass('loading');
                     self.shift = response.data;
                     self.edit = true;
@@ -252,7 +261,7 @@ ShiftPlanningSchedule.prototype.addShiftSubEvents = function(){
     
     $('#sc_add_no').val((this.edit) ? emp.notes : '');
     $('#sc_add_ti').val((this.edit) ? emp.title : '');
-//    $('#tc_act_sc').val((this.edit) ? (emp.schedule != null) ? emp.schedule.id : 0 : 0);
+    //    $('#tc_act_sc').val((this.edit) ? (emp.schedule != null) ? emp.schedule.id : 0 : 0);
 
     if (this.edit){
         $('#sc_add_add span').html('Save Shift');
@@ -264,6 +273,24 @@ ShiftPlanningSchedule.prototype.addShiftSubEvents = function(){
     if (this.edit){
         $('#sc_add_user .working').html($.tmpl($('#te_sc_users'), this.prepareStaff(emp.staff.scheduled)));
         $('#sc_add_user .available').html($.tmpl($('#te_sc_users'), this.prepareStaff(emp.staff.available)));
+        $('#sc_add_user .unavailable').html($.tmpl($('#te_sc_users'), this.prepareStaff(emp.staff.unavail)));
+        
+        $('#sc_add_user .working li').each(function(i, item){
+            if (i % 2 == 0){
+                $(this).addClass('even');
+            } else {
+                $(this).addClass('odd');
+            }
+        });
+        
+        $('#sc_add_user .available li').each(function(i, item){
+            if (i % 2 == 0){
+                $(this).addClass('even');
+            } else {
+                $(this).addClass('odd');
+            }
+        });
+        
         $('#sc_add_user').show();
     }
 
@@ -471,7 +498,7 @@ ShiftPlanningSchedule.prototype.generateMiddle = function(currentDate){
 
 ShiftPlanningSchedule.prototype.fixCalendar = function(){
     
-}
+    }
 
 
 ShiftPlanningSchedule.prototype.loadPage = function(){

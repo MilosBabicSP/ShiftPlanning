@@ -85,7 +85,7 @@
         <h3>Who's working</h3>
         <ul class="detailsGrid working">
             <ul>
-                <li class="even"><div><span class="checkbox check">Development</span></div></li>
+
             </ul>
         </ul>
         <h3>Available</h3>
