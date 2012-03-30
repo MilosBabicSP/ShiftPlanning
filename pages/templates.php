@@ -40,7 +40,7 @@
     <script id="te_sc_shifts" type="text/x-jquery-tmpl">
         <tr shiftId="${id}" class="isShift">
             <td class="dTime" style="background-color: #${sp.schedule.getColorsBySchedule(schedule)[1]}; color: #${sp.schedule.getColorsBySchedule(schedule)[2]}">${start_time.time} - ${end_time.time}</td>
-            <td class="dTitle">${schedule_name}</td>
+            <td class="dTitle">${schedule_name}<br/><span>name one, name two, Gayan Gelimirovic</span></td>
         </tr>
     </script>
     <script id="te_rq_sa_s_in" type="text/x-jquery-tmpl">
