@@ -142,7 +142,6 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
 }
 
 ShiftPlanningSchedule.prototype.loadSubPageEvents = function(subpage){
-    console.log(subpage + 'SubEvents');
     $('.subNavigation').show();
     $('#sc_additional_menu').show();
     if (subpage == 'shiftDisplay'){
@@ -197,8 +196,8 @@ ShiftPlanningSchedule.prototype.addShiftSubEvents = function(){
     
     var emp = {};
     if (this.edit != false){
-        emp = this.shift;
         console.log(this.shift);
+        emp = this.shift;
         emp.start_date.formatted = Date.parse(emp.start_date.formatted + ' ' + emp.start_time.time).getTime()/1000;
         emp.end_date.formatted = Date.parse(emp.end_date.formatted + ' ' + emp.end_time.time).getTime()/1000;
         if (emp.schedule != null) $('#sc_add_sc').val(emp.schedule);
@@ -260,8 +259,24 @@ ShiftPlanningSchedule.prototype.addShiftSubEvents = function(){
     } else {
         $('#sc_add_add span').html('Add Shift And Set Users');
     }
+    
+    //prepare users
+    if (this.edit){
+        $('#sc_add_user .working').html($.tmpl($('#te_sc_users'), this.prepareStaff(emp.staff.scheduled)));
+        $('#sc_add_user').show();
+    }
 
     this.edit = false;
+}
+
+ShiftPlanningSchedule.prototype.prepareStaff = function(staff){
+    var l = staff.length;
+    var res = []
+    while (l--){
+        res.push(sp.staff.data.employees[staff[l][0]]);
+    }
+    
+    return res;
 }
 
 ShiftPlanningSchedule.prototype.nextPrevPrepare = function(){

@@ -1,6 +1,9 @@
 
 <!-- ID rulez first is "te" shorten from template, next is 2 letter from module name, than 2 letter from page name, than 2 letters from page method -->
 <div id="templates">
+    <script id="te_sc_users" type="text/x-jquery-tmpl">
+        <li class="even"><div><span class="checkbox check" user="${id}">${name}</span></div></li>
+    </script>
     <script id="te_sc_shifts_months" type="text/x-jquery-tmpl">
         <tr>
             <td colspan="2" class="dTime" >${dateToday}</td>
@@ -36,7 +39,7 @@
     </script>
     <script id="te_sc_shifts" type="text/x-jquery-tmpl">
         <tr shiftId="${id}" class="isShift">
-            <td class="dTime" style="background-color: #${sp.schedule.getColorsBySchedule(schedule)[1]}; color: #${sp.schedule.getColorsBySchedule(schedule)[2]}">${start_time.time}</td>
+            <td class="dTime" style="background-color: #${sp.schedule.getColorsBySchedule(schedule)[1]}; color: #${sp.schedule.getColorsBySchedule(schedule)[2]}">${start_time.time} - ${end_time.time}</td>
             <td class="dTitle">${schedule_name}</td>
         </tr>
     </script>
