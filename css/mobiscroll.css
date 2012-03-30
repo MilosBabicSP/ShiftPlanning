@@ -4,7 +4,7 @@
 .dwl{margin:0 2px;text-align:center;line-height:30px;height:30px;white-space:nowrap;position:relative;top:-30px}
 .dwv{padding:10px 0;border-bottom:1px solid #DDD; font-size:14px;}
 .dwrc{-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px}
-.dwwc{display:block;margin:0;padding:0 2px;position:relative;background:#DBDBDB;}
+.dwwc{display:block;margin:0;padding:0 2px;position:relative;background:#f0F0F0;border:1px solid #DBDBDB;}
 .dwwl{margin:4px 2px;float:left;display:block;position:relative;background:#888;background:-webkit-gradient(linear,left bottom,left top,color-stop(0,#000),color-stop(0.35,#333),color-stop(0.50,#888),color-stop(0.65,#333),color-stop(1,#000));background:-moz-linear-gradient(#000 0,#333 35%,#888 50%,#333 65%,#000 100%);background:-ms-linear-gradient(#000 0,#333 35%,#888 50%,#333 65%,#000 100%);background:-o-linear-gradient(#000 0,#333 35%,#888 50%,#333 65%,#000 100%)}
 .dww{margin:0 2px;overflow:hidden;position:relative;top:-30px;}
 .dww ul{list-style:none;margin:0;padding:0;display:block;width:100%;position:relative;z-index:2}
