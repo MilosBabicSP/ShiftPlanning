@@ -84,21 +84,27 @@
     <div id="sc_add_user" class="hidden">
         <h3>Who's working</h3>
         <ul class="detailsGrid working">
-            <ul>
-
-            </ul>
+            <li>
+                <ul>
+                    
+                </ul>
+            </li>
         </ul>
         <h3>Available</h3>
         <ul class="detailsGrid available">
-            <ul>
-
-            </ul>
+            <li>
+                <ul>
+                    
+                </ul>
+            </li>
         </ul>
         <h3>Unavailable</h3>
         <ul class="detailsGrid unavailable">
-            <ul>
-
-            </ul>
+            <li>
+                <ul>
+                    
+                </ul>
+            </li>
         </ul>
     </div>
     <div class="title">

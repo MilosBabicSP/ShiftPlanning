@@ -271,11 +271,11 @@ ShiftPlanningSchedule.prototype.addShiftSubEvents = function(){
     
     //prepare users
     if (this.edit){
-        $('#sc_add_user .working').html($.tmpl($('#te_sc_users'), this.prepareStaff(emp.staff.scheduled)));
-        $('#sc_add_user .available').html($.tmpl($('#te_sc_users'), this.prepareStaff(emp.staff.available)));
-        $('#sc_add_user .unavailable').html($.tmpl($('#te_sc_users'), this.prepareStaff(emp.staff.unavail)));
+        $('#sc_add_user .working ul').html($.tmpl($('#te_sc_users'), this.prepareStaff(emp.staff.scheduled)));
+        $('#sc_add_user .available ul').html($.tmpl($('#te_sc_users'), this.prepareStaff(emp.staff.available)));
+        $('#sc_add_user .unavailable ul').html($.tmpl($('#te_sc_users'), this.prepareStaff(emp.staff.unavail)));
         
-        $('#sc_add_user .working li').each(function(i, item){
+        $('#sc_add_user .working ul li').each(function(i, item){
             if (i % 2 == 0){
                 $(this).addClass('even');
             } else {
@@ -283,7 +283,15 @@ ShiftPlanningSchedule.prototype.addShiftSubEvents = function(){
             }
         });
         
-        $('#sc_add_user .available li').each(function(i, item){
+        $('#sc_add_user .available ul li').each(function(i, item){
+            if (i % 2 == 0){
+                $(this).addClass('even');
+            } else {
+                $(this).addClass('odd');
+            }
+        });
+        
+        $('#sc_add_user .unavailable ul li').each(function(i, item){
             if (i % 2 == 0){
                 $(this).addClass('even');
             } else {
