@@ -31,7 +31,7 @@ h5 {font-size:14px; font-weight:normal; color:#333;}
 /*SPRITE*/
 .msgDel, .msgRpl, .cmtCount span.tip, ul.cmts, ul.cmts li.last input[type=submit], .search input[type=submit] {background-image:url(../images/icos.png); background-repeat:no-repeat;}
 .cmtCount span.ico {background-image:url(../images/sprite.png); background-repeat:no-repeat;}
-.fromI, .untilI, span.checkbox, .dash, .ticl, .sche, .requ, .staf, .repo, .icoClock, .icoEmpDet, .icoAdmAct, .icoEmpPos, .icoEmpSki, .icoEmpAdd, .icoDat, .icoNot, .icoAct, .icoSta, .icoReqWor, .icoReqCan, .icoLoc, .icoSch {background-image:url(../images/mainNav_bg.png); background-repeat:no-repeat;}
+.fromI, .untilI, span.checkbox, .dash, .ticl, .sche, .requ, .staf, .repo, .icoClock, .icoEmpDet, .icoAdmAct, .icoEmpPos, .icoEmpSki, .icoEmpAdd, .icoDat, .icoNot, .icoAct, .icoSta, .icoReqWor, .icoReqCan, .icoReqEdi, .icoLoc, .icoSch {background-image:url(../images/mainNav_bg.png); background-repeat:no-repeat;}
 .calendar td.today, .calendar th, .calendar td.hasAny {background-image: url(../images/callendar_bg.png); background-repeat:repeat-x;}
 
 .dash {background-position:10px 0;}
@@ -56,7 +56,7 @@ h5 {font-size:14px; font-weight:normal; color:#333;}
 .icoDat {background-position:0 -1210px; padding:0 0 0 40px;}
 .icoReqWor {background-position:0 -860px;}
 .icoReqCan {background-position:0 -1160px;}
-.icoReqEdi {background-position:0 -1160px;}
+.icoReqEdi {background-position:0 -1260px;}
 .fromI {background-position:-10px -1065px; padding:0 0 0 20px;}
 .untilI {background-position:-10px -1115px; padding:0 0 0 20px;}
 
@@ -275,6 +275,7 @@ table.day td {border:solid 1px #DBDBDB;  border-right:none; border-top:none;}
 table.day td:first-child {border-left:none;}
 table.day td.dTime {line-height:40px; width:28%; padding:0 5px 0 20px;}
 table.day td.dTitle {text-align:left; line-height:15px; padding:0 10px;}
+table.day td.dTitle span {font-weight:normal; font-size:13px;}
 
 
 
