@@ -1,10 +1,10 @@
 <div class="main inbox" id="da_in">
     <!-- Inbox -->
-    <div class="title">
+    <div class="title wide">
         <span class="fr"><a href="#" id="da_in_nm_b">New Message</a></span>
         <h3>Inbox</h3>
     </div>
-    <div class="newMsg hidden" id="da_in_nm_f">
+    <div class="newMsg hidden wide" id="da_in_nm_f">
         <label>Subject</label>
         <span class="input">
             <input type="text" name="" value="" id="da_in_nm_ti" />
