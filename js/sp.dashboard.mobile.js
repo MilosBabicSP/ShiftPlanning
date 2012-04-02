@@ -139,6 +139,7 @@ ShiftPlanningDashboard.prototype.upcomingShiftsEvents = function(){
             id : $(this).attr('rel'), 
             detailed : 1
         }, function(response){
+            sp.schedule.fromDashboard = true;
             sp.schedule.shift = response.data;
             sp.loadSubPage('', 'schedule', 'shiftDisplay');
         });
@@ -299,16 +300,19 @@ ShiftPlanningDashboard.prototype.settingsEvents = function(){
 
 //sub page events
 ShiftPlanningDashboard.prototype.wallSubEvents = function(){
-    $('#da_wa_li').html(spView.ulLoader());
-    spModel.messaging.get('wall', {}, function(response){
-        if (response.data.length > 0){
-            $('#da_wa_li').html($.tmpl($('#te_da_wa_me'), response.data));
-        } else {
-            $('#da_wa_li').html(spView.emptyResult('No wall messages', 'li'));
-        }
-    }, function(){
-        $('#da_wa_li').html(spView.emptyResult('Something went wrong', 'li'));
-    });
+    if (parseInt(sp.staff.admin.settings.message_wall_on) != 0){
+        $('#da_wa_li').html(spView.ulLoader());
+        spModel.messaging.get('wall', {}, function(response){
+            console.log(response);
+            if (response.data.length > 0){
+                $('#da_wa_li').html($.tmpl($('#te_da_wa_me'), response.data));
+            } else {
+                $('#da_wa_li').html(spView.emptyResult('No wall messages', 'li'));
+            }
+        }, function(){
+            $('#da_wa_li').html(spView.emptyResult('Something went wrong', 'li'));
+        });
+    }
 }
 
 

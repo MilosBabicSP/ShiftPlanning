@@ -77,7 +77,13 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
     
     $('#schedule .shiftDisplay .backMenu').bind(clickEvent, function(e){
         e.preventDefault();
-        $('.subNavigation .schedule li.active a').trigger(clickEvent);
+        if (self.fromDashboard){
+            self.fromDashboard = false;
+            $('.subNavigation').show();
+            $('.subNavigation .dashboard li a[subpage=upcomingShifts]').trigger(clickEvent);
+        } else {
+            $('.subNavigation .schedule li.active a').trigger(clickEvent);
+        }
     });
     
     $('#sc_sub_shift_display ul a').bind(clickEvent, function(e){
@@ -261,7 +267,8 @@ ShiftPlanningSchedule.prototype.addShiftSubEvents = function(){
     
     $('#sc_add_no').val((this.edit) ? emp.notes : '');
     $('#sc_add_ti').val((this.edit) ? emp.title : '');
-    //    $('#tc_act_sc').val((this.edit) ? (emp.schedule != null) ? emp.schedule.id : 0 : 0);
+    $('#sc_add_lo').val((this.edit) ? (emp.location != 0) ? emp.location.id : 0 : 0);
+    
 
     if (this.edit){
         $('#sc_add_add span').html('Save Shift');

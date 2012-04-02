@@ -2,7 +2,7 @@ ShiftPlanningPermissions.prototype.initialize = function(){
     var self = this;
     $(document).ready(function(){
         if (user.loggedIn == 1){
-            //self.preparePermissions();
+            self.preparePermissions();
         }
     });
 }
@@ -16,8 +16,23 @@ ShiftPlanningPermissions.prototype.preparePermissions = function(){
     var perms = sp.staff.admin.settings;
     var group = sp.staff.admin.info.group
  
+     //Message Wall (is vissible)
+    if (parseInt(perms.message_wall_on) == 0){
+        $('#da_wa_nm_b').remove();
+        $('#da_wa_nm_f').remove();
+        $('#da_wa_li').html(spView.emptyResult('Message wall is currently turned of. Please contact your administrator for more info.', 'li'));
+    }
+    
+    if (group > this.manager && parseInt(perms.message_wall_emp) == 0){
+        $('#da_wa_nm_b').remove();
+        $('#da_wa_nm_f').remove();
+    }
+    
+    if (parseInt(perms.message_wall_comments) == 0){
+        $('#da_wa_li').addClass('permMsgCommentOff');
+    }
  
-    //Employees can view staff gallery
+/*    //Employees can view staff gallery
     if (group >= this.employee && parseInt(perms.visible_staff) == 0){
         $('#menu #menu_staff').unbind(clickEvent);
         $('#menu #menu_staff').remove();
@@ -83,7 +98,7 @@ ShiftPlanningPermissions.prototype.preparePermissions = function(){
         $('#rq_va_rq').remove();
         $('ul.requests a[subPage=shiftApprovals]').parent().remove();
     }
-    
+*/
 }
 
 ShiftPlanningPermissions.prototype.hasPermission = function(type){

@@ -67,8 +67,6 @@ ShiftPlanning.prototype.loadSubPage = function(obj, page, subpage){
         obj.parent().addClass('active');
     }
     
-    
-    
     $('.subNavigation > div').hide();
     $('.subNavigation > div.' + page).show();
     
@@ -196,3 +194,4 @@ ShiftPlanning.prototype.timeClock = new ShiftPlanningTimeClock();
 ShiftPlanning.prototype.reports = new ShiftPlanningReports();
 ShiftPlanning.prototype.requests = new ShiftPlanningRequests();
 ShiftPlanning.prototype.location = new ShiftPlanningLocation();
+ShiftPlanning.prototype.permissions = new ShiftPlanningPermissions();

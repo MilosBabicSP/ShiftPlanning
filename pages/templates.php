@@ -803,7 +803,9 @@
                 <p>${title}<br /><p>{{html post}}</p></p>
                 <span>${time}</span>
             </div>
-            <a href="#" class="msgDel" rel="${id}"></a>
+            {{if owner}}
+                <a href="#" class="msgDel" rel="${id}"></a>
+            {{/if}}
             <a href="#" class="msgRpl" rel="${id}"></a>
             {{if comments.length > 0}}
             <a href="#" class="cmtCount" rel="${id}"><span class="ico">${comments.length} Comments</span><span class="tip"></span></a>
@@ -827,7 +829,7 @@
                 <p>{{html comment}}</p>
                 <span>${time}</span>
             </div>
-            {{if full}}
+            {{if full && owner}}
             <a href="#" class="msgDel comment" rel="${id}"></a>
             {{/if}}
         </li>

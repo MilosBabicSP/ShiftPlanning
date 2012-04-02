@@ -241,7 +241,7 @@ ShiftPlanningStaff.prototype.login = function(){
                     sp.staff.data.skills = sp.map(response[3].data);
                     sp.staff.raw.locations = response[4].data;
                     sp.staff.data.locations = sp.map(response[4].data);
-                    sp.staff.admin.info.dfAvatar = (typeof sp.staff.admin.info.avatar != 'undefined' && typeof sp.staff.admin.info.avatar.small != 'undefined') ?sp.staff.admin.info.avatar.small : 'images/no-avatar.png',
+                    sp.staff.admin.info.dfAvatar = sp.getAvatar(sp.staff.admin.info.id);
                     sp.raw.config = config.data;
                     sp.schedule.dateId = sp.raw.config.today.id;
                     $('body').removeClass('login');

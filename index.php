@@ -69,6 +69,7 @@ if ($vtoken['data'] != '1') {
         <script src="js/sp.model.js" type="text/javascript"></script>
         <script src="js/sp.view.js" type="text/javascript"></script>
         <script src="js/sp.ranges.js" type="text/javascript"></script>
+        
 
         <!-- Base -->
         <script src="js/sp.staff.js" type="text/javascript"></script>
@@ -78,6 +79,7 @@ if ($vtoken['data'] != '1') {
         <script src="js/sp.reports.js" type="text/javascript"></script>
         <script src="js/sp.requests.js" type="text/javascript"></script>
         <script src="js/sp.location.js" type="text/javascript"></script>
+        <script src="js/sp.permissions.js" type="text/javascript"></script>
 
         <!-- Extension -->
         <script src="js/sp.staff.mobile.js" type="text/javascript"></script>
@@ -86,6 +88,7 @@ if ($vtoken['data'] != '1') {
         <script src="js/sp.reports.mobile.js" type="text/javascript"></script>
         <script src="js/sp.requests.mobile.js" type="text/javascript"></script>
         <script src="js/sp.schedule.mobile.js" type="text/javascript"></script>
+        <script src="js/sp.permissions.mobile.js" type="text/javascript"></script>
 
 
         <!-- Loader -->
