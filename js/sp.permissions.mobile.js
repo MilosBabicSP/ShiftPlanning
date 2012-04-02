@@ -20,7 +20,7 @@ ShiftPlanningPermissions.prototype.preparePermissions = function(){
     if (parseInt(perms.message_wall_on) == 0){
         $('#da_wa_nm_b').remove();
         $('#da_wa_nm_f').remove();
-        $('#da_wa_li').html(spView.emptyResult('Message wall is currently turned of. Please contact your administrator for more info.', 'li'));
+        $('#da_wa_li').html(spView.emptyResult('Message wall is off. Please contact your manager for more info.', 'li'));
     }
     
     //remove button for writing new wall message
@@ -34,9 +34,20 @@ ShiftPlanningPermissions.prototype.preparePermissions = function(){
         $('#da_wa_li').addClass('permMsgCommentOff');
     }
     
+    //remove button for inbox if perms aren't met'
     if (group >= this.scheduler && parseInt(perms.pm) == 0){
         $('#da_in_nm_b').unbind(clickEvent);
         $('#da_in_nm_b').remove();
+    }
+    
+    //fix employee only perms
+    if (group >= this.employee){
+        $('#da_se .aPerm').remove();
+    }
+   
+    if (group > this.manager){
+        $('#da_se_ov_aa').prev().remove();
+        $('#da_se_ov_aa').remove();
     }
  
 /*    //Employees can view staff gallery
