@@ -410,7 +410,7 @@ ShiftPlanningDashboard.prototype.prefillOverview = function(employee){
         status = 'User account is not activated.';
     }
     
-    if (employee.group <= 2){
+    if (employee.group <= 3){
         $('#da_se_ov_aa').hide();
         $('#da_se_ov_aa').prev().hide();
     } else {
