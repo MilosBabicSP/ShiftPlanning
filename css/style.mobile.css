@@ -129,6 +129,7 @@ span.input textarea {font-family:"Arial", sans-serif; font-size:13px; color:#999
 span.input input[type=text]:focus, span.input textarea:focus {color:#444;}
 
 .newMsg {overflow:hidden; padding:10px 0 0;}
+.newMsg.wide {padding:10px 20px 0;}
 .newMsg span.input {margin:2px 0 5px;}
 
 .msgHead {padding:15px 0;}
@@ -165,7 +166,7 @@ ul.subMenu li.last a {border-radius:0 2px 2px 0;}
 ul.subMenu li.single a {padding:6px 10px 6px 35px; border-radius:2px; border-left:solid 1px #d8d8d8;}
 
 ul.inbox {overflow:hidden;}
-ul.inbox li {border-bottom:solid 1px #DBDBDB;}
+ul.inbox li {border-bottom:solid 1px #DBDBDB; padding:0 20px;}
 ul.inbox li.unread {background-color:#FFFFCC;}
 ul.inbox li.extended {border:none;}
 ul.inbox li .msgBody {display:none;}
@@ -294,5 +295,6 @@ body {display:none;}
 #schedule span.input {margin:0px;}
 #schedule .main {margin:0px; padding:0;}
 #schedule .main.normal {padding: 0 20px 20px;}
+#da_in {margin:0px; padding:0;}
 #tc_dtc_buttons .unapprove {opacity: 0.5}
 .permMsgCommentOff .msgRpl, .permMsgCommentOff li.last {display:none;}
