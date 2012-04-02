@@ -81,18 +81,18 @@
                 <a class="button fl" href="#" type="delete">Permanently Delete This Employee</a>
             </li>
         </ul>
-        <div class="title">
+        <div class="title aPerm">
             <h3 class="icoEmpPos">Employee Positions</h3>
         </div>
-        <ul class="detailsGrid">
+        <ul class="detailsGrid aPerm">
             <ul id="da_se_ov_po" class="positions">    
 
             </ul>
         </ul>
-        <div class="title">
+        <div class="title aPerm">
             <h3 class="icoEmpSki">Employee Skills</h3>
         </div>
-        <ul class="detailsGrid">
+        <ul class="detailsGrid aPerm">
             <li>
                 <ul id="da_se_ov_sk" class="skills">    
 
@@ -269,18 +269,18 @@
             </li>
 
         </ul>
-        <div class="title">
+        <div class="title aPerm">
             <h3 class="icoEmpPos">Employee Positions</h3>
         </div>
-        <ul class="detailsGrid">
+        <ul class="detailsGrid aPerm">
             <ul id="da_se_ed_po" class="positions">    
                 
             </ul>
         </ul>
-        <div class="title">
+        <div class="title aPerm">
             <h3 class="icoEmpSki">Employee Skills</h3>
         </div>
-        <ul class="detailsGrid">
+        <ul class="detailsGrid aPerm">
             <li>
                 <ul id="da_se_ed_sk" class="skills">    
                    

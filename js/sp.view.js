@@ -167,7 +167,7 @@ ShiftPlanningView.prototype.emptyResult = function(text, tag){
     if (typeof text == 'undefined'){
         text = 'Na data for selected criteria!';
     }
-    return '<' + tag + ' class="additional">' + text + '</' + tag + '>'
+    return '<' + tag + ' class="additional"><p>' + text + '</p></' + tag + '>'
 }
 
 var spView = new ShiftPlanningView();
