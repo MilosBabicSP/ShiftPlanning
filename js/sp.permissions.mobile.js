@@ -23,13 +23,20 @@ ShiftPlanningPermissions.prototype.preparePermissions = function(){
         $('#da_wa_li').html(spView.emptyResult('Message wall is currently turned of. Please contact your administrator for more info.', 'li'));
     }
     
+    //remove button for writing new wall message
     if (group > this.manager && parseInt(perms.message_wall_emp) == 0){
         $('#da_wa_nm_b').remove();
         $('#da_wa_nm_f').remove();
     }
     
+    //Add class to ul to hide wall comments
     if (parseInt(perms.message_wall_comments) == 0){
         $('#da_wa_li').addClass('permMsgCommentOff');
+    }
+    
+    if (group >= this.scheduler && parseInt(perms.pm) == 0){
+        $('#da_in_nm_b').unbind(clickEvent);
+        $('#da_in_nm_b').remove();
     }
  
 /*    //Employees can view staff gallery

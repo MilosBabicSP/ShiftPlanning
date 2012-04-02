@@ -190,6 +190,11 @@ ShiftPlanningSchedule.prototype.monthSubEvents = function(){
 }
 
 ShiftPlanningSchedule.prototype.shiftDisplaySubEvents = function(){
+    if (this.fromDashboard){
+        $('#sc_sub_shift_display a.edit').hide();
+    } else {
+        $('#sc_sub_shift_display a.edit').show();
+    }
     var e = [];
     if (typeof this.shift.employees != 'undefined' && this.shift.employees != null){
         $.each(this.shift.employees, function(i, item){
@@ -279,14 +284,6 @@ ShiftPlanningSchedule.prototype.addShiftSubEvents = function(){
     console.log(emp);
     //prepare users
     if (this.edit){
-//        if (typeof emp.staff == 'undefined'){
-//            emp.staff = {
-//                scheduled : [],
-//                available : [],
-//                unavail : []
-//            }
-//        }
-//        
         $('#sc_add_user .working ul').html((emp.staff.scheduled == null) ? spView.emptyResult('No scheduled employees for selected shift', 'li') : $.tmpl($('#te_sc_users'), this.prepareStaff(emp.staff.scheduled)));
         $('#sc_add_user .available ul').html((emp.staff.available == null) ? spView.emptyResult('No available employees for selected shift', 'li') : $.tmpl($('#te_sc_users'), this.prepareStaff(emp.staff.available)));
         $('#sc_add_user .unavailable ul').html((emp.staff.unavail == null) ? spView.emptyResult('No unavail employees for selected shift', 'li') : $.tmpl($('#te_sc_users'), this.prepareStaff(emp.staff.unavail)));
