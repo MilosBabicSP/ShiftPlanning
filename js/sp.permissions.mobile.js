@@ -49,6 +49,20 @@ ShiftPlanningPermissions.prototype.preparePermissions = function(){
         $('#da_se_ov_aa').prev().remove();
         $('#da_se_ov_aa').remove();
     }
+    
+    //Employees can manually add time clocks
+    if (group > this.scheduler && parseInt(perms.tc_empl_addtime) == 0){
+        $('#tc_act_sub_button').remove();
+        $('#tc_act').remove();
+    }
+    
+    //Time Clock Module is on
+    if (parseInt(perms.timeclock) == 0){
+        $('#menu #menu_timeClock').unbind(clickEvent);
+        $('#menu #menu_timeClock').remove();
+        $('#timeClock').remove();
+        $('.subNavigation div.timeClock').remove();
+    }
  
 /*    //Employees can view staff gallery
     if (group >= this.employee && parseInt(perms.visible_staff) == 0){
@@ -70,13 +84,7 @@ ShiftPlanningPermissions.prototype.preparePermissions = function(){
 //    }
 //      This doesn't exists on mobile version for now
     
-    //Time Clock Module is on
-    if (parseInt(perms.timeclock) == 0){
-        $('#menu #menu_timeClock').unbind(clickEvent);
-        $('#menu #menu_timeClock').remove();
-        $('#timeClock').remove();
-        $('.subNavigation div.').remove();
-    }
+
     
     //Employees can manually add time clocks
     if (group >= this.employee && parseInt(perms.tc_empl_addtime) == 0){

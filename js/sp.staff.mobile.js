@@ -300,7 +300,7 @@ ShiftPlanningStaff.prototype.prepareConfig = function(){
         startday: sp.staff.admin.settings.startday,
         currency: currency[sp.staff.admin.settings.currency],
         tmode: (sp.staff.admin.settings['24hr'] == "1"? 24 : 12),
-        tstring: (sp.staff.admin.settings['24hr'] ? 'HH:mm' : 'h:mm tt' ),
+        tstring: (parseInt(sp.staff.admin.settings['24hr']) == 1) ? 'HH:mm' : 'h:mm tt',
         dformat: sp.strReplace(['M','d', 'm', 'Y', 'j'], ['MMM', 'dd', 'MM', 'yyyy', 'd'], sp.staff.admin.settings.date),
         dpformat: sp.strReplace(['d', 'm', 'Y', 'M', 'j'], ['dd', 'mm', 'yy', 'M', 'd'], sp.staff.admin.settings.date),
         user: sp.staff.admin.info.id,

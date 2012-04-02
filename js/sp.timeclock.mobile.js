@@ -175,6 +175,12 @@ ShiftPlanningTimeClock.prototype.overviewSubEvents = function(){
             $('#tc_ov_cf').show();
             $('#tc_ov_co').show();
             $('#tc_ov_ca').attr('rel', response.data.id);
+            if (response.data.schedule != null){
+                $('#tc_ov_ss').val(response.data.schedule.id)
+            }
+            if (response.data.notes != null){
+                $('#tc_ov_no').val(response.data.notes);
+            }
         } else {
             $('#tc_ov_cf').hide();
             $('#tc_ov_ci').show();
@@ -460,8 +466,8 @@ ShiftPlanningTimeClock.prototype.saveClockInChanges = function(){
         data.notes = $('#tc_ov_no').val();
     }
     
-    spModel.timeclock.update('timeclock', data, function(response){
-        console.log(response);
+    spModel.timeclock.update('timeclock', data, function(){
+        sp.showSuccess('Timeclock updated');
     });
 }
 
@@ -479,7 +485,7 @@ ShiftPlanningTimeClock.prototype.saveClockTime = function(){
     data.start_time = $('#tc_act_tclin').val();
     data.start_date = $('#tc_act_c_cl_dp_i').val();
     
-    if (!$('#tc_act .multiInput .odd').hasClass('nonVisible')){
+    if (!$('#tc_act .detailsGrid .odd').hasClass('nonVisible')){
         data.end_time = $('#tc_act_tclou').val();
         data.end_date = $('#tc_act_c_co_dp_i').val();
     }
