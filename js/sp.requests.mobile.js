@@ -141,7 +141,7 @@ ShiftPlanningRequests.prototype.openShiftsEvents = function(){
             id : $(this).attr('rel'), 
             add : sp.staff.admin.info.id
         }, function(response){
-            obj.removeClass('loading').removeClass('icoReqWork').addClass('icoReqCan').html('Cancel pending request');
+            obj.removeClass('loading').removeClass('icoReqWork').addClass('icoReqCan').html('<span>Cancel pending request</span>');
         });
     });
     
@@ -792,18 +792,18 @@ ShiftPlanningRequests.prototype.displayShiftTradeManagerAP = function(){
 }
 
 ShiftPlanningRequests.prototype.displayOpenShifts = function(){
-    $('#rq_os_rtw').removeClass('icoReqCan').addClass('icoReqWork').html('Request to work');
+    $('#rq_os_rtw').removeClass('icoReqCan').addClass('icoReqWork').html('<span>Request to work</span>');
     
     $('#rq_os_os_s').html($.tmpl($('#te_rq_os_os_s'), this.current));
     
     var h = '';
     var s = this.current.status;
     if (s == 10 || s == 4){
-        h = '<a class="icoReqWor" href="#" id="rq_os_rtw" rel="' + this.current.id + '">Request to work</a>';
+        h = '<a class="icoReqWor" href="#" id="rq_os_rtw" rel="' + this.current.id + '"><span>Request to work</span></a>';
     } else if (s == 1){
         h = 'Management rejected your request for this shift';
     } else if (s == 0){
-        h = '<a class="icoReqCan" href="#" id="rq_os_rtw" rel="' + this.current.id + '">Cancel pending request</a>';
+        h = '<a class="icoReqCan" href="#" id="rq_os_rtw" rel="' + this.current.id + '"><span>Cancel pending request</span></a>';
     } else if (s == 2){
         h = 'Already on this shift';
     } else {
