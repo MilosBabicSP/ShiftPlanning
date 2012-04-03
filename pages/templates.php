@@ -82,14 +82,14 @@
         </ul>
     </script>
     <script id="te_rq_os_spr_s" type="text/x-jquery-tmpl">
-        <div class="title wide">
+        <div class="title wide mar">
             <div>
                 <img width="30" height="30" src="${avatar}">
                 <span>${user_name}</span>
                 ${start_date.formatted}
             </div>
         </div>
-        <div class="title1 wide">
+        <div class="title1 wide mar">
             <h3>${schedule_name}</h3>
         </div>
         <ul class="requests">
@@ -115,12 +115,12 @@
         </li>
     </script>
     <script id="te_rq_os_os_s" type="text/x-jquery-tmpl">
-        <div class="title wide">
+        <div class="title wide mar">
             <div>
                 <span>${start_date.formatted}</span>
             </div>
         </div>
-        <div class="title1 sales wide">
+        <div class="title1 wide mar">
             <h3>${schedule_name}</h3>
         </div>
         <ul class="requests">
@@ -129,7 +129,7 @@
             </li>
         </ul>
         {{if notes.length > 0}}
-        <div class="title1 regular wide">
+        <div class="title1">
             <h3>Title / Notes</h3>
         </div>
         <div class="additional">

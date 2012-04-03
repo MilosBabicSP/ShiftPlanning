@@ -369,7 +369,7 @@ if ($vtoken['data'] != '1') {
                                 <img width="41" height="30" src="images/BackMenu.png">
                             </a>
                             <ul class="subMenu">
-                                <li class="single"><a class="icoReqWor" href="#" id="rq_os_rtw">Request to work</a></li>
+                                <li class="single"><a class="icoReqWor" href="#" id="rq_os_rtw"><span>Request to work</span></a></li>
                             </ul>
                         </div>
                         <div class="subLevel mainSub openShiftsRequest" id="rq_os_spr_sub">
@@ -394,7 +394,7 @@ if ($vtoken['data'] != '1') {
                                 <img width="41" height="30" src="images/BackMenu.png">
                             </a>
                             <ul class="subMenu">
-                                <li class="single"><a href="#" class="icoReqWor">Save & Close</a></li>
+                                <li class="single"><a href="#" class="icoReqWor"><span>Save & Close</span></a></li>
                             </ul>
                         </div>
                         <?php Functions::getInstance()->loadFile('requests_overview'); ?>
