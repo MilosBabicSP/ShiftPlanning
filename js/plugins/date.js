@@ -490,7 +490,19 @@ function formatted(type){
     switch (type){
         case 'today':
             s = Date.parse('today');
-            res = s.toString('dddd, ' + cal.dformat);
+            res = s.toString(cal.dformat);
+            break;
+        case 'nowT':
+            var ct = Date.parse('now').getTime();
+            var czm = Date.parse('now').getTimezoneOffset() * 60 * 1000;
+            var tz = sp.staff.admin.settings.timezone;
+            var tzf = tz.split(',');
+            tzf = tzf[0].split(':');
+            var h = parseInt(tzf[0]) * 60*60;
+            var mp = (parseInt(tzf[0]) * 60*60)/Math.abs(parseInt(tzf[0]) * 60*60);
+            var min = (tzf[1] * 60);
+            var d = new Date(ct + czm + (mp * (Math.abs(h) + min)) * 1000);
+            res = d.toString(cal.tstring);
             break;
        default:
            console.log(type);

@@ -20,13 +20,13 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
     
     $('#sc_prev_day').bind(clickEvent, function(e){
         e.preventDefault();
-        $('#sc_to_sub').html(Date.parse($.trim($('#sc_to_sub').html())).add(-1).day().toString('dddd, ' + cal.dformat));
+        $('#sc_to_sub').html(Date.parseExact($.trim($('#sc_to_sub').html()), cal.dformat).add(-1).day().toString(cal.dformat));
         self.nextPrevPrepare();
     });
     
     $('#sc_next_day').bind(clickEvent, function(e){
         e.preventDefault();
-        $('#sc_to_sub').html(Date.parse($.trim($('#sc_to_sub').html())).add(1).day().toString('dddd, ' + cal.dformat));
+        $('#sc_to_sub').html(Date.parseExact($.trim($('#sc_to_sub').html()), cal.dformat).add(1).day().toString(cal.dformat));
         self.nextPrevPrepare();
     });
     
@@ -154,6 +154,10 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
             obj.removeClass('loading');
         });
     });
+    
+    $('#sc_add_user').delegate('.checkbox', clickEvent, function(){
+        
+    })
 }
 
 ShiftPlanningSchedule.prototype.loadSubPageEvents = function(subpage){
@@ -185,7 +189,7 @@ ShiftPlanningSchedule.prototype.daySubEvents = function(){
 ShiftPlanningSchedule.prototype.monthSubEvents = function(){
     this.page = 'month';
     $('#sc_to_sub').prev().html('Selected Day');
-    $('#sc_mo_di').html(Date.parse($.trim($('#sc_to_sub').html())).add(1).day().toString('MMMM yyyy'));
+    $('#sc_mo_di').html(Date.parseExact($.trim($('#sc_to_sub').html()), cal.dformat).add(1).day().toString('MMMM yyyy'));
     this.displayShifts();
 }
 
@@ -324,12 +328,11 @@ ShiftPlanningSchedule.prototype.prepareStaff = function(staff){
     while (l--){
         res.push(sp.staff.data.employees[staff[l][0]]);
     }
-    
     return res;
 }
 
 ShiftPlanningSchedule.prototype.nextPrevPrepare = function(){
-    $('#sc_mo_di').html(Date.parse($.trim($('#sc_to_sub').html())).toString('MMMM yyyy'));
+    $('#sc_mo_di').html(Date.parseExact($.trim($('#sc_to_sub').html()), cal.dformat).toString('MMMM yyyy'));
     if (this.page == 'today'){
         $('.subNavigation .schedule li a[subpage=day]').trigger(clickEvent);
     } else if (this.page == 'day'){
@@ -407,11 +410,11 @@ ShiftPlanningSchedule.prototype.getColorsBySchedule = function(id){
 
 ShiftPlanningSchedule.prototype.getSettings = function(){
     if (this.page != 'month'){
-        this.settings.start_date = Date.parse($.trim($('#sc_to_sub').html())).toString(cal.dformat);
-        this.settings.end_date = Date.parse($.trim($('#sc_to_sub').html())).toString(cal.dformat);
+        this.settings.start_date = Date.parseExact($.trim($('#sc_to_sub').html()), cal.dformat).toString(cal.dformat);
+        this.settings.end_date = Date.parseExact($.trim($('#sc_to_sub').html()), cal.dformat).toString(cal.dformat);
     } else {
-        this.settings.start_date = Date.parse($.trim($('#sc_to_sub').html())).moveToFirstDayOfMonth().toString(cal.dformat);
-        this.settings.end_date = Date.parse($.trim($('#sc_to_sub').html())).moveToLastDayOfMonth().toString(cal.dformat);
+        this.settings.start_date = Date.parseExact($.trim($('#sc_to_sub').html()), cal.dformat).moveToFirstDayOfMonth().toString(cal.dformat);
+        this.settings.end_date = Date.parseExact($.trim($('#sc_to_sub').html()), cal.dformat).moveToLastDayOfMonth().toString(cal.dformat);
     }
     
     return this.settings;
