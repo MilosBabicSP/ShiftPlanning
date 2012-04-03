@@ -60,9 +60,9 @@ h5 {font-size:14px; font-weight:normal; color:#333;}
 .fromI {background-position:-10px -1065px; padding:0 0 0 20px;}
 .untilI {background-position:-10px -1115px; padding:0 0 0 20px;}
 
-span.checkbox {display:block; line-height:30px; padding:5px 0 5px 35px; background-position:-5px -905px;}
+span.checkbox {display:block; line-height:30px; padding:5px 0 5px 35px; background-position:-5px -605px;}
 span.checkbox.check {background-position:-5px -555px;}
-span.checkbox.disabled {background-position:-5px -605px;}
+span.checkbox.disabled {background-position:-5px -905px;}
 
 a.button {line-height:30px; display:block; padding:0 10px; color:#333; background-color:#f0f0f0; border:solid 1px #DBDBDB; border-radius:2px;}
 a.loading {background:#FFF url(../images/loader.gif) scroll no-repeat 50% 50% !important;}
@@ -89,7 +89,7 @@ html {overflow-x:hidden;}
 .noResults {padding:10px; margin:10px; border:solid 1px #B1CAE4; color:#B1CAE4; font-size:14px; display:block;}
 .notif {line-height:20px; font-size:14px; color:#888; padding:15px 0;}
 .additional {font-size:13px; color:#888; padding:5px 0 !important; border-bottom:solid 1px #DBDBDB;}
-.additional.wide {padding:5px 20px;}
+.additional.wide {padding:5px 20px !important;}
 .additional.mar {margin:0 -20px;}
 .additional p {padding:5px 0;}
 .centered {text-align:center;}
