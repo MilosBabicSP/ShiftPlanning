@@ -60,9 +60,9 @@ h5 {font-size:14px; font-weight:normal; color:#333;}
 .fromI {background-position:-10px -1065px; padding:0 0 0 20px;}
 .untilI {background-position:-10px -1115px; padding:0 0 0 20px;}
 
-span.checkbox {display:block; line-height:30px; padding:5px 0 5px 35px; background-position:-5px -905px;}
+span.checkbox {display:block; line-height:30px; padding:5px 0 5px 35px; background-position:-5px -605px;}
 span.checkbox.check {background-position:-5px -555px;}
-span.checkbox.disabled {background-position:-5px -605px;}
+span.checkbox.disabled {background-position:-5px -905px;}
 
 a.button {line-height:30px; display:block; padding:0 10px; color:#333; background-color:#f0f0f0; border:solid 1px #DBDBDB; border-radius:2px;}
 a.loading {background:#FFF url(../images/loader.gif) scroll no-repeat 50% 50% !important;}
