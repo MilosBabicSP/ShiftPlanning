@@ -44,6 +44,12 @@ ShiftPlanningPermissions.prototype.preparePermissions = function(){
     if (group >= this.employee){
         $('#da_se .aPerm').remove();
     }
+    
+    if (group >= this.scheduler){
+        //remove manage timeclock
+        $('#tc_mts_sub_button').remove();
+        $('#tc_mts').remove();
+    }
    
     if (group > this.manager){
         $('#da_se_ov_aa').prev().remove();
@@ -63,6 +69,8 @@ ShiftPlanningPermissions.prototype.preparePermissions = function(){
         $('#timeClock').remove();
         $('.subNavigation div.timeClock').remove();
     }
+
+    
  
 /*    //Employees can view staff gallery
     if (group >= this.employee && parseInt(perms.visible_staff) == 0){

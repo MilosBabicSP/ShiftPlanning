@@ -188,7 +188,7 @@ ShiftPlanningTimeClock.prototype.overviewSubEvents = function(){
     });
     
     $('#tc_ov_cb .icoClock time').html(formatted('today'));
-    $('#tc_ov_cb .icoClock span').html(Date.parse('now').toString(cal.tstring));
+    $('#tc_ov_cb .icoClock span').html(formatted('nowT'));
 }
 
 ShiftPlanningTimeClock.prototype.manageTimeSheetsSubEvents = function(){
