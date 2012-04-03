@@ -115,10 +115,10 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
     });
     
     $('#sc_add_add').bind(clickEvent, function(e){
+        e.preventDefault();
         var obj = $(this);
         var isEdit = ($('#sc_edit_id').val() != 0) ? true : false;
         obj.addClass('loading');
-        e.preventDefault();
         var data = {
             schedule : $('#sc_add_sc').val(),
             location : $('#sc_add_lo').val(),
@@ -133,34 +133,61 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
         var method = 'create';
         if (isEdit){
             method = 'update';
-            data.id = $('#sc_edit_id')
+            data.id = $('#sc_edit_id').val();
         }
-        
+
         spModel.schedule[method]('shift', data, function(response){
-            if (!isEdit){
-                spModel.schedule.get('shift', {
-                    id : response.data.id, 
-                    detailed : 1
-                }, function(r1){
+            spModel.schedule.get('shift', {
+                id : response.data.id, 
+                detailed : 1
+            }, function(r1){
+                if (!isEdit){
                     obj.removeClass('loading');
                     self.shift = r1.data;
                     self.edit = true;
                     sp.loadSubPage('', 'schedule', 'addShift');
-                })
-            } else {
-                obj.removeClass('loading');
-            }
+                } else {
+                    sp.showSuccess('Shift updated');
+                    obj.removeClass('loading');
+                }
+            });
         }, function(){
             obj.removeClass('loading');
         });
     });
     
     $('#sc_add_user').delegate('.checkbox', clickEvent, function(){
+        var data = {
+            id : $('#sc_edit_id').val()
+        }
+        var obj = $(this);
+        if (obj.hasClass('check')){
+            data.remove = obj.attr('user');
+        } else {
+            data.add = obj.attr('user');
+        }
         
+        if (obj.hasClass('disabled')){
+            data.force = 1;
+        } else {
+            data.force = 0;
+        }
+        spModel.schedule.update('shift', data, function(response){
+            spModel.schedule.get('shift', {
+                id : response.data.id, 
+                detailed : 1
+            }, function(r1){
+                obj.removeClass('loading');
+                self.shift = r1.data;
+                self.edit = true;
+                sp.loadSubPage('', 'schedule', 'addShift');
+            });
+        });
     })
 }
 
 ShiftPlanningSchedule.prototype.loadSubPageEvents = function(subpage){
+    $('#sc_edit_id').val(0);
     $('.subNavigation').show();
     $('#sc_additional_menu').show();
     if (subpage == 'shiftDisplay'){
@@ -278,14 +305,12 @@ ShiftPlanningSchedule.prototype.addShiftSubEvents = function(){
     $('#sc_add_ti').val((this.edit) ? emp.title : '');
     $('#sc_add_lo').val((this.edit) ? (emp.location != 0) ? emp.location.id : 0 : 0);
     
-
     if (this.edit){
         $('#sc_add_add span').html('Save Shift');
+        $('#sc_edit_id').val(emp.id);
     } else {
         $('#sc_add_add span').html('Add Shift And Set Users');
     }
-    
-    console.log(emp);
     //prepare users
     if (this.edit){
         $('#sc_add_user .working ul').html((emp.staff.scheduled == null) ? spView.emptyResult('No scheduled employees for selected shift', 'li') : $.tmpl($('#te_sc_users'), this.prepareStaff(emp.staff.scheduled)));
