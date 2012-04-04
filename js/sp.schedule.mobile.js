@@ -33,12 +33,14 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
     $('#sc_prev_month').bind(clickEvent, function(e){
         e.preventDefault();
         $('#sc_mo_di').html(Date.parse($.trim($('#sc_mo_di').html())).addMonths(-1).toString('MMMM yyyy'));
+        $('#sc_days_m').hide();
         self.displayShifts();
     });
     
     $('#sc_next_month').bind(clickEvent, function(e){
         e.preventDefault();
         $('#sc_mo_di').html(Date.parse($.trim($('#sc_mo_di').html())).addMonths(1).toString('MMMM yyyy'));
+        $('#sc_days_m').hide();
         self.displayShifts();
     });
     
@@ -455,10 +457,11 @@ ShiftPlanningSchedule.prototype.displayShifts = function(sDay){
             }
             $('#sc_td_list').parent().show();
             $('#sc_td .loading').hide();
-            
         } else {
             if (self.page == 'month'){
-                $('#sc_ca_fi_' + sDay).trigger(clickEvent);
+                if (typeof sDay != 'undefined'){
+                    $('#sc_ca_fi_' + sDay).trigger(clickEvent);
+                }
             }
             $('#sc_td_list').parent().hide();
             $('#sc_td .loading').hide();
@@ -505,8 +508,8 @@ ShiftPlanningSchedule.prototype.getSettings = function(){
         this.settings.start_date = Date.parseExact($.trim($('#sc_to_sub').html()), cal.dformat).toString(cal.dformat);
         this.settings.end_date = Date.parseExact($.trim($('#sc_to_sub').html()), cal.dformat).toString(cal.dformat);
     } else {
-        this.settings.start_date = Date.parseExact($.trim($('#sc_to_sub').html()), cal.dformat).moveToFirstDayOfMonth().toString(cal.dformat);
-        this.settings.end_date = Date.parseExact($.trim($('#sc_to_sub').html()), cal.dformat).moveToLastDayOfMonth().toString(cal.dformat);
+        this.settings.start_date = Date.parse($.trim($('#sc_mo_di').html())).moveToFirstDayOfMonth().toString(cal.dformat);
+        this.settings.end_date = Date.parse($.trim($('#sc_mo_di').html())).moveToLastDayOfMonth().toString(cal.dformat);
     }
     
     return this.settings;
