@@ -69,7 +69,7 @@ a.loading {background:#FFF url(../images/loader.gif) scroll no-repeat 50% 50% !i
 a.loading span {visibility:hidden;}
 div.loading, li.loading {background:transparent url(../images/loader.gif) scroll no-repeat 50% 50% !important; min-height:30px;}
 table.loading, tr.loading, ul.loading {background:transparent url(../images/loader.gif) scroll no-repeat 50% 50% !important;}
-table.loading tr, ul.loading li, tr.loading td, div.loading span {opacity:0.25;}
+table.loading tr, ul.loading li, tr.loading td, div.loading span, li.loading span {opacity:0.25;}
 
 /*BUILD*/
 html {overflow-x:hidden;}
