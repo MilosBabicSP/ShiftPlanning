@@ -313,7 +313,7 @@ ShiftPlanningSchedule.prototype.addShiftSubEvents = function(){
     }
     //prepare users
     if (this.edit){
-        $('#sc_add_user .working ul').html((emp.staff.scheduled == null) ? spView.emptyResult('No scheduled employees for selected shift', 'li') : $.tmpl($('#te_sc_users'), this.prepareStaff(emp.staff.scheduled)));
+        $('#sc_add_user .working ul').html((emp.staff.scheduled == null) ? spView.emptyResult('No scheduled employees for selected shift', 'li') : $.tmpl($('#te_sc_usersW'), this.prepareStaff(emp.staff.scheduled)));
         $('#sc_add_user .available ul').html((emp.staff.available == null) ? spView.emptyResult('No available employees for selected shift', 'li') : $.tmpl($('#te_sc_users'), this.prepareStaff(emp.staff.available)));
         $('#sc_add_user .unavailable ul').html((emp.staff.unavail == null) ? spView.emptyResult('No unavail employees for selected shift', 'li') : $.tmpl($('#te_sc_users'), this.prepareStaff(emp.staff.unavail)));
         
