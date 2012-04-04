@@ -86,33 +86,72 @@
         <ul class="detailsGrid working">
             <li>
                 <ul>
-                    
+
                 </ul>
             </li>
         </ul>
-        <h3>Available</h3>
-        <ul class="detailsGrid available">
-            <li>
-                <ul>
-                    
-                </ul>
-            </li>
-        </ul>
-        <h3>Unavailable</h3>
-        <ul class="detailsGrid unavailable">
-            <li>
-                <ul>
-                    
-                </ul>
-            </li>
-        </ul>
+        <div type="available">
+            <h3>Available</h3>
+            <ul class="detailsGrid">
+                <li>
+                    <ul>
+
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div type="vacation">
+            <h3>Vacation</h3>
+            <ul class="detailsGrid">
+                <li>
+                    <ul>
+
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div type="sameday">
+            <h3>Scheduled Today</h3>
+            <ul class="detailsGrid">
+                <li>
+                    <ul>
+
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div type="overlap">
+            <h3>Overlapping shift</h3>
+            <ul class="detailsGrid">
+                <li>
+                    <ul>
+
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div type="mintime">
+            <h3>< Min time between shifts</h3>
+            <ul class="detailsGrid">
+                <li>
+                    <ul>
+
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div type="unavail">
+            <h3>Unavailable</h3>
+            <ul class="detailsGrid">
+                <li>
+                    <ul>
+
+                    </ul>
+                </li>
+            </ul>
+        </div>
     </div>
     <div class="title">
-        <span class="fl">
-            <a href="#" id="sc_add_ca">
-                <span>Cancel</span>
-            </a>
-        </span>
         <span class="fr">
             <a href="#" id="sc_add_add">
                 <span>Add Shift And Set Users</span>
