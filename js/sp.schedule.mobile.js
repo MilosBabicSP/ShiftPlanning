@@ -157,10 +157,14 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
     });
     
     $('#sc_add_user').delegate('.checkbox', clickEvent, function(){
+        
         var data = {
             id : $('#sc_edit_id').val()
         }
         var obj = $(this);
+        //add loader
+        obj.parent().addClass('loading');
+        
         if (obj.hasClass('check')){
             data.remove = obj.attr('user');
         } else {
@@ -177,11 +181,15 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
                 id : response.data.id, 
                 detailed : 1
             }, function(r1){
-                obj.removeClass('loading');
+                obj.parent().removeClass('loading');
                 self.shift = r1.data;
                 self.edit = true;
                 sp.loadSubPage('', 'schedule', 'addShift');
+            }, function(){
+                obj.parent().removeClass('loading');
             });
+        }, function(){
+            obj.parent().removeClass('loading');
         });
     })
 }
