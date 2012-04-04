@@ -282,6 +282,18 @@ if ($vtoken['data'] != '1') {
                                 </li>
                             </ul>
                         </div>
+                        <div class="subLevel mainSub addShift" id="sc_edit_submenu">
+                            <a href="#" class="backMenu">
+                                <img width="41" height="30" src="images/BackMenu.png">
+                            </a>
+                            <ul class="subMenu">
+                                <li class="single">
+                                    <a href="#" class="icoReqWor">
+                                        <span>Approve Shift</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                         <?php Functions::getInstance()->loadFile('schedule_today'); ?>
                         <?php Functions::getInstance()->loadFile('schedule_day'); ?>
                         <div class="main shiftDisplay" id="sc_shift_display">

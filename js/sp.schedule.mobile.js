@@ -21,13 +21,13 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
     $('#sc_prev_day').bind(clickEvent, function(e){
         e.preventDefault();
         $('#sc_to_sub').html(Date.parseExact($.trim($('#sc_to_sub').html()), cal.dformat).add(-1).day().toString(cal.dformat));
-        self.nextPrevPrepare();
+        self.nextPrevPrepare('prev');
     });
     
     $('#sc_next_day').bind(clickEvent, function(e){
         e.preventDefault();
         $('#sc_to_sub').html(Date.parseExact($.trim($('#sc_to_sub').html()), cal.dformat).add(1).day().toString(cal.dformat));
-        self.nextPrevPrepare();
+        self.nextPrevPrepare('next');
     });
     
     $('#sc_prev_month').bind(clickEvent, function(e){
@@ -48,17 +48,17 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
         $(this).addClass('today');
         var i = $(this).attr('time');
         if (typeof self.shifts[i] != 'undefined'){
-            console.log(self.shifts[i]);
             $('#sc_td_list').parent().show();
             $('#sc_td .loading').hide();
             $('#sc_td .additional').hide();
             $('#sc_td_list').html($.tmpl($('#te_sc_shifts'), self.shifts[i].shifts));
-            $('#sc_days_m').show();
         } else {
             $('#sc_td_list').parent().hide();
             $('#sc_td .loading').hide();
             $('#sc_td .additional').show();
         }
+        $('#sc_to_sub').html(Date.parse(i + ' ' + $.trim($('#sc_mo_di').html())).toString(cal.dformat));
+        $('#sc_days_m').show();
     });
     
     $('#sc_td_list').delegate('tr', clickEvent, function(e){
@@ -81,6 +81,21 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
             self.fromDashboard = false;
             $('.subNavigation').show();
             $('.subNavigation .dashboard li a[subpage=upcomingShifts]').trigger(clickEvent);
+        } else {
+            $('.subNavigation .schedule li.active a').trigger(clickEvent);
+        }
+    });
+    
+    $('#schedule .addShift .backMenu').bind(clickEvent, function(e){
+        e.preventDefault();
+        if ($(this).attr('bck') == 'edit'){
+            spModel.schedule.get('shift', {
+                id : $('#sc_edit_id').val(), 
+                detailed : 1
+            }, function(response){
+                self.shift = response.data;
+                sp.loadSubPage('', 'schedule', 'shiftDisplay');
+            });
         } else {
             $('.subNavigation .schedule li.active a').trigger(clickEvent);
         }
@@ -110,7 +125,6 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
     
     $('#sc_add').bind(clickEvent, function(e){
         e.preventDefault();
-        $(this).parent().parent().parent().find('li').removeClass('active');
         sp.loadSubPage('', 'schedule', 'addShift');
     });
     
@@ -147,8 +161,14 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
                     self.edit = true;
                     sp.loadSubPage('', 'schedule', 'addShift');
                 } else {
-                    sp.showSuccess('Shift updated');
-                    obj.removeClass('loading');
+                    spModel.schedule.get('shift', {
+                        id : $('#sc_edit_id').val(), 
+                        detailed : 1
+                    }, function(response){
+                        self.shift = response.data;
+                        sp.loadSubPage('', 'schedule', 'shiftDisplay');
+                        sp.showSuccess('Shift Updated');
+                    });
                 }
             });
         }, function(){
@@ -170,12 +190,6 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
         } else {
             data.add = obj.attr('user');
         }
-        
-        if (obj.hasClass('disabled')){
-            data.force = 1;
-        } else {
-            data.force = 0;
-        }
         spModel.schedule.update('shift', data, function(response){
             spModel.schedule.get('shift', {
                 id : response.data.id, 
@@ -191,16 +205,32 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
         }, function(){
             obj.parent().removeClass('loading');
         });
-    })
+    });
+    
+    $('#sc_edit_submenu .subMenu a').bind(clickEvent, function(e){
+        var obj = $(this);
+        e.preventDefault();
+        obj.addClass('loading');
+        spModel.schedule.update('shiftapprove', {
+            id : $('#sc_edit_id').val()
+        }, function(response){
+            sp.showSuccess('Shift approved');
+            obj.removeClass('loading');
+            obj.hide();
+        }, function(){
+            obj.removeClass('loading');
+        })
+    });
 }
 
 ShiftPlanningSchedule.prototype.loadSubPageEvents = function(subpage){
     $('#sc_edit_id').val(0);
     $('.subNavigation').show();
     $('#sc_additional_menu').show();
-    if (subpage == 'shiftDisplay'){
+    if (subpage == 'shiftDisplay' || subpage == 'addShift'){
         $('.subNavigation').hide();
     }
+    
     if (subpage == 'addShift'){
         $('#sc_additional_menu').hide();
     }
@@ -250,12 +280,13 @@ ShiftPlanningSchedule.prototype.shiftDisplaySubEvents = function(){
 }
 
 ShiftPlanningSchedule.prototype.addShiftSubEvents = function(){
+    var self = this;
     $('#sc_add_user').hide();
     $('#sc_add_sc').html(spView.schedulerFilter());
     $('#sc_add_lo').html(spView.locationSelector());
     
     var emp = {};
-    if (this.edit != false){    
+    if (this.edit != false){
         emp = this.shift;
         emp.start_date.formatted = Date.parse(emp.start_date.formatted + ' ' + emp.start_time.time).getTime()/1000;
         emp.end_date.formatted = Date.parse(emp.end_date.formatted + ' ' + emp.end_time.time).getTime()/1000;
@@ -316,39 +347,38 @@ ShiftPlanningSchedule.prototype.addShiftSubEvents = function(){
     if (this.edit){
         $('#sc_add_add span').html('Save Shift');
         $('#sc_edit_id').val(emp.id);
+        $('#sc_edit_submenu .backMenu').attr('bck', 'edit');
+        if (emp.confirmed == 0){
+            $('#sc_edit_submenu .subMenu').show();
+        } else {
+            $('#sc_edit_submenu .subMenu').hide();
+        }
     } else {
+        $('#sc_edit_submenu .subMenu').hide();
+        $('#sc_edit_submenu .backMenu').attr('bck', 'add');
         $('#sc_add_add span').html('Add Shift And Set Users');
     }
     //prepare users
     if (this.edit){
         $('#sc_add_user .working ul').html((emp.staff.scheduled == null) ? spView.emptyResult('No scheduled employees for selected shift', 'li') : $.tmpl($('#te_sc_usersW'), this.prepareStaff(emp.staff.scheduled)));
-        $('#sc_add_user .available ul').html((emp.staff.available == null) ? spView.emptyResult('No available employees for selected shift', 'li') : $.tmpl($('#te_sc_users'), this.prepareStaff(emp.staff.available)));
-        $('#sc_add_user .unavailable ul').html((emp.staff.unavail == null) ? spView.emptyResult('No unavail employees for selected shift', 'li') : $.tmpl($('#te_sc_users'), this.prepareStaff(emp.staff.unavail)));
+        delete emp.staff.scheduled;
         
-        $('#sc_add_user .working ul li').each(function(i, item){
-            if (i % 2 == 0){
-                $(this).addClass('even');
+        $.each(emp.staff, function(i, item){
+            if (item == null){
+                $('#sc_add_user div[type=' + i + ']').hide();
             } else {
-                $(this).addClass('odd');
+                $('#sc_add_user div[type=' + i + '] ul.detailsGrid li ul').html($.tmpl($('#te_sc_users'), self.prepareStaff(item)));
             }
         });
-        
-        $('#sc_add_user .available ul li').each(function(i, item){
-            if (i % 2 == 0){
-                $(this).addClass('even');
-            } else {
-                $(this).addClass('odd');
-            }
+        $.each($('#sc_add_user .detailsGrid ul'), function(i, item){
+            $.each($(item).find('li'), function(iV2, itemV2){
+                if (iV2 % 2 == 0){
+                    $(this).addClass('even');
+                } else {
+                    $(this).addClass('odd');
+                }
+            });
         });
-        
-        $('#sc_add_user .unavailable ul li').each(function(i, item){
-            if (i % 2 == 0){
-                $(this).addClass('even');
-            } else {
-                $(this).addClass('odd');
-            }
-        });
-        
         $('#sc_add_user').show();
     }
 
@@ -364,18 +394,41 @@ ShiftPlanningSchedule.prototype.prepareStaff = function(staff){
     return res;
 }
 
-ShiftPlanningSchedule.prototype.nextPrevPrepare = function(){
+ShiftPlanningSchedule.prototype.nextPrevPrepare = function(type){
+    var self = this;
     $('#sc_mo_di').html(Date.parseExact($.trim($('#sc_to_sub').html()), cal.dformat).toString('MMMM yyyy'));
     if (this.page == 'today'){
         $('.subNavigation .schedule li a[subpage=day]').trigger(clickEvent);
     } else if (this.page == 'day'){
         this.displayShifts();
     } else if (this.page == 'month'){
+        var i = parseInt($('#sc_ca_bo .today').attr('time'));
+        // get 
+        var cD = $.trim($('#sc_mo_di').html());
         
+        var sD = Date.parse(cD).moveToFirstDayOfMonth().getDate();
+
+        //end of month
+        var eD = Date.parse(cD).moveToLastDayOfMonth().getDate();
+        if (type == 'prev'){
+            if (i == 1){
+                self.displayShifts(eD);
+            } else {
+                i--; 
+                $('#sc_ca_fi_' + i).trigger(clickEvent)
+            }
+        } else {
+            i++;
+            if ($('#sc_ca_fi_' + i).length == 0){
+                self.displayShifts(1);
+            } else {
+                $('#sc_ca_fi_' + i).trigger(clickEvent)
+            }
+        }
     }
 }
 
-ShiftPlanningSchedule.prototype.displayShifts = function(){
+ShiftPlanningSchedule.prototype.displayShifts = function(sDay){
     var self = this;
     if (this.page == 'month'){
         this.generateCalendar();
@@ -394,6 +447,9 @@ ShiftPlanningSchedule.prototype.displayShifts = function(){
             if (self.page == 'month'){
                 self.fillCalendar(response.data);
                 $('#sc_td_list').html($.tmpl($('#te_sc_shifts_months'), self.shifts));
+                if (typeof sDay != 'undefined'){
+                    $('#sc_ca_fi_' + sDay).trigger(clickEvent);
+                }
             } else {
                 $('#sc_td_list').html($.tmpl($('#te_sc_shifts'), response.data));
             }
@@ -401,6 +457,9 @@ ShiftPlanningSchedule.prototype.displayShifts = function(){
             $('#sc_td .loading').hide();
             
         } else {
+            if (self.page == 'month'){
+                $('#sc_ca_fi_' + sDay).trigger(clickEvent);
+            }
             $('#sc_td_list').parent().hide();
             $('#sc_td .loading').hide();
             $('#sc_td .additional').show();
@@ -552,10 +611,6 @@ ShiftPlanningSchedule.prototype.generateMiddle = function(currentDate){
     //class "today" is for selecting today
     return res;
 }
-
-ShiftPlanningSchedule.prototype.fixCalendar = function(){
-    
-    }
 
 
 ShiftPlanningSchedule.prototype.loadPage = function(){
