@@ -364,7 +364,27 @@ ShiftPlanningDashboard.prototype.settingsSubEvents = function(employee){
     if (typeof employee == 'undefined'){
         employee = sp.staff.admin.info;
     }
+    
+    if (employee.id == sp.staff.admin.info.id){
+        $('#dashboard .search').show();
+        if (!sp.permissions.hasPermission('edit_profile')){
+            $('#dashboard .filters a[subpage=edit]').hide();
+        } else {
+            $('#dashboard .filters a[subpage=edit]').show();
+        }
+    } else {
+        if (sp.staff.admin.info.group > 4){
+            $('#dashboard .search').hide();
+        } else {
+            $('#dashboard .filters a[subpage=edit]').show();
+            $('#dashboard .search').show();
+        }
+        
+    }
 
+
+    
+    
 
     //prefill
     self.prefillOverview(employee);
@@ -410,9 +430,9 @@ ShiftPlanningDashboard.prototype.prefillOverview = function(employee){
         status = 'User account is not activated.';
     }
     
-    if (employee.group <= 3){
-        $('#da_se_ov_aa').hide();
-        $('#da_se_ov_aa').prev().hide();
+    if (sp.staff.admin.info.group > 3){
+//        $('#da_se_ov_aa').hide();
+//        $('#da_se_ov_aa').prev().hide();
     } else {
         $('#da_se_ov_aa').prev().show();
         $('#da_se_ov_aa').show();
@@ -593,10 +613,10 @@ ShiftPlanningDashboard.prototype.adminActions = function(obj){
         sp.staff.getStaff(function(){
             if (type == 'deactivate'){
                 sp.showSuccess('User deactivated!');
-                $('#menu_staff').trigger(clickEvent);
+                $('.subNavigation .staff .subWrapp a[subpage=list]').trigger(clickEvent);
             } else if (type == 'delete'){
-                $('#menu_staff').trigger(clickEvent);
                 sp.showSuccess('User deleted!');
+                $('.subNavigation .staff .subWrapp a[subpage=list]').trigger(clickEvent);
             } else if (type == 'activate'){
                 sp.showSuccess('Activation successfully sent.');
                 $(obj).hide();
@@ -632,6 +652,19 @@ ShiftPlanningDashboard.prototype.updateNotes = function(text){
             self.updateUser(eId, response);
         });
     }
+}
+
+//get all staff and add it to main variables
+ShiftPlanningStaff.prototype.getStaff = function(callback){
+    sp.api('staff.employees','get',{},function(response){
+        sp.staff.raw.employees = response.data;
+        sp.staff.data.employees = sp.map(response.data);
+        if (typeof callback != 'undefined'){
+            callback();
+        }
+    }, function(response){
+        sp.showError(response.error);
+    });   
 }
 
 ShiftPlanningDashboard.prototype.loadPage = function(){

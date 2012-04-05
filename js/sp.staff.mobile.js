@@ -56,7 +56,9 @@ ShiftPlanningStaff.prototype.listEvents = function(){
     });
     $('#st_li_ga').delegate('li', clickEvent, function(){
         var id = $(this).attr('staffId');
-        self.displayEmployee(id);
+        if (sp.permissions.hasPermission('visible_staff_details')){
+            self.displayEmployee(id);
+        }
     });
 }
 
