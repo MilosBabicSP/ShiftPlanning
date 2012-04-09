@@ -73,7 +73,7 @@
             <ul>
                 <li class="even">
                     <div>
-                        <span class="checkbox re_deductBreaks">Show Empty</span>  
+                        <span class="checkbox re_showEmpty">Show Empty</span>  
                     </div>
                 </li>
                 <li class="odd"> 
@@ -83,7 +83,7 @@
                 </li>
                 <li class="even">
                     <div>     
-                        <span class="checkbox re_showEmpty">Deduct Breaks</span>
+                        <span class="checkbox re_deductBreaks">Deduct Breaks</span>
                     </div>
                 </li>
             </ul>

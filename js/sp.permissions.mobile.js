@@ -59,6 +59,9 @@ ShiftPlanningPermissions.prototype.preparePermissions = function(){
         //remove manage timeclock
         $('#tc_mts_sub_button').remove();
         $('#tc_mts').remove();
+        
+        $('#menu_reports').remove();
+        $('#reports').remove();
     }
    
     if (group > this.supervisor){

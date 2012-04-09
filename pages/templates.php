@@ -709,7 +709,7 @@
                 <img width="30" height="30" src="${avatar}">
                 <span class="twoLine">
                 ${employee}<br/>
-                additional info here
+                ${date.formatted} &raquo; ${start_time.time} - ${end_time.time}
             </span>
         </li>
     </script>

@@ -863,7 +863,7 @@ ShiftPlanningRequests.prototype.cancelVacationRequest = function(id){
         id: id, 
         status : -2
     }, function(){
-        $('#rq_va_tb_tr_' + id).remove();
+        $('.subNavigation .requests li a[subpage=vacation]').trigger(clickEvent);
     });
 }
 

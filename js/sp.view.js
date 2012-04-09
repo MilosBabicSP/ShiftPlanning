@@ -3,6 +3,7 @@ var ShiftPlanningView = function(){
 }
 
 ShiftPlanningView.prototype.optionSchedules = function(id){
+    var self = this;
     var data;
     if (typeof id == 'undefined' || id == 0){
         data = spModel.schedule.allSchedules();
@@ -11,7 +12,9 @@ ShiftPlanningView.prototype.optionSchedules = function(id){
     }
     var opt = '<option disabled="disabled" selected="selected" value="0">Select Schedule</option>';
     $.each(data, function(i, item){
-        opt += '<option value="' + i + '">' + ((typeof item == 'object') ? item.name : item) + '</option>';
+        if (self.checkPerm(item)){
+            opt += '<option value="' + i + '">' + ((typeof item == 'object') ? item.name : item) + '</option>';
+        }
     });
     
     return opt;
@@ -50,6 +53,7 @@ ShiftPlanningView.prototype.staffFilter = function(notAdmin){
 }
 
 ShiftPlanningView.prototype.scheduleFilter = function(id){
+    var self = this;
     var data;
     if (typeof id == 'undefined' || id == 0){
         data = spModel.schedule.allSchedules();
@@ -58,13 +62,16 @@ ShiftPlanningView.prototype.scheduleFilter = function(id){
     }
     var opt = '<option value="0">All Positions</option>';
     $.each(data, function(i, item){
-        opt += '<option value="' + i + '">' + ((typeof item == 'object') ? item.name : item) + '</option>';
+        if (self.checkPerm(item)){
+            opt += '<option value="' + i + '">' + ((typeof item == 'object') ? item.name : item) + '</option>';
+        }
     });
     
     return opt;
 }
 
 ShiftPlanningView.prototype.schedulerFilter = function(id){
+    var self = this;
     var data;
     if (typeof id == 'undefined' || id == 0){
         data = spModel.schedule.allSchedules();
@@ -73,7 +80,9 @@ ShiftPlanningView.prototype.schedulerFilter = function(id){
     }
     var opt = '';
     $.each(data, function(i, item){
-        opt += '<option value="' + i + '">' + ((typeof item == 'object') ? item.name : item) + '</option>';
+        if (self.checkPerm(item)){
+            opt += '<option value="' + i + '">' + ((typeof item == 'object') ? item.name : item) + '</option>';
+        }
     });
     
     return opt;
@@ -168,6 +177,18 @@ ShiftPlanningView.prototype.emptyResult = function(text, tag){
         text = 'Na data for selected criteria!';
     }
     return '<' + tag + ' class="additional"><p>' + text + '</p></' + tag + '>'
+}
+
+ShiftPlanningView.prototype.checkPerm = function(item){
+    var perm = true;
+    if (typeof item.perms != 'undefined'){
+        if (item.perms >= 1){
+            perm = true;
+        } else {
+            perm = false;
+        }
+    }
+    return perm;
 }
 
 var spView = new ShiftPlanningView();
