@@ -261,7 +261,16 @@ ShiftPlanningSchedule.prototype.monthSubEvents = function(){
 }
 
 ShiftPlanningSchedule.prototype.shiftDisplaySubEvents = function(){
+    console.log(this.shift);
     if (this.fromDashboard){
+        $('#sc_sub_shift_display a.edit').hide();
+    } else {
+        $('#sc_sub_shift_display a.edit').show();
+    }
+    
+    if (this.shift.perms == 0){
+        return false;
+    } else if (this.shift.perms == 1){
         $('#sc_sub_shift_display a.edit').hide();
     } else {
         $('#sc_sub_shift_display a.edit').show();
@@ -389,7 +398,7 @@ ShiftPlanningSchedule.prototype.addShiftSubEvents = function(){
 
 ShiftPlanningSchedule.prototype.prepareStaff = function(staff){
     var l = staff.length;
-    var res = []
+    var res = [];
     while (l--){
         res.push(sp.staff.data.employees[staff[l][0]]);
     }
