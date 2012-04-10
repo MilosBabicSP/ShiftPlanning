@@ -253,6 +253,13 @@ ShiftPlanningRequests.prototype.shiftTradesEvents = function(){
         
         spModel.schedule.update('trade', data, function(response){
             obj.removeClass('loading');
+            if (data.action == 'activate'){
+                sp.showSuccess('Shift trade accepted, waiting for potentional acceptors to accept.');
+            } else if (data.action == 'deactivate'){
+                sp.showSuccess('Shift trade rejected.');
+            } else {
+                sp.showSuccess('Shift trade canceled.');
+            }
             $('.subNavigation .requests li a[subpage=shiftTrades]').trigger(clickEvent);
         }, function(response){
             sp.showError(response.error);
@@ -276,6 +283,7 @@ ShiftPlanningRequests.prototype.shiftTradesEvents = function(){
         
         spModel.schedule.update('trade', data, function(response){
             obj.removeClass('loading');
+            sp.showSuccess('Shift trade pick up ' + data.action + 'ed');
             $('.subNavigation .requests li a[subpage=shiftTrades]').trigger(clickEvent);
         }, function(response){
             sp.showError(response.error);

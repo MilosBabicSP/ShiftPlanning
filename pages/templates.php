@@ -267,9 +267,11 @@
     <script id="te_rq_st_mst" type="text/x-jquery-tmpl">
         <li>
             <a class="fr" href="#" rel="${rId}"><img width="43" height="30" src="images/NextMenu.png"></a>
-            <span>
-                <img width="30" height="30" src="${avatar}" />
+            <img width="30" height="30" src="${avatar}" />
+            <span class="twoLine">
                 ${user_name}
+                <br />
+                ${shift_start_date.formatted} &raquo; ${shift_start_time} - ${shift_end_time}
             </span>
         </li>
     </script>
