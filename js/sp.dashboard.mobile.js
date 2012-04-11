@@ -121,7 +121,8 @@ ShiftPlanningDashboard.prototype.wallEvents = function(){
                 id : id,
                 userName : sp.staff.admin.info.name,
                 comment: post,
-                time : 'Now'
+                time : 'Now',
+                full : false
             }
             obj.parent().before($.tmpl($('#te_da_wa_me_co'), d));
             $('#da_wa_msg_' + id + ' input[type=text]').val('Write a comment...');
@@ -269,7 +270,7 @@ ShiftPlanningDashboard.prototype.settingsEvents = function(){
             } else {
                 $(obj).addClass('check');
             }
-            self.updateUser($('#da_se_cur_us_id').val(), response);
+            self.updateUser($('#da_se_cur_us_id').val(), response, false);
         });
     });
     
@@ -431,8 +432,8 @@ ShiftPlanningDashboard.prototype.prefillOverview = function(employee){
     }
     
     if (sp.staff.admin.info.group > 3){
-//        $('#da_se_ov_aa').hide();
-//        $('#da_se_ov_aa').prev().hide();
+        $('#da_se_ov_aa').hide();
+        $('#da_se_ov_aa').prev().hide();
     } else {
         $('#da_se_ov_aa').prev().show();
         $('#da_se_ov_aa').show();
@@ -632,12 +633,20 @@ ShiftPlanningDashboard.prototype.adminActions = function(obj){
     });
 }
 
-ShiftPlanningDashboard.prototype.updateUser = function(id, res){
+ShiftPlanningDashboard.prototype.updateUser = function(id, res, over){
+    if (typeof over == 'undefined'){
+        over = true;
+    }
+    
     if (id == sp.staff.admin.info.id){
         sp.staff.admin.info = res.data;
     }
     sp.staff.data.employees['' + id] = res.data;
-    this.settingsSubEvents(sp.staff.data.employees['' + id]);
+    
+    if (over){
+        this.settingsSubEvents(sp.staff.data.employees['' + id]);
+    }
+    
     sp.showSuccess('Selected user updated.');
 }
 

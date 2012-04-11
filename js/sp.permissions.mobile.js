@@ -57,8 +57,8 @@ ShiftPlanningPermissions.prototype.preparePermissions = function(){
     
     if (group >= this.scheduler){
         //remove manage timeclock
-        $('#tc_mts_sub_button').remove();
-        $('#tc_mts').remove();
+//        $('#tc_mts_sub_button').remove();
+//        $('#tc_mts').remove();
         
         $('#menu_reports').remove();
         $('#reports').remove();

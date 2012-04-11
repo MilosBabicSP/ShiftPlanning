@@ -2,13 +2,13 @@ var ShiftPlanningRanges = function(){
     this.times = {
         0 : {
             title : 'Today',
-            start_time : strtotime('now')*1000,
-            end_time : strtotime('now +1 day')*1000
+            start_time : Date.parse('today').getTime(),
+            end_time : Date.parse('today').getTime()
         },
         1 : {
             title : 'Yesterday',
-            start_time : strtotime('now -2 day')*1000,
-            end_time : strtotime('now')*1000
+            start_time : Date.parse('yesterday').getTime(),
+            end_time : Date.parse('yesterday').getTime()
         },
         2 : {
             title : 'Last 7 Days',

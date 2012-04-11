@@ -262,18 +262,17 @@ ShiftPlanningSchedule.prototype.monthSubEvents = function(){
 
 ShiftPlanningSchedule.prototype.shiftDisplaySubEvents = function(){
     console.log(this.shift);
+    console.log(this.fromDashboard);
     if (this.fromDashboard){
         $('#sc_sub_shift_display a.edit').hide();
-    } else {
-        $('#sc_sub_shift_display a.edit').show();
-    }
-    
-    if (this.shift.perms == 0){
-        return false;
-    } else if (this.shift.perms == 1){
-        $('#sc_sub_shift_display a.edit').hide();
-    } else {
-        $('#sc_sub_shift_display a.edit').show();
+    } else { 
+        if (this.shift.perms == 0){
+            return false;
+        } else if (this.shift.perms == 1){
+            $('#sc_sub_shift_display a.edit').hide();
+        } else {
+            $('#sc_sub_shift_display a.edit').show();
+        }
     }
     var e = [];
     if (typeof this.shift.employees != 'undefined' && this.shift.employees != null){
@@ -295,7 +294,7 @@ ShiftPlanningSchedule.prototype.addShiftSubEvents = function(){
     $('#sc_add_user').hide();
     $('#sc_add_sc').html(spView.schedulerFilter());
     $('#sc_add_lo').html(spView.locationSelector());
-    
+    $('#sc_add_add').removeClass('loading');
     var emp = {};
     if (this.edit != false){
         emp = this.shift;

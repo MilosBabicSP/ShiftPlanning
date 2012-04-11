@@ -34,6 +34,22 @@
                 ${start_time.time} - ${end_time.time}
             </div>
         </div>
+        {{if title.length > 0 }}
+        <div class="title1 regular wide">
+            <h3>Title</h3>
+        </div>
+        <div class="title wide">
+            ${title}
+        </div>
+        {{/if}}
+        {{if notes.length > 0 }}
+        <div class="title1 regular wide">
+            <h3>Notes</h3>
+        </div>
+        <div class="title wide">
+            ${notes}
+        </div>
+        {{/if}}
         {{if employees.length > 0 }}
         <div class="title1 regular wide">
             <h3>Who's Working</h3>
