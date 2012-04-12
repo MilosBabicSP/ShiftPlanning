@@ -727,7 +727,11 @@
                 <img width="30" height="30" src="${avatar}">
                 <span class="twoLine">
                 ${employee}<br/>
-                ${date.formatted} &raquo; ${start_time.time} - ${end_time.time}
+                {{if typeof start_time == 'undefined'}}
+                    ${start_date.formatted} - ${end_date.formatted}
+                {{else}}
+                    ${date.formatted} &raquo; ${start_time.time} - ${end_time.time}
+                {{/if}}
             </span>
         </li>
     </script>

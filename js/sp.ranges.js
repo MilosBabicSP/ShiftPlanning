@@ -22,8 +22,8 @@ var ShiftPlanningRanges = function(){
         },
         4 : {
             title : 'Last Week',
-            start_time : ((Date.parse('monday').getTime()) - 604800),
-            end_time : Date.parse('sunday').getTime()
+            start_time : Date.parse('today').moveToDayOfWeek(0).addWeeks(-2).getTime(),
+            end_time : Date.parse('previous saturday').getTime()
         },
         5 : {
             title : 'This Month',
