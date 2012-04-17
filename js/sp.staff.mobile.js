@@ -253,6 +253,7 @@ ShiftPlanningStaff.prototype.login = function(){
                     sp.hash('dashboard');
                     self.prepareConfig();
                     $('.userName').html(user.name);
+                    sp.permissions.preparePermissions();
                 });
             });
         });

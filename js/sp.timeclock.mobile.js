@@ -24,6 +24,8 @@ ShiftPlanningTimeClock.prototype.overviewEvents = function(){
             $('#tc_ov_cf').show();
             $('#tc_ov_co').show();
             $('#tc_ov_ca').attr('rel', response.data.id);
+            $('#tc_ov_no').val('');
+            $('#tc_ov_ss').val(0);
         });
     });
     

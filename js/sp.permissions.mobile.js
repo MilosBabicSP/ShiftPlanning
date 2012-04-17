@@ -59,7 +59,6 @@ ShiftPlanningPermissions.prototype.preparePermissions = function(){
         //remove manage timeclock
 //        $('#tc_mts_sub_button').remove();
 //        $('#tc_mts').remove();
-        
         $('#menu_reports').remove();
         $('#reports').remove();
     }
@@ -70,7 +69,7 @@ ShiftPlanningPermissions.prototype.preparePermissions = function(){
     }
     
     //Employees can manually add time clocks
-    if (group > this.scheduler && parseInt(perms.tc_empl_addtime) == 0){
+    if (group >= this.scheduler && parseInt(perms.tc_empl_addtime) == 0){
         $('#tc_act_sub_button').remove();
         $('#tc_act').remove();
     }
@@ -83,9 +82,7 @@ ShiftPlanningPermissions.prototype.preparePermissions = function(){
         $('.subNavigation div.timeClock').remove();
     }
 
-    
- 
-/*    //Employees can view staff gallery
+    //Employees can view staff gallery
     if (group >= this.employee && parseInt(perms.visible_staff) == 0){
         $('#menu #menu_staff').unbind(clickEvent);
         $('#menu #menu_staff').remove();
@@ -93,6 +90,7 @@ ShiftPlanningPermissions.prototype.preparePermissions = function(){
         $('.subNavigation div.staff').remove();
     }
     
+/*    
     //Employee can send private messages
     if (group >= this.employee && parseInt(perms.pm) == 0){
         $('#da_in_nm_b').unbind(clickEvent);
