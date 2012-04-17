@@ -108,7 +108,7 @@
             <span><b>Total:</b> <span></span></span>
         </li>
         <li class="TScost">
-            <span><b>Cost:</b> <span></span></span>
+            <span><b>Cost:</b> <span class="currency"></span><span></span></span>
         </li>
     </ul>
     <div class="notif hidden">No data to display for selected filters.</div>

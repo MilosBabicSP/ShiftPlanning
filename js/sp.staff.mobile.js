@@ -254,6 +254,7 @@ ShiftPlanningStaff.prototype.login = function(){
                     self.prepareConfig();
                     $('.userName').html(user.name);
                     sp.permissions.preparePermissions();
+		    spRanges.fixRanges();
                 });
             });
         });

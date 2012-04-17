@@ -488,6 +488,9 @@ ShiftPlanningRequests.prototype.vacationSubEvents = function(){
                 $('#rq_va_rq').html($.tmpl($('#te_rq_va_ma'), d));
             }
         });
+    } else {
+	$('#rq_va_rq').hide();
+	$('#rq_va_rq').next().show();
     }
 
     spModel.schedule.get('vacations', {

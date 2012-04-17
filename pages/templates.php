@@ -390,7 +390,7 @@
             <li class="even">
                 <div>
                     <label>Cost</label>
-                    <b>$${hours.cost.toFixed(2)}&nbsp;</b>
+                    <b><span class="currency">$</span>${hours.cost.toFixed(2)}&nbsp;</b>
                 </div>
             </li>
         </ul>
@@ -443,7 +443,7 @@
             <li class="even">
                 <div>
                     <label>Cost</label>
-                    <b>$${hours.cost.toFixed(2)}&nbsp;</b>
+                    <b><span class="currency">$</span>${hours.cost.toFixed(2)}&nbsp;</b>
                 </div>
             </li>
         </ul>
@@ -526,7 +526,7 @@
             <li class="odd">
                 <div>
                     <label>Cost</label>
-                    <b>$${hours.cost.toFixed(2)}&nbsp;</b>
+                    <b><span class="currency">$</span>${hours.cost.toFixed(2)}&nbsp;</b>
                 </div>
             </li>
         </ul>
@@ -579,7 +579,7 @@
             <li class="even">
                 <div>
                     <label>Cost</label>
-                    <b>$${hours.cost.toFixed(2)}</b>
+                    <b><span class="currency">$</span>${hours.cost.toFixed(2)}</b>
                 </div>
             </li>
         </ul>
@@ -662,7 +662,7 @@
             <li class="odd">
                 <div>
                     <label>Cost</label>
-                    <b>$${hours.cost.toFixed(2)}&nbsp;</b>
+                    <b><span class="currency">$</span>${hours.cost.toFixed(2)}&nbsp;</b>
                 </div>
             </li>
         </ul>
@@ -715,7 +715,7 @@
             <li class="even">
                 <div>
                     <label>Cost</label>
-                    <b>$${hours.cost.toFixed(2)}</b>
+                    <b><span class="currency">$</span>${hours.cost.toFixed(2)}</b>
                 </div>
             </li>
         </ul>
@@ -730,7 +730,11 @@
                 {{if typeof start_time == 'undefined'}}
                     ${start_date.formatted} - ${end_date.formatted}
                 {{else}}
-                    ${date.formatted} &raquo; ${start_time.time} - ${end_time.time}
+		    {{if typeof start_time.time == 'undefined'}}
+			${date.formatted} &raquo; ${start_time} - ${end_time}
+		    {{else}}
+			${date.formatted} &raquo; ${start_time.time} - ${end_time.time}
+		    {{/if}}
                 {{/if}}
             </span>
         </li>

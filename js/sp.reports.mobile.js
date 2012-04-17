@@ -57,6 +57,7 @@ ShiftPlanningReports.prototype.allReportsEvents = function(){
 
 ShiftPlanningReports.prototype.allReportsSubEvents = function(){
     var self = this;
+    spView.fixCurrency(sp.staff.admin.settings.currency);
     $('#reports .timeSelector').html(spView.timeRanges());
     $('#reports .timeSelector').val(3);
     $('#reports .employeeSelector').html(spView.staffFilter());
@@ -140,7 +141,7 @@ ShiftPlanningReports.prototype.displayReports = function(){
             $('#reports .' + origin + ' .totals').hide();
             $('#reports .' + origin + ' .notif').show();
         }
-        var total = { colspan : 5, regular : 0, special : 0, overtime : 0, total : 0, cost : 0 }
+        var total = {colspan : 5, regular : 0, special : 0, overtime : 0, total : 0, cost : 0}
         var d = []
         $.each(response.data, function(i, item){
             total.regular = total.regular + Number(item.hours.regular);
@@ -158,7 +159,7 @@ ShiftPlanningReports.prototype.displayReports = function(){
         $('#reports .' + origin + ' .TSspecial > span > span').html(total.special.toFixed(2));
         $('#reports .' + origin + ' .TSovertime > span > span').html(total.overtime.toFixed(2));
         $('#reports .' + origin + ' .TStotal > span > span').html(total.total.toFixed(2) + ' Hours');
-        $('#reports .' + origin + ' .TScost > span > span').html('$'+total.cost.toFixed(2));
+        $('#reports .' + origin + ' .TScost > span > span:not(.currency)').html(total.cost.toFixed(2));
     });
 }
 
@@ -166,10 +167,11 @@ ShiftPlanningReports.prototype.singleViewDisplay = function(id){
     $('#wrapper > .subNavigation').hide();
     var item = this.reports[id];
     $('#re_di_item').html($.tmpl($('#te_re_' + this.page + '_' + (($('#reports .' + this.page + ' .re_groupResults').hasClass('check')) ? '1' : '0')), item));
+    
+    spView.fixCurrency(sp.staff.admin.settings.currency);
 }
 
 ShiftPlanningReports.prototype.loadSubPageEvents = function(subpage){
-    console.log(subpage);
     if (subpage == 'singleViewDisplay'){
         this.singleViewDisplay(this.cId);
     } else {

@@ -111,7 +111,7 @@ if ($vtoken['data'] != '1') {
             sp.staff.admin.info.dfAvatar = (typeof sp.staff.admin.info.avatar != 'undefined' && typeof sp.staff.admin.info.avatar.small != 'undefined') ? sp.staff.admin.info.avatar.small : 'images/no-avatar.png';
             $('.userName').html(user.name);
             $('company').html(user.company);
-            
+	    spRanges.fixRanges();
 <? } ?>
     $('body').css('display', 'block');
     }

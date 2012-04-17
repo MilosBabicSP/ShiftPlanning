@@ -191,4 +191,10 @@ ShiftPlanningView.prototype.checkPerm = function(item){
     return perm;
 }
 
+ShiftPlanningView.prototype.fixCurrency = function(cId){
+    var c = spRanges.currencies[cId];
+    
+    $('span.currency').html(c);
+}
+
 var spView = new ShiftPlanningView();

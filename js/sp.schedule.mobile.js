@@ -241,7 +241,7 @@ ShiftPlanningSchedule.prototype.loadSubPageEvents = function(subpage){
 
 //sub events
 ShiftPlanningSchedule.prototype.todaySubEvents = function(){
-    $('#sc_to_sub').html(formatted('today'));
+    $('#sc_to_sub').html(sp.raw.config.today.formatted);
     $('#sc_to_sub').prev().html('Today');
     this.page = 'today';
     this.displayShifts();

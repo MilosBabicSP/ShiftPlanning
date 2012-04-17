@@ -1,4 +1,7 @@
 <div class="main shiftApprovals" id="rq_sa">
+    <div class="title">
+        <h3>Shift Approvals</h3>
+    </div>
     <ul class="detailsGrid">
         <li>
             <ul>
