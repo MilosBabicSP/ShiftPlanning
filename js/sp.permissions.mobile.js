@@ -53,12 +53,17 @@ ShiftPlanningPermissions.prototype.preparePermissions = function(){
         $('#da_se_ov_no, #da_se_ed_no').parents('.detailsGrid').remove();
         
         $('#sc_add').parent().remove();
+	
+	//remove manage timeclock
+	$('#tc_mts_sub_button').remove();
+        $('#tc_mts').remove();
+	
+	$('.subNavigation .requests a[subpage=shiftApprovals]').remove();
+	$('#rq_sa').remove();
     }
     
     if (group >= this.scheduler){
-        //remove manage timeclock
-//        $('#tc_mts_sub_button').remove();
-//        $('#tc_mts').remove();
+
         $('#menu_reports').remove();
         $('#reports').remove();
     }

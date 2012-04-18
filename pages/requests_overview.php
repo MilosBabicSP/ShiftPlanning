@@ -26,4 +26,9 @@
             There is <info>0</info>  Shifts(s) available for pickup
         </li>
     </ul>
+    <ul class="requests hidden" id="rq_ov_hd">
+	<li>
+	    <span>No requests.</span>
+	</li>
+    </ul>
 </div>

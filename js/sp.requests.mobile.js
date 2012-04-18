@@ -442,6 +442,12 @@ ShiftPlanningRequests.prototype.overviewSubEvents = function(){
         $('#rq_rl_sr').parent().find('info').html(response.data.shift_request_waiting);
         $('#rq_rl_ast').parent().find('info').html(response.data.trade_approval);
         $('#rq_rl_sv').parent().find('info').html(response.data.shift_available);
+	
+	if ($('#rq_ov .requests:first li:visible').length == 0){
+	    $('#rq_ov_hd').show();
+	} else {
+	    $('#rq_ov_hd').hide();
+	}
     }, function(response){
         sp.showError(response.error);
     });

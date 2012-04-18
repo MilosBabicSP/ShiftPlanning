@@ -116,6 +116,21 @@ if ($vtoken['data'] != '1') {
     $('body').css('display', 'block');
     }
         </script>
+	
+	<script type="text/javascript">
+            if ('standalone' in navigator && !navigator.standalone && (/iphone|ipod|ipad/gi).test(navigator.platform) && (/Safari/i).test(navigator.appVersion)) {
+                    var addToHomeConfig = {
+                            animationIn:'bubble',		// Animation In
+                            animationOut:'drop',		// Animation Out
+                            lifespan:10000,				// The popup lives 10 seconds
+                            expire:2,					// The popup is shown only once every 2 minutes
+                            touchIcon:true
+                    };
+
+                    document.write('<link rel="stylesheet" href="css\/add2home.css">');
+                    document.write('<script type="application\/javascript" src="js\/plugins\/add2home.js" charset="utf-8"><\/s' + 'cript>');
+            }
+	</script>
     </head>
     <body onload="setTimeout(function() { window.scrollTo(0, 1) }, 100);" class="login">
         <div class="notification error"></div>
