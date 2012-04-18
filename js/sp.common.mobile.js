@@ -82,12 +82,7 @@ ShiftPlanning.prototype.loadSubPage = function(obj, page, subpage){
         this[page].loadSubPageEvents(subpage);
     }
     
-    $('#pages #' + page + ' .main.' + subpage + ' .checkbox:visible').removeClass('failsafe');
-    $('#pages #' + page + ' .main.' + subpage + ' .checkbox:visible').each(function(i, item){
-	if ($(this).outerHeight(true) > 45){
-	    $(this).addClass('failsafe');
-	}
-    });
+    sp.fixCheckboxes();
 }
 
 ShiftPlanning.prototype.initialize = function(){
@@ -167,6 +162,15 @@ ShiftPlanning.prototype.initialize = function(){
 
 ShiftPlanning.prototype.globalLoader = function(){
     
+}
+
+ShiftPlanning.prototype.fixCheckboxes = function(){
+    $('#pages .checkbox:visible').removeClass('failsafe');
+    $('#pages .checkbox:visible').each(function(i, item){
+	if ($(this).outerHeight(true) > 45){
+	    $(this).addClass('failsafe');
+	}
+    });
 }
 
 ShiftPlanning.prototype.showSuccess = function(text){

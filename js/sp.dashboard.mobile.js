@@ -240,6 +240,8 @@ ShiftPlanningDashboard.prototype.settingsEvents = function(){
         $('#dashboard .search.settings.mainSub li').removeClass('active');
         $('#da_se_' + $(this).attr('subpage')).show();
         $(this).parent().addClass('active');
+	
+	sp.fixCheckboxes();
     });
     
     $('#da_se').delegate('.checkbox', clickEvent, function(){
@@ -391,6 +393,8 @@ ShiftPlanningDashboard.prototype.settingsSubEvents = function(employee){
     self.preparePasswordField(employee);
     
     $('#dashboard .search.settings.mainSub li a:first').trigger(clickEvent);
+    
+    sp.fixCheckboxes();
 }
 
 //functions
@@ -643,6 +647,8 @@ ShiftPlanningDashboard.prototype.updateUser = function(id, res, over){
     if (over){
         this.settingsSubEvents(sp.staff.data.employees['' + id]);
     }
+    
+    
     
     sp.showSuccess('Selected user updated.');
 }
