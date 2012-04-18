@@ -298,3 +298,6 @@ body {display:none;}
 #da_in {margin:0px; padding:0;}
 #tc_dtc_buttons .unapprove {opacity: 0.5}
 .permMsgCommentOff .msgRpl, .permMsgCommentOff li.last {display:none;}
+
+/*failsafe*/
+.checkbox.failsafe {line-height:15px;}

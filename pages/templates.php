@@ -801,7 +801,7 @@
         <li id="da_in_msg_${id}" class="{{if date_read == 0}}unread{{/if}}">
             <div class="msgHead" messageId="${id}">
                 <h5>${subject}</h5>
-                <p><span class="fr">Oct 15</span>From: ${from.name}</p>
+                <p><span class="fr">${date_sent_formatted.formatted}</span>From: ${from.name}</p>
             </div>
             <div class="msgBody">
                 <p>{{html message_formatted}}</p>

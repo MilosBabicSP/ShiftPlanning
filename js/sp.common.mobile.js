@@ -62,6 +62,7 @@ ShiftPlanning.prototype.loadSubPage = function(obj, page, subpage){
         sp.staff.logout();
         return false;
     }
+    
     if (obj != ''){
         obj.parent().parent().find('li').removeClass('active');
         obj.parent().addClass('active');
@@ -80,6 +81,13 @@ ShiftPlanning.prototype.loadSubPage = function(obj, page, subpage){
     if (typeof this[page] != 'undefined' && 'loadSubPageEvents' in this[page]){
         this[page].loadSubPageEvents(subpage);
     }
+    
+    $('#pages #' + page + ' .main.' + subpage + ' .checkbox:visible').removeClass('failsafe');
+    $('#pages #' + page + ' .main.' + subpage + ' .checkbox:visible').each(function(i, item){
+	if ($(this).outerHeight(true) > 45){
+	    $(this).addClass('failsafe');
+	}
+    });
 }
 
 ShiftPlanning.prototype.initialize = function(){
