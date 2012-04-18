@@ -80,7 +80,6 @@ ShiftPlanningTimeClock.prototype.manageTimeSheetsEvents = function(){
     });
     
     $('#tc_mts_sh').delegate('li', clickEvent, function(e){
-        console.log(e);
         if (e.target.className != 'tPending'){
             $(this).addClass('loading');
             spModel.timeclock.get('timeclock', {
@@ -434,11 +433,9 @@ ShiftPlanningTimeClock.prototype.showHideTimeSheets = function(){
         search += '.s_' + s;
     }
     if (e != 0){
-        console.log(e);
         search += '.e_' + e;
     }
     if (sc != 0){
-        console.log(sc);
         search += '.sc_' + sc;
     }
     

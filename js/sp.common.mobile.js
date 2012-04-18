@@ -166,7 +166,7 @@ ShiftPlanning.prototype.initialize = function(){
 }
 
 ShiftPlanning.prototype.globalLoader = function(){
-    console.log('implement global loader');
+    
 }
 
 ShiftPlanning.prototype.showSuccess = function(text){

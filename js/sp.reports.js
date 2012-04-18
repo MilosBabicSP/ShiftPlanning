@@ -13,7 +13,6 @@ ShiftPlanningReports.prototype = {
         //some event
     },
     loadPage : function(){
-        console.log('test');
     },    
     times : {
         0 : {

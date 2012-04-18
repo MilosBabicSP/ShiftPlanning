@@ -103,7 +103,7 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
         }
     });
     
-    $('#sc_sub_shift_display ul a').bind(clickEvent, function(e){
+    $('#sc_sub_shift_display ul a.edit').bind(clickEvent, function(e){
         e.preventDefault();
         var o = $(this);
         o.addClass('loading');
@@ -118,6 +118,46 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
         }, function(){
             o.removeClass('loading');
         });
+    });
+    
+    $('#sc_sub_shift_display ul a.publish').bind(clickEvent, function(e){
+	e.preventDefault();
+	var obj = $(this);
+	obj.addClass('loading');
+	if (typeof self.conflicts[obj.attr('rel')] != 'undefined'){
+	    var c = confirm(self.conflicts[obj.attr('rel')].title);
+	    if (c){
+		spModel.schedule.get('publish', {shifts: obj.attr('rel')}, function(response){
+		    sp.showSuccess(response.data);
+		    obj.removeClass('loading');
+		    obj.hide();
+		});
+	    } else {
+		obj.removeClass('loading');
+	    }
+	} else {
+	    spModel.schedule.get('conflicts', {schedule : $(this).attr('rel')}, function(response){
+		self.setConflicts(response.data);
+		if (typeof self.conflicts[obj.attr('rel')] != 'undefined'){
+		    var c = confirm('This shift has conflicts, but you can\'t fix them from mobile app. Force publish?');
+		    if (c){
+			spModel.schedule.get('publish', {shifts: obj.attr('rel')}, function(response){
+			    sp.showSuccess(response.data);
+			    obj.removeClass('loading');
+			    obj.hide();
+			});
+		    } else {
+			obj.removeClass('loading');
+		    }
+		} else {
+		    spModel.schedule.get('publish', {shifts: obj.attr('rel')}, function(response){
+			sp.showSuccess(response.data);
+			obj.removeClass('loading');
+			obj.hide();
+		    });
+		}
+	    });
+	}
     });
     
     $('#sc_refresh').bind(clickEvent, function(e){
@@ -261,16 +301,21 @@ ShiftPlanningSchedule.prototype.monthSubEvents = function(){
 }
 
 ShiftPlanningSchedule.prototype.shiftDisplaySubEvents = function(){
-    console.log(this.shift);
-    console.log(this.fromDashboard);
     if (this.fromDashboard){
         $('#sc_sub_shift_display a.edit').hide();
+	$('#sc_sub_shift_display a.publish').hide();
     } else { 
         if (this.shift.perms == 0){
             return false;
         } else if (this.shift.perms == 1){
             $('#sc_sub_shift_display a.edit').hide();
+	    $('#sc_sub_shift_display a.publish').hide();
         } else {
+	    if (this.shift.published == 0){
+		$('#sc_sub_shift_display a.publish').show();
+	    } else {
+		$('#sc_sub_shift_display a.publish').hide();
+	    }
             $('#sc_sub_shift_display a.edit').show();
         }
     }
@@ -284,7 +329,7 @@ ShiftPlanningSchedule.prototype.shiftDisplaySubEvents = function(){
     } else {
         this.shift.employees = [];
     }
-    $('#sc_shift_display').html($.tmpl($('#te_sc_shift_display'), this.shift))
+    $('#sc_shift_display').html($.tmpl($('#te_sc_shift_display'), this.shift));
     
     $('#sc_sub_shift_display ul a').attr('rel', this.shift.id);
 }
@@ -489,7 +534,6 @@ ShiftPlanningSchedule.prototype.fillCalendar = function(data){
         }
         res[item.start_date.day+ ''].shifts.push(item);
     });
-    console.log(res);
     $('#sc_ca_bo td').removeClass('hasAny');
     
     var fin = []
@@ -625,7 +669,6 @@ ShiftPlanningSchedule.prototype.generateMiddle = function(currentDate){
 
 
 ShiftPlanningSchedule.prototype.loadPage = function(){
-    console.log('test');
     var opt = '';
     opt += '<option value="employee">My Schedules</option>';
     opt += '<option value="overview">Schedule Overview</option>';

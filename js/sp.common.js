@@ -108,7 +108,7 @@ ShiftPlanning.prototype = {
                 $('.subNavigation > div.' + page + ' li:first a').trigger(clickEvent);
                 this[page].loadPage();
             } else {
-                console.log(page+ ' page does not exist.');
+                //console.log(page+ ' page does not exist.');
             }
         }
     },

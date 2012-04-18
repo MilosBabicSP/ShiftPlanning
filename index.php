@@ -276,6 +276,11 @@ if ($vtoken['data'] != '1') {
                             </a>
                             <ul class="subMenu">
                                 <li class="single">
+                                    <a href="#" class="icoReqWor publish">
+                                        <span>Publish</span>
+                                    </a>
+                                </li>
+                                <li class="single">
                                     <a href="#" class="icoReqEdi edit">
                                         <span>Edit</span>
                                     </a>

@@ -505,7 +505,6 @@ function formatted(type){
             res = d.toString(cal.tstring);
             break;
        default:
-           console.log(type);
            res = type.toString('dddd, ' + cal.dformat);
     }
     return res;

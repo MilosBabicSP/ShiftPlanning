@@ -8,8 +8,7 @@ ShiftPlanningDashboard.prototype = {
         
     },
     loadPage: function(){
-        console.log('test');
-        console.log('Implement loadPage for this device.');
+
     }
     
 }

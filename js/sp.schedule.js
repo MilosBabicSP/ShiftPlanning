@@ -15,6 +15,7 @@ function ShiftPlanningSchedule(){
         end_date : 'yesterday'
     };
     this.page = 'today';
+    this.conflicts = {};
     return true;
 }
 
@@ -24,6 +25,12 @@ ShiftPlanningSchedule.prototype = {
     },
     loadPage : function(){
         
+    },
+    setConflicts : function(conf){
+	var self = this;
+	$.each(conf, function(i, item){
+	    self.conflicts[item.shift + ''] = item;
+	});
     }
     
 }

@@ -184,7 +184,6 @@ ShiftPlanningDashboard.prototype.inboxEvents = function(){
         var id = $(this).attr('rel');
         $('#da_in_msg_' + id).find('.newMsg').show(function(){
             var obj = $(this);
-            console.log(obj);
             obj.find('input[type=text]').val('re: ' + $('#da_in_msg_' + id).find('.msgHead h5').html());
         });
     });
