@@ -303,7 +303,6 @@ ShiftPlanningDashboard.prototype.wallSubEvents = function(){
     if (parseInt(sp.staff.admin.settings.message_wall_on) != 0){
         $('#da_wa_li').html(spView.ulLoader());
         spModel.messaging.get('wall', {}, function(response){
-            console.log(response);
             if (response.data.length > 0){
                 $('#da_wa_li').html($.tmpl($('#te_da_wa_me'), response.data));
             } else {
@@ -406,7 +405,6 @@ ShiftPlanningDashboard.prototype.prefillOverview = function(employee){
     })
     
     employee = p;
-    console.log(employee);
     //this page needs to be cached after first load and to be reprepared if data are changed - DONE
     $('#da_se_cur_us_id').val(employee.id);
     

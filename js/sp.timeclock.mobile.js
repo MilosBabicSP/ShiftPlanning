@@ -442,8 +442,6 @@ ShiftPlanningTimeClock.prototype.showHideTimeSheets = function(){
     $('#tc_mts_sh').find('li').hide();
     $('#tc_mts_sh').find('li'+search).show();
     
-    console.log('li'+search);
-    
     
 //    $('#tc_mts_slist tr').each(function(i, item){
 //        if (i % 2 == 0){
