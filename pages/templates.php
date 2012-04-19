@@ -776,7 +776,7 @@
 	<div class="title">
 	    <div>                 
 		<span>Length</span>
-		${length.total_hours}
+		${length.total_hours}h
 	    </div>         
 	</div>
 	<div class="title">
