@@ -11,6 +11,8 @@ require_once('functions.php');
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta content='width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;' name='viewport' />
         <meta name="viewport" content="width=device-width" />
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	
         <link rel="stylesheet" type="text/css" href="css/style.mobile.css" />
         <link rel="stylesheet" type="text/css" href="css/mobiscroll.css" />
         <script src="js/sp.user.js" type="text/javascript"></script>

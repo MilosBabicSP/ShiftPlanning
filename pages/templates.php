@@ -752,13 +752,19 @@
     <script id="te_tc_dtc" type="text/x-jquery-tmpl">
         <div class="title">
             <div>
-                <img width="30" height="30" src="images/staff.jpg">
+                <img width="30" height="30" src="${employee.avatar}">
                 <span>${employee.name}</span>
                 {{if schedule != null}}
                     ${schedule.name}
                 {{/if}}
             </div>
         </div>
+	<div class="title wide">
+	    <div>                 
+		<span>Thu, Apr 19, 2012</span>                 
+		6 pm - 10 pm             
+	    </div>         
+	</div>
         {{if notes != null}}
             <div class="additional">
                 <p>${notes}</p>

@@ -304,7 +304,9 @@ ShiftPlanningTimeClock.prototype.addClockTimeSubEvents = function(){
 }
 
 ShiftPlanningTimeClock.prototype.displayTimeClockSubEvents = function(){
+    this.current.employee.avatar = sp.getAvatar(this.current.employee.id);
     $('#tc_dtc').html($.tmpl($('#te_tc_dtc'), this.current));
+    console.log(this.current);
     
     $('#tc_dtc_buttons a').attr('rel', this.current.id);
     
