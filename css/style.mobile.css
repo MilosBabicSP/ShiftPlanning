@@ -299,6 +299,7 @@ body {display:none;}
 #tc_dtc_buttons .unapprove {opacity: 0.5}
 .permMsgCommentOff .msgRpl, .permMsgCommentOff li.last {display:none;}
 .notPublished {border: 1px solid #FF8800 !important; background: url(../images/warning.png) scroll no-repeat 98% 50%;}
+#da_in_me .additional {padding:15px 20px !important;}
 
 /*failsafe*/
 .checkbox.failsafe {line-height:15px;}

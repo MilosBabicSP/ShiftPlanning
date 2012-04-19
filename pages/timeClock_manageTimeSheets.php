@@ -66,4 +66,7 @@
     <div id="tc_mts_sh">
 
     </div>
+    <div class="additional hidden">
+        <p>No timesheets for selected filters.</p>
+    </div>
 </div>

@@ -442,6 +442,14 @@ ShiftPlanningTimeClock.prototype.showHideTimeSheets = function(){
     $('#tc_mts_sh').find('li').hide();
     $('#tc_mts_sh').find('li'+search).show();
     
+    $('#tc_mts_sh div.title').hide();
+    $('#tc_mts_sh ul li:visible').parents('.timeSheet').prev().show();
+    
+    if ($('#tc_mts_sh ul li:visible').length > 0){
+	$('#tc_mts_sh').next().hide();
+    } else {
+	$('#tc_mts_sh').next().show();
+    }
     
 //    $('#tc_mts_slist tr').each(function(i, item){
 //        if (i % 2 == 0){

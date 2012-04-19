@@ -85,6 +85,7 @@ ShiftPlanningStaff.prototype.fastAssignmentEvents = function(){
         var skills = ($(this).parents('.skills').length > 0) ? true : false;
         var checked = ($(this).hasClass('check')) ? true : false;
         var obj = this;
+	$(obj).parent().addClass('loading');
         var data = {
             id : $('#st_fa_cu').val()
         }
@@ -107,6 +108,7 @@ ShiftPlanningStaff.prototype.fastAssignmentEvents = function(){
             } else {
                 $(obj).addClass('check');
             }
+	    $(obj).parent().removeClass('loading');
             sp.dashboard.updateUser($('#st_fa_cu').val(), response, false);
         });
     });
