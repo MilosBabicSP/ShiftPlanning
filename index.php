@@ -310,7 +310,7 @@ if ($vtoken['data'] != '1') {
                                 <img width="41" height="30" src="images/BackMenu.png">
                             </a>
                             <ul class="subMenu">
-                                <li class="single">
+                                <li class="single hidden">
                                     <a href="#" class="icoReqWor">
                                         <span>Approve Shift</span>
                                     </a>

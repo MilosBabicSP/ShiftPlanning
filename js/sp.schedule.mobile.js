@@ -315,6 +315,10 @@ ShiftPlanningSchedule.prototype.shiftDisplaySubEvents = function(){
         } else {
 	    if (this.shift.published == 0){
 		$('#sc_sub_shift_display a.publish').show();
+		$('#sc_sub_shift_display a.publish span').html('Publish');
+	    } else if (this.shift.published < this.shift.edited && this.shift.published != 0) {
+		$('#sc_sub_shift_display a.publish').show();
+		$('#sc_sub_shift_display a.publish span').html('Republish');
 	    } else {
 		$('#sc_sub_shift_display a.publish').hide();
 	    }
@@ -405,7 +409,7 @@ ShiftPlanningSchedule.prototype.addShiftSubEvents = function(){
         $('#sc_add_add span').html('Save Shift');
         $('#sc_edit_id').val(emp.id);
         $('#sc_edit_submenu .backMenu').attr('bck', 'edit');
-        if (emp.confirmed == 0){
+        if (emp.confirmed == 0 && emp.end_date.id < sp.raw.config.today.id){
             $('#sc_edit_submenu .subMenu').show();
         } else {
             $('#sc_edit_submenu .subMenu').hide();
