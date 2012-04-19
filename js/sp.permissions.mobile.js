@@ -42,6 +42,10 @@ ShiftPlanningPermissions.prototype.preparePermissions = function(){
 
     }
     
+    if (perms.shift_confirm == 1){
+	$('.subNavigation .reports a[subpage=confirmedHours]').remove();
+    }
+    
     //fix employee only perms
     if (group >= this.employee){
         //remove staff fast assignment and add staff for employee

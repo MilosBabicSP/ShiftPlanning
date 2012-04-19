@@ -31,7 +31,15 @@ ShiftPlanningTimeClock.prototype.overviewEvents = function(){
     
     $('#tc_ov_co').bind(clickEvent, function(e){
         e.preventDefault();
-        spModel.timeclock.get('clockout', {}, function(response){
+	var data = {}
+	if ($('#tc_ov_ss').val() != 0){
+	    data.schedule = $('#tc_ov_ss').val();
+	}
+
+	if ($('#tc_ov_no').val() != 0){
+	    data.notes = $('#tc_ov_no').val();
+	}
+        spModel.timeclock.get('clockout', data, function(response){
             $('#tc_ov_cb span.fr a').hide();
             $('#tc_ov_cf').hide();
             $('#tc_ov_ci').show();

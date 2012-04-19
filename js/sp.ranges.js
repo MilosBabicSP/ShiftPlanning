@@ -3,12 +3,12 @@ var ShiftPlanningRanges = function(){
 	0 : {
 	    title : 'Today',
 	    start_time : Date.parse('today').getTime(),
-	    end_time : Date.parse('today').getTime()
+	    end_time : Date.parse('today').add(1).days().getTime()
 	},
 	1 : {
 	    title : 'Yesterday',
 	    start_time : Date.parse('yesterday').getTime(),
-	    end_time : Date.parse('yesterday').getTime()
+	    end_time : Date.parse('yesterday').add(1).days().getTime()
 	},
 	2 : {
 	    title : 'Last 7 Days',
@@ -28,7 +28,7 @@ var ShiftPlanningRanges = function(){
 	5 : {
 	    title : 'This Month',
 	    start_time : strtotime('now -'+ (now().getDate() -1) + ' days')*1000,
-	    end_time : strtotime('now +1 day')*1000
+	    end_time : Date.parse('today').moveToLastDayOfMonth().getTime()
 	},
 	6 : {
 	    title : 'Last Month',
@@ -41,7 +41,7 @@ var ShiftPlanningRanges = function(){
 	    end_time : strtotime('now')*1000
 	}
     };
-    this.currencies = [
+    this.currencies = ['',
     '$', '&#163;', '&#8364;', '&#8360;', '&#165;', '&#8361;', 'R', 'kr', '&#8369;', 'RM'
     ]
 }

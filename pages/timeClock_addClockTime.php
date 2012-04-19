@@ -55,7 +55,7 @@
             <textarea id="tc_act_no"></textarea>
         </span>
         <div class="title">
-            <span class="fr"><span class="checkbox" id="tc_act_onci">Only Clock In?</span></span>
+            <span class="fr hidden"><span class="checkbox" id="tc_act_onci">Only Clock In?</span></span>
             <span class="fl"><a href="#" id="tc_act_sa_b">Save</a></span>
         </div>
     </div>
