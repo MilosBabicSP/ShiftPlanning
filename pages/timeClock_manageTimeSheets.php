@@ -1,6 +1,6 @@
 <div class="main manageTimeSheets" id="tc_mts">
     <div class="title">
-        <h3 class="fl">My Timesheet</h3>
+        <h3 class="fl">Manage Timesheets</h3>
         <span class="fr"><a id="tc_mts_adv" href="#" style="display: block;">Advanced</a></span>
     </div>
     <ul class="detailsGrid">

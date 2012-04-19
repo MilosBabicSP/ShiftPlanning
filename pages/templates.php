@@ -759,10 +759,36 @@
                 {{/if}}
             </div>
         </div>
-	<div class="title wide">
+	<div class="title">
 	    <div>                 
-		<span>Thu, Apr 19, 2012</span>                 
-		6 pm - 10 pm             
+		<span>In time</span>
+		${in_time.day} <br/>
+		${in_time.time}
+	    </div>         
+	</div>
+	<div class="title">
+	    <div>                 
+		<span>Out time</span>
+		${out_time.day} <br/>
+		${out_time.time}
+	    </div>         
+	</div>
+	<div class="title">
+	    <div>                 
+		<span>Length</span>
+		${length.total_hours}
+	    </div>         
+	</div>
+	<div class="title">
+	    <div>                 
+		<span>In location</span>
+		${in_location}
+	    </div>         
+	</div>
+	<div class="title">
+	    <div>                 
+		<span>Out location</span>
+		${out_location}
 	    </div>         
 	</div>
         {{if notes != null}}
