@@ -4,6 +4,7 @@ var ShiftPlanningPermissions = function(){
     this.supervisor = 3;
     this.scheduler = 4;
     this.employee = 5;
+    this.employees = {};
     this.initialize();
 }
 

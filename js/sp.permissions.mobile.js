@@ -38,12 +38,12 @@ ShiftPlanningPermissions.prototype.preparePermissions = function(){
     if (group >= this.scheduler && parseInt(perms.pm) == 0){
         $('#da_in_nm_b').unbind(clickEvent);
         $('#da_in_nm_b').remove();
+	
+
     }
     
     //fix employee only perms
     if (group >= this.employee){
-        $('#da_se .aPerm').remove();
-        
         //remove staff fast assignment and add staff for employee
         $('.subNavigation .staff a[subpage=addStaff]').remove();
         $('.subNavigation .staff a[subpage=fastAssignment]').remove();
@@ -66,6 +66,8 @@ ShiftPlanningPermissions.prototype.preparePermissions = function(){
 
         $('#menu_reports').remove();
         $('#reports').remove();
+	
+	$('#da_se .aPerm').remove();
     }
    
     if (group > this.supervisor){
@@ -174,4 +176,20 @@ ShiftPlanningPermissions.prototype.hasPermission = function(type){
 
     }
     return true;
+}
+
+ShiftPlanningPermissions.prototype.fixStaffListing = function(){
+    var st = sp.staff.data.employees;
+    var sc = sp.schedule.clearSchedules();
+    var employees = {};
+    
+    $.each(sc, function(i, item){
+	$.each(st, function(eI, eItem){
+	    if (eItem.schedules != null && typeof eItem.schedules[item.id] != 'undefined'){
+		employees[eItem.id +''] = eItem;
+	    }
+	});
+    });
+    
+    return employees;
 }

@@ -301,12 +301,14 @@ ShiftPlanningSchedule.prototype.monthSubEvents = function(){
 }
 
 ShiftPlanningSchedule.prototype.shiftDisplaySubEvents = function(){
+    this.shift = this.cleanPerm(this.shift);
     if (this.fromDashboard){
         $('#sc_sub_shift_display a.edit').hide();
 	$('#sc_sub_shift_display a.publish').hide();
-    } else { 
+    } else {
         if (this.shift.perms == 0){
-            return false;
+            $('#sc_sub_shift_display a.edit').hide();
+	    $('#sc_sub_shift_display a.publish').hide();
         } else if (this.shift.perms == 1){
             $('#sc_sub_shift_display a.edit').hide();
 	    $('#sc_sub_shift_display a.publish').hide();
@@ -337,7 +339,7 @@ ShiftPlanningSchedule.prototype.shiftDisplaySubEvents = function(){
 ShiftPlanningSchedule.prototype.addShiftSubEvents = function(){
     var self = this;
     $('#sc_add_user').hide();
-    $('#sc_add_sc').html(spView.schedulerFilter());
+    $('#sc_add_sc').html(spView.schedulerFilter(0, true));
     $('#sc_add_lo').html(spView.locationSelector());
     $('#sc_add_add').removeClass('loading');
     var emp = {};
@@ -499,6 +501,7 @@ ShiftPlanningSchedule.prototype.displayShifts = function(sDay){
     spModel.schedule.get('shifts', data, function(response){
         $('#sc_ca_bo').parent().removeClass('loading');
         if (response.data.length > 0){
+	    response.data = self.cleanPerms(response.data);
             if (self.page == 'month'){
                 self.fillCalendar(response.data);
                 $('#sc_td_list').html($.tmpl($('#te_sc_shifts_months'), self.shifts));
@@ -521,6 +524,50 @@ ShiftPlanningSchedule.prototype.displayShifts = function(sDay){
             $('#sc_td .additional').show();
         }
     });
+}
+
+ShiftPlanningSchedule.prototype.cleanPerms = function(data){
+    var self = this;
+    $.each(data, function(i, item){
+	data[i] = self.cleanPerm(item);
+    });
+    
+    return data;
+}
+
+ShiftPlanningSchedule.prototype.cleanPerm = function(data){
+    if (data.employees != null){
+	if (data.perms < 2 && sp.staff.admin.settings.visible_coworkers == 0){
+	    var e = [];
+	    $.each(data.employees, function(i, item){
+		if (item.id == sp.staff.admin.info.id){
+		    e.push(item);
+		}
+	    });
+	    data.employees = e;
+	}
+    }
+    
+    return data;
+}
+
+ShiftPlanningSchedule.prototype.clearSchedules = function(){
+    var schedules = {};
+    $.each(sp.schedule.data.schedules, function(i, item){
+	if (spView.checkPerm(item, true)){
+	    schedules[i +''] = item;
+	}
+    });
+    
+    return schedules;
+}
+
+ShiftPlanningSchedule.prototype.checkSchedulePerm = function(scheduleID){
+    if (typeof sp.schedule.data.schedules[scheduleID] == 'undefined'){
+	return 0;
+    } else {
+	return sp.schedule.data.schedules[scheduleID].perms;
+    }
 }
 
 ShiftPlanningSchedule.prototype.fillCalendar = function(data){

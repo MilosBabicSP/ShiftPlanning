@@ -231,7 +231,7 @@ ShiftPlanningRequests.prototype.shiftTradesEvents = function(){
         obj.addClass('loading');
         var id = $(this).attr('rel');
         var data = {
-            trade : id
+            id : id
         }
         
         if ($(this).hasClass('activate')){
@@ -455,7 +455,8 @@ ShiftPlanningRequests.prototype.overviewSubEvents = function(){
 
 ShiftPlanningRequests.prototype.vacationSubEvents = function(){
     var self = this;
-    $('#rq_va_en').html(spView.staffOption((sp.staff.admin.info.group < 4) ? false : true));
+    $('#rq_va_en').html(spView.staffOption((sp.staff.admin.info.group <= 4) ? false : true));
+    $('#rq_va_spd').hide()
 
 
     $('#rq_va_rq').html(spView.ulLoader());
@@ -516,14 +517,20 @@ ShiftPlanningRequests.prototype.vacationSubEvents = function(){
     
     //    
     //    //getting upcoming confirmed vacations
-    spModel.schedule.get('vacations', {}, function(response){
+    spModel.schedule.get('vacations', {start_date : 'last year', end_date : 'next year'}, function(response){
         if (response.data.length == 0){
             $('#rq_va_up').hide();
             $('#rq_va_up').next().show();
         } else {
+	    response.data = self.clearVacations(response.data);
             $('#rq_va_up').show();
             $('#rq_va_up').next().hide();
             $('#rq_va_up').html($.tmpl($('#te_rq_va_up'), response.data));
+	    if ($('#rq_va_up .pastDate').length > 0){
+		$('#rq_va_spd').show();
+	    } else {
+		$('#rq_va_spd').hide();
+	    }
         }
     }, function(response){
         sp.showError(response.error);
@@ -682,6 +689,17 @@ ShiftPlanningRequests.prototype.shiftTradesSubEvents = function(){
     });
 }
 
+ShiftPlanningRequests.prototype.clearVacations = function(data){
+    var vacations = [];
+    $.each(data, function(i, item){
+	if (item.employee == sp.staff.admin.info.id){
+	    vacations.push(item);
+	}
+    });
+    
+    return vacations;
+}
+
 ShiftPlanningRequests.prototype.shiftApprovalsSubEvents = function(){
     $('#rq_sa_po').html(spView.scheduleFilter());
     $('#rq_sa_em').html(spView.staffFilter());
@@ -776,7 +794,7 @@ ShiftPlanningRequests.prototype.displayVacationRequest = function(){
 ShiftPlanningRequests.prototype.displayShiftTradeManager = function(){
     
     $('#rq_st_mst_s').html($.tmpl($('#te_rq_st_mst_s'), this.prepareSingleViewTrade(this.current)));
-    
+    console.log(this.current);
     $('#rq_st_mts_sub ul a').attr('rel', this.current.id);
     
     if (parseInt(this.current.confirm_before) == 0){

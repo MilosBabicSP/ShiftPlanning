@@ -27,7 +27,13 @@ ShiftPlanningView.prototype.staffOption = function(notAdmin){
     var opt;
     if (notAdmin == false){
         opt = '<option disabled="disabled" selected="selected" value="0">Select Employee</option>';
-        $.each(spModel.staff.allStaff(), function(i, item){
+	var l;
+	if (sp.staff.admin.info.group == 4){
+	    l = sp.staff.fixed.employees;
+	} else {
+	    l = spModel.staff.allStaff();
+	}
+        $.each(l, function(i, item){
             opt += '<option value="' + item.id + '">' + ((typeof item == 'object') ? item.name : item) + '</option>';
         });
     } else {
@@ -40,10 +46,19 @@ ShiftPlanningView.prototype.staffFilter = function(notAdmin){
     if (typeof notAdmin == 'undefined'){
         notAdmin = false;
     }
-    var opt;
+    var opt = '';
     if (notAdmin == false){
-        opt = '<option value="0">All Employees</option>';
-        $.each(spModel.staff.allStaff(), function(i, item){
+	if (sp.staff.admin.info.group <= 3){
+	    opt = '<option value="0">All Employees</option>';
+	}
+	var l;
+	
+	if (sp.staff.admin.info.group == 4){
+	    l = sp.staff.fixed.employees;
+	} else {
+	    l = spModel.staff.allStaff();
+	}
+        $.each(l, function(i, item){
             opt += '<option value="' + item.id + '">' + ((typeof item == 'object') ? item.name : item) + '</option>';
         });
     } else {
@@ -52,17 +67,24 @@ ShiftPlanningView.prototype.staffFilter = function(notAdmin){
     return opt;
 }
 
-ShiftPlanningView.prototype.scheduleFilter = function(id){
+ShiftPlanningView.prototype.scheduleFilter = function(id, deep){
+    if (typeof deep == 'undefined'){
+	deep = false;
+    }
     var self = this;
+    var opt = '';
     var data;
     if (typeof id == 'undefined' || id == 0){
         data = spModel.schedule.allSchedules();
     } else {
         data = spModel.schedule.schedulesByUser(id);
     }
-    var opt = '<option value="0">All Positions</option>';
+    if (sp.staff.admin.info.group <= 3){
+	opt = '<option value="0">All Positions</option>';
+    }
+    
     $.each(data, function(i, item){
-        if (self.checkPerm(item)){
+        if (self.checkPerm(item, deep)){
             opt += '<option value="' + i + '">' + ((typeof item == 'object') ? item.name : item) + '</option>';
         }
     });
@@ -70,7 +92,10 @@ ShiftPlanningView.prototype.scheduleFilter = function(id){
     return opt;
 }
 
-ShiftPlanningView.prototype.schedulerFilter = function(id){
+ShiftPlanningView.prototype.schedulerFilter = function(id, deep){
+    if (typeof deep == 'undefined'){
+	deep = false;
+    }
     var self = this;
     var data;
     if (typeof id == 'undefined' || id == 0){
@@ -80,7 +105,7 @@ ShiftPlanningView.prototype.schedulerFilter = function(id){
     }
     var opt = '';
     $.each(data, function(i, item){
-        if (self.checkPerm(item)){
+        if (self.checkPerm(item, deep)){
             opt += '<option value="' + i + '">' + ((typeof item == 'object') ? item.name : item) + '</option>';
         }
     });
@@ -179,10 +204,17 @@ ShiftPlanningView.prototype.emptyResult = function(text, tag){
     return '<' + tag + ' class="additional"><p>' + text + '</p></' + tag + '>'
 }
 
-ShiftPlanningView.prototype.checkPerm = function(item){
+ShiftPlanningView.prototype.checkPerm = function(item, deep){
+    if (typeof deep == 'undefined'){
+	deep = false;
+    }
+    var c = 1;
+    if (deep){
+	c = 2;
+    }
     var perm = true;
     if (typeof item.perms != 'undefined'){
-        if (item.perms >= 1){
+        if (item.perms >= c){
             perm = true;
         } else {
             perm = false;

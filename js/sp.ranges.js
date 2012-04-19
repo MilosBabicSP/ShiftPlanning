@@ -42,7 +42,7 @@ var ShiftPlanningRanges = function(){
 	}
     };
     this.currencies = [
-	'$', '&#163;', '&#8364;', '&#8360;', '&#165;', '&#8361;', 'R', 'kr', '&#8369;', 'RM'
+    '$', '&#163;', '&#8364;', '&#8360;', '&#165;', '&#8361;', 'R', 'kr', '&#8369;', 'RM'
     ]
 }
 
@@ -63,6 +63,11 @@ ShiftPlanningRanges.prototype.fixRanges = function(){
 	title : 'This Week',
 	start_time : Date.parse('sunday').add(sp.staff.admin.settings.startday - 1).days().getTime(),
 	end_time : Date.parse('next saturday').add(sp.staff.admin.settings.startday - 1).days().getTime()
+    }
+    self.times[4] = {
+	title : 'Last Week',
+	start_time : Date.parse('today').moveToDayOfWeek(0).addWeeks(-2).add(sp.staff.admin.settings.startday - 1).days().getTime(),
+	end_time : Date.parse('previous saturday').add(sp.staff.admin.settings.startday - 1).days().getTime()
     }
 }
 

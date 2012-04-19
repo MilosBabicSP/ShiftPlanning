@@ -112,6 +112,7 @@ if ($vtoken['data'] != '1') {
             $('.userName').html(user.name);
             $('company').html(user.company);
 	    spRanges.fixRanges();
+	    sp.staff.fixed.employees = sp.permissions.fixStaffListing();
 <? } ?>
     $('body').css('display', 'block');
     }
@@ -165,7 +166,7 @@ if ($vtoken['data'] != '1') {
                     <li id="menu_dashboard"><a class="dash" href="#" page="dashboard">Dashboard</a></li>
                     <li id="menu_timeClock"><a class="ticl" href="#" page="timeClock">Time Clock</a></li>
                     <li id="menu_schedule"><a class="sche" href="#" page="schedule">Schedule</a></li>
-                    <li class="active" id="menu_requests"><a class="requ" href="#" page="requests">Requests</a>
+                    <li class="active hidden" id="menu_requests"><a class="requ" href="#" page="requests">Requests</a>
                         <ul class="hidden">
                             <li><a href="#"><span>4</span>Vacation requests</a></li>
                             <li><a href="#"><span>208</span>Shift Approvals</a></li>

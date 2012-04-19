@@ -107,7 +107,7 @@ ShiftPlanningStaff.prototype.fastAssignmentEvents = function(){
             } else {
                 $(obj).addClass('check');
             }
-            sp.dashboard.updateUser($('#st_fa_cu').val(), response);
+            sp.dashboard.updateUser($('#st_fa_cu').val(), response, false);
         });
     });
 }
@@ -255,6 +255,7 @@ ShiftPlanningStaff.prototype.login = function(){
                     $('.userName').html(user.name);
                     sp.permissions.preparePermissions();
 		    spRanges.fixRanges();
+		    sp.staff.fixed.employees = sp.permissions.fixStaffListing();
                 });
             });
         });

@@ -228,7 +228,7 @@ ShiftPlanningTimeClock.prototype.manageTimeSheetsSubEvents = function(){
     $('#tc_mts_tr').val(3);
     
     
-    $('#tc_mts_scl').html(spView.scheduleFilter());
+    $('#tc_mts_scl').html(spView.scheduleFilter(0, true));
     $('#tc_mts_eml').html(spView.staffFilter());
     self.getTimeSheets();
 }
@@ -248,7 +248,7 @@ ShiftPlanningTimeClock.prototype.addClockTimeSubEvents = function(){
     }
     
     $('#tc_act_sc').html(spView.optionSchedules(sp.staff.admin.info.group > 3 ? sp.staff.admin.info.id : 0));
-    $('#tc_act_em').html(spView.staffOption(sp.staff.admin.info.group >= 4 ? true : false));
+    $('#tc_act_em').html(spView.staffOption(sp.staff.admin.info.group > 4 ? true : false));
     
     
     
@@ -490,6 +490,7 @@ ShiftPlanningTimeClock.prototype.saveClockTime = function(){
     data.notes = $('#tc_act_no').val();
     
     spModel.timeclock[f]('timeclock', data, function(response){
+	sp.showSuccess('Clock Time added');
         $('.subNavigation div.timeClock ul.timeClock a[subpage=manageTimeSheets]').trigger(clickEvent);
     });
 }

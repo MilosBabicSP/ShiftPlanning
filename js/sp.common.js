@@ -83,7 +83,7 @@ ShiftPlanning.prototype = {
                     });
                 } else if(response.status == 1){
                     if(typeof callback == 'function'){
-                        if (response.data == false){
+                        if (response.data == false || response.data == null){
                             response.data = [];
                         }
                         callback.call(this,response);
