@@ -197,6 +197,16 @@ ShiftPlanning.prototype = {
     },
     getAvatar : function(id){
         return (typeof sp.staff.data.employees[id] != 'undefined' && typeof sp.staff.data.employees[id].avatar != 'undefined' && sp.staff.data.employees[id].avatar != '' && typeof sp.staff.data.employees[id].avatar.small != 'undefined') ? sp.staff.data.employees[id].avatar.small : 'images/no-avatar.png';
+    },
+    isL : function(data){
+	if ($.trim(data).length > 0){
+	    return true;
+	} else {
+	    return false;
+	}
+    },
+    isC : function(sel){
+	return $(sel).hasClass('check');
     }
 }
 

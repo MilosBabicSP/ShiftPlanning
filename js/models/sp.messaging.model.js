@@ -30,7 +30,7 @@ SPModelMessaging.prototype.prepareWallMessages = function(response){
                     time: $.timeago(new Date(this.date*1000)),
                     comment: this.comment_formatted,
                     full : true,
-                    owner : (parseInt(sp.staff.admin.info.group) <= 2 || this.user.id == sp.staff.admin.info.id) ? 1 : 0
+                    owner : (parseInt(sp.staff.admin.info.group) <= 3 || this.user.id == sp.staff.admin.info.id) ? 1 : 0
                 });
             });
         }
@@ -44,7 +44,7 @@ SPModelMessaging.prototype.prepareWallMessages = function(response){
             title: this.title_formatted,
             post: this.post_formatted,
             comments: comments,
-            owner : (parseInt(sp.staff.admin.info.group) <= 2 || this.user.id == sp.staff.admin.info.id) ? 1 : 0
+            owner : (parseInt(sp.staff.admin.info.group) <= 3 || this.user.id == sp.staff.admin.info.id) ? 1 : 0
         });
     });
     return data;

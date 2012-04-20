@@ -17,7 +17,6 @@
         <span class="input">
             <textarea id="da_wa_nm_me"></textarea>
         </span>
-
         <div class="title">
             <span class="fr"><a href="#" id="da_wa_nm_sa"><span>Save Message</span></a></span>
             <span class="fl"><a href="#" id="da_wa_nm_ca">Cancel</a></span>

@@ -37,6 +37,11 @@ ShiftPlanningDashboard.prototype.wallEvents = function(){
 	$('#da_wa_nm_me').val('');
     });
     
+    $('#da_wa_nm_st').bind(clickEvent, function(e){
+	e.preventDefault();
+	$(this).toggleClass('check');
+    });
+    
     $('#da_wa_nm_ca').bind(clickEvent, function(e){
 	e.preventDefault();
 	$('#da_wa_nm_b').trigger(clickEvent);
@@ -46,10 +51,19 @@ ShiftPlanningDashboard.prototype.wallEvents = function(){
 	e.preventDefault();
 	var obj = $(this);
 	obj.addClass('loading');
-	spModel.messaging.create('wall', {
-	    post : $.trim($('#da_wa_nm_me').val()), 
-	    title: $.trim($('#da_wa_nm_ti').val())
-	}, function(response){
+	var data = {};
+	if (sp.isL($('#da_wa_nm_ti').val())){
+	    data.title = $.trim($('#da_wa_nm_ti').val());
+	} else {
+	    data.title = '';
+	}
+	
+	if (!sp.isL($('#da_wa_nm_me').val())){
+	    sp.showError('Message must be entered');
+	    return false;
+	}
+	data.post = $.trim($('#da_wa_nm_me').val());
+	spModel.messaging.create('wall', data, function(response){
 	    obj.removeClass('loading');
 	    $('#da_wa_nm_f').toggleClass('hidden');
 	    $('#da_wa_nm_ti').val('');
@@ -169,6 +183,7 @@ ShiftPlanningDashboard.prototype.inboxEvents = function(){
     });
     
     $('#da_in_nm_b, #da_in_nm_ca').bind(clickEvent, function(e){
+	e.preventDefault();
 	$('#da_in_nm_f').toggleClass('hidden');
 	$('#da_in_nm_ti').val('');
 	$('#da_in_nm_me').val('');
@@ -429,7 +444,7 @@ ShiftPlanningDashboard.prototype.prefillOverview = function(employee){
     $('#da_se_ov_ho').html(employee.home_phone);
     $('#da_se_ov_em').html(employee.email);
     if ($.trim(employee.wage).length != 0){
-	$('#da_se_ov_wa').html('$' + employee.wage);
+	$('#da_se_ov_wa').html(spView.fixCurrency(sp.staff.admin.settings.currency, true) + employee.wage);
     }
     
     var status_name = 'Administrative accounts cannot be de-activated.';

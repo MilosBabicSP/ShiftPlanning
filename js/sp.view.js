@@ -2,7 +2,11 @@ var ShiftPlanningView = function(){
     
 }
 
-ShiftPlanningView.prototype.optionSchedules = function(id){
+ShiftPlanningView.prototype.optionSchedules = function(id, m){
+    if (typeof m == 'undefined'){
+	m = false;
+    }
+    var opt;
     var self = this;
     var data;
     if (typeof id == 'undefined' || id == 0){
@@ -10,7 +14,11 @@ ShiftPlanningView.prototype.optionSchedules = function(id){
     } else {
         data = spModel.schedule.schedulesByUser(id);
     }
-    var opt = '<option disabled="disabled" selected="selected" value="0">Select Schedule</option>';
+    if (!m){
+	opt = '<option disabled="disabled" selected="selected" value="0">Select Schedule</option>';
+    } else {
+	opt = '<option disabled="disabled" selected="selected" value="0">Select Schedule</option>';
+    }
     $.each(data, function(i, item){
         if (self.checkPerm(item)){
             opt += '<option value="' + i + '">' + ((typeof item == 'object') ? item.name : item) + '</option>';
@@ -167,7 +175,7 @@ ShiftPlanningView.prototype.editableSchedules = function(employee){
         i++;
     });
     
-    return l;
+    return (l.length > 0) ? l : this.emptyResult('No positions to display', 'li', 'noBorder');
 }
 
 ShiftPlanningView.prototype.editableSkills = function(employee){
@@ -183,7 +191,7 @@ ShiftPlanningView.prototype.editableSkills = function(employee){
         i++;
     });
     
-    return l;
+    return (l.length > 0) ? l : this.emptyResult('No skills to display', 'li', 'noBorder');
 }
 
 ShiftPlanningView.prototype.ulLoader = function(){
@@ -194,14 +202,17 @@ ShiftPlanningView.prototype.divLoader = function(){
     return '<div class="loading"></div>';
 }
 
-ShiftPlanningView.prototype.emptyResult = function(text, tag){
+ShiftPlanningView.prototype.emptyResult = function(text, tag, cl){
+    if (typeof cl == 'undefined'){
+	cl = '';
+    }
     if (typeof tag == 'undefined'){
         tag = 'div'
     }
     if (typeof text == 'undefined'){
         text = 'Na data for selected criteria!';
     }
-    return '<' + tag + ' class="additional"><p>' + text + '</p></' + tag + '>'
+    return '<' + tag + ' class="additional ' + cl + '"><p>' + text + '</p></' + tag + '>'
 }
 
 ShiftPlanningView.prototype.checkPerm = function(item, deep){
@@ -223,10 +234,18 @@ ShiftPlanningView.prototype.checkPerm = function(item, deep){
     return perm;
 }
 
-ShiftPlanningView.prototype.fixCurrency = function(cId){
+ShiftPlanningView.prototype.fixCurrency = function(cId, r){
+    if (typeof r == 'undefined'){
+	r = false;
+    }
     var c = spRanges.currencies[cId];
     
-    $('span.currency').html(c);
+    if (!r){
+	$('span.currency').html(c);
+    } else {
+	return c;
+    }
+    
 }
 
 var spView = new ShiftPlanningView();

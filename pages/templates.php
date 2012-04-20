@@ -25,39 +25,58 @@
         </li>
     </script>
     <script id="te_sc_shift_display" type="text/x-jquery-tmpl">
-        <div class="title1 wide" style="background-color: #${sp.schedule.getColorsBySchedule(schedule)[1]}; color: #${sp.schedule.getColorsBySchedule(schedule)[2]}">
-            <h3>${schedule_name}</h3>
-        </div>
-        <div class="title wide">
-            <div>
-                <span>${start_date.weekday}, ${start_date.formatted}</span>
-                ${start_time.time} - ${end_time.time}
-            </div>
-        </div>
-        {{if title.length > 0 }}
-        <div class="title1 regular wide">
-            <h3>Title</h3>
-        </div>
-        <div class="title wide">
-            ${title}
-        </div>
-        {{/if}}
-        {{if notes.length > 0 }}
-        <div class="title1 regular wide">
-            <h3>Notes</h3>
-        </div>
-        <div class="title wide">
-            ${notes}
-        </div>
-        {{/if}}
-        {{if employees.length > 0 }}
-        <div class="title1 regular wide">
-            <h3>Who's Working</h3>
-        </div>
-        <ul class="acceptors wide">
-            {{tmpl(employees) "#te_sc_shift_display_u"}}
-        </ul>
-        {{/if}}
+	<div id="te_sc_shift_display_info">
+	    <div class="title1 wide" style="background-color: #${sp.schedule.getColorsBySchedule(schedule)[1]}; color: #${sp.schedule.getColorsBySchedule(schedule)[2]}">
+		<h3>${schedule_name}</h3>
+	    </div>
+	    <div class="title wide">
+		<div>
+		    <span>${start_date.weekday}, ${start_date.formatted}</span>
+		    ${start_time.time} - ${end_time.time}
+		</div>
+	    </div>
+	    {{if title.length > 0 }}
+	    <div class="title1 regular wide">
+		<h3>Title</h3>
+	    </div>
+	    <div class="title wide">
+		${title}
+	    </div>
+	    {{/if}}
+	    {{if notes.length > 0 }}
+	    <div class="title1 regular wide">
+		<h3>Notes</h3>
+	    </div>
+	    <div class="title wide">
+		${notes}
+	    </div>
+	    {{/if}}
+	    {{if employees.length > 0 }}
+	    <div class="title1 regular wide">
+		<h3>Who's Working</h3>
+	    </div>
+	    <ul class="acceptors wide">
+		{{tmpl(employees) "#te_sc_shift_display_u"}}
+	    </ul>
+	    {{/if}}
+	</div>
+	<div id="te_sc_shift_display_publish">
+	    <div class="title1 regular wide">
+		<div>
+		    <span class="radio">Don't notify Employees</span>
+		</div>
+	    </div>
+	    <div class="title1 regular wide">
+		<div>
+		    <span class="radio">Send Notifications to Employees </span>
+		</div>
+	    </div>
+	    <div class="title1 regular wide">
+		<div>
+		    <span class="radio">Send Notifications to Employees & Managers</span>
+		</div>
+	    </div>
+	</div>
     </script>
     <script id="te_sc_shifts_names" type="text/x-jquery-tmpl">
         <t>${name}, </t>
@@ -65,7 +84,7 @@
     <script id="te_sc_shifts" type="text/x-jquery-tmpl">
         <tr shiftId="${id}" class="isShift">
             <td class="dTime" style="background-color: #${sp.schedule.getColorsBySchedule(schedule)[1]}; color: #${sp.schedule.getColorsBySchedule(schedule)[2]}">${start_time.time} - ${end_time.time}</td>
-            <td class="dTitle {{if (published == 0 || (published < edited && published != 0)) && perms == 2}}notPublished{{/if}}">${schedule_name}<br/>{{if employees != null}}<span>{{tmpl(employees) "#te_sc_shifts_names"}}</span>{{/if}}</td>
+            <td class="dTitle {{if (published == 0 || (published < edited && published != 0)) && perms == 2 && sp.staff.admin.settings.draft == 1}}notPublished{{/if}}">${schedule_name}<br/>{{if employees != null}}<span>{{tmpl(employees) "#te_sc_shifts_names"}}</span>{{/if}}</td>
         </tr>
     </script>
     <script id="te_rq_sa_s_in" type="text/x-jquery-tmpl">
@@ -864,7 +883,7 @@
             <img width="50" height="50" title="user name" src="${avatar}" />
             <div class="msg">
                 <h4>${userName}</h4>
-                <p>${title}<br /><p>{{html post}}</p></p>
+                {{if title.length > 0}}<p>${title}<br /><p><p>{{/if}}{{html post}}</p>
                 <span>${time}</span>
             </div>
             {{if owner}}
@@ -877,7 +896,7 @@
             <ul class="cmts">
                 {{tmpl(comments) "#te_da_wa_me_co"}}
                 <li class="last">
-                    <input type="submit" value="send" rel="${id}" />
+                    <input type="submit" value="" rel="${id}" />
                     <span class="input">
                         <input type="text" name="" value="Write a comment..." />
                     </span>

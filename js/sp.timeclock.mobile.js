@@ -174,7 +174,7 @@ ShiftPlanningTimeClock.prototype.addClockTimeEvents = function(){
 ShiftPlanningTimeClock.prototype.overviewSubEvents = function(){
     $('#tc_ov_cf').hide();
     $('#tc_ov_cb span.fr a').hide();
-    $('#tc_ov_ss').html(spView.optionSchedules(sp.staff.admin.info.group >= 3 ? sp.staff.admin.info.id : 0));
+    $('#tc_ov_ss').html(spView.optionSchedules(sp.staff.admin.info.id));
     
     spModel.timeclock.get('status', {
         details : 1
@@ -440,9 +440,11 @@ ShiftPlanningTimeClock.prototype.showHideTimeSheets = function(){
     if (s != 0){
         search += '.s_' + s;
     }
+    
     if (e != 0){
         search += '.e_' + e;
     }
+    
     if (sc != 0){
         search += '.sc_' + sc;
     }

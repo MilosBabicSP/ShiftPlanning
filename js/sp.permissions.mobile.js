@@ -24,7 +24,7 @@ ShiftPlanningPermissions.prototype.preparePermissions = function(){
     }
     
     //remove button for writing new wall message
-    if (group > this.manager && parseInt(perms.message_wall_emp) == 0){
+    if (group > this.supervisor && parseInt(perms.message_wall_emp) == 0){
         $('#da_wa_nm_b').remove();
         $('#da_wa_nm_f').remove();
     }
@@ -42,7 +42,7 @@ ShiftPlanningPermissions.prototype.preparePermissions = function(){
 
     }
     
-    if (perms.shift_confirm == 1){
+    if (perms.shift_confirm == 0){
 	$('.subNavigation .reports a[subpage=confirmedHours]').remove();
     }
     
@@ -168,7 +168,7 @@ ShiftPlanningPermissions.prototype.hasPermission = function(type){
             }
             break;
         case 'edit_profile':
-            if (group > this.supervisor && parseInt(perms.edit_profile) == 0){
+            if (group > this.scheduler && parseInt(perms.edit_profile) == 0){
                 return false;
             }
             break;

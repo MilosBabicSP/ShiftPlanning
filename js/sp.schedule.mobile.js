@@ -322,6 +322,10 @@ ShiftPlanningSchedule.prototype.shiftDisplaySubEvents = function(){
 	    } else {
 		$('#sc_sub_shift_display a.publish').hide();
 	    }
+	    if (sp.staff.admin.settings.draft == 0){
+		$('#sc_sub_shift_display a.publish').hide();
+	    }
+	    
             $('#sc_sub_shift_display a.edit').show();
         }
     }
@@ -409,7 +413,7 @@ ShiftPlanningSchedule.prototype.addShiftSubEvents = function(){
         $('#sc_add_add span').html('Save Shift');
         $('#sc_edit_id').val(emp.id);
         $('#sc_edit_submenu .backMenu').attr('bck', 'edit');
-        if (emp.confirmed == 0 && emp.end_date.id < sp.raw.config.today.id){
+        if (emp.confirmed == 0 && emp.end_date.id < sp.raw.config.today.id && sp.staff.admin.settings.shift_confirm == 1){
             $('#sc_edit_submenu .subMenu').show();
         } else {
             $('#sc_edit_submenu .subMenu').hide();
