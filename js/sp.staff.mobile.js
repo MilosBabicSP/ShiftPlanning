@@ -258,6 +258,7 @@ ShiftPlanningStaff.prototype.login = function(){
                     sp.permissions.preparePermissions();
 		    spRanges.fixRanges();
 		    sp.staff.fixed.employees = sp.permissions.fixStaffListing();
+		    sp.raw.config.today.formatted = Date.parse(sp.raw.config.today.formatted).toString(cal.dformat);
                 });
             });
         });

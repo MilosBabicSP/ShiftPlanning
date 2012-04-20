@@ -84,7 +84,11 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
             $('.subNavigation').show();
             $('.subNavigation .dashboard li a[subpage=upcomingShifts]').trigger(clickEvent);
         } else {
-            $('.subNavigation .schedule li.active a').trigger(clickEvent);
+	    if ($('#sc_sub_shift_display ul a.publish').attr('first') == 'false'){
+		self.resetPublishFields(true);
+	    } else {
+		$('.subNavigation .schedule li.active a').trigger(clickEvent);
+	    }
         }
     });
     
@@ -122,15 +126,22 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
     
     $('#sc_sub_shift_display ul a.publish').bind(clickEvent, function(e){
 	e.preventDefault();
+	if ($(this).attr('first') == 'true'){
+	    $('#te_sc_shift_display_info').hide();
+	    $('#te_sc_shift_display_publish').show();
+	    $(this).attr('first', 'false');
+	    return false;
+	}
 	var obj = $(this);
 	obj.addClass('loading');
 	if (typeof self.conflicts[obj.attr('rel')] != 'undefined'){
 	    var c = confirm(self.conflicts[obj.attr('rel')].title);
 	    if (c){
-		spModel.schedule.get('publish', {shifts: obj.attr('rel')}, function(response){
+		spModel.schedule.get('publish', {shifts: obj.attr('rel'), notify: $('#te_sc_shift_display_publish .radio.check').attr('value'), message: $('#tc_sc_shift_display_publish_textarea textarea').val()}, function(response){
 		    sp.showSuccess(response.data);
 		    obj.removeClass('loading');
 		    obj.hide();
+		    self.resetPublishFields(true);
 		});
 	    } else {
 		obj.removeClass('loading');
@@ -141,23 +152,35 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
 		if (typeof self.conflicts[obj.attr('rel')] != 'undefined'){
 		    var c = confirm('This shift has conflicts, but you can\'t fix them from mobile app. Force publish?');
 		    if (c){
-			spModel.schedule.get('publish', {shifts: obj.attr('rel')}, function(response){
+			spModel.schedule.get('publish', {shifts: obj.attr('rel'), notify: $('#te_sc_shift_display_publish .radio.check').attr('value'), message: $('#tc_sc_shift_display_publish_textarea textarea').val()}, function(response){
 			    sp.showSuccess(response.data);
 			    obj.removeClass('loading');
 			    obj.hide();
+			    self.resetPublishFields(true);
 			});
 		    } else {
 			obj.removeClass('loading');
 		    }
 		} else {
-		    spModel.schedule.get('publish', {shifts: obj.attr('rel')}, function(response){
+		    spModel.schedule.get('publish', {shifts: obj.attr('rel'), notify: $('#te_sc_shift_display_publish .radio.check').attr('value'), message: $('#tc_sc_shift_display_publish_textarea textarea').val()}, function(response){
 			sp.showSuccess(response.data);
 			obj.removeClass('loading');
 			obj.hide();
+			self.resetPublishFields(true);
 		    });
 		}
 	    });
 	}
+    });
+    
+    $('#sc_shift_display').delegate('#te_sc_shift_display_publish .radio', clickEvent, function(){
+	$('#te_sc_shift_display_publish .radio').removeClass('check');
+	$(this).addClass('check');
+    });
+    
+    $('#sc_shift_display').delegate('#te_sc_shift_display_publish .checkbox', clickEvent, function(){
+	$(this).toggleClass('check');
+	$('#tc_sc_shift_display_publish_textarea').toggle();
     });
     
     $('#sc_refresh').bind(clickEvent, function(e){
@@ -328,6 +351,7 @@ ShiftPlanningSchedule.prototype.shiftDisplaySubEvents = function(){
 	    
             $('#sc_sub_shift_display a.edit').show();
         }
+	$('#sc_sub_shift_display a.publish').attr('first','true');
     }
     var e = [];
     if (typeof this.shift.employees != 'undefined' && this.shift.employees != null){
@@ -341,7 +365,28 @@ ShiftPlanningSchedule.prototype.shiftDisplaySubEvents = function(){
     }
     $('#sc_shift_display').html($.tmpl($('#te_sc_shift_display'), this.shift));
     
+    
+    this.resetPublishFields(true);
+    
     $('#sc_sub_shift_display ul a').attr('rel', this.shift.id);
+}
+
+ShiftPlanningSchedule.prototype.resetPublishFields = function(f){
+    if (typeof f == 'undefined'){
+	f = false;
+    }
+    
+    if (f){
+	$('#te_sc_shift_display_publish').hide();
+	$('#te_sc_shift_display_info').show();
+    }
+    
+    $('#te_sc_shift_display_publish .radio').removeClass('check');
+    $('#te_sc_shift_display_publish .checkbox').removeClass('check');
+    $('#te_sc_shift_display_publish .radio[value=1]').addClass('check');
+    $('#tc_sc_shift_display_publish_textarea').hide();
+    $('#tc_sc_shift_display_publish_textarea textarea').val('');
+    $('#sc_sub_shift_display ul a.publish').attr('first', 'true');
 }
 
 ShiftPlanningSchedule.prototype.addShiftSubEvents = function(){

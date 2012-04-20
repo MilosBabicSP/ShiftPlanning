@@ -60,21 +60,33 @@
 	    </ul>
 	    {{/if}}
 	</div>
-	<div id="te_sc_shift_display_publish">
+	<div id="te_sc_shift_display_publish" class="hidden">
 	    <div class="title1 regular wide">
 		<div>
-		    <span class="radio">Don't notify Employees</span>
+		    <span class="radio" value="0">Don't notify Employees</span>
 		</div>
 	    </div>
 	    <div class="title1 regular wide">
 		<div>
-		    <span class="radio">Send Notifications to Employees </span>
+		    <span class="radio check"  value="1">Send Notifications to Employees </span>
 		</div>
 	    </div>
-	    <div class="title1 regular wide">
+	    <div class="title1 regular wide"  value="2">
 		<div>
 		    <span class="radio">Send Notifications to Employees & Managers</span>
 		</div>
+	    </div>
+	    <div class="title1 regular wide"  value="2">
+		<div>
+		    <span class="checkbox">Include custom message in Notification</span>
+		</div>
+	    </div>
+	    <div class="title wide hidden" id="tc_sc_shift_display_publish_textarea">
+		<span class="input">
+		    <textarea>
+
+		    </textarea>
+		</span>
 	    </div>
 	</div>
     </script>

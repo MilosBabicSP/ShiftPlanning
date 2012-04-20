@@ -47,13 +47,7 @@ ShiftPlanningPermissions.prototype.preparePermissions = function(){
     }
     
     //fix employee only perms
-    if (group >= this.employee){
-        //remove staff fast assignment and add staff for employee
-        $('.subNavigation .staff a[subpage=addStaff]').remove();
-        $('.subNavigation .staff a[subpage=fastAssignment]').remove();
-        $('#staff .addStaff').remove();
-        $('#st_fa').remove();
-        
+    if (group >= this.employee){        
         $('#da_se_ov_no, #da_se_ed_no').parents('.detailsGrid').remove();
         
         $('#sc_add').parent().remove();
@@ -72,6 +66,12 @@ ShiftPlanningPermissions.prototype.preparePermissions = function(){
         $('#reports').remove();
 	
 	$('#da_se .aPerm').remove();
+	
+	//remove staff fast assignment and add staff for employee
+        $('.subNavigation .staff a[subpage=addStaff]').remove();
+        $('.subNavigation .staff a[subpage=fastAssignment]').remove();
+        $('#staff .addStaff').remove();
+        $('#st_fa').remove();
     }
    
     if (group > this.supervisor){

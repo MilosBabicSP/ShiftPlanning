@@ -111,10 +111,12 @@ if ($vtoken['data'] != '1') {
             sp.raw.config = <?= _iapi(array('module' => 'api.config', 'method' => 'GET'), 'json', true) ?>;
             sp.schedule.dateId = sp.raw.config.today.id;
             sp.staff.admin.info.dfAvatar = (typeof sp.staff.admin.info.avatar != 'undefined' && typeof sp.staff.admin.info.avatar.small != 'undefined') ? sp.staff.admin.info.avatar.small : 'images/no-avatar.png';
+	    sp.staff.prepareConfig();
             $('.userName').html(user.name);
             $('company').html(user.company);
 	    spRanges.fixRanges();
 	    sp.staff.fixed.employees = sp.permissions.fixStaffListing();
+	    sp.raw.config.today.formatted = Date.parse(sp.raw.config.today.formatted).toString(cal.dformat);
 <? } ?>
     $('body').css('display', 'block');
     }
