@@ -196,7 +196,7 @@ ShiftPlanningTimeClock.prototype.overviewSubEvents = function(){
         }
     });
     
-    $('#tc_ov_cb .icoClock time').html(formatted('today'));
+    $('#tc_ov_cb .icoClock time').html(sp.raw.config.today.formatted);
     $('#tc_ov_cb .icoClock span').html(formatted('nowT'));
 }
 
@@ -248,6 +248,10 @@ ShiftPlanningTimeClock.prototype.addClockTimeSubEvents = function(){
         $('#tc_act .title h3').html('Edit Clock Time');
         $('#tc_act_tc_id').removeClass('editOn').addClass('editOn');
         $('#tc_act_tc_id').val(emp.id);
+	emp.in_time.time = sp.strReplace(['am','pm'],[' AM',' PM'],emp.in_time.time);
+	emp.out_time.time = sp.strReplace(['am','pm'],[' AM',' PM'],emp.out_time.time);
+	emp.in_time.day = Date.parse(emp.in_time.day).toString(cal.dformat);
+	emp.out_time.day = Date.parse(emp.out_time.day).toString(cal.dformat);
     } else {
         $('#tc_act .title h3').html('Add Clock Time');
         $('#tc_act_tc_id').removeClass('editOn');
@@ -255,10 +259,8 @@ ShiftPlanningTimeClock.prototype.addClockTimeSubEvents = function(){
         emp.out_timestamp = Date.parse('today at 5pm').getTime()/1000;
     }
     
-    $('#tc_act_sc').html(spView.optionSchedules(sp.staff.admin.info.group > 3 ? sp.staff.admin.info.id : 0));
+    $('#tc_act_sc').html(spView.optionSchedules(sp.staff.admin.info.group > 4 ? sp.staff.admin.info.id : 0));
     $('#tc_act_em').html(spView.staffOption(sp.staff.admin.info.group > 4 ? true : false));
-    
-    
     
     var s = new Date(emp.in_timestamp*1000);
     var e = new Date(emp.out_timestamp*1000);
@@ -266,7 +268,7 @@ ShiftPlanningTimeClock.prototype.addClockTimeSubEvents = function(){
     var tf = (cal.tmode == 24)? 'HH:mm' : 'hh:mm tt';
     
     $('#tc_act_tclin').scroller('destroy');
-    $('#tc_act_tclin').val(s.toString(tf));
+    $('#tc_act_tclin').val((this.edit) ? emp.in_time.time : s.toString(tf));
     $("#tc_act_tclin").scroller({
         preset : 'time',
         ampm: (cal.tmode==24?false:true),
@@ -279,7 +281,7 @@ ShiftPlanningTimeClock.prototype.addClockTimeSubEvents = function(){
     //$('#tc_act_c_co_dp_i').val(outD.toString(cal.dformat));
     
     $('#tc_act_tclou').scroller('destroy');
-    $('#tc_act_tclou').val(e.toString(tf));
+    $('#tc_act_tclou').val((this.edit) ? emp.out_time.time : e.toString(tf));
     $("#tc_act_tclou").scroller({
         preset : 'time',
         ampm: (cal.tmode==24?false:true),
@@ -288,7 +290,7 @@ ShiftPlanningTimeClock.prototype.addClockTimeSubEvents = function(){
     });
     
     $('#tc_act_c_cl_dp_i').scroller('destroy');
-    $('#tc_act_c_cl_dp_i').val(s.toString(cal.dformat));
+    $('#tc_act_c_cl_dp_i').val((this.edit) ? emp.in_time.day : s.toString(cal.dformat));
     $('#tc_act_c_cl_dp_i').scroller({
         preset : 'date',
         dateFormat : (sp.strReplace(['MM','yyyy'],['mm','yy'],cal.dformat) == 'mmM d, yy') ? sp.strReplace(['MM','yyyy'],['mm','yy'],cal.dformat).substr(2, sp.strReplace(['MM','yyyy'],['mm','yy'],cal.dformat).length) : sp.strReplace(['MM','yyyy'],['mm','yy'],cal.dformat),
@@ -296,7 +298,7 @@ ShiftPlanningTimeClock.prototype.addClockTimeSubEvents = function(){
     });
     
     $('#tc_act_c_co_dp_i').scroller('destroy');
-    $('#tc_act_c_co_dp_i').val(e.toString(cal.dformat));
+    $('#tc_act_c_co_dp_i').val((this.edit) ? emp.out_time.day : e.toString(cal.dformat));
     $('#tc_act_c_co_dp_i').scroller({
         preset : 'date',
         dateFormat : (sp.strReplace(['MM','yyyy'],['mm','yy'],cal.dformat) == 'mmM d, yy') ? sp.strReplace(['MM','yyyy'],['mm','yy'],cal.dformat).substr(2, sp.strReplace(['MM','yyyy'],['mm','yy'],cal.dformat).length) : sp.strReplace(['MM','yyyy'],['mm','yy'],cal.dformat),

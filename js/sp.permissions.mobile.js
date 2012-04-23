@@ -82,7 +82,6 @@ ShiftPlanningPermissions.prototype.preparePermissions = function(){
     //Employees can manually add time clocks
     if (group >= this.scheduler && parseInt(perms.tc_empl_addtime) == 0){
         $('#tc_act_sub_button').remove();
-        $('#tc_act').remove();
     }
     
     //Time Clock Module is on

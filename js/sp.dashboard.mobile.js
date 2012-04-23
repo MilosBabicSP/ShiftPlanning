@@ -263,7 +263,6 @@ ShiftPlanningDashboard.prototype.settingsEvents = function(){
 	}
 	$('#da_se_' + $(this).attr('subpage')).show();
 	$(this).parent().addClass('active');
-	
 	sp.fixCheckboxes();
     });
     
@@ -405,7 +404,12 @@ ShiftPlanningDashboard.prototype.settingsSubEvents = function(employee){
 	    $('#dashboard .filters a[subpage=edit]').show();
 	    $('#dashboard .search').show();
 	}
-        
+    }
+    
+    if (employee.group == 2){
+	$('#da_se_ov_aa .button').hide();
+    } else {
+	$('#da_se_ov_aa .button').show();
     }
 
 
