@@ -90,6 +90,7 @@ ShiftPlanningPermissions.prototype.preparePermissions = function(){
         $('#menu #menu_timeClock').remove();
         $('#timeClock').remove();
         $('.subNavigation div.timeClock').remove();
+	$('.subNavigation .reports a[subpage=confirmedTimeSheets]').remove();
     }
 
     //Employees can view staff gallery
