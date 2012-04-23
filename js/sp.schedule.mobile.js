@@ -568,7 +568,9 @@ ShiftPlanningSchedule.prototype.displayShifts = function(sDay){
             $('#sc_td .loading').hide();
 	    $('#sc_td_list .dTitle  span').each(function(){
                 var o = $(this).find('t:last');
-                $(o).html($(o).html().substr(0,($(o).html().length -2 )));
+		if ($(o).html() != null){
+		    $(o).html($(o).html().substr(0,($(o).html().length -2 )));
+		}
             });
         } else {
             if (self.page == 'month'){
