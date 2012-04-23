@@ -15,6 +15,9 @@ require_once('functions.php');
 	
         <link rel="stylesheet" type="text/css" href="css/style.mobile.css" />
         <link rel="stylesheet" type="text/css" href="css/mobiscroll.css" />
+	
+	<link rel="shortcut icon" href="http://cdn.shiftplanning.com/app/layout/1/images/favicon.ico" type="image/x-icon" id="favicon">
+	<link rel="apple-touch-startup-image" href="images/default.png" />
         <script src="js/sp.user.js" type="text/javascript"></script>
         <script type="text/javascript">
 <?
