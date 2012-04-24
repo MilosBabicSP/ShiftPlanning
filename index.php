@@ -3,6 +3,15 @@ require_once('config.php');
 require_once('api.php');
 require_once('functions.php');
 //$api = new api(null, null, true);
+
+if (Functions::getInstance()->isRememberMe()){
+    $_SESSION['api']['token']		    = Functions::getInstance()->getCookie('shiftplanning_mobile_usertoken');
+    $_SESSION['user']['employee']['name']   = Functions::getInstance()->getCookie('shiftplanning_mobile_username');
+    $_SESSION['user']['employee']['id']	    = Functions::getInstance()->getCookie('shiftplanning_mobile_userid');
+    $_SESSION['user']['business']['name']   = Functions::getInstance()->getCookie('shiftplanning_mobile_usercompany');
+    $_SESSION['user']['business']['phone']  = Functions::getInstance()->getCookie('shiftplanning_mobile_userphone');
+}
+
 ?>
 <!DOCTYPE html>
 <html style="height:100%;">
@@ -63,6 +72,7 @@ if ($vtoken['data'] != '1') {
 
         <!-- Plugins -->
         <script src="js/plugins/date.js" type="text/javascript"></script>
+	<script src="js/plugins/cookie.js" type="text/javascript"></script>
         <script src="js/plugins/sp.cache.js" type="text/javascript"></script>
         <script src="js/schedule/date.js" type="text/javascript"></script>
         <script src="js/schedule/date.extras.js" type="text/javascript"></script>
@@ -156,6 +166,9 @@ if ($vtoken['data'] != '1') {
                         <div class="holder">
                             <input type="password" name="password" id="lo_p"/>
                         </div>
+			<div class="rButton">
+			    <span class="checkbox fl <?php echo (Functions::getInstance()->isRememberMe()) ? 'check' : ''?>">Remember me?</span>
+			</div>
                         <button id="lo_b">Login</button>
                     </form>
                     <div class="footerTxt">View in: Mobile | <a href="/app/?fullapp=true">Full Version</a><br/>
