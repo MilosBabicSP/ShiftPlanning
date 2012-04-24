@@ -1,7 +1,7 @@
 <div class="main manageTimeSheets" id="tc_mts">
     <div class="title">
-        <h3 class="fl">Manage Timesheets</h3>
-        <span class="fr"><a id="tc_mts_adv" href="#" style="display: block;">Advanced</a></span>
+        <h3 class="fl"><?=_s('Manage Timesheets')?></h3>
+        <span class="fr"><a id="tc_mts_adv" href="#" style="display: block;"><?=_s('Advanced')?></a></span>
     </div>
     <ul class="detailsGrid">
         <li>
@@ -46,7 +46,7 @@
                 </li>
                 <li class="even">
                     <div>
-                        <label>From:</label>
+                        <label><?=_s('From:')?></label>
                         <span class="input">
                             <input id="tc_mts_sd_i" type="text" />
                         </span>
@@ -54,7 +54,7 @@
                 </li>
                 <li class="odd">
                     <div>
-                        <label>To:</label>
+                        <label><?=_s('To:')?></label>
                         <span class="input">
                             <input id="tc_mts_ed_i"  type="text" />
                         </span>
@@ -67,6 +67,6 @@
 
     </div>
     <div class="additional hidden">
-        <p>No timesheets for selected filters.</p>
+        <p><?=_s('No timesheets for selected filters.')?></p>
     </div>
 </div>

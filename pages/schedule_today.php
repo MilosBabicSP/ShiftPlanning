@@ -6,6 +6,6 @@
     </table>
     <div class="loading"></div>
     <div class="additional wide">
-        <p>No schedules for selected filters.</p>
+        <p><?=_s('No schedules for selected filters.')?></p>
     </div>
 </div>

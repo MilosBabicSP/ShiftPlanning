@@ -1,15 +1,15 @@
 <div class="main addClockTime" id="tc_act">
     <div class="title">
-        <h3>Add Clock Time</h3>
+        <h3><?=_s('Add Clock Time')?></h3>
     </div>
     <div class="newMsg">
         <input type="hidden" id="tc_act_tc_id" />
-        <label>Employee</label>
+        <label><?=_s('Employee')?></label>
         <span class="input">
             <select id="tc_act_em">
             </select>
         </span>
-        <label>Schedule</label>
+        <label><?=_s('Schedule')?></label>
         <span class="input">
             <select id="tc_act_sc">
             </select>
@@ -19,7 +19,7 @@
                 <ul>                
                     <li class="even">
                         <div>
-                            <label>Clock in</label>
+                            <label><?=_s('Clock in')?></label>
                             <span class="input">
                                 <input type="text" id="tc_act_tclin" />
                             </span>
@@ -27,7 +27,7 @@
                     </li>
                     <li class="odd">
                         <div>
-                            <label>Clock out</label>
+                            <label><?=_s('Clock out')?></label>
                             <span class="input">
                                 <input type="text" id="tc_act_tclou" />
                             </span>
@@ -50,13 +50,13 @@
                 </ul>
             </li>
         </ul>
-        <label>Notes</label>
+        <label><?=_s('Notes')?></label>
         <span class="input" >
             <textarea id="tc_act_no"></textarea>
         </span>
         <div class="title">
-            <span class="fr hidden"><span class="checkbox" id="tc_act_onci">Only Clock In?</span></span>
-            <span class="fl"><a href="#" id="tc_act_sa_b">Save</a></span>
+            <span class="fr hidden"><span class="checkbox" id="tc_act_onci"><?=_s('Only Clock In?')?></span></span>
+            <span class="fl"><a href="#" id="tc_act_sa_b"><?=_s('Save')?></a></span>
         </div>
     </div>
 </div>

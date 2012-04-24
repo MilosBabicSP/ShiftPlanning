@@ -1,11 +1,11 @@
 <div class="main fastAssignment" id="st_fa">
     <input type="hidden" value="" id="st_fa_cu" />
     <div class="title">
-        <h3 class="icoSta">Fast Assignment</h3>
+        <h3 class="icoSta"><?=_s('Fast Assignment')?></h3>
     </div>
     <ul class="detailsGrid">
         <li>
-            <label>Choose Employee</label>
+            <label><?=_s('Choose Employee')?></label>
             <span class="input">
                 <select name="" id="st_fa_el">
                 </select>
@@ -14,7 +14,7 @@
     </ul>
     <div id="st_fa_po" class="hidden positions">
         <div class="title">
-            <h3 class="icoEmpPos">Positions</h3>
+            <h3 class="icoEmpPos"><?=_s('Positions')?></h3>
         </div>
         <ul class="detailsGrid">
             <ul>    
@@ -24,7 +24,7 @@
     </div>
     <div id="st_fa_sk" class="hidden skills">
         <div class="title">
-            <h3 class="icoEmpSki">Skills</h3>
+            <h3 class="icoEmpSki"><?=_s('Skills')?></h3>
         </div>
         <ul class="detailsGrid">
             <li>

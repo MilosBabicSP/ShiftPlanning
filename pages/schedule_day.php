@@ -3,7 +3,7 @@
     <ul class="detailsGrid">
         <li>
             <div class="title">
-                <h3 class="icoSch">Schedule</h3>
+                <h3 class="icoSch"><?=_s('Schedule')?></h3>
             </div>
         </li>
         <li>
@@ -14,21 +14,21 @@
             </span>
         </li>
         <li>
-            <label>Title</label>
+            <label><?=_s('Title')?></label>
             <span class="input">
                 <input type="text" name="" id="sc_add_ti" />
             </span>
         </li>
         <li>
             <div class="title">
-                <h3 class="icoDat">Date</h3>
+                <h3 class="icoDat"><?=_s('Date')?></h3>
             </div>
         </li>
         <li>
             <ul>                
                 <li class="even">
                     <div>
-                        <label>Start Date</label>
+                        <label><?=_s('Start Date')?></label>
                         <span class="input">
                             <input type="text" id="sc_date_st" readonly="" class="scroller">
                         </span>
@@ -36,7 +36,7 @@
                 </li>
                 <li class="odd">
                     <div>
-                        <label>End Date</label>
+                        <label><?=_s('End Date')?></label>
                         <span class="input">
                             <input type="text" id="sc_date_et" readonly="" class="scroller">
                         </span>
@@ -60,7 +60,7 @@
         </li>
         <li>
             <div class="title">
-                <h3 class="icoLoc">Work Sites</h3>
+                <h3 class="icoLoc"><?=_s('Work Sites')?></h3>
             </div>
         </li>
         <li>
@@ -72,7 +72,7 @@
         </li>
         <li>
             <div class="title">
-                <h3 class="icoNot">Notes</h3>
+                <h3 class="icoNot"><?=_s('Notes')?></h3>
             </div>
         </li>
         <li>
@@ -82,7 +82,7 @@
         </li>
     </ul>
     <div id="sc_add_user" class="hidden">
-        <h3>Who's working</h3>
+        <h3><?=_s("Who's working")?></h3>
         <ul class="detailsGrid working">
             <li>
                 <ul>
@@ -91,7 +91,7 @@
             </li>
         </ul>
         <div type="available">
-            <h3>Available</h3>
+            <h3><?=_s('Available')?></h3>
             <ul class="detailsGrid">
                 <li>
                     <ul>
@@ -101,7 +101,7 @@
             </ul>
         </div>
         <div type="vacation">
-            <h3>Vacation</h3>
+            <h3><?=_s('Vacation')?></h3>
             <ul class="detailsGrid">
                 <li>
                     <ul>
@@ -111,7 +111,7 @@
             </ul>
         </div>
         <div type="sameday">
-            <h3>Scheduled Today</h3>
+            <h3><?=_s('Scheduled Today')?></h3>
             <ul class="detailsGrid">
                 <li>
                     <ul>
@@ -121,7 +121,7 @@
             </ul>
         </div>
         <div type="overlap">
-            <h3>Overlapping shift</h3>
+            <h3><?=_s('Overlapping shift')?></h3>
             <ul class="detailsGrid">
                 <li>
                     <ul>
@@ -131,7 +131,7 @@
             </ul>
         </div>
         <div type="mintime">
-            <h3>< Min time between shifts</h3>
+            <h3><?=_s(' Min time between shifts')?></h3>
             <ul class="detailsGrid">
                 <li>
                     <ul>
@@ -141,7 +141,7 @@
             </ul>
         </div>
         <div type="unavail">
-            <h3>Unavailable</h3>
+            <h3><?=_s('Unavailable')?></h3>
             <ul class="detailsGrid">
                 <li>
                     <ul>
@@ -154,7 +154,7 @@
     <div class="title">
         <span class="fr">
             <a href="#" id="sc_add_add">
-                <span>Add Shift And Set Users</span>
+                <span><?=_s('Add Shift And Set Users')?></span>
             </a>
         </span>
     </div>

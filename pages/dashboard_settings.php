@@ -6,83 +6,83 @@
                 <ul>    
                     <li class="even">
                         <div>
-                            <label>Full name:</label>
+                            <label><?=_s('Full name:')?></label>
                             <h4 id="da_se_ov_fn"></h4>
                         </div>
                     </li>
                     <li class="odd">
                         <div>
-                            <label>ID:</label>
+                            <label><?=_s('ID:')?></label>
                             <h4 id="da_se_ov_id"></h4>
                         </div>
                     </li>
                     <li class="even">
                         <div>
-                            <label>Username:</label>
+                            <label><?=_s('Username:')?></label>
                             <h4 id="da_se_ov_un"></h4>
                         </div>
                     </li>
                     <li class="odd">
                         <div>
-                            <label>Mobile:</label>
+                            <label><?=_s('Mobile:')?></label>
                             <h4 id="da_se_ov_mo"></h4>
                         </div>
                     </li>
                     <li class="even">
                         <div>
-                            <label>Home:</label>
+                            <label><?=_s('Home:')?></label>
                             <h4 id="da_se_ov_ho"></h4>
                         </div>
                     </li>
                     <li class="odd">
                         <div>
-                            <label>Birthday:</label>
+                            <label><?=_s('Birthday:')?></label>
                             <h4 id="da_se_ov_bd"></h4>
                         </div>
                     </li>
                     <li class="even">
                         <div>
-                            <label>Wage:</label>
+                            <label><?=_s('Wage:')?></label>
                             <h4 id="da_se_ov_wa"></h4>
                         </div>
                     </li>
                 </ul>
             </li>
             <li>
-                <label>Email:</label>
+                <label><?=_s('Email:')?></label>
                 <h4 id="da_se_ov_em"></h4>
             </li>
             <li>
-                <label>Positions:</label>
+                <label><?=_s('Positions:')?></label>
                 <h4 id="da_se_ov_pos"></h4> 
             </li>
         </ul>
         <div class="title">
-            <h3 class="icoAdmAct">Admin Actions</h3>
+            <h3 class="icoAdmAct"><?=_s('Admin Actions')?></h3>
         </div>
         <ul class="detailsGrid" id="da_se_ov_aa">
             <li>
-                <label>Status:</label>
+                <label><?=_s('Status:')?></label>
                 <h4 id="da_se_ov_st"></h4>
             </li>
             <li>
-                <label>Activation:</label>
+                <label><?=_s('Activation:')?></label>
                 <h4 id="da_se_ov_ac"></h4>
             </li>
             <li>
-                <a class="button fl" href="#" type="activate">Send Activation</a>
+                <a class="button fl" href="#" type="activate"><?=_s('Send Activation')?></a>
             </li>
             <li>
-                <a class="button fl" href="#" type="manualyActivate">Manually Activate</a>
+                <a class="button fl" href="#" type="manualyActivate"><?=_s('Manually Activate')?></a>
             </li>
             <li>
-                <a class="button fl" href="#" type="deactivate">Disable User Account</a></li>
+                <a class="button fl" href="#" type="deactivate"><?=_s('Disable User Account')?></a></li>
             <li>
-                <a class="button fl" href="#" type="delete">Permanently Delete This Employee</a>
+                <a class="button fl" href="#" type="delete"><?=_s('Permanently Delete This Employee')?></a>
             </li>
         </ul>
         <div class="title aPerm">
-            <h3 class="icoEmpPos">Employee Positions</h3>
+            <h3 class="icoEmpPos"><?=_s('Employee Positions')?></h3>
         </div>
         <ul class="detailsGrid aPerm">
             <ul id="da_se_ov_po" class="positions">    
@@ -90,7 +90,7 @@
             </ul>
         </ul>
         <div class="title aPerm">
-            <h3 class="icoEmpSki">Employee Skills</h3>
+            <h3 class="icoEmpSki"><?=_s('Employee Skills')?></h3>
         </div>
         <ul class="detailsGrid aPerm">
             <li>
@@ -101,21 +101,21 @@
         </ul>
         <ul class="detailsGrid">
             <li>
-                <label>Notes</label>
+                <label><?=_s('Notes')?></label>
                 <span class="input">
-                    <textarea id="da_se_ov_no">Write Notes...</textarea>
+                    <textarea id="da_se_ov_no"><?=_s('Write Notes...')?></textarea>
                 </span>
             </li>
         </ul>
     </div>
     <div id="da_se_edit">
         <div class="title">
-            <h3 class="icoEmpDet">Employee Details</h3>
+            <h3 class="icoEmpDet"><?=_s('Employee Details')?></h3>
         </div>
         <ul class="detailsGrid">
             <li>
                 <div>
-                    <label>Name:</label>
+                    <label><?=_s('Name:')?></label>
                     <span class="input">
                         <input type="text" name="" value="" id="da_se_ed_na">
                     </span>
@@ -123,7 +123,7 @@
             </li>
             <li>
                 <div>
-                    <label>Nick Name:</label>
+                    <label><?=_s('Nick Name:')?></label>
                     <span class="input">
                         <input type="text" name="" value="" id="da_se_ed_nn">
                     </span>
@@ -131,7 +131,7 @@
             </li>
             <li>
                 <div>
-                    <label>Email:</label>
+                    <label><?=_s('Email:')?></label>
                     <span class="input">
                         <input type="text" name="" value="" id="da_se_ed_em">
                     </span>
@@ -139,7 +139,7 @@
             </li>
             <li>
                 <div>
-                    <label>Username:</label>
+                    <label><?=_s('Username:')?></label>
                     <span class="input">
                         <input type="text" name="" value="" id="da_se_ed_us">
                     </span>
@@ -147,7 +147,7 @@
             </li>
             <li>
                 <div>
-                    <label>Mobile Phone:</label>
+                    <label><?=_s('Mobile Phone:')?></label>
                     <span class="input">
                         <span style="width:40px; display:block; float:left; border-right:solid 1px #BBB;"><input style="text-align:center;" type="text" name="" value="" id="da_se_ed_mph_0"></span>
                         <span style="width:40px; display:block; float:left; border-right:solid 1px #BBB;"><input style="text-align:center;" type="text" name="" value="" id="da_se_ed_mph_1"></span>
@@ -157,7 +157,7 @@
             </li>
             <li>
                 <div>
-                    <label>Home Phone:</label>
+                    <label><?=_s('Home Phone:')?></label>
                     <span class="input">
                         <span style="width:40px; display:block; float:left; border-right:solid 1px #BBB;"><input style="text-align:center;" type="text" name="" value="" id="da_se_ed_hph_0"></span>
                         <span style="width:40px; display:block; float:left; border-right:solid 1px #BBB;"><input style="text-align:center;" type="text" name="" value="" id="da_se_ed_hph_1"></span>
@@ -167,7 +167,7 @@
             </li>
             <li>
                 <div>
-                    <label>Address:</label>
+                    <label><?=_s('Address:')?></label>
                     <span class="input">
                         <input type="text" name="" value="" id="da_se_ed_ad" />
                     </span>
@@ -175,7 +175,7 @@
             </li>
             <li>
                 <div>
-                    <label>City:</label>
+                    <label><?=_s('City:')?></label>
                     <span class="input">
                         <input type="text" name="" value="" id="da_se_ed_ci" />
                     </span>
@@ -183,7 +183,7 @@
             </li>
             <li>
                 <div>
-                    <label>State/Province:</label>
+                    <label><?=_s('State/Province:')?></label>
                     <span class="input">
                         <input type="text" name="" value="" id="da_se_ed_sp">
                     </span>
@@ -191,7 +191,7 @@
             </li>
             <li>
                 <div>
-                    <label>Postal/Zip code:</label>
+                    <label><?=_s('Postal/Zip code:')?></label>
                     <span class="input">
                         <input type="text" name="" value="" id="da_se_ed_pz" />
                     </span>
@@ -201,22 +201,22 @@
                 <ul>
                     <li class="even">
                         <div>
-                            <label>Birthday:</label>
+                            <label><?=_s('Birthday:')?></label>
                             <span class="input">
                                 <select id="da_se_ed_bday_m">
                                     <option selected="" value="0">Select</option>
-                                    <option value="1">January</option>
-                                    <option value="2">February</option>
-                                    <option value="3">March</option>
-                                    <option value="4">April</option>
-                                    <option value="5">May</option>
-                                    <option value="6">June</option>
-                                    <option value="7">July</option>
-                                    <option value="8">August</option>
-                                    <option value="9">September</option>
-                                    <option value="10">October</option>
-                                    <option value="11">November</option>
-                                    <option value="12">December</option>
+                                    <option value="1"><?=_s('January')?></option>
+                                    <option value="2"><?=_s('February')?></option>
+                                    <option value="3"><?=_s('March')?></option>
+                                    <option value="4"><?=_s('April')?></option>
+                                    <option value="5"><?=_s('May')?></option>
+                                    <option value="6"><?=_s('June')?></option>
+                                    <option value="7"><?=_s('July')?></option>
+                                    <option value="8"><?=_s('August')?></option>
+                                    <option value="9"><?=_s('September')?></option>
+                                    <option value="10"><?=_s('October')?></option>
+                                    <option value="11"><?=_s('November')?></option>
+                                    <option value="12"><?=_s('December')?></option>
                                 </select>
                             </span>
                         </div>
@@ -265,12 +265,12 @@
                 </ul>
             </li>
             <li>
-                (Entering your birthday makes it public to other staff.) 
+                <?=_s('(Entering your birthday makes it public to other staff.)')?> 
             </li>
 
         </ul>
         <div class="title aPerm">
-            <h3 class="icoEmpPos">Employee Positions</h3>
+            <h3 class="icoEmpPos"><?=_s('Employee Positions')?></h3>
         </div>
         <ul class="detailsGrid aPerm">
             <ul id="da_se_ed_po" class="positions">    
@@ -278,7 +278,7 @@
             </ul>
         </ul>
         <div class="title aPerm">
-            <h3 class="icoEmpSki">Employee Skills</h3>
+            <h3 class="icoEmpSki"><?=_s('Employee Skills')?></h3>
         </div>
         <ul class="detailsGrid aPerm">
             <li>
@@ -289,46 +289,46 @@
         </ul>
         <ul class="detailsGrid">
             <li>
-                <label>Notes</label>
+                <label><?=_s('Notes')?></label>
                 <span class="input">
                     <textarea id="da_se_ed_no"></textarea>
                 </span>
             </li>
         </ul>
         <div class="title">
-            <span class="fr"><a id="da_se_ed_ue" href="#"><span>Update Employee</span></a></span>
+            <span class="fr"><a id="da_se_ed_ue" href="#"><span><?=_s('Update Employee')?></span></a></span>
         </div>
     </div>
     <div id="da_se_password">
         <div class="title">
-            <h3 class="icoEmpDet">Employee Details</h3>
+            <h3 class="icoEmpDet"><?=_s('Employee Details')?></h3>
         </div>
         <ul class="detailsGrid">
             <li>
                 <div>
-                    <label>Password:</label>
+                    <label><?=_s('Password:')?></label>
                     <span class="input">
                         <input type="password" name="" value="" id="da_se_pa_np">
                     </span>
                 </div>
             </li>
             <li>
-                 * You only need to supply a password if you want to change it 
+                 <?=_s('* You only need to supply a password if you want to change it ')?>
             </li>
             <li>
                 <div>
-                    <label>Confirm Password:</label>
+                    <label><?=_s('Confirm Password:')?></label>
                     <span class="input">
                         <input type="password" name="" value="" id="da_se_pa_cp">
                     </span>
                 </div>
             </li>
             <li>
-                * You only need to confirm your password if you changed it above 
+                <?=_s('* You only need to confirm your password if you changed it above ')?>
             </li>
         </ul>
         <div class="title">
-            <span class="fr"><a id="da_se_pa_up" href="#">Update Employee</a></span>
+            <span class="fr"><a id="da_se_pa_up" href="#"><?=_s('Update Employee')?></a></span>
         </div>
     </div>
 </div>

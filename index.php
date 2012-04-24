@@ -3,6 +3,8 @@ require_once('config.php');
 require_once('api.php');
 require_once('functions.php');
 //$api = new api(null, null, true);
+include 'i18n/config.php';
+include 'i18n/lib/class.i18n.php';
 ?>
 <!DOCTYPE html>
 <html style="height:100%;">
@@ -18,6 +20,7 @@ require_once('functions.php');
 	
 	<link rel="shortcut icon" href="http://cdn.shiftplanning.com/app/layout/1/images/favicon.ico" type="image/x-icon" id="favicon">
 	<link rel="apple-touch-startup-image" href="images/default.png" />
+        <script src="i18n/gettext.js" type="text/javascript"></script>
         <script src="js/sp.user.js" type="text/javascript"></script>
         <script type="text/javascript">
 <?
@@ -158,8 +161,8 @@ if ($vtoken['data'] != '1') {
                         </div>
                         <button id="lo_b">Login</button>
                     </form>
-                    <div class="footerTxt">View in: Mobile | <a href="/app/?fullapp=true">Full Version</a><br/>
-                        <a href="/terms/">Terms of Use</a> | <a href="/privacy/">Privacy Policy</a><br/>
+                    <div class="footerTxt"><?=_s('View in: Mobile |')?> <a href="/app/?fullapp=true"><?=_s('Full Version')?></a><br/>
+                        <a href="/terms/"><?=_s('Terms of Use')?></a> | <a href="/privacy/"><?=_s('Privacy Policy')?></a><br/>
                         &copy; <?php echo date('Y'); ?> ShiftPlanning</div>
                 </td>
             </tr>
@@ -170,18 +173,18 @@ if ($vtoken['data'] != '1') {
                     <img height="61" width="190" src="images/logo.png" />
                 </a>
                 <ul class="mainNav">
-                    <li id="menu_dashboard"><a class="dash" href="#" page="dashboard">Dashboard</a></li>
-                    <li id="menu_timeClock"><a class="ticl" href="#" page="timeClock">Time Clock</a></li>
-                    <li id="menu_schedule"><a class="sche" href="#" page="schedule">Schedule</a></li>
-                    <li class="active hidden" id="menu_requests"><a class="requ" href="#" page="requests">Requests</a>
+                    <li id="menu_dashboard"><a class="dash" href="#" page="dashboard"><?=_s('Dashboard')?></a></li>
+                    <li id="menu_timeClock"><a class="ticl" href="#" page="timeClock"><?=_s('Time Clock')?></a></li>
+                    <li id="menu_schedule"><a class="sche" href="#" page="schedule"><?=_s('Schedule')?></a></li>
+                    <li class="active hidden" id="menu_requests"><a class="requ" href="#" page="requests"><?=_s('Requests')?></a>
                         <ul class="hidden">
-                            <li><a href="#"><span>4</span>Vacation requests</a></li>
-                            <li><a href="#"><span>208</span>Shift Approvals</a></li>
-                            <li><a href="#"><span>126</span>Shifts Available</a></li>
+                            <li><a href="#"><span>4</span><?=_s('Vacation requests')?></a></li>
+                            <li><a href="#"><span>208</span><?=_s('Shift Approvals')?></a></li>
+                            <li><a href="#"><span>126</span><?=_s('Shifts Available')?></a></li>
                         </ul>
                     </li>
-                    <li id="menu_staff"><a class="staf" href="#" page="staff" >Staff</a></li>
-                    <li id="menu_reports"><a class="repo" href="#" page="reports" >Reports</a></li>
+                    <li id="menu_staff"><a class="staf" href="#" page="staff" ><?=_s('Staff')?></a></li>
+                    <li id="menu_reports"><a class="repo" href="#" page="reports" ><?=_s('Reports')?></a></li>
                 </ul>
             </div>
             <div id="wrapper" class="wrapper">
@@ -197,9 +200,9 @@ if ($vtoken['data'] != '1') {
                     <div class="dashboard" id="dashboard">
                         <div class="search settings mainSub">
                             <ul class="filters" style="width:270px">
-                                <li class="first active"><a href="#" subpage="overview">Overview</a></li>
+                                <li class="first active"><a href="#" subpage="overview"><?=_s('Overview')?></a></li>
                                 <li><a href="#" subpage="edit">Edit</a></li>
-                                <li class="last" ><a href="#" subpage="password">Password</a></li>
+                                <li class="last" ><a href="#" subpage="password"><?=_s('Password')?></a></li>
                             </ul>
                         </div>
                         <?php Functions::getInstance()->loadFile('dashboard_wall') ?>
@@ -277,7 +280,7 @@ if ($vtoken['data'] != '1') {
                         </table>
                         <div class="search mainSub today day" id="sc_days_m">
                             <div class="fl">
-                                <span>Today</span>
+                                <span><?=_s('Today')?></span>
                                 <time id="sc_to_sub">Monday, January 09, 2012</time>
                             </div>
                             <ul class="subMenu">
@@ -300,12 +303,12 @@ if ($vtoken['data'] != '1') {
                             <ul class="subMenu">
                                 <li class="single">
                                     <a href="#" class="icoReqWor publish">
-                                        <span>Publish</span>
+                                        <span><?=_s('Publish')?></span>
                                     </a>
                                 </li>
                                 <li class="single">
                                     <a href="#" class="icoReqEdi edit">
-                                        <span>Edit</span>
+                                        <span><?=_s('Edit')?></span>
                                     </a>
                                 </li>
                             </ul>
@@ -317,7 +320,7 @@ if ($vtoken['data'] != '1') {
                             <ul class="subMenu">
                                 <li class="single hidden">
                                     <a href="#" class="icoReqWor">
-                                        <span>Approve Shift</span>
+                                        <span><?=_s('Approve Shift')?></span>
                                     </a>
                                 </li>
                             </ul>
@@ -370,7 +373,7 @@ if ($vtoken['data'] != '1') {
                             <ul class="subMenu hidden" id="rq_st_mts_sm">
                                 <li class="single">
                                     <a href="#" class="icoReqCan cancel">
-                                        <span>Cancel</span>
+                                        <span><?=_s('Cancel')?></span>
                                     </a>
                                 </li>
                             </ul>
@@ -399,7 +402,7 @@ if ($vtoken['data'] != '1') {
                             <ul class="subMenu" id="rq_st_im_sm">
                                 <li class="single">
                                     <a href="#" class="icoReqCan cancel">
-                                        <span>Cancel</span>
+                                        <span><?=_s('Cancel')?></span>
                                     </a>
                                 </li>
                             </ul>
@@ -409,7 +412,7 @@ if ($vtoken['data'] != '1') {
                                 <img width="41" height="30" src="images/BackMenu.png">
                             </a>
                             <ul class="subMenu">
-                                <li class="single"><a class="icoReqWor" href="#" id="rq_os_rtw"><span>Request to work</span></a></li>
+                                <li class="single"><a class="icoReqWor" href="#" id="rq_os_rtw"><span><?=_s('Request to work')?></span></a></li>
                             </ul>
                         </div>
                         <div class="subLevel mainSub openShiftsRequest" id="rq_os_spr_sub">
@@ -434,7 +437,7 @@ if ($vtoken['data'] != '1') {
                                 <img width="41" height="30" src="images/BackMenu.png">
                             </a>
                             <ul class="subMenu">
-                                <li class="single"><a href="#" class="icoReqWor"><span>Save & Close</span></a></li>
+                                <li class="single"><a href="#" class="icoReqWor"><span><?=_s('Save & Close')?></span></a></li>
                             </ul>
                         </div>
                         <?php Functions::getInstance()->loadFile('requests_overview'); ?>
