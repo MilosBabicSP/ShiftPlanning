@@ -59,7 +59,7 @@ ShiftPlanningDashboard.prototype.wallEvents = function(){
 	}
 	
 	if (!sp.isL($('#da_wa_nm_me').val())){
-	    sp.showError('Message must be entered');
+	    sp.showError(_s('Message must be entered'));
 	    return false;
 	}
 	data.post = $.trim($('#da_wa_nm_me').val());
@@ -95,7 +95,7 @@ ShiftPlanningDashboard.prototype.wallEvents = function(){
     $('#da_wa_li').delegate('.msgDel', clickEvent, function(e){
 	e.preventDefault();
 	var obj = $(this);
-	var c = confirm('Do you want to delete this message?');
+	var c = confirm(_s('Do you want to delete this message?'));
 	if (c){
 	    var id = $(this).attr('rel');
 	    var del = 'message';
@@ -123,7 +123,7 @@ ShiftPlanningDashboard.prototype.wallEvents = function(){
 	var id = $(this).attr('rel');
 	var post = $.trim($('#da_wa_msg_' + id + ' input[type=text]').val());
 	if (post.length == 0 || post == 'Write a comment...'){
-	    alert('Please write your message');
+	    alert(_s('Please write your message'));
 	    return false;
 	}
 	spModel.messaging.create('wall', {
@@ -205,7 +205,7 @@ ShiftPlanningDashboard.prototype.inboxEvents = function(){
     
     $('#da_in_me').delegate('a.butDel', clickEvent, function(e){
 	e.preventDefault();
-	var c = confirm('Are you sure you want to delete this messaage?');
+	var c = confirm(_s('Are you sure you want to delete this messaage?'));
 	if (!c){
 	    return false;
 	}
@@ -316,7 +316,7 @@ ShiftPlanningDashboard.prototype.settingsEvents = function(){
     
     $('#da_se_ov_aa a').bind(clickEvent, function(e){
 	e.preventDefault();
-	var c = confirm('Are you sure?');
+	var c = confirm(_s('Are you sure?'));
 	if (c){
 	    self.adminActions(this);
 	}
@@ -332,10 +332,10 @@ ShiftPlanningDashboard.prototype.wallSubEvents = function(){
 	    if (response.data.length > 0){
 		$('#da_wa_li').html($.tmpl($('#te_da_wa_me'), response.data));
 	    } else {
-		$('#da_wa_li').html(spView.emptyResult('No wall messages', 'li'));
+		$('#da_wa_li').html(spView.emptyResult(_s('No wall messages'), 'li'));
 	    }
 	}, function(){
-	    $('#da_wa_li').html(spView.emptyResult('Something went wrong', 'li'));
+	    $('#da_wa_li').html(spView.emptyResult(_s('Something went wrong'), 'li'));
 	});
     }
 }
@@ -374,10 +374,10 @@ ShiftPlanningDashboard.prototype.inboxSubEvents = function(){
 	if (response.data.length > 0){
 	    $('#da_in_me').html($.tmpl($('#te_da_wa_in'), response.data));
 	} else {
-	    $('#da_in_me').html(spView.emptyResult('No messages in your inbox', 'li'));
+	    $('#da_in_me').html(spView.emptyResult(_s('No messages in your inbox'), 'li'));
 	}
     }, function(response){
-	$('#da_in_me').html(spView.emptyResult('Something went wrong', 'li'));
+	$('#da_in_me').html(spView.emptyResult(_s('Something went wrong'), 'li'));
     });
     
     $('#da_in_nm_to').html(spView.staffOption());
@@ -451,14 +451,14 @@ ShiftPlanningDashboard.prototype.prefillOverview = function(employee){
 	$('#da_se_ov_wa').html(spView.fixCurrency(sp.staff.admin.settings.currency, true) + employee.wage);
     }
     
-    var status_name = 'Administrative accounts cannot be de-activated.';
-    var status = 'User has actived his/her account.';
+    var status_name = _s('Administrative accounts cannot be de-activated.');
+    var status = _s('User has actived his/her account.');
     
     if (parseInt(employee.status) == 1 && parseInt(employee.group) > 2){
-	status_name = 'User Account is Enabled.';
+	status_name = _s('User Account is Enabled.');
     } else if (parseInt(employee.status) == 0 && parseInt(employee.group) > 2){
-	status_name = 'User Account is Enabled.';
-	status = 'User account is not activated.';
+	status_name = _s('User Account is Enabled.');
+	status = _s('User account is not activated.');
     }
     
     if (sp.staff.admin.info.group > 3){
@@ -578,7 +578,7 @@ ShiftPlanningDashboard.prototype.changePassword = function (){
 	});
     } else {
 	//add other error type
-	sp.showError('Password length must be over 6 chars and passwords must match.');
+	sp.showError(_s('Password length must be over 6 chars and passwords must match.'));
     }
 }
 
@@ -657,19 +657,19 @@ ShiftPlanningDashboard.prototype.adminActions = function(obj){
     sp.api('staff.employee',method,data,function(response){
 	sp.staff.getStaff(function(){
 	    if (type == 'deactivate'){
-		sp.showSuccess('User deactivated!');
+		sp.showSuccess(_s('User deactivated!'));
 		$('.subNavigation .staff .subWrapp a[subpage=list]').trigger(clickEvent);
 	    } else if (type == 'delete'){
-		sp.showSuccess('User deleted!');
+		sp.showSuccess(_s('User deleted!'));
 		$('.subNavigation .staff .subWrapp a[subpage=list]').trigger(clickEvent);
 	    } else if (type == 'activate'){
-		sp.showSuccess('Activation successfully sent.');
+		sp.showSuccess(_s('Activation successfully sent.'));
 		$(obj).hide();
 	    } else {
-		sp.showSuccess('Employee activated successfully.');
+		sp.showSuccess(_s('Employee activated successfully.'));
 		$('#da_se_ov_aa a[type=activate]').hide();
 		$(obj).hide();
-		$('#da_se_ov_st').html('User Account is Enabled.');
+		$('#da_se_ov_st').html(_s('User Account is Enabled.'));
 	    }
 	});
     }, function(response){
@@ -693,7 +693,7 @@ ShiftPlanningDashboard.prototype.updateUser = function(id, res, over){
     
     
     
-    sp.showSuccess('Selected user updated.');
+    sp.showSuccess(_s('Selected user updated.'));
 }
 
 ShiftPlanningDashboard.prototype.updateNotes = function(text){

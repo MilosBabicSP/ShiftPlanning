@@ -117,7 +117,7 @@ ShiftPlanningTimeClock.prototype.manageTimeSheetsEvents = function(){
                     id : id, 
                     approved : 1
                 }, function(){
-                    sp.showSuccess('Timeclock updated');
+                    sp.showSuccess(_s('Timeclock updated'));
                     $('.subNavigation .timeClock li.active a').trigger(clickEvent);
                 });
                 break;
@@ -126,7 +126,7 @@ ShiftPlanningTimeClock.prototype.manageTimeSheetsEvents = function(){
                     id : id, 
                     approved : 0
                 }, function(){
-                    sp.showSuccess('Timeclock updated');
+                    sp.showSuccess(_s('Timeclock updated'));
                     $('.subNavigation .timeClock li.active a').trigger(clickEvent);
                 });
                 break;
@@ -135,7 +135,7 @@ ShiftPlanningTimeClock.prototype.manageTimeSheetsEvents = function(){
                 sp.loadSubPage('', 'timeClock', 'addClockTime');
                 break;
             case 'delete':
-                var c = confirm('Are you sure?');
+                var c = confirm(_s('Are you sure?'));
                 if (c){
                     spModel.timeclock.del('timeclock', {
                         id : id
@@ -152,7 +152,7 @@ ShiftPlanningTimeClock.prototype.manageTimeSheetsEvents = function(){
         spModel.timeclock.get('clockout', {
             employee : $(this).attr('user')
             }, function(){
-            sp.showSuccess('User clocked out');
+            sp.showSuccess(_s('User clocked out'));
             self.getTimeSheets();
         });
     });
@@ -245,7 +245,7 @@ ShiftPlanningTimeClock.prototype.addClockTimeSubEvents = function(){
     var emp = {};
     if (this.edit != false){
         emp = this.current;
-        $('#tc_act .title h3').html('Edit Clock Time');
+        $('#tc_act .title h3').html(_s('Edit Clock Time'));
         $('#tc_act_tc_id').removeClass('editOn').addClass('editOn');
         $('#tc_act_tc_id').val(emp.id);
 	emp.in_time.time = sp.strReplace(['am','pm'],[' AM',' PM'],emp.in_time.time);
@@ -253,7 +253,7 @@ ShiftPlanningTimeClock.prototype.addClockTimeSubEvents = function(){
 	emp.in_time.day = Date.parse(emp.in_time.day).toString(cal.dformat);
 	emp.out_time.day = Date.parse(emp.out_time.day).toString(cal.dformat);
     } else {
-        $('#tc_act .title h3').html('Add Clock Time');
+        $('#tc_act .title h3').html(_s('Add Clock Time'));
         $('#tc_act_tc_id').removeClass('editOn');
         emp.in_timestamp = Date.parse('today at 9am').getTime()/1000;
         emp.out_timestamp = Date.parse('today at 5pm').getTime()/1000;
@@ -484,7 +484,7 @@ ShiftPlanningTimeClock.prototype.saveClockInChanges = function(){
     }
     
     spModel.timeclock.update('timeclock', data, function(){
-        sp.showSuccess('Timeclock updated');
+        sp.showSuccess(_s('Timeclock updated'));
     });
 }
 
@@ -510,7 +510,7 @@ ShiftPlanningTimeClock.prototype.saveClockTime = function(){
     data.notes = $('#tc_act_no').val();
     
     spModel.timeclock[f]('timeclock', data, function(response){
-	sp.showSuccess('Clock Time added');
+	sp.showSuccess(_s('Clock Time added'));
         $('.subNavigation div.timeClock ul.timeClock a[subpage=manageTimeSheets]').trigger(clickEvent);
     });
 }

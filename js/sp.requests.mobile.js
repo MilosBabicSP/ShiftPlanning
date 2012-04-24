@@ -141,7 +141,7 @@ ShiftPlanningRequests.prototype.openShiftsEvents = function(){
             id : $(this).attr('rel'), 
             add : sp.staff.admin.info.id
         }, function(response){
-            obj.removeClass('loading').removeClass('icoReqWork').addClass('icoReqCan').html('<span>Cancel pending request</span>');
+            obj.removeClass('loading').removeClass('icoReqWork').addClass('icoReqCan').html(_s('<span>Cancel pending request</span>'));
         });
     });
     
@@ -153,7 +153,7 @@ ShiftPlanningRequests.prototype.openShiftsEvents = function(){
             id : $(this).attr('rel'), 
             remove : sp.staff.admin.info.id
         }, function(response){
-            obj.removeClass('loading').removeClass('icoReqCan').removeClass('icoReqWork').html('Request Removed');
+            obj.removeClass('loading').removeClass('icoReqCan').removeClass('icoReqWork').html(_s('Request Removed'));
         });
     });
     
@@ -240,7 +240,7 @@ ShiftPlanningRequests.prototype.shiftTradesEvents = function(){
         
         if ($(this).hasClass('cancel')){
             data.action = 'cancel';
-            var c = confirm('Are you sure you want to cancel this request?');
+            var c = confirm(_s('Are you sure you want to cancel this request?'));
             if (!c){
                 obj.removeClass('loading');
                 return false;
@@ -254,11 +254,11 @@ ShiftPlanningRequests.prototype.shiftTradesEvents = function(){
         spModel.schedule.update('trade', data, function(response){
             obj.removeClass('loading');
             if (data.action == 'activate'){
-                sp.showSuccess('Shift trade accepted, waiting for potentional acceptors to accept.');
+                sp.showSuccess(_s('Shift trade accepted, waiting for potentional acceptors to accept.'));
             } else if (data.action == 'deactivate'){
-                sp.showSuccess('Shift trade rejected.');
+                sp.showSuccess(_s('Shift trade rejected.'));
             } else {
-                sp.showSuccess('Shift trade canceled.');
+                sp.showSuccess(_s('Shift trade canceled.'));
             }
             $('.subNavigation .requests li a[subpage=shiftTrades]').trigger(clickEvent);
         }, function(response){
@@ -283,7 +283,7 @@ ShiftPlanningRequests.prototype.shiftTradesEvents = function(){
         
         spModel.schedule.update('trade', data, function(response){
             obj.removeClass('loading');
-            sp.showSuccess('Shift trade pick up ' + data.action + 'ed');
+            sp.showSuccess(i18n.format(_s("Shift trade pick up {action}"), {action:data.action}));
             $('.subNavigation .requests li a[subpage=shiftTrades]').trigger(clickEvent);
         }, function(response){
             sp.showError(response.error);
@@ -300,7 +300,7 @@ ShiftPlanningRequests.prototype.shiftTradesEvents = function(){
         }
         
         if ($(this).hasClass('cancel')){
-            var c = confirm('Are you sure you want to cancel this request?');
+            var c = confirm(_s('Are you sure you want to cancel this request?'));
             if (!c){
                 obj.removeClass('loading');
                 return false;
@@ -761,13 +761,13 @@ ShiftPlanningRequests.prototype.prepareShiftApprovals = function(data){
 ShiftPlanningRequests.prototype.addVacationRequest = function(obj){
     var self = this;
     if ($.trim($('#rq_va_fr').val()).length == 0){
-        sp.showError('Please select FROM time');
+        sp.showError(_s('Please select FROM time'));
         obj.removeClass('loading');
         return false;
     }
     
     if ($.trim($('#rq_va_to').val()).length == 0){
-        sp.showError('Please select TO time');
+        sp.showError(_s('Please select TO time'));
         obj.removeClass('loading');
         return false;
     }
@@ -827,22 +827,22 @@ ShiftPlanningRequests.prototype.displayShiftTradeManagerAP = function(){
 }
 
 ShiftPlanningRequests.prototype.displayOpenShifts = function(){
-    $('#rq_os_rtw').removeClass('icoReqCan').addClass('icoReqWork').html('<span>Request to work</span>');
+    $('#rq_os_rtw').removeClass('icoReqCan').addClass('icoReqWork').html(_s('<span>Request to work</span>'));
     
     $('#rq_os_os_s').html($.tmpl($('#te_rq_os_os_s'), this.current));
     
     var h = '';
     var s = this.current.status;
     if (s == 10 || s == 4){
-        h = '<a class="icoReqWor" href="#" id="rq_os_rtw" rel="' + this.current.id + '"><span>Request to work</span></a>';
+        h = '<a class="icoReqWor" href="#" id="rq_os_rtw" rel="' + this.current.id + _s('"><span>Request to work</span></a>');
     } else if (s == 1){
-        h = 'Management rejected your request for this shift';
+        h = _s('Management rejected your request for this shift');
     } else if (s == 0){
-        h = '<a class="icoReqCan" href="#" id="rq_os_rtw" rel="' + this.current.id + '"><span>Cancel pending request</span></a>';
+        h = '<a class="icoReqCan" href="#" id="rq_os_rtw" rel="' + this.current.id + _s('"><span>Cancel pending request</span></a>');
     } else if (s == 2){
-        h = 'Already on this shift';
+        h = _s('Already on this shift');
     } else {
-        h = 'Will put you into overtime';
+        h = _s('Will put you into overtime');
     }
     
     $('#rq_os_sub .subMenu .single').html(h);
