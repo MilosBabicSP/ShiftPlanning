@@ -133,7 +133,6 @@ ShiftPlanningStaff.prototype.fastAssignmentSubEvents = function(){
 }
 //Render select box
 ShiftPlanningStaff.prototype.listLanguages = function (){
-    console.log('Enter here')
     var result='<option  value="none">Select Language</option>'
     $.each(sp.raw.config.languages,function(key,value){
         result+='<option value="'+value['code']+'">'+value['name']+'</option>'
@@ -229,8 +228,7 @@ ShiftPlanningStaff.prototype.login = function(){
         password: p
     }, function(loginResponse){
         sp.staff.admin.info = loginResponse.data.employee;
-        console.log(loginResponse);
-//        sp.staff.data.language=loginResponse.data.employee.language;
+//        sp.staff.data.language=loginResponse.data.employee.language;    //If langueage exist as property uncomment
         var calls = [
         ['staff.employees','GET', {}],
         ['schedule.schedules','GET', {
