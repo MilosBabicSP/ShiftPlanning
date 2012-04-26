@@ -134,6 +134,7 @@ ShiftPlanningStaff.prototype.fastAssignmentSubEvents = function(){
 }
 //Render select box
 ShiftPlanningStaff.prototype.listLanguages = function (){
+    console.log('Enter here')
     var result='<option  value="none">Select Language</option>'
     $.each(sp.raw.config.languages,function(key,value){
         result+='<option value="'+value['code']+'">'+value['name']+'</option>'
