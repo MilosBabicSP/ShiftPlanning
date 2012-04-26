@@ -3,6 +3,7 @@ ShiftPlanningStaff.prototype.initialize = function(){
     $(document).ready(function(){
         if (user.loggedIn == 1){
             self.prepareConfig();
+            self.listLanguages();//list all languages
         }
         $('#lo_b').bind('click', function(){
             self.login(); 
@@ -11,7 +12,7 @@ ShiftPlanningStaff.prototype.initialize = function(){
         self.listEvents();
         self.addStaffEvents();
         self.fastAssignmentEvents();
-        self.listLanguages();//list all languages
+        
     });
 }
 
