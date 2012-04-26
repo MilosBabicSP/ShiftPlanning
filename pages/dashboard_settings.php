@@ -197,7 +197,7 @@
                     </span>
                 </div>
             </li>
-            <li class="even">
+            <li>
                 <div>
                     <label><?=_s('Language')?></label>
                     <span class="input">
