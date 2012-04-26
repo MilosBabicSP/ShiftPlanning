@@ -200,7 +200,9 @@
             <li>
                 <div>
                     <label><?=_s('Language')?></label>
-                    <select id="da_se_ed_lang"></select>
+                    <span class="input">
+                        <select id="da_se_ed_lang"></select>
+                    </span>
                 </div>
             </li>
             <li>
