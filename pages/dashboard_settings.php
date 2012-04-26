@@ -198,6 +198,12 @@
                 </div>
             </li>
             <li>
+                <div>
+                    <label><?=_s('Language')?></label>
+                    <select id="da_se_ed_lang"></select>
+                </div>
+            </li>
+            <li>
                 <ul>
                     <li class="even">
                         <div>

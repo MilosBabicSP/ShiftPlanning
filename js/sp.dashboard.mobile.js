@@ -618,6 +618,8 @@ ShiftPlanningDashboard.prototype.saveEditForm = function(obj){
 	data.zip = $('#da_se_ed_pz').val();
     }
     
+    data.languages=$('#da_se_ed_lang').val();//adding lanuage to staff details
+    
     data.birth_day = $('#da_se_ed_bday_d').val();
     data.birth_month = $('#da_se_ed_bday_m').val();
     

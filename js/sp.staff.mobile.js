@@ -11,6 +11,7 @@ ShiftPlanningStaff.prototype.initialize = function(){
         self.listEvents();
         self.addStaffEvents();
         self.fastAssignmentEvents();
+        self.listLanguages();//list all languages
     });
 }
 
@@ -129,6 +130,14 @@ ShiftPlanningStaff.prototype.fastAssignmentSubEvents = function(){
     $('#st_fa_el').html(spView.staffOption());
     $('#st_fa_po').hide();
     $('#st_fa_sk').hide();
+}
+//Render select box
+ShiftPlanningStaff.prototype.listLanguages = function (){
+    var result='<option  value="none">Select Language</option>'
+    $.each(sp.raw.config.languages,function(key,value){
+        result+='<option value="'+value['code']+'">'+value['name']+'</option>'
+    })
+    $('#da_se_ed_lang').html(result);
 }
 
 //Functions
