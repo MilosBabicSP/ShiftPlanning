@@ -5,4 +5,4 @@ define('DEBUGGER', true);
 //define('API_URL','http://www.dejan1-s.dev.shiftplanning.com/api/');
 
 define('API_KEY','18eb10a76f1e97fd20b0248fd5475bdbc8996c5e');
-define('API_URL','http://www.translations-s.dev.shiftplanning.com/app/');
+define('API_URL','http://www.shiftplanning.com/api/');
