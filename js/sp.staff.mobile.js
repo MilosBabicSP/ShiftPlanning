@@ -228,6 +228,8 @@ ShiftPlanningStaff.prototype.login = function(){
         password: p
     }, function(loginResponse){
         sp.staff.admin.info = loginResponse.data.employee;
+        console.log(loginResponse);
+//        sp.staff.data.language=loginResponse.data.employee.language;
         var calls = [
         ['staff.employees','GET', {}],
         ['schedule.schedules','GET', {
