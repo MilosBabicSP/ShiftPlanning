@@ -7,7 +7,7 @@ ShiftPlanningStaff.prototype.initialize = function(){
         $('#lo_b').bind('click', function(){
             self.login(); 
         });
-        self.listLanguages();//list all languages
+//      self.listLanguages();//list all languages --- called in other method
         self.listEvents();
         self.addStaffEvents();
         self.fastAssignmentEvents();
@@ -228,7 +228,7 @@ ShiftPlanningStaff.prototype.login = function(){
         password: p
     }, function(loginResponse){
         sp.staff.admin.info = loginResponse.data.employee;
-//        sp.staff.data.language=loginResponse.data.employee.language;    //If langueage exist as property uncomment
+//      sp.staff.data.language=loginResponse.data.employee.language;    //If language exist as property uncomment
         var calls = [
         ['staff.employees','GET', {}],
         ['schedule.schedules','GET', {
