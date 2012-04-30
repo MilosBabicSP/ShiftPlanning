@@ -404,7 +404,7 @@ ShiftPlanningTimeClock.prototype.getTimeSheetsPro = function(){
     params.start_date=startT.toString(cal.dformat);
     params.end_date=endT.toString(cal.dformat);
     
-    spModel.timeclock.get('timeclocks',params,function(){
+    spModel.timeclock.get('timeclocks',params,function(response){
         $('#tc_dts_ul').html($.tmpl($('#te_tc_dts_li'), response.data));
         self.showHideTimeSheetsPro();
     })
