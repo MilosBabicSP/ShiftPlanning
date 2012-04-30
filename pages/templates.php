@@ -847,7 +847,7 @@
         <li class="app_${approved_by}">
             <img width="16" height="16" src="images/tc_sm_clock.png" />
             <span><b>${in_time.day}</b></span>
-            <span>
+            <span class="time">
             <span class="tStart">${in_time.time}-</span>
             <span class="tEnd">${out_time.time}</span>
             <span>${length.hours},${length.mins} min</span>
