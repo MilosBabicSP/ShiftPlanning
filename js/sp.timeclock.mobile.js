@@ -4,6 +4,7 @@ ShiftPlanningTimeClock.prototype.initialize = function(){
         self.overviewEvents();
         self.addClockTimeEvents();
         self.manageTimeSheetsEvents();
+        self.displayTimeSheetsEvents();
     });
 }
 
@@ -169,6 +170,14 @@ ShiftPlanningTimeClock.prototype.addClockTimeEvents = function(){
         e.preventDefault();
         self.saveClockTime(false);
     });
+}
+
+ShiftPlanningTimeClock.prototype.displayTimeSheetsEvents = function(){
+    var self=this;
+}
+
+ShiftPlanningTimeClock.prototype.displayTimeSheetsSubEvents = function (){
+    console.log('Successfully displayed Time Sheets events')
 }
 
 ShiftPlanningTimeClock.prototype.overviewSubEvents = function(){
