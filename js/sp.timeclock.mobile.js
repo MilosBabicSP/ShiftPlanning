@@ -398,6 +398,7 @@ ShiftPlanningTimeClock.prototype.renderDisplayTimeSheets = function(){
       {status: "Eyes Wide Shut", ReleaseYear: "1999"},
       {status: "The Inheritance", ReleaseYear: "1976"}]
     console.log(movies);
+    console.log(sp.timeClock.timeSheetsData);
     $('#tc_dts_ul').html('');
     $('#tc_dts_ul').html($.tmpl($('#te_tc_dts_li'),movies));
 }
