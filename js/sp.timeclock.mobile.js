@@ -179,16 +179,18 @@ ShiftPlanningTimeClock.prototype.displayTimeSheetsEvents = function(){
     })
     $('#tc_dts_tr').bind('change',function(){
         if($(this).val() != '-1'){
-            self.getTimeSheetsPro();
+            self.getMyTimeSheets();
         }
     })
 }
 
 ShiftPlanningTimeClock.prototype.displayTimeSheetsSubEvents = function (){
+    var self=this;
     $('#tc_dts_tr').html(spView.timeRanges());
     
     spModel.timeclock.get('timeclocks',{},function(response){
         $('#tc_dts_ul').html($.tmpl($('#te_tc_dts_li'), response.data));
+        
     })
 }
 
@@ -390,13 +392,16 @@ ShiftPlanningTimeClock.prototype.getTimeSheets = function(){
     });
 }
 
-ShiftPlanningTimeClock.prototype.getTimeSheetsPro = function(){
+ShiftPlanningTimeClock.prototype.getMyTimeSheets = function(){
     var self=this;
     var interval=$('#tc_dts_tr').val();
     var times={}
     var params={}
     
-    times=spRanges.getRange('times', interval);
+    if(interval != "-1"){
+        interval="3"
+        times=spRanges.getRange('times', interval);
+    }
     
     var startT = new Date(times.start_time);
     var endT = new Date(times.end_time);
