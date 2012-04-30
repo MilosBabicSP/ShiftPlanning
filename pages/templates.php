@@ -849,13 +849,13 @@
             <span><b>${in_time.day}</b></span>
             <span class="time">
                 <span class="tStart">${in_time.time}-</span>
-                {{if out_time.time == ""}}
-                    <span class="tPending">Clock Out</span>
-                {{else}}
-                    <span class="tEnd">${out_time.time}</span>
+                {{if out_time.time != ""}}
+                    <span class="tEnd">${out_time.time}</span>                                       
                 {{/if}}
             </span>
-                <span class="last">${length.hours},${length.mins} min</span>           
+            {{if length.hours != "" || length.mins != ""}}
+                <span class="last">${length.hours},${length.mins} min</span>
+            {{/if}}    
         </li>
     </script>
     <script id="te_tc_mts_li" type="text/x-jquery-tmpl">
