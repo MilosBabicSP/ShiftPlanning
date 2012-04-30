@@ -187,10 +187,11 @@ ShiftPlanningTimeClock.prototype.displayTimeSheetsSubEvents = function (){
     $('#tc_dts_tr').html(spView.timeRanges());
     
     spModel.timeclock.get('timeclocks',{},function(response){
-        sp.timeClock.timeSheetsData=response.data;
-        console.log(sp.timeClock.timeSheetsData)
+        $('#tc_dts_ul').html($.tmpl($('#te_tc_dts_li'), response.data));
+        //sp.timeClock.timeSheetsData=response.data;
+        //console.log(sp.timeClock.timeSheetsData)
     })
-    this.renderDisplayTimeSheets();
+    //this.renderDisplayTimeSheets();
 }
 
 ShiftPlanningTimeClock.prototype.overviewSubEvents = function(){
@@ -400,7 +401,7 @@ ShiftPlanningTimeClock.prototype.renderDisplayTimeSheets = function(){
       {status: "The Inheritance", ReleaseYear: "1976"}]
     console.log(movies);
     $('#tc_dts_ul').html('');
-    $('#tc_dts_ul').html($.tmpl($('#te_tc_dts_li'),movies));
+    $('#tc_dts_ul').html($.tmpl($('#te_tc_dts_li'),sp.timeClock.timeSheetsData));
 }
 ShiftPlanningTimeClock.prototype.renderManageTimeSheets = function(data){
     var l = data.length;

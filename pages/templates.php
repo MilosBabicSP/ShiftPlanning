@@ -845,8 +845,17 @@
     </script>
     <script id="te_tc_dts_li" type="text/x-jquery-tmpl">
         <li>
-            <span class="status">${status}</span>
-            Ispisi bilo sta
+            <span class="names">${name}</span>
+            <span class="time">
+                <span class="tStart">${st.time}</span>
+                <img width="16" height="16" src="images/tc_sm_clock.png" />
+                {{if length.total_hours == ""}}
+                    <span class="tPending" user="${user}">Clock Out</span>
+                {{else}}
+                    <span class="tEnd">${out.time}</span>
+                {{/if}}
+            </span>
+            <span class="last">${length.hours}h, ${length.mins}min</span>
         </li>
     </script>
     <script id="te_tc_mts_li" type="text/x-jquery-tmpl">
