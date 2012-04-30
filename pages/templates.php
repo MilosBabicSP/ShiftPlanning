@@ -845,9 +845,10 @@
     </script>
     <script id="te_tc_dts_li" type="text/x-jquery-tmpl">
         <li>
-            <span class="names">${employee.name}</span>
-            <span>${in_time.time}-${in_time.day}:</span>
-            <span>${out_time.time}-${out_time.day}</span>
+            <img width="16" height="16" src="images/tc_sm_clock.png" />
+            <span class="time">${in_time.day}</span>
+            <span class=tStart"">${in_time.time}-</span>
+            <span class="tEnd">${out_time.time}</span>
             <span>${length.hours}:${length.mins} min</span>
         </li>
     </script>
