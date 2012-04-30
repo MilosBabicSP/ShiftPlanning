@@ -499,9 +499,10 @@ function formatted(type){
             var tzf = tz.split(',');
             tzf = tzf[0].split(':');
             var h = parseInt(tzf[0]) * 60*60;
-            var mp = (parseInt(tzf[0]) * 60*60)/Math.abs(parseInt(tzf[0]) * 60*60);
+            var mp = 1; //(parseInt(tzf[0]) * 60*60)/Math.abs(parseInt(tzf[0]) * 60*60);
             var min = (tzf[1] * 60);
-            var d = new Date(ct + czm + (mp * (Math.abs(h) + min)) * 1000);
+	    var d = new Date((ct + czm + (mp * (Math.abs(h) + min)) * 1000) + (0));
+            //var d = new Date((ct + czm + (mp * (Math.abs(h) + min)) * 1000) + (60*60*1000));
             res = d.toString(cal.tstring);
             break;
        default:

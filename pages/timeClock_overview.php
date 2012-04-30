@@ -23,4 +23,7 @@
             <span class="fl"><a href="#" id="tc_ov_sa">Save</a></span>
         </div>
     </div>
+    <div class="additional" id="tc_ov_ad">
+	<p>You cannot Clock in/out from this mobile device. Management has restricte</p>
+    </div>
 </div>
