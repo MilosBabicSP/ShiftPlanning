@@ -183,15 +183,11 @@ ShiftPlanningTimeClock.prototype.displayTimeSheetsEvents = function(){
 }
 
 ShiftPlanningTimeClock.prototype.displayTimeSheetsSubEvents = function (){
-    console.log('Successfully displayed Time Sheets events')
     $('#tc_dts_tr').html(spView.timeRanges());
     
     spModel.timeclock.get('timeclocks',{},function(response){
         $('#tc_dts_ul').html($.tmpl($('#te_tc_dts_li'), response.data));
-        //sp.timeClock.timeSheetsData=response.data;
-        //console.log(sp.timeClock.timeSheetsData)
     })
-    //this.renderDisplayTimeSheets();
 }
 
 ShiftPlanningTimeClock.prototype.overviewSubEvents = function(){

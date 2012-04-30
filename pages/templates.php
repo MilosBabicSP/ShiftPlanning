@@ -847,11 +847,9 @@
         <li>
             <img width="16" height="16" src="images/tc_sm_clock.png" />
             <span class="time">${in_time.day}</span>
-        <li>
-            <span class=tStart"">${in_time.time}-</span>
-            <span class="tEnd">${out_time.time}</span>
+            <span>${in_time.time}-</span>
+            <span >${out_time.time}</span>
             <span>${length.hours}:${length.mins} min</span>
-        </li>
         </li>
     </script>
     <script id="te_tc_mts_li" type="text/x-jquery-tmpl">
