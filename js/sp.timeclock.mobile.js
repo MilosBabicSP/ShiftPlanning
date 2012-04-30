@@ -180,6 +180,14 @@ ShiftPlanningTimeClock.prototype.displayTimeSheetsEvents = function(){
             case '2':
                 $('#tc_dts_ul li').hide();
                 $('#tc_dts_ul').find('li.app_0').show();
+                break;
+            case '1':
+                $('#tc_dts_ul li').hide();
+                $('#tc_dts_ul').not(':not li.app_0').show();
+                break;
+            case '0':
+                $('#tc_dts_ul li').show();
+                break;
         }
     })
     $('#tc_dts_tr').bind('change',function(){
