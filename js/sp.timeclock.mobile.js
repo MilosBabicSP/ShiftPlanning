@@ -175,23 +175,12 @@ ShiftPlanningTimeClock.prototype.addClockTimeEvents = function(){
 ShiftPlanningTimeClock.prototype.displayTimeSheetsEvents = function(){
     var self=this;
     $('#tc_dts_au').bind('change',function(){
-        var sel=$('#tc_dts_au').val();
-        switch(sel){
-            case '2':
-                $('#tc_dts_ul li').hide();
-                $('#tc_dts_ul').find('li.app_0').show();
-                break;
-            case '1':
-                $('#tc_dts_ul li').show();
-                $('#tc_dts_ul').find('li.app_0').hide();
-                break;
-            case '0':
-                $('#tc_dts_ul li').show();
-                break;
-        }
+        self.showHideTimeSheetsPro();
     })
     $('#tc_dts_tr').bind('change',function(){
-        console.log('Changed filter on time ranges selectbox');
+        if($(this).val() != '-1'){
+            self.getTimeSheetsPro();
+        }
     })
 }
 
@@ -401,16 +390,24 @@ ShiftPlanningTimeClock.prototype.getTimeSheets = function(){
     });
 }
 
-ShiftPlanningTimeClock.prototype.renderDisplayTimeSheets = function(){
-    console.log('Usao u render DispTiShee')
-    //test with diff array
-      var movies = [
-      {status: "The Red Violin", ReleaseYear: "1998"},
-      {status: "Eyes Wide Shut", ReleaseYear: "1999"},
-      {status: "The Inheritance", ReleaseYear: "1976"}]
-    console.log(movies);
-    $('#tc_dts_ul').html('');
-    $('#tc_dts_ul').html($.tmpl($('#te_tc_dts_li'),sp.timeClock.timeSheetsData));
+ShiftPlanningTimeClock.prototype.getTimeSheetsPro = function(){
+    var self=this;
+    var interval=$('#tc_dts_tr').val();
+    var times={}
+    var params={}
+    
+    times=spRanges.getRange('times', interval);
+    
+    var startT = new Date(times.start_time);
+    var endT = new Date(times.end_time);
+    
+    params.start_date=startT.toString(cal.dformat);
+    params.end_date=endT.toString(cal.dformat);
+    
+    spModel.timelock.get('timeclocks',params,function(){
+        $('#tc_dts_ul').html($.tmpl($('#te_tc_dts_li'), response.data));
+        self.showHideTimeSheetsPro();
+    })
 }
 ShiftPlanningTimeClock.prototype.renderManageTimeSheets = function(data){
     var l = data.length;
@@ -475,6 +472,22 @@ ShiftPlanningTimeClock.prototype.rItem = function(item){
     return o;
 }
 
+ShiftPlanningTimeClock.prototype.showHideTimeSheetsPro = function (){
+    var sel=$('#tc_dts_au').val();
+    switch(sel){
+        case '2':
+            $('#tc_dts_ul li').hide();
+            $('#tc_dts_ul').find('li.app_0').show();
+            break;
+        case '1':
+            $('#tc_dts_ul li').show();
+            $('#tc_dts_ul').find('li.app_0').hide();
+            break;
+        case '0':
+            $('#tc_dts_ul li').show();
+            break;
+    }    
+}
 
 ShiftPlanningTimeClock.prototype.showHideTimeSheets = function(){
     //$('#tc_mts_slist tr').removeClass('odd');
