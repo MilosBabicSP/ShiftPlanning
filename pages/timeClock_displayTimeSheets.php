@@ -14,6 +14,8 @@
                     </select>
                 </span>
             </div>
+        </li>
+        <li>
             <div>
                 <span class="input">
                     <select id="tc_dts_tr">
