@@ -845,8 +845,10 @@
     </script>
     <script id="te_tc_dts_li" type="text/x-jquery-tmpl">
         <li>
-            <span class="names">${status}</span>
-
+            <span class="names">${employee.name}</span>
+            <span>${in_time.time}-${in_time.day}:</span>
+            <span>${out_time.time}-${out_time.day}</span>
+            <span>${length.hours}:${length.mins} min</span>
         </li>
     </script>
     <script id="te_tc_mts_li" type="text/x-jquery-tmpl">
