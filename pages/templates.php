@@ -853,7 +853,9 @@
                     <span class="tPending">Clock Out</span>
                 {{else}}
                     <span class="tEnd">${out_time.time}</span>
-                    <span class="last">${length.hours},${length.mins} min</span>
+                {{/if}}
+                {{if length.hours != "" && length.mins != ""}}
+                <span class="last">${length.hours},${length.mins} min</span>
                 {{/if}}
             </span>
         </li>
