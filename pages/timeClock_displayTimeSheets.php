@@ -5,7 +5,7 @@
     <ul class="detailsGrid">
         <li>
             <ul>
-                <li>
+                <li class="even">
             <div>
                 <span class="input">
                     <select id="tc_dts_au">
@@ -16,7 +16,7 @@
                 </span>
             </div>
         </li>
-        <li>
+        <li class="odd">
             <div>
                 <span class="input">
                     <select id="tc_dts_tr">
@@ -26,7 +26,7 @@
         </li>
     </ul>
     </ul>
-    <ul id="tc_dts_ul">
+    <ul class="timeSheet" id="tc_dts_ul">
         
     </ul>
 </div>
