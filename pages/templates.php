@@ -843,6 +843,11 @@
             </span>
             <span class="last">${length.hours}h, ${length.mins}min</span></li>
     </script>
+    <script id="te_tc_dts" type="text/x-jquery-tmpl">
+        <li>
+            <span class="status">${status}</span>
+        </li>
+    </script>
     <script id="te_tc_mts_li" type="text/x-jquery-tmpl">
         <div class="title">
             <h3 class="fl">${month}</h3>

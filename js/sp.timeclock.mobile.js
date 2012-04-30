@@ -190,6 +190,7 @@ ShiftPlanningTimeClock.prototype.displayTimeSheetsSubEvents = function (){
         console.log(response.data);
         sp.timeClock.timeSheetsData=response.data;
     })
+    this.renderDisplayTimeSheets();
 }
 
 ShiftPlanningTimeClock.prototype.overviewSubEvents = function(){
@@ -390,6 +391,10 @@ ShiftPlanningTimeClock.prototype.getTimeSheets = function(){
     });
 }
 
+ShiftPlanningTimeClock.prototype.renderDisplayTimeSheets = function(){
+    $('#tc_dts_ul').html('');
+    $('#tc_dts_ul').html($.tmpl('#te_tc_dts_li',sp.timeClock.timeSheetsData));
+}
 ShiftPlanningTimeClock.prototype.renderManageTimeSheets = function(data){
     var l = data.length;
     var res = {};
