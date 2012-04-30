@@ -844,7 +844,7 @@
             <span class="last">${length.hours}h, ${length.mins}min</span></li>
     </script>
     <script id="te_tc_dts_li" type="text/x-jquery-tmpl">
-        <li approved="${approved_by}">
+        <li class="app_${approved_by}">
             <img width="16" height="16" src="images/tc_sm_clock.png" />
             <span><b>${in_time.day}</b></span>
             <span>${in_time.time}-</span>

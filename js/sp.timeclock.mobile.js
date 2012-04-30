@@ -175,7 +175,12 @@ ShiftPlanningTimeClock.prototype.addClockTimeEvents = function(){
 ShiftPlanningTimeClock.prototype.displayTimeSheetsEvents = function(){
     var self=this;
     $('#tc_dts_au').bind('change',function(){
-        console.log('Changed filter in aproved unnaproved selectbox');
+        var sel=$('#tc_dts_au').val();
+        switch(sel){
+            case '2':
+                $('#tc_dts_ul li').hide();
+                $('#tc_dts_ul').find('li.app_0').show();
+        }
     })
     $('#tc_dts_tr').bind('change',function(){
         console.log('Changed filter on time ranges selectbox');
