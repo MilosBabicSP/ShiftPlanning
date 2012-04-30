@@ -175,7 +175,7 @@ ShiftPlanningTimeClock.prototype.overviewSubEvents = function(){
     $('#tc_ov_cf').hide();
     $('#tc_ov_cb span.fr a').hide();
     $('#tc_ov_ss').html(spView.optionSchedules(sp.staff.admin.info.id));
-    
+    console.log('Pozvan overviewSubEvents')
     spModel.timeclock.get('status', {
         details : 1
     }, function(response){
