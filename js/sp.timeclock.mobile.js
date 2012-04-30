@@ -398,11 +398,8 @@ ShiftPlanningTimeClock.prototype.getMyTimeSheets = function(){
     var interval=$('#tc_dts_tr').val();
     var times={}
     var params={}
-    
-    if(interval != "-1"){
-        interval="3"
-        times=spRanges.getRange('times', interval);
-    }
+  
+    times=spRanges.getRange('times', interval);
     
     var startT = new Date(times.start_time);
     var endT = new Date(times.end_time);
