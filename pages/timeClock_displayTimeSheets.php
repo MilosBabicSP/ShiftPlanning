@@ -7,9 +7,9 @@
             <div>
                 <span class="input">
                     <select id="tc_dts_au">
-                        <option value="0" >All</option>
+                        <option value="0" selected="selected">All</option>
                         <option value="1" >Approved</option>
-                        <option value="2" selected="selected">Unapproved</option>
+                        <option value="2" >Unapproved</option>
                     </select>
                 </span>
             </div>

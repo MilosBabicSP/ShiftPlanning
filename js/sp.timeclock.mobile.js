@@ -182,9 +182,8 @@ ShiftPlanningTimeClock.prototype.displayTimeSheetsEvents = function(){
                 $('#tc_dts_ul').find('li.app_0').show();
                 break;
             case '1':
-                $('#tc_dts_ul li').hide();
-                $('#tc_dts_ul').not('li.app_0').show();
-                console.log($('#tc_dts_ul').not('li.app_0'))
+                $('#tc_dts_ul li').show();
+                $('#tc_dts_ul').find('li.app_0').hide();
                 break;
             case '0':
                 $('#tc_dts_ul li').show();
