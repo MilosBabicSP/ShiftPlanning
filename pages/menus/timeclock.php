@@ -11,7 +11,7 @@
             </li>
             <li>
                 <a href="#" subpage="displayTimeSheets" id="tc_dts_sub_button">
-                    <img width="16" height="16" src="images/timeclock_2.png" />
+                    <img width="16" height="16" src="images/timeclock_4.png" />
                 </a>
             </li>            
             <li>
