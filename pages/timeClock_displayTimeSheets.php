@@ -2,8 +2,8 @@
     <div class="title">
         <h3>My Time Sheets</h3>
     </div>
-    <ul>
-        <li class="even">
+    <ul class="detailsGrid">
+        <li>
             <div>
                 <span class="input">
                     <select id="tc_dts_au">
@@ -13,8 +13,6 @@
                     </select>
                 </span>
             </div>
-        </li>
-        <li class="odd">
             <div>
                 <span class="input">
                     <select id="tc_dts_tr">
