@@ -18,6 +18,7 @@ ShiftPlanningStaff.prototype.initialize = function(){
 
 ShiftPlanningStaff.prototype.loadSubPageEvents = function(subpage){
     $('#st_tp_menu').hide();
+    this.listLanguages();
     this[subpage + 'SubEvents']();
 }
 
