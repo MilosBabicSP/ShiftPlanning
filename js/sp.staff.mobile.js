@@ -4,9 +4,13 @@ ShiftPlanningStaff.prototype.initialize = function(){
         if (user.loggedIn == 1){
             self.prepareConfig();
         }
-        $('#lo_b').bind('click', function(){
+        $('#lo_b').bind(clickEvent, function(){
             self.login(); 
         });
+	
+	$('#lo_f .checkbox').bind(clickEvent, function(){
+	    $(this).toggleClass('check');
+	})
         
         self.listEvents();
         self.addStaffEvents();
@@ -259,6 +263,14 @@ ShiftPlanningStaff.prototype.login = function(){
 		    spRanges.fixRanges();
 		    sp.staff.fixed.employees = sp.permissions.fixStaffListing();
 		    sp.raw.config.today.formatted = Date.parse(sp.raw.config.today.formatted).toString(cal.dformat);
+		    if ($('#lo_f .checkbox').hasClass('check')){
+			setCookie('shiftplanning_mobile_rememberme', 1, cookieExpire);
+			setCookie('shiftplanning_mobile_usertoken', loginResponse.token, cookieExpire);
+			setCookie('shiftplanning_mobile_userid', loginResponse.data.employee.id, cookieExpire);
+			setCookie('shiftplanning_mobile_username', user.name, cookieExpire);
+			setCookie('shiftplanning_mobile_usercompany', user.company, cookieExpire);
+			setCookie('shiftplanning_mobile_userphone', user.phone, cookieExpire);
+		    }
                 });
             });
         });
@@ -278,6 +290,7 @@ ShiftPlanningStaff.prototype.logout = function(){
         return false;
     }
     sp.api('staff.logout', 'GET', {}, function(response){
+	setCookie('shiftplanning_mobile_rememberme', 0, cookieExpire);
         window.location.reload();
     }, function(response){
         sp.showError(response.error);

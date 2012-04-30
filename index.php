@@ -3,6 +3,15 @@ require_once('config.php');
 require_once('api.php');
 require_once('functions.php');
 //$api = new api(null, null, true);
+
+if (Functions::getInstance()->isRememberMe()){
+    $_SESSION['api']['token']		    = Functions::getInstance()->getCookie('shiftplanning_mobile_usertoken');
+    $_SESSION['user']['employee']['name']   = Functions::getInstance()->getCookie('shiftplanning_mobile_username');
+    $_SESSION['user']['employee']['id']	    = Functions::getInstance()->getCookie('shiftplanning_mobile_userid');
+    $_SESSION['user']['business']['name']   = Functions::getInstance()->getCookie('shiftplanning_mobile_usercompany');
+    $_SESSION['user']['business']['phone']  = Functions::getInstance()->getCookie('shiftplanning_mobile_userphone');
+}
+
 ?>
 <!DOCTYPE html>
 <html style="height:100%;">
@@ -18,6 +27,19 @@ require_once('functions.php');
 	
 	<link rel="shortcut icon" href="http://cdn.shiftplanning.com/app/layout/1/images/favicon.ico" type="image/x-icon" id="favicon">
 	<link rel="apple-touch-startup-image" href="images/default.png" />
+	
+	<link rel="apple-touch-startup-image" href="images/sc/x320.png" media="screen and (max-device-width: 320px)" />
+	<link rel="apple-touch-startup-image" media="(max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2)" href="images/sc/x640.png" />
+
+	<!-- For iPhone with high-resolution Retina display: -->
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/sc/x114.png">
+	<!-- For first- and second-generation iPad: -->
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/sc/x72.png">
+	<!-- For non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+	<link rel="apple-touch-icon-precomposed" href="images/sc/x57.png">
+	
+	
+	
         <script src="js/sp.user.js" type="text/javascript"></script>
         <script type="text/javascript">
 <?
@@ -63,6 +85,7 @@ if ($vtoken['data'] != '1') {
 
         <!-- Plugins -->
         <script src="js/plugins/date.js" type="text/javascript"></script>
+	<script src="js/plugins/cookie.js" type="text/javascript"></script>
         <script src="js/plugins/sp.cache.js" type="text/javascript"></script>
         <script src="js/schedule/date.js" type="text/javascript"></script>
         <script src="js/schedule/date.extras.js" type="text/javascript"></script>
@@ -156,6 +179,9 @@ if ($vtoken['data'] != '1') {
                         <div class="holder">
                             <input type="password" name="password" id="lo_p"/>
                         </div>
+			<div class="rButton">
+			    <span class="checkbox fl <?php echo (Functions::getInstance()->isRememberMe()) ? 'check' : ''?>">Remember me?</span>
+			</div>
                         <button id="lo_b">Login</button>
                     </form>
                     <div class="footerTxt">View in: Mobile | <a href="/app/?fullapp=true">Full Version</a><br/>

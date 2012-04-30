@@ -258,7 +258,7 @@ ul.requests li a {position:absolute; top:50%; right:0; margin:-15px 0 0;}
 .login label {display:block; line-height:20px; margin:15px 0 10px;}
 .login .holder {background-color:#F6F6F6; border:1px solid #999997; color:#920000; font-size:14px; padding:10px 0;}
 .login input {background-color:transparent; border:none; text-align:center; width:100%;}
-.login button {font-family:"Arial", sans-serif; background:-webkit-gradient(linear, left top, left bottom, from(#ac2929), to(#982121)); background-image: -moz-linear-gradient(top,#ac2929, #982121);margin:30px 0; font-size:17px; border: 1px solid #610000; color: #fff; line-height:40px; text-align:center; text-shadow:1px 1px 1px rgba(0, 0, 0, 0.9); width: 100%;}
+.login button {font-family:"Arial", sans-serif; background:-webkit-gradient(linear, left top, left bottom, from(#ac2929), to(#982121)); background-image: -moz-linear-gradient(top,#ac2929, #982121);margin:20px 0; font-size:17px; border: 1px solid #610000; color: #fff; line-height:40px; text-align:center; text-shadow:1px 1px 1px rgba(0, 0, 0, 0.9); width: 100%;}
 .login td {vertical-align: middle;}
 
 .login .loginForm {overflow: hidden; padding:0 10px;}
@@ -305,6 +305,7 @@ body {display:none;}
 .notPublished {border: 1px solid #FF8800 !important; background: url(../images/warning.png) scroll no-repeat 98% 50%;}
 #da_in_me .additional {padding:15px 20px !important;}
 .noBorder {border:none !important;}
+#lo_f .rButton {margin-top:10px;}
 
 /*failsafe*/
 .checkbox.failsafe {line-height:15px;}
