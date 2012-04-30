@@ -394,7 +394,7 @@ ShiftPlanningTimeClock.prototype.getMyTimeSheets = function(){
     var params={}
     
     if(interval != "-1"){
-        interval="3"
+        interval=3
         times=spRanges.getRange('times', interval);
     }
     
