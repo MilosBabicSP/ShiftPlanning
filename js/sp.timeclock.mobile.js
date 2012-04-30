@@ -171,11 +171,17 @@ ShiftPlanningTimeClock.prototype.addClockTimeEvents = function(){
     });
 }
 
+ShiftplannigTimeClock.prototype.getTimeClocks = function(status,start_date,end_date){
+    
+}
+//Method for filtering timeclock bsed on date and status
 ShiftPlanningTimeClock.prototype.overviewSubEvents = function(){
     $('#tc_ov_cf').hide();
     $('#tc_ov_cb span.fr a').hide();
     $('#tc_ov_ss').html(spView.optionSchedules(sp.staff.admin.info.id));
     console.log('Pozvan overviewSubEvents')
+    
+    this.getTimeClocks();//Method for filtering timeclock bsed on date and status
     spModel.timeclock.get('status', {
         details : 1
     }, function(response){
