@@ -67,6 +67,7 @@ ShiftPlanning.prototype.loadSubPage = function(obj, page, subpage){
         obj.parent().parent().find('li').removeClass('active');
         obj.parent().addClass('active');
     }
+    sp.staff.listLanguages();//call only if click on subPage    
     $('.subNavigation > div').hide();
     $('.subNavigation > div.' + page).show();
     
