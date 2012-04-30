@@ -843,7 +843,7 @@
             </span>
             <span class="last">${length.hours}h, ${length.mins}min</span></li>
     </script>
-    <script id="te_tc_dts" type="text/x-jquery-tmpl">
+    <script id="te_tc_dts_li" type="text/x-jquery-tmpl">
         <li>
             <span class="status">${status}</span>
         </li>
