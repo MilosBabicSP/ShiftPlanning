@@ -855,10 +855,7 @@
                     <span class="tEnd">${out_time.time}</span>
                 {{/if}}
             </span>
-                {{if length.hours != "" || length.mins != ""}} 
-                <span class="last">${length.hours},${length.mins} min</span>
-                {{/if}}
-           
+                <span class="last">${length.hours},${length.mins} min</span>           
         </li>
     </script>
     <script id="te_tc_mts_li" type="text/x-jquery-tmpl">
