@@ -24,6 +24,6 @@
         </div>
     </div>
     <div class="additional" id="tc_ov_ad">
-	<p>You cannot Clock in/out from this mobile device. Management has restricte</p>
+	<p>You cannot Clock in/out from this mobile device. Management has restricted clock time to specific locations.</p>
     </div>
 </div>
