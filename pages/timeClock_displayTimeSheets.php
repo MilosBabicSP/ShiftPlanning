@@ -2,7 +2,7 @@
     <div class="title">
         <h3>My Time Sheets</h3>
     </div>
-    <ul class="detailsGrid">
+    <ul>
         <li class="even">
             <div>
                 <span class="input">
