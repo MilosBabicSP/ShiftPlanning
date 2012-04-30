@@ -393,7 +393,7 @@ ShiftPlanningTimeClock.prototype.getTimeSheets = function(){
 ShiftPlanningTimeClock.prototype.renderDisplayTimeSheets = function(){
     console.log('Usao u render DispTiShee')
     $('#tc_dts_ul').html('');
-    $('#tc_dts_ul').html($.tmpl($('#te_tc_dts_li'),sp.timeClock.timeSheetsData));
+    $('#tc_dts_ul').tmpl($('#te_tc_dts_li'),sp.timeClock.timeSheetsData);
 }
 ShiftPlanningTimeClock.prototype.renderManageTimeSheets = function(data){
     var l = data.length;
