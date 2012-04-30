@@ -174,10 +174,17 @@ ShiftPlanningTimeClock.prototype.addClockTimeEvents = function(){
 
 ShiftPlanningTimeClock.prototype.displayTimeSheetsEvents = function(){
     var self=this;
+    $('#tc_dts_au').bind('change',function(){
+        console.log('Changed filter in aproved unnaproved selectbox');
+    })
+    $('#tc_dts_tr').bind('change',function(){
+        console.log('Changed filter on time ranges selectbox');
+    })
 }
 
 ShiftPlanningTimeClock.prototype.displayTimeSheetsSubEvents = function (){
     console.log('Successfully displayed Time Sheets events')
+    $('#tc_dts_tr').html(spView.timeRanges());
 }
 
 ShiftPlanningTimeClock.prototype.overviewSubEvents = function(){
