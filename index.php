@@ -259,6 +259,7 @@ if ($vtoken['data'] != '1') {
                         <?php Functions::getInstance()->loadFile('timeClock_overview'); ?>
                         <?php Functions::getInstance()->loadFile('timeClock_addClockTime'); ?>
                         <?php Functions::getInstance()->loadFile('timeClock_manageTimeSheets'); ?>
+                        <?php Functions::getInstance()->loadFile('timeClock_displayTimeSheets'); ?>
                         <div class="main displayTimeClock" id="tc_dtc">
                             
                         </div>

@@ -843,6 +843,17 @@
             </span>
             <span class="last">${length.hours}h, ${length.mins}min</span></li>
     </script>
+    <script id="te_tc_dts_li" type="text/x-jquery-tmpl">
+        <li class="app_${approved_by}">
+            <img width="16" height="16" src="images/tc_sm_clock.png" />
+            <span><b>${in_time.day}</b></span>
+            <span class="time">
+            <span class="tStart">${in_time.time}-</span>
+            <span class="tEnd">${out_time.time}</span>
+            <span>${length.hours},${length.mins} min</span>
+            </span>
+        </li>
+    </script>
     <script id="te_tc_mts_li" type="text/x-jquery-tmpl">
         <div class="title">
             <h3 class="fl">${month}</h3>
