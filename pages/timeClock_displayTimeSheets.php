@@ -4,7 +4,7 @@
     </div>
     <ul class="detailsGrid">
         <ul>
-        <li>
+            <li class="even">
             <div>
                 <span class="input">
                     <select id="tc_dts_au">
@@ -17,7 +17,7 @@
         </li>
         </ul>
         <ul>
-        <li>
+            <li class="odd">
             <div>
                 <span class="input">
                     <select id="tc_dts_tr">
