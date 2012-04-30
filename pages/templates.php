@@ -844,12 +844,12 @@
             <span class="last">${length.hours}h, ${length.mins}min</span></li>
     </script>
     <script id="te_tc_dts_li" type="text/x-jquery-tmpl">
-        <li>
+        <li class="s_{{if allroved_by==0} 0}">
             <img width="16" height="16" src="images/tc_sm_clock.png" />
-            <span class="time">${in_time.day}</span>
+            <span><b>${in_time.day}</b></span>
             <span>${in_time.time}-</span>
-            <span >${out_time.time}</span>
-            <span>${length.hours}:${length.mins} min</span>
+            <span>${out_time.time}</span>
+            <span>${length.hours},${length.mins} min</span>
         </li>
     </script>
     <script id="te_tc_mts_li" type="text/x-jquery-tmpl">
