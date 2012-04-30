@@ -394,9 +394,10 @@ ShiftPlanningTimeClock.prototype.renderDisplayTimeSheets = function(){
     console.log('Usao u render DispTiShee')
     //test with diff array
       var movies = [
-      { status: "The Red Violin", ReleaseYear: "1998" },
-      { status: "Eyes Wide Shut", ReleaseYear: "1999" },
-      { status: "The Inheritance", ReleaseYear: "1976" }]
+      {status: "The Red Violin", ReleaseYear: "1998"},
+      {status: "Eyes Wide Shut", ReleaseYear: "1999"},
+      {status: "The Inheritance", ReleaseYear: "1976"}]
+    console.log(movies);
     $('#tc_dts_ul').html('');
     $('#tc_dts_ul').html($.tmpl($('#te_tc_dts_li'),movies));
 }
