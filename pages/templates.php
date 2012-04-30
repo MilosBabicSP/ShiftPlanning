@@ -846,6 +846,7 @@
     <script id="te_tc_dts_li" type="text/x-jquery-tmpl">
         <li>
             <span class="status">${status}</span>
+            Ispisi bilo sta
         </li>
     </script>
     <script id="te_tc_mts_li" type="text/x-jquery-tmpl">
