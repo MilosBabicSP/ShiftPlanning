@@ -849,7 +849,11 @@
             <span><b>${in_time.day}</b></span>
             <span class="time">
             <span class="tStart">${in_time.time}-</span>
+            {{if out_time == ""}}
+            <span class="tPending">Clock Out</span>
+            {{else}}
             <span class="tEnd">${out_time.time}</span>
+            {{/if}}
             <span>${length.hours},${length.mins} min</span>
             </span>
         </li>
