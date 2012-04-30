@@ -131,14 +131,6 @@ ShiftPlanningStaff.prototype.fastAssignmentSubEvents = function(){
     $('#st_fa_po').hide();
     $('#st_fa_sk').hide();
 }
-//Render select box
-ShiftPlanningStaff.prototype.listLanguages = function (){
-    var result='<option  value="none">Select Language</option>'
-    $.each(sp.raw.config.languages,function(key,value){
-        result+='<option value="'+value['code']+'">'+value['name']+'</option>'
-    })
-    $('#da_se_ed_lang').html(result);
-}
 
 //Functions
 ShiftPlanningStaff.prototype.displayEmployee = function(id){
@@ -228,7 +220,6 @@ ShiftPlanningStaff.prototype.login = function(){
         password: p
     }, function(loginResponse){
         sp.staff.admin.info = loginResponse.data.employee;
-//      sp.staff.data.language=loginResponse.data.employee.language;    //If language exist as property uncomment
         var calls = [
         ['staff.employees','GET', {}],
         ['schedule.schedules','GET', {

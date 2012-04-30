@@ -514,7 +514,7 @@ ShiftPlanningDashboard.prototype.prepareEditDetails = function(employee){
     });
     
     employee = p;
-    
+    this.listLanguages();
     //this page needs to be cached after first load and to be reprepared if data are changed
     $('#da_se_ed_na').val(employee.name);
     $('#da_se_ed_em').val(employee.email);
@@ -696,6 +696,15 @@ ShiftPlanningDashboard.prototype.updateUser = function(id, res, over){
     
     
     sp.showSuccess(_s('Selected user updated.'));
+}
+
+//Render select box
+ShiftPlanningDashboard.prototype.listLanguages = function (){
+    var result='<option  value="none">Select Language</option>'
+    $.each(sp.raw.config.languages,function(key,value){
+        result+='<option value="'+value['code']+'">'+value['name']+'</option>'
+    })
+    $('#da_se_ed_lang').html(result);
 }
 
 ShiftPlanningDashboard.prototype.updateNotes = function(text){
