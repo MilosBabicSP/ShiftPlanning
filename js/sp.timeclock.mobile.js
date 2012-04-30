@@ -186,7 +186,7 @@ ShiftPlanningTimeClock.prototype.displayTimeSheetsSubEvents = function (){
     console.log('Successfully displayed Time Sheets events')
     $('#tc_dts_tr').html(spView.timeRanges());
     
-    spModel.timecloc.get('timeclocks',{},function(response){
+    spModel.timeclock.get('timeclocks',{},function(response){
         console.log(response);
     })
 }
