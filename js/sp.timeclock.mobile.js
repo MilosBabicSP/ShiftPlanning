@@ -187,7 +187,6 @@ ShiftPlanningTimeClock.prototype.displayTimeSheetsSubEvents = function (){
     $('#tc_dts_tr').html(spView.timeRanges());
     
     spModel.timeclock.get('timeclocks',{},function(response){
-        console.log(response.data);
         sp.timeClock.timeSheetsData=response.data;
     })
     this.renderDisplayTimeSheets();
@@ -392,6 +391,7 @@ ShiftPlanningTimeClock.prototype.getTimeSheets = function(){
 }
 
 ShiftPlanningTimeClock.prototype.renderDisplayTimeSheets = function(){
+    console.log('Usao u render DispTiShee')
     $('#tc_dts_ul').html('');
     $('#tc_dts_ul').html($.tmpl('#te_tc_dts_li',sp.timeClock.timeSheetsData));
 }
