@@ -3,8 +3,8 @@
         <h3>My Time Sheets</h3>
     </div>
     <ul class="detailsGrid">
+        <ul>
         <li>
-
             <div>
                 <span class="input">
                     <select id="tc_dts_au">
@@ -15,6 +15,8 @@
                 </span>
             </div>
         </li>
+        </ul>
+        <ul>
         <li>
             <div>
                 <span class="input">
@@ -23,5 +25,6 @@
                 </span>
             </div>   
         </li>
+        </ul>
     </ul>    
 </div>
