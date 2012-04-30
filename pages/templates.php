@@ -845,7 +845,7 @@
     </script>
     <script id="te_tc_dts_li" type="text/x-jquery-tmpl">
         <li>
-            <span class="names">${name}</span>
+            <span class="names">${status}</span>
             <span class="time">
                 <span class="tStart">${st.time}</span>
                 <img width="16" height="16" src="images/tc_sm_clock.png" />
