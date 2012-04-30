@@ -4,6 +4,8 @@
     </div>
     <ul class="detailsGrid">
         <li>
+            <ul>
+                <li>
             <div>
                 <span class="input">
                     <select id="tc_dts_au">
@@ -22,6 +24,7 @@
                 </span>
             </div>   
         </li>
+    </ul>
     </ul>
     <ul id="tc_dts_ul">
         
