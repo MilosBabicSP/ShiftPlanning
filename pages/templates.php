@@ -848,13 +848,13 @@
             <img width="16" height="16" src="images/tc_sm_clock.png" />
             <span><b>${in_time.day}</b></span>
             <span class="time">
-            <span class="tStart">${in_time.time}-</span>
-            {{if out_time.time == ""}}
-            <span class="tPending">Clock Out</span>
-            {{else}}
-            <span class="tEnd">${out_time.time}</span>
-            <span>${length.hours},${length.mins} min</span>
-            {{/if}}
+                <span class="tStart">${in_time.time}-</span>
+                {{if out_time.time == ""}}
+                    <span class="tPending">Clock Out</span>
+                {{else}}
+                    <span class="tEnd">${out_time.time}</span>
+                    <span class="last">${length.hours},${length.mins} min</span>
+                {{/if}}
             </span>
         </li>
     </script>
