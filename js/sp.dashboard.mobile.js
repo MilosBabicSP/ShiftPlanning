@@ -436,6 +436,9 @@ ShiftPlanningDashboard.prototype.settingsSubEvents = function(employee){
 
     ShiftPlanningDashboard.prototype.whosonnowSubEvents = function(){
         console.log('Whosonnow SubEvents')
+        spModel.dashboard.get('shifts', {mode:'onnow'}, function(response){
+            console.log(response.data);
+        })
     }
 
 //functions
