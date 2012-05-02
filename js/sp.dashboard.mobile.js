@@ -5,6 +5,7 @@ ShiftPlanningDashboard.prototype.initialize = function(){
 	self.inboxEvents();
 	self.settingsEvents();
 	self.upcomingShiftsEvents();
+        self.whosonnowEvents();
     });
 }
 
@@ -323,6 +324,9 @@ ShiftPlanningDashboard.prototype.settingsEvents = function(){
     })
 }
 
+ShiftPlanningDashboard.prototype.whosonnowEvents = function(){
+    console.log('WhosonnowEvents SubPage binding events')
+}
 
 //sub page events
 ShiftPlanningDashboard.prototype.wallSubEvents = function(){

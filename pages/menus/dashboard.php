@@ -15,6 +15,11 @@
                 </a>
             </li>
             <li>
+                <a href="#" subpage="whosonnow">
+                    <img width="16" height="16" src="images/Dashboard_Home16x16.png" />
+                </a>
+            </li>            
+            <li>
                 <a href="#" subpage="inbox">
                     <img width="16" height="16" src="images/Dashboard_Inbox16x16.png" />
                 </a>
