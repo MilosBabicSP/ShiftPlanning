@@ -419,14 +419,11 @@ ShiftPlanningDashboard.prototype.settingsSubEvents = function(employee){
 	$('#da_se_ov_aa .button').show();
     }
     
-    ShiftPlanningDashboard.prototype.whosonnowSubEvents = function () {
-        console.log('Whosonnow SubEvents')
-    }
+
 
 
     
     
-
     //prefill
     self.prefillOverview(employee);
     self.prepareEditDetails(employee);
@@ -436,6 +433,10 @@ ShiftPlanningDashboard.prototype.settingsSubEvents = function(employee){
     
     sp.fixCheckboxes();
 }
+
+    ShiftPlanningDashboard.prototype.whosonnowSubEvents = function(){
+        console.log('Whosonnow SubEvents')
+    }
 
 //functions
 ShiftPlanningDashboard.prototype.prefillOverview = function(employee){
