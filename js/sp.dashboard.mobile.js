@@ -23,6 +23,8 @@ ShiftPlanningDashboard.prototype.loadSubPageEvents = function(subpage){
 	case 'settings':
 	    this.settingsSubEvents();
 	    break;
+        case 'whosonnow':
+            this.whosonnowSubEvents();
 	case 'logout':
 	    sp.staff.logout();
 	    break;
@@ -325,7 +327,7 @@ ShiftPlanningDashboard.prototype.settingsEvents = function(){
 }
 
 ShiftPlanningDashboard.prototype.whosonnowEvents = function(){
-    console.log('WhosonnowEvents SubPage binding events')
+    console.log('WhosonnowEvents binding events')
 }
 
 //sub page events
@@ -414,6 +416,9 @@ ShiftPlanningDashboard.prototype.settingsSubEvents = function(employee){
 	$('#da_se_ov_aa .button').hide();
     } else {
 	$('#da_se_ov_aa .button').show();
+    }
+    ShiftPlanningDashboard.prototype.whosonnowSubEvents = function () {
+        console.log('Whosonnow SubEvents')
     }
 
 
