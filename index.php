@@ -232,6 +232,7 @@ if ($vtoken['data'] != '1') {
                         <?php Functions::getInstance()->loadFile('dashboard_upcomingShifts'); ?>
                         <?php Functions::getInstance()->loadFile('dashboard_inbox') ?>
                         <?php Functions::getInstance()->loadFile('dashboard_settings'); ?>
+                        <?php Functions::getInstance()->loadFile('dashboard_whosonnow'); ?>
                     </div>
                     <div class="timeClock" id="timeClock">
                         <div class="subLevel mainSub displayTimeClock">

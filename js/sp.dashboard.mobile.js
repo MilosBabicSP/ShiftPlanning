@@ -29,6 +29,9 @@ ShiftPlanningDashboard.prototype.loadSubPageEvents = function(subpage){
 	case 'logout':
 	    sp.staff.logout();
 	    break;
+        case 'pingUser':
+            this.pingUser();
+            break;
     }
 }
 
@@ -328,7 +331,19 @@ ShiftPlanningDashboard.prototype.settingsEvents = function(){
 }
 
 ShiftPlanningDashboard.prototype.whosonnowEvents = function(){
-    console.log('WhosonnowEvents binding events')
+    var self=this;
+    
+    $('#da_wo .timeSheet').delegate('a.fr','click',function(e){
+        e.preventDefault();
+        self.pingID = $(this).attr('userID')
+        sp.loadSubPage('', 'dashboard', 'pingUser');
+    })
+    
+    $('#pingUser .backMenu').bind('click',function(e){
+        e.preventDefault();
+        console.log('Back Menu')
+        $('.subNavigation .dashboard li.active a').trigger('click');
+    })
 }
 
 //sub page events
@@ -435,10 +450,10 @@ ShiftPlanningDashboard.prototype.settingsSubEvents = function(employee){
 }
 
     ShiftPlanningDashboard.prototype.whosonnowSubEvents = function(){
-        console.log('Whosonnow SubEvents')
-        spModel.schedule.get('shifts', {mode:'onnow'}, function(response){
-            console.log(response.data);
-        })
+        $('#wrapper > .subNavigation').show();
+        $('#da_wo').show();
+        $('#pingUser').hide();
+        this.getWhosOn();        
     }
 
 //functions
@@ -565,6 +580,44 @@ ShiftPlanningDashboard.prototype.prepareEditDetails = function(employee){
 ShiftPlanningDashboard.prototype.preparePasswordField = function(){
     $('#da_se_pa_np').val('');
     $('#da_se_pa_cp').val('');
+}
+
+ShiftPlanningDashboard.prototype.getWhosOn = function () {
+    var data = [];
+    
+    spModel.schedule.get('shifts', {
+        mode:'onnow'
+    }, function(response){
+        if(response.data.length==0){
+            $('#da_wo_li').html('No one is scheduled to work right now.')
+        }
+        $.each(response.data, function(key,value){
+            if( typeof value.employees != 'undefined' && value.employees != null){
+                $.each(value.employees, function(i,item){
+                    var d={
+                        userID:item.id,
+                        avatar:sp.getAvatar(item.id),
+                        name:item.name,
+                        position:value.schedule_name,
+                        start_time:value.start_time.time,
+                        end_time:value.end_time.time
+                    }
+                    data.push(d)                        
+                })
+
+            }
+        })
+        $('#da_wo_li').html($.tmpl($('#te_da_onnow'),data));
+    })    
+}
+//
+ShiftPlanningDashboard.prototype.pingUser = function() {
+    $('#da_wo').hide();
+    $('#wrapper > .subNavigation').hide();
+    $('#pingUser').show();
+    $('#pingUser').html($.tmpl($('#te_da_ping'),[{name:'test'}]));
+    
+    console.log(this.pingID);
 }
 
 ShiftPlanningDashboard.prototype.sendMessage = function(){

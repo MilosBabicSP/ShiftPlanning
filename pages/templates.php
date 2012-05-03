@@ -769,6 +769,70 @@
                 {{/if}}
             </span>
         </li>
+        <script id="te_da_ping" type="text/x-jquery-tmpl">
+        <div class="title">
+            <div>
+                <img width="30" height="30" src="" />
+                <span>${name}</span>
+               
+            </div>
+        </div>
+        <ul class="multiInput">
+            <li class="even">
+                <div>
+                    <label>Eid</label>
+                    <b></b>
+                </div>
+            </li>
+            <li class="odd">
+                <div>
+                    <label>Ratecard</label>
+                    <b></b>
+                </div>
+            </li>
+            <li class="even">
+                <div>
+                    <label>Regular</label>
+                    <b></b>
+                </div>
+            </li>
+            <li class="odd">
+                <div>
+                    <label>Special</label>
+                    <b></b>
+                </div>
+            </li>
+            <li class="even">
+                <div>
+                    <label>Overtime</label>
+                    <b></b>
+                </div>
+            </li>
+            <li class="odd">
+                <div>
+                    <label>Total</label>
+                    <b></b>
+                </div>
+            </li>
+            <li class="even">
+                <div>
+                    <label>Cost</label>
+                    <b><span class="currency">$</span></b>
+                </div>
+            </li>
+        </ul>
+    </script>
+    </script>
+        <script id="te_da_onnow" type="text/x-jquery-tmpl">
+        <li>
+            <a href="#" class="fr" userID="${userID}"><img width="43" height="30" src="images/NextMenu.png"></a>
+            
+                <img width="30" height="30" src="${avatar}">
+                <span class="twoLine">
+                ${name}<br/>
+                ${position} &raquo; ${start_time} - ${end_time}
+            </span>
+        </li>
     </script>
     <script id="te_st_list" type="text/x-jquery-tmpl">
         <li staffId="${id}">
@@ -853,8 +917,10 @@
                     <span class="tEnd">${out_time.time}</span>                                       
                 {{/if}}
             </span>
-            {{if length.hours != "" || length.mins != ""}}
-                <span class="last">${length.hours},${length.mins} min</span>
+            {{if length.hours != ""}}
+                <span class="last">${length.hours}h ${length.mins} min</span>
+                {{else}}
+                <span class="last">${length.mins} min</span>
             {{/if}}    
         </li>
     </script>
