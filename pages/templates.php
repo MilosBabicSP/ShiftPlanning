@@ -919,7 +919,7 @@
             </span>
             {{if length.hours != ""}}
                 <span class="last">${length.hours}h ${length.mins} min</span>
-                {{else}}{{if && length.mins != ""}}
+                {{else}}{{if length.mins != ""}}
                 <span class="last">${length.mins} min</span>
                 {{/if}}
             {{/if}}    
