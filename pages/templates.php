@@ -917,7 +917,7 @@
                     <span class="tEnd">${out_time.time}</span>                                       
                 {{/if}}
             </span>
-            {{if length.hours != ""}}
+            {{if length.hours != "" || length.mins != ""}}
                 <span class="last">${length.hours}h ${length.mins} min</span>
                 {{else}}
                 <span class="last">${length.mins} min</span>
