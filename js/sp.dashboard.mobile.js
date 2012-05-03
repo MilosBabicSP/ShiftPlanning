@@ -622,7 +622,7 @@ ShiftPlanningDashboard.prototype.pingUser = function(data) {
     $('#da_who_ping').html($.tmpl($('#te_da_ping'),employee));
     
     //binding ping actions
-    $('#da_who_tmpl div.tmp').bind(clickEvent,function(){
+    $('#da_who_tmpl div.title1').bind(clickEvent,function(){
         $('#da_who_txt').val($(this).find('span').html())
     })
     $('#da_who_send').bind(clickEvent,function(e){

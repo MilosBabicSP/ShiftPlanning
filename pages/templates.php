@@ -781,26 +781,26 @@
         </span>
         </br>
         <div id="da_who_tmpl">
-            <div class="tmp">
+            <div class="title1 regular wide">
             Late:
             <span>You're late for a shift. Please contact us right away. 888-973-6030</span>
         </div>
-        -- 
-        <div class="tmp">
+
+        <div class="title1 regular wide">
             P. Contact:
             <span>Please contact ${name} right away. </span>
         </div>
-        -- 
-        <div class="tmp">
+
+        <div class="title1 regular wide">
             B. Contact:
             <span>Please contact ShiftPlanning Inc. right away. 888-973-6030</span>
         </div>
-        -- 
-        <div class="tmp">
+
+        <div class="title1 regular wide">
             Birthday:
             <span>Happy Birthday from everyone at ShiftPlanning Inc.</span>
         </div>
-        --
+
         <div class="title">
             <span class="fr">
                 <a id="da_who_send" href="#">
