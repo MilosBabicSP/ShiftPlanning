@@ -333,14 +333,15 @@ ShiftPlanningDashboard.prototype.settingsEvents = function(){
 ShiftPlanningDashboard.prototype.whosonnowEvents = function(){
     var self=this;
     
-    $('#da_wo .timeSheet').delegate('a.fr','click',function(e){
+    $('#da_wo .timeSheet').delegate('a.fr',clickEvent,function(e){
         e.preventDefault();
         self.pingID = $(this).attr('userID')
         sp.loadSubPage('', 'dashboard', 'pingUser');
     })
-    $('#pingUser .backMenu').bind('click',function(e){
+    $('#pingUser .backMenu').bind(clickEvent,function(e){
         e.preventDefault();
-        console.log('Back Menu')
+        $('#da_who_tmpl div').unbind(clickEvent);
+        $('#da_who_send').unbind(clickEvent);
         $('.subNavigation .dashboard li.active a').trigger('click');
     })
 }
@@ -609,10 +610,30 @@ ShiftPlanningDashboard.prototype.getWhosOn = function () {
 }
 //
 ShiftPlanningDashboard.prototype.pingUser = function() {
+    var self=this;
     $('#wrapper > .subNavigation').hide();
-    $('.subLevel mainSub pingUser').show();
-    $('.ping content').show();
-    console.log(this.pingID);
+    var employee=sp.staff.data.employees[this.pingID];
+    console.log(employee)
+    $('#da_who_ping').html($.tmpl($('#te_da_ping'),employee));
+    
+    //binding ping actions
+    $('#da_who_tmpl div.tmp').bind(clickEvent,function(){
+        $('#da_who_txt').val($(this).find('span').html())
+    })
+    $('#da_who_send').bind(clickEvent,function(e){
+        e.preventDefault();
+        self.sendPingMessage()
+    })
+}
+
+ShiftPlanningDashboard.prototype.sendPingMessage = function(){
+    var txt=$('#da_who_txt').val();
+    console.log(txt,this.pingID)
+    spModel.staff.create('ping',{to:this.pingID,message:txt},function(response){
+        console.log(response)
+        sp.showSuccess('Ping sent to user');
+        setTimeout(function(){$('#pingUser .backMenu').trigger('click')},3000)
+    })
 }
 
 ShiftPlanningDashboard.prototype.sendMessage = function(){

@@ -769,58 +769,45 @@
                 {{/if}}
             </span>
         </li>
-        <script id="te_da_ping" type="text/x-jquery-tmpl">
+    </script>
+    <script id="te_da_ping" type="text/x-jquery-tmpl">
         <div class="title">
             <div>
-                <img width="30" height="30" src="" />
-                <span>${name}</span>
-               
+                <span>Ping ${name} via Email & SMS</span>
             </div>
         </div>
-        <ul class="multiInput">
-            <li class="even">
-                <div>
-                    <label>Eid</label>
-                    <b></b>
-                </div>
-            </li>
-            <li class="odd">
-                <div>
-                    <label>Ratecard</label>
-                    <b></b>
-                </div>
-            </li>
-            <li class="even">
-                <div>
-                    <label>Regular</label>
-                    <b></b>
-                </div>
-            </li>
-            <li class="odd">
-                <div>
-                    <label>Special</label>
-                    <b></b>
-                </div>
-            </li>
-            <li class="even">
-                <div>
-                    <label>Overtime</label>
-                    <b></b>
-                </div>
-            </li>
-            <li class="odd">
-                <div>
-                    <label>Total</label>
-                    <b></b>
-                </div>
-            </li>
-            <li class="even">
-                <div>
-                    <label>Cost</label>
-                    <b><span class="currency">$</span></b>
-                </div>
-            </li>
-        </ul>
+        <span class="input" >
+            <textarea id="da_who_txt" maxlength=140></textarea>
+        </span>
+        </br>
+        <div id="da_who_tmpl">
+            <div class="tmp">
+            Late:
+            <span>You're late for a shift. Please contact us right away. 888-973-6030</span>
+        </div>
+        -- 
+        <div class="tmp">
+            P. Contact:
+            <span>Please contact ${name} right away. </span>
+        </div>
+        -- 
+        <div class="tmp">
+            B. Contact:
+            <span>Please contact ShiftPlanning Inc. right away. 888-973-6030</span>
+        </div>
+        -- 
+        <div class="tmp">
+            Birthday:
+            <span>Happy Birthday from everyone at ShiftPlanning Inc.</span>
+        </div>
+        <div class="title">
+            <span class="fr">
+                <a id="da_who_send" href="#">
+                    <span>Send Ping</span>
+                </a>
+            </span>
+        </div>
+        </div>
     </script>
     </script>
         <script id="te_da_onnow" type="text/x-jquery-tmpl">
