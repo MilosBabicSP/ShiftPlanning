@@ -917,10 +917,11 @@
                     <span class="tEnd">${out_time.time}</span>                                       
                 {{/if}}
             </span>
-            {{if length.hours != "" && length.mins != ""}}
+            {{if length.hours != ""}}
                 <span class="last">${length.hours}h ${length.mins} min</span>
-                {{else}}
+                {{else}}{{if && length.mins != ""}}
                 <span class="last">${length.mins} min</span>
+                {{/if}}
             {{/if}}    
         </li>
     </script>
