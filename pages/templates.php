@@ -771,9 +771,9 @@
         </li>
     </script>
     <script id="te_da_ping" type="text/x-jquery-tmpl">
-        <div class="title" >
+        <div class="title1 wide" style="background-color: #ebefd6; color: #565551">
             <div>
-                <span>Ping ${name} via Email & SMS</span>
+                <h3>Ping ${name} via Email & SMS</h3>
             </div>
         </div>
         <span class="input" >
@@ -781,22 +781,22 @@
         </span>
         </br>
         <div id="da_who_tmpl">
-            <div class="tmp" style="background-color: #ebefd6; color: #565551">
+            <div class="tmp">
             Late:
             <span>You're late for a shift. Please contact us right away. 888-973-6030</span>
         </div>
         -- 
-        <div class="tmp" style="background-color: #ebefd6; color: #565551">
+        <div class="tmp">
             P. Contact:
             <span>Please contact ${name} right away. </span>
         </div>
         -- 
-        <div class="tmp" style="background-color: #ebefd6; color: #565551">
+        <div class="tmp">
             B. Contact:
             <span>Please contact ShiftPlanning Inc. right away. 888-973-6030</span>
         </div>
         -- 
-        <div class="tmp" style="background-color: #ebefd6; color: #565551">
+        <div class="tmp">
             Birthday:
             <span>Happy Birthday from everyone at ShiftPlanning Inc.</span>
         </div>
