@@ -228,6 +228,11 @@ if ($vtoken['data'] != '1') {
                                 <li class="last" ><a href="#" subpage="password">Password</a></li>
                             </ul>
                         </div>
+                        <div class="subLevel mainSub pingUser" id="pingUser">
+                            <a class="backMenu" href="#">
+                                <img width="41" height="30" src="images/BackMenu.png">
+                            </a>
+                        </div>
                         <?php Functions::getInstance()->loadFile('dashboard_wall') ?>
                         <?php Functions::getInstance()->loadFile('dashboard_upcomingShifts'); ?>
                         <?php Functions::getInstance()->loadFile('dashboard_inbox') ?>

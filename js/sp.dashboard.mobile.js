@@ -338,7 +338,6 @@ ShiftPlanningDashboard.prototype.whosonnowEvents = function(){
         self.pingID = $(this).attr('userID')
         sp.loadSubPage('', 'dashboard', 'pingUser');
     })
-    
     $('#pingUser .backMenu').bind('click',function(e){
         e.preventDefault();
         console.log('Back Menu')
@@ -451,8 +450,6 @@ ShiftPlanningDashboard.prototype.settingsSubEvents = function(employee){
 
     ShiftPlanningDashboard.prototype.whosonnowSubEvents = function(){
         $('#wrapper > .subNavigation').show();
-        $('#da_wo').show();
-        $('#pingUser').hide();
         this.getWhosOn();        
     }
 
@@ -612,11 +609,9 @@ ShiftPlanningDashboard.prototype.getWhosOn = function () {
 }
 //
 ShiftPlanningDashboard.prototype.pingUser = function() {
-    $('#da_wo').hide();
     $('#wrapper > .subNavigation').hide();
-    $('#pingUser').show();
-    $('#pingUser').html($.tmpl($('#te_da_ping'),[{name:'test'}]));
-    
+    $('.subLevel mainSub pingUser').show();
+    $('.ping content').show();
     console.log(this.pingID);
 }
 
