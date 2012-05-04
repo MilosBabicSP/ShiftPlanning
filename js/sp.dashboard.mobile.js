@@ -602,9 +602,7 @@ ShiftPlanningDashboard.prototype.getWhosOn = function () {
                         name:item.name,
                         position:value.schedule_name,
                         start_time:value.start_time.time,
-                        end_time:value.end_time.time,
-                        cell_phone: sp.staff.data.employees[item.id].cell_phone,
-                        email: sp.staff.data.employees[item.id].email
+                        end_time:value.end_time.time
                     }
                     count++;
                     data.push(d)                        
