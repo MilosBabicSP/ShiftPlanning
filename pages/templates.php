@@ -771,7 +771,7 @@
         </li>
     </script>
     <script id="te_da_ping" type="text/x-jquery-tmpl">
-        <div class="title1 wide" style="background-color: #ebefd6; color: #565551">
+        <div class="title1 wide" style="background-color: #ebefd6; color: #565551;">
             <div>
                 <h3>Ping ${name} via Email & SMS</h3>
             </div>
