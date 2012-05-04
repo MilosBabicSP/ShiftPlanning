@@ -637,7 +637,6 @@ ShiftPlanningDashboard.prototype.sendPingMessage = function(){
         to:this.pingID,
         message:txt
     },function(response){
-        console.log(response)
         sp.showSuccess('Ping sent to user');
         setTimeout(function(){
             $('#pingUser .backMenu').trigger('click')
