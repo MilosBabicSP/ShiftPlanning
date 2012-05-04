@@ -592,27 +592,30 @@ ShiftPlanningDashboard.prototype.getWhosOn = function () {
     spModel.schedule.get('shifts', {
         mode:'onnow'
     }, function(response){
-        if(response.data.length==0){
+        var count=0;
+        $.each(response.data, function(key,value){
+            if( typeof value.employees != 'undefined' && value.employees != null){
+                $.each(value.employees, function(i,item){
+                    var d={
+                        userID:item.id,
+                        avatar:sp.getAvatar(item.id),
+                        name:item.name,
+                        position:value.schedule_name,
+                        start_time:value.start_time.time,
+                        end_time:value.end_time.time
+                    }
+                    count++;
+                    data.push(d)                        
+                })
+
+            }
+        })
+        if(count==0){
             $('#da_wo_li').html('No one is scheduled to work right now.')
         }else{
-            $.each(response.data, function(key,value){
-                if( typeof value.employees != 'undefined' && value.employees != null){
-                    $.each(value.employees, function(i,item){
-                        var d={
-                            userID:item.id,
-                            avatar:sp.getAvatar(item.id),
-                            name:item.name,
-                            position:value.schedule_name,
-                            start_time:value.start_time.time,
-                            end_time:value.end_time.time
-                        }
-                        data.push(d)                        
-                    })
-
-                }
-            })
-            $('#da_wo_li').html($.tmpl($('#te_da_onnow'),data));            
+            $('#da_wo_li').html($.tmpl($('#te_da_onnow'),data));
         }
+        
     })    
 }
 //
