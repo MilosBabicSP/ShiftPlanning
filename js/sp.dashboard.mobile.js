@@ -611,8 +611,11 @@ ShiftPlanningDashboard.prototype.getWhosOn = function () {
             }
         })
         if(count==0){
-            $('#da_wo_li').html('No one is scheduled to work right now.')
+            $('#da_wo_li').attr('class','notif').html('No one is scheduled to work right now.')
         }else{
+            if($('#da_wo_li').attr('class'=='notif')){
+                $('#da_wo_li').removeClass('notif').addClass('timeSheet');
+            }
             $('#da_wo_li').html($.tmpl($('#te_da_onnow'),data));
         }
         
