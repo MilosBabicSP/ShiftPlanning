@@ -783,22 +783,22 @@
         <div id="da_who_tmpl">
             <div class="title1 regular wide">
             Late:
-            <span>You're late for a shift. Please contact us right away. 888-973-6030</span>
+            <span>You're late for a shift. Please contact us right away. {{if company_phone.length != 0}} Phone : ${company_phone}{{/if}}</span>
         </div>
 
         <div class="title1 regular wide">
             P. Contact:
-            <span>Please contact ${name} right away. </span>
+            <span>Please contact ${name} right away.{{if cell_phone.length != 0}}Cell phone : ${cell_phone}{{/if}} </span>
         </div>
 
         <div class="title1 regular wide">
             B. Contact:
-            <span>Please contact ShiftPlanning Inc. right away. 888-973-6030</span>
+            <span>Please contact ${company} right away. {{if company_phone.length != 0}} Phone : ${company_phone}{{/if}}</span>
         </div>
 
         <div class="title1 regular wide">
             Birthday:
-            <span>Happy Birthday from everyone at ShiftPlanning Inc.</span>
+            <span>Happy Birthday from everyone at ${company}.</span>
         </div>
 
         <div class="title">

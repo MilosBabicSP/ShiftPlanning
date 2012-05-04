@@ -602,7 +602,9 @@ ShiftPlanningDashboard.prototype.getWhosOn = function () {
                         name:item.name,
                         position:value.schedule_name,
                         start_time:value.start_time.time,
-                        end_time:value.end_time.time
+                        end_time:value.end_time.time,
+                        cell_phone: sp.staff.data.employees[item.id].cell_phone,
+                        email: sp.staff.data.employees[item.id].email
                     }
                     count++;
                     data.push(d)                        
@@ -621,6 +623,8 @@ ShiftPlanningDashboard.prototype.getWhosOn = function () {
 ShiftPlanningDashboard.prototype.pingUser = function(data) {
     var self=this;
     var employee=sp.staff.data.employees[self.pingID];
+    employee.company=user.company;
+    employee.company_phone=user.phone;
     $('#wrapper > .subNavigation').hide();
     $('#da_who_ping').html($.tmpl($('#te_da_ping'),employee));
     
