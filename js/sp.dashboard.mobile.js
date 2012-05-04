@@ -588,7 +588,7 @@ ShiftPlanningDashboard.prototype.preparePasswordField = function(){
 
 ShiftPlanningDashboard.prototype.getWhosOn = function () {
     var data = [];
-    
+    $('#da_wo_li').html(spView.ulLoader());
     spModel.schedule.get('shifts', {
         mode:'onnow'
     }, function(response){
