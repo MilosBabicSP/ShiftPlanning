@@ -27,6 +27,8 @@
     </ul>
     </ul>
     <ul class="timeSheet" id="tc_dts_ul">
-        
+
     </ul>
+            <div id="tc_dts_ul_msg">
+        </div> 
 </div>

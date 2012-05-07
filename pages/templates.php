@@ -899,14 +899,14 @@
         <li class="app_${approved_by}">
             <span class="names"><b>${in_time.day}</b></span>
             <span class="time">
-                <span class="tStart">${in_time.time}-</span>
+                <span class="tStart">${in_time.time}</span>
                 {{if out_time.time != ""}}
                     <img width="16" height="16" src="images/tc_sm_clock.png" />
                     <span class="tEnd">${out_time.time}</span>                                       
                 {{/if}}
             </span>
             {{if length.hours != ""}}
-                <span class="last">${length.hours}h ${length.mins} min</span>
+                <span class="last">${length.hours}h, ${length.mins} min</span>
                 {{else}}{{if length.mins != ""}}
                 <span class="last">${length.mins} min</span>
                 {{/if}}

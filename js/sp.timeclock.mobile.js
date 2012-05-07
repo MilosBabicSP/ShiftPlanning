@@ -420,14 +420,8 @@ ShiftPlanningTimeClock.prototype.getMyTimeSheets = function(){
     spModel.timeclock.get('timeclocks',params,function(response){
         $('#tc_dts_ul').html($.tmpl($('#te_tc_dts_li'), response.data));
         self.showHideTimeSheetsPro();
-        var elm=$('#tc_dts_ul')
-        console.log($('#tc_dts_ul'));
-        console.log(elm.length)
-        if(elm.length == 0){
-            console.log('0 elemenata ispisi poruku')
-        }
-        
-    })
+        } 
+    )
 }
 ShiftPlanningTimeClock.prototype.renderManageTimeSheets = function(data){
     var l = data.length;
@@ -506,7 +500,16 @@ ShiftPlanningTimeClock.prototype.showHideTimeSheetsPro = function (){
         case '0':
             $('#tc_dts_ul li').show();
             break;
-    }    
+    }
+    var elm=$('#tc_dts_ul li:visible')
+    console.log(elm)
+    if(elm.length == 0){
+        console.log('elm.length==0')
+        console.log($('#tc_dts_ul_msg'))
+        $('#tc_dts_ul_msg').html(spView.emptyResult('No timesheets for selected filters'))  
+    }else{
+        $('#tc_dts_ul_msg').html('')
+    }
 }
 
 ShiftPlanningTimeClock.prototype.showHideTimeSheets = function(){
