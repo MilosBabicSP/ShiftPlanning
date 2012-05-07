@@ -420,6 +420,12 @@ ShiftPlanningTimeClock.prototype.getMyTimeSheets = function(){
     spModel.timeclock.get('timeclocks',params,function(response){
         $('#tc_dts_ul').html($.tmpl($('#te_tc_dts_li'), response.data));
         self.showHideTimeSheetsPro();
+        var elm=$('#tc_dts_ul')
+        console.log($('#tc_dts_ul'));
+        if(elm.length == 0){
+            console.log('0 elemenata ispisi poruku')
+        }
+        
     })
 }
 ShiftPlanningTimeClock.prototype.renderManageTimeSheets = function(data){
