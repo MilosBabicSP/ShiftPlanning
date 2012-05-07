@@ -200,25 +200,35 @@ ShiftPlanningTimeClock.prototype.overviewSubEvents = function(){
     $('#tc_ov_cb span.fr a').hide();
     $('#tc_ov_ss').html(spView.optionSchedules(sp.staff.admin.info.id));
     
-    spModel.timeclock.get('status', {
-        details : 1
-    }, function(response){
-        $('#tc_ov_cb span.fr a').hide();
-        if (response.data != 'out'){
-            $('#tc_ov_cf').show();
-            $('#tc_ov_co').show();
-            $('#tc_ov_ca').attr('rel', response.data.id);
-            if (response.data.schedule != null){
-                $('#tc_ov_ss').val(response.data.schedule.id)
-            }
-            if (response.data.notes != null){
-                $('#tc_ov_no').val(response.data.notes);
-            }
-        } else {
-            $('#tc_ov_cf').hide();
-            $('#tc_ov_ci').show();
-        }
-    });
+    if (parseInt(sp.staff.admin.settings.tc_terminal_lock) == 0){
+	$('#tc_ov_cb').show();
+	$('#tc_ov_ad').hide();
+	spModel.timeclock.get('status', {
+	    details : 1
+	}, function(response){
+	    $('#tc_ov_cb span.fr a').hide();
+	    if (response.data != 'out'){
+		$('#tc_ov_cf').show();
+		$('#tc_ov_co').show();
+		$('#tc_ov_ca').attr('rel', response.data.id);
+		if (response.data.schedule != null){
+		    $('#tc_ov_ss').val(response.data.schedule.id)
+		}
+		if (response.data.notes != null){
+		    $('#tc_ov_no').val(response.data.notes);
+		}
+	    } else {
+		$('#tc_ov_cf').hide();
+		$('#tc_ov_ci').show();
+	    }
+	});
+    } else {
+	$('#tc_ov_cb').hide();
+	$('#tc_ov_cf').hide();
+	$('#tc_ov_ad').show();
+    }
+    
+
     
     $('#tc_ov_cb .icoClock time').html(sp.raw.config.today.formatted);
     $('#tc_ov_cb .icoClock span').html(formatted('nowT'));

@@ -440,8 +440,13 @@ ShiftPlanningDashboard.prototype.settingsSubEvents = function(employee){
         $('#da_se_ov_aa .button').show();
     }
     
-
-
+    
+    
+    if (sp.staff.admin.info.group > 3){
+	$('#da_se_ov_wa').parent().hide();
+    } else {
+	$('#da_se_ov_wa').parent().show();
+    }
 
     
     
