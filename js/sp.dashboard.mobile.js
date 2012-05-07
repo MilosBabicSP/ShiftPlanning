@@ -491,7 +491,11 @@ ShiftPlanningDashboard.prototype.displayRecentShifts = function (employee){
         employees: employee.id
     }
     spModel.schedule.get('shifts',params,function(response){
-        $('#da_se_rs_li').html($.tmpl($('#te_da_se_rs'),response.data));
+        if(response.data == ""){
+         $('#da_se_rs_li').html(spView.emptyResult('No recent shifts'))   
+        }else{
+         $('#da_se_rs_li').html($.tmpl($('#te_da_se_rs'),response.data));   
+        }
     })  
 }
 
