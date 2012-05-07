@@ -79,16 +79,24 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
     
     $('#schedule .shiftDisplay .backMenu').bind(clickEvent, function(e){
         e.preventDefault();
-        if (self.fromDashboard){
-            self.fromDashboard = false;
+        //tracks if function is called from recentShifts at dashboard  , organize this better if posible
+        if(self.fromRecent){
+            self.fromRecent = false;
             $('.subNavigation').show();
-            $('.subNavigation .dashboard li a[subpage=upcomingShifts]').trigger(clickEvent);
-        } else {
-	    if ($('#sc_sub_shift_display ul a.publish').attr('first') == 'false'){
-		self.resetPublishFields(true);
-	    } else {
-		$('.subNavigation .schedule li.active a').trigger(clickEvent);
-	    }
+            $('.subNavigation .dashboard li a[subpage=settings]').trigger(clickEvent);
+            $('#dashboard .search.settings.mainSub li a[subpage=recentShifts]').trigger(clickEvent);
+        }else{
+            if (self.fromDashboard){
+                self.fromDashboard = false;
+                $('.subNavigation').show();
+                $('.subNavigation .dashboard li a[subpage=upcomingShifts]').trigger(clickEvent);
+            } else {
+                if ($('#sc_sub_shift_display ul a.publish').attr('first') == 'false'){
+                    self.resetPublishFields(true);
+                } else {
+                    $('.subNavigation .schedule li.active a').trigger(clickEvent);
+                }
+            }
         }
     });
     

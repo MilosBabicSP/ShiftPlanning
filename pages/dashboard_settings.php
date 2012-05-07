@@ -331,4 +331,13 @@
             <span class="fr"><a id="da_se_pa_up" href="#">Update Employee</a></span>
         </div>
     </div>
+    <div id="da_se_recentShifts">
+        <div class="title">
+            <h3>My recent shifts</h3>
+        </div>
+        <ul class="timeSheet" id="da_se_rs_li">
+
+        </ul>
+    </div>
+    <div id="da_se_upcomingShifts">Upcoming</div>
 </div>

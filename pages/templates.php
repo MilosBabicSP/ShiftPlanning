@@ -810,6 +810,17 @@
         </div>
         </div>
     </script>
+    
+        <script id="te_da_se_rs" type="text/x-jquery-tmpl">
+            <li>
+                <span class="names">
+                 ${start_date.mname} ${start_date.day}
+            </span>
+                <span class="time">
+                ${start_time.time} - ${end_time.time}
+            </span>
+            <a class="button shiftDetails fr" shiftId="${id}" href="#">Details</a>
+        </li>
     </script>
         <script id="te_da_onnow" type="text/x-jquery-tmpl">
         <li>

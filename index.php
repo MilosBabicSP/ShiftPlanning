@@ -222,9 +222,11 @@ if ($vtoken['data'] != '1') {
                 <div id="pages">
                     <div class="dashboard" id="dashboard">
                         <div class="search settings mainSub">
-                            <ul class="filters" style="width:270px">
+                            <ul class="filters" style="width:450px">
                                 <li class="first active"><a href="#" subpage="overview">Overview</a></li>
                                 <li><a href="#" subpage="edit">Edit</a></li>
+                                <li><a href="#" subpage="recentShifts">Recent Shifts</a></li>
+                                <li><a href="#" subpage="upcomingShifts">Upcoming</a></li>
                                 <li class="last" ><a href="#" subpage="password">Password</a></li>
                             </ul>
                         </div>

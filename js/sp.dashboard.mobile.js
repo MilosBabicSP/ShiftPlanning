@@ -32,6 +32,8 @@ ShiftPlanningDashboard.prototype.loadSubPageEvents = function(subpage){
         case 'pingUser':
             this.pingUser();
             break;
+        case 'shiftDetails':
+            this.shiftDetails();
     }
 }
 
@@ -267,6 +269,8 @@ ShiftPlanningDashboard.prototype.settingsEvents = function(){
             case 'edit':
                 self.prepareEditDetails(sp.staff.data.employees[$('#da_se_cur_us_id').val()]);
                 break;
+            case 'recentShifts':
+                self.displayRecentShifts(sp.staff.data.employees[$('#da_se_cur_us_id').val()]);
         }
         $('#da_se_' + $(this).attr('subpage')).show();
         $(this).parent().addClass('active');
@@ -327,6 +331,18 @@ ShiftPlanningDashboard.prototype.settingsEvents = function(){
         if (c){
             self.adminActions(this);
         }
+    })
+    $('#da_se_rs_li').delegate('.button',clickEvent,function(e){
+        e.preventDefault()
+        spModel.schedule.get('shift', {
+            id : $(this).attr('shiftId'), 
+            detailed : 1
+        }, function(response){
+            sp.schedule.fromRecent = true ;
+            sp.schedule.shift = response.data;
+            sp.loadSubPage('', 'schedule', 'shiftDisplay');
+        });
+
     })
 }
 
@@ -466,6 +482,19 @@ ShiftPlanningDashboard.prototype.whosonnowSubEvents = function(){
 }
 
 //functions
+ShiftPlanningDashboard.prototype.displayRecentShifts = function (employee){
+    $('#da_se_rs_li').html(spView.ulLoader());
+    var params={
+        start_date: 'today -2 months', 
+        end_date: 'yesterday', 
+        mode: 'employee', 
+        employees: employee.id
+    }
+    spModel.schedule.get('shifts',params,function(response){
+        $('#da_se_rs_li').html($.tmpl($('#te_da_se_rs'),response.data));
+    })  
+}
+
 ShiftPlanningDashboard.prototype.prefillOverview = function(employee){
     var p = {};
     
@@ -639,6 +668,11 @@ ShiftPlanningDashboard.prototype.pingUser = function(data) {
         e.preventDefault();
         self.sendPingMessage()
     })          
+}
+
+ShiftPlanning.prototype.shiftDetails = function () {
+   $('#wrapper > .subNavigation').hide();
+   
 }
 
 ShiftPlanningDashboard.prototype.sendPingMessage = function(){
