@@ -422,6 +422,7 @@ ShiftPlanningTimeClock.prototype.getMyTimeSheets = function(){
         self.showHideTimeSheetsPro();
         var elm=$('#tc_dts_ul')
         console.log($('#tc_dts_ul'));
+        console.log(elm.length)
         if(elm.length == 0){
             console.log('0 elemenata ispisi poruku')
         }
