@@ -502,10 +502,7 @@ ShiftPlanningTimeClock.prototype.showHideTimeSheetsPro = function (){
             break;
     }
     var elm=$('#tc_dts_ul li:visible')
-    console.log(elm)
     if(elm.length == 0){
-        console.log('elm.length==0')
-        console.log($('#tc_dts_ul_msg'))
         $('#tc_dts_ul_msg').html(spView.emptyResult('No timesheets for selected filters'))  
     }else{
         $('#tc_dts_ul_msg').html('')
