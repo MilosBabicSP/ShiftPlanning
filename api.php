@@ -41,7 +41,7 @@ function _iapi($request_vars, $output='json', $dataOnly = false, $multi = false)
             $_SESSION['user'] = $decoded['data'];
         }
 
-        if($_POST['module'] == 'staff.logout'){
+        if(isset($_POST['module']) && $_POST['module'] == 'staff.logout'){
             session_destroy();
         }
     } else {
