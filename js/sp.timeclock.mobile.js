@@ -420,7 +420,8 @@ ShiftPlanningTimeClock.prototype.getMyTimeSheets = function(){
     spModel.timeclock.get('timeclocks',params,function(response){
         $('#tc_dts_ul').html($.tmpl($('#te_tc_dts_li'), response.data));
         self.showHideTimeSheetsPro();
-    })
+        } 
+    )
 }
 ShiftPlanningTimeClock.prototype.renderManageTimeSheets = function(data){
     var l = data.length;
@@ -499,7 +500,13 @@ ShiftPlanningTimeClock.prototype.showHideTimeSheetsPro = function (){
         case '0':
             $('#tc_dts_ul li').show();
             break;
-    }    
+    }
+    var elm=$('#tc_dts_ul li:visible')
+    if(elm.length == 0){
+        $('#tc_dts_ul_msg').html(spView.emptyResult('No timesheets for selected filters'))  
+    }else{
+        $('#tc_dts_ul_msg').html('')
+    }
 }
 
 ShiftPlanningTimeClock.prototype.showHideTimeSheets = function(){
