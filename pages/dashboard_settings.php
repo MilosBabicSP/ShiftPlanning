@@ -333,11 +333,18 @@
     </div>
     <div id="da_se_recentShifts">
         <div class="title">
-            <h3>My recent shifts</h3>
+            <h3>Recent shifts</h3>
         </div>
         <ul class="timeSheet" id="da_se_rs_li">
 
         </ul>
     </div>
-    <div id="da_se_upcomingShifts">Upcoming</div>
+    <div id="da_se_upcomingShifts">
+        <div class="title">
+            <h3>Upcoming shifts</h3>
+        </div>
+        <ul class="timeSheet" id="da_se_us_li">
+
+        </ul>
+    </div>
 </div>

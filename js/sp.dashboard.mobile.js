@@ -32,8 +32,6 @@ ShiftPlanningDashboard.prototype.loadSubPageEvents = function(subpage){
         case 'pingUser':
             this.pingUser();
             break;
-        case 'shiftDetails':
-            this.shiftDetails();
     }
 }
 
@@ -270,7 +268,11 @@ ShiftPlanningDashboard.prototype.settingsEvents = function(){
                 self.prepareEditDetails(sp.staff.data.employees[$('#da_se_cur_us_id').val()]);
                 break;
             case 'recentShifts':
-                self.displayRecentShifts(sp.staff.data.employees[$('#da_se_cur_us_id').val()]);
+                self.displayShifts(sp.staff.data.employees[$('#da_se_cur_us_id').val()],'recentShifts');
+                break;
+            case 'upcomingShifts':
+                self.displayShifts(sp.staff.data.employees[$('#da_se_cur_us_id').val()],'upcomingShifts');
+                break;                
         }
         $('#da_se_' + $(this).attr('subpage')).show();
         $(this).parent().addClass('active');
@@ -482,21 +484,41 @@ ShiftPlanningDashboard.prototype.whosonnowSubEvents = function(){
 }
 
 //functions
-ShiftPlanningDashboard.prototype.displayRecentShifts = function (employee){
-    $('#da_se_rs_li').html(spView.ulLoader());
-    var params={
-        start_date: 'today -2 months', 
-        end_date: 'yesterday', 
-        mode: 'employee', 
-        employees: employee.id
+ShiftPlanningDashboard.prototype.displayShifts = function (employee,from){
+    var element;
+    var notify;
+    switch (from){
+        case 'recentShifts':
+            $('#da_se_rs_li').html(spView.ulLoader());
+            var params={
+                start_date: 'today -2 months', 
+                end_date: 'yesterday', 
+                mode: 'employee', 
+                employees: employee.id
+            }
+            element=$('#da_se_rs_li');
+            notify='No recent shifts'
+            break;
+        case 'upcomingShifts':
+            $('#da_se_us_li').html(spView.ulLoader());
+            var params={
+                start_date: 'today ', 
+                end_date: 'today +2 months', 
+                mode: 'employee', 
+                employees: employee.id
+            }
+            element=$('#da_se_us_li');
+            notify='No upcoming shifts'
+            break;
     }
     spModel.schedule.get('shifts',params,function(response){
         if(response.data == ""){
-         $('#da_se_rs_li').html(spView.emptyResult('No recent shifts'))   
+            $(element).html(spView.emptyResult(notify))   
         }else{
-         $('#da_se_rs_li').html($.tmpl($('#te_da_se_rs'),response.data));   
+            $(element).html($.tmpl($('#te_da_se_rs'),response.data));   
         }
-    })  
+    }) 
+  
 }
 
 ShiftPlanningDashboard.prototype.prefillOverview = function(employee){
@@ -672,11 +694,6 @@ ShiftPlanningDashboard.prototype.pingUser = function(data) {
         e.preventDefault();
         self.sendPingMessage()
     })          
-}
-
-ShiftPlanning.prototype.shiftDetails = function () {
-   $('#wrapper > .subNavigation').hide();
-   
 }
 
 ShiftPlanningDashboard.prototype.sendPingMessage = function(){
