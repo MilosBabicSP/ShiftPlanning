@@ -79,18 +79,33 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
     
     $('#schedule .shiftDisplay .backMenu').bind(clickEvent, function(e){
         e.preventDefault();
-        //tracks if function is called from recentShifts or Upcoming at dashboard settings , organize this better if posible
         if(self.fromUpcoming){
             self.fromUpcoming = false;
             $('.subNavigation').show();
+                    if(self.fromStaff){
+                self.fromStaff = false;
+                $('.subNavigation .schedule').hide()
+                $('.staff .subWrapp ul li a[subpage=list]').trigger(clickEvent);
+                sp.staff.displayEmployee($('#da_se_cur_us_id').val());
+                $('#dashboard .search.settings.mainSub li a[subpage=upcomingShifts]').trigger(clickEvent);
+            }else{
             $('.subNavigation .dashboard li a[subpage=settings]').trigger(clickEvent);
             $('#dashboard .search.settings.mainSub li a[subpage=upcomingShifts]').trigger(clickEvent);
+            }
         }else{
         if(self.fromRecent){
             self.fromRecent = false;
             $('.subNavigation').show();
+                    if(self.fromStaff){
+                self.fromStaff = false;
+                $('.subNavigation .schedule').hide()
+                $('.staff .subWrapp ul li a[subpage=list]').trigger(clickEvent);
+                sp.staff.displayEmployee($('#da_se_cur_us_id').val());
+                $('#dashboard .search.settings.mainSub li a[subpage=recentShifts]').trigger(clickEvent);
+            }else{
             $('.subNavigation .dashboard li a[subpage=settings]').trigger(clickEvent);
             $('#dashboard .search.settings.mainSub li a[subpage=recentShifts]').trigger(clickEvent);
+            }
         }else{
             if (self.fromDashboard){
                 self.fromDashboard = false;
@@ -103,8 +118,8 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
                     $('.subNavigation .schedule li.active a').trigger(clickEvent);
                 }
               }
-           }
-        }
+            }
+          }
     });
     
     $('#schedule .addShift .backMenu').bind(clickEvent, function(e){
