@@ -5,7 +5,7 @@ class JSPacker {
     private $output = '';
     private $scripts = array();
     private $build = false;
-    public $reset = true;
+    public $reset = false;
     public $_store = false;
 
     function __construct($output) {
@@ -16,7 +16,6 @@ class JSPacker {
     }
 
     function _dump() {
-
 	//we check do we wanna create single file
 	if ($this->_store) {
 	    $this->_toHtml();
@@ -43,13 +42,14 @@ class JSPacker {
     function _build() {
 	
 	# FORCE BUILD
-	if (isset($_GET['reset'])) {
+	if ($this->reset) {
 	    $this->build = true;
 	}
 
 	if (is_array($this->scripts) && $this->build) {
 
 	    # GRAB FILES
+	    $output = array();
 	    foreach ($this->scripts as $script) {
 		$tmp = file_get_contents($script['path']);
 		$output[] = $tmp;
@@ -62,9 +62,9 @@ class JSPacker {
 	    # Fix permissions
 	    chmod(_root_ . 'js', 0777);
 	    if (file_exists(_root_ . 'js/' . _jsV_ . $this->output)){
-		chmod(_root_ . 'js/' . _jsV_ . $this->output, 0777);
+		//unlink(_root_ . 'js/' . _jsV_ . $this->output);
+		//chmod(_root_ . 'js/' . _jsV_ . $this->output, 0777);
 	    }
-	    
 	    file_put_contents(_root_ . 'js/' . _jsV_ . $this->output, implode("\n ", $output));
 	}
 	

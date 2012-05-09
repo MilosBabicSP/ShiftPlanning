@@ -3,7 +3,7 @@ session_start();
 $_SERVER['DOCUMENT_ROOT'] = dirname(__FILE__);
 //error_reporting(E_ALL);
 //ini_set("display_errors", 1);
-if (strpos($_SERVER['SERVER_NAME'], '192.168.1')){
+if (strpos($_SERVER['SERVER_NAME'], '192.168.1') !== false){
     define('_ext_' , 'shiftplanning-mobile/');
 } else {
     define('_ext_' , '');
@@ -12,7 +12,7 @@ if (strpos($_SERVER['SERVER_NAME'], '192.168.1')){
 
 
 define('DEBUGGER', true);
-define('_root_', $_SERVER['DOCUMENT_ROOT'].'/'._ext_);
+define('_root_', $_SERVER['DOCUMENT_ROOT'].'/');
 define('_jsV_', 2);
 define('WWW_PATH', 'http://'.$_SERVER['SERVER_NAME'].'/'._ext_);
 //define('API_KEY','49e4207b8459ef88e19de9b78b882ef15ec14d84');
