@@ -41,7 +41,7 @@ function _iapi($request_vars, $output='json', $dataOnly = false, $multi = false)
             $_SESSION['user'] = $decoded['data'];
         }
 
-        if(isset($_POST['module']) && $_POST['module'] == 'staff.logout'){
+        if($_POST['module'] == 'staff.logout'){
             session_destroy();
         }
     } else {
@@ -69,11 +69,11 @@ function _iapi($request_vars, $output='json', $dataOnly = false, $multi = false)
     }
 }
 
-if(isset($_POST['module']) && $_POST['module']){
+if($_POST['module']){
     # SPILL JSON FROM API
     header('Content-type: application/json');
     echo _iapi($_POST);
-} else if(isset($_POST['multi']) && $_POST['multi']){
+} else if($_POST['multi']){
     # SPILL JSON FROM API
     header('Content-type: application/json');
     echo _iapi($_POST,'json',false,true);
