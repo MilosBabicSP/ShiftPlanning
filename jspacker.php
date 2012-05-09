@@ -59,6 +59,11 @@ class JSPacker {
 	    
 	    # WRITE TO OUTPUT
 	    
+	    
+	    //delete old file
+	    unlink(_root_ . 'js/' . _jsV_ . $this->output);
+	    
+	    
 	    # Fix permissions
 	    chmod(_root_ . 'js', 0777);
 	    if (file_exists(_root_ . 'js/' . _jsV_ . $this->output)){
@@ -68,8 +73,7 @@ class JSPacker {
 	    var_dump(file_put_contents(_root_ . 'js/' . _jsV_ . $this->output, implode("\n ", $output)));
 	}
 	
-	//delete old file
-	unlink(_root_ . 'js/' . _jsV_ . $this->output);
+	
 	echo '<script type="text/javascript" src="' . WWW_PATH . 'js/' . _jsV_ . $this->output . '"></script>';
     }
 }
