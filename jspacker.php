@@ -59,6 +59,7 @@ class JSPacker {
 	    
 	    # WRITE TO OUTPUT
 	    chmod(_root_ . 'js', 0777);
+	    var_dump(_root_ . 'js');
 	    if (file_exists(_root_ . 'js/' . _jsV_ . $this->output)){
 		chmod(_root_ . 'js/' . _jsV_ . $this->output, 0777);
 	    }
