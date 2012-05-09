@@ -1,6 +1,6 @@
 <?php
 session_start();
-$_SERVER['DOCUMENT_ROOT'] = dirname(dirname(__FILE__));
+$_SERVER['DOCUMENT_ROOT'] = dirname(__FILE__);
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
 if (strpos($_SERVER['SERVER_NAME'], '192.168.1')){
