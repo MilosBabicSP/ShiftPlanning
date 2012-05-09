@@ -4,7 +4,7 @@ class JSPacker {
 
     private $output = '';
     private $scripts = array();
-    private $build = true;
+    private $build = false;
     public $reset = true;
     public $_store = false;
 
@@ -31,7 +31,6 @@ class JSPacker {
 	} else {
 	    array_push($this->scripts, array('path' => WWW_PATH . $file, 'pack' => $compress));
 	}
-	
     }
 
     function _toHtml() {
@@ -44,7 +43,7 @@ class JSPacker {
     function _build() {
 	
 	# FORCE BUILD
-	if ($this->reset) {
+	if (isset($_GET['reset'])) {
 	    $this->build = true;
 	}
 
