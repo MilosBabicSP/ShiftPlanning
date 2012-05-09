@@ -2,7 +2,13 @@
 require_once('config.php');
 require_once('api.php');
 require_once('functions.php');
-//$api = new api(null, null, true);
+require_once('jspacker.php');
+$jse = new JSPacker('sp.js');
+if(DEBUGGER){
+	$encrypt = false;
+} else {
+	$encrypt = true;
+}
 
 if (Functions::getInstance()->isRememberMe()){
     $_SESSION['api']['token']		    = Functions::getInstance()->getCookie('shiftplanning_mobile_usertoken');
@@ -62,65 +68,68 @@ if ($vtoken['data'] != '1') {
         <!-- Core Parts -->
 
         <!-- jQuery -->
-        <script src="js/jquery/jquery-1.6.4.min.js" type="text/javascript"></script>
-        <script src="js/jquery/jquery.timeago.js" type="text/javascript"></script>
-        <script src="js/jquery/jquery.tmpl.js" type="text/javascript"></script>
-        <script src="js/jquery/jquery.ba-hashchange.min.js" type="text/javascript"></script>
-        <script src="js/jquery/jquery.contains.js" type="text/javascript"></script>
-
-
-        <!-- Specially for mobile devices -->
-        <script src="js/plugins/mobiscroll.min.js" type="text/javascript"></script>
-
-
-        <!-- Models -->
-        <script src="js/models/sp.schedule.model.js" type="text/javascript"></script>
-        <script src="js/models/sp.requests.model.js" type="text/javascript"></script>
-        <script src="js/models/sp.admin.model.js" type="text/javascript"></script>
-        <script src="js/models/sp.messaging.model.js" type="text/javascript"></script>
-        <script src="js/models/sp.timeclock.model.js" type="text/javascript"></script>
-        <script src="js/models/sp.staff.model.js" type="text/javascript"></script>
-        <script src="js/models/sp.payroll.model.js" type="text/javascript"></script>
-        <script src="js/models/sp.location.model.js" type="text/javascript"></script>
-
-        <!-- Plugins -->
-        <script src="js/plugins/date.js" type="text/javascript"></script>
-	<script src="js/plugins/cookie.js" type="text/javascript"></script>
-        <script src="js/plugins/sp.cache.js" type="text/javascript"></script>
-        <script src="js/schedule/date.js" type="text/javascript"></script>
-        <script src="js/schedule/date.extras.js" type="text/javascript"></script>
-        <script src="js/plugins/objSort.js" type="text/javascript"></script>
-        <script src="js/plugins/outerClick.js" type="text/javascript"></script>
-
-        <!-- System -->
-        <script src="js/sp.common.js" type="text/javascript"></script>
-        <script src="js/sp.model.js" type="text/javascript"></script>
-        <script src="js/sp.view.js" type="text/javascript"></script>
-        <script src="js/sp.ranges.js" type="text/javascript"></script>
-        
-
-        <!-- Base -->
-        <script src="js/sp.staff.js" type="text/javascript"></script>
-        <script src="js/sp.schedule.js" type="text/javascript"></script>
-        <script src="js/sp.dashboard.js" type="text/javascript"></script>
-        <script src="js/sp.timeclock.js" type="text/javascript"></script>
-        <script src="js/sp.reports.js" type="text/javascript"></script>
-        <script src="js/sp.requests.js" type="text/javascript"></script>
-        <script src="js/sp.location.js" type="text/javascript"></script>
-        <script src="js/sp.permissions.js" type="text/javascript"></script>
-
-        <!-- Extension -->
-        <script src="js/sp.staff.mobile.js" type="text/javascript"></script>
-        <script src="js/sp.dashboard.mobile.js" type="text/javascript"></script>
-        <script src="js/sp.timeclock.mobile.js" type="text/javascript"></script>
-        <script src="js/sp.reports.mobile.js" type="text/javascript"></script>
-        <script src="js/sp.requests.mobile.js" type="text/javascript"></script>
-        <script src="js/sp.schedule.mobile.js" type="text/javascript"></script>
-        <script src="js/sp.permissions.mobile.js" type="text/javascript"></script>
-
-
-        <!-- Loader -->
-        <script src="js/sp.common.mobile.js" type="text/javascript"></script>
+	<?php 
+	
+	//main jquery
+	$jse->_add('js/jquery/jquery-1.6.4.min.js', $encrypt);
+	$jse->_add('js/jquery/jquery.timeago.js', $encrypt);
+	$jse->_add('js/jquery/jquery.tmpl.js', $encrypt);
+	$jse->_add('js/jquery/jquery.ba-hashchange.min.js', $encrypt);
+	$jse->_add('js/jquery/jquery.contains.js', $encrypt);
+	
+	//specially for mobile device.
+	$jse->_add('js/plugins/mobiscroll.min.js', $encrypt);
+	
+	//models
+	$jse->_add('js/models/sp.schedule.model.js', $encrypt);
+	$jse->_add('js/models/sp.requests.model.js', $encrypt);
+	$jse->_add('js/models/sp.admin.model.js', $encrypt);
+	$jse->_add('js/models/sp.messaging.model.js', $encrypt);
+	$jse->_add('js/models/sp.timeclock.model.js', $encrypt);
+	$jse->_add('js/models/sp.staff.model.js', $encrypt);
+	$jse->_add('js/models/sp.payroll.model.js', $encrypt);
+	$jse->_add('js/models/sp.location.model.js', $encrypt);
+	
+	//plugins
+	$jse->_add('js/plugins/date.js', $encrypt);
+	$jse->_add('js/plugins/cookie.js', $encrypt);
+	$jse->_add('js/plugins/sp.cache.js', $encrypt);
+	$jse->_add('js/schedule/date.js', $encrypt);
+	$jse->_add('js/schedule/date.extras.js', $encrypt);
+	$jse->_add('js/plugins/objSort.js', $encrypt);
+	$jse->_add('js/plugins/outerClick.js', $encrypt);
+	
+	//system
+	$jse->_add('js/sp.common.js', $encrypt);
+	$jse->_add('js/sp.model.js', $encrypt);
+	$jse->_add('js/sp.view.js', $encrypt);
+	$jse->_add('js/sp.ranges.js', $encrypt);
+	
+	//base
+	$jse->_add('js/sp.staff.js', $encrypt);
+	$jse->_add('js/sp.schedule.js', $encrypt);
+	$jse->_add('js/sp.dashboard.js', $encrypt);
+	$jse->_add('js/sp.timeclock.js', $encrypt);
+	$jse->_add('js/sp.reports.js', $encrypt);
+	$jse->_add('js/sp.requests.js', $encrypt);
+	$jse->_add('js/sp.location.js', $encrypt);
+	$jse->_add('js/sp.permissions.js', $encrypt);
+	
+	//extension
+	$jse->_add('js/sp.staff.mobile.js', $encrypt);
+	$jse->_add('js/sp.dashboard.mobile.js', $encrypt);
+	$jse->_add('js/sp.timeclock.mobile.js', $encrypt);
+	$jse->_add('js/sp.reports.mobile.js', $encrypt);
+	$jse->_add('js/sp.requests.mobile.js', $encrypt);
+	$jse->_add('js/sp.schedule.mobile.js', $encrypt);
+	$jse->_add('js/sp.permissions.mobile.js', $encrypt);
+	
+	//Loader
+	$jse->_add('js/sp.common.mobile.js', $encrypt);
+	
+	$jse->_dump();
+	
+	?>
         <script type="text/javascript">
             function init(){
 <? if ($_SESSION['api']['token']) { ?>
@@ -199,7 +208,7 @@ if ($vtoken['data'] != '1') {
                     <li id="menu_dashboard"><a class="dash" href="#" page="dashboard">Dashboard</a></li>
                     <li id="menu_timeClock"><a class="ticl" href="#" page="timeClock">Time Clock</a></li>
                     <li id="menu_schedule"><a class="sche" href="#" page="schedule">Schedule</a></li>
-                    <li class="active hidden" id="menu_requests"><a class="requ" href="#" page="requests">Requests</a>
+                    <li class="active" id="menu_requests"><a class="requ" href="#" page="requests">Requests</a>
                         <ul class="hidden">
                             <li><a href="#"><span>4</span>Vacation requests</a></li>
                             <li><a href="#"><span>208</span>Shift Approvals</a></li>
