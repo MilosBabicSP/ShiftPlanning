@@ -13,7 +13,7 @@ if (strpos($_SERVER['SERVER_NAME'], '192.168.1') !== false){
 
 define('DEBUGGER', true);
 define('_root_', $_SERVER['DOCUMENT_ROOT'].'/');
-define('_jsV_', 4);
+define('_jsV_', 6);
 define('WWW_PATH', 'http://'.$_SERVER['SERVER_NAME'].'/'._ext_);
 //define('API_KEY','49e4207b8459ef88e19de9b78b882ef15ec14d84');
 //define('API_URL','http://www.dejan1-s.dev.shiftplanning.com/api/');

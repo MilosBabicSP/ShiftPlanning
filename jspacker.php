@@ -62,8 +62,7 @@ class JSPacker {
 	    # Fix permissions
 	    chmod(_root_ . 'js', 0777);
 	    if (file_exists(_root_ . 'js/' . _jsV_ . $this->output)){
-		//unlink(_root_ . 'js/' . _jsV_ . $this->output);
-		//chmod(_root_ . 'js/' . _jsV_ . $this->output, 0777);
+		chmod(_root_ . 'js/' . _jsV_ . $this->output, 0777);
 	    }
 	    file_put_contents(_root_ . 'js/' . _jsV_ . $this->output, implode("\n ", $output));
 	}
