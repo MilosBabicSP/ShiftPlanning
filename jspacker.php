@@ -26,7 +26,7 @@ class JSPacker {
     }
 
     function _add($file, $compress = false) {
-	if (strpos($script['path'], 'ttp:') || strpos($script['path'], 'ttps:')) {
+	if (strpos($file, 'ttp:') || strpos($file, 'ttps:')) {
 	    array_push($this->scripts, array('path' => $file, 'pack' => $compress));
 	} else {
 	    array_push($this->scripts, array('path' => WWW_PATH . $file, 'pack' => $compress));
