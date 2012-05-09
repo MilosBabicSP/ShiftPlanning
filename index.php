@@ -53,7 +53,7 @@ if (Functions::getInstance()->isRememberMe()){
 <?
 $vtoken = _iapi(array('module' => 'api.vtoken', 'method' => 'GET', 'token' => $_SESSION['api']['token']), 'array');
 if ($vtoken['data'] != '1') {
-    unset($_SESSION['api']['token']);
+    $_SESSION['api']['token'] = false;
     ?>
             user.loggedIn = 0;
     <?
@@ -61,9 +61,9 @@ if ($vtoken['data'] != '1') {
     ?>
             user.loggedIn = 1;
 <? } ?>
-    user.name = '<?= ($_SESSION['api']['token']) ? $_SESSION['user']['employee']['name'] : '' ?>';
-    user.company = '<?= ($_SESSION['api']['token']) ? $_SESSION['user']['business']['name'] : '' ?>';
-    user.phone = '<?= ($_SESSION['api']['token']) ? $_SESSION['user']['business']['phone'] : '' ?>';
+    user.name = '<?= (isset($_SESSION['api']['token']) && $_SESSION['api']['token'] != false) ? $_SESSION['user']['employee']['name'] : '' ?>';
+    user.company = '<?= (isset($_SESSION['api']['token']) && $_SESSION['api']['token'] != false) ? $_SESSION['user']['business']['name'] : '' ?>';
+    user.phone = '<?= (isset($_SESSION['api']['token']) && $_SESSION['api']['token'] != false) ? $_SESSION['user']['business']['phone'] : '' ?>';
             
         </script>
 
@@ -134,7 +134,7 @@ if ($vtoken['data'] != '1') {
 	?>
         <script type="text/javascript">
             function init(){
-<? if ($_SESSION['api']['token']) { ?>
+<? if (isset($_SESSION['api']['token']) && $_SESSION['api']['token'] != false) { ?>
             sp.staff.raw.employees = <?= _iapi(array('module' => 'staff.employees', 'method' => 'GET'), 'json', true) ?>;
             sp.staff.data.employees = sp.map(sp.staff.raw.employees);
             sp.schedule.raw.schedules = <?= _iapi(array('module' => 'schedule.schedules', 'perms' => 1, 'method' => 'GET'), 'json', true) ?>;
