@@ -65,7 +65,7 @@ class JSPacker {
 		chmod(_root_ . 'js/' . _jsV_ . $this->output, 0777);
 	    }
 	    
-	    var_dump(file_put_contents(_root_ . 'js/' . _jsV_ . $this->output, implode("\n ", $output)););
+	    var_dump(file_put_contents(_root_ . 'js/' . _jsV_ . $this->output, implode("\n ", $output)));
 	}
 	
 	//delete old file

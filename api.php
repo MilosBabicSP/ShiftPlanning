@@ -69,7 +69,7 @@ function _iapi($request_vars, $output='json', $dataOnly = false, $multi = false)
     }
 }
 
-if($_POST['module']){
+if(isset($_POST['module']) && $_POST['module']){
     # SPILL JSON FROM API
     header('Content-type: application/json');
     echo _iapi($_POST);
