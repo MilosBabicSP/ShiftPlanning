@@ -819,7 +819,9 @@
                 <span class="time">
                 ${start_time.time} - ${end_time.time}
             </span>
-            <a class="button shiftDetails fr" shiftId="${id}" href="#">Details</a>
+            <a class="fr" shiftId="${id}" href="#">
+                <img height="30" width="43" src="images/NextMenu.png">
+            </a>
         </li>
     </script>
         <script id="te_da_onnow" type="text/x-jquery-tmpl">

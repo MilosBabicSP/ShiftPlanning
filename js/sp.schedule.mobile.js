@@ -79,7 +79,13 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
     
     $('#schedule .shiftDisplay .backMenu').bind(clickEvent, function(e){
         e.preventDefault();
-        //tracks if function is called from recentShifts at dashboard  , organize this better if posible
+        //tracks if function is called from recentShifts or Upcoming at dashboard settings , organize this better if posible
+        if(self.fromUpcoming){
+            self.fromUpcoming = false;
+            $('.subNavigation').show();
+            $('.subNavigation .dashboard li a[subpage=settings]').trigger(clickEvent);
+            $('#dashboard .search.settings.mainSub li a[subpage=upcomingShifts]').trigger(clickEvent);
+        }else{
         if(self.fromRecent){
             self.fromRecent = false;
             $('.subNavigation').show();
@@ -96,7 +102,8 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
                 } else {
                     $('.subNavigation .schedule li.active a').trigger(clickEvent);
                 }
-            }
+              }
+           }
         }
     });
     

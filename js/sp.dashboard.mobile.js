@@ -334,13 +334,25 @@ ShiftPlanningDashboard.prototype.settingsEvents = function(){
             self.adminActions(this);
         }
     })
-    $('#da_se_rs_li').delegate('.button',clickEvent,function(e){
+    $('#da_se_rs_li').delegate('.fr',clickEvent,function(e){
         e.preventDefault()
         spModel.schedule.get('shift', {
             id : $(this).attr('shiftId'), 
             detailed : 1
         }, function(response){
             sp.schedule.fromRecent = true ;
+            sp.schedule.shift = response.data;
+            sp.loadSubPage('', 'schedule', 'shiftDisplay');
+        });
+
+    })
+        $('#da_se_us_li').delegate('.fr',clickEvent,function(e){
+        e.preventDefault()
+        spModel.schedule.get('shift', {
+            id : $(this).attr('shiftId'), 
+            detailed : 1
+        }, function(response){
+            sp.schedule.fromUpcoming = true ;
             sp.schedule.shift = response.data;
             sp.loadSubPage('', 'schedule', 'shiftDisplay');
         });
