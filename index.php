@@ -16,6 +16,8 @@ if (Functions::getInstance()->isRememberMe()){
     $_SESSION['user']['employee']['id']	    = Functions::getInstance()->getCookie('shiftplanning_mobile_userid');
     $_SESSION['user']['business']['name']   = Functions::getInstance()->getCookie('shiftplanning_mobile_usercompany');
     $_SESSION['user']['business']['phone']  = Functions::getInstance()->getCookie('shiftplanning_mobile_userphone');
+} else {
+    $_SESSION['api']['token'] = '';
 }
 
 ?>
