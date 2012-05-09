@@ -60,10 +60,6 @@ class JSPacker {
 	    # WRITE TO OUTPUT
 	    
 	    
-	    //delete old file
-	    unlink(_root_ . 'js/' . _jsV_ . $this->output);
-	    
-	    
 	    # Fix permissions
 	    chmod(_root_ . 'js', 0777);
 	    if (file_exists(_root_ . 'js/' . _jsV_ . $this->output)){
