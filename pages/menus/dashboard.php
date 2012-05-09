@@ -14,7 +14,7 @@
                     <img width="16" height="16" src="images/Dashboard_UpcomingShifts16x16.png" />
                 </a>
             </li>
-            <li>
+            <li class="hidden">
                 <a href="#" subpage="whosonnow">
                     <img width="16" height="16" src="images/Dashboard_whosonnow.png" />
                 </a>
