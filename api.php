@@ -73,7 +73,7 @@ if(isset($_POST['module']) && $_POST['module']){
     # SPILL JSON FROM API
     header('Content-type: application/json');
     echo _iapi($_POST);
-} else if($_POST['multi']){
+} else if(isset($_POST['multi']) && $_POST['multi']){
     # SPILL JSON FROM API
     header('Content-type: application/json');
     echo _iapi($_POST,'json',false,true);
