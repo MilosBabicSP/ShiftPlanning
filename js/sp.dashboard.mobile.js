@@ -336,6 +336,13 @@ ShiftPlanningDashboard.prototype.settingsEvents = function(){
     })
     $('#da_se_rs_li').delegate('.fr',clickEvent,function(e){
         e.preventDefault()
+        switch($('#menu .mainNav .active').attr('id')){
+            case 'menu_staff':
+                sp.schedule.fromStaff =true;
+                break;
+            case 'menu_dashboard':
+                sp.schedule.fromStaff =false;
+        }
         spModel.schedule.get('shift', {
             id : $(this).attr('shiftId'), 
             detailed : 1
@@ -348,6 +355,13 @@ ShiftPlanningDashboard.prototype.settingsEvents = function(){
     })
         $('#da_se_us_li').delegate('.fr',clickEvent,function(e){
         e.preventDefault()
+        switch($('#menu .mainNav .active').attr('id')){
+            case 'menu_staff':
+                sp.schedule.fromStaff =true;
+                break;
+            case 'menu_dashboard':
+                sp.schedule.fromStaff =false;
+        }
         spModel.schedule.get('shift', {
             id : $(this).attr('shiftId'), 
             detailed : 1
@@ -443,7 +457,7 @@ ShiftPlanningDashboard.prototype.inboxSubEvents = function(){
 
 ShiftPlanningDashboard.prototype.settingsSubEvents = function(employee){
     var self = this;
-    
+
     if (typeof employee == 'undefined'){
         employee = sp.staff.admin.info;
     }
