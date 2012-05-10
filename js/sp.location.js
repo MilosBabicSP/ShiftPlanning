@@ -11,7 +11,7 @@ ShiftPlanningLocation.prototype = {
             $('#wrapper').delegate('select.locations', 'change', function(){
                 var obj = $(this);
                 if ($(this).val() == 'add'){
-                    var loc = prompt ("Enter location name.","");
+                    var loc = prompt (_s("Enter location name."),"");
                     if (loc != null){
                         spModel.location.create('location', {name : loc, type : $(this).find('option:last').attr('type')}, function(response){
                             obj.find('optgroup:first').append('<option value="' + response.data.id + '">' + response.data.name + '</option>');

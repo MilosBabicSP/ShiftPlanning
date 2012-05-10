@@ -1,0 +1,138 @@
+# ShiftPlanning Serbian translation file.
+# Copyright (C) 2011 ShiftPlanning Inc.
+# ShiftPlanning <info@shiftplanning.com>, 2011.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version:  1.0\n"
+"Report-Msgid-Bugs-To:  \n"
+"POT-Creation-Date:  2011-11-16 16:07+0100\n"
+"PO-Revision-Date:  2011-11-16 16:07+0100\n"
+"Last-Translator:  ShiftPlanning <info@shiftplanning.com>\n"
+"Language-Team:  ShiftPlanning <info@shiftplanning.com>\n"
+"Language:  sr_RS\n"
+"MIME-Version:  \n"
+"Content-Type:  text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding:  8bit\n"
+"Plural-Forms:  nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+
+msgid "Why ShiftPlanning?"
+msgstr "Зашто СхифтПланнинг?"
+
+msgid "An intuitive product, with a nice range of features."
+msgstr "Интуитивно производ, са лепим спектар могућности."
+
+msgid "With this tool, you can literally run tens of employees with ease."
+msgstr "Са овом алатком можете буквално да покренете на десетине запослених са лакоћом."
+
+msgid "Select an option on the left to learn more"
+msgstr "Изаберите опцију са леве стране да бисте сазнали више"
+
+msgid "Incredibly Easy to Use"
+msgstr "Изузетно једноставан за употребу"
+
+msgid "Integrated with Apps you love"
+msgstr "Интегрисани са апликацијама које волите"
+
+msgid "We also have a powerful {apiurl}Data API{endapiurl}."
+msgstr "Такође имамо моћне {apiurl}Дата АПИ{endapiurl}."
+
+msgid "Available anywhere you have an internet connection"
+msgstr "Доступне било где имате интернет конекцију"
+
+msgid "Find us on: "
+msgstr "Пронађите нас на:"
+
+msgid "iPhone"
+msgstr "иПхоне"
+
+msgid "iPad"
+msgstr "иПад"
+
+msgid "Android"
+msgstr "Андроид"
+
+msgid "BlackBerry"
+msgstr "БлацкБерри"
+
+msgid "WAP devices"
+msgstr "ВАП уређаја"
+
+msgid "Sleep peacefully at night. Your data is safe with us."
+msgstr "Спавају мирно ноћу. Ваши подаци су безбедни са нама."
+
+msgid "Make ShiftPlanning your own."
+msgstr "Направите СхифтПланнинг сопствене."
+
+msgid "Powerful Features"
+msgstr "Моћне функције"
+
+msgid "Easy to Use"
+msgstr "Једноставан за коришћење"
+
+msgid "Account Setup"
+msgstr "Подешавање налога"
+
+msgid "Free Training"
+msgstr "Бесплатна обука"
+
+msgid "Integration"
+msgstr "Интеграција"
+
+msgid "Devices"
+msgstr "Уређаји"
+
+msgid "Secure"
+msgstr "Сигуран"
+
+msgid "Customize"
+msgstr "Прилагођавање"
+
+msgid "Powerful"
+msgstr "Моћан"
+
+msgid "You'll love ShiftPlanning for a million reasons. Here are a few."
+msgstr "Ви ћете волети СхифтПланнинг за милион разлога. Ево неколико."
+
+msgid "You'll be a scheduling wizard in no time!"
+msgstr "Бићете заказивање чаробњак за кратко време!"
+
+msgid "We like that ShiftPlanning doesn't keep your data behind it's walled garden."
+msgstr "Свиђа нам се што СхифтПланнинг не води податке иза њега је ограђену башту."
+
+msgid "ShiftPlanning is workforce management for the 21st century. Our easy to use online application is centralized meaning that it's always up to date and everyone has access to the most up to date information."
+msgstr "СхифтПланнинг је радне снаге менаџмент за 21. век. Наши једноставан за коришћење онлине апликација је централизован што значи да је увек до сада и сви имају приступ највише до датума информације."
+
+msgid "We've designed a clean, dynamic interface that uses intuitive drag and drop actions. We even make updates in real-time so you're never stuck looking for the 'save' button."
+msgstr "Смо Дизајнирали смо чист, динамичан интерфејс који користи интуитивни превуците и испустите акције. Чак смо се ажурира у реалном времену тако да сте никада није заглавио у потрази за дугме &quot;Саве&quot;."
+
+msgid "Baked right into the Application is our helpful 'Wizard Guide', and our 24/7 support team is never more than a click away."
+msgstr "Печен право у Апликација је наш помоћи &quot;Чаробњак Водич &#39;, а наше 24 / 7 подршку тиму никад није више од један клик."
+
+msgid "You have full access to a customer care respresentative that is available for 1-on-1 training and for assistance. They can take calls, answer e-mails and even setup screencasts with you to make sure that you are ready to make the most of our application. (Did we mention that it's free?)"
+msgstr "Имате потпун приступ Цустомер Царе респресентативе која је доступна за 1-на-1 обуку и помоћ. Они могу да позиве, одговарам на маилове, па чак и подешавање анимација екрана са вама да се уверите да сте спремни да чине већину наших захтева. (Да ли смо напоменути да је бесплатно?)"
+
+msgid "Nobody likes to enter in data twice. ShiftPlanning allows for easily import/export of data, as well as integration with popular third party applications to empower things like Single-Sign On and easy provisioning of employee accounts."
+msgstr "Нико не воли да уђе у подацима два пута. СхифтПланнинг омогућава лако увоз / извоз података, као и интеграцију са популарним апликацијама треће стране да оснаже ствари као што су једним пријављивање и лако резервисања запослених рачуна."
+
+msgid "Access our online employee scheduling software on the go from any mobile or tablet device. We have apps specifically formatted for all the major mobile devices."
+msgstr "Приступите нашем онлине софтвера запослени заказивања у покрету од било ког мобилног или таблет уређај. Имамо апликације посебно форматиран за све главне мобилне уређаје."
+
+msgid "ShiftPlanning uses the latest web technologies to deliver both an intuitive online application while at the same time adhering to strict security standards to ensure your data is secure and accessible 24/7."
+msgstr "СхифтПланнинг користи најновије веб технологије, да испоручи и интуитиван онлине апликација, док у исто време придржавају строге безбедносне стандарде како би ваши подаци безбедан и приступачан 24 / 7."
+
+msgid "We've taken measures at every level to ensure that your data is safe & users are protected. For more information please see our full {privacyurl}privacy policy{endprivacyurl} and below for a complete list of security features."
+msgstr "Узели смо мере на свим нивоима како би се осигурало да се ваши подаци безбедни и корисници су заштићена. За више информација погледајте нашу пуну {privacyurl}политика приватности{endprivacyurl} и испод за комплетну листу безбедносне функције."
+
+msgid "ShiftPlanning allows you to add your logo, have a custom url, and even quickly embed the ShiftPlanning app into your existing website or intranet."
+msgstr "СхифтПланнинг вам омогућава да додате ваш лого, су прилагођена УРЛ адреса, па чак и брзо уграђивање апликација СхифтПланнинг у ваш постојећи веб сајт или интранету."
+
+msgid "We understand that no two businesses are the same so we've made sure our application is ready to handle all types of businesses and feature settings can be turned on and off quickly to customize the app to the needs of your business and industry."
+msgstr "Ми разумемо да не постоје два предузећа су исти тако да смо направили сигурни да наш захтев је спреман да обави све врсте бизниса и подешавања функција се може укључити и искључити брзо да прилагодите апликацију за потребе вашег пословања и индустрије."
+
+msgid "While we've kept things Easy-to-Use, we haven't spared on features. ShiftPlanning is a robust workforce management application that will allow you to streamline your business processes from the moment an employee is hired, scheduled, first clocks in to work, and receives their paycheck. (Our application can even help with training, and team-building.)"
+msgstr "Док смо држали ствари једноставно за коришћење, ми нисмо поштеђени од функција. СхифтПланнинг је робустан радне снаге за управљање апликација која ће вам омогућити да унапредите своје пословне процесе од тренутка када радник је ангажован, заказана, прво сатове у рад, и добија своју плату. (Наша апликација може чак и помоћи за обуку, и теам буилдинг)."
+
+msgid "{toururl}Take the Tour{endtoururl} to learn more about individual modules & features."
+msgstr "{toururl}Таке тхе Тоур{endtoururl} Да бисте сазнали више о појединачним модулима и функцијама."

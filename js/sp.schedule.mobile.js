@@ -180,7 +180,7 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
 	    spModel.schedule.get('conflicts', {schedule : $(this).attr('rel')}, function(response){
 		self.setConflicts(response.data);
 		if (typeof self.conflicts[obj.attr('rel')] != 'undefined'){
-		    var c = confirm('This shift has conflicts, but you can\'t fix them from mobile app. Force publish?');
+		    var c = confirm(_s('This shift has conflicts, but you can\'t fix them from mobile app. Force publish?'));
 		    if (c){
 			spModel.schedule.get('publish', {shifts: obj.attr('rel'), notify: $('#te_sc_shift_display_publish .radio.check').attr('value'), message: $('#tc_sc_shift_display_publish_textarea textarea').val()}, function(response){
 			    sp.showSuccess(response.data);
@@ -262,7 +262,7 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
                     }, function(response){
                         self.shift = response.data;
                         sp.loadSubPage('', 'schedule', 'shiftDisplay');
-                        sp.showSuccess('Shift Updated');
+                        sp.showSuccess(_s('Shift Updated'));
                     });
                 }
             });
@@ -309,7 +309,7 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
         spModel.schedule.update('shiftapprove', {
             id : $('#sc_edit_id').val()
         }, function(response){
-            sp.showSuccess('Shift approved');
+            sp.showSuccess(_s('Shift approved'));
             obj.removeClass('loading');
             obj.hide();
         }, function(){
@@ -485,7 +485,7 @@ ShiftPlanningSchedule.prototype.addShiftSubEvents = function(){
     $('#sc_add_lo').val((this.edit) ? (emp.location != 0) ? emp.location.id : 0 : 0);
     
     if (this.edit){
-        $('#sc_add_add span').html('Save Shift');
+        $('#sc_add_add span').html(_s('Save Shift'));
         $('#sc_edit_id').val(emp.id);
         $('#sc_edit_submenu .backMenu').attr('bck', 'edit');
         if (emp.confirmed == 0 && emp.end_date.id < sp.raw.config.today.id && sp.staff.admin.settings.shift_confirm == 1){
@@ -496,11 +496,11 @@ ShiftPlanningSchedule.prototype.addShiftSubEvents = function(){
     } else {
         $('#sc_edit_submenu .subMenu').hide();
         $('#sc_edit_submenu .backMenu').attr('bck', 'add');
-        $('#sc_add_add span').html('Add Shift And Set Users');
+        $('#sc_add_add span').html(_s('Add Shift And Set Users'));
     }
     //prepare users
     if (this.edit){
-        $('#sc_add_user .working ul').html((emp.staff.scheduled == null) ? spView.emptyResult('No scheduled employees for selected shift', 'li') : $.tmpl($('#te_sc_usersW'), this.prepareStaff(emp.staff.scheduled)));
+        $('#sc_add_user .working ul').html((emp.staff.scheduled == null) ? spView.emptyResult(_s('No scheduled employees for selected shift'), 'li') : $.tmpl($('#te_sc_usersW'), this.prepareStaff(emp.staff.scheduled)));
         delete emp.staff.scheduled;
         
         $.each(emp.staff, function(i, item){
@@ -806,8 +806,8 @@ ShiftPlanningSchedule.prototype.generateMiddle = function(currentDate){
 
 ShiftPlanningSchedule.prototype.loadPage = function(){
     var opt = '';
-    opt += '<option value="employee">My Schedules</option>';
-    opt += '<option value="overview">Schedule Overview</option>';
+    opt += _s('<option value="employee">My Schedules</option>');
+    opt += _s('<option value="overview">Schedule Overview</option>');
     opt += spView.schedulerFilter();
     $('#sc_fl').html(opt);
     

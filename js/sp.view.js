@@ -175,7 +175,7 @@ ShiftPlanningView.prototype.editableSchedules = function(employee){
         i++;
     });
     
-    return (l.length > 0) ? l : this.emptyResult('No positions to display', 'li', 'noBorder');
+    return (l.length > 0) ? l : this.emptyResult(_s('No positions to display'), 'li', 'noBorder');
 }
 
 ShiftPlanningView.prototype.editableSkills = function(employee){
@@ -191,7 +191,7 @@ ShiftPlanningView.prototype.editableSkills = function(employee){
         i++;
     });
     
-    return (l.length > 0) ? l : this.emptyResult('No skills to display', 'li', 'noBorder');
+    return (l.length > 0) ? l : this.emptyResult(_s('No skills to display'), 'li', 'noBorder');
 }
 
 ShiftPlanningView.prototype.ulLoader = function(){
@@ -210,7 +210,7 @@ ShiftPlanningView.prototype.emptyResult = function(text, tag, cl){
         tag = 'div'
     }
     if (typeof text == 'undefined'){
-        text = 'Na data for selected criteria!';
+        text = _s('Na data for selected criteria!');
     }
     return '<' + tag + ' class="additional ' + cl + '"><p>' + text + '</p></' + tag + '>'
 }

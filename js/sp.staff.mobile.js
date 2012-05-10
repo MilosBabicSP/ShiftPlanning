@@ -15,6 +15,7 @@ ShiftPlanningStaff.prototype.initialize = function(){
         self.listEvents();
         self.addStaffEvents();
         self.fastAssignmentEvents();
+        
     });
 }
 
@@ -195,7 +196,7 @@ ShiftPlanningStaff.prototype.createEmployee = function(c){
         $(c).removeClass('loading');
         spModel.staff.addEmployee(response.data);
         self.displayEmployee(response.data.id);
-        sp.showSuccess('Employee successfully created!');
+        sp.showSuccess(_s('Employee successfully created!'));
     }, function(){
         $(c).removeClass('loading');
     });
@@ -285,7 +286,7 @@ ShiftPlanningStaff.prototype.login = function(){
 
 
 ShiftPlanningStaff.prototype.logout = function(){
-    var c = confirm('Are you sure you want to logout?');
+    var c = confirm(_s('Are you sure you want to logout?'));
     if (!c){
         return false;
     }

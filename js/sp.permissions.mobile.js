@@ -20,7 +20,7 @@ ShiftPlanningPermissions.prototype.preparePermissions = function(){
     if (parseInt(perms.message_wall_on) == 0){
         $('#da_wa_nm_b').remove();
         $('#da_wa_nm_f').remove();
-        $('#da_wa_li').html(spView.emptyResult('Message wall is off. Please contact your manager for more info.', 'li'));
+        $('#da_wa_li').html(spView.emptyResult(_s('Message wall is off. Please contact your manager for more info.'), 'li'));
     }
     
     //remove button for writing new wall message
