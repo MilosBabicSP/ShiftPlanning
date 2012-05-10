@@ -47,7 +47,6 @@ class JSPacker {
 	}
 
 	if (is_array($this->scripts) && $this->build) {
-
 	    # GRAB FILES
 	    $output = array();
 	    foreach ($this->scripts as $script) {
