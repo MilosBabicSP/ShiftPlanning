@@ -5,7 +5,7 @@ class JSPacker {
     private $output = '';
     private $scripts = array();
     private $build = false;
-    public $reset = true;
+    public $reset = false;
     public $_store = true;
 
     function __construct($output) {
