@@ -355,7 +355,7 @@ ShiftPlanningSchedule.prototype.monthSubEvents = function(){
 
 ShiftPlanningSchedule.prototype.shiftDisplaySubEvents = function(){
     this.shift = this.cleanPerm(this.shift);
-    if (this.fromDashboard){
+    if (this.fromDashboard || this.fromRecent || this.fromUpcoming){
         $('#sc_sub_shift_display a.edit').hide();
 	$('#sc_sub_shift_display a.publish').hide();
     } else {
