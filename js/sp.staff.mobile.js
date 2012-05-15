@@ -224,6 +224,13 @@ ShiftPlanningStaff.prototype.login = function(){
         password: p
     }, function(loginResponse){
         sp.staff.admin.info = loginResponse.data.employee;
+	setCookie('shiftplanning_mobile_lang', loginResponse.data.employee.language, cookieExpire);
+	if (typeof loginResponse.data.employee.language == 'undefined'){
+	    loginResponse.data.employee.language = 'en_US';
+	}
+	if (loginResponse.data.employee.language != 'en_US'){
+	    window.location.reload();
+	}
         var calls = [
         ['staff.employees','GET', {}],
         ['schedule.schedules','GET', {

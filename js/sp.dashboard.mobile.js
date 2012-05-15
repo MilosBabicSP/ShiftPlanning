@@ -665,6 +665,8 @@ ShiftPlanningDashboard.prototype.prepareEditDetails = function(employee){
     $('#da_se_ed_sk').html(spView.editableSkills(employee));
     $('#da_se_ed_no').html((employee.notes != null && employee.notes.length > 0) ? employee.notes : '');
     
+    $('#da_se_ed_lang').val(employee.language);
+    
 }
 
 ShiftPlanningDashboard.prototype.preparePasswordField = function(){

@@ -73,14 +73,14 @@ class i18n {
      *  @param string $languageCode Language Code
      *  @return void
      */
-    public static function setLanguage($languageCode) {
-        setlocale(LC_ALL, $languageCode);
-        putenv('LC_ALL='.$languageCode);
-	bindtextdomain('ShiftPlanning', APP_PATH.'lang');
+	public static function setLanguage($languageCode, $langpath) {
+		setlocale(LC_ALL, $languageCode);
+		putenv('LC_ALL=' . $languageCode);
+		bindtextdomain('ShiftPlanning', $langpath);
 
-	textdomain('ShiftPlanning');
-	bind_textdomain_codeset('ShiftPlanning','UTF-8');
-    }
+		textdomain('ShiftPlanning');
+		bind_textdomain_codeset('ShiftPlanning', 'UTF-8');
+	}
     
     /**
      *  Connect to the database 

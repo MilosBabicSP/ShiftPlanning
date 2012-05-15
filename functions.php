@@ -12,7 +12,19 @@ class Functions{
     function getCookie($val){
 	if (isset($_COOKIE[$val])){
 	    return $_COOKIE[$val]; 
-	} else return '';
+	} else return false;
+    }
+    
+    
+    //lang functions
+    function getCurrentLang(){
+	return (isset($_SESSION['lang'])) ? $_SESSION['lang'] : (!$this->getCookie('shiftplanning_mobile_lang')) ? 'en_US' : $this->getCookie('shiftplanning_mobile_lang');
+    }
+    
+    function getSettingsWithFixedTime(){
+	$data = _iapi(array('module' => 'admin.settings', 'method' => 'GET'), 'json', true);
+	
+	return $data;
     }
     
     /**

@@ -1,11 +1,12 @@
 <?php
+require_once('functions.php');
 require_once('config.php');
 require_once('api.php');
-require_once('functions.php');
 require_once('jspacker.php');
-include 'i18n/config.php';
 include 'i18n/lib/class.i18n.php';
-
+if (Functions::getInstance()->getCurrentLang() != 'en_US'):
+     i18n::setLanguage(Functions::getInstance()->getCurrentLang(), _lang_ . '/lang/');
+endif;
 
 $jse = new JSPacker('sp.js');
 if(DEBUGGER){
@@ -47,6 +48,10 @@ if (Functions::getInstance()->isRememberMe()){
 	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/sc/x72.png">
 	<!-- For non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
 	<link rel="apple-touch-icon-precomposed" href="images/sc/x57.png">
+	
+	<?php if (Functions::getInstance()->getCurrentLang() != 'en_US'):?>
+	    <link rel="gettext" href="<?php echo LANG_PATH;?>lang/<?php echo Functions::getInstance()->getCurrentLang();?>/LC_MESSAGES/ShiftPlanning.json" />
+	<?php endif;?>
 	
 	
 	<script src="i18n/gettext.js" type="text/javascript"></script>
@@ -184,18 +189,18 @@ if ($vtoken['data'] != '1') {
                     <img class="logo" src="images/logo1.png" alt="ShiftPlanning" />
 
                     <form class="loginForm" method="post" id="lo_f" onsubmit="return false;">
-                        <label>Email or Username</label>
+                        <label><?=_s('Email or Username');?></label>
                         <div class="holder">
                             <input autocorrect="off" autocapitalize="off" type="text" name="username" id="lo_u" />
                         </div>
-                        <label>Password</label>
+                        <label><?=_s('Password');?></label>
                         <div class="holder">
                             <input type="password" name="password" id="lo_p"/>
                         </div>
 			<div class="rButton">
-			    <span class="checkbox fl <?php echo (Functions::getInstance()->isRememberMe()) ? 'check' : ''?>">Remember me?</span>
+			    <span class="checkbox fl <?php echo (Functions::getInstance()->isRememberMe()) ? 'check' : ''?>"><?=_s('Remember me?');?></span>
 			</div>
-                        <button id="lo_b">Login</button>
+                        <button id="lo_b"><?=_s('Login');?></button>
                     </form>
                     <div class="footerTxt"><?=_s('View in: Mobile |')?> <a href="/app/?fullapp=true"><?=_s('Full Version')?></a><br/>
                         <a href="/terms/"><?=_s('Terms of Use')?></a> | <a href="/privacy/"><?=_s('Privacy Policy')?></a><br/>
@@ -236,11 +241,11 @@ if ($vtoken['data'] != '1') {
                     <div class="dashboard" id="dashboard">
                         <div class="search settings mainSub">
                             <ul class="filters" style="width:450px">
-                                <li class="first active"><a href="#" subpage="overview">Overview</a></li>
-                                <li><a href="#" subpage="edit">Edit</a></li>
-                                <li><a href="#" subpage="recentShifts">Recent Shifts</a></li>
-                                <li><a href="#" subpage="upcomingShifts">Upcoming</a></li>
-                                <li class="last" ><a href="#" subpage="password">Password</a></li>
+                                <li class="first active"><a href="#" subpage="overview"><?=_s('Overview');?></a></li>
+                                <li><a href="#" subpage="edit"><?=_s('Edit');?></a></li>
+                                <li><a href="#" subpage="recentShifts"><?=_s('Recent Shifts');?></a></li>
+                                <li><a href="#" subpage="upcomingShifts"><?=_s('Upcoming');?></a></li>
+                                <li class="last" ><a href="#" subpage="password"><?=_s('Password');?></a></li>
                             </ul>
                         </div>
                         <div class="subLevel mainSub pingUser" id="pingUser">
@@ -320,7 +325,7 @@ if ($vtoken['data'] != '1') {
                         <table class="calendar mainSub month" cellpadding="0" cellspacing="0" width="100%">
                             <thead>
                                 <tr id="sc_ca_he">
-                                    <th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th>
+                                    <th><?=_s('Sun');?></th><th><?=_s('Mon');?></th><th><?=_s('Tue');?></th><th><?=_s('Wed');?></th><th><?=_s('Thu');?></th><th><?=_s('Fri');?></th><th><?=_s('Sat');?></th>
                                 </tr>
                             </thead>
                             <tbody id="sc_ca_bo">
@@ -329,7 +334,7 @@ if ($vtoken['data'] != '1') {
                         <div class="search mainSub today day" id="sc_days_m">
                             <div class="fl">
                                 <span><?=_s('Today')?></span>
-                                <time id="sc_to_sub">Monday, January 09, 2012</time>
+                                <time id="sc_to_sub"></time>
                             </div>
                             <ul class="subMenu">
                                 <li class="first">
@@ -519,7 +524,7 @@ if ($vtoken['data'] != '1') {
                         <div class="search list mainSub">
                             <input type="submit" value="search" id="st_li_se_b" />
                             <span class="input">
-                                <input type="text" value="Search..." name="" onblur="if(this.value=='')this.value=this.defaultValue;" onfocus="if(this.value==this.defaultValue)this.value='';" id="st_li_se_te" />
+                                <input type="text" value="<?=_s('Search...')?>" name="" onblur="if(this.value=='')this.value=this.defaultValue;" onfocus="if(this.value==this.defaultValue)this.value='';" id="st_li_se_te" />
                             </span>
                         </div>
                         <?php Functions::getInstance()->loadFile('staff_list'); ?>
