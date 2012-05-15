@@ -6,54 +6,54 @@
                 <ul>    
                     <li class="even">
                         <div>
-                            <label><?=_s('Full name:')?></label>
+                            <label><?=_s('Full name')?>:</label>
                             <h4 id="da_se_ov_fn"></h4>
                         </div>
                     </li>
                     <li class="odd">
                         <div>
-                            <label><?=_s('ID:')?></label>
+                            <label><?=_s('ID')?>:</label>
                             <h4 id="da_se_ov_id"></h4>
                         </div>
                     </li>
                     <li class="even">
                         <div>
-                            <label><?=_s('Username:')?></label>
+                            <label><?=_s('Username')?>:</label>
                             <h4 id="da_se_ov_un"></h4>
                         </div>
                     </li>
                     <li class="odd">
                         <div>
-                            <label><?=_s('Mobile:')?></label>
+                            <label><?=_s('Mobile')?>:</label>
                             <h4 id="da_se_ov_mo"></h4>
                         </div>
                     </li>
                     <li class="even">
                         <div>
-                            <label><?=_s('Home:')?></label>
+                            <label><?=_s('Home')?>:</label>
                             <h4 id="da_se_ov_ho"></h4>
                         </div>
                     </li>
                     <li class="odd">
                         <div>
-                            <label><?=_s('Birthday:')?></label>
+                            <label><?=_s('Birthday')?>:</label>
                             <h4 id="da_se_ov_bd"></h4>
                         </div>
                     </li>
                     <li class="even">
                         <div>
-                            <label><?=_s('Wage:')?></label>
+                            <label><?=_s('Wage')?>:</label>
                             <h4 id="da_se_ov_wa"></h4>
                         </div>
                     </li>
                 </ul>
             </li>
             <li>
-                <label><?=_s('Email:')?></label>
+                <label><?=_s('Email')?>:</label>
                 <h4 id="da_se_ov_em"></h4>
             </li>
             <li>
-                <label><?=_s('Positions:')?></label>
+                <label><?=_s('Positions')?>:</label>
                 <h4 id="da_se_ov_pos"></h4> 
             </li>
         </ul>
@@ -62,11 +62,11 @@
         </div>
         <ul class="detailsGrid" id="da_se_ov_aa">
             <li>
-                <label><?=_s('Status:')?></label>
+                <label><?=_s('Status')?>:</label>
                 <h4 id="da_se_ov_st"></h4>
             </li>
             <li>
-                <label><?=_s('Activation:')?></label>
+                <label><?=_s('Activation')?>:</label>
                 <h4 id="da_se_ov_ac"></h4>
             </li>
             <li>
@@ -115,7 +115,7 @@
         <ul class="detailsGrid">
             <li>
                 <div>
-                    <label><?=_s('Name:')?></label>
+                    <label><?=_s('Name')?>:</label>
                     <span class="input">
                         <input type="text" name="" value="" id="da_se_ed_na">
                     </span>
@@ -123,7 +123,7 @@
             </li>
             <li>
                 <div>
-                    <label><?=_s('Nick Name:')?></label>
+                    <label><?=_s('Nick Name')?>:</label>
                     <span class="input">
                         <input type="text" name="" value="" id="da_se_ed_nn">
                     </span>
@@ -131,7 +131,7 @@
             </li>
             <li>
                 <div>
-                    <label><?=_s('Email:')?></label>
+                    <label><?=_s('Email')?>:</label>
                     <span class="input">
                         <input type="text" name="" value="" id="da_se_ed_em">
                     </span>
@@ -139,7 +139,7 @@
             </li>
             <li>
                 <div>
-                    <label><?=_s('Username:')?></label>
+                    <label><?=_s('Username')?>:</label>
                     <span class="input">
                         <input type="text" name="" value="" id="da_se_ed_us">
                     </span>
@@ -147,7 +147,7 @@
             </li>
             <li>
                 <div>
-                    <label><?=_s('Mobile Phone:')?></label>
+                    <label><?=_s('Mobile Phone')?>:</label>
                     <span class="input">
                         <span style="width:40px; display:block; float:left; border-right:solid 1px #BBB;"><input style="text-align:center;" type="text" name="" value="" id="da_se_ed_mph_0"></span>
                         <span style="width:40px; display:block; float:left; border-right:solid 1px #BBB;"><input style="text-align:center;" type="text" name="" value="" id="da_se_ed_mph_1"></span>
@@ -157,7 +157,7 @@
             </li>
             <li>
                 <div>
-                    <label><?=_s('Home Phone:')?></label>
+                    <label><?=_s('Home Phone')?>:</label>
                     <span class="input">
                         <span style="width:40px; display:block; float:left; border-right:solid 1px #BBB;"><input style="text-align:center;" type="text" name="" value="" id="da_se_ed_hph_0"></span>
                         <span style="width:40px; display:block; float:left; border-right:solid 1px #BBB;"><input style="text-align:center;" type="text" name="" value="" id="da_se_ed_hph_1"></span>
@@ -167,7 +167,7 @@
             </li>
             <li>
                 <div>
-                    <label><?=_s('Address:')?></label>
+                    <label><?=_s('Address')?>:</label>
                     <span class="input">
                         <input type="text" name="" value="" id="da_se_ed_ad" />
                     </span>
@@ -183,7 +183,7 @@
             </li>
             <li>
                 <div>
-                    <label><?=_s('State/Province:')?></label>
+                    <label><?=_s('State/Province')?>:</label>
                     <span class="input">
                         <input type="text" name="" value="" id="da_se_ed_sp">
                     </span>
@@ -191,7 +191,7 @@
             </li>
             <li>
                 <div>
-                    <label><?=_s('Postal/Zip code:')?></label>
+                    <label><?=_s('Postal/Zip code')?>:</label>
                     <span class="input">
                         <input type="text" name="" value="" id="da_se_ed_pz" />
                     </span>
@@ -209,10 +209,10 @@
                 <ul>
                     <li class="even">
                         <div>
-                            <label><?=_s('Birthday:')?></label>
+                            <label><?=_s('Birthday')?>:</label>
                             <span class="input">
                                 <select id="da_se_ed_bday_m">
-                                    <option selected="" value="0">Select</option>
+                                    <option selected="" value="0"><?=_s('Select');?></option>
                                     <option value="1"><?=_s('January')?></option>
                                     <option value="2"><?=_s('February')?></option>
                                     <option value="3"><?=_s('March')?></option>
@@ -234,7 +234,7 @@
                             <label>&nbsp;</label>
                             <span class="input">
                                 <select id="da_se_ed_bday_d">
-                                    <option selected="" value="0">Select</option>
+                                    <option selected="" value="0"><?=_s('Select');?></option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
@@ -321,18 +321,18 @@
                 </div>
             </li>
             <li>
-                 <?=_s('* You only need to supply a password if you want to change it ')?>
+                 <?=_s('* You only need to supply a password if you want to change it')?>
             </li>
             <li>
                 <div>
-                    <label><?=_s('Confirm Password:')?></label>
+                    <label><?=_s('Confirm Password')?>:</label>
                     <span class="input">
                         <input type="password" name="" value="" id="da_se_pa_cp">
                     </span>
                 </div>
             </li>
             <li>
-                <?=_s('* You only need to confirm your password if you changed it above ')?>
+                <?=_s('* You only need to confirm your password if you changed it above')?>
             </li>
         </ul>
         <div class="title">
@@ -341,7 +341,7 @@
     </div>
     <div id="da_se_recentShifts">
         <div class="title">
-            <h3>Recent shifts</h3>
+            <h3><?=_s('Recent shifts');?></h3>
         </div>
         <ul class="timeSheet" id="da_se_rs_li">
 
@@ -349,7 +349,7 @@
     </div>
     <div id="da_se_upcomingShifts">
         <div class="title">
-            <h3>Upcoming shifts</h3>
+            <h3><?=_s('Upcoming shifts');?></h3>
         </div>
         <ul class="timeSheet" id="da_se_us_li">
 
