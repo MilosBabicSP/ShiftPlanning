@@ -1,9 +1,9 @@
 <div class="main confirmedHours" id="re_ch">
     <div class="title">
-        <span class="fr"><a href="#" class="advancedButton">Advanced</a></span>
+        <span class="fr"><a href="#" class="advancedButton"><?php echo _s('Advanced');?></a></span>
         <div class="fl">
             <span><?=_s('Payroll - Confirmed Hours')?></span>
-            <time class="from">January 23, 2012</time> - <time class="to">January 29, 2012</time>
+            <time class="from"></time> - <time class="to"></time>
         </div>
     </div>
     <ul class="detailsGrid">
@@ -51,7 +51,7 @@
                 </li>
                 <li class="even">
                     <div>
-                        <label><?=_s('From:')?></label>
+                        <label><?=_s('From')?>:</label>
                         <span class="input">
                             <input type="text" class="timeFromSelector" />
                         </span>
@@ -59,7 +59,7 @@
                 </li>
                 <li class="odd">
                     <div>
-                        <label><?=_s('To:')?></label>
+                        <label><?=_s('To')?>:</label>
                         <span class="input">
                             <input type="text" class="timeToSelector" />
                         </span>
@@ -96,19 +96,19 @@
     </ul>
     <ul class="timeSheet totals">
         <li class="TSregular">
-            <span><b><?=_s('Regular:')?></b> <span></span></span>
+            <span><b><?=_s('Regular')?>:</b> <span></span></span>
         </li>
         <li class="TSspecial">
-            <span><b><?=_s('Special:')?></b> <span></span></span>
+            <span><b><?=_s('Special')?>:</b> <span></span></span>
         </li>
         <li class="TSovertime">
-            <span><b><?=_s('Overtime:')?></b> <span></span></span>
+            <span><b><?=_s('Overtime')?>:</b> <span></span></span>
         </li>
         <li class="TStotal">
-            <span><b><?=_s('Total:')?></b> <span></span></span>
+            <span><b><?=_s('Total')?>:</b> <span></span></span>
         </li>
         <li class="TScost">
-            <span><b><?=_s('Cost:')?></b> <span class="currency"></span><span></span></span>
+            <span><b><?=_s('Cost')?>:</b> <span class="currency"></span><span></span></span>
         </li>
     </ul>
     <div class="notif hidden"><?=_s('No data to display for selected filters.')?></div>

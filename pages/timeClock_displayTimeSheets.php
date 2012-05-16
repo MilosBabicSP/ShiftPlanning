@@ -1,6 +1,6 @@
 <div class="main displayTimeSheets" id="tc_dts">
     <div class="title">
-        <h3>My Time Sheets</h3>
+        <h3><?=_s('My Time Sheets');?></h3>
     </div>
     <ul class="detailsGrid">
         <li>
@@ -9,9 +9,9 @@
             <div>
                 <span class="input">
                     <select id="tc_dts_au">
-                        <option value="0" selected="selected">All</option>
-                        <option value="1" >Approved</option>
-                        <option value="2" >Unapproved</option>
+                        <option value="0" selected="selected"><?=_s('All');?></option>
+                        <option value="1" ><?=_s('Approved');?></option>
+                        <option value="2" ><?=_s('Unapproved');?></option>
                     </select>
                 </span>
             </div>

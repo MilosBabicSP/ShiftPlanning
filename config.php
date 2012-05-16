@@ -9,7 +9,7 @@ if (strpos($_SERVER['SERVER_NAME'], '192.168.1') !== false){
     define('_ext_' , '');
 }
 
-    define('_lang_', $_SERVER['DOCUMENT_ROOT']);
+define('_lang_', $_SERVER['DOCUMENT_ROOT']);
 
 
 

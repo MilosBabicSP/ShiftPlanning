@@ -77,6 +77,7 @@ ShiftPlanning.prototype = {
                     user.company = '';
                     sp.staff.data.employees = {};
                     $('.applicationContainer').fadeOut(500,function(){
+			window.location.reload();
                         $('body').addClass('login');
                         $('html').css('height','100%');
                         $('.loginContainer').fadeIn(500);

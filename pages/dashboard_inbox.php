@@ -9,7 +9,7 @@
         <span class="input">
             <input type="text" name="" value="" id="da_in_nm_ti" />
         </span>
-        <label><?=_s('To:')?></label>
+        <label><?=_s('To')?>:</label>
         <span class="input">
             <select id="da_in_nm_to"></select>
         </span>

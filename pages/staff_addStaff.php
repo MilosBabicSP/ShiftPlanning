@@ -5,7 +5,7 @@
     <ul class="detailsGrid">
         <li>
             <div>
-                <label><?=_s('Name:')?></label>
+                <label><?=_s('Name')?>:</label>
                 <span class="input">
                     <input type="text" name="" value="" id="st_ae_i_n">
                 </span>
@@ -13,7 +13,7 @@
         </li>
         <li>
             <div>
-                <label><?=_s('Nick Name:')?></label>
+                <label><?=_s('Nick Name')?>:</label>
                 <span class="input">
                     <input type="text" name="" value="" id="st_ae_i_nn">
                 </span>
@@ -21,7 +21,7 @@
         </li>
         <li>
             <div>
-                <label><?=_s('Email:')?></label>
+                <label><?=_s('Email')?>:</label>
                 <span class="input">
                     <input type="text" name="" value="" id="st_ae_i_e">
                 </span>
@@ -29,7 +29,7 @@
         </li>
         <li>
             <div>
-                <label><?=_s('Employee ID:')?></label>
+                <label><?=_s('Employee ID')?>:</label>
                 <span class="input">
                     <input type="text" name="" value="" id="st_ae_i_eid">
                 </span>
@@ -37,7 +37,7 @@
         </li>
         <li>
             <div>
-                <label><?=_s('Username:')?></label>
+                <label><?=_s('Username')?>:</label>
                 <span class="input">
                     <input type="text" name="" value="" id="st_ae_i_un">
                 </span>
@@ -45,7 +45,7 @@
         </li>
         <li>
             <div>
-                <label><?=_s('Hourly Wage:')?></label>
+                <label><?=_s('Hourly Wage')?>:</label>
                 <span class="input">
                     <input type="text" name="" value="" id="st_ae_i_hw">
                 </span>

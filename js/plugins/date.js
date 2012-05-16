@@ -176,38 +176,38 @@ function strtotime (str, now) {
 }
 
 var months =  [
-'Jan',
-'Feb',
-'Mar',
-'Apr',
-'May',
-'Jun',
-'Jul',
-'Aug',
-'Sep',
-'Oct',
-'Nov',
-'Dec'
+_s('Jan'),
+_s('Feb'),
+_s('Mar'),
+_s('Apr'),
+_s('May'),
+_s('Jun'),
+_s('Jul'),
+_s('Aug'),
+_s('Sep'),
+_s('Oct'),
+_s('Nov'),
+_s('Dec')
 ];
 
 var daysOfWeek = [
-    'Sunday',
-    'Monday',
-    'Tuesday',
-    'Wednesday',
-    'Thursday',
-    'Friday', 
-    'Saturday' 
+    _s('Sunday'),
+    _s('Monday'),
+    _s('Tuesday'),
+    _s('Wednesday'),
+    _s('Thursday'),
+    _s('Friday'), 
+    _s('Saturday') 
 ]
 
 var daysOfWeekS = [
-    'Sun',
-    'Mon',
-    'Tue',
-    'Wed',
-    'Thu',
-    'Fri', 
-    'Sat' 
+    _s('Sun'),
+    _s('Mon'),
+    _s('Tue'),
+    _s('Wed'),
+    _s('Thu'),
+    _s('Fri'), 
+    _s('Sat') 
 ]
         
         
@@ -280,7 +280,7 @@ function date (format, timestamp) {
         }
         return n;
     },
-    txt_words = ["Sun", "Mon", "Tues", "Wednes", "Thurs", "Fri", "Satur", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    txt_words = [_s("Sun"), _s("Mon"), _s("Tues"), _s("Wednes"), _s("Thurs"), _s("Fri"), _s("Satur"), _s("January"), _s("February"), _s("March"), _s("April"), _s("May"), _s("June"), _s("July"), _s("August"), _s("September"), _s("October"), _s("November") ,_s("December")];
     formatChrCb = function (t, s) {
         return f[t] ? f[t]() : s;
     };
@@ -399,7 +399,7 @@ function date (format, timestamp) {
             // timezone_abbreviations_list() function.
             /*              return this.date_default_timezone_get();
 */
-            throw 'Not supported (see source code of date() for timezone on how to add support)';
+            throw _s('Not supported (see source code of date() for timezone on how to add support)');
         },
         I: function () { // DST observed?; 0 or 1
             // Compares Jan 1 minus Jan 1 UTC to Jul 1 minus Jul 1 UTC.

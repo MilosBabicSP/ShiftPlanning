@@ -1,7 +1,7 @@
 <div class="main wall" id="da_wa">
     <div class="welcome">
         <p><?=_s('Welcome Back,')?><br/>
-            <span class="userName">Ryan Fyfe</span><?=_s(' with ')?><company>ShiftPlanning Inc</company>
+            <span class="userName"></span><?=_s(' with ')?><company></company>
         </p>
     </div>
     <div class="title">
