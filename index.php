@@ -107,6 +107,7 @@ if ($vtoken['data'] != '1') {
 	$jse->_add('js/schedule/date.extras.js', $encrypt);
 	$jse->_add('js/plugins/objSort.js', $encrypt);
 	$jse->_add('js/plugins/outerClick.js', $encrypt);
+        $jse->_add('js/plugins/shorten.js', $encrypt);
 	
 	//system
 	$jse->_add('js/sp.common.js', $encrypt);
@@ -244,7 +245,7 @@ if ($vtoken['data'] != '1') {
                                 <li class="first active"><a href="#" subpage="overview"><?=_s('Overview');?></a></li>
                                 <li><a href="#" subpage="edit"><?=_s('Edit');?></a></li>
                                 <li><a href="#" subpage="recentShifts"><?=_s('Recent Shifts');?></a></li>
-                                <li><a href="#" subpage="upcomingShifts"><?=_s('Upcoming');?></a></li>
+                                <li><a href="#" subpage="upcomingShifts"><?=_s('Upcoming Shifts');?></a></li>
                                 <li class="last" ><a href="#" subpage="password"><?=_s('Password');?></a></li>
                             </ul>
                         </div>
