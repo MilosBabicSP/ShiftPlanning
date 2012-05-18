@@ -6,6 +6,7 @@ ShiftPlanningDashboard.prototype.initialize = function(){
 	self.settingsEvents();
 	self.upcomingShiftsEvents();
 	self.whosonnowEvents();
+        self.fixes();
     });
 }
 
@@ -908,7 +909,9 @@ ShiftPlanningDashboard.prototype.updateNotes = function(text){
 	});
     }
 }
-
+ShiftPlanningDashboard.prototype.fixes()=function(){
+    $('.settings .mainSub a').shorten();
+}
 //get all staff and add it to main variables
 ShiftPlanningStaff.prototype.getStaff = function(callback){
     sp.api('staff.employees','get',{},function(response){
