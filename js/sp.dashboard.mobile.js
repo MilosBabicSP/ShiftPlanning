@@ -909,7 +909,7 @@ ShiftPlanningDashboard.prototype.updateNotes = function(text){
 	});
     }
 }
-ShiftPlanningDashboard.prototype.fixes()=function(){
+ShiftPlanningDashboard.prototype.fixes = function(){
     $('.settings .mainSub a').shorten();
 }
 //get all staff and add it to main variables
