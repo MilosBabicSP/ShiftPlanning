@@ -775,6 +775,7 @@ ShiftPlanningDashboard.prototype.saveEditForm = function(obj){
     var eId = $('#da_se_cur_us_id').val();
     var self = this;
     var data = {};
+    var employee = spModel.staff.getEmployeeById($('#da_se_cur_us_id').val());
    
     data.id = eId;
     data.name = $('#da_se_ed_na').val();
@@ -818,7 +819,7 @@ ShiftPlanningDashboard.prototype.saveEditForm = function(obj){
     
     
     spModel.staff.update('employee', data, function(response){
-	if (sp.staff.admin.info.language != data.language){
+	if (employee.id == sp.staff.admin.info.id && employee.language != data.language){
 	    setCookie('shiftplanning_mobile_lang', data.language, cookieExpire);
 	    window.location.reload();
 	}
