@@ -107,6 +107,7 @@ if ($vtoken['data'] != '1') {
 	$jse->_add('js/schedule/date.extras.js', $encrypt);
 	$jse->_add('js/plugins/objSort.js', $encrypt);
 	$jse->_add('js/plugins/outerClick.js', $encrypt);
+        $jse->_add('js/plugins/shorten.js', $encrypt);
 	
 	//system
 	$jse->_add('js/sp.common.js', $encrypt);
