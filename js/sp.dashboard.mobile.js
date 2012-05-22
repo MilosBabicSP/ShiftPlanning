@@ -479,7 +479,7 @@ ShiftPlanningDashboard.prototype.settingsSubEvents = function(employee){
 	}
     }
     
-    if (employee.group == 2){
+    if (employee.group <= 2){
 	$('#da_se_ov_aa .button').hide();
     } else {
 	$('#da_se_ov_aa .button').show();
@@ -556,7 +556,7 @@ ShiftPlanningDashboard.prototype.prefillOverview = function(employee){
 	    item = '&nbsp;';
 	}
 	p[i] = item;
-    })
+    });
     
     employee = p;
     //this page needs to be cached after first load and to be reprepared if data are changed - DONE
@@ -596,7 +596,6 @@ ShiftPlanningDashboard.prototype.prefillOverview = function(employee){
 	$('#da_se_ov_aa a[type=activate]').hide();
 	$('#da_se_ov_aa a[type=manualyActivate]').hide();
     }
-    
     $('#da_se_ov_st').html(status);
     $('#da_se_ov_ac').html(status_name);
     
