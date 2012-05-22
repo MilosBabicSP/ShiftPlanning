@@ -177,7 +177,7 @@ ul.inbox li .msgBody {display:none;}
 ul.inbox li.extended .msgBody {display:block;}
 
 ul.filters {overflow:hidden; margin:0 auto;}
-ul.filters li {float:left; width:90px;}
+ul.filters li {float:left; width:54px;}
 ul.filters li a {display:block; padding:6px 0; line-height:16px; text-align:center; color:#666; border:solid 1px #d8d8d8; border-left:none; background-color:#FFF;}
 ul.filters li.active a {background-color:#e8e8e8;}
 ul.filters li.first a {border-radius:2px 0 0 2px; border-left:solid 1px #d8d8d8;}

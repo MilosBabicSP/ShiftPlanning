@@ -241,7 +241,7 @@ if ($vtoken['data'] != '1') {
                 <div id="pages">
                     <div class="dashboard" id="dashboard">
                         <div class="search settings mainSub">
-                            <ul class="filters" style="width:450px">
+                            <ul class="filters" style="width:270px">
                                 <li class="first active"><a href="#" subpage="overview"><?=_s('Overview');?></a></li>
                                 <li><a href="#" subpage="edit"><?=_s('Edit');?></a></li>
                                 <li><a href="#" subpage="recentShifts"><?=_s('Recent Shifts');?></a></li>
