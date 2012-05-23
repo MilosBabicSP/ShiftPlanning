@@ -149,6 +149,10 @@ if ($vtoken['data'] != '1') {
             sp.schedule.data.schedules = sp.map(sp.schedule.raw.schedules);
             sp.staff.admin.settings = <?= _iapi(array('module' => 'admin.settings', 'method' => 'GET'), 'json', true) ?>;
             sp.staff.admin.info = <?= _iapi(array('module' => 'staff.employee', 'method' => 'GET', 'id' => $_SESSION['user']['employee']['id']), 'json', true) ?>;
+	    if (sp.staff.admin.info.language != '<?php echo Functions::getInstance()->getCurrentLang();?>'){
+		setCookie('shiftplanning_mobile_lang', sp.staff.admin.info.language, cookieExpire);
+		window.location.reload();
+	    }
             sp.staff.raw.skills = <?= _iapi(array('module' => 'staff.skills', 'method' => 'GET'), 'json', true) ?>;
             sp.staff.data.skills = sp.map(sp.staff.raw.skills);
             sp.staff.raw.locations = <?= _iapi(array('module' => 'location.locations', 'method' => 'GET'), 'json', true) ?>;
