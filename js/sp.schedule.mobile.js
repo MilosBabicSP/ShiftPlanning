@@ -155,16 +155,17 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
     });
     $('#sc_sub_shift_display ul a.delete').bind(clickEvent,function(e){
         e.preventDefault();
-        var shiftId = $(this).attr('rel');        
+        var shiftId = $(this).attr('rel');  
+        var obj = $(this);        
         if($(this).attr('first') == 'true'){
                 spModel.schedule.del('shift',{id:shiftId,rule:$('#te_sc_shift_display_delete .radio.check').attr('value')},function(response){
                     sp.showSuccess(response.data);
                     setTimeout(function(){
                         $('#schedule .shiftDisplay .backMenu').trigger(clickEvent)
                     },3000);
-                })            
+                }) 
+                obj.attr('first','false');
         }else{
-        var obj = $(this);
         spModel.schedule.get('shift',{id:shiftId,detailed:1},function(response){
             self.shift=response.data;
             if(typeof self.shift.repeats == 'undefined' || self.shift.repeats == 0){
