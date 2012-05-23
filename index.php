@@ -365,6 +365,11 @@ if ($vtoken['data'] != '1') {
                                         <span><?=_s('Edit')?></span>
                                     </a>
                                 </li>
+                                <li class="single">
+                                    <a href="#" class="icoReqDel delete">
+                                        <span><?= _s('Delete') ?></span>
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                         <div class="subLevel mainSub addShift" id="sc_edit_submenu">

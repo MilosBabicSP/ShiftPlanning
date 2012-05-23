@@ -88,6 +88,24 @@
 		    </textarea>
 		</span>
 	    </div>
+                        </div>
+
+            <div class="hidden" id="te_sc_shift_display_delete">
+                 <div class="title1 regular wide">
+		<div>
+		    <span class="radio check" value=""><?=_s('Only this Shift');?></span>
+		</div>
+	    </div>
+	    <div class="title1 regular wide">
+		<div>
+		    <span class="radio"  value="following"><?=_s('This shift + All following');?></span>
+		</div>
+	    </div>
+	    <div class="title1 regular wide"  >
+		<div>
+		    <span class="radio" value="all"><?=_s('All shifts in this series');?></span>
+		</div>
+	    </div>
 	</div>
     </script>
     <script id="te_sc_shifts_names" type="text/x-jquery-tmpl">
