@@ -364,13 +364,13 @@
         <ul class="multiInput">
             <li class="even">
                 <div>
-                    <b class="fromI">From</b><br/>
+                    <b class="fromI"><?=_s('From');?></b><br/>
                     <span>${start_day.formatted}</span>
                 </div>
             </li>
             <li class="odd">
                 <div>
-                    <b class="untilI">Until</b><br/>
+                    <b class="untilI"><?=_s('Until');?></b><br/>
                     <span>${end_day.formatted}</span>
                 </div>
             </li>
@@ -379,8 +379,18 @@
             <?=_s('<b>Status:</b> Pending');?>
         </div>
         <div class="title1">
-            <b><?=_s('Conflicts');?>:</b> <a href="#">${conflicts.count}</a>
+            <b><?=_s('Conflicts');?>:</b>
+	    {{if conflicts.count > 0}}
+		<br />
+		{{tmpl(conflicts.data) "#te_rq_va_ma_co"}}
+	    {{else}}
+		<br />
+		<?php echo _s('No conflicts');?>
+	    {{/if}}	
         </div>
+    </script>
+    <script id="te_rq_va_ma_co" type="text/x-jquery-tmpl">
+        <a href="#" class="conflict" rel="${id}">${start_date.formatted}</a> <br />
     </script>
     <script id="te_rq_va_ma" type="text/x-jquery-tmpl">
         <li>

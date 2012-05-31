@@ -218,6 +218,7 @@ ShiftPlanningStaff.prototype.resetAddEmployee = function(){
 ShiftPlanningStaff.prototype.login = function(){
     var u = $('#lo_u').val();
     var p = $('#lo_p').val();
+    alert(u);
     var self = this;
     sp.api('staff.login', 'GET', {
         username: u, 

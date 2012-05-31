@@ -228,10 +228,9 @@ ShiftPlanningRequests.prototype.shiftTradesEvents = function(){
     $('#rq_st_mts_sub ul a').bind(clickEvent, function(e){
         e.preventDefault();
         var obj = $(this);
-        obj.addClass('loading');
         var id = $(this).attr('rel');
         var data = {
-            id : id
+            trade : id
         }
         
         if ($(this).hasClass('activate')){
@@ -250,7 +249,7 @@ ShiftPlanningRequests.prototype.shiftTradesEvents = function(){
         if ($(this).hasClass('deactivate')){
             data.action = 'deactivate';
         }
-        
+        obj.addClass('loading');
         spModel.schedule.update('trade', data, function(response){
             obj.removeClass('loading');
             if (data.action == 'activate'){
@@ -422,7 +421,7 @@ ShiftPlanningRequests.prototype.overviewSubEvents = function(){
         if (response.data.shift_request_waiting == 0){
             $('#rq_rl_sr').parent().hide();
         } else {
-            $('#rq_rl_sr').parent().show();
+            $('#rq_rl_sr').parent().hide();
         }
         
         if (response.data.trade_approval == 0){
@@ -518,11 +517,11 @@ ShiftPlanningRequests.prototype.vacationSubEvents = function(){
     //    
     //    //getting upcoming confirmed vacations
     spModel.schedule.get('vacations', {start_date : 'last year', end_date : 'next year'}, function(response){
+	response.data = self.clearVacations(response.data);
         if (response.data.length == 0){
             $('#rq_va_up').hide();
             $('#rq_va_up').next().show();
         } else {
-	    response.data = self.clearVacations(response.data);
             $('#rq_va_up').show();
             $('#rq_va_up').next().hide();
             $('#rq_va_up').html($.tmpl($('#te_rq_va_up'), response.data));
@@ -691,6 +690,9 @@ ShiftPlanningRequests.prototype.shiftTradesSubEvents = function(){
 
 ShiftPlanningRequests.prototype.clearVacations = function(data){
     var vacations = [];
+    if (data.length == 0){
+	return vacations;
+    }
     $.each(data, function(i, item){
 	if (item.employee == sp.staff.admin.info.id){
 	    vacations.push(item);
@@ -786,9 +788,8 @@ ShiftPlanningRequests.prototype.addVacationRequest = function(obj){
 }
 
 ShiftPlanningRequests.prototype.displayVacationRequest = function(){
-    $('#rq_va_ma_s').html($.tmpl($('#te_rq_va_ma_s'), this.current));
-    
-    
+    console.log(this.current);
+    $('#rq_va_ma_s').html($.tmpl($('#te_rq_va_ma_s'), this.current));   
 }
 
 ShiftPlanningRequests.prototype.displayShiftTradeManager = function(){

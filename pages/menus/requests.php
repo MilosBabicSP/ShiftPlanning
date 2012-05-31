@@ -14,7 +14,7 @@
                     <img width="16" height="16" src="images/req_2.png" />
                 </a>
             </li>
-            <li>
+            <li class="hidden">
                 <a href="#" subpage="openShifts">
                     <img width="16" height="16" src="images/req_3.png" />
                 </a>

@@ -227,7 +227,7 @@ if ($vtoken['data'] != '1') {
                     <li id="menu_dashboard"><a class="dash" href="#" page="dashboard"><?=_s('Dashboard')?></a></li>
                     <li id="menu_timeClock"><a class="ticl" href="#" page="timeClock"><?=_s('Time Clock')?></a></li>
                     <li id="menu_schedule"><a class="sche" href="#" page="schedule"><?=_s('Schedule')?></a></li>
-                    <li class="active hidden" id="menu_requests"><a class="requ" href="#" page="requests"><?=_s('Requests')?></a>
+                    <li class="active" id="menu_requests"><a class="requ" href="#" page="requests"><?=_s('Requests')?></a>
                         <ul class="hidden">
                             <li><a href="#"><span>4</span><?=_s('Vacation requests')?></a></li>
                             <li><a href="#"><span>208</span><?=_s('Shift Approvals')?></a></li>
