@@ -4,8 +4,7 @@ ShiftPlanningStaff.prototype.initialize = function(){
         if (user.loggedIn == 1){
             self.prepareConfig();
         }
-        $('#lo_f').bind('submit', function(e){
-	    e.preventDefault();
+        $('#lo_b').bind(clickEvent, function(){
             self.login(); 
         });
 	
