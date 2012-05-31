@@ -198,7 +198,7 @@ if ($vtoken['data'] != '1') {
                 <td width="100%">
                     <img class="logo" src="images/logo1.png" alt="ShiftPlanning" />
 
-                    <form class="loginForm" method="post" id="lo_f" onsubmit="return false;">
+                    <form class="loginForm" method="post" id="lo_f">
                         <label><?=_s('Email or Username');?></label>
                         <div class="holder">
                             <input autocorrect="off" autocapitalize="off" type="text" name="username" id="lo_u" />
