@@ -454,6 +454,13 @@ ShiftPlanningRequests.prototype.overviewSubEvents = function(){
 
 ShiftPlanningRequests.prototype.vacationSubEvents = function(){
     var self = this;
+    
+    if (sp.staff.admin.settings.book_days_off == 1){
+	$('#rq_va .newMsg').show();
+    } else {
+	$('#rq_va .newMsg').hide();
+    }
+    
     $('#rq_va_en').html(spView.staffOption((sp.staff.admin.info.group <= 4) ? false : true));
     $('#rq_va_spd').hide()
 
