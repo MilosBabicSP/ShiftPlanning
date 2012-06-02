@@ -819,10 +819,10 @@ ShiftPlanningDashboard.prototype.saveEditForm = function(obj){
     
     
     spModel.staff.update('employee', data, function(response){
-	if (employee.id == sp.staff.admin.info.id && employee.language != data.language){
-	    setCookie('shiftplanning_mobile_lang', data.language, cookieExpire);
-	    window.location.reload();
-	}
+//	if (employee.id == sp.staff.admin.info.id && employee.language != data.language){
+//	    setCookie('shiftplanning_mobile_lang', data.language, cookieExpire);
+//	    window.location.reload();
+//	}
 	obj.removeClass('loading');
 	self.updateUser(eId, response);
     }, function(){
