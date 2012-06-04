@@ -545,6 +545,7 @@ ShiftPlanningSchedule.prototype.addShiftSubEvents = function(){
                 $('#sc_add_user div[type=' + i + ']').hide();
             } else {
                 $('#sc_add_user div[type=' + i + '] ul.detailsGrid li ul').html($.tmpl($('#te_sc_users'), self.prepareStaff(item)));
+				$('#sc_add_user div[type=' + i + ']').show();
             }
         });
         $.each($('#sc_add_user .detailsGrid ul'), function(i, item){
