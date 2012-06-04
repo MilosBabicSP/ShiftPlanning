@@ -804,7 +804,7 @@ ShiftPlanningDashboard.prototype.saveEditForm = function(obj){
 	data.zip = $('#da_se_ed_pz').val();
     }
     
-    data.language=$('#da_se_ed_lang').val();//adding lanuage to staff details
+    data.language= ($('#da_se_ed_lang').val() == 'none') ? '' : $('#da_se_ed_lang').val();//adding lanuage to staff details
     
     data.birth_day = $('#da_se_ed_bday_d').val();
     data.birth_month = $('#da_se_ed_bday_m').val();
@@ -819,8 +819,8 @@ ShiftPlanningDashboard.prototype.saveEditForm = function(obj){
     
     
     spModel.staff.update('employee', data, function(response){
-	if (employee.id == sp.staff.admin.info.id && employee.language != data.language){
-	    setCookie('shiftplanning_mobile_lang', data.language, cookieExpire);
+	if (employee.id == sp.staff.admin.info.id && employee.language != response.language){
+	    setCookie('shiftplanning_mobile_lang', response.language, cookieExpire);
 	    window.location.reload();
 	}
 	obj.removeClass('loading');
@@ -890,7 +890,7 @@ ShiftPlanningDashboard.prototype.updateUser = function(id, res, over){
 
 //Render select box
 ShiftPlanningDashboard.prototype.listLanguages = function (){
-    var result='<option  value="none">Select Language</option>'
+    var result='<option  value="none">Company default</option>'
     $.each(sp.raw.config.languages,function(key,value){
 	result+='<option value="'+value['code']+'">'+value['name']+'</option>'
     })
