@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 //error_reporting(E_ALL);
 //ini_set("display_errors", 1);
@@ -14,7 +13,7 @@ define('_ext_', $_SERVER['REQUEST_URI']);
 
 if (IS_TEST_SERVER) {
     define('API_KEY', '49e4207b8459ef88e19de9b78b882ef15ec14d84');
-    define('API_URL', 'http://www.translations-s.dev.shiftplanning.com/api/');
+    define('API_URL', 'http://www.production-s.dev.shiftplanning.com/api/');
 } else {
     define('API_KEY', '79a331d71dc4d5edb4d7168f2de9c129bbf9e99a');
     define('API_URL', 'http://www.shiftplanning.com/api/');
