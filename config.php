@@ -8,7 +8,7 @@ define('IS_TEST_SERVER', (strpos($_SERVER['SERVER_NAME'], '.dev.') !== false || 
 define('_lang_', $_SERVER['DOCUMENT_ROOT']);
 define('DEBUGGER', true);
 define('_root_', dirname(__FILE__) . '/');
-define('_ext_' , $_SERVER['REQUEST_URI']);
+define('_ext_', $_SERVER['REQUEST_URI']);
 
 
 
@@ -16,7 +16,7 @@ if (IS_TEST_SERVER) {
     define('API_KEY', '49e4207b8459ef88e19de9b78b882ef15ec14d84');
     define('API_URL', 'http://www.translations-s.dev.shiftplanning.com/api/');
 } else {
-    define('API_KEY', '18eb10a76f1e97fd20b0248fd5475bdbc8996c5e');
+    define('API_KEY', '79a331d71dc4d5edb4d7168f2de9c129bbf9e99a');
     define('API_URL', 'http://www.shiftplanning.com/api/');
 }
 
