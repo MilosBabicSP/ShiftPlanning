@@ -28,7 +28,12 @@ class JSPacker {
 	if (strpos($file, 'ttp:') || strpos($file, 'ttps:')) {
 	    array_push($this->scripts, array('path' => $file, 'pack' => $compress));
 	} else {
-	    array_push($this->scripts, array('path' => WWW_PATH . $file, 'pack' => $compress));
+	    if (!IS_TEST_SERVER){
+		$path = 'http://' . _cdn_ . '.' ._domain_ . '/' . _touch_ . '/' . $file;
+	    } else {
+		$path = WWW_PATH . $file;
+	    }
+	    array_push($this->scripts, array('path' => $path, 'pack' => $compress));
 	}
     }
 

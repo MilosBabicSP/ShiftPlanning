@@ -8,7 +8,9 @@ define('_lang_', $_SERVER['DOCUMENT_ROOT']);
 define('DEBUGGER', true);
 define('_root_', dirname(__FILE__) . '/');
 define('_ext_', $_SERVER['REQUEST_URI']);
-
+define('_domain_', 'shiftplanning.com');
+define('_cdn_', 'cdn');
+define('_touch_', 'app/iphone');
 
 
 if (IS_TEST_SERVER) {
