@@ -6,7 +6,7 @@ class JSPacker {
     private $scripts = array();
     private $build = false;
     public $reset = false;
-    public $_store = true;
+    public $_store = false;
 
     function __construct($output) {
 	$this->output = $output;
@@ -45,7 +45,6 @@ class JSPacker {
     }
 
     function _build() {
-	
 	# FORCE BUILD
 	if ($this->reset) {
 	    $this->build = true;
@@ -70,9 +69,7 @@ class JSPacker {
 	    }
 	    file_put_contents(_root_ . 'js/' . _jsV_ . $this->output, implode("\n ", $output));
 	}
-	
-	
-	echo '<script type="text/javascript" src="' . WWW_PATH . 'js/' . _jsV_ . $this->output . '"></script>';
+	echo '<script type="text/javascript" src="' . _fCdnPath_ . 'js/' . _jsV_ . $this->output . '"></script>';
     }
 }
 
