@@ -13,6 +13,7 @@ define('_cdn_', 'cdn');
 define('_touch_', 'app/iphone');
 
 
+
 if (IS_TEST_SERVER) {
     define('API_KEY', '49e4207b8459ef88e19de9b78b882ef15ec14d84');
     define('API_URL', 'http://www.production-s.dev.shiftplanning.com/api/');
@@ -25,3 +26,5 @@ if (IS_TEST_SERVER) {
 define('_jsV_', 6);
 define('WWW_PATH', 'http://' . $_SERVER['SERVER_NAME'] . '/' . _ext_);
 define('LANG_PATH', 'http://' . $_SERVER['SERVER_NAME'] . '/');
+
+define('_fCdnPath_', (false) ? WWW_PATH : 'http://' . _cdn_ . '.' ._domain_ . '/' . _touch_ . '/');
