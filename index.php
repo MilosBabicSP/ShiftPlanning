@@ -23,6 +23,8 @@ if (Functions::getInstance()->isRememberMe()){
     $_SESSION['user']['business']['phone']  = Functions::getInstance()->getCookie('shiftplanning_mobile_userphone');
 }
 
+debug($_SERVER);
+
 ?>
 <!DOCTYPE html>
 <html style="height:100%;">
