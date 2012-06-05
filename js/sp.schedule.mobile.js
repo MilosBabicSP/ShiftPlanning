@@ -541,12 +541,13 @@ ShiftPlanningSchedule.prototype.addShiftSubEvents = function(){
         delete emp.staff.scheduled;
         
         $.each(emp.staff, function(i, item){
-            if (item == null){
+            if (item == null ){
                 $('#sc_add_user div[type=' + i + ']').hide();
             } else {
                 $('#sc_add_user div[type=' + i + '] ul.detailsGrid li ul').html($.tmpl($('#te_sc_users'), self.prepareStaff(item)));
+				$('#sc_add_user div[type=' + i + ']').show();
             }
-        });
+        });		
         $.each($('#sc_add_user .detailsGrid ul'), function(i, item){
             $.each($(item).find('li'), function(iV2, itemV2){
                 if (iV2 % 2 == 0){
