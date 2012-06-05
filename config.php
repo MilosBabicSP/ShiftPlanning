@@ -27,4 +27,4 @@ define('_jsV_', 6);
 define('WWW_PATH', 'http://' . $_SERVER['SERVER_NAME'] . '/' . _ext_);
 define('LANG_PATH', 'http://' . $_SERVER['SERVER_NAME'] . '/');
 
-define('_fCdnPath_', (false) ? WWW_PATH : 'http://' . _cdn_ . '.' ._domain_ . '/' . _touch_ . '/');
+define('_fCdnPath_', (IS_TEST_SERVER) ? WWW_PATH : 'http://' . _cdn_ . '.' ._domain_ . '/' . _touch_ . '/');
