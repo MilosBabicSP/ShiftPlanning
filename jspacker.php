@@ -10,6 +10,7 @@ class JSPacker {
 
     function __construct($output) {
 	$this->output = $output;
+	$this->_store = IS_TEST_SERVER;
 	$this->build = file_exists(_root_ . 'js/' . _jsV_ . $this->output) ? false : true;
 
 	# WRITE TO SCREEN
