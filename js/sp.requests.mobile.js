@@ -433,7 +433,7 @@ ShiftPlanningRequests.prototype.overviewSubEvents = function(){
         if (response.data.shift_available == 0){
             $('#rq_rl_sv').parent().hide();
         } else {
-            $('#rq_rl_sv').parent().show();
+            $('#rq_rl_sv').parent().hide();
         }
         
         $('#rq_rl_va').parent().find('info').html(response.data.vacation);
