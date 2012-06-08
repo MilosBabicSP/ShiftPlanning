@@ -798,6 +798,27 @@
             </span>
         </li>
     </script>
+	<script id="te_tr_sections" type="text/x-jquery-tmpl">
+		<li>
+			<a href="#" class="fr" rel="${id}" ><img width="43" height="30" src="<?php echo _fCdnPath_;?>images/NextMenu.png"></a>
+			<span class="twoLine">
+				Created by: ${created_by}<br/>
+				Section Tilte: ${title}
+			</span>
+		</li>
+	</script>
+	<script id="te_tr_module" type="text/x-jquery-tmpl">
+		<li>
+			<a href="#" class="fr" rel="${id}" ><img width="43" height="30" src="<?php echo _fCdnPath_;?>images/NextMenu.png"></a>
+			<span class="twoLine">
+				Module Title : ${title}<br/>
+				Updated Time : ${updated}
+			</span>
+		</li>
+		<div style="display: none;">
+			${contents}
+		</div>
+	</script>
     <script id="te_da_ping" type="text/x-jquery-tmpl">
         <div class="title1 wide" style="background-color: #ebefd6; color: #565551;">
             <div>

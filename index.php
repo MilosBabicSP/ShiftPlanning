@@ -99,6 +99,7 @@ if ($vtoken['data'] != '1') {
 	$jse->_add('js/models/sp.staff.model.js', $encrypt);
 	$jse->_add('js/models/sp.payroll.model.js', $encrypt);
 	$jse->_add('js/models/sp.location.model.js', $encrypt);
+	$jse->_add('js/models/sp.training.model.js',$encrypt);
 	
 	//plugins
 	$jse->_add('js/plugins/date.js', $encrypt);
@@ -125,6 +126,7 @@ if ($vtoken['data'] != '1') {
 	$jse->_add('js/sp.requests.js', $encrypt);
 	$jse->_add('js/sp.location.js', $encrypt);
 	$jse->_add('js/sp.permissions.js', $encrypt);
+	$jse->_add('js/sp.training.js',$encrypt);
 	
 	//extension
 	$jse->_add('js/sp.staff.mobile.js', $encrypt);
@@ -134,6 +136,7 @@ if ($vtoken['data'] != '1') {
 	$jse->_add('js/sp.requests.mobile.js', $encrypt);
 	$jse->_add('js/sp.schedule.mobile.js', $encrypt);
 	$jse->_add('js/sp.permissions.mobile.js', $encrypt);
+	$jse->_add('js/sp.training.mobile.js', $encrypt);
 	
 	//Loader
 	$jse->_add('js/sp.common.mobile.js', $encrypt);
@@ -237,6 +240,7 @@ if ($vtoken['data'] != '1') {
                     </li>
                     <li id="menu_staff"><a class="staf" href="#" page="staff" ><?=_s('Staff')?></a></li>
                     <li id="menu_reports"><a class="repo" href="#" page="reports" ><?=_s('Reports')?></a></li>
+					<li id="menu_training"><a class="trai" href="#" page="training"><?=_s('Training')?></a></li>
                 </ul>
             </div>
             <div id="wrapper" class="wrapper">
@@ -247,6 +251,7 @@ if ($vtoken['data'] != '1') {
                     <?php Functions::getInstance()->loadFile('menus/requests') ?>
                     <?php Functions::getInstance()->loadFile('menus/staff') ?>
                     <?php Functions::getInstance()->loadFile('menus/reports') ?>
+					<?php Functions::getInstance()->loadFile('menus/training')?>
                 </div>
                 <div id="pages">
                     <div class="dashboard" id="dashboard">
@@ -560,6 +565,15 @@ if ($vtoken['data'] != '1') {
 
                         </div>
                     </div>
+					<div class="training" id="training">
+						<div class="subLevel hidden mainSub singleSection" id="tr_si_se">
+                            <a class="backMenu" href="#">
+                                <img width="41" height="30" src="<?php echo _fCdnPath_; ?>images/BackMenu.png">
+                            </a>
+                        </div>						
+						<?php Functions::getInstance()->loadFile('training_overview')?>
+						<?php Functions::getInstance()->loadFile('training_singleSection')?>
+					</div>
                 </div>
             </div>
         </div>
