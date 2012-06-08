@@ -40,12 +40,17 @@ ShiftPlanningTraining.prototype.singleSectionSubEvents = function(){
 	$('.training_modules').html(spView.ulLoader());
 	spModel.training.get('modules', {section:sp.training.tmp_section,detailed:1}, function(response){
 		var data=[];
+		var fix_escaped_html = {} ;
 		$.each(response.data,function(k,v){
 			v.contents=self.bbc2HTML(v.contents);
-			console.info(v.contents);
+			fix_escaped_html[v.id]=v.contents;			
 			data.push(v);
 		})
 		$('.training_modules').html($.tmpl($('#te_tr_module'),response.data));
+		$.each(fix_escaped_html,function(i,item){
+			var html=$('div [contents=content_'+i+']');
+			html.html(html.text());
+		})
 	})
 }
 //dumy function
