@@ -564,6 +564,7 @@ if ($vtoken['data'] != '1') {
                         <div class="main singleViewDisplay" id="re_di_item">
 
                         </div>
+						
                     </div>
 					<div class="training" id="training">
 						<div class="subLevel hidden mainSub singleSection" id="tr_si_se">
