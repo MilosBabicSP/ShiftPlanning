@@ -204,6 +204,8 @@ function callAndroid(func, callback){
 	return Android[func](function(res){
 	    if (typeof callback != 'undefined'){
 		callback(res);
+	    } else {
+		return res;
 	    }
 	});
     }
