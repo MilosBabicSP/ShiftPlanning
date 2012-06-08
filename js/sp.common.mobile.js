@@ -196,10 +196,13 @@ ShiftPlanning.prototype.showError = function(text){
     });
 }
 
-function checkAndroid(func, callback){
+function callAndroid(func, callback){
     if (typeof Android != 'undefined'){
+	if (typeof func != 'undefined'){
+	    func = 'showToast';
+	}
 	return Android[func](function(res){
-	    if (typeof callback == 'function'){
+	    if (typeof callback != 'undefined'){
 		callback(res);
 	    }
 	});
