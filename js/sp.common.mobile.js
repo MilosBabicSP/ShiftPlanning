@@ -207,6 +207,8 @@ function callAndroid(func, callback){
 	    }
 	});
     }
+    
+    return false;
 }
 
 //Initalizing javascript library
