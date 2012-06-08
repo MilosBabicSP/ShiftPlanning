@@ -815,7 +815,7 @@
 				Updated Time : ${updated}
 			</span>
 		</li>
-		<div style="display: none;">
+		<div contents="content_${id}" style="display: none;">
 			${contents}
 		</div>
 	</script>
