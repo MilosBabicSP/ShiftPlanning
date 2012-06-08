@@ -215,7 +215,11 @@ if ($vtoken['data'] != '1') {
                     </form>
                     <div class="footerTxt"><?=_s('View in: Mobile |')?> <a href="/app/?fullapp=true"><?=_s('Full Version')?></a><br/>
                         <a href="/terms/"><?=_s('Terms of Use')?></a> | <a href="/privacy/"><?=_s('Privacy Policy')?></a><br/>
+			<a href="javascript://" onclick="callAndroid('showToast', function(e){ $(this).html(e)})"><?=_s('Privacy Policy')?></a>
+			<br />
                         &copy; <?php echo date('Y'); ?> ShiftPlanning</div>
+		    
+		    
                 </td>
             </tr>
         </table>
