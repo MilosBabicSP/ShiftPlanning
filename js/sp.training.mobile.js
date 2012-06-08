@@ -44,7 +44,7 @@ ShiftPlanningTraining.prototype.singleSectionSubEvents = function(){
 		$.each(response.data,function(k,v){
 			v.contents=self.bbc2HTML(v.contents);
 			fix_escaped_html[v.id]=v.contents;
-			if(v.employees != 'undefined' && v.employees[sp.staff.admin.info.id] != 'undefined'){
+			if(v.employees[sp.staff.admin.info.id] != 'undefined'){
 				v.finished=v.employees[sp.staff.admin.info.id].finished ? 1 : 0 ;
 			}else{
 				v.finished = 0 ;
