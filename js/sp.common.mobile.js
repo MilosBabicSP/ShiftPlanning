@@ -196,6 +196,16 @@ ShiftPlanning.prototype.showError = function(text){
     });
 }
 
+function checkAndroid(func, callback){
+    if (typeof Android != 'undefined'){
+	return Android[func](function(res){
+	    if (typeof callback == 'function'){
+		callback(res);
+	    }
+	});
+    }
+}
+
 //Initalizing javascript library
 var sp = new ShiftPlanning();
 ShiftPlanning.prototype.staff = new ShiftPlanningStaff();
@@ -206,3 +216,5 @@ ShiftPlanning.prototype.reports = new ShiftPlanningReports();
 ShiftPlanning.prototype.requests = new ShiftPlanningRequests();
 ShiftPlanning.prototype.location = new ShiftPlanningLocation();
 ShiftPlanning.prototype.permissions = new ShiftPlanningPermissions();
+
+
