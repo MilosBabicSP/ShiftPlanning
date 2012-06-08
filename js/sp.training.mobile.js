@@ -43,10 +43,16 @@ ShiftPlanningTraining.prototype.singleSectionSubEvents = function(){
 		var fix_escaped_html = {} ;
 		$.each(response.data,function(k,v){
 			v.contents=self.bbc2HTML(v.contents);
-			fix_escaped_html[v.id]=v.contents;			
+			fix_escaped_html[v.id]=v.contents;
+			if(typeof v.employees[sp.staff.admin.info.id] != 'undefined' ){
+				v.finished=v.employees[sp.staff.admin.info.id].finished ? 1 : 0 ;
+			}else{
+				v.finished = 0 ;
+			}
+			
 			data.push(v);
 		})
-		$('.training_modules').html($.tmpl($('#te_tr_module'),response.data));
+		$('.training_modules').html($.tmpl($('#te_tr_module'),data));
 		$.each(fix_escaped_html,function(i,item){
 			var html=$('div [contents=content_'+i+']');
 			html.html(html.text());

@@ -813,6 +813,7 @@
 			<span class="twoLine">
 				Module Title : ${title}<br/>
 				Updated Time : ${updated}
+				{{if finished == 1}}<b>Finished</b>{{else}}<b>Not Finished</b>{{/if}}
 			</span>
 		</li>
 		<div contents="content_${id}" style="display: none;">
