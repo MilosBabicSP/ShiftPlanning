@@ -44,11 +44,11 @@ if (Functions::getInstance()->isRememberMe()){
 	<link rel="apple-touch-startup-image" media="(max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2)" href="<?php echo _fCdnPath_;?>images/sc/x640.png" />
 
 	<!-- For iPhone with high-resolution Retina display: -->
-	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="<?php echo _fCdnPath_;?>images/sc/iPhone-114x114">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="<?php echo _fCdnPath_;?>images/sc/iPhone-114x114.png">
 	<!-- For first- and second-generation iPad: -->
-	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="<?php echo _fCdnPath_;?>images/sc/iPhone-72x72">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="<?php echo _fCdnPath_;?>images/sc/iPhone-72x72.png">
 	<!-- For non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
-	<link rel="apple-touch-icon-precomposed" href="<?php echo _fCdnPath_;?>images/sc/iPhone-57x57">
+	<link rel="apple-touch-icon-precomposed" href="<?php echo _fCdnPath_;?>images/sc/iPhone-57x57.png">
 	
 	<?php if (Functions::getInstance()->getCurrentLang() != 'en_US'):?>
 	    <link rel="gettext" href="<?php echo LANG_PATH;?>lang/<?php echo Functions::getInstance()->getCurrentLang();?>/LC_MESSAGES/ShiftPlanning.json" />
