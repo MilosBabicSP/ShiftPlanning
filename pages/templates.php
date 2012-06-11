@@ -800,7 +800,7 @@
     </script>
 	<script id="te_tr_sections" type="text/x-jquery-tmpl">
 		<li class="idle">
-					<div style="overflow:hidden;">
+					<div>
 			<a href="#" class="fr tDown" rel="${id}" ><img width="43" height="30" src="<?php echo _fCdnPath_;?>images/DownMenu.png"></a>
                         <a href="#" class="fr tUp" rel="${id}" ><img width="43" height="30" src="<?php echo _fCdnPath_;?>images/UpMenu.png"></a>
 			<span class="oneLine">
