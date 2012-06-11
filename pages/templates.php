@@ -799,12 +799,28 @@
         </li>
     </script>
 	<script id="te_tr_sections" type="text/x-jquery-tmpl">
-		<li>
-			<a href="#" class="fr" rel="${id}" ><img width="43" height="30" src="<?php echo _fCdnPath_;?>images/NextMenu.png"></a>
-			<span class="twoLine">
-				Created by: ${created_by}<br/>
+		<li class="idle">
+					<div style="overflow:hidden;">
+			<a href="#" class="fr" rel="${id}" ><img width="43" height="30" src="<?php echo _fCdnPath_;?>images/DownMenu.png"></a>
+			<span class="oneLine">
 				Section Tilte: ${title}
 			</span>
+							</div>
+				{{if modules.length > 0}}
+				<ul modules="modules_${id}" style="display:none">
+				{{each modules}}
+				<li>
+			
+					<a href="#" class="fr" rel="${$value.id}" ><img width="43" height="30" src="<?php echo _fCdnPath_; ?>images/NextMenu.png"></a>
+					<span class="oneLine">
+						Module Tilte: ${$value.title}
+					</span>
+		
+				</li>
+				{{/each}}
+				</ul>
+				{{/if}}
+				
 		</li>
 	</script>
 	<script id="te_tr_module" type="text/x-jquery-tmpl">

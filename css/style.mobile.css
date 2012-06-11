@@ -33,7 +33,8 @@ h5 {font-size:14px; font-weight:normal; color:#333;}
 .cmtCount span.ico {background-image:url(../images/sprite.png); background-repeat:no-repeat;}
 .fromI, .untilI, span.checkbox, span.radio, .dash, .ticl, .sche, .requ, .staf, .repo, .trai, .icoClock, .icoEmpDet, .icoAdmAct, .icoEmpPos, .icoEmpSki, .icoEmpAdd, .icoDat, .icoNot, .icoAct, .icoSta, .icoReqWor, .icoReqCan, .icoReqEdi, .icoReqDel, .icoLoc, .icoSch {background-image:url(../images/mainNav_bg.png); background-repeat:no-repeat;}
 .calendar td.today, .calendar th, .calendar td.hasAny {background-image: url(../images/callendar_bg.png); background-repeat:repeat-x;}
-
+.trai_down {background-image:url(../images/DownMenu.png); background-repeat:no-repeat;}
+.trai_up{background-image:url(../images/UpMenu.png); background-repeat:no-repeat;}
 .dash {background-position:10px 0;}
 .ticl {background-position:10px -50px;}
 .sche {background-position:10px -100px;}

@@ -10,8 +10,17 @@ ShiftPlanningTraining.prototype.loadSubPageEvents = function(subpage){
 ShiftPlanningTraining.prototype.overviewEvents = function(){
 	$('.training_sections').delegate('a.fr',clickEvent,function(e){
 		e.preventDefault();
-		sp.training.tmp_section=$(this).attr('rel');
-		sp.loadSubPage('', 'training', 'singleSection');
+		var section=$(this).attr('rel');
+		if($(this).parent().parent().hasClass('idle')){
+			$(this).parent().parent().removeClass('idle').addClass('active');
+			$('div [modules = modules_'+ section +']').slideDown();
+		}else{
+			if($(this).parent().parent().hasClass('active')){
+				$(this).parent().parent().removeClass('active').addClass('idle');
+				$('div [modules = modules_'+ section +']').slideUp();
+			}
+		}
+//		sp.training.tmp_section=$(this).attr('rel');
 	})
 	$('#tr_si_se .backMenu').bind(clickEvent,function(e){
 		e.preventDefault();
@@ -25,12 +34,23 @@ ShiftPlanningTraining.prototype.overviewEvents = function(){
 ShiftPlanningTraining.prototype.overviewSubEvents = function(){
 	$('.subNavigation').show();
 	$('.training_sections').html(spView.ulLoader());
-	spModel.training.get('sections',{}, function(response){
-		var data=[];
-		$.each(response.data,function(k,v){
-			v.created_by=sp.staff.data.employees[v.created_by].name;
+	var calls = [
+		['training.sections','GET',{}],
+		['training.modules','GET',{detailed:1}]
+	]
+	var data = [] ;
+	sp.multiApi(calls,function(response){	
+		$.each(response[0].data,function(k,v){
+			var mod=[];
+			$.each(response[1].data,function(i,item){
+			if(v.id == item.section){
+				mod.push(item);
+				}		
+			})
+			v.modules=mod;
 			data.push(v);
 		})
+		console.log(data);
 		$('.training_sections').html($.tmpl($('#te_tr_sections'),data));
 	})
 }
