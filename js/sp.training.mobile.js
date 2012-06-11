@@ -54,7 +54,7 @@ ShiftPlanningTraining.prototype.overviewSubEvents = function(){
 		if(typeof response[2].data[sp.staff.admin.info.id] != 'undefined'){
 			var percent = Math.floor((response[2].data[sp.staff.admin.info.id].completed/response[2].data[sp.staff.admin.info.id].total)*100);
 			$('#user_progress').html(percent);
-			$('.progress').css('weight',percent+'%');
+			$('.progress').css('width',percent+'%');
 		}
 		$('.training_sections').html($.tmpl($('#te_tr_sections'),data));
 	})
