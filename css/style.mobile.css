@@ -221,6 +221,7 @@ ul.timeSheet li > span {display:inline-block; float:left;}
 ul.timeSheet li .date {width:25%; line-height:30px;}
 ul.timeSheet li .names {width:25%; line-height:15px;}
 ul.timeSheet li .twoLine {line-height:15px; padding:0 0 0 5px;}
+ul.timeSheet li .oneLine {line-height:30px; padding:0 0 0 5px;}
 ul.timeSheet li .time {width:50%; text-align:center; color:#888; line-height:20px; font-size:13px;}
 ul.timeSheet li .time .tStart {background-color:#75BE66; display:inline-block; padding:5px; border-radius:2px; color:#FFF;}
 ul.timeSheet li .time .tEnd {background-color:#D15050; display:inline-block; padding:5px; border-radius:2px; color:#FFF;}
