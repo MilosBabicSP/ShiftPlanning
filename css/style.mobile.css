@@ -311,3 +311,7 @@ body {display:none;}
 
 /*failsafe*/
 .checkbox.failsafe {line-height:15px;}
+
+/* training */
+.trainingBar {position:relative; height:30px; background-color:#FAFAFA; border:solid 1px #EEE;}
+.progress {position:absolute; height:30px; background-color:#59B122;}
