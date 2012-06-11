@@ -60,11 +60,8 @@ ShiftPlanningTraining.prototype.overviewSubEvents = function(){
 		}
 		$('.training_sections').html($.tmpl($('#te_tr_sections'),data));
 		if(sp.training.scrollWindow){
-			console.log('usao');
-			console.log(sp.training.tmp_section)
-			console.log($('.training_sections a.fr[rel='+sp.training.tmp_section+']:visible'))
 			$('.training_sections a.fr[rel='+sp.training.tmp_section+']:visible').trigger(clickEvent);
-			$(window).scrollTop(sp.training.top);
+			$('body,html').animate({scrollTop: sp.training.top}, 800);
 			sp.training.scrollWindow = false ;			
 		}
 	})
