@@ -215,12 +215,15 @@ ul.cmts li.last span.input {margin:5px 30px 15px 0;}
 ul.cmts li.last input[type=submit] {float:right; margin:13px 0 0; display:block; width:13px; height:0; padding:13px 0 0; overflow:hidden; background-color:transparent; border:none; background-position:-26px 0;}
 
 ul.timeSheet {overflow:hidden; font-size:14px;}
-ul.timeSheet li {border-bottom:solid 1px #dbdbdb; padding:5px 0; overflow:hidden;}
+ul.timeSheet > li {border-bottom:solid 1px #dbdbdb; padding:5px 0; overflow:hidden;}
+ul.timeSheet ul {padding:5px 0 0;}
+ul.timeSheet ul li {padding:5px 0; overflow:hidden; border-top:solid 1px #EEE;}
 ul.timeSheet li > img {float:left;}
 ul.timeSheet li > span {display:inline-block; float:left;}
 ul.timeSheet li .date {width:25%; line-height:30px;}
 ul.timeSheet li .names {width:25%; line-height:15px;}
 ul.timeSheet li .twoLine {line-height:15px; padding:0 0 0 5px;}
+ul.timeSheet li .oneLine {line-height:30px; padding:0 0 0 5px;}
 ul.timeSheet li .time {width:50%; text-align:center; color:#888; line-height:20px; font-size:13px;}
 ul.timeSheet li .time .tStart {background-color:#75BE66; display:inline-block; padding:5px; border-radius:2px; color:#FFF;}
 ul.timeSheet li .time .tEnd {background-color:#D15050; display:inline-block; padding:5px; border-radius:2px; color:#FFF;}
@@ -317,3 +320,8 @@ body {display:none;}
 .trainingBar {font-size:14px; line-height:20px;}
 .barholder {position:relative; height:10px; background-color:#FFF; border:solid 1px #DDD;}
 .progress {position:absolute; height:12px; top:-1px; left:-1px; border-left:1px solid #5F894D; border-right:1px solid #5F894D; background:transparent url(../images/progress_bg.png) scroll repeat-x 0 0;}
+
+ul.training_sections {overflow:hidden;}
+ul.training_sections li.idle .tUp {display:none;}
+ul.training_sections li.active .tDown {display:none;}
+ul.training_sections li.active div {overflow:hidden;}
