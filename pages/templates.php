@@ -812,7 +812,7 @@
 				{{each modules}}
 				<li>
 			
-					<a href="#" class="fr" rel="${$value.id}" ><img width="43" height="30" src="<?php echo _fCdnPath_; ?>images/NextMenu.png"></a>
+					<a href="#" class="next fr" rel="${$value.id}" ><img width="43" height="30" src="<?php echo _fCdnPath_; ?>images/NextMenu.png"></a>
 					<span class="oneLine">
 						Module Tilte: ${$value.title}
 					</span>
