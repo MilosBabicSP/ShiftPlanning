@@ -216,7 +216,6 @@ ul.cmts li.last input[type=submit] {float:right; margin:13px 0 0; display:block;
 
 ul.timeSheet {overflow:hidden; font-size:14px;}
 ul.timeSheet > li {border-bottom:solid 1px #dbdbdb; padding:5px 0; overflow:hidden;}
-ul.timeSheet > li > div {padding:0 0 5px; overflow:hidden;}
 ul.timeSheet ul li {padding:5px 0; overflow:hidden; border-top:solid 1px #EEE;}
 ul.timeSheet li > img {float:left;}
 ul.timeSheet li > span {display:inline-block; float:left;}
@@ -324,3 +323,5 @@ body {display:none;}
 ul.training_sections {overflow:hidden;}
 ul.training_sections li.idle .tUp {display:none;}
 ul.training_sections li.active .tDown {display:none;}
+ul.training_sections li.idle div {padding:0; overflow:hidden;}
+ul.training_sections li.active div {padding:0 0 5px; overflow:hidden;}
