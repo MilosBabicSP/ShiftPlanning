@@ -323,5 +323,4 @@ body {display:none;}
 ul.training_sections {overflow:hidden;}
 ul.training_sections li.idle .tUp {display:none;}
 ul.training_sections li.active .tDown {display:none;}
-ul.training_sections li.idle div {padding:0; overflow:hidden;}
-ul.training_sections li.active div {padding:0 0 5px; overflow:hidden;}
+ul.training_sections li.active div {overflow:hidden;}
