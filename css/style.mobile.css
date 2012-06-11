@@ -218,6 +218,7 @@ ul.timeSheet {overflow:hidden; font-size:14px;}
 ul.timeSheet > li {border-bottom:solid 1px #dbdbdb; padding:5px 0; overflow:hidden;}
 ul.timeSheet ul {padding:5px 0 0;}
 ul.timeSheet ul li {padding:5px 0; overflow:hidden; border-top:solid 1px #EEE;}
+ul.timeSheet ul li:last-child {padding:0;}
 ul.timeSheet li > img {float:left;}
 ul.timeSheet li > span {display:inline-block; float:left;}
 ul.timeSheet li .date {width:25%; line-height:30px;}
