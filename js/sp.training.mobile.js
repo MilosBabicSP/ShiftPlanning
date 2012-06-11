@@ -36,7 +36,8 @@ ShiftPlanningTraining.prototype.overviewSubEvents = function(){
 	$('.training_sections').html(spView.ulLoader());
 	var calls = [
 		['training.sections','GET',{}],
-		['training.modules','GET',{detailed:1}]
+		['training.modules','GET',{detailed:1}],
+		['training.progress','GET',{}]
 	]
 	var data = [] ;
 	sp.multiApi(calls,function(response){	
@@ -50,7 +51,11 @@ ShiftPlanningTraining.prototype.overviewSubEvents = function(){
 			v.modules=mod;
 			data.push(v);
 		})
-		console.log(data);
+		if(typeof response[2].data[sp.staff.admin.info.id] != 'undefined'){
+			var percent = Math.floor((response[2].data[sp.staff.admin.info.id].completed/response[2].data[sp.staff.admin.info.id].total)*100);
+			$('#user_progress').html(percent);
+			$('.progress').css('weight',percent+'%');
+		}
 		$('.training_sections').html($.tmpl($('#te_tr_sections'),data));
 	})
 }
