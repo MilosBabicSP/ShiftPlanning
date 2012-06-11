@@ -8,25 +8,27 @@ ShiftPlanningTraining.prototype.loadSubPageEvents = function(subpage){
 	    this[subpage + 'SubEvents']();
 }
 ShiftPlanningTraining.prototype.overviewEvents = function(){
-	$('.training_sections').delegate('a.fr',clickEvent,function(e){
+	$('.training_sections').delegate('a.sub',clickEvent,function(e){
 		e.preventDefault();
-		var section=$(this).attr('rel');
+		sp.training.tmp_section=$(this).attr('rel');
 		if($(this).parent().parent().hasClass('idle')){
 			$(this).parent().parent().removeClass('idle').addClass('active');
-			$('div [modules = modules_'+ section +']').slideDown();
+			$('div [modules = modules_'+ sp.training.tmp_section +']').slideDown();
 		}else{
 			if($(this).parent().parent().hasClass('active')){
 				$(this).parent().parent().removeClass('active').addClass('idle');
-				$('div [modules = modules_'+ section +']').slideUp();
+				$('div [modules = modules_'+ sp.training.tmp_section +']').slideUp();
 			}
 		}
 	})
 	$('#tr_si_se .backMenu').bind(clickEvent,function(e){
 		e.preventDefault();
 		$('.subNavigation .training li.active a').trigger(clickEvent);
+		sp.training.scrollWindow = true ;
 	})
 	$('.training_sections').delegate('a.next',clickEvent,function(e){
 		e.preventDefault();
+		sp.training.top=$(this).offset().top;
 		sp.training.tmp_module=$(this).attr('rel');
 		sp.loadSubPage('', 'training', 'singleModule');		
 	})
@@ -57,6 +59,14 @@ ShiftPlanningTraining.prototype.overviewSubEvents = function(){
 			$('.progress').css('width',percent+'%');
 		}
 		$('.training_sections').html($.tmpl($('#te_tr_sections'),data));
+		if(sp.training.scrollWindow){
+			console.log('usao');
+			console.log(sp.training.tmp_section)
+			console.log($('.training_sections a.fr[rel='+sp.training.tmp_section+']:visible'))
+			$('.training_sections a.fr[rel='+sp.training.tmp_section+']:visible').trigger(clickEvent);
+			$(window).scrollTop(sp.training.top);
+			sp.training.scrollWindow = false ;			
+		}
 	})
 }
 ShiftPlanningTraining.prototype.singleModuleSubEvents = function(){
