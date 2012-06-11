@@ -314,4 +314,4 @@ body {display:none;}
 
 /* training */
 .trainingBar {position:relative; height:30px; background-color:#FAFAFA; border:solid 1px #EEE; border-radius:3px; overflow:hidden;}
-.progress {position:absolute; top:1px; left:1px; height:28px; background-color:#59B122; border-radius:3px;}
+.progress {position:absolute; top:1px; left:1px; height:28px; background-color:#1D8DAD; border-radius:3px;}
