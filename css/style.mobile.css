@@ -215,7 +215,7 @@ ul.cmts li.last span.input {margin:5px 30px 15px 0;}
 ul.cmts li.last input[type=submit] {float:right; margin:13px 0 0; display:block; width:13px; height:0; padding:13px 0 0; overflow:hidden; background-color:transparent; border:none; background-position:-26px 0;}
 
 ul.timeSheet {overflow:hidden; font-size:14px;}
-ul.timeSheet li {border-bottom:solid 1px #dbdbdb; padding:5px 0; overflow:hidden;}
+ul.timeSheet > li {border-bottom:solid 1px #dbdbdb; padding:5px 0; overflow:hidden;}
 ul.timeSheet li > img {float:left;}
 ul.timeSheet li > span {display:inline-block; float:left;}
 ul.timeSheet li .date {width:25%; line-height:30px;}
