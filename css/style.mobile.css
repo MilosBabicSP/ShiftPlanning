@@ -313,5 +313,6 @@ body {display:none;}
 .checkbox.failsafe {line-height:15px;}
 
 /* training */
-.trainingBar {position:relative; height:10px; background-color:#FAFAFA; border-radius:2px; overflow:hidden;}
+.trainingBar {font-size:14px; line-height:20px;}
+.barholder {position:relative; height:10px; background-color:#FAFAFA; border-radius:2px; overflow:hidden;}
 .progress {position:absolute; height:10px; background-color:#4BAECC; border-radius:2px;}
