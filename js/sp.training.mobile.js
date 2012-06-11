@@ -45,17 +45,22 @@ ShiftPlanningTraining.prototype.singleSectionSubEvents = function(){
 			v.contents=self.bbc2HTML(v.contents);
 			fix_escaped_html[v.id]=v.contents;
 			if(typeof v.employees != 'undefined' && typeof v.employees[sp.staff.admin.info.id] != 'undefined'){
-				v.finished=v.employees[sp.staff.admin.info.id].finished ? 1 : 0 ;
+				v.finished = v.employees[sp.staff.admin.info.id].finished ? 1 : 0 ;
+				v.finished_time = v.employees[sp.staff.admin.info.id].finished ;
 			}else{
 				v.finished = 0 ;
+				v.finished_time = 0 ;
 			}
-			
+			console.log(v.finished_time)
+			date=new Date(v.updated*1000);
+			minutes = date.getMinutes()<10?'0'+date.getMinutes():date.getMinutes();
+			v.updated_formatted=spRanges.weekdays[date.getDay()]+','+spRanges.months[date.getMonth()]+' '+date.getDate()+' '+date.getFullYear()+' - '+date.getHours()+':'+minutes;
 			data.push(v);
 		})
 		$('.training_modules').html($.tmpl($('#te_tr_module'),data));
 		$.each(fix_escaped_html,function(i,item){
 			var html=$('div [contents=content_'+i+']');
-			html.html(html.text());
+			html.html(html.text());			
 		})
 	})
 }

@@ -812,12 +812,26 @@
 			<a href="#" class="fr" rel="${id}" ><img width="43" height="30" src="<?php echo _fCdnPath_;?>images/NextMenu.png"></a>
 			<span class="twoLine">
 				Module Title : ${title}<br/>
-				Updated Time : ${updated}
-				{{if finished == 1}}<b>Finished</b>{{else}}<b>Not Finished</b>{{/if}}
+				Updated Time : ${updated_formatted}
 			</span>
 		</li>
 		<div contents="content_${id}" style="display: none;">
 			${contents}
+				{{if files.length > 0}}
+				&ltdiv style="border:1px solid red"&gt
+					{{each files}}
+						&lta class="fr" href="${$value.secureurl}"&gt${$value.filename}&lt/a&gt&ltbr/&gt
+					{{/each}}
+				&lt/div&gt
+				{{/if}}
+				&ltbr/&gt
+				{{if finished == 1 && finished_time < updated }}
+					&lta class="fr" style="background:green;"&gt I will review this &lt/a&gt
+				{{else}}
+					{{if finished == 0}}
+						&lta class="publish" style="background:green;cursor:pointer;"&gt I'we Finished this &lt/a&gt
+					{{/if}}
+				{{/if}}
 		</div>
 	</script>
     <script id="te_da_ping" type="text/x-jquery-tmpl">
