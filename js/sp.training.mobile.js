@@ -20,7 +20,6 @@ ShiftPlanningTraining.prototype.overviewEvents = function(){
 				$('div [modules = modules_'+ section +']').slideUp();
 			}
 		}
-//		sp.training.tmp_section=$(this).attr('rel');
 	})
 	$('#tr_si_se .backMenu').bind(clickEvent,function(e){
 		e.preventDefault();
@@ -54,11 +53,11 @@ ShiftPlanningTraining.prototype.overviewSubEvents = function(){
 		$('.training_sections').html($.tmpl($('#te_tr_sections'),data));
 	})
 }
-ShiftPlanningTraining.prototype.singleSectionSubEvents = function(){
+ShiftPlanningTraining.prototype.singleModuleSubEvents = function(){
 	var self=this;
 	$('#wrapper > .subNavigation').hide();
 	$('.training_modules').html(spView.ulLoader());
-	spModel.training.get('modules', {section:sp.training.tmp_section,detailed:1}, function(response){
+	spModel.training.get('module', {section:sp.training.tmp_section,detailed:1}, function(response){
 		var data=[];
 		var fix_escaped_html = {} ;
 		$.each(response.data,function(k,v){

@@ -11,7 +11,7 @@
             </li>
 				</ul>
         <div class="trainingBar">
-            Training progress : 93% Completed
+            Training progress : <span id="user_progress">93</span>% Completed
             <div class="barholder">
                 <div class="progress" style="width:70%"></div>
             </div>
