@@ -314,5 +314,5 @@ body {display:none;}
 
 /* training */
 .trainingBar {font-size:14px; line-height:20px;}
-.barholder {position:relative; height:10px; background-color:#FFF; border:solid 1px #DDD; overflow:hidden;}
-.progress {position:absolute; height:10px; background:transparent url(../images/progress_bg.png) scroll repeat-x 0 50%;}
+.barholder {position:relative; height:10px; background-color:#FFF; border:solid 1px #DDD;}
+.progress {position:absolute; height:12px; top:-1px; border-left:1px solid #5F894D; background:transparent url(../images/progress_bg.png) scroll repeat-x 0 0;}
