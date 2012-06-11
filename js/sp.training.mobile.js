@@ -25,9 +25,10 @@ ShiftPlanningTraining.prototype.overviewEvents = function(){
 		e.preventDefault();
 		$('.subNavigation .training li.active a').trigger(clickEvent);
 	})
-	$('.training_modules').delegate('a.fr',clickEvent,function(e){
+	$('.training_sections').delegate('a.next',clickEvent,function(e){
 		e.preventDefault();
-		$(this).parent().next().slideToggle();
+		sp.training.tmp_module=$(this).attr('rel');
+		sp.loadSubPage('', 'training', 'singleModule');		
 	})
 }
 ShiftPlanningTraining.prototype.overviewSubEvents = function(){
@@ -57,30 +58,30 @@ ShiftPlanningTraining.prototype.singleModuleSubEvents = function(){
 	var self=this;
 	$('#wrapper > .subNavigation').hide();
 	$('.training_modules').html(spView.ulLoader());
-	spModel.training.get('module', {section:sp.training.tmp_section,detailed:1}, function(response){
-		var data=[];
-		var fix_escaped_html = {} ;
-		$.each(response.data,function(k,v){
-			v.contents=self.bbc2HTML(v.contents);
-			fix_escaped_html[v.id]=v.contents;
-			if(typeof v.employees != 'undefined' && typeof v.employees[sp.staff.admin.info.id] != 'undefined'){
-				v.finished = v.employees[sp.staff.admin.info.id].finished ? 1 : 0 ;
-				v.finished_time = v.employees[sp.staff.admin.info.id].finished ;
-			}else{
-				v.finished = 0 ;
-				v.finished_time = 0 ;
-			}
-			console.log(v.finished_time)
-			date=new Date(v.updated*1000);
-			minutes = date.getMinutes()<10?'0'+date.getMinutes():date.getMinutes();
-			v.updated_formatted=spRanges.weekdays[date.getDay()]+','+spRanges.months[date.getMonth()]+' '+date.getDate()+' '+date.getFullYear()+' - '+date.getHours()+':'+minutes;
-			data.push(v);
-		})
-		$('.training_modules').html($.tmpl($('#te_tr_module'),data));
-		$.each(fix_escaped_html,function(i,item){
-			var html=$('div [contents=content_'+i+']');
-			html.html(html.text());			
-		})
+	spModel.training.get('module', {id:sp.training.tmp_module}, function(response){
+//		var data=[];
+//		var fix_escaped_html = {} ;
+//		$.each(response.data,function(k,v){
+//			v.contents=self.bbc2HTML(v.contents);
+//			fix_escaped_html[v.id]=v.contents;
+//			if(typeof v.employees != 'undefined' && typeof v.employees[sp.staff.admin.info.id] != 'undefined'){
+//				v.finished = v.employees[sp.staff.admin.info.id].finished ? 1 : 0 ;
+//				v.finished_time = v.employees[sp.staff.admin.info.id].finished ;
+//			}else{
+//				v.finished = 0 ;
+//				v.finished_time = 0 ;
+//			}
+//			console.log(v.finished_time)
+//			date=new Date(v.updated*1000);
+//			minutes = date.getMinutes()<10?'0'+date.getMinutes():date.getMinutes();
+//			v.updated_formatted=spRanges.weekdays[date.getDay()]+','+spRanges.months[date.getMonth()]+' '+date.getDate()+' '+date.getFullYear()+' - '+date.getHours()+':'+minutes;
+//			data.push(v);
+//		})
+//		$('.training_modules').html($.tmpl($('#te_tr_module'),data));
+//		$.each(fix_escaped_html,function(i,item){
+//			var html=$('div [contents=content_'+i+']');
+//			html.html(html.text());			
+//		})
 	})
 }
 //dumy function

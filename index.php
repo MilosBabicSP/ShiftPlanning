@@ -573,7 +573,7 @@ if ($vtoken['data'] != '1') {
                             </a>
                         </div>						
 						<?php Functions::getInstance()->loadFile('training_overview')?>
-						<?php Functions::getInstance()->loadFile('training_singleSection')?>
+						<?php Functions::getInstance()->loadFile('training_singleModule')?>
 					</div>
                 </div>
             </div>
