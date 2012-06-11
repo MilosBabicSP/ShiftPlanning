@@ -313,5 +313,5 @@ body {display:none;}
 .checkbox.failsafe {line-height:15px;}
 
 /* training */
-.trainingBar {position:relative; height:25px; background-color:#FAFAFA; border-radius:3px; overflow:hidden;}
-.progress {position:absolute; height:25px; background-color:#4BAECC; border-radius:3px;}
+.trainingBar {position:relative; height:10px; background-color:#FAFAFA; border-radius:3px; overflow:hidden;}
+.progress {position:absolute; height:10px; background-color:#4BAECC; border-radius:3px;}
