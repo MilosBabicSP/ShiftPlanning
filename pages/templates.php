@@ -847,16 +847,16 @@
 				{{/if}}
 				&ltbr/&gt
 				{{if finished_flag == 1 && finished_time < updated }}
-					&lta class="publish" style="background:green;cursor:pointer;"&gt I'we Reviewed this &lt/a&gt
+					&lta class="publish" &gt I'we Reviewed this &lt/a&gt
 				{{else}}
 						{{if finished_flag == 0}}
-							&lta class="publish" style="background:green;cursor:pointer;"&gt I'we Finished this &lt/a&gt
+							&lta class="publish" &gt I'we Finished this &lt/a&gt
 						{{else}}
 								{{if finished_flag == -99}}
-									&lta class="publish" style="background:green;cursor:pointer;"&gt You don't need to Finished this &lt/a&gt
+									&lta class="publish" &gt You don't need to Finished this &lt/a&gt
 								{{else}}
 										{{if finished_flag == 1}}
-											&lta class="publish" style="background:green;cursor:pointer;"&gt You completed this topic &lt/a&gt
+											&lta class="publish" &gt You completed this topic &lt/a&gt
 										{{/if}}
 								{{/if}}
 						{{/if}}
