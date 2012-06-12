@@ -810,17 +810,17 @@
 				{{if modules.length > 0}}
 				<ul modules="modules_${id}" style="display:none">
 				{{each modules}}
-				<li>
-			
-					<a href="#" class="next fr" rel="${$value.id}" ><img width="43" height="30" src="<?php echo _fCdnPath_; ?>images/NextMenu.png"></a>
-                                        <span class="stats">
-						12/23
-					</span>
-					<span class="oneLine">
-						${$value.title}
-					</span>
-		
-				</li>
+                                    <li>
+                                    
+                                    <a href="#" class="next fr" rel="${$value.id}" ><img width="43" height="30" src="<?php echo _fCdnPath_; ?>images/NextMenu.png"></a>
+                                            
+                                    <span class="oneLine">
+                                        ${$value.title}
+                                    </span>
+                                    <span class="stats">
+                                        12/23
+                                    </span>
+                                </li>
 				{{/each}}
 				</ul>
 				{{/if}}
