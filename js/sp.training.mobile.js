@@ -51,7 +51,7 @@ ShiftPlanningTraining.prototype.overviewSubEvents = function(){
 			}
 			if(typeof item.employees != 'undefined' && typeof item.employees[sp.staff.admin.info.id] != 'undefined'){
 				item.finished_flag = item.employees[sp.staff.admin.info.id].finished ? 'done' : 'unread' ;
-				if(typeof item.employees[sp.staff.admin.info.id].outdated){
+				if(typeof item.employees[sp.staff.admin.info.id].outdated != 'undefined'){
 					item.finished_flag='unread';
 				}
 			}
