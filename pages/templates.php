@@ -850,7 +850,7 @@
 					&lta class="publish" &gt I'we Reviewed this &lt/a&gt
 				{{else}}
 						{{if finished_flag == 0}}
-							&lta class="publish" &gt I'we Finished this &lt/a&gt
+							&lta class="publish" &gt I've Finished this &lt/a&gt
 						{{else}}
 								{{if finished_flag == -99}}
                                                                 &ltb&gtYou don't need to Finished this &lt/b&gt
