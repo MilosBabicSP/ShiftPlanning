@@ -856,13 +856,13 @@
 					&lta class="publish" &gt I'we Reviewed this &lt/a&gt
 				{{else}}
 						{{if finished_flag == 0}}
-							&lta class="publish" &gt I'we Finished this &lt/a&gt
+							&lta class="publish" &gt I've Finished this &lt/a&gt
 						{{else}}
 								{{if finished_flag == -99}}
-									&lta class="publish" &gt You don't need to Finished this &lt/a&gt
+                                                                &ltb&gtYou don't need to Finished this &lt/b&gt
 								{{else}}
 										{{if finished_flag == 1}}
-											&lta class="publish" &gt You completed this topic &lt/a&gt
+                                                                                &ltb&gtYou completed this topic&lt/b&gt
 										{{/if}}
 								{{/if}}
 						{{/if}}
