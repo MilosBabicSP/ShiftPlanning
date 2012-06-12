@@ -837,8 +837,14 @@
 		</div>
 		<div class="wys" contents="content_${id}">
 			${contents}
+				&ltbr/&gt
+				{{if video.length > 0}}
+					&ltdiv class="codebox"&gt
+					&ltb&gt Video &lt/b&gt&ltbr/&gt
+					&lta target="_blank" href="http://www.youtube.com/v/${video}"&gt Click to watch&lt/a&gt
+				{{/if}}			
 				{{if files.length > 0}}
-				&ltdiv class="codebox"&gt
+					&ltdiv class="codebox"&gt
 					&ltb&gt Attachments &lt/b&gt&ltbr/&gt
 					{{each files}}
 						&lta target="_blank" href="${$value.secureurl}"&gt${$value.filename}&lt/a&gt (${$value.file_size})&ltbr/&gt
