@@ -842,6 +842,7 @@
 					&ltdiv class="codebox"&gt
 					&ltb&gt Video &lt/b&gt&ltbr/&gt
 					&lta target="_blank" href="http://www.youtube.com/v/${video}"&gt Click to watch&lt/a&gt
+					&lt/div&gt
 				{{/if}}			
 				{{if files.length > 0}}
 					&ltdiv class="codebox"&gt
