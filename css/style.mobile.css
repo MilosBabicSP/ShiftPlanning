@@ -327,3 +327,5 @@ ul.training_sections {overflow:hidden;}
 ul.training_sections li.idle .tUp {display:none;}
 ul.training_sections li.active .tDown {display:none;}
 ul.training_sections li.active div {overflow:hidden;}
+ul.training_sections li.unread {background-color:#FFC;}
+
