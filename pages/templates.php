@@ -813,7 +813,7 @@
 				<li>
 			
 					<a href="#" class="next fr" rel="${$value.id}" ><img width="43" height="30" src="<?php echo _fCdnPath_; ?>images/NextMenu.png"></a>
-                                        <span class="stats fr">
+                                        <span class="stats">
 						12/23
 					</span>
 					<span class="oneLine">
