@@ -72,6 +72,7 @@ span.radio.check {background-position:-5px -1405px;}
 span.radio.over {background-position:-5px -1355px;}
 
 a.button {line-height:30px; display:block; padding:0 10px; color:#333; background-color:#f0f0f0; border:solid 1px #DBDBDB; border-radius:2px;}
+a.publish {line-height:30px; display:block; padding:0 10px; color:#FFF; background-color:#6C732C; border:solid 1px #5F894D; border-radius:2px;}
 a.loading {background:#FFF url(../images/loader.gif) scroll no-repeat 50% 50% !important;}
 a.loading span {visibility:hidden;}
 div.loading, li.loading {background:transparent url(../images/loader.gif) scroll no-repeat 50% 50% !important; min-height:30px;}
@@ -330,4 +331,5 @@ ul.training_sections li.active div {overflow:hidden;}
 ul.training_sections li.unread {background-color:#FFC;}
 
 .wys {padding:10px 0 0;}
-
+.wys .codebox {background-color:#CCDEE3; border:1px solid #62A3BA; cursor:text; margin:5px 0; padding:10px 20px;}
+.wys blockquote {background-color:#FCFDE2; border:1px solid #E9E3AC; font-style:italic; margin:5px 0; padding:10px 20px;}
