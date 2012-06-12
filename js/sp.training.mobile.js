@@ -239,3 +239,13 @@ ShiftPlanningTraining.prototype.bbc2HTML = function(S) {
 	B['\\[sp]'] = '&nbsp;';
 	return R(A(A(S, I), B));
 }
+ShiftPlanningTraining.prototype.friendly_filesize = function(bytes) {
+	var labels = new Array('TB', 'GB', 'MB', 'kB', 'b');
+	var measurements = new Array(1099511627776, 1073741824, 1048576, 1024, 1);
+	for(var i=0; i<measurements.length; i++) {
+		var conv = bytes/measurements[i];
+		if(conv > 1) {
+			return Math.round(conv*10)/10+' '+labels[i];
+		}
+	}
+}

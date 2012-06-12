@@ -838,9 +838,10 @@
 		<div contents="content_${id}">
 			${contents}
 				{{if files.length > 0}}
-				&ltdiv&gt
+				&ltdiv class="codebox"&gt
+					&ltb&gt Attachments &lt/b&gt&ltbr/&gt
 					{{each files}}
-						&lta class="fr" target="_blank" href="${$value.secureurl}"&gt${$value.filename}&lt/a&gt&ltbr/&gt
+						&lta target="_blank" href="${$value.secureurl}"&gt${$value.filename}&lt/a&gt&ltbr/&gt
 					{{/each}}
 				&lt/div&gt
 				{{/if}}
