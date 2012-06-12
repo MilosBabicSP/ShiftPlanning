@@ -853,10 +853,10 @@
 							&lta class="publish" &gt I'we Finished this &lt/a&gt
 						{{else}}
 								{{if finished_flag == -99}}
-									&lta class="publish" &gt You don't need to Finished this &lt/a&gt
+                                                                <b>You don't need to Finished this </b>
 								{{else}}
 										{{if finished_flag == 1}}
-											&lta class="publish" &gt You completed this topic &lt/a&gt
+                                                                                <b>You completed this topic</b>
 										{{/if}}
 								{{/if}}
 						{{/if}}
