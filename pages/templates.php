@@ -854,13 +854,13 @@
 				{{/if}}
 				&ltbr/&gt
 				{{if finished_flag == 1 && finished_time < updated }}
-					&lta class="publish" &gt I'we Reviewed this &lt/a&gt
+					&lta class="publish" rel="${id}"&gt I've Reviewed this &lt/a&gt
 				{{else}}
 						{{if finished_flag == 0}}
-							&lta class="publish" &gt I've Finished this &lt/a&gt
+							&lta class="publish" rel="${id}"&gt I've Finished this &lt/a&gt
 						{{else}}
 								{{if finished_flag == -99}}
-                                                                &ltb&gt You don't need to Finished this &lt/b&gt
+                                                                &ltb&gt You don't need to finish this &lt/b&gt
 								{{else}}
 										{{if finished_flag == 1}}
                                                                                 &ltb&gt You completed this topic&lt/b&gt

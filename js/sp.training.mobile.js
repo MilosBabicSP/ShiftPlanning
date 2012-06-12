@@ -32,6 +32,15 @@ ShiftPlanningTraining.prototype.overviewEvents = function(){
 		sp.training.tmp_module=$(this).attr('rel');
 		sp.loadSubPage('', 'training', 'singleModule');		
 	})
+	$('.training_module').delegate('a.publish',clickEvent,function(e){
+		var module_id = $(this).attr('rel');
+		spModel.training.update('complete', {id:module_id},function(response){
+			sp.showSuccess('Finished');
+			setTimeout(function(){
+				$('#tr_si_se .backMenu').trigger(clickEvent)
+			},2500);			
+		})
+	})
 }
 ShiftPlanningTraining.prototype.overviewSubEvents = function(){
 	$('.subNavigation').show();
