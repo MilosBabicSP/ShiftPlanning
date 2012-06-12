@@ -860,10 +860,10 @@
 							&lta class="publish" &gt I've Finished this &lt/a&gt
 						{{else}}
 								{{if finished_flag == -99}}
-                                                                &ltb&gtYou don't need to Finished this &lt/b&gt
+                                                                &ltb&gt You don't need to Finished this &lt/b&gt
 								{{else}}
 										{{if finished_flag == 1}}
-                                                                                &ltb&gtYou completed this topic&lt/b&gt
+                                                                                &ltb&gt You completed this topic&lt/b&gt
 										{{/if}}
 								{{/if}}
 						{{/if}}
