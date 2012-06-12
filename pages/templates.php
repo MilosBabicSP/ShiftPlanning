@@ -833,14 +833,26 @@
 				{{if files.length > 0}}
 				&ltdiv&gt
 					{{each files}}
-						&lta class="fr" href="${$value.secureurl}"&gt${$value.filename}&lt/a&gt&ltbr/&gt
+						&lta class="fr" target="_blank" href="${$value.secureurl}"&gt${$value.filename}&lt/a&gt&ltbr/&gt
 					{{/each}}
 				&lt/div&gt
 				{{/if}}
 				&ltbr/&gt
-					{{if finished == 0}}
-						&lta class="publish" style="background:green;cursor:pointer;"&gt I'we Finished this &lt/a&gt
-					{{/if}}
+				{{if finished_flag == 1 && finished_time < updated }}
+					&lta class="publish" style="background:green;cursor:pointer;"&gt I'we Reviewed this &lt/a&gt
+				{{else}}
+						{{if finished_flag == 0}}
+							&lta class="publish" style="background:green;cursor:pointer;"&gt I'we Finished this &lt/a&gt
+						{{else}}
+								{{if finished_flag == -99}}
+									&lta class="publish" style="background:green;cursor:pointer;"&gt You don't need to Finished this &lt/a&gt
+								{{else}}
+										{{if finished_flag == 1}}
+											&lta class="publish" style="background:green;cursor:pointer;"&gt You completed this topic &lt/a&gt
+										{{/if}}
+								{{/if}}
+						{{/if}}
+				{{/if}}
 		</div>
 	</script>
     <script id="te_da_ping" type="text/x-jquery-tmpl">
