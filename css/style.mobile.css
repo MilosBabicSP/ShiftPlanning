@@ -19,7 +19,7 @@ img {border: none; vertical-align: middle;}
 p {line-height:120%;}
 .cl {clear:both; line-height:0;}
 .fl {float:left;}
-.fr {float:right;}
+.fr {float:right !important;}
 .hidden {display:none;}
 label {font-size:14px; display:block; padding:3px 0;}
 
