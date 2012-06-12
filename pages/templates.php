@@ -835,7 +835,7 @@
 		<div class="title" style="display: block;">
 			<h3 class="fl">${title}</h3>
 		</div>
-		<div contents="content_${id}">
+		<div class="wys" contents="content_${id}">
 			${contents}
 				{{if files.length > 0}}
 				&ltdiv class="codebox"&gt
