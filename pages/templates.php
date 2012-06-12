@@ -841,7 +841,7 @@
 				&ltdiv class="codebox"&gt
 					&ltb&gt Attachments &lt/b&gt&ltbr/&gt
 					{{each files}}
-						&lta target="_blank" href="${$value.secureurl}"&gt${$value.filename}&lt/a&gt&ltbr/&gt
+						&lta target="_blank" href="${$value.secureurl}"&gt${$value.filename}&lt/a&gt (${$value.file_size})&ltbr/&gt
 					{{/each}}
 				&lt/div&gt
 				{{/if}}

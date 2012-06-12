@@ -88,6 +88,11 @@ ShiftPlanningTraining.prototype.singleModuleSubEvents = function(){
 		}else{
 				response.data.finished_flag = -99 ;
 		}
+		if(response.data.files.length > 0){
+			$.each(response.data.files,function(i,j){
+				this.file_size=self.friendly_filesize(this.file_size);
+			})
+		}
 		$('.training_module').html($.tmpl($('#te_tr_module'),response.data));
 		var html=$('div [contents=content_'+response.data.id+']');
 		html.html(html.text());		
