@@ -46,15 +46,24 @@ ShiftPlanningTraining.prototype.overviewSubEvents = function(){
 		$.each(response[0].data,function(k,v){
 			var mod=[];
 			$.each(response[1].data,function(i,item){
+			if(sp.staff.admin.info.group < 3){
+				item.statistic = item.stats.finished+'/'+item.stats.totalstaff;
+			}
+			if(typeof item.employees != 'undefined' && typeof item.employees[sp.staff.admin.info.id] != 'undefined'){
+				item.finished_flag = item.employees[sp.staff.admin.info.id].finished ? 'done' : 'unread' ;
+				if(typeof item.employees[sp.staff.admin.info.id].outdated){
+					item.finished_flag='unread';
+				}
+			}
 			if(v.id == item.section){
 				mod.push(item);
-				}		
+				}
 			})
 			v.modules=mod;
 			data.push(v);
 		})
 		if(typeof response[2].data[sp.staff.admin.info.id] != 'undefined'){
-			var percent = Math.floor((response[2].data[sp.staff.admin.info.id].completed/response[2].data[sp.staff.admin.info.id].total)*100);
+			var percent = Math.round((response[2].data[sp.staff.admin.info.id].completed/response[2].data[sp.staff.admin.info.id].total)*100);
 			$('#user_progress').html(percent);
 			$('.progress').css('width',percent+'%');
 		}
