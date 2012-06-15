@@ -87,7 +87,7 @@ ShiftPlanningTraining.prototype.overviewSubEvents = function(){
 ShiftPlanningTraining.prototype.singleModuleSubEvents = function(){
 	var self=this;
 	$('#wrapper > .subNavigation').hide();
-	$('.training_modules').html(spView.ulLoader());
+	$('.training_module').html(spView.ulLoader());
 	spModel.training.get('module', {id:sp.training.tmp_module}, function(response){
 		response.data.contents = response.data.contents.replace(/\n/g, '</p><br/><p>');	
 		response.data.contents=spView.bbc2HTML(response.data.contents);
