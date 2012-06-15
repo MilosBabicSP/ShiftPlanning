@@ -330,6 +330,8 @@ ul.training_sections li.active .tDown {display:none;}
 ul.training_sections li.active div {overflow:hidden;}
 ul.training_sections li.unread {background-color:#FFC;}
 
+.training_module li{list-style: none;}
+
 .wys {padding:10px 0 0;}
 .wys img {max-width:280px;}
 .wys .codebox {background-color:#CCDEE3; border:1px solid #62A3BA; cursor:text; margin:5px 0; padding:10px 20px;}
