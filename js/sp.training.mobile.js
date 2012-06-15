@@ -69,7 +69,9 @@ ShiftPlanningTraining.prototype.overviewSubEvents = function(){
 				}
 			})
 			v.modules=mod;
-			data.push(v);
+			if(v.modules.length > 0){
+			data.push(v);	
+			}	
 		})
 		if(typeof response[2].data[sp.staff.admin.info.id] != 'undefined'){
 			var percent = Math.round((response[2].data[sp.staff.admin.info.id].completed/response[2].data[sp.staff.admin.info.id].total)*100);
