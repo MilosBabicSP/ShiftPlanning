@@ -892,7 +892,7 @@ ShiftPlanningDashboard.prototype.updateUser = function(id, res, over){
 ShiftPlanningDashboard.prototype.listLanguages = function (){
     var result='<option  value="none">' + _s('Company default') + '</option>'
     $.each(sp.raw.config.languages,function(key,value){
-	result+='<option value="'+value['code']+'">'+value['name']+'</option>'
+	result+='<option value="'+value['code']+'">'+value['name']+' ' + ((value.machine == 0) ? '(machine)' : '(human)') + '</option>'
     });
     $('#da_se_ed_lang').html(result);
 }
