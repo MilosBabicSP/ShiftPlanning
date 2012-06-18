@@ -239,10 +239,11 @@ if ($vtoken['data'] != '1') {
                         </ul>
                     </li>
                     <li id="menu_staff"><a class="staf" href="#" page="staff" ><?=_s('Staff')?></a></li>
-					<li id="menu_training"><a class="trai" href="#" page="training"><?=_s('Training')?></a></li>					
+					<li id="menu_training"><a class="trai" href="#" page="training"><?=_s('Training')?></a></li>				
                     <li id="menu_reports"><a class="repo" href="#" page="reports" ><?=_s('Reports')?></a></li>
                 </ul>
             </div>
+			
             <div id="wrapper" class="wrapper">
                 <div class="subNavigation">
                     <?php Functions::getInstance()->loadFile('menus/dashboard') ?>
