@@ -798,6 +798,78 @@
             </span>
         </li>
     </script>
+	<script id="te_tr_sections" type="text/x-jquery-tmpl">
+		<li class="idle">
+					<div>
+			<a href="#" class="sub fr tDown" rel="${id}" ><img width="43" height="30" src="<?php echo _fCdnPath_;?>images/DownMenu.png"></a>
+                        <a href="#" class="sub fr tUp" rel="${id}" ><img width="43" height="30" src="<?php echo _fCdnPath_;?>images/UpMenu.png"></a>
+			<span class="oneLine">
+                            <b>${title}</b>
+			</span>
+							</div>
+				{{if modules.length > 0}}
+				<ul modules="modules_${id}" style="display:none">
+				{{each modules}}
+                                    <li class="${$value.finished_flag}">
+                                    
+                                    <a href="#" class="next fr" rel="${$value.id}" ><img width="43" height="30" src="<?php echo _fCdnPath_; ?>images/NextMenu.png"></a>
+                                            
+                                    <span class="oneLine">
+                                        ${$value.title}
+                                    </span>
+									{{if $value.statistic != 'undefined'}}
+										<span class="stats">
+											${$value.statistic}
+										</span>
+									</li>
+									{{else}}
+									</li>
+									{{/if}}
+				{{/each}}
+				</ul>
+				{{/if}}
+				
+		</li>
+	</script>
+	<script id="te_tr_module" type="text/x-jquery-tmpl">
+		<div class="title" style="display: block;">
+			<h3 class="fl">${title}</h3>
+		</div>
+		<div class="wys" contents="content_${id}">
+			${contents}
+				&ltbr/&gt
+				{{if video.length > 0}}
+					&ltdiv class="codebox"&gt
+					&ltb&gt Video &lt/b&gt&ltbr/&gt
+					&lta target="_blank" href="http://www.youtube.com/v/${video}"&gt Click to watch&lt/a&gt
+					&lt/div&gt
+				{{/if}}			
+				{{if files.length > 0}}
+					&ltdiv class="codebox"&gt
+					&ltb&gt Attachments &lt/b&gt&ltbr/&gt
+					{{each files}}
+						&lta target="_blank" href="${$value.secureurl}"&gt${$value.filename}&lt/a&gt (${$value.file_size})&ltbr/&gt
+					{{/each}}
+				&lt/div&gt
+				{{/if}}
+				&ltbr/&gt
+				{{if finished_flag == 1 && finished_time < updated }}
+					&lta class="publish" rel="${id}"&gt I've Reviewed this &lt/a&gt
+				{{else}}
+						{{if finished_flag == 0}}
+							&lta class="publish" rel="${id}"&gt I've Finished this &lt/a&gt
+						{{else}}
+								{{if finished_flag == -99}}
+                                                                &ltb&gt You don't need to finish this &lt/b&gt
+								{{else}}
+										{{if finished_flag == 1}}
+                                                                                &ltb&gt You completed this topic&lt/b&gt
+										{{/if}}
+								{{/if}}
+						{{/if}}
+				{{/if}}
+		</div>
+	</script>
     <script id="te_da_ping" type="text/x-jquery-tmpl">
         <div class="title1 wide" style="background-color: #ebefd6; color: #565551;">
             <div>
