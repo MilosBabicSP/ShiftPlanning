@@ -95,7 +95,18 @@ ShiftPlanning.prototype.initialize = function(){
                     $('#menu [page=' + sp.hash() + ']').parent().addClass('active');
                     self.loadPage(sp.hash());
                 }, 50);
-            }
+            }else{
+				if(location.hash != '#login' && location.hash != '#logout'){
+					sp.hash('dashboard');
+				}else{
+					if(location.hash == '#logout' && user.loggedIn){
+						sp.staff.logout();
+					}
+					if(location.hash == '#login' && user.loggedIn){
+						sp.hash('dashboard');
+					}
+				}
+			}
         }
     });  
     $(document).ready(function(){

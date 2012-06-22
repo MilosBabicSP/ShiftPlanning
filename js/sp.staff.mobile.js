@@ -295,6 +295,8 @@ ShiftPlanningStaff.prototype.login = function(){
 ShiftPlanningStaff.prototype.logout = function(){
     var c = confirm(_s('Are you sure you want to logout?'));
     if (!c){
+		var h = $('#menu .mainNav .active').attr('id').split('_');
+		sp.hash(h[1]);		
         return false;
     }
     sp.api('staff.logout', 'GET', {}, function(response){
