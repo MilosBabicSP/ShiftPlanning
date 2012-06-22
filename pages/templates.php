@@ -179,7 +179,7 @@
     </script>
     <script id="te_rq_os_spr" type="text/x-jquery-tmpl">
         <li>
-            <a href="#" rel="${rId}"><img width="43" height="30" src="images/NextMenu.png"></a>
+            <a href="#" rel="${rId}"><img width="43" height="30" src="<?php echo _fCdnPath_;?>images/NextMenu.png"></a>
             <span>${start_date}</span>
             ${schedule_name}<br/>
             ${hours}
@@ -210,7 +210,7 @@
     </script>
     <script id="te_rq_os_os" type="text/x-jquery-tmpl">
         <li>
-            <a href="#" rel="${rId}"><img width="43" height="30" src="images/NextMenu.png"></a>
+            <a href="#" rel="${rId}"><img width="43" height="30" src="<?php echo _fCdnPath_;?>images/NextMenu.png"></a>
             <span>${start_date.formatted}</span>
             ${schedule_name}<br/>
             ${start_time.time} - ${end_time.time}
@@ -298,12 +298,12 @@
                 <li><span><?=_s('Accepted');?></span></li>
                 <li class="first">
                     <a href="#" tradeId="${trade_id}" userId="${user}" class="accept" >
-                        <span><img width="16" height="16" src="images/request_1.png"></span>
+                        <span><img width="16" height="16" src="<?php echo _fCdnPath_;?>images/request_1.png"></span>
                     </a>
                 </li>
                 <li class="last">
                     <a href="#" tradeId="${trade_id}" userId="${user}" class="reject" >
-                        <span><img width="16" height="16" src="images/request_2.png"></span>
+                        <span><img width="16" height="16" src="<?php echo _fCdnPath_;?>images/request_2.png"></span>
                     </a>
                 </li>
             </ul>
@@ -323,7 +323,7 @@
     </script>
     <script id="te_rq_st_ap" type="text/x-jquery-tmpl">
         <li>
-            <a href="#" rel="${rId}"><img width="43" height="30" src="images/NextMenu.png"></a>
+            <a href="#" rel="${rId}"><img width="43" height="30" src="<?php echo _fCdnPath_;?>images/NextMenu.png"></a>
             <span>${schedule_name}</span>
             ${shift_start_date.formatted} <br />
             ${shift_start_time}
@@ -331,7 +331,7 @@
     </script>
     <script id="te_rq_st_mst" type="text/x-jquery-tmpl">
         <li>
-            <a class="fr" href="#" rel="${rId}"><img width="43" height="30" src="images/NextMenu.png"></a>
+            <a class="fr" href="#" rel="${rId}"><img width="43" height="30" src="<?php echo _fCdnPath_;?>images/NextMenu.png"></a>
             <img width="30" height="30" src="${avatar}" />
             <span class="twoLine">
                 ${user_name}
@@ -342,14 +342,14 @@
     </script>
     <script id="te_rq_va_up" type="text/x-jquery-tmpl">
         <li {{if start_day.id < sp.raw.config.today.id}} class="hidden pastDate"{{/if}} id="rq_va_tb_tr_${id}">
-            {{if start_day.id >= sp.raw.config.today.id}}<a class="fr deleteVacation" href="#" rel="${id}"><img width="43" height="30" src="images/DelMenu.png"></a>{{/if}}
+            {{if start_day.id >= sp.raw.config.today.id}}<a class="fr deleteVacation" href="#" rel="${id}"><img width="43" height="30" src="<?php echo _fCdnPath_;?>images/DelMenu.png"></a>{{/if}}
             <span>${start_day.formatted} - ${end_day.formatted}</span>
             ${total_days + 1} <?=_s('Day(s), Approved');?>
         </li>
     </script>
     <script id="te_rq_va_aa" type="text/x-jquery-tmpl">
         <li id="rq_va_tb_tr_${id}">
-            <a class="fr deleteVacation" href="#" rel="${id}"><img width="43" height="30" src="images/DelMenu.png"></a>
+            <a class="fr deleteVacation" href="#" rel="${id}"><img width="43" height="30" src="<?php echo _fCdnPath_;?>images/DelMenu.png"></a>
             <span>${start_day.formatted} - ${end_day.formatted}</span>
             ${length} <?=_s('Day(s), Pending');?>
         </li>
@@ -394,7 +394,7 @@
     </script>
     <script id="te_rq_va_ma" type="text/x-jquery-tmpl">
         <li>
-            <a class="fr" href="#" rel="${rId}"><img width="43" height="30" src="images/NextMenu.png"></a>
+            <a class="fr" href="#" rel="${rId}"><img width="43" height="30" src="<?php echo _fCdnPath_;?>images/NextMenu.png"></a>
             <span>
                 <img width="30" height="30" src="${avatar}">
                 ${employee_name}
@@ -781,7 +781,7 @@
     </script>
     <script id="te_re_info" type="text/x-jquery-tmpl">
         <li>
-            <a href="#" class="fr" rel="${rId}"><img width="43" height="30" src="images/NextMenu.png"></a>
+            <a href="#" class="fr" rel="${rId}"><img width="43" height="30" src="<?php echo _fCdnPath_;?>images/NextMenu.png"></a>
             
                 <img width="30" height="30" src="${avatar}">
                 <span class="twoLine">
@@ -798,6 +798,78 @@
             </span>
         </li>
     </script>
+	<script id="te_tr_sections" type="text/x-jquery-tmpl">
+		<li class="idle">
+					<div>
+			<a href="#" class="sub fr tDown" rel="${id}" ><img width="43" height="30" src="<?php echo _fCdnPath_;?>images/DownMenu.png"></a>
+                        <a href="#" class="sub fr tUp" rel="${id}" ><img width="43" height="30" src="<?php echo _fCdnPath_;?>images/UpMenu.png"></a>
+			<span class="oneLine">
+                            <b>${title}</b>
+			</span>
+							</div>
+				{{if modules.length > 0}}
+				<ul modules="modules_${id}" style="display:none">
+				{{each modules}}
+                                    <li class="${$value.finished_flag}">
+                                    
+                                    <a href="#" class="next fr" rel="${$value.id}" ><img width="43" height="30" src="<?php echo _fCdnPath_; ?>images/NextMenu.png"></a>
+                                            
+                                    <span class="oneLine">
+                                        ${$value.title}
+                                    </span>
+									{{if $value.statistic != 'undefined'}}
+										<span class="stats">
+											${$value.statistic}
+										</span>
+									</li>
+									{{else}}
+									</li>
+									{{/if}}
+				{{/each}}
+				</ul>
+				{{/if}}
+				
+		</li>
+	</script>
+	<script id="te_tr_module" type="text/x-jquery-tmpl">
+		<div class="title" style="display: block;">
+			<h3 class="fl">${title}</h3>
+		</div>
+		<div class="wys" contents="content_${id}">
+			${contents}
+				&ltbr/&gt
+				{{if video.length > 0}}
+					&ltdiv class="codebox"&gt
+					&ltb&gt Video &lt/b&gt&ltbr/&gt
+					&lta target="_blank" href="http://www.youtube.com/v/${video}"&gt Click to watch&lt/a&gt
+					&lt/div&gt
+				{{/if}}			
+				{{if files.length > 0}}
+					&ltdiv class="codebox"&gt
+					&ltb&gt Attachments &lt/b&gt&ltbr/&gt
+					{{each files}}
+						&lta target="_blank" href="${$value.secureurl}"&gt${$value.filename}&lt/a&gt (${$value.file_size})&ltbr/&gt
+					{{/each}}
+				&lt/div&gt
+				{{/if}}
+				&ltbr/&gt
+				{{if finished_flag == 1 && finished_time < updated }}
+					&lta class="publish" rel="${id}"&gt I've Reviewed this &lt/a&gt
+				{{else}}
+						{{if finished_flag == 0}}
+							&lta class="publish" rel="${id}"&gt I've Finished this &lt/a&gt
+						{{else}}
+								{{if finished_flag == -99}}
+                                                                &ltb&gt You don't need to finish this &lt/b&gt
+								{{else}}
+										{{if finished_flag == 1}}
+                                                                                &ltb&gt You completed this topic&lt/b&gt
+										{{/if}}
+								{{/if}}
+						{{/if}}
+				{{/if}}
+		</div>
+	</script>
     <script id="te_da_ping" type="text/x-jquery-tmpl">
         <div class="title1 wide" style="background-color: #ebefd6; color: #565551;">
             <div>
@@ -848,13 +920,13 @@
                 ${start_time.time} - ${end_time.time}
             </span>
             <a class="fr" shiftId="${id}" href="#">
-                <img height="30" width="43" src="images/NextMenu.png">
+                <img height="30" width="43" src="<?php echo _fCdnPath_;?>images/NextMenu.png">
             </a>
         </li>
     </script>
         <script id="te_da_onnow" type="text/x-jquery-tmpl">
         <li>
-            <a href="#" class="fr" userID="${userID}"><img width="43" height="30" src="images/NextMenu.png"></a>
+            <a href="#" class="fr" userID="${userID}"><img width="43" height="30" src="<?php echo _fCdnPath_;?>images/NextMenu.png"></a>
             
                 <img width="30" height="30" src="${avatar}">
                 <span class="twoLine">
@@ -868,7 +940,7 @@
             {{if typeof avatar.medium != 'undefined'}}
             <img src="${avatar.medium}" />
             {{else}}
-            <img src="images/no-avatar.png" />
+            <img src="<?php echo _fCdnPath_;?>images/no-avatar.png" />
             {{/if}}
             <span>${name}</span>
         </li>
@@ -926,7 +998,7 @@
             <span class="names">${name}</span>
             <span class="time">
                 <span class="tStart">${st.time}</span>
-                <img width="16" height="16" src="images/tc_sm_clock.png" />
+                <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/tc_sm_clock.png" />
                 {{if length.total_hours == ""}}
                     <span class="tPending" user="${user}">Clock Out</span>
                 {{else}}
@@ -942,7 +1014,7 @@
             <span class="time">
                 <span class="tStart">${in_time.time}</span>
                 {{if out_time.time != ""}}
-                    <img width="16" height="16" src="images/tc_sm_clock.png" />
+                    <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/tc_sm_clock.png" />
                     <span class="tEnd">${out_time.time}</span>                                       
                 {{/if}}
             </span>
@@ -965,7 +1037,7 @@
     <script id="te_da_up_li" type="text/x-jquery-tmpl">
         <li>
             <a class="fr" href="#" rel="${id}">
-                <img width="43" height="30" src="images/NextMenu.png" />
+                <img width="43" height="30" src="<?php echo _fCdnPath_;?>images/NextMenu.png" />
             </a>
             <span class="names">${start_date.formatted}</span>
             <span class="time">${start_time.time} - ${end_time.time}</span>

@@ -3,11 +3,14 @@ session_start();
 //error_reporting(E_ALL);
 //ini_set("display_errors", 1);
 //check is it live server or dev.
-define('IS_TEST_SERVER', (strpos($_SERVER['SERVER_NAME'], '.dev.') !== false || strpos($_SERVER['SERVER_NAME'], '192.168') !== false ) ? true : false);
+define('IS_TEST_SERVER', (strpos($_SERVER['SERVER_NAME'], '.dev.') !== false || strpos($_SERVER['SERVER_NAME'], '192.168') !== false) ? true : false);
 define('_lang_', $_SERVER['DOCUMENT_ROOT']);
 define('DEBUGGER', true);
 define('_root_', dirname(__FILE__) . '/');
 define('_ext_', $_SERVER['REQUEST_URI']);
+define('_domain_', 'shiftplanning.com');
+define('_cdn_', 'cdn');
+define('_touch_', 'app/iphone');
 
 
 
@@ -20,6 +23,8 @@ if (IS_TEST_SERVER) {
 }
 
 
-define('_jsV_', 6);
+define('_jsV_', 9);
 define('WWW_PATH', 'http://' . $_SERVER['SERVER_NAME'] . '/' . _ext_);
 define('LANG_PATH', 'http://' . $_SERVER['SERVER_NAME'] . '/');
+
+define('_fCdnPath_', (IS_TEST_SERVER) ? WWW_PATH : 'http://' . _cdn_ . '.' ._domain_ . '/' . _touch_ . '/');

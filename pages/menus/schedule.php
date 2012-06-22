@@ -1,7 +1,7 @@
 <div class="schedule">
     <div class="subWrapp">
         <a href="#" class="toggleMenu">
-            <img width="24" height="24" src="images/ShowHideMenu.png" />
+            <img width="24" height="24" src="<?php echo _fCdnPath_;?>images/ShowHideMenu.png" />
         </a>
         <ul class="subNav schedule" page="schedule">
             <li class="first active">
@@ -23,12 +23,12 @@
         <ul class="subMenu" id="sc_additional_menu">
             <li class="first">
                 <a href="#" id="sc_refresh">
-                    <img width="16" height="16" src="images/sch_ref.png">
+                    <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/sch_ref.png">
                 </a>
             </li>
             <li class="last">
                 <a href="#" id="sc_add">
-                    <img width="16" height="16" src="images/sch_add.png">
+                    <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/sch_add.png">
                 </a>
             </li>
         </ul>

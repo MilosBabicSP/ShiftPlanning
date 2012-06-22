@@ -6,10 +6,11 @@ class JSPacker {
     private $scripts = array();
     private $build = false;
     public $reset = false;
-    public $_store = true;
+    public $_store = false;
 
     function __construct($output) {
 	$this->output = $output;
+	$this->_store = IS_TEST_SERVER;
 	$this->build = file_exists(_root_ . 'js/' . _jsV_ . $this->output) ? false : true;
 
 	# WRITE TO SCREEN
@@ -28,7 +29,12 @@ class JSPacker {
 	if (strpos($file, 'ttp:') || strpos($file, 'ttps:')) {
 	    array_push($this->scripts, array('path' => $file, 'pack' => $compress));
 	} else {
-	    array_push($this->scripts, array('path' => WWW_PATH . $file, 'pack' => $compress));
+	    if (!IS_TEST_SERVER){
+		$path = 'http://' . _cdn_ . '.' ._domain_ . '/' . _touch_ . '/' . $file;
+	    } else {
+		$path = WWW_PATH . $file;
+	    }
+	    array_push($this->scripts, array('path' => $path, 'pack' => $compress));
 	}
     }
 
@@ -40,7 +46,6 @@ class JSPacker {
     }
 
     function _build() {
-	
 	# FORCE BUILD
 	if ($this->reset) {
 	    $this->build = true;
@@ -65,9 +70,7 @@ class JSPacker {
 	    }
 	    file_put_contents(_root_ . 'js/' . _jsV_ . $this->output, implode("\n ", $output));
 	}
-	
-	
-	echo '<script type="text/javascript" src="' . WWW_PATH . 'js/' . _jsV_ . $this->output . '"></script>';
+	echo '<script type="text/javascript" src="' . _fCdnPath_ . 'js/' . _jsV_ . $this->output . '"></script>';
     }
 }
 
