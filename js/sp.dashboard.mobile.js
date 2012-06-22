@@ -6,7 +6,7 @@ ShiftPlanningDashboard.prototype.initialize = function(){
 	self.settingsEvents();
 	self.upcomingShiftsEvents();
 	self.whosonnowEvents();
-        self.fixes();
+    self.fixes();
     });
 }
 
