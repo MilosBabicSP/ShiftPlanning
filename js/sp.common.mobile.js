@@ -97,7 +97,7 @@ ShiftPlanning.prototype.initialize = function(){
                 }, 50);
             }else{
 				if(location.hash != '#login' && location.hash != '#logout'){
-					sp.hash('dashboard');
+					user.loggedIn ? sp.hash('dashboard') : sp.hash('login') ;
 				}else{
 					if(location.hash == '#logout' && user.loggedIn){
 						sp.staff.logout();
