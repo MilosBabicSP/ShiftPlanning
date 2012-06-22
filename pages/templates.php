@@ -838,13 +838,13 @@
 		<div class="wys" contents="content_${id}">
 			${contents}
 				&ltbr/&gt
-				{{if video.length > 0}}
+				{{if video != null && video.length > 0}}
 					&ltdiv class="codebox"&gt
 					&ltb&gt Video &lt/b&gt&ltbr/&gt
 					&lta target="_blank" href="http://www.youtube.com/v/${video}"&gt Click to watch&lt/a&gt
 					&lt/div&gt
 				{{/if}}			
-				{{if files.length > 0}}
+				{{if files!= null && files.length > 0}}
 					&ltdiv class="codebox"&gt
 					&ltb&gt Attachments &lt/b&gt&ltbr/&gt
 					{{each files}}

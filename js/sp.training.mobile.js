@@ -91,8 +91,12 @@ ShiftPlanningTraining.prototype.singleModuleSubEvents = function(){
 	$('#wrapper > .subNavigation').hide();
 	$('.training_module').html(spView.ulLoader());
 	spModel.training.get('module', {id:sp.training.tmp_module}, function(response){
-		response.data.contents = response.data.contents.replace(/\n/g, '</p><br/><p>');	
-		response.data.contents=spView.bbc2HTML(response.data.contents);
+		if(response.data.contents != null){
+			response.data.contents = response.data.contents.replace(/\n/g, '</p><br/><p>');	
+			response.data.contents=spView.bbc2HTML(response.data.contents);
+		}else{
+			response.data.contents = '';
+		}
 		if(typeof response.data.employees != 'undefined' && typeof response.data.employees[sp.staff.admin.info.id] != 'undefined'){
 			response.data.finished_flag = response.data.employees[sp.staff.admin.info.id].finished ? 1 : 0 ;
 			response.data.finished_time = response.data.employees[sp.staff.admin.info.id].finished ;
