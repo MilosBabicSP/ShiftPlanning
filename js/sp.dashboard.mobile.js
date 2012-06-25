@@ -766,7 +766,7 @@ ShiftPlanningDashboard.prototype.sendMessage = function(){
 ShiftPlanningDashboard.prototype.changePassword = function (){
     var self = this;
     var eId = $('#da_se_cur_us_id').val();
-    if ($('#da_se_pa_np').val().length > 6 && $('#da_se_pa_np').val() == $('#da_se_pa_cp').val()){
+    if ($('#da_se_pa_np').val().length >= 6 && $('#da_se_pa_np').val() == $('#da_se_pa_cp').val()){
 	spModel.staff.update('employee', {
 	    id : eId, 
 	    password: $('#da_se_pa_np').val()
