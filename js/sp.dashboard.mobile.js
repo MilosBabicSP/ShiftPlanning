@@ -514,6 +514,7 @@ ShiftPlanningDashboard.prototype.whosonnowSubEvents = function(){
 ShiftPlanningDashboard.prototype.displayShifts = function (employee,from){
     var element;
     var notify;
+	var desc=false;
     switch (from){
 	case 'recentShifts':
 	    $('#da_se_rs_li').html(spView.ulLoader());
@@ -523,6 +524,7 @@ ShiftPlanningDashboard.prototype.displayShifts = function (employee,from){
 		mode: 'employee', 
 		employees: employee.id
 	    }
+		desc = true ;
 	    element=$('#da_se_rs_li');
 	    notify='No recent shifts'
 	    break;
@@ -542,7 +544,17 @@ ShiftPlanningDashboard.prototype.displayShifts = function (employee,from){
 	if(response.data == ""){
 	    $(element).html(spView.emptyResult(notify))   
 	}else{
-	    $(element).html($.tmpl($('#te_da_se_rs'),response.data));   
+		if(desc){
+		desc = false ;
+		var data =[];
+		var j =response.data.length-1;
+		for(var count=0;count<response.data.length;count++){
+			data.push(response.data[j--]);
+			}
+			$(element).html($.tmpl($('#te_da_se_rs'),data));
+		}else{
+			$(element).html($.tmpl($('#te_da_se_rs'),response.data));   
+		}
 	}
     }) 
   
