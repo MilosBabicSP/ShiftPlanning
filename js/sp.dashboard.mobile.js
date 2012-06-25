@@ -775,7 +775,7 @@ ShiftPlanningDashboard.prototype.changePassword = function (){
 	});
     } else {
 	//add other error type
-	sp.showError(_s('Password length must be over 6 chars and passwords must match.'));
+	sp.showError(_s('Password length must 6 or more chars and passwords must match.'));
     }
 }
 
