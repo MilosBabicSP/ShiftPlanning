@@ -1,4 +1,4 @@
 <div class="main statistic" id="tr_stat">
-	<ul class="training_statistic">
+	<ul class="training_statistic staff big">
 	</ul>	
 </div>

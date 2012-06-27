@@ -836,6 +836,18 @@
             <span>${name} <b>${stat}</b></span>
         </li>	
 	</script>
+	<script id="te_tr_topic_statistic" type="text/x-jquery-tmpl">
+        <li staffId="${id}" >
+			{{if finished == null }} 
+				<span>Not finished<span>
+				{{else}}{{if outdated != undefined && outdated > 0 }}
+					<sapn>Not reviewed <span>
+				{{/if}}
+			{{/if}}
+            <img width="50" height="50" src="${avatar}" />
+            <span>${name}</span>
+        </li>	
+	</script>	
 	<script id="te_tr_singleSection" type="text/x-jquery-tmpl">
 		<li class="idle">
 					<div rel="${id}" >

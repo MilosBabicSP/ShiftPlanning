@@ -33,6 +33,10 @@ ShiftPlanningTraining.prototype.overviewEvents = function(){
 		$('.singleModule .backMenu').bind(clickEvent,function(e){
 			e.preventDefault();
 			sp.loadSubPage('', 'training', 'singleSection');
+		})
+		$('.singleModule .subMenu .topic_stat').bind(clickEvent,function(e){
+			e.preventDefault();
+			sp.loadSubPage('', 'training', 'topicstatistic');
 		})		
 }
 ShiftPlanningTraining.prototype.overviewSubEvents = function(){
@@ -147,9 +151,32 @@ ShiftPlanningTraining.prototype.singleModuleSubEvents = function () {
 	$('.training_module').html($.tmpl($('#te_tr_module'),data));
 	var html = $('.training_module .wys');
 	html.html(html.text());
+	$.each(html.find('p'),function(){
+		if($(this).html().length == 0){
+			$(this).remove()
+		}
+	})	
 }
 
-
+ShiftPlanningTraining.prototype.topicstatisticSubEvents = function () {
+	$('.training_topic_stat').html(spView.divLoader());
+	var data ={}
+	for (var i=0;i<sp.training.trainings[sp.training.tmp_section].modules.length;i++){
+		if(sp.training.tmp_module == sp.training.trainings[sp.training.tmp_section].modules[i].id){
+			data = sp.training.trainings[sp.training.tmp_section].modules[i] ;
+		}
+	}	
+	if(typeof data.employees != 'undefined' && typeof data.employees != null){
+		var emp = [];
+		$.each(data.employees,function(){
+			this.avatar = sp.getAvatar(this.id);
+			emp.push(this);
+		})
+		$('.training_topic_stat').html($.tmpl($('#te_tr_topic_statistic'),emp));
+	}else{
+		$('.training_topic_stat').html('No employees on assigned on this topic')
+	}
+}
 
 
 

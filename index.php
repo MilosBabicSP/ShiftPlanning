@@ -583,12 +583,29 @@ if ($vtoken['data'] != '1') {
                             <a class="backMenu" href="#">
                                 <img width="41" height="30" src="<?php echo _fCdnPath_; ?>images/BackMenu.png">
                             </a>
-                        </div>							
+                            <ul class="subMenu" >
+                                <li class="first">
+                                    <a href="#" class="topic_stat" >
+                                        <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/tc_approve.png">
+                                    </a>
+                                </li>
+                            </ul>							
+                        </div>
+						<div class="subLevel hidden mainSub topicstatistic" id="tr_to_st">
+                            <a class="backMenu" href="#">
+                                <img width="41" height="30" src="<?php echo _fCdnPath_; ?>images/BackMenu.png">
+                            </a>
+                        </div>						
 						<?php Functions::getInstance()->loadFile('training_overview')?>
 						<?php Functions::getInstance()->loadFile('training_singleModule')?>
 						<?php Functions::getInstance()->loadFile('training_statistic')?>
 						<?php Functions::getInstance()->loadFile('training_singleSection')?>
+						<div class="main topicstatistic" id="tr_top_stat">
+							<ul class="training_topic_stat staff big">
+							</ul>	
+						</div>						
 					</div>
+				
                 </div>
             </div>
         </div>
