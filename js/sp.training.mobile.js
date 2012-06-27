@@ -18,6 +18,7 @@ ShiftPlanningTraining.prototype.overviewEvents = function(){
 			sp.loadSubPage('','training', subpage);
 		});
 		$('#training .training_sections').delegate('div[rel]',clickEvent,function(e){
+			alert(e.type);
 			if(clickEvent == 'touch'){
 				alert(clickEvent);
 			}
