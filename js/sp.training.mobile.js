@@ -124,6 +124,7 @@ ShiftPlanningTraining.prototype.statisticSubEvents = function(){
 
 ShiftPlanningTraining.prototype.singleSectionSubEvents = function (){
 	$('.training_singleSection').html(spView.ulLoader());
+	$('#section_name').html(sp.training.trainings[sp.training.tmp_section].title)
 	var data = sp.training.trainings[sp.training.tmp_section].modules;
 	for (var i=0;i<sp.training.trainings[sp.training.tmp_section].modules.length;i++){
 		if( typeof sp.training.trainings[sp.training.tmp_section].modules[i].finished_flag == 'undefined'){
