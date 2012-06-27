@@ -24,7 +24,16 @@ ShiftPlanningTraining.prototype.overviewEvents = function(){
 		$('#training .training_singleSection').delegate('div[rel]',clickEvent,function(e){
 			sp.training.tmp_module = $(this).attr('rel');
 			sp.loadSubPage('', 'training', 'singleModule');
-		});		
+		});
+		$('.training_module').delegate('a.publish',clickEvent,function(e){
+		var module_id = $(this).attr('rel');
+		spModel.training.update('complete', {id:module_id},function(response){
+			sp.showSuccess('Finished');
+			setTimeout(function(){
+					$('.singleSection .backMenu').trigger(clickEvent)
+				},2500);			
+			})
+		});
 		$('.singleSection .backMenu').bind(clickEvent,function(e){
 			e.preventDefault();
 			e.stopPropagation();
