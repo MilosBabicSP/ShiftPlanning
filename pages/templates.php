@@ -811,7 +811,7 @@
 	<script id="te_tr_statistic" type="text/x-jquery-tmpl">
         <li staffId="${id}" >
             <img width="50" height="50" src="${avatar}" />
-            <span>${name} <b>${stat}%</b></span>
+            <span>${name} <b {{if stat < 30 }}style="color : #8C1919"{{else}}{{if stat < 100}}style="color : orange"{{else}}style="color : green"{{/if}} {{/if}}>${stat}%</b></span>
         </li>	
 	</script>
 	<script id="te_tr_topic_statistic" type="text/x-jquery-tmpl">
