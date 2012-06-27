@@ -568,13 +568,26 @@ if ($vtoken['data'] != '1') {
 						
                     </div>
 					<div class="training" id="training">
+						<div class="training subLevel mainSub">	
+							<ul class="filters">
+								<li class="first active"><a subpage="sections" href="#">Sections</a></li>
+								<li class="hidden"><a subpage="statistic" href="#">Statistic</a></li>
+							</ul>
+						</div>
+						<div class="subLevel hidden mainSub singleSection" id="tr_si_se">
+                            <a class="backMenu" href="#">
+                                <img width="41" height="30" src="<?php echo _fCdnPath_; ?>images/BackMenu.png">
+                            </a>
+                        </div>
 						<div class="subLevel hidden mainSub singleModule" id="tr_si_se">
                             <a class="backMenu" href="#">
                                 <img width="41" height="30" src="<?php echo _fCdnPath_; ?>images/BackMenu.png">
                             </a>
-                        </div>						
+                        </div>							
 						<?php Functions::getInstance()->loadFile('training_overview')?>
 						<?php Functions::getInstance()->loadFile('training_singleModule')?>
+						<?php Functions::getInstance()->loadFile('training_statistic')?>
+						<?php Functions::getInstance()->loadFile('training_singleSection')?>
 					</div>
                 </div>
             </div>

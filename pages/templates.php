@@ -800,14 +800,13 @@
     </script>
 	<script id="te_tr_sections" type="text/x-jquery-tmpl">
 		<li class="idle">
-					<div>
-			<a href="#" class="sub fr tDown" rel="${id}" ><img width="43" height="30" src="<?php echo _fCdnPath_;?>images/DownMenu.png"></a>
-                        <a href="#" class="sub fr tUp" rel="${id}" ><img width="43" height="30" src="<?php echo _fCdnPath_;?>images/UpMenu.png"></a>
+					<div rel="${id}" >
+			<a href="#" class="next fr" ><img width="43" height="30" src="<?php echo _fCdnPath_; ?>images/NextMenu.png"></a>
 			<span class="oneLine">
-                            <b>${title}</b>
+                            <b>${title}</b>{{if notfinished_count > 0}}<b style="color:red"> - Incomplete</b> {{/if}}
 			</span>
 							</div>
-				{{if modules.length > 0}}
+<!--				{{if modules.length > 0}}
 				<ul modules="modules_${id}" style="display:none">
 				{{each modules}}
                                     <li class="${$value.finished_flag}">
@@ -827,9 +826,24 @@
 									{{/if}}
 				{{/each}}
 				</ul>
-				{{/if}}
+				{{/if}}-->
 				
 		</li>
+	</script>
+	<script id="te_tr_statistic" type="text/x-jquery-tmpl">
+        <li staffId="${id}" >
+            <img width="50" height="50" src="${avatar}" />
+            <span>${name} <b>${stat}</b></span>
+        </li>	
+	</script>
+	<script id="te_tr_singleSection" type="text/x-jquery-tmpl">
+		<li class="idle">
+					<div rel="${id}" >
+			<a href="#" class="next fr" ><img width="43" height="30" src="<?php echo _fCdnPath_; ?>images/NextMenu.png"></a>
+			<span class="oneLine">
+                            <b>${title}</b>{{if finished_flag == 99 || finished_flag == 0}}<b style="color:red"> - Incomplete</b> {{/if}}
+			</span>
+							</div>	
 	</script>
 	<script id="te_tr_module" type="text/x-jquery-tmpl">
 		<div class="title" style="display: block;">
@@ -853,7 +867,7 @@
 				&lt/div&gt
 				{{/if}}
 				&ltbr/&gt
-				{{if finished_flag == 1 && finished_time < updated }}
+				{{if finished_flag == 99 }}
 					&lta class="publish" rel="${id}"&gt I've Reviewed this &lt/a&gt
 				{{else}}
 						{{if finished_flag == 0}}
