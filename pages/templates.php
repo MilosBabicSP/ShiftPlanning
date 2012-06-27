@@ -832,7 +832,7 @@
 	<script id="te_tr_singleSection" type="text/x-jquery-tmpl">
 		<li class="idle">
 					<div rel="${id}" >
-			<a href="#" class="next fr" ><img width="43" height="30" src="<?php echo _fCdnPath_; ?>images/NextMenu.png"></a>
+			<div href="#" class="next fr" ><img width="43" height="30" src="<?php echo _fCdnPath_; ?>images/NextMenu.png"></div>
 			<span class="oneLine">
                             <b>${title}</b>{{if finished_flag == 99 || finished_flag == 0}}<b style="color:red"> - Incomplete</b> {{/if}}
 			</span>
