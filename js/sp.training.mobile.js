@@ -18,12 +18,10 @@ ShiftPlanningTraining.prototype.overviewEvents = function(){
 			sp.loadSubPage('','training', subpage);
 		});
 		$('#training .training_sections').delegate('div[rel]',clickEvent,function(e){
-			alert(e.type);
 			sp.training.tmp_section = $(this).attr('rel');
 			sp.loadSubPage('', 'training', 'singleSection');
 		});
 		$('#training .training_singleSection').delegate('div[rel]',clickEvent,function(e){
-			alert(e.type);
 			sp.training.tmp_module = $(this).attr('rel');
 			sp.loadSubPage('', 'training', 'singleModule');
 		});		
