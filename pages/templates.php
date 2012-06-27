@@ -840,8 +840,9 @@
         <li staffId="${id}" >
 			{{if finished == null }} 
 				<span>Not finished<span>
-				{{else}}{{if outdated != undefined && outdated > 0 }}
-					<sapn>Not reviewed <span>
+				{{else}}{{if typeof outdated != 'undefined' && outdated > 0 }}
+					<span>Not reviewed <span>
+					{{else}}<span>Finished<span>
 				{{/if}}
 			{{/if}}
             <img width="50" height="50" src="${avatar}" />

@@ -34,6 +34,10 @@ ShiftPlanningTraining.prototype.overviewEvents = function(){
 			e.preventDefault();
 			sp.loadSubPage('', 'training', 'singleSection');
 		})
+		$('.topicstatistic .backMenu').bind(clickEvent,function(e){
+			e.preventDefault();
+			sp.loadSubPage('', 'training', 'singleModule');
+		})
 		$('.singleModule .subMenu .topic_stat').bind(clickEvent,function(e){
 			e.preventDefault();
 			sp.loadSubPage('', 'training', 'topicstatistic');
@@ -172,6 +176,7 @@ ShiftPlanningTraining.prototype.topicstatisticSubEvents = function () {
 			this.avatar = sp.getAvatar(this.id);
 			emp.push(this);
 		})
+		console.log(emp);
 		$('.training_topic_stat').html($.tmpl($('#te_tr_topic_statistic'),emp));
 	}else{
 		$('.training_topic_stat').html('No employees on assigned on this topic')
