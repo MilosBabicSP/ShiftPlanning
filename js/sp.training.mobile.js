@@ -11,6 +11,7 @@ ShiftPlanningTraining.prototype.overviewEvents = function(){
 		var self = this ;
 		$('#training .training .filters li a').bind(clickEvent,function(e){
 			e.preventDefault();
+			e.stopPropagation();
 			var subpage = $(this).attr('subpage');
 			$('#training .training .filters li').removeClass('active');
 			$(this).parent().addClass('active');
@@ -18,28 +19,34 @@ ShiftPlanningTraining.prototype.overviewEvents = function(){
 		});
 		$('#training .training_sections').delegate('div[rel]',clickEvent,function(e){
 			e.preventDefault();
+			e.stopPropagation();
 			sp.training.tmp_section = $(this).attr('rel');
 			sp.loadSubPage('', 'training', 'singleSection');
 		});
 		$('#training .training_singleSection').delegate('div[rel]',clickEvent,function(e){
 			e.preventDefault();
+			e.stopPropagation();
 			sp.training.tmp_module = $(this).attr('rel');
 			sp.loadSubPage('', 'training', 'singleModule');
 		});		
 		$('.singleSection .backMenu').bind(clickEvent,function(e){
 			e.preventDefault();
+			e.stopPropagation();
 			$('.subNavigation .training li.active a').trigger(clickEvent);			
 		})
 		$('.singleModule .backMenu').bind(clickEvent,function(e){
 			e.preventDefault();
+			e.stopPropagation();
 			sp.loadSubPage('', 'training', 'singleSection');
 		})
 		$('.topicstatistic .backMenu').bind(clickEvent,function(e){
 			e.preventDefault();
+			e.stopPropagation();
 			sp.loadSubPage('', 'training', 'singleModule');
 		})
 		$('.singleModule .subMenu .topic_stat').bind(clickEvent,function(e){
 			e.preventDefault();
+			e.stopPropagation();
 			sp.loadSubPage('', 'training', 'topicstatistic');
 		})		
 }
