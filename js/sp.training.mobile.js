@@ -25,6 +25,10 @@ ShiftPlanningTraining.prototype.overviewEvents = function(){
 			sp.training.tmp_section = $(this).attr('rel');
 			sp.loadSubPage('', 'training', 'singleSection');
 		});
+		$('#training .training_singleSection div[rel]').delegate('a'.clickEvent,function(e){
+			alert(e.type);
+			e.preventDefault();
+		})
 		$('#training .training_singleSection').delegate('div[rel]',clickEvent,function(e){
 			sp.training.tmp_module = $(this).attr('rel');
 			sp.loadSubPage('', 'training', 'singleModule');
