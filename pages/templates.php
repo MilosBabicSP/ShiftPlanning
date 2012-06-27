@@ -805,29 +805,7 @@
 			<span class="oneLine">
                             <b>${title}</b>{{if notfinished_count > 0}}<b style="color:red"> - Incomplete</b> {{/if}}
 			</span>
-							</div>
-<!--				{{if modules.length > 0}}
-				<ul modules="modules_${id}" style="display:none">
-				{{each modules}}
-                                    <li class="${$value.finished_flag}">
-                                    
-                                    <a href="#" class="next fr" rel="${$value.id}" ><img width="43" height="30" src="<?php echo _fCdnPath_; ?>images/NextMenu.png"></a>
-                                            
-                                    <span class="oneLine">
-                                        ${$value.title}
-                                    </span>
-									{{if $value.statistic != 'undefined'}}
-										<span class="stats">
-											${$value.statistic}
-										</span>
-									</li>
-									{{else}}
-									</li>
-									{{/if}}
-				{{/each}}
-				</ul>
-				{{/if}}-->
-				
+							</div>				
 		</li>
 	</script>
 	<script id="te_tr_statistic" type="text/x-jquery-tmpl">
