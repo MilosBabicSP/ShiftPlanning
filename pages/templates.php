@@ -816,15 +816,17 @@
 	</script>
 	<script id="te_tr_topic_statistic" type="text/x-jquery-tmpl">
         <li staffId="${id}" >
-			{{if finished == null }} 
-				<span>Not finished<span>
-				{{else}}{{if typeof outdated != 'undefined' && outdated > 0 }}
-					<span>Not reviewed <span>
-					{{else}}<span>Finished<span>
-				{{/if}}
-			{{/if}}
             <img width="50" height="50" src="${avatar}" />
-            <span>${name}</span>
+            <span>${name}{{if finished == null }} 
+							<b><img style="width:16px;height:16px" src="<?php echo _fCdnPath_;?>images/tc_delete.png"></b></span>
+						 {{else}}
+							{{if typeof outdated != 'undefined' && outdated > 0 }}
+								<b><img style="width:16px;height:16px" src="<?php echo _fCdnPath_;?>images/req_1.png"></b></span>
+							{{else}}
+								<b><img style="width:16px;height:16px" src="<?php echo _fCdnPath_;?>images/tc_approve.png"></b></span>
+							{{/if}}								
+						{{/if}}
+			</span>
         </li>	
 	</script>	
 	<script id="te_tr_singleSection" type="text/x-jquery-tmpl">
