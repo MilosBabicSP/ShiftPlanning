@@ -801,7 +801,7 @@
 	<script id="te_tr_sections" type="text/x-jquery-tmpl">
 		<li class="idle">
 					<div rel="${id}" >
-			<a href="#" class="next fr" ><img width="43" height="30" src="<?php echo _fCdnPath_; ?>images/NextMenu.png"></a>
+			<div href="#" class="next fr" ><img width="43" height="30" src="<?php echo _fCdnPath_; ?>images/NextMenu.png"></div>
 			<span class="oneLine">
                             <b>${title}</b>{{if notfinished_count > 0}}<b style="color:red"> - Incomplete</b> {{/if}}
 			</span>

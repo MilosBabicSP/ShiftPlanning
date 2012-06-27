@@ -575,14 +575,14 @@ if ($vtoken['data'] != '1') {
 							</ul>
 						</div>
 						<div class="subLevel hidden mainSub singleSection" id="tr_si_se">
-                            <a class="backMenu" href="#">
+                            <div class="backMenu" href="#">
                                 <img width="41" height="30" src="<?php echo _fCdnPath_; ?>images/BackMenu.png">
-                            </a>
+                            </div>
                         </div>
 						<div class="subLevel hidden mainSub singleModule" id="tr_si_se">
-                            <a class="backMenu" href="#">
+                            <div class="backMenu" href="#">
                                 <img width="41" height="30" src="<?php echo _fCdnPath_; ?>images/BackMenu.png">
-                            </a>
+                            </div>
                             <ul class="subMenu hidden" >
                                 <li class="first">
                                     <a href="#" class="topic_stat" >
@@ -592,9 +592,9 @@ if ($vtoken['data'] != '1') {
                             </ul>							
                         </div>
 						<div class="subLevel hidden mainSub topicstatistic" id="tr_to_st">
-                            <a class="backMenu" href="#">
+                            <div class="backMenu" href="#">
                                 <img width="41" height="30" src="<?php echo _fCdnPath_; ?>images/BackMenu.png">
-                            </a>
+                            </div>
                         </div>						
 						<?php Functions::getInstance()->loadFile('training_overview')?>
 						<?php Functions::getInstance()->loadFile('training_singleModule')?>
