@@ -600,7 +600,7 @@ if ($vtoken['data'] != '1') {
 						<?php Functions::getInstance()->loadFile('training_singleModule')?>
 						<?php Functions::getInstance()->loadFile('training_statistic')?>
 						<?php Functions::getInstance()->loadFile('training_singleSection')?>
-						<div class="main topicstatistic" id="tr_top_stat">
+						<div class="main topicstatistic" id="tr_top_stat" style="padding: 0px;">
 							<ul class="training_topic_stat staff big">
 							</ul>	
 						</div>						

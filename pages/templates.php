@@ -811,7 +811,7 @@
 	<script id="te_tr_statistic" type="text/x-jquery-tmpl">
         <li staffId="${id}" >
             <img width="50" height="50" src="${avatar}" />
-            <span>${name} <b>${stat}</b></span>
+            <span>${name} <b>${stat}%</b></span>
         </li>	
 	</script>
 	<script id="te_tr_topic_statistic" type="text/x-jquery-tmpl">
