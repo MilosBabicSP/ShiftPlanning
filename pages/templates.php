@@ -803,7 +803,7 @@
 					<div rel="${id}" >
 			<div href="#" class="next fr" ><img width="43" height="30" src="<?php echo _fCdnPath_; ?>images/NextMenu.png"></div>
 			<span class="oneLine">
-                            <b>${title}</b>{{if notfinished_count > 0}}<a style="padding-left:10px;"><img style="width:16px;height:16px;padding-bottom:3px;" src="<?php echo _fCdnPath_;?>images/req_1.png"></a> {{/if}}
+                            <b>${title}</b>{{if notfinished_count > 0}}<a style="padding-left:10px;"><img style="width:16px;height:16px;padding-bottom:5px;" src="<?php echo _fCdnPath_;?>images/req_1.png"></a> {{/if}}
 			</span>
 							</div>				
 		</li>
@@ -834,7 +834,7 @@
 					<div rel="${id}" >
 			<div href="#" class="next fr" ><img width="43" height="30" src="<?php echo _fCdnPath_; ?>images/NextMenu.png"></div>
 			<span class="oneLine">
-                            <b>${title}</b> {{if finished_flag == 99 || finished_flag == 0}}<a style="padding-left:10px;"><img style="width:16px;height:16px;padding-bottom:3px;" src="<?php echo _fCdnPath_;?>images/req_1.png"></a> 
+                            <b>${title}</b> {{if finished_flag == 99 || finished_flag == 0}}<a style="padding-left:10px;"><img style="width:16px;height:16px;padding-bottom:5px;" src="<?php echo _fCdnPath_;?>images/req_1.png"></a> 
 												{{else}}{{if finished_flag == 1 }} <a style="padding-left:10px;"><img style="width:16px;height:16px;padding-bottom:3px;" src="<?php echo _fCdnPath_;?>images/tc_approve.png"></a> {{/if}}
 											{{/if}}
 			</span>
