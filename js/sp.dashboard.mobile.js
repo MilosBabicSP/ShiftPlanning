@@ -910,7 +910,7 @@ ShiftPlanningDashboard.prototype.updateNotes = function(text){
     }
 }
 ShiftPlanningDashboard.prototype.fixes = function(){
-    $('.mainSub ul li a[subpage]').shorten();
+    $('#dashboard .mainSub ul li a[subpage]').shorten();
     $('.mainNav a[page]').shorten();
 }
 //get all staff and add it to main variables
