@@ -5,7 +5,7 @@ var clickEvent = 'click';
 var deviceAgent = navigator.userAgent.toLowerCase();
 var agentID = deviceAgent.match(/(iphone|ipod|ipad)/);
 if (agentID) {
-    clickEvent = 'touchstart';
+    clickEvent = 'touch';
 }
 
 jQuery.event.special.touch = {
