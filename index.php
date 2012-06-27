@@ -590,7 +590,8 @@ if ($vtoken['data'] != '1') {
                             <ul class="subMenu hidden" >
                                 <li class="first">
                                     <a href="#" class="topic_stat" >
-                                        <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/tc_approve.png">
+                                        <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/stats.png">
+										Statistic										
                                     </a>
                                 </li>
                             </ul>							
