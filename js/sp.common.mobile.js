@@ -4,9 +4,9 @@ var lastTouch;
 var clickEvent = 'click';
 var deviceAgent = navigator.userAgent.toLowerCase();
 var agentID = deviceAgent.match(/(iphone|ipod|ipad)/);
-if (agentID) {
-    clickEvent = 'touch';
-}
+//if (agentID) {
+//    clickEvent = 'touch';
+//}
 
 jQuery.event.special.touch = {
     setup: function(data,namespaces){
