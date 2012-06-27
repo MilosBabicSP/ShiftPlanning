@@ -583,7 +583,7 @@ if ($vtoken['data'] != '1') {
                             <a class="backMenu" href="#">
                                 <img width="41" height="30" src="<?php echo _fCdnPath_; ?>images/BackMenu.png">
                             </a>
-                            <ul class="subMenu" >
+                            <ul class="subMenu hidden" >
                                 <li class="first">
                                     <a href="#" class="topic_stat" >
                                         <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/tc_approve.png">
