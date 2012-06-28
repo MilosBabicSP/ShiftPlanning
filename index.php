@@ -568,15 +568,15 @@ if ($vtoken['data'] != '1') {
 						
                     </div>
 					<div class="training" id="training">
-						<div class="subLevel hidden mainSub singleSection" onclick = "void(0)" id="tr_si_se">
-                            <span class="backMenu" onclick = "void(0)">
+						<div class="subLevel hidden mainSub singleSection" id="tr_si_se">
+                            <a class="backMenu" >
                                 <img width="41" height="30" src="<?php echo _fCdnPath_; ?>images/BackMenu.png">
-                            </span>
+                            </a>
                         </div>
 						<div class="subLevel hidden mainSub singleModule" id="tr_si_se">
-                            <span class="backMenu"  onclick = "void(0)" >&nbsp;
+                            <a class="backMenu"  onclick = "void(0)" >
                                 <img width="41" height="30" src="<?php echo _fCdnPath_; ?>images/BackMenu.png">
-                            </span>
+                            </a>
                             <ul class="subMenu hidden" >
                                 <li class="first">
                                     <a href="#" class="topic_stat" >
@@ -586,10 +586,10 @@ if ($vtoken['data'] != '1') {
                                 </li>
                             </ul>							
                         </div>
-						<div class="subLevel hidden mainSub topicstatistic" onclick = "void(0)" id="tr_to_st">
-                            <span class="backMenu"  onclick = "void(0)" >
+						<div class="subLevel hidden mainSub topicstatistic"  id="tr_to_st">
+                            <a class="backMenu"  >
                                 <img width="41" height="30" src="<?php echo _fCdnPath_; ?>images/BackMenu.png">
-                            </span>
+                            </a>
                         </div>						
 						<?php Functions::getInstance()->loadFile('training_overview')?>
 						<?php Functions::getInstance()->loadFile('training_singleModule')?>
