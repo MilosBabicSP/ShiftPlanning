@@ -574,8 +574,8 @@ if ($vtoken['data'] != '1') {
                             </span>
                         </div>
 						<div class="subLevel hidden mainSub singleModule" id="tr_si_se">
-                            <span class="backMenu"  onclick = "void(0)" >
-                                <img width="41" height="30" src="<?php echo _fCdnPath_; ?>images/BackMenu.png">
+                            <span class="backMenu"   >
+                                <img width="41" height="30" onclick = "void(0)" src="<?php echo _fCdnPath_; ?>images/BackMenu.png">
                             </span>
                             <ul class="subMenu hidden" >
                                 <li class="first">
