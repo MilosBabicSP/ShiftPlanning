@@ -12,12 +12,10 @@ jQuery.event.special.touch = {
     setup: function(data,namespaces){
         var elem = this, $elem = jQuery(elem);
         if (window.Touch) {
-			alert($elem);
             $elem.bind('touchstart', jQuery.event.special.touch.onTouchStart);
             $elem.bind('touchmove', jQuery.event.special.touch.onTouchMove);
             $elem.bind('touchend', jQuery.event.special.touch.onTouchEnd);
         } else {
-			alert($elem);
             $elem.bind('click', jQuery.event.special.touch.click);
         }
     },
