@@ -831,7 +831,7 @@
 	</script>	
 	<script id="te_tr_singleSection" type="text/x-jquery-tmpl">
 		<li class="idle">
-					<div rel="${id}" >
+					<div rel="${id}" onclick = "void(0)">
 			<div href="#" class="next fr" ><img width="43" height="30" src="<?php echo _fCdnPath_; ?>images/NextMenu.png"></div>
 			<span class="oneLine">
                             <b>${title}</b> {{if finished_flag == 99 || finished_flag == 0}}<a style="padding-left:10px;"><img style="width:16px;height:16px;padding-bottom:5px;" src="<?php echo _fCdnPath_;?>images/req_1.png"></a> 

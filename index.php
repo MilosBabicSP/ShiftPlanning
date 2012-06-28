@@ -569,12 +569,12 @@ if ($vtoken['data'] != '1') {
                     </div>
 					<div class="training" id="training">
 						<div class="subLevel hidden mainSub singleSection" id="tr_si_se">
-                            <a class="backMenu" href="#">
+                            <a class="backMenu" onclick = "void(0)" href="#">
                                 <img width="41" height="30" src="<?php echo _fCdnPath_; ?>images/BackMenu.png">
                             </a>
                         </div>
 						<div class="subLevel hidden mainSub singleModule" id="tr_si_se">
-                            <a class="backMenu" href="#">
+                            <a class="backMenu" onclick = "void(0)" href="#">
                                 <img width="41" height="30" src="<?php echo _fCdnPath_; ?>images/BackMenu.png">
                             </a>
                             <ul class="subMenu hidden" >
@@ -587,7 +587,7 @@ if ($vtoken['data'] != '1') {
                             </ul>							
                         </div>
 						<div class="subLevel hidden mainSub topicstatistic" id="tr_to_st">
-                            <a class="backMenu" href="#">
+                            <a class="backMenu" onclick = "void(0)" href="#">
                                 <img width="41" height="30" src="<?php echo _fCdnPath_; ?>images/BackMenu.png">
                             </a>
                         </div>						
