@@ -68,6 +68,8 @@ ShiftPlanningTraining.prototype.sectionsSubEvents = function (){
 	if(sp.staff.admin.info.group <= 2){
 		$('.training  a[subpage=statistic]').parent().removeClass('hidden');
 		$('.training .singleModule .subMenu').removeClass('hidden');		
+	}else{
+		$('.trainingBar').css('margin','0 0 0 50px');
 	}
 	$('.training_sections').html(spView.ulLoader());
 	var s=[];
