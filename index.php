@@ -568,7 +568,7 @@ if ($vtoken['data'] != '1') {
 						
                     </div>
 					<div class="training" id="training">
-						<div class="subLevel hidden mainSub singleSection" id="tr_si_se">
+						<div class="subLevel hidden mainSub singleSection" onclick = "void(0)" id="tr_si_se">
                             <a class="backMenu"  href="#">
                                 <img width="41" height="30" src="<?php echo _fCdnPath_; ?>images/BackMenu.png">
                             </a>
@@ -586,7 +586,7 @@ if ($vtoken['data'] != '1') {
                                 </li>
                             </ul>							
                         </div>
-						<div class="subLevel hidden mainSub topicstatistic" id="tr_to_st">
+						<div class="subLevel hidden mainSub topicstatistic" onclick = "void(0)" id="tr_to_st">
                             <a class="backMenu"  href="#">
                                 <img width="41" height="30" src="<?php echo _fCdnPath_; ?>images/BackMenu.png">
                             </a>
