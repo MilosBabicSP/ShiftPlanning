@@ -801,7 +801,6 @@
 	<script id="te_tr_sections" type="text/x-jquery-tmpl">
 		<li class="idle">
 					<div rel="${id}" onclick = "void(0)" id="tr_touch">
-			<span href="#" class="next fr hidden" onclick = "void(0)"><img width="43" height="30" src="<?php echo _fCdnPath_; ?>images/NextMenu.png"></span>
 			<span class="oneLine">
                             <b>${title}</b>{{if notfinished_count > 0}}<a style="padding-left:10px;"><img style="width:16px;height:16px;padding-bottom:5px;" src="<?php echo _fCdnPath_;?>images/req_1.png"></a> {{/if}}
 			</span>
@@ -831,8 +830,7 @@
 	</script>	
 	<script id="te_tr_singleSection" type="text/x-jquery-tmpl">
 		<li class="idle">
-					<div rel="${id}" onclick = "void(0)">
-			<span href="#" class="next fr" onclick = "void(0)"><img width="43" height="30" src="<?php echo _fCdnPath_; ?>images/NextMenu.png"></span>
+					<div rel="${id}" onclick = "void(0)" id="tr_touch">
 			<span class="oneLine">
                             <b>${title}</b> {{if finished_flag == 99 || finished_flag == 0}}<a style="padding-left:10px;"><img style="width:16px;height:16px;padding-bottom:5px;" src="<?php echo _fCdnPath_;?>images/req_1.png"></a> 
 												{{else}}{{if finished_flag == 1 }} <a style="padding-left:10px;"><img style="width:16px;height:16px;padding-bottom:3px;" src="<?php echo _fCdnPath_;?>images/tc_approve.png"></a> {{/if}}
