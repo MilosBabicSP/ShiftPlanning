@@ -60,15 +60,14 @@ ShiftPlanningTraining.prototype.overviewSubEvents = function(){
 	$('.training').show();
 	if(sp.staff.admin.info.group <= 2){
 		$('.training  a[subpage=statistic]').parent().removeClass('hidden');
-		$('.training .singleModule .subMenu').removeClass('hidden');
 	}
-	$('.training .filters li.first a').trigger(clickEvent);
 }
 ShiftPlanningTraining.prototype.sectionsSubEvents = function (){
 	$('.subNavigation').show();
 	$('.training').show();
 	if(sp.staff.admin.info.group <= 2){
 		$('.training  a[subpage=statistic]').parent().removeClass('hidden');
+		$('.training .singleModule .subMenu').removeClass('hidden');		
 	}
 	$('.training_sections').html(spView.ulLoader());
 	var s=[];
