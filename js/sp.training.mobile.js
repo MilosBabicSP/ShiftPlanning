@@ -38,22 +38,23 @@ ShiftPlanningTraining.prototype.overviewEvents = function(){
 			e.preventDefault();
 			e.stopPropagation();
 			$('.subNavigation .training li.active a').trigger(clickEvent);			
-		})
+		});
 		$('.singleModule .backMenu').bind(clickEvent,function(e){
 			e.preventDefault();
 			e.stopPropagation();
 			sp.loadSubPage('', 'training', 'singleSection');
-		})
+		});
 		$('.topicstatistic .backMenu').bind(clickEvent,function(e){
 			e.preventDefault();
 			e.stopPropagation();
 			sp.loadSubPage('', 'training', 'singleModule');
-		})
+		});
 		$('.singleModule .subMenu .topic_stat').bind(clickEvent,function(e){
 			e.preventDefault();
 			e.stopPropagation();
 			sp.loadSubPage('', 'training', 'topicstatistic');
-		})		
+		});
+		$('.training div.oneLine b').shorten();
 }
 ShiftPlanningTraining.prototype.overviewSubEvents = function(){
 	$('.subNavigation').show();
