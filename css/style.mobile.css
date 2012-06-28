@@ -321,7 +321,7 @@ body {display:none;}
 .checkbox.failsafe {line-height:15px;}
 
 /* training */
-.trainingBar {font-size:14px; line-height:18px;margin:0 0 0 110px;}
+.trainingBar {font-size:14px; line-height:17px;margin:0 0 0 110px;}
 .barholder {position:relative; height:10px; background-color:#FFF; border:solid 1px #DDD;}
 .progress {position:absolute; height:12px; top:-1px; left:-1px; border-left:1px solid #5F894D; border-right:1px solid #5F894D; background:transparent url(../images/progress_bg.png) scroll repeat-x 0 0;}
 
