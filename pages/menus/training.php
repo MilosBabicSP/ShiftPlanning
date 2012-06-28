@@ -3,14 +3,19 @@
         <img width="24" height="24" src="<?php echo _fCdnPath_; ?>images/ShowHideMenu.png" />
     </a>
     <div class="subWrapp">
-		<ul class="subNav fl" page="training" style="display:none">
-			<li class="first active">
-                <a href="#" subpage="overview">
-                    <img width="16" height="16" />
-                </a>
-            </li>
+		<ul class="subNav training" page="training">
+				<li class="first active">
+					<a subpage="sections" href="#">
+						<img width="16" height="16" src="<?php echo _fCdnPath_;?>images/book-open-bookmark.png">
+					</a>
+				</li>
+				<li class="hidden">
+					<a subpage="statistic" href="#">
+						<img width="16" height="16" src="<?php echo _fCdnPath_;?>images/stats.png">
+					</a>
+				</li>
 				</ul>
-        <div class="trainingBar">
+        <div class="trainingBar hidden">
             Training progress : <span id="user_progress">0</span>% Completed
             <div class="barholder">
                 <div class="progress" style="width:0%"></div>

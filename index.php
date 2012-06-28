@@ -568,16 +568,6 @@ if ($vtoken['data'] != '1') {
 						
                     </div>
 					<div class="training" id="training">
-						<div class="training subLevel mainSub">	
-							<ul class="filters">
-								<li class="first active"><a subpage="sections" href="#">
-										<img width="16" height="16" src="<?php echo _fCdnPath_;?>images/book-open-bookmark.png">
-									</a></li>
-								<li class="hidden"><a subpage="statistic" href="#">
-										<img width="16" height="16" src="<?php echo _fCdnPath_;?>images/stats.png">
-									</a></li>
-							</ul>
-						</div>
 						<div class="subLevel hidden mainSub singleSection" id="tr_si_se">
                             <a class="backMenu" href="#">
                                 <img width="41" height="30" src="<?php echo _fCdnPath_; ?>images/BackMenu.png">

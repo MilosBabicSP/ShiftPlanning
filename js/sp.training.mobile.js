@@ -59,7 +59,7 @@ ShiftPlanningTraining.prototype.overviewSubEvents = function(){
 	$('.subNavigation').show();
 	$('.training').show();
 	if(sp.staff.admin.info.group <= 2){
-		$('.training .filters a[subpage=statistic]').parent().removeClass('hidden');
+		$('.training  a[subpage=statistic]').parent().removeClass('hidden');
 		$('.training .singleModule .subMenu').removeClass('hidden');
 	}
 	$('.training .filters li.first a').trigger(clickEvent);
@@ -68,7 +68,7 @@ ShiftPlanningTraining.prototype.sectionsSubEvents = function (){
 	$('.subNavigation').show();
 	$('.training').show();
 	if(sp.staff.admin.info.group <= 2){
-		$('.training .filters a[subpage=statistic]').parent().removeClass('hidden');
+		$('.training  a[subpage=statistic]').parent().removeClass('hidden');
 	}
 	$('.training_sections').html(spView.ulLoader());
 	var s=[];
@@ -118,8 +118,12 @@ ShiftPlanningTraining.prototype.statisticSubEvents = function(){
 	$('.subNavigation').show();
 	$('.training').show();
 	$('.training_statistic').html(spView.divLoader());
-	if(sp.staff.admin.info.group <= 2){
-		$('.training .filters a[subpage=statistic]').parent().removeClass('hidden');
+	if(sp.staff.admin.info.group > 2){
+		sp.showError('You have no permission');
+		setTimeout(function(){
+			sp.loadSubPage('', 'training', 'sections');
+		},1500);
+		return false;
 	}
 	setTimeout(function(){
 	var data = []
@@ -187,6 +191,13 @@ ShiftPlanningTraining.prototype.singleModuleSubEvents = function () {
 
 ShiftPlanningTraining.prototype.topicstatisticSubEvents = function () {
 	$('.training_topic_stat').html(spView.divLoader());
+	if(sp.staff.admin.info.group > 2){
+		sp.showError('You have no permission');
+		setTimeout(function(){
+			sp.loadSubPage('', 'training', 'sections');
+		},1500);
+		return false;
+	}	
 	setTimeout(function(){
 	var data ={}
 	for (var i=0;i<sp.training.trainings[sp.training.tmp_section].modules.length;i++){
