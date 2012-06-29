@@ -802,7 +802,7 @@
 		<li class="idle">
 					<div rel="${id}" onclick = "void(0)" id="tr_touch">
 			<div class="oneLine" style="width:80%">
-                            <b style="float:left">${title}</b>{{if notfinished_count > 0}}<a style="padding-left:10px;"><img style="width:16px;height:16px;padding-bottom:5px;" src="<?php echo _fCdnPath_;?>images/req_1.png"></a> {{/if}}
+                            <b {{if notfinished_count > 0}}style="float:left"{{/if}} >${title}</b>{{if notfinished_count > 0}}<a style="padding-left:10px;"><img style="width:16px;height:16px;padding-bottom:5px;" src="<?php echo _fCdnPath_;?>images/req_1.png"></a> {{/if}}
 			</div>
 							</div>				
 		</li>
@@ -832,7 +832,7 @@
 		<li class="idle">
 					<div rel="${id}" onclick = "void(0)" id="tr_touch">
 			<div class="oneLine" style="width:80%">
-                            <b style="float:left">${title}</b> {{if finished_flag == 99 || finished_flag == 0}}<a style="padding-left:10px;"><img style="width:16px;height:16px;padding-bottom:5px;" src="<?php echo _fCdnPath_;?>images/req_1.png"></a> 
+                            <b {{if finished_flag != -99}}style="float:left"{{/if}}>${title}</b> {{if finished_flag == 99 || finished_flag == 0}}<a style="padding-left:10px;"><img style="width:16px;height:16px;padding-bottom:5px;" src="<?php echo _fCdnPath_;?>images/req_1.png"></a> 
 												{{else}}{{if finished_flag == 1 }} <a style="padding-left:10px;"><img style="width:16px;height:16px;padding-bottom:3px;" src="<?php echo _fCdnPath_;?>images/tc_approve.png"></a> {{/if}}
 											{{/if}}
 			</div>
