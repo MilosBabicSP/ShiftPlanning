@@ -69,7 +69,7 @@ ShiftPlanningTraining.prototype.sectionsSubEvents = function (){
 		$('.training  a[subpage=statistic]').parent().removeClass('hidden');
 		$('.training .singleModule .subMenu').removeClass('hidden');		
 	}else{
-		$('.trainingBar').css('margin','0 0 0 60px');
+		$('.trainingBar').css('margin','0 60px 0 0 ');
 	}
 	$('.training_sections').html(spView.ulLoader());
 	var s=[];

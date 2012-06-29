@@ -3,7 +3,7 @@
         <img width="24" height="24" src="<?php echo _fCdnPath_; ?>images/ShowHideMenu.png" />
     </a>
     <div class="subWrapp">
-		<ul class="subNav training fl" page="training">
+		<ul class="subNav training fr" page="training">
 				<li class="first active">
 					<a subpage="sections" href="#">
 						<img width="16" height="16" src="<?php echo _fCdnPath_;?>images/book-open-bookmark.png">
@@ -16,7 +16,7 @@
 				</li>
 				</ul>
         <div class="trainingBar">
-            <span id="user_progress">0</span>% <?=_s('Completed')?>
+            <?=_s('Progress: ')?><span id="user_progress">0</span>%
             <div class="barholder">
                 <div class="progress" style="width:0%"></div>
             </div>
