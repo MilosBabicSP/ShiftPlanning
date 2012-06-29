@@ -16,7 +16,7 @@
 				</li>
 				</ul>
         <div class="trainingBar">
-            <span id="user_progress">0</span>% Completed
+            <span id="user_progress">0</span>% <?=_s('Completed')?>
             <div class="barholder">
                 <div class="progress" style="width:0%"></div>
             </div>

@@ -581,7 +581,7 @@ if ($vtoken['data'] != '1') {
                                 <li class="first">
                                     <a href="#" class="topic_stat" >
                                         <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/stats.png">
-										Statistic										
+										<?=_s('Statistic')?>										
                                     </a>
                                 </li>
                             </ul>							
