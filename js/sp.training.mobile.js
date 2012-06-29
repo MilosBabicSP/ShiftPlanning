@@ -54,7 +54,6 @@ ShiftPlanningTraining.prototype.overviewEvents = function(){
 			e.stopPropagation();
 			sp.loadSubPage('', 'training', 'topicstatistic');
 		});
-		$('.training div.oneLine b').shorten();
 }
 ShiftPlanningTraining.prototype.overviewSubEvents = function(){
 	$('.subNavigation').show();
@@ -110,6 +109,7 @@ ShiftPlanningTraining.prototype.sectionsSubEvents = function (){
 					}					
 				}
 				$('.training_sections').html($.tmpl($('#te_tr_sections'),data));
+				$('.training div.oneLine b').shorten();	
 			})			
 		})		
 	})
@@ -154,6 +154,7 @@ ShiftPlanningTraining.prototype.singleSectionSubEvents = function (){
 		}
 	}		
 	$('.training_singleSection').html($.tmpl($('#te_tr_singleSection'),sp.training.trainings[sp.training.tmp_section].modules));
+	$('.training div.oneLine b').shorten();
 	},500);
 	
 }
