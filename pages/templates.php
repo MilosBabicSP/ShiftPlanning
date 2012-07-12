@@ -840,7 +840,7 @@
 	</script>
 	<script id="te_tr_module" type="text/x-jquery-tmpl">
 		<div class="title" style="display: block;">
-			<h3 class="fl">${title}{{if duedate != 0}} <br><a style="color:${color}">Due date: ${duedate_formated}</a> {{/if}} </h3>
+			<h3 class="fl">${title}{{if duedate != 0 }} {{if finished_flag == 0 || finished_flag == 99 }}<br><a style="color:${color}">Due date: ${duedate_formated}</a> {{/if}}{{/if}} </h3>
 		</div>
 		<div class="wys" contents="content_${id}">
 			${contents}
