@@ -801,7 +801,7 @@
 	<script id="te_tr_sections" type="text/x-jquery-tmpl">
 		<li class="idle">
 					<div rel="${id}" onclick = "void(0)" id="tr_touch">
-			<div class="oneLine" style="width:80%">
+			<div class="oneLine" style="width:80%;overflow:hidden">
                             <b {{if notfinished_count > 0}}style="float:left"{{/if}} >${title}</b>{{if notfinished_count > 0}}<a style="padding-left:10px;"><img style="width:16px;height:16px;padding-bottom:5px;" src="<?php echo _fCdnPath_;?>images/req_1.png"></a> {{/if}}
 			</div>
 							</div>				
@@ -831,8 +831,8 @@
 	<script id="te_tr_singleSection" type="text/x-jquery-tmpl">
 		<li class="idle">
 					<div rel="${id}" onclick = "void(0)" id="tr_touch">
-			<div class="oneLine" style="width:80%">
-                            <b {{if finished_flag != -99}}style="float:left"{{/if}}>${title}</b> {{if finished_flag == 99 || finished_flag == 0}}<a style="padding-left:10px;"><img style="width:16px;height:16px;padding-bottom:5px;" src="<?php echo _fCdnPath_;?>images/req_1.png"></a> 
+			<div class="oneLine" style="width:80%;overflow:hidden;">
+                            <b {{if finished_flag != -99}}style="float:left"{{/if}}>${title}</b>{{if finished_flag == 99 || finished_flag == 0}}<a style="padding-left:10px;"><img style="width:16px;height:16px;padding-bottom:5px;" src="<?php echo _fCdnPath_;?>images/req_1.png"></a> 
 												{{else}}{{if finished_flag == 1 }} <a style="padding-left:10px;"><img style="width:16px;height:16px;padding-bottom:3px;" src="<?php echo _fCdnPath_;?>images/tc_approve.png"></a> {{/if}}
 											{{/if}}
 			</div>
@@ -840,7 +840,7 @@
 	</script>
 	<script id="te_tr_module" type="text/x-jquery-tmpl">
 		<div class="title" style="display: block;">
-			<h3 class="fl">${title}</h3>
+			<h3 class="fl">${title}{{if duedate != 0}} <br><a style="color:${color}">Due date: ${duedate_formated}</a> {{/if}} </h3>
 		</div>
 		<div class="wys" contents="content_${id}">
 			${contents}

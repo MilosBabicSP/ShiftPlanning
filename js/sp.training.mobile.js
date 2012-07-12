@@ -154,6 +154,13 @@ ShiftPlanningTraining.prototype.singleSectionSubEvents = function (){
 		if( typeof sp.training.trainings[sp.training.tmp_section].modules[i].finished_flag == 'undefined'){
 			sp.training.trainings[sp.training.tmp_section].modules[i].finished_flag = -99 ;
 		}
+		if( sp.training.trainings[sp.training.tmp_section].modules[i].duedate != 0){
+			var today = new Date ();
+			var d= new Date(sp.training.trainings[sp.training.tmp_section].modules[i].duedate*1000);
+			var month = d.getMonth()>9?(d.getMonth()+1):'0'+(d.getMonth()+1);
+			sp.training.trainings[sp.training.tmp_section].modules[i].color = today > d ?'#8C1919':'green';
+			sp.training.trainings[sp.training.tmp_section].modules[i].duedate_formated = d.getDate()+'-'+month+'-'+d.getFullYear();
+		}
 	}		
 	$('.training_singleSection').html($.tmpl($('#te_tr_singleSection'),sp.training.trainings[sp.training.tmp_section].modules));
 	$('.training div.oneLine b').shorten();
