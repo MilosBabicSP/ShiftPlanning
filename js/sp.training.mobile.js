@@ -162,7 +162,7 @@ ShiftPlanningTraining.prototype.singleSectionSubEvents = function (){
 			sp.training.trainings[sp.training.tmp_section].modules[i].duedate_formated = d.getDate()+'-'+month+'-'+d.getFullYear();
 		}
 	}
-	
+	console.log(sp.training.trainings[sp.training.tmp_section]);
 	$('.training_singleSection').html($.tmpl($('#te_tr_singleSection'),sp.training.trainings[sp.training.tmp_section].modules));
 	$('.training div.oneLine b').shorten();
 	},500);
