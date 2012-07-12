@@ -72,7 +72,7 @@ span.radio.check {background-position:-5px -1405px;}
 span.radio.over {background-position:-5px -1355px;}
 
 a.button {line-height:30px; display:block; padding:0 10px; color:#333; background-color:#f0f0f0; border:solid 1px #DBDBDB; border-radius:2px;}
-a.publish {line-height:30px; display:block; padding:0 10px; color:#FFF; background-color:#6C732C; border:solid 1px #5F894D; border-radius:2px;cursor:pointer;}
+a.confirm {line-height:30px; display:block; padding:0 10px; color:#FFF; background-color:#6C732C; border:solid 1px #5F894D; border-radius:2px;cursor:pointer;}
 a.loading {background:#FFF url(../images/loader.gif) scroll no-repeat 50% 50% !important;}
 a.loading span {visibility:hidden;}
 div.loading, li.loading {background:transparent url(../images/loader.gif) scroll no-repeat 50% 50% !important; min-height:30px;}

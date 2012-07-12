@@ -861,10 +861,10 @@
 				{{/if}}
 				&ltbr/&gt
 				{{if finished_flag == 99 }}
-					&lta class="publish" rel="${id}"&gt I've Reviewed this &lt/a&gt
+					&lta class="confirm" rel="${id}"&gt I've Reviewed this &lt/a&gt
 				{{else}}
 						{{if finished_flag == 0}}
-							&lta class="publish" rel="${id}"&gt I've Finished this &lt/a&gt
+							&lta class="confirm" rel="${id}"&gt I've Finished this &lt/a&gt
 						{{else}}
 								{{if finished_flag == -99}}
                                                                 &ltb&gt You are not required to complete this topic &lt/b&gt
