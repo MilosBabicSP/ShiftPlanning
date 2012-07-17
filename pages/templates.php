@@ -800,51 +800,58 @@
     </script>
 	<script id="te_tr_sections" type="text/x-jquery-tmpl">
 		<li class="idle">
-					<div>
-			<a href="#" class="sub fr tDown" rel="${id}" ><img width="43" height="30" src="<?php echo _fCdnPath_;?>images/DownMenu.png"></a>
-                        <a href="#" class="sub fr tUp" rel="${id}" ><img width="43" height="30" src="<?php echo _fCdnPath_;?>images/UpMenu.png"></a>
-			<span class="oneLine">
-                            <b>${title}</b>
-			</span>
-							</div>
-				{{if modules.length > 0}}
-				<ul modules="modules_${id}" style="display:none">
-				{{each modules}}
-                                    <li class="${$value.finished_flag}">
-                                    
-                                    <a href="#" class="next fr" rel="${$value.id}" ><img width="43" height="30" src="<?php echo _fCdnPath_; ?>images/NextMenu.png"></a>
-                                            
-                                    <span class="oneLine">
-                                        ${$value.title}
-                                    </span>
-									{{if $value.statistic != 'undefined'}}
-										<span class="stats">
-											${$value.statistic}
-										</span>
-									</li>
-									{{else}}
-									</li>
-									{{/if}}
-				{{/each}}
-				</ul>
-				{{/if}}
-				
+					<div rel="${id}" onclick = "void(0)" id="tr_touch">
+			<div class="oneLine" style="width:80%;overflow:hidden">
+                            <b {{if notfinished_count > 0}}style="float:left"{{/if}} >${title}</b>{{if notfinished_count > 0}}<a style="padding-left:10px;"><img style="width:16px;height:16px;padding-bottom:5px;" src="<?php echo _fCdnPath_;?>images/req_1.png"></a> {{/if}}
+			</div>
+							</div>				
 		</li>
+	</script>
+	<script id="te_tr_statistic" type="text/x-jquery-tmpl">
+        <li staffId="${id}" >
+            <img width="50" height="50" src="${avatar}" />
+            <span>${name} <b {{if stat < 30 }}style="color : #8C1919"{{else}}{{if stat < 100}}style="color : orange"{{else}}style="color : green"{{/if}} {{/if}}>${stat}%</b></span>
+        </li>	
+	</script>
+	<script id="te_tr_topic_statistic" type="text/x-jquery-tmpl">
+        <li staffId="${id}" >
+            <img width="50" height="50" src="${avatar}" />
+            <span>${name}{{if finished == null }} 
+							<b><img style="width:16px;height:16px" src="<?php echo _fCdnPath_;?>images/tc_delete.png"></b></span>
+						 {{else}}
+							{{if typeof outdated != 'undefined' && outdated > 0 }}
+								<b><img style="width:16px;height:16px" src="<?php echo _fCdnPath_;?>images/req_1.png"></b></span>
+							{{else}}
+								<b><img style="width:16px;height:16px" src="<?php echo _fCdnPath_;?>images/tc_approve.png"></b></span>
+							{{/if}}								
+						{{/if}}
+			</span>
+        </li>	
+	</script>	
+	<script id="te_tr_singleSection" type="text/x-jquery-tmpl">
+		<li class="idle">
+					<div rel="${id}" onclick = "void(0)" id="tr_touch">
+			<div class="oneLine" style="width:80%;overflow:hidden;">
+                            <b {{if finished_flag != -99}}style="float:left"{{/if}}>${title}</b>{{if finished_flag == 99 || finished_flag == 0}}<a style="padding-left:10px;"><img style="width:16px;height:16px;padding-bottom:5px;" src="<?php echo _fCdnPath_;?>images/req_1.png"></a> 
+												{{else}}{{if finished_flag == 1 }} <a style="padding-left:10px;"><img style="width:16px;height:16px;padding-bottom:3px;" src="<?php echo _fCdnPath_;?>images/tc_approve.png"></a> {{/if}}
+											{{/if}}
+			</div>
+							</div>	
 	</script>
 	<script id="te_tr_module" type="text/x-jquery-tmpl">
 		<div class="title" style="display: block;">
-			<h3 class="fl">${title}</h3>
+			<h3 class="fl">${title}{{if duedate != 0 }} {{if finished_flag == 0 || finished_flag == 99 }}<br><a style="color:${color}">Due date: ${duedate_formated}</a> {{/if}}{{/if}} </h3>
 		</div>
 		<div class="wys" contents="content_${id}">
 			${contents}
 				&ltbr/&gt
-				{{if video.length > 0}}
+				{{if video != null && video.length > 0}}
 					&ltdiv class="codebox"&gt
 					&ltb&gt Video &lt/b&gt&ltbr/&gt
 					&lta target="_blank" href="http://www.youtube.com/v/${video}"&gt Click to watch&lt/a&gt
 					&lt/div&gt
 				{{/if}}			
-				{{if files.length > 0}}
+				{{if files!= null && files.length > 0}}
 					&ltdiv class="codebox"&gt
 					&ltb&gt Attachments &lt/b&gt&ltbr/&gt
 					{{each files}}
@@ -853,17 +860,17 @@
 				&lt/div&gt
 				{{/if}}
 				&ltbr/&gt
-				{{if finished_flag == 1 && finished_time < updated }}
-					&lta class="publish" rel="${id}"&gt I've Reviewed this &lt/a&gt
+				{{if finished_flag == 99 }}
+					&lta class="confirm" rel="${id}"&gt I've Reviewed this &lt/a&gt
 				{{else}}
 						{{if finished_flag == 0}}
-							&lta class="publish" rel="${id}"&gt I've Finished this &lt/a&gt
+							&lta class="confirm" rel="${id}"&gt I've Finished this &lt/a&gt
 						{{else}}
 								{{if finished_flag == -99}}
-                                                                &ltb&gt You don't need to finish this &lt/b&gt
+                                                                &ltb&gt You are not required to complete this topic &lt/b&gt
 								{{else}}
 										{{if finished_flag == 1}}
-                                                                                &ltb&gt You completed this topic&lt/b&gt
+                                                                                &ltb&gt You completed this topic &lt/b&gt
 										{{/if}}
 								{{/if}}
 						{{/if}}

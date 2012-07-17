@@ -72,7 +72,7 @@ span.radio.check {background-position:-5px -1405px;}
 span.radio.over {background-position:-5px -1355px;}
 
 a.button {line-height:30px; display:block; padding:0 10px; color:#333; background-color:#f0f0f0; border:solid 1px #DBDBDB; border-radius:2px;}
-a.publish {line-height:30px; display:block; padding:0 10px; color:#FFF; background-color:#6C732C; border:solid 1px #5F894D; border-radius:2px;cursor:pointer;}
+a.confirm {line-height:30px; display:block; padding:0 10px; color:#FFF; background-color:#6C732C; border:solid 1px #5F894D; border-radius:2px;cursor:pointer;}
 a.loading {background:#FFF url(../images/loader.gif) scroll no-repeat 50% 50% !important;}
 a.loading span {visibility:hidden;}
 div.loading, li.loading {background:transparent url(../images/loader.gif) scroll no-repeat 50% 50% !important; min-height:30px;}
@@ -240,8 +240,9 @@ ul.timeSheet span.checkbox {padding:0; width:29px; height:30px; float:right; bac
 ul.timeSheet span.checkbox.check {background-position:-5px -560px;}
 
 ul.staff.big {overflow:hidden; padding:15px 10px; font-size:14px;}
-ul.staff.big li {float:left; padding:5px 10px; width:80px; height:120px; overflow: hidden;}
+ul.staff.big li {position:relative; float:left; padding:5px 10px; width:80px; height:120px; overflow: hidden;}
 ul.staff.big li span {display:block; text-align:center; padding:3px 0;}
+ul.staff.big li span b {position:absolute; top:66px; left:12px; padding:0 5px; background-color:#FFF;opacity: 0.6;}
 ul.staff.big li img {float:left; width:80px; height:80px;}
 
 ul.staff.small {overflow:hidden; font-size:14px; }
@@ -320,10 +321,12 @@ body {display:none;}
 .checkbox.failsafe {line-height:15px;}
 
 /* training */
-.trainingBar {font-size:14px; line-height:20px;}
+.trainingBar {font-size:14px; line-height:17px;margin:0 110px 0 0;}
 .barholder {position:relative; height:10px; background-color:#FFF; border:solid 1px #DDD;}
 .progress {position:absolute; height:12px; top:-1px; left:-1px; border-left:1px solid #5F894D; border-right:1px solid #5F894D; background:transparent url(../images/progress_bg.png) scroll repeat-x 0 0;}
 
+#tr_touch {background: url(../images/NextMenu.png) scroll no-repeat 100% 50%;}
+.alert{background: url(../images/req_1.png) scroll no-repeat 100% 50%;}
 ul.training_sections {overflow:hidden;}
 ul.training_sections li.idle .tUp {display:none;}
 ul.training_sections li.active .tDown {display:none;}
