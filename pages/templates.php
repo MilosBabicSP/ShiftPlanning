@@ -54,7 +54,7 @@
 		<div class="title1 regular wide" style="margin-left:-5px;">
 			<h3 class="icoLoc"><?=_s('Remote site');?>:</h3>
 		</div>
-		<div class="title wide">
+		<div class="title1 wide">
 			<b>${location.name}</b>
 		</div>
 		{{/if}}
