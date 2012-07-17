@@ -1,4 +1,3 @@
-
 <!-- ID rulez first is "te" shorten from template, next is 2 letter from module name, than 2 letter from page name, than 2 letters from page method -->
 <div id="templates">
     <script id="te_sc_usersU" type="text/x-jquery-tmpl">
@@ -51,6 +50,14 @@
 		${notes}
 	    </div>
 	    {{/if}}
+		{{if location != 0}}
+		<div class="title1 regular wide" style="margin-left:-5px;">
+			<h3 class="icoLoc"><?=_s('Remote site');?>:</h3>
+		</div>
+		<div class="title wide">
+			<b>${location.name}</b>
+		</div>
+		{{/if}}
 	    {{if employees.length > 0 }}
 	    <div class="title1 regular wide">
 		<h3><?=_s('Who\'s Working');?></h3>
