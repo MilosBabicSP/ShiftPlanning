@@ -207,7 +207,16 @@ ShiftPlanningTraining.prototype.singleModuleSubEvents = function () {
 				}
 			});			
 		});
-	}	
+		}else{
+			$('.training_module').html($.tmpl($('#te_tr_module'),data));
+						var html = $('.training_module .wys');
+						html.html(html.text());
+						$.each(html.find('p'),function(){
+							if($(this).html().length == 0){
+								$(this).remove()
+							}
+						});					
+		}	
 	},500);
 		
 }
