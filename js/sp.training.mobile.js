@@ -189,14 +189,25 @@ ShiftPlanningTraining.prototype.singleModuleSubEvents = function () {
 			this.file_size=spView.friendly_filesize(this.file_size);
 		})
 	}
-	$('.training_module').html($.tmpl($('#te_tr_module'),data));
-	var html = $('.training_module .wys');
-	html.html(html.text());
-	$.each(html.find('p'),function(){
-		if($(this).html().length == 0){
-			$(this).remove()
-		}
-	});	
+	//if it's comment training fetch comments
+	if(data.comment_type == 1){
+		spModel.training.get('comments', {module_id:sp.training.tmp_module,type:1}, function(response){
+			var comments=[];
+			$.each(response.data,function(){
+				this.avatar=sp.getAvatar(this.user);
+				comments.push(this);
+			});
+			data.comments=comments;
+			$('.training_module').html($.tmpl($('#te_tr_module'),data));
+			var html = $('.training_module .wys');
+			html.html(html.text());
+			$.each(html.find('p'),function(){
+				if($(this).html().length == 0){
+					$(this).remove()
+				}
+			});			
+		});
+	}	
 	},500);
 		
 }

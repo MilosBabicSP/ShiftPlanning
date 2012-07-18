@@ -849,7 +849,7 @@
 		<div class="title" style="display: block;">
 			<h3 class="fl">${title}{{if duedate != 0 }} {{if finished_flag == 0 || finished_flag == 99 }}<br><a style="color:${color}">Due date: ${duedate_formated}</a> {{/if}}{{/if}} </h3>
 		</div>
-		<div class="wys" contents="content_${id}">
+		<div class="wys" contents="content_${id}" style="border-bottom: 1px solid #DBDBDB; padding-bottom: 10px;">
 			${contents}
 				&ltbr/&gt
 				{{if video != null && video.length > 0}}
@@ -882,7 +882,16 @@
 								{{/if}}
 						{{/if}}
 				{{/if}}
+
 		</div>
+		{{if typeof comments !='undefined' && comments.length > 0}}
+			{{each comments}}
+			<div class="title1 regular wide">
+				<img width="40" height="40" src="${$value.avatar}" /><b style="margin-left:5px;">${$value.name}</b>
+			</div>
+			<div class="title1 wide"><span style="padding-left:45px;">${$value.text}</span></div>
+			{{/each}}
+		{{/if}}
 	</script>
     <script id="te_da_ping" type="text/x-jquery-tmpl">
         <div class="title1 wide" style="background-color: #ebefd6; color: #565551;">
