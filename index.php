@@ -1,7 +1,15 @@
 <?php
 require_once('functions.php');
-require_once('config.php');
 require_once('api.php');
+
+/* fast hack for displaying correct time */
+if (isset($_GET['timezone'])){
+    echo Functions::getInstance()->getCurrentTime();
+    die();
+}
+
+require_once('config.php');
+
 require_once('jspacker.php');
 include 'i18n/lib/class.i18n.php';
 if (Functions::getInstance()->getCurrentLang() != 'en_US'):
