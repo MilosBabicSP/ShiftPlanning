@@ -198,7 +198,7 @@ ShiftPlanningTimeClock.prototype.displayTimeSheetsSubEvents = function (){
 ShiftPlanningTimeClock.prototype.overviewSubEvents = function(){
     $('#tc_ov_cf').hide();
     $('#tc_ov_cb span.fr a').hide();
-    $('#tc_ov_ss').html(spView.optionSchedules(sp.staff.admin.info.id));
+    $('#tc_ov_ss').html(spView.optionSchedules(sp.staff.admin.info.id, false, true));
     
     if (parseInt(sp.staff.admin.settings.tc_terminal_lock) == 0){
 	$('#tc_ov_cb').show();
