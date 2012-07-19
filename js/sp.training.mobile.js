@@ -203,7 +203,7 @@ ShiftPlanningTraining.prototype.singleModuleSubEvents = function () {
 			html.html(html.text());
 			$.each(html.find('p'),function(){
 				if($(this).html().length == 0){
-					$(this).remove()
+					$(this).remove();
 				}
 			});			
 		});
@@ -213,7 +213,7 @@ ShiftPlanningTraining.prototype.singleModuleSubEvents = function () {
 						html.html(html.text());
 						$.each(html.find('p'),function(){
 							if($(this).html().length == 0){
-								$(this).remove()
+								$(this).remove();
 							}
 						});					
 		}	

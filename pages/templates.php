@@ -891,6 +891,15 @@
 			</div>
 			<div class="title1 wide"><span style="padding-left:45px;">${$value.text}</span></div>
 			{{/each}}
+			<br/>
+			<span class="input">
+				<textarea id="tr_comment" style="width: 1243px; height: 44px;"></textarea>
+			</span>
+			<div class="title">
+			<span class="fr">
+				<a id="tr_send_comment" onclick = "void(0)"><span>Comment</span></a>
+			</span>
+			</div>
 		{{/if}}
 	</script>
     <script id="te_da_ping" type="text/x-jquery-tmpl">
