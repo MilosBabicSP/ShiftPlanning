@@ -59,7 +59,7 @@ ShiftPlanningTraining.prototype.overviewEvents = function(){
 			e.stopPropagation();
 			var text=$.trim($('#tr_comment').val());
 			if(text.length > 0){
-				spModel.training.update('comments', {module_id:this.tmp_module,text:text,type:2}, function(reponse){
+				spModel.training.update('comments', {module_id:sp.training.tmp_module,text:text,type:2}, function(reponse){
 					sp.showSuccess('Comment added');
 					setTimeout(function(){
 							$('.singleSection .backMenu').trigger(clickEvent)
