@@ -54,6 +54,21 @@ ShiftPlanningTraining.prototype.overviewEvents = function(){
 			e.stopPropagation();
 			sp.loadSubPage('', 'training', 'topicstatistic');
 		});
+		$('.singleModule').delegate('#tr_send_comment',clickEvent,function(e){
+			e.preventDefault();
+			e.stopPropagation();
+			var text=$.trim($('tr_comment').val());
+			if(text.length > 0){
+				spModel.training.update('comments', {module_id:this.tmp_module,text:text,type:2}, function(reponse){
+					sp.showSuccess('Comment added');
+					setTimeout(function(){
+							$('.singleSection .backMenu').trigger(clickEvent)
+						},2500);
+				});
+			}else{
+				sp.showError('Empty comment');
+			}
+		})
 }
 ShiftPlanningTraining.prototype.overviewSubEvents = function(){
 	$('.subNavigation').show();
