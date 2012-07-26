@@ -62,7 +62,7 @@ ShiftPlanningTraining.prototype.overviewEvents = function(){
 				spModel.training.update('comments', {module_id:sp.training.tmp_module,text:text,type:1}, function(reponse){
 					sp.showSuccess('Comment added');
 					setTimeout(function(){
-							$('.singleSection .backMenu').trigger(clickEvent)
+							$('.singleModule .backMenu').trigger(clickEvent)
 						},2500);
 				});
 			}else{
