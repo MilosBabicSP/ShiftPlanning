@@ -198,7 +198,18 @@ ShiftPlanningTimeClock.prototype.displayTimeSheetsSubEvents = function (){
 ShiftPlanningTimeClock.prototype.overviewSubEvents = function(){
     $('#tc_ov_cf').hide();
     $('#tc_ov_cb span.fr a').hide();
-    $('#tc_ov_ss').html(spView.optionSchedules(sp.staff.admin.info.id, false, true));
+    $('#tc_ov_ss').html(spView.optionSchedules(sp.staff.admin.info.id));
+    $('#tc_ov_cb .icoClock').html('<time style="height:35px;display:block;">' + sp.raw.config.today.formatted + '</time>');
+    
+    $.ajax({
+	url: 'index.php?timezone=true',
+	type: 'get',
+	success: function(response){
+	    $('#tc_ov_cb .icoClock').html(response);
+	}
+    });
+    
+    
     
     if (parseInt(sp.staff.admin.settings.tc_terminal_lock) == 0){
 	$('#tc_ov_cb').show();
