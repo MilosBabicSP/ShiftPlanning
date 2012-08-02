@@ -198,7 +198,6 @@ class Functions{
     
     function getCurrentTime(){
 	$this->timezone();
-        var_dump(($this->settings['24hr'] == 1));
 	return '<time>' . date($this->settings['date']) . '</time><span>' .  date(($this->settings['24hr'] == 1) ? "H:i" : "g:ia") . '</span>';
     }
     
