@@ -87,6 +87,8 @@ if ($vtoken['data'] != '1') {
 
         <!-- jQuery -->
 	<?php 
+        //json obj 
+        $jse->_add('js/json2.js', $encrypt);
 	
 	//main jquery
 	$jse->_add('js/jquery/jquery-1.6.4.min.js', $encrypt);

@@ -23,7 +23,7 @@ if (IS_TEST_SERVER) {
 }
 
 
-define('_jsV_', 9);
+define('_jsV_', 10);
 define('WWW_PATH', 'http://' . $_SERVER['SERVER_NAME'] . '/' . _ext_);
 define('LANG_PATH', 'http://' . $_SERVER['SERVER_NAME'] . '/');
 
