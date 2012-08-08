@@ -58,7 +58,7 @@
 			<b>${location.name}</b>
 		</div>
 		<div class="title1 wide" style="margin-bottom: -11px;">
-		<iframe width="100%" height="150" frameborder="0" scrolling="no" src="http://maps.google.com/?ll=${location.lat},${location.lon}&z=13&output=embed">
+		<iframe width="100%" height="150" frameborder="0" scrolling="no" src="http://maps.google.com/maps?f=d&source=s_d&saddr=${location.address}&hl=en&z=15&output=embed">
 		
 		</iframe>
 		</div>
