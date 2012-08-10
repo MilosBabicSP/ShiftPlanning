@@ -276,6 +276,7 @@ if ($vtoken['data'] != '1') {
                         </div>
                         <?php Functions::getInstance()->loadFile('dashboard_wall') ?>
                         <?php Functions::getInstance()->loadFile('dashboard_upcomingShifts'); ?>
+						<?php Functions::getInstance()->loadFile('dashboard_files'); ?>
                         <?php Functions::getInstance()->loadFile('dashboard_inbox') ?>
                         <?php Functions::getInstance()->loadFile('dashboard_settings'); ?>
                         <?php Functions::getInstance()->loadFile('dashboard_whosonnow'); ?>

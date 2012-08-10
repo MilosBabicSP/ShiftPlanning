@@ -18,6 +18,9 @@ ShiftPlanningDashboard.prototype.loadSubPageEvents = function(subpage){
 	case 'upcomingShifts':
 	    this.upcomingShiftsSubEvents();
 	    break;
+	case 'files':
+		this.filesSubEvents();
+		break;
 	case 'inbox':
 	    this.inboxSubEvents();
 	    break;
@@ -413,6 +416,13 @@ ShiftPlanningDashboard.prototype.wallSubEvents = function(){
     }
 }
 
+ShiftPlanningDashboard.prototype.filesSubEvents = function(){
+	console.log('Download files');
+	$('#da_fi_list').html(spView.ulLoader());
+	spModel.admin.get('files', {}, function(response){
+		$('#da_fi_list').html($.tmpl($('#te_da_fi_list'),response.data));
+	});
+}
 
 ShiftPlanningDashboard.prototype.upcomingShiftsSubEvents = function(){
     $('#da_up_li').html(spView.ulLoader());

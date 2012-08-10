@@ -62,6 +62,9 @@
 		
 		</iframe>
 		</div>
+		<div class="title1 wide">
+			<a target="_blank" href="http://maps.google.com/maps?f=d&hl=en&geocode=&saddr=${location.address}&%20daddr=end&&ie=UTF8&z=7">Find directions</b>
+		</div>
 		{{/if}}
 	    {{if employees.length > 0 }}
 	    <div class="title1 regular wide">
@@ -1080,6 +1083,13 @@
             <span class="time">${start_time.time} - ${end_time.time}</span>
         </li>
     </script>
+	<script id="te_da_fi_list" type="text/x-jquery-tmpl">
+		<li>
+			<div onclick="void(0)" >
+				<a target="_blank" href="${secureurl}"> ${filename}</a> (${file_size})
+			</div>
+		</li>
+	</script>
     <script id="te_da_wa_in" type="text/x-jquery-tmpl">
         <li id="da_in_msg_${id}" class="{{if date_read == 0}}unread{{/if}}">
             <div class="msgHead" messageId="${id}">
