@@ -82,6 +82,7 @@ if($_POST['module'] && $_POST['module'] != 'admin.getfile'){
 	$return = base64_decode($data['data']['content']);	
 	if(!$return){
 		var_dump('PUKKKOOO');
+		return false;
 	}
 	$file = '/pages/'.$data['data']['filename'];
 	$open = fopen($file, 'w');
@@ -90,4 +91,7 @@ if($_POST['module'] && $_POST['module'] != 'admin.getfile'){
 	header("Content-Description: File Transfer");
     header("Content-Disposition: attachment; filename=$file");
 	header("Content-Transfer-Encoding: binary");
+	readfile($file);
+	
+	unlink($file);
 }
