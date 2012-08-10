@@ -69,7 +69,7 @@ function _iapi($request_vars, $output='json', $dataOnly = false, $multi = false)
     }
 }
 
-if($_POST['module']){
+if($_POST['module'] && $_POST['module'] != 'admin.getfile'){
     # SPILL JSON FROM API
     header('Content-type: application/json');
     echo _iapi($_POST);
@@ -77,4 +77,17 @@ if($_POST['module']){
     # SPILL JSON FROM API
     header('Content-type: application/json');
     echo _iapi($_POST,'json',false,true);
-} 
+} else if($_POST['module'] == 'admin.getfile'){
+	$data = json_decode(_iapi($_POST),true);
+	$return = base64_decode($data['data']['content']);	
+	if(!$return){
+		var_dump('PUKKKOOO');
+	}
+	$file = '/pages/'.$data['data']['filename'];
+	$open = fopen($file, 'w');
+	fwrite($open, $return);
+	header($data['data']['filetype']);	
+	header("Content-Description: File Transfer");
+    header("Content-Disposition: attachment; filename=$file");
+	header("Content-Transfer-Encoding: binary");
+}
