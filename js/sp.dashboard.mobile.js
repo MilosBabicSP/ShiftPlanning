@@ -427,7 +427,6 @@ ShiftPlanningDashboard.prototype.wallSubEvents = function(){
 }
 
 ShiftPlanningDashboard.prototype.filesSubEvents = function(){
-	console.log('Download files');
 	$('#da_fi_list').html(spView.ulLoader());
 	spModel.admin.get('files', {}, function(response){
 		$.each(response.data,function(){
