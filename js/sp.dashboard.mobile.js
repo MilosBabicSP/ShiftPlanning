@@ -433,6 +433,7 @@ ShiftPlanningDashboard.prototype.filesSubEvents = function(){
 		$.each(response.data,function(){
 			var str = this.secureurl;
 			this.secureurl=str.substring((str.indexOf("fid=")+4), str.length);
+			this.file_size=spView.friendly_filesize(this.file_size);
 		});
 		$('#da_fi_list').html($.tmpl($('#te_da_fi_list'),response.data));
 	});
