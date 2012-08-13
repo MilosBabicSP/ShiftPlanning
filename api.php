@@ -84,9 +84,13 @@ if($_POST['module'] && $_POST['module'] != 'admin.getfile'){
 		var_dump('PUKKKOOO');
 		return false;
 	}
-	$file = '/pages/'.$data['data']['filename'];
+	$file = 'pages/'.$data['data']['filename'];
 	$open = fopen($file, 'w');
+	if(!is_writable($file)){
+		var_dump($open);
+	}
 	fwrite($open, $return);
+	fclose($open);
 	header($data['data']['filetype']);	
 	header("Content-Description: File Transfer");
     header("Content-Disposition: attachment; filename=$file");
