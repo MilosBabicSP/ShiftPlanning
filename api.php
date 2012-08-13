@@ -81,22 +81,12 @@ if($_POST['module'] && $_POST['module'] != 'admin.getfile'){
 	$data = json_decode(_iapi($_POST),true);
 	$return = base64_decode($data['data']['content']);	
 	if(!$return){
-		var_dump('PUKKKOOO');
+		echo 'failed to retrieve content ';
 		return false;
 	}
-	$file = 'pages/'.$data['data']['filename'];
-	$open = fopen($file, 'w');
-	if(!is_writable($file)){
-		var_dump($open);
-	}
-	fwrite($open, $return);
-	fclose($open);
-	header($data['data']['filetype']);	
-	header("Content-Description: File Transfer");
-    header("Content-Disposition: attachment; filename=$file");
-	header("Content-Transfer-Encoding: binary");
-	header("Cache-Control: no-cache, must-revalidate");
-	readfile($file);
 	
-	unlink($file);
+	header($data['data']['filetype']);	
+	header("Content-Length: ".$data['data']['file_size'].";\n");
+
+	echo $return;
 }

@@ -413,7 +413,8 @@ ShiftPlanningDashboard.prototype.wallSubEvents = function(){
 	}, function(){
 	    $('#da_wa_li').html(spView.emptyResult(_s('Something went wrong'), 'li'));
 	});
-    }
+    
+}
 }
 
 ShiftPlanningDashboard.prototype.filesSubEvents = function(){
