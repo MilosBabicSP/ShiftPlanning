@@ -431,6 +431,28 @@ ShiftPlanningDashboard.prototype.filesSubEvents = function(){
 	spModel.admin.get('files', {}, function(response){
 		$.each(response.data,function(){
 			var str = this.secureurl;
+			switch(this.extension){
+				case 'jpg':
+				case 'jpeg':
+				case 'png':
+				case 'bmp':
+					this.extraclass = 'image';
+					break;
+				case 'txt':
+				case 'doc':
+					this.extraclass = 'txt';
+					break;
+				case 'xls':
+				case 'csv':
+					this.extraclass = 'doc'
+					break;
+				case 'pdf':
+					this.extraclass= 'pdf';
+					break;
+				default:
+					this.extraclass= 'other'
+					break;		
+			}
 			this.secureurl=str.substring((str.indexOf("fid=")+4), str.length);
 			this.file_size=spView.friendly_filesize(this.file_size);
 		});

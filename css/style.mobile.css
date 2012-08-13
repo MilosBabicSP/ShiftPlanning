@@ -43,6 +43,12 @@ h5 {font-size:14px; font-weight:normal; color:#333;}
 .repo {background-position:10px -250px;}
 .trai {background-position:10px -1450px}
 
+.pdf {background:transparent url('../images/document-pdf.png') scroll no-repeat 0 50%}
+.txt {background:transparent url('../images/document-text.png') scroll no-repeat 0 50%}
+.image {background:transparent url('../images/document-image.png') scroll no-repeat 0 50%}
+.doc {background:transparent url('../images/document-excel-csv.png') scroll no-repeat 0 50%}
+.other {background:transparent url('../images/document-other.png') scroll no-repeat 0 50%}
+
 .icoClock {background-position:10px -310px; padding:0 0 0 50px;}
 .shift {padding:0 0 0 25px; background:transparent url(../images/Dashboard_UpcomingShifts16x16.png) scroll no-repeat 0 50%;}
 .icoEmpDet {background-position:0 -360px; padding:0 0 0 40px;}
