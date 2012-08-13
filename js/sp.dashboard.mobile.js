@@ -6,6 +6,7 @@ ShiftPlanningDashboard.prototype.initialize = function(){
 	self.settingsEvents();
 	self.upcomingShiftsEvents();
 	self.whosonnowEvents();
+	self.filesEvents();
     self.fixes();
     });
 }
@@ -155,6 +156,14 @@ ShiftPlanningDashboard.prototype.wallEvents = function(){
         
 	return true;
     });
+}
+
+ShiftPlanningDashboard.prototype.filesEvents = function(){
+	$('#da_fi_list').delegate('li a',clickEvent,function(){
+		var id = $(this).attr('rel');
+		$('#da_fi_form input[name=fid]').val(id);
+		$('#da_fi_form').submit();
+	})
 }
 
 ShiftPlanningDashboard.prototype.upcomingShiftsEvents = function(){
@@ -421,6 +430,10 @@ ShiftPlanningDashboard.prototype.filesSubEvents = function(){
 	console.log('Download files');
 	$('#da_fi_list').html(spView.ulLoader());
 	spModel.admin.get('files', {}, function(response){
+		$.each(response.data,function(){
+			var str = this.secureurl;
+			this.secureurl=str.substring((str.indexOf("fid=")+4), str.length);
+		});
 		$('#da_fi_list').html($.tmpl($('#te_da_fi_list'),response.data));
 	});
 }
@@ -443,7 +456,7 @@ ShiftPlanningDashboard.prototype.upcomingShiftsSubEvents = function(){
 	if (data.length > 0){
 	    $('#da_up_li').html($.tmpl($('#te_da_up_li'), data));
 	    $('#da_up_li').next().hide();
-	} else {
+	}else {
 	    $('#da_up_li').hide()
 	    $('#da_up_li').next().show();
 	}

@@ -84,9 +84,10 @@ if($_POST['module'] && $_POST['module'] != 'admin.getfile'){
 		echo 'failed to retrieve content ';
 		return false;
 	}
-	
+	$file = $data['data']['filename'];
 	header($data['data']['filetype']);	
 	header("Content-Length: ".$data['data']['file_size'].";\n");
+	header ("Content-Disposition:attachment; filename=$file");
 
 	echo $return;
 }

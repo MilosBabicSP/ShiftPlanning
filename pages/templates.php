@@ -1086,7 +1086,7 @@
 	<script id="te_da_fi_list" type="text/x-jquery-tmpl">
 		<li>
 			<div onclick="void(0)" >
-				<a target="_blank" href="${secureurl}"> ${filename}</a> (${file_size})
+				<a target="_blank" rel="${secureurl}"> ${filename}</a> (${file_size})
 			</div>
 		</li>
 	</script>
