@@ -95,6 +95,7 @@ if($_POST['module'] && $_POST['module'] != 'admin.getfile'){
 	header("Content-Description: File Transfer");
     header("Content-Disposition: attachment; filename=$file");
 	header("Content-Transfer-Encoding: binary");
+	header("Cache-Control: no-cache, must-revalidate");
 	readfile($file);
 	
 	unlink($file);
