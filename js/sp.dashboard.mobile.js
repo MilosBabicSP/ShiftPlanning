@@ -163,6 +163,10 @@ ShiftPlanningDashboard.prototype.filesEvents = function(){
 		var id = $(this).attr('rel');
 		$('#da_fi_form input[name=id]').val(id);
 		$('#da_fi_form').submit();
+	});
+	$('#get_directions').bind(clickEvent,function(){
+		var src = $(this).attr('rel');
+		$('#map').attr('src',src);
 	})
 }
 

@@ -58,12 +58,12 @@
 			<b>${location.name}</b>
 		</div>
 		<div class="title1 wide" >
-		<iframe width="100%" height="150" frameborder="0" scrolling="no" src="http://maps.google.com/maps?f=d&source=s_d&saddr=${location.address}&hl=en&z=15&output=embed">
+		<iframe id="map" width="100%" height="150" frameborder="0" scrolling="no" src="http://maps.google.com/maps?f=d&source=s_d&saddr=${location.address}&hl=en&z=15&output=embed">
 		
 		</iframe>
 		</div>
 		<div class="title1 wide">
-			<a target="_blank" href="http://maps.google.com/maps?f=d&hl=en&geocode=&saddr=${user_location}&daddr=${location.address}&&ie=UTF8&z=7">Get directions</b>
+			<a id="get_directions" rel="http://maps.google.com/maps?f=d&hl=en&geocode=&saddr=${user_location}&daddr=${location.address}&&ie=UTF8&z=7">Get directions</b>
 		</div>
 		{{/if}}
 	    {{if employees.length > 0 }}
