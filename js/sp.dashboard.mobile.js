@@ -161,7 +161,7 @@ ShiftPlanningDashboard.prototype.wallEvents = function(){
 ShiftPlanningDashboard.prototype.filesEvents = function(){
 	$('#da_fi_list').delegate('li a',clickEvent,function(){
 		var id = $(this).attr('rel');
-		$('#da_fi_form input[name=fid]').val(id);
+		$('#da_fi_form input[name=id]').val(id);
 		$('#da_fi_form').submit();
 	})
 }
@@ -453,10 +453,12 @@ ShiftPlanningDashboard.prototype.filesSubEvents = function(){
 					this.extraclass= 'other'
 					break;		
 			}
-			this.secureurl=str.substring((str.indexOf("fid=")+4), str.length);
+//			this.secureurl=str.substring((str.indexOf("fid=")+4), str.length);
 			this.file_size=spView.friendly_filesize(this.file_size);
 		});
 		$('#da_fi_list').html($.tmpl($('#te_da_fi_list'),response.data));
+		
+		$('#da_fi_list li div:even').addClass('regular');
 	});
 }
 

@@ -2,12 +2,13 @@
     <div class="title">
         <h3><?=_s('Uploaded files')?></h3>
     </div>
-    <ul class="timeSheet" id="da_fi_list">
+    <ul class="" id="da_fi_list">
 
     </ul>
 	<form id="da_fi_form" class="hidden" method="post" action="api.php" target="_blank">
-		<input value="" name="fid">
+		<input value="" name="id">
 		<input name="module" value="admin.getfile">
 		<input name="method" value="GET">
+		<input name="content" value="1">
 	</form>
 </div>
