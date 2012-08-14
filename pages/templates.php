@@ -63,7 +63,7 @@
 		</iframe>
 		</div>
 		<div class="title1 wide">
-			<a onclick = "void(0)" id="get_directions" href="http://maps.google.com/maps?f=d&hl=en&geocode=&saddr=${user_location}&daddr=${location.address}&ie=UTF8&z=7&output=embed">Get directions</a>
+			<a target="_blank" onclick = "void(0)" id="get_directions" href="http://maps.google.com/maps?f=d&hl=en&geocode=&saddr=${user_location}&daddr=${location.address}&ie=UTF8&z=7&output=embed">Get directions</a>
 			
 		</div>
 		{{/if}}
