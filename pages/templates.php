@@ -63,8 +63,8 @@
 		</iframe>
 		</div>
 		<div class="title1 wide">
-			<a id="get_directions" rel="http://maps.google.com/maps?f=d&hl=en&geocode=&saddr=${user_location}&daddr=${location.address}&ie=UTF8&z=7&output=embed">Get directions</a>   -  
-			<a id="get_map" rel="http://maps.google.com/maps?f=d&source=s_d&saddr=${location.address}&hl=en&z=15&output=embed">Map</a>
+			<a id="get_directions" rel="http://maps.google.com/maps?f=d&hl=en&geocode=&saddr=${user_location}&daddr=${location.address}&ie=UTF8&z=7&output=embed">Get directions</a>
+			<a class="fr" id="get_map" rel="http://maps.google.com/maps?f=d&source=s_d&saddr=${location.address}&hl=en&z=15&output=embed">Map</a>
 		</div>
 		{{/if}}
 	    {{if employees.length > 0 }}
