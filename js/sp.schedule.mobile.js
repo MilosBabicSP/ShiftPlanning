@@ -21,7 +21,10 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
 		var src = $(this).attr('rel');
 		$('#map').attr('src',src);
 	});
-	
+	$('#sc_shift_display').delegate('a#get_map',clickEvent,function(e){
+		var src = $(this).attr('rel');
+		$('#map').attr('src',src);
+	});
     $('#sc_prev_day').bind(clickEvent, function(e){
         e.preventDefault();
         $('#sc_to_sub').html(Date.parseExact($.trim($('#sc_to_sub').html()), cal.dformat).add(-1).day().toString(cal.dformat));
