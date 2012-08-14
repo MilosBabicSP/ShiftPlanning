@@ -351,8 +351,7 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
         })
     });
 	$('#get_directions').bind(clickEvent,function(e){
-		var src = $(this).attr('rel');
-		$('#map').attr('src',src);
+		$('#map_directions').toggle();
 	});
 }
 
