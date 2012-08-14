@@ -350,6 +350,10 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
             obj.removeClass('loading');
         })
     });
+	$('#get_directions').bind(clickEvent,function(e){
+		var src = $(this).attr('rel');
+		$('#map').attr('src',src);
+	});
 }
 
 ShiftPlanningSchedule.prototype.loadSubPageEvents = function(subpage){
