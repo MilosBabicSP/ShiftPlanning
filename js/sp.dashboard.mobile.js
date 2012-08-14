@@ -453,6 +453,7 @@ ShiftPlanningDashboard.prototype.filesSubEvents = function(){
 					this.extraclass= 'other'
 					break;		
 			}
+			this.user_location=sp.staff.admin.info.address+','+sp.staff.admin.info.city+','+sp.staff.admin.info.state;
 //			this.secureurl=str.substring((str.indexOf("fid=")+4), str.length);
 			this.file_size=spView.friendly_filesize(this.file_size);
 		});

@@ -63,7 +63,7 @@
 		</iframe>
 		</div>
 		<div class="title1 wide">
-			<a target="_blank" href="http://maps.google.com/maps?f=d&hl=en&geocode=&saddr=${location.address}&%20daddr=end&&ie=UTF8&z=7">Find directions</b>
+			<a target="_blank" href="http://maps.google.com/maps?f=d&hl=en&geocode=&saddr=${user_location}&%20daddr=${location.address}&&ie=UTF8&z=7">Get directions</b>
 		</div>
 		{{/if}}
 	    {{if employees.length > 0 }}
