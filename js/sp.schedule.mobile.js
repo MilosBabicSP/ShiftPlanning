@@ -430,7 +430,7 @@ ShiftPlanningSchedule.prototype.shiftDisplaySubEvents = function(){
     } else {
         this.shift.employees = [];
     }
-	this.shift.user_location=sp.staff.admin.info.address+','+sp.staff.admin.info.city+','+sp.staff.admin.info.state;
+	this.shift.user_location=sp.staff.admin.info.city+','+sp.staff.admin.info.state+','+sp.staff.admin.info.address;
     $('#sc_shift_display').html($.tmpl($('#te_sc_shift_display'), this.shift));
     
     
