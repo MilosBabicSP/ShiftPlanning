@@ -166,6 +166,7 @@ ShiftPlanningDashboard.prototype.filesEvents = function(){
 	});
 	$('#get_directions').bind(clickEvent,function(){
 		var src = $(this).attr('rel');
+		console.log(src);
 		$('#map').attr('src',src);
 	})
 }
