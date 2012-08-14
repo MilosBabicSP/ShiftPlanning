@@ -69,7 +69,7 @@ function _iapi($request_vars, $output='json', $dataOnly = false, $multi = false)
     }
 }
 
-if($_POST['module'] && $_POST['module'] != 'admin.getfile'){
+if($_POST['module'] && $_POST['module'] != 'admin.file'){
     # SPILL JSON FROM API
     header('Content-type: application/json');
     echo _iapi($_POST);
