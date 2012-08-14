@@ -77,7 +77,7 @@ if($_POST['module'] && $_POST['module'] != 'admin.getfile'){
     # SPILL JSON FROM API
     header('Content-type: application/json');
     echo _iapi($_POST,'json',false,true);
-} else if($_POST['module'] == 'admin.getfile'){
+} else if($_POST['module'] == 'admin.file' && $_POST['content']=='1'){
 	$data = json_decode(_iapi($_POST),true);
 	$return = base64_decode($data['data']['content']);	
 	if(!$return){
