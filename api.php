@@ -80,7 +80,9 @@ if($_POST['module'] && $_POST['module'] != 'admin.file'){
 } else if($_POST['module'] == 'admin.file'){
 	if($_POST['content']=='1'){
 		$data = json_decode(_iapi($_POST),true);
-		$return = base64_decode($data['data']['content']);	
+		$return = base64_decode($data['data']['content']);
+                print_r($data);
+                die();
 		if(!$return){
 			echo 'failed to retrieve content ';
 			return false;
@@ -91,7 +93,7 @@ if($_POST['module'] && $_POST['module'] != 'admin.file'){
                 header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
                 header("Cache-Control: public");
                 header("Content-Description: File Transfer");
-                header($data['data']['filetype']);
+                header('Content-type: application/octet-stream');
                 header("Content-Disposition: attachment;filename=\"$file\"");
                 header("Content-Transfer-Encoding: binary");
                 header("Content-Length: " . $data['data']['file_size']);
