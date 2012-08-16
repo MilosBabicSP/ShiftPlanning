@@ -87,7 +87,7 @@ if($_POST['module'] && $_POST['module'] != 'admin.file'){
 		}
 		$file = str_replace($data['data']['extension'],  strtoupper($data['data']['extension']), $data['data']['filename']);  
                 header('Content-Type: application/octet-stream');
-                header('Content-Disposition: attachment; filename="'.$file.'"');
+                header('Content-Disposition: attachment; filename="radi.TXT"');
                 //header("Content-Length: " . $data['data']['file_size']);
 
 		echo $return;
