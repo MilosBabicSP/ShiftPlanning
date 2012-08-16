@@ -29,14 +29,9 @@
                     <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/Dashboard_Inbox16x16.png" />
                 </a>
             </li>
-            <li>
+            <li class="last">
                 <a href="#" subpage="settings">
                     <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/Dashboard_Settings16x16.png" />
-                </a>
-            </li>
-            <li class="last">
-                <a href="#" subpage="logout">
-                    <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/Dashboard_Logout16x16.png" />
                 </a>
             </li>
         </ul>
