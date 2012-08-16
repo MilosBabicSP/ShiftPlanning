@@ -31,7 +31,7 @@ h5 {font-size:14px; font-weight:normal; color:#333;}
 /*SPRITE*/
 .msgDel, .msgRpl, .cmtCount span.tip, ul.cmts, ul.cmts li.last input[type=submit], .search input[type=submit] {background-image:url(../images/icos.png); background-repeat:no-repeat;}
 .cmtCount span.ico {background-image:url(../images/sprite.png); background-repeat:no-repeat;}
-.fromI, .untilI, span.checkbox, span.radio, .dash, .ticl, .sche, .requ, .staf, .repo, .trai, .icoClock, .icoEmpDet, .icoAdmAct, .icoEmpPos, .icoEmpSki, .icoEmpAdd, .icoDat, .icoNot, .icoAct, .icoSta, .icoReqWor, .icoReqCan, .icoReqEdi, .icoReqDel, .icoLoc, .icoSch {background-image:url(../images/mainNav_bg.png); background-repeat:no-repeat;}
+.fromI, .untilI, span.checkbox, span.radio, .dash, .ticl, .sche, .requ, .staf, .repo, .trai, .exit, .icoClock, .icoEmpDet, .icoAdmAct, .icoEmpPos, .icoEmpSki, .icoEmpAdd, .icoDat, .icoNot, .icoAct, .icoSta, .icoReqWor, .icoReqCan, .icoReqEdi, .icoReqDel, .icoLoc, .icoSch {background-image:url(../images/mainNav_bg.png); background-repeat:no-repeat;}
 .calendar td.today, .calendar th, .calendar td.hasAny {background-image: url(../images/callendar_bg.png); background-repeat:repeat-x;}
 .trai_down {background-image:url(../images/DownMenu.png); background-repeat:no-repeat;}
 .trai_up{background-image:url(../images/UpMenu.png); background-repeat:no-repeat;}
@@ -42,6 +42,7 @@ h5 {font-size:14px; font-weight:normal; color:#333;}
 .staf {background-position:10px -200px;}
 .repo {background-position:10px -250px;}
 .trai {background-position:10px -1450px}
+.exit {background-position:10px -1450px}
 
 .pdf {background:transparent url('../images/document-pdf.png') scroll no-repeat 0 50%}
 .txt {background:transparent url('../images/document-text.png') scroll no-repeat 0 50%}
