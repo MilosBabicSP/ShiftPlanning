@@ -41,8 +41,8 @@ h5 {font-size:14px; font-weight:normal; color:#333;}
 .requ {background-position:10px -150px;}
 .staf {background-position:10px -200px;}
 .repo {background-position:10px -250px;}
-.trai {background-position:10px -1450px}
-.exit {background-position:10px -1450px}
+.trai {background-position:10px -1450px;}
+.exit {background-position:10px -1495px;}
 
 .pdf {background:transparent url('../images/document-pdf.png') scroll no-repeat 0 50%}
 .txt {background:transparent url('../images/document-text.png') scroll no-repeat 0 50%}
