@@ -87,7 +87,7 @@ if($_POST['module'] && $_POST['module'] != 'admin.file'){
 			echo 'failed to retrieve content ';
 			return false;
 		}
-                debug($data);
+                print_r($data);
 //		$file = $data['data']['filename'];
 //		header($data['data']['filetype']);	
 //		header("Content-Length: ".$data['data']['file_size'].";\n");
