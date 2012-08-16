@@ -92,7 +92,7 @@ if($_POST['module'] && $_POST['module'] != 'admin.file'){
                 header("Cache-Control: public");
                 header("Content-Description: File Transfer");
                 header($data['data']['filetype']);
-                header("Content-Disposition: attachment; filename=\"$file\"");
+                header("Content-Disposition: attachment;filename=\"$file\"");
                 header("Content-Transfer-Encoding: binary");
                 header("Content-Length: " . $data['data']['file_size']);
 
