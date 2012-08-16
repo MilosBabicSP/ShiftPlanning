@@ -82,7 +82,7 @@ if($_POST['module'] && $_POST['module'] != 'admin.file'){
 		$data = json_decode(_iapi($_POST),true);
 		$return = base64_decode($data['data']['content']);	
                 print_r($return);
-                die();
+                die('test');
 		if(!$return){
 			echo 'failed to retrieve content ';
 			return false;
