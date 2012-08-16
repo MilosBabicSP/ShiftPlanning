@@ -87,7 +87,6 @@ ShiftPlanning.prototype.loadSubPage = function(obj, page, subpage){
 ShiftPlanning.prototype.initialize = function(){
     var self = this;
     $(window).hashchange(function(){
-        console.log(sp.hash(), 'has change');
         if (sp.hash().length > 0) {
             if(sp.hash() == 'logout')
             {
@@ -105,7 +104,6 @@ ShiftPlanning.prototype.initialize = function(){
             }
             else
             {
-                console.log(sp.hash(), 'no element');
                 if(sp.hash() != 'login' && sp.hash() != 'logout')
                 {
                         user.loggedIn ? sp.hash('dashboard') : sp.hash('login') ;
