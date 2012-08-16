@@ -89,6 +89,11 @@ ShiftPlanning.prototype.initialize = function(){
     $(window).hashchange(function(){
         console.log(sp.hash(), 'has change');
         if (sp.hash().length > 0) {
+            if(sp.hash() == 'logout')
+            {
+                sp.staff.logout();
+                return false;
+            }
             if ($('#menu [page=' + sp.hash() + ']').length > 0)
             {
                 $('#pages > div').hide();
