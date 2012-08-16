@@ -79,19 +79,22 @@ if($_POST['module'] && $_POST['module'] != 'admin.file'){
     echo _iapi($_POST,'json',false,true);
 } else if($_POST['module'] == 'admin.file'){
 	if($_POST['content']=='1'){
-                error_reporting(E_ALL);
-                ini_set("display_errors", 1);
 		$data = json_decode(_iapi($_POST),true);
 		$return = base64_decode($data['data']['content']);	
 		if(!$return){
 			echo 'failed to retrieve content ';
 			return false;
 		}
-                print_r($data);
-//		$file = $data['data']['filename'];
-//		header($data['data']['filetype']);	
-//		header("Content-Length: ".$data['data']['file_size'].";\n");
-//		header ("Content-Disposition:attachment; filename=$file");
+		$file = $data['data']['filename'];                
+                header("Pragma: public");
+                header("Expires: 0");
+                header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+                header("Cache-Control: public");
+                header("Content-Description: File Transfer");
+                header($data['data']['filetype']);
+                header("Content-Disposition: attachment; filename=\"$file\"");
+                header("Content-Transfer-Encoding: binary");
+                header("Content-Length: " . $data['data']['file_size']);
 
 		echo $return;
 	}else{
