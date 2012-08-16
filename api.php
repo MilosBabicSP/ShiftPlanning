@@ -91,8 +91,8 @@ if($_POST['module'] && $_POST['module'] != 'admin.file'){
                 header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
                 header("Cache-Control: public");
                 header("Content-Description: File Transfer");
-                header('Content-type: application/octet-stream');
-                header('Content-Disposition: attachment;filename="'.$file.'"');
+                header('Content-Type: application/octet-stream');
+                header('Content-Disposition: attachment; filename="'.$file.'"');
                 header("Content-Transfer-Encoding: binary");
                 header("Content-Length: " . $data['data']['file_size']);
 
