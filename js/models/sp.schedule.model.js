@@ -13,11 +13,37 @@ SPModelSchedule.prototype.vacations = function(module, method, data, success, er
 
 
 //Prepare data
-SPModelSchedule.prototype.schedulesByUser = function(id){
+SPModelSchedule.prototype.schedulesByUser = function(id, locations){
+    if (typeof locations == 'undefined'){
+	locations = false;
+    }
     if (typeof sp.staff.data.employees[id] != 'undefined'){
-        return (typeof sp.staff.data.employees[id].schedules == 'undefined') ? {} : sp.staff.data.employees[id].schedules;
+	if (!locations){
+	    return (typeof sp.staff.data.employees[id].schedules == 'undefined') ? {} : sp.staff.data.employees[id].schedules;
+	} else {
+	    var loc = (typeof sp.staff.data.employees[id].schedules == 'undefined') ? {} : sp.staff.data.employees[id].schedules;
+	    var locs = {};
+	    $.each(sp.schedule.raw.schedules, function(i, item){
+		if (typeof loc[item.id] != 'undefined'){
+		    if (typeof item.location == 'undefined'){
+			item.location  = {
+			    name : _('Schedules')
+			} 
+		    }
+		    if (typeof locs[item.location.name] == 'undefined'){
+			locs[item.location.name] = {
+			    name : item.location.name,
+			    data : []
+			}
+		    }
+		    locs[item.location.name].data.push(item);
+		}
+	    });
+	    
+	    return locs;
+	}
     } else {
-        return {};
+	return {};
     }
 }
 

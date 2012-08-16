@@ -17,7 +17,7 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
         }
         self.displayShifts();
     });
-    
+
     $('#sc_prev_day').bind(clickEvent, function(e){
         e.preventDefault();
         $('#sc_to_sub').html(Date.parseExact($.trim($('#sc_to_sub').html()), cal.dformat).add(-1).day().toString(cal.dformat));
@@ -350,6 +350,7 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
             obj.removeClass('loading');
         })
     });
+	
 }
 
 ShiftPlanningSchedule.prototype.loadSubPageEvents = function(subpage){
@@ -430,6 +431,7 @@ ShiftPlanningSchedule.prototype.shiftDisplaySubEvents = function(){
     } else {
         this.shift.employees = [];
     }
+	this.shift.user_location=sp.staff.admin.info.city+','+sp.staff.admin.info.state+','+sp.staff.admin.info.address;
     $('#sc_shift_display').html($.tmpl($('#te_sc_shift_display'), this.shift));
     
     

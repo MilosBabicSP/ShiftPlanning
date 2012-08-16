@@ -14,6 +14,11 @@
                     <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/Dashboard_UpcomingShifts16x16.png" />
                 </a>
             </li>
+			<li>
+                <a href="#" subpage="files">
+                    <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/uploaded-files.png" />
+                </a>
+            </li>
             <li class="hidden">
                 <a href="#" subpage="whosonnow">
                     <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/Dashboard_whosonnow.png" />

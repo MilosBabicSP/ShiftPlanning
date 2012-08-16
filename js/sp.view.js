@@ -2,9 +2,12 @@ var ShiftPlanningView = function(){
     
 }
 
-ShiftPlanningView.prototype.optionSchedules = function(id, m){
+ShiftPlanningView.prototype.optionSchedules = function(id, m, loc){
     if (typeof m == 'undefined'){
 	m = false;
+    }
+    if (typeof loc == 'undefined'){
+	loc = false;
     }
     var opt;
     var self = this;
@@ -12,18 +15,30 @@ ShiftPlanningView.prototype.optionSchedules = function(id, m){
     if (typeof id == 'undefined' || id == 0){
         data = spModel.schedule.allSchedules();
     } else {
-        data = spModel.schedule.schedulesByUser(id);
+        data = spModel.schedule.schedulesByUser(id, loc);
     }
     if (!m){
-	opt = '<option disabled="disabled" selected="selected" value="0">Select Schedule</option>';
+	opt = '<option disabled="disabled" selected="selected" value="0">' + _('Select Schedule') + '</option>';
     } else {
-	opt = '<option disabled="disabled" selected="selected" value="0">Select Schedule</option>';
+	opt = '<option disabled="disabled" selected="selected" value="0">' + _('Select Schedule') + '</option>';
     }
-    $.each(data, function(i, item){
-        if (self.checkPerm(item)){
-            opt += '<option value="' + i + '">' + ((typeof item == 'object') ? item.name : item) + '</option>';
-        }
-    });
+    
+    if (!loc){
+	$.each(data, function(i, item){
+	    if (self.checkPerm(item)){
+		opt += '<option value="' + i + '">' + ((typeof item == 'object') ? item.name : item) + '</option>';
+	    }
+	});	
+    } else {
+	$.each(data, function(i, item){
+	    opt += '<optgroup label="' + item.name + '">';
+	    $.each(item.data, function(iL2, itemL2){
+		opt += '<option value="' + itemL2.id + '">' + itemL2.name +'</option>';
+	    });
+	    opt += '</optgroup>';
+	});
+    }
+
     
     return opt;
 }

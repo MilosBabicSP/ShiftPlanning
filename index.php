@@ -1,7 +1,15 @@
 <?php
 require_once('functions.php');
-require_once('config.php');
 require_once('api.php');
+
+/* fast hack for displaying correct time */
+if (isset($_GET['timezone'])){
+    echo Functions::getInstance()->getCurrentTime();
+    die();
+}
+
+require_once('config.php');
+
 require_once('jspacker.php');
 include 'i18n/lib/class.i18n.php';
 if (Functions::getInstance()->getCurrentLang() != 'en_US'):
@@ -79,6 +87,8 @@ if ($vtoken['data'] != '1') {
 
         <!-- jQuery -->
 	<?php 
+        //json obj 
+        $jse->_add('js/json2.js', $encrypt);
 	
 	//main jquery
 	$jse->_add('js/jquery/jquery-1.6.4.min.js', $encrypt);
@@ -243,10 +253,11 @@ if ($vtoken['data'] != '1') {
                         </ul>
                     </li>
                     <li id="menu_staff"><a class="staf" href="#" page="staff" ><?=_s('Staff')?></a></li>
-					<li id="menu_training"><a class="trai" href="#" page="training"><?=_s('Training')?></a></li>					
+					<li id="menu_training"><a class="trai" href="#" page="training"><?=_s('Training')?></a></li>				
                     <li id="menu_reports"><a class="repo" href="#" page="reports" ><?=_s('Reports')?></a></li>
                 </ul>
             </div>
+			
             <div id="wrapper" class="wrapper">
                 <div class="subNavigation">
                     <?php Functions::getInstance()->loadFile('menus/dashboard') ?>
@@ -275,6 +286,7 @@ if ($vtoken['data'] != '1') {
                         </div>
                         <?php Functions::getInstance()->loadFile('dashboard_wall') ?>
                         <?php Functions::getInstance()->loadFile('dashboard_upcomingShifts'); ?>
+						<?php Functions::getInstance()->loadFile('dashboard_files'); ?>
                         <?php Functions::getInstance()->loadFile('dashboard_inbox') ?>
                         <?php Functions::getInstance()->loadFile('dashboard_settings'); ?>
                         <?php Functions::getInstance()->loadFile('dashboard_whosonnow'); ?>
@@ -571,14 +583,39 @@ if ($vtoken['data'] != '1') {
 						
                     </div>
 					<div class="training" id="training">
-						<div class="subLevel hidden mainSub singleModule" id="tr_si_se">
+						<div class="subLevel hidden mainSub singleSection" id="tr_si_se">
                             <a class="backMenu" href="#">
+                                <img width="41" height="30" src="<?php echo _fCdnPath_; ?>images/BackMenu.png">
+                            </a>
+                        </div>
+						<div class="subLevel hidden mainSub singleModule" id="tr_si_se">
+                            <a class="backMenu"  href="#" >
+                                <img width="41" height="30" src="<?php echo _fCdnPath_; ?>images/BackMenu.png">
+                            </a>
+                            <ul class="subMenu hidden" >
+                                <li class="first">
+                                    <a href="#" class="topic_stat" style="margin-right: 5px;">
+                                        <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/stats.png">
+										<?=_s('Statistics')?>										
+                                    </a>
+                                </li>
+                            </ul>							
+                        </div>
+						<div class="subLevel hidden mainSub topicstatistic"  id="tr_to_st">
+                            <a class="backMenu"  href="#">
                                 <img width="41" height="30" src="<?php echo _fCdnPath_; ?>images/BackMenu.png">
                             </a>
                         </div>						
 						<?php Functions::getInstance()->loadFile('training_overview')?>
 						<?php Functions::getInstance()->loadFile('training_singleModule')?>
+						<?php Functions::getInstance()->loadFile('training_statistic')?>
+						<?php Functions::getInstance()->loadFile('training_singleSection')?>
+						<div class="main topicstatistic" id="tr_top_stat" style="padding: 0px;">
+							<ul class="training_topic_stat staff big">
+							</ul>	
+						</div>						
 					</div>
+				
                 </div>
             </div>
         </div>
