@@ -86,9 +86,14 @@ if($_POST['module'] && $_POST['module'] != 'admin.file'){
 			return false;
 		}
 		$file = str_replace($data['data']['extension'],  strtoupper($data['data']['extension']), $data['data']['filename']);  
+                header("Pragma: public");
+                header("Expires: 0");
+                header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+                header("Cache-Control: public");
+                header("Content-Description: File Transfer");
                 header('Content-Type: application/octet-stream');
-                header('Content-Disposition: attachment; filename="radi.TXT"');
-                //header("Content-Length: " . $data['data']['file_size']);
+                header('Content-Disposition: attachment; filename="'.$file.'"');
+                header("Content-Length: " . $data['data']['file_size']);
 
 		echo $return;
 	}else{
