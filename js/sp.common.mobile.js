@@ -88,25 +88,33 @@ ShiftPlanning.prototype.initialize = function(){
     var self = this;
     $(window).hashchange(function(){
         if (sp.hash().length > 0) {
-            if ($('#menu [page=' + sp.hash() + ']').length > 0){
+            if ($('#menu [page=' + sp.hash() + ']').length > 0)
+            {
                 $('#pages > div').hide();
                 setTimeout(function(){
                     $('#menu [page=' + sp.hash() + ']').parent().parent().find('li').removeClass('active');
                     $('#menu [page=' + sp.hash() + ']').parent().addClass('active');
                     self.loadPage(sp.hash());
                 }, 50);
-            }else{
-				if(location.hash != '#login' && location.hash != '#logout'){
-					user.loggedIn ? sp.hash('dashboard') : sp.hash('login') ;
-				}else{
-					if(location.hash == '#logout' && user.loggedIn){
-						sp.staff.logout();
-					}
-					if(location.hash == '#login' && user.loggedIn){
-						sp.hash('dashboard');
-					}
-				}
-			}
+            }
+            else
+            {
+                if(sp.hash() != 'login' && sp.hash() != 'logout')
+                {
+                        user.loggedIn ? sp.hash('dashboard') : sp.hash('login') ;
+                }
+                else
+                {
+                    if(sp.hash() == 'logout' && user.loggedIn)
+                    {
+                            sp.staff.logout();
+                    }
+                    if(sp.hash() == 'sp.hash()login' && user.loggedIn)
+                    {
+                            sp.hash('dashboard');
+                    }
+                }
+            }
         }
     });  
     $(document).ready(function(){
