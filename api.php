@@ -81,13 +81,11 @@ if($_POST['module'] && $_POST['module'] != 'admin.file'){
 	if($_POST['content']=='1'){
 		$data = json_decode(_iapi($_POST),true);
 		$return = base64_decode($data['data']['content']);
-                print_r($data);
-                die();
 		if(!$return){
 			echo 'failed to retrieve content ';
 			return false;
 		}
-		$file = $data['data']['filename'];                
+		$file = str_replace($data['data']['extension'],  strtoupper($data['data']['extension']), $data['data']['filename']);  
                 header("Pragma: public");
                 header("Expires: 0");
                 header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
