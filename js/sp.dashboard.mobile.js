@@ -6,7 +6,8 @@ ShiftPlanningDashboard.prototype.initialize = function(){
 	self.settingsEvents();
 	self.upcomingShiftsEvents();
 	self.whosonnowEvents();
-        self.fixes();
+	self.filesEvents();
+    self.fixes();
     });
 }
 
@@ -18,6 +19,9 @@ ShiftPlanningDashboard.prototype.loadSubPageEvents = function(subpage){
 	case 'upcomingShifts':
 	    this.upcomingShiftsSubEvents();
 	    break;
+	case 'files':
+		this.filesSubEvents();
+		break;
 	case 'inbox':
 	    this.inboxSubEvents();
 	    break;
@@ -152,6 +156,14 @@ ShiftPlanningDashboard.prototype.wallEvents = function(){
         
 	return true;
     });
+}
+
+ShiftPlanningDashboard.prototype.filesEvents = function(){
+	$('#da_fi_list').delegate('li div',clickEvent,function(){
+		var id = $(this).find('a').attr('rel');
+		$('#da_fi_form input[name=id]').val(id);
+		$('#da_fi_form').submit();
+	});
 }
 
 ShiftPlanningDashboard.prototype.upcomingShiftsEvents = function(){
@@ -410,9 +422,45 @@ ShiftPlanningDashboard.prototype.wallSubEvents = function(){
 	}, function(){
 	    $('#da_wa_li').html(spView.emptyResult(_s('Something went wrong'), 'li'));
 	});
-    }
+    
+}
 }
 
+ShiftPlanningDashboard.prototype.filesSubEvents = function(){
+	$('#da_fi_list').html(spView.ulLoader());
+	spModel.admin.get('files', {}, function(response){
+		$.each(response.data,function(){
+			var str = this.secureurl;
+			switch(this.extension){
+				case 'jpg':
+				case 'jpeg':
+				case 'png':
+				case 'bmp':
+					this.extraclass = 'image';
+					break;
+				case 'txt':
+				case 'doc':
+					this.extraclass = 'txt';
+					break;
+				case 'xls':
+				case 'csv':
+					this.extraclass = 'doc'
+					break;
+				case 'pdf':
+					this.extraclass= 'pdf';
+					break;
+				default:
+					this.extraclass= 'other'
+					break;		
+			}			
+//			this.secureurl=str.substring((str.indexOf("fid=")+4), str.length);
+			this.file_size=spView.friendly_filesize(this.file_size);
+		});
+		$('#da_fi_list').html($.tmpl($('#te_da_fi_list'),response.data));
+		
+		$('#da_fi_list li div:even').addClass('regular');
+	});
+}
 
 ShiftPlanningDashboard.prototype.upcomingShiftsSubEvents = function(){
     $('#da_up_li').html(spView.ulLoader());
@@ -432,7 +480,7 @@ ShiftPlanningDashboard.prototype.upcomingShiftsSubEvents = function(){
 	if (data.length > 0){
 	    $('#da_up_li').html($.tmpl($('#te_da_up_li'), data));
 	    $('#da_up_li').next().hide();
-	} else {
+	}else {
 	    $('#da_up_li').hide()
 	    $('#da_up_li').next().show();
 	}
@@ -567,7 +615,7 @@ ShiftPlanningDashboard.prototype.prefillOverview = function(employee){
     $('#da_se_ov_un').html(employee.username);
     $('#da_se_ov_mo').html(employee.cell_phone);
     $('#da_se_ov_ho').html(employee.home_phone);
-    $('#da_se_ov_em').html(employee.email);
+	$('#da_se_ov_em').html(employee.email);
     if ($.trim(employee.wage).length != 0){
 	$('#da_se_ov_wa').html(spView.fixCurrency(sp.staff.admin.settings.currency, true) + employee.wage);
     }
@@ -892,7 +940,7 @@ ShiftPlanningDashboard.prototype.updateUser = function(id, res, over){
 ShiftPlanningDashboard.prototype.listLanguages = function (){
     var result='<option  value="none">' + _s('Company default') + '</option>'
     $.each(sp.raw.config.languages,function(key,value){
-	result+='<option value="'+value['code']+'">'+value['name']+'</option>'
+	result+='<option value="'+value['code']+'">'+value['name']+' ' + ((value.machine == 1) ? '(machine)' : '') + '</option>'
     });
     $('#da_se_ed_lang').html(result);
 }
@@ -910,7 +958,7 @@ ShiftPlanningDashboard.prototype.updateNotes = function(text){
     }
 }
 ShiftPlanningDashboard.prototype.fixes = function(){
-    $('.mainSub ul li a[subpage]').shorten();
+    $('#dashboard .mainSub ul li a[subpage]').shorten();
     $('.mainNav a[page]').shorten();
 }
 //get all staff and add it to main variables

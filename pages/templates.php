@@ -1,4 +1,3 @@
-
 <!-- ID rulez first is "te" shorten from template, next is 2 letter from module name, than 2 letter from page name, than 2 letters from page method -->
 <div id="templates">
     <script id="te_sc_usersU" type="text/x-jquery-tmpl">
@@ -51,6 +50,23 @@
 		${notes}
 	    </div>
 	    {{/if}}
+		{{if location != 0}}
+		<div class="title1 regular wide" style="margin-left:-5px;">
+			<h3 class="icoLoc"><?=_s('Remote site');?>:</h3>
+		</div>
+		<div class="title1 wide">
+			<b>${location.name}</b>
+		</div>
+		<div class="title1 wide" >
+		<iframe  id="map" width="100%" height="180" frameborder="0" scrolling="no" src="http://maps.google.com/maps?f=d&source=s_d&saddr=${location.address}&hl=en&z=15&output=embed">
+		
+		</iframe>
+		</div>
+		<div class="title1 wide">
+			<a target="_blank" onclick = "void(0)" id="get_directions" href="http://maps.google.com/maps?f=d&hl=en&geocode=&saddr=${user_location}&daddr=${location.address}&ie=UTF8&z=7&output=embed">Get directions</a>
+			
+		</div>
+		{{/if}}
 	    {{if employees.length > 0 }}
 	    <div class="title1 regular wide">
 		<h3><?=_s('Who\'s Working');?></h3>
@@ -798,6 +814,103 @@
             </span>
         </li>
     </script>
+	<script id="te_tr_sections" type="text/x-jquery-tmpl">
+		<li class="idle">
+					<div rel="${id}" onclick = "void(0)" id="tr_touch">
+			<div class="oneLine" style="width:80%;overflow:hidden">
+                            <b {{if notfinished_count > 0}}style="float:left"{{/if}} >${title}</b>{{if notfinished_count > 0}}<a style="padding-left:10px;"><img style="width:16px;height:16px;padding-bottom:5px;" src="<?php echo _fCdnPath_;?>images/req_1.png"></a> {{/if}}
+			</div>
+							</div>				
+		</li>
+	</script>
+	<script id="te_tr_statistic" type="text/x-jquery-tmpl">
+        <li staffId="${id}" >
+            <img width="50" height="50" src="${avatar}" />
+            <span>${name} <b {{if stat < 30 }}style="color : #8C1919"{{else}}{{if stat < 100}}style="color : orange"{{else}}style="color : green"{{/if}} {{/if}}>${stat}%</b></span>
+        </li>	
+	</script>
+	<script id="te_tr_topic_statistic" type="text/x-jquery-tmpl">
+        <li staffId="${id}" >
+            <img width="50" height="50" src="${avatar}" />
+            <span>${name}{{if finished == null }} 
+							<b><img style="width:16px;height:16px" src="<?php echo _fCdnPath_;?>images/tc_delete.png"></b></span>
+						 {{else}}
+							{{if typeof outdated != 'undefined' && outdated > 0 }}
+								<b><img style="width:16px;height:16px" src="<?php echo _fCdnPath_;?>images/req_1.png"></b></span>
+							{{else}}
+								<b><img style="width:16px;height:16px" src="<?php echo _fCdnPath_;?>images/tc_approve.png"></b></span>
+							{{/if}}								
+						{{/if}}
+			</span>
+        </li>	
+	</script>	
+	<script id="te_tr_singleSection" type="text/x-jquery-tmpl">
+		<li class="idle">
+					<div rel="${id}" onclick = "void(0)" id="tr_touch">
+			<div class="oneLine" style="width:80%;overflow:hidden;">
+                            <b {{if finished_flag != -99}}style="float:left"{{/if}}>${title}</b>{{if finished_flag == 99 || finished_flag == 0}}<a style="padding-left:10px;"><img style="width:16px;height:16px;padding-bottom:5px;" src="<?php echo _fCdnPath_;?>images/req_1.png"></a> 
+												{{else}}{{if finished_flag == 1 }} <a style="padding-left:10px;"><img style="width:16px;height:16px;padding-bottom:3px;" src="<?php echo _fCdnPath_;?>images/tc_approve.png"></a> {{/if}}
+											{{/if}}
+			</div>
+							</div>	
+	</script>
+	<script id="te_tr_module" type="text/x-jquery-tmpl">
+		<div class="title" style="display: block;">
+			<h3 class="fl">${title}{{if duedate != 0 }} {{if finished_flag == 0 || finished_flag == 99 }}<br><a style="color:${color}">Due date: ${duedate_formated}</a> {{/if}}{{/if}} </h3>
+		</div>
+		<div class="wys" contents="content_${id}" style="border-bottom: 1px solid #DBDBDB; padding-bottom: 10px;">
+			${contents}
+				&ltbr/&gt
+				{{if video != null && video.length > 0}}
+					&ltdiv class="codebox"&gt
+					&ltb&gt Video &lt/b&gt&ltbr/&gt
+					&lta target="_blank" href="http://www.youtube.com/v/${video}"&gt Click to watch&lt/a&gt
+					&lt/div&gt
+				{{/if}}			
+				{{if files!= null && files.length > 0}}
+					&ltdiv class="codebox"&gt
+					&ltb&gt Attachments &lt/b&gt&ltbr/&gt
+					{{each files}}
+						&lta target="_blank" href="${$value.secureurl}"&gt${$value.filename}&lt/a&gt (${$value.file_size})&ltbr/&gt
+					{{/each}}
+				&lt/div&gt
+				{{/if}}
+				&ltbr/&gt
+				{{if finished_flag == 99 }}
+					&lta class="confirm" rel="${id}"&gt I've Reviewed this &lt/a&gt
+				{{else}}
+						{{if finished_flag == 0}}
+							&lta class="confirm" rel="${id}"&gt I've Finished this &lt/a&gt
+						{{else}}
+								{{if finished_flag == -99}}
+                                                                &ltb&gt You are not required to complete this topic &lt/b&gt
+								{{else}}
+										{{if finished_flag == 1}}
+                                                                                &ltb&gt You completed this topic &lt/b&gt
+										{{/if}}
+								{{/if}}
+						{{/if}}
+				{{/if}}
+
+		</div>
+		{{if typeof comments !='undefined' && comments.length > 0}}
+			{{each comments}}
+			<div class="title1 regular wide">
+				<img width="40" height="40" src="${$value.avatar}" /><b style="margin-left:5px;">${$value.name}</b>
+			</div>
+			<div class="title1 wide"><span style="padding-left:45px;">${$value.text}</span></div>
+			{{/each}}
+			<br/>
+			<span class="input">
+				<textarea id="tr_comment" style="width: 1243px; height: 44px;"></textarea>
+			</span>
+			<div class="title">
+			<span class="fr">
+				<a id="tr_send_comment" onclick = "void(0)"><span>Comment</span></a>
+			</span>
+			</div>
+		{{/if}}
+	</script>
     <script id="te_da_ping" type="text/x-jquery-tmpl">
         <div class="title1 wide" style="background-color: #ebefd6; color: #565551;">
             <div>
@@ -971,6 +1084,13 @@
             <span class="time">${start_time.time} - ${end_time.time}</span>
         </li>
     </script>
+	<script id="te_da_fi_list" type="text/x-jquery-tmpl">
+		<li>
+			<div class="title1 wide ${extraclass}" onclick="void(0)" >
+				<a target="_blank" rel="${id}"> ${filename}</a> (${file_size})
+			</div>
+		</li>
+	</script>
     <script id="te_da_wa_in" type="text/x-jquery-tmpl">
         <li id="da_in_msg_${id}" class="{{if date_read == 0}}unread{{/if}}">
             <div class="msgHead" messageId="${id}">

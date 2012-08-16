@@ -211,3 +211,4 @@ spModel.addModel('timeclock', SPModelTimeClock);
 spModel.addModel('staff', SPModelStaff);
 spModel.addModel('payroll', SPModelPayroll);
 spModel.addModel('location', SPModelLocation);
+spModel.addModel('training', SPModelTraining);
