@@ -43,6 +43,10 @@ ShiftPlanningTraining.prototype.overviewEvents = function(){
 					$('.singleSection .backMenu').trigger(clickEvent)
 				},2500);			
 			});
+		});
+		$('.training_module').delegate('#show_all',clickEvent,function(){
+			$('.training_module div[sign=sign]').show();
+			$('#show_all').parent().remove();
 		})
 		$('.singleSection .backMenu').bind(clickEvent,function(e){
 			e.preventDefault();
@@ -242,6 +246,8 @@ ShiftPlanningTraining.prototype.singleModuleSubEvents = function () {
 						}
 					});
 					$('.confirm').remove();
+					$('div[sign=sign]:gt(5)').hide();
+					$('<div>',{'class':'title1 wide'}).html($('<a>',{text:'show more',id:'show_all'})).insertAfter($('div[sign=sign]:eq(5)'));
 					});
 				}else{
 					$('.training_module').html($.tmpl($('#te_tr_module'),data));
@@ -272,6 +278,8 @@ ShiftPlanningTraining.prototype.singleModuleSubEvents = function () {
 						}
 					});
 					$('.confirm').remove();
+					$('div[sign=sign]:gt(5)').hide();
+					$('<div>',{'class':'title1 wide'}).html($('<a>',{text:'show more',id:'show_all'})).insertAfter($('div[sign=sign]:eq(5)'));
 				});
 			}
 			

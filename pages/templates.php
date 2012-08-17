@@ -895,7 +895,7 @@
 		</div>
 		{{if typeof signatures != 'undefined' }}
 		{{each signatures}}
-		<div class="title1 regular wide">
+		<div class="title1 regular wide" sign="sign">
 				<img width="40" height="40" src="${$value.avatar}" /><span style="margin-left:10px;font-family: 'Qwigley',cursive,Arial;font-size:24px;">${$value.text}</span>
 		</div>
 		{{/each}}
@@ -915,6 +915,9 @@
 		{{/if}}
 		
 		{{if typeof comments !='undefined' }}
+			<div class="title">
+				<h4>Comments</h4>
+			</div>
 			{{each comments}}
 			<div class="title1 regular wide">
 				<img width="40" height="40" src="${$value.avatar}" /><b style="margin-left:5px;">${$value.name}</b>
