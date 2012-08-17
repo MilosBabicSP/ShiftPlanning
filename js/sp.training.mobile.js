@@ -37,6 +37,7 @@ ShiftPlanningTraining.prototype.overviewEvents = function(){
 		$('.training_module').delegate('a#tr_send_signature',clickEvent, function(){
 			var module_id = $(this).attr('rel');
 			var signature = $('#digi_text').val();
+			$(this).addClass('loading');
 			spModel.training.update('complete', {id:module_id,signature:signature},function(response){
 			sp.showSuccess(response.data);
 			setTimeout(function(){
@@ -71,8 +72,9 @@ ShiftPlanningTraining.prototype.overviewEvents = function(){
 		$('.singleModule').delegate('#tr_send_comment',clickEvent,function(e){
 			e.preventDefault();
 			e.stopPropagation();
-			var text=$.trim($('#tr_comment').val());
+			var text=$.trim($('#tr_comment').val());			
 			if(text.length > 0){
+				$(this).addClass('loading');
 				spModel.training.update('comments', {module_id:sp.training.tmp_module,text:text,type:1}, function(reponse){
 					sp.showSuccess('Comment added');
 					setTimeout(function(){
