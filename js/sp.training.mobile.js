@@ -247,7 +247,7 @@ ShiftPlanningTraining.prototype.singleModuleSubEvents = function () {
 					});
 					$('.confirm').remove();
 					$('div[sign=sign]:gt(5)').hide();
-					$('<div>',{'class':'title1 wide'}).html($('<a>',{text:'show more',id:'show_all'})).insertAfter($('div[sign=sign]:eq(5)'));
+					$('<div>',{'class':'title1 wide'}).html($('<a>',{text:'show more',id:'show_all',onclick:'void(0)'})).insertAfter($('div[sign=sign]:eq(5)'));
 					});
 				}else{
 					$('.training_module').html($.tmpl($('#te_tr_module'),data));
@@ -279,7 +279,7 @@ ShiftPlanningTraining.prototype.singleModuleSubEvents = function () {
 					});
 					$('.confirm').remove();
 					$('div[sign=sign]:gt(5)').hide();
-					$('<div>',{'class':'title1 wide'}).html($('<a>',{text:'show more',id:'show_all'})).insertAfter($('div[sign=sign]:eq(5)'));
+					$('<div>',{'class':'title1 wide'}).html($('<a>',{text:'show more',id:'show_all',onclick:'void(0)'})).insertAfter($('div[sign=sign]:eq(5)'));
 				});
 			}
 			
