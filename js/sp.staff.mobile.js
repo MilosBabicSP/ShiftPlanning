@@ -219,6 +219,7 @@ ShiftPlanningStaff.prototype.login = function(){
     var u = $('#lo_u').val();
     var p = $('#lo_p').val();
     var self = this;
+    $('#lo_b').addClass('loading');
     sp.api('staff.login', 'GET', {
         username: u, 
         password: p
@@ -241,6 +242,7 @@ ShiftPlanningStaff.prototype.login = function(){
         ['location.locations', 'GET', {}]
         ]
         sp.multiApi(calls, function(response){
+            $('#lo_b').removeClass('loading');
             sp.api('api.config', 'GET', {}, function(config){
                 //was hitting the 5 request limit for multi api so we needed to send a separate call
                 $('.loginContainer').fadeOut(500, function(){
@@ -284,6 +286,7 @@ ShiftPlanningStaff.prototype.login = function(){
         });
 
     }, function(response){
+        $('#lo_b').removeClass('loading');
         $('.login .error').html(response.error);
         $('.login .error').slideDown(500);
         $('.login input:first').focus();
