@@ -204,24 +204,70 @@ ShiftPlanningTraining.prototype.singleModuleSubEvents = function () {
 			this.file_size=spView.friendly_filesize(this.file_size);
 		})
 	}
-	//if it's comment training fetch comments
-	if(data.comment_type == 1){
-		spModel.training.get('comments', {module_id:sp.training.tmp_module,type:1}, function(response){
-			var comments=[];
-			$.each(response.data,function(){
-				this.avatar=sp.getAvatar(this.user);
-				comments.push(this);
-			});
-			data.comments=comments;
-			$('.training_module').html($.tmpl($('#te_tr_module'),data));
-			var html = $('.training_module .wys');
-			html.html(html.text());
-			$.each(html.find('p'),function(){
-				if($(this).html().length == 0){
-					$(this).remove();
+	//if it's comment training fetch comments  or signatures
+	if(data.comment_type == 1 || data.digital_signature == 1){
+	
+		if(data.comment_type == 1){
+				console.log('ima komentar');
+				spModel.training.get('comments', {module_id:sp.training.tmp_module,type:1}, function(response){
+				var comments=[];
+				$.each(response.data,function(){
+					this.avatar=sp.getAvatar(this.user);
+					comments.push(this);
+				});
+				data.comments=comments;
+				if(data.digital_signature == 1){
+					
+					console.log('ima signature');
+					spModel.training.get('digital_signature', {module_id:data.id}, function(response){					
+					var signatures = [];
+					$.each(response.data,function(){
+						this.avatar=sp.getAvatar(this.user);
+						signatures.push(this);
+					});
+					data.signatures=signatures;
+					$('.training_module').html($.tmpl($('#te_tr_module'),data));
+					var html = $('.training_module .wys');
+					html.html(html.text());
+					$.each(html.find('p'),function(){
+						if($(this).html().length == 0){
+							$(this).remove();
+						}
+					});
+					});
+				}else{
+					$('.training_module').html($.tmpl($('#te_tr_module'),data));
+					var html = $('.training_module .wys');
+					html.html(html.text());
+					$.each(html.find('p'),function(){
+						if($(this).html().length == 0){
+							$(this).remove();
+						}
+					});
 				}
-			});			
-		});
+			});
+		}
+		if(data.digital_signature == 1 && data.comment_type == 0){
+				console.log('samo signature');
+				spModel.training.get('digital_signature', {module_id:data.id}, function(response){
+					var signatures = [];
+					$.each(response.data,function(){
+						this.avatar=sp.getAvatar(this.user);
+						signatures.push(this);
+					});
+					data.signatures=signatures;
+					$('.training_module').html($.tmpl($('#te_tr_module'),data));
+					var html = $('.training_module .wys');
+					html.html(html.text());
+					$.each(html.find('p'),function(){
+						if($(this).html().length == 0){
+							$(this).remove();
+						}
+					});
+				});
+			}
+			
+			
 		}else{
 			$('.training_module').html($.tmpl($('#te_tr_module'),data));
 						var html = $('.training_module .wys');

@@ -41,7 +41,7 @@ if (Functions::getInstance()->isRememberMe()){
         <meta content='width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;' name='viewport' />
         <meta name="viewport" content="width=device-width" />
 	<meta name="apple-mobile-web-app-capable" content="yes" />
-	
+	 <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Qwigley">
         <link rel="stylesheet" type="text/css" href="<?php echo _fCdnPath_;?>css/style.mobile.css" />
         <link rel="stylesheet" type="text/css" href="<?php echo _fCdnPath_;?>css/mobiscroll.css" />
 	
