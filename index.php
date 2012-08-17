@@ -224,7 +224,7 @@ if ($vtoken['data'] != '1') {
 			<div class="rButton">
 			    <span class="checkbox fl <?php echo (Functions::getInstance()->isRememberMe()) ? 'check' : ''?>"><?=_s('Remember me?');?></span>
 			</div>
-                        <button id="lo_b"><?=_s('Login');?></button>
+                        <button id="lo_b"><span><?=_s('Login');?></span></button>
                     </form>
                     <div class="footerTxt"><?=_s('View in: Mobile |')?> <a href="/app/?fullapp=true"><?=_s('Full Version')?></a><br/>
                         <a href="/terms/"><?=_s('Terms of Use')?></a> | <a href="/privacy/"><?=_s('Privacy Policy')?></a><br/>
