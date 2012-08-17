@@ -917,17 +917,19 @@
 		</div>
 		<div class="title1 wide"><span style="padding-left:45px;margin-top:10px; font-size:24px; font-family: 'Qwigley',cursive,Arial;">${$value.text}</span></div>
 		{{/each}}
-		<br/>
-			<div class="dig_signature">
-				<p>Sign here:</p>
-				<input type="text" id="digi_text">
-				<span>By entering your name into this box you are confirming that you have read and agreed to the above.</span>
-			</div>
-			<div class="title">
-			<span class="fr">
-				<a id="tr_send_signature" onclick = "void(0)"><span>Sign</span></a>
-			</span>
-			</div>
+			{{if finished_flag == 99 || finished_flag == 0 }}
+			<br/>
+				<div class="dig_signature">
+					<p>Sign here:</p>
+					<input type="text" id="digi_text">
+					<span>By entering your name into this box you are confirming that you have read and agreed to the above.</span>
+				</div>
+				<div class="title">
+				<span class="fr">
+					<a id="tr_send_signature" onclick = "void(0)" rel="${id}"><span>Sign</span></a>
+				</span>
+				</div>
+			{{/if}}
 		{{/if}}
 	</script>
     <script id="te_da_ping" type="text/x-jquery-tmpl">

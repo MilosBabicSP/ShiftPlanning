@@ -32,8 +32,18 @@ ShiftPlanningTraining.prototype.overviewEvents = function(){
 			setTimeout(function(){
 					$('.singleSection .backMenu').trigger(clickEvent)
 				},2500);			
-			})
+			});
 		});
+		$('.training_module').delegate('a#tr_send_signature',clickEvent, function(){
+			var module_id = $(this).attr('rel');
+			var signature = $('#digi_text').val();
+			spModel.training.update('complete', {id:module_id,signature:signature},function(response){
+			sp.showSuccess(response.data);
+			setTimeout(function(){
+					$('.singleSection .backMenu').trigger(clickEvent)
+				},2500);			
+			});
+		})
 		$('.singleSection .backMenu').bind(clickEvent,function(e){
 			e.preventDefault();
 			e.stopPropagation();
@@ -208,7 +218,6 @@ ShiftPlanningTraining.prototype.singleModuleSubEvents = function () {
 	if(data.comment_type == 1 || data.digital_signature == 1){
 	
 		if(data.comment_type == 1){
-				console.log('ima komentar');
 				spModel.training.get('comments', {module_id:sp.training.tmp_module,type:1}, function(response){
 				var comments=[];
 				$.each(response.data,function(){
@@ -217,8 +226,6 @@ ShiftPlanningTraining.prototype.singleModuleSubEvents = function () {
 				});
 				data.comments=comments;
 				if(data.digital_signature == 1){
-					
-					console.log('ima signature');
 					spModel.training.get('digital_signature', {module_id:data.id}, function(response){					
 					var signatures = [];
 					$.each(response.data,function(){
@@ -234,6 +241,7 @@ ShiftPlanningTraining.prototype.singleModuleSubEvents = function () {
 							$(this).remove();
 						}
 					});
+					$('.confirm').remove();
 					});
 				}else{
 					$('.training_module').html($.tmpl($('#te_tr_module'),data));
@@ -248,7 +256,6 @@ ShiftPlanningTraining.prototype.singleModuleSubEvents = function () {
 			});
 		}
 		if(data.digital_signature == 1 && data.comment_type == 0){
-				console.log('samo signature');
 				spModel.training.get('digital_signature', {module_id:data.id}, function(response){
 					var signatures = [];
 					$.each(response.data,function(){
@@ -264,6 +271,7 @@ ShiftPlanningTraining.prototype.singleModuleSubEvents = function () {
 							$(this).remove();
 						}
 					});
+					$('.confirm').remove();
 				});
 			}
 			
