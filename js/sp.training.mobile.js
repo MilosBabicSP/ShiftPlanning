@@ -38,11 +38,16 @@ ShiftPlanningTraining.prototype.overviewEvents = function(){
 			var module_id = $(this).attr('rel');
 			var signature = $('#digi_text').val();
 			$(this).addClass('loading');
+			var self = $(this);
 			spModel.training.update('complete', {id:module_id,signature:signature},function(response){
 			sp.showSuccess(response.data);
-			setTimeout(function(){
-					$('.singleSection .backMenu').trigger(clickEvent)
-				},2500);			
+			if(response.data === 'Signed'){
+				setTimeout(function(){
+						$('.singleSection .backMenu').trigger(clickEvent)
+					},2500);			
+				}else{
+					self.removeClass('loading');
+				}
 			});
 		});
 		$('.training_module').delegate('#show_all',clickEvent,function(){
