@@ -893,6 +893,27 @@
 				{{/if}}
 
 		</div>
+		{{if typeof signatures != 'undefined' }}
+		{{each signatures}}
+		<div class="title1 regular wide">
+				<img width="40" height="40" src="${$value.avatar}" /><span style="margin-left:10px;font-family: 'Qwigley',cursive,Arial;font-size:24px;">${$value.text}</span>
+		</div>
+		{{/each}}
+			{{if finished_flag == 99 || finished_flag == 0 }}
+			<br/>
+				<div class="dig_signature">
+					<p>Sign here:</p>
+					<input type="text" id="digi_text">
+					<span>By entering your name into this box you are confirming that you have read and agreed to the above.</span>
+				</div>
+				<div class="title">
+				<span class="fr">
+					<a id="tr_send_signature" onclick = "void(0)" rel="${id}"><span>Sign</span></a>
+				</span>
+				</div>
+			{{/if}}
+		{{/if}}
+		
 		{{if typeof comments !='undefined' }}
 			{{each comments}}
 			<div class="title1 regular wide">
@@ -910,27 +931,7 @@
 			</span>
 			</div>
 		{{/if}}
-		{{if typeof signatures != 'undefined' }}
-		{{each signatures}}
-		<div class="title1 regular wide">
-				<img width="40" height="40" src="${$value.avatar}" /><b style="margin-left:5px;">${$value.name}</b>
-		</div>
-		<div class="title1 wide"><span style="padding-left:45px;margin-top:10px; font-size:24px; font-family: 'Qwigley',cursive,Arial;">${$value.text}</span></div>
-		{{/each}}
-			{{if finished_flag == 99 || finished_flag == 0 }}
-			<br/>
-				<div class="dig_signature">
-					<p>Sign here:</p>
-					<input type="text" id="digi_text">
-					<span>By entering your name into this box you are confirming that you have read and agreed to the above.</span>
-				</div>
-				<div class="title">
-				<span class="fr">
-					<a id="tr_send_signature" onclick = "void(0)" rel="${id}"><span>Sign</span></a>
-				</span>
-				</div>
-			{{/if}}
-		{{/if}}
+
 	</script>
     <script id="te_da_ping" type="text/x-jquery-tmpl">
         <div class="title1 wide" style="background-color: #ebefd6; color: #565551;">
