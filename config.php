@@ -9,11 +9,11 @@ session_start();
 
 
 if (!isset($_POST['module'])){
-    $_POST['module'] = false;
+    $_POST['module'] = null;
 }
 
 if (!isset($_POST['multi'])){
-    $_POST['multi'] = false;
+    $_POST['multi'] = null;
 }
 
 
