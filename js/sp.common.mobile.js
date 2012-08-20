@@ -151,7 +151,7 @@ ShiftPlanning.prototype.initialize = function(){
         
         $('#menu .mainNav > li > a').bind(clickEvent, function(e){
             e.preventDefault();
-            if ($(this).attr('page') == sp.hash() && $(this).attr('href').length > 5){
+            if ($(this).attr('page') == sp.hash() && $(this).attr('href').length < 5){
                 return false;
             }
             setTimeout(function(){
