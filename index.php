@@ -12,7 +12,7 @@ if (isset($_GET['logout'])){
     _iapi(array('module' => 'staff.logout', 'method' => 'GET'), 'json', true);
     $fixed = substr(WWW_PATH, 7);
     $fixed = str_replace('//', '/', $fixed);
-    $fixed = str_replace('?logout=true', ' ', $fixed);
+    $fixed = str_replace('index.php?logout=true', ' ', $fixed);
     header('Location: ' . 'http://' . $fixed);
 }
 
