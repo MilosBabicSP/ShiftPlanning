@@ -66,17 +66,7 @@ if (Functions::getInstance()->isRememberMe()){
 	<script src="<?php echo _fCdnPath_;?>i18n/gettext.js" type="text/javascript"></script>
         <script src="<?php echo _fCdnPath_;?>js/sp.user.js" type="text/javascript"></script>
         <script type="text/javascript">
-<?
-$vtoken = _iapi(array('module' => 'api.vtoken', 'method' => 'GET', 'token' => $_SESSION['api']['token']), 'array');
-if ($vtoken['data'] != '1') {
-    unset($_SESSION['api']['token']);
-    ?>
-            user.loggedIn = 0;
-    <?
-} else {
-    ?>
-            user.loggedIn = 1;
-<? } ?>
+
     user.name = '<?= ($_SESSION['api']['token']) ? $_SESSION['user']['employee']['name'] : '' ?>';
     user.company = '<?= ($_SESSION['api']['token']) ? $_SESSION['user']['business']['name'] : '' ?>';
     user.phone = '<?= ($_SESSION['api']['token']) ? $_SESSION['user']['business']['phone'] : '' ?>';
