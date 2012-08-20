@@ -8,13 +8,13 @@ session_start();
 /* fix some vars */
 
 
-if (!isset($_POST['module'])){
-    $_POST['module'] = false;
-}
-
-if (!isset($_POST['multi'])){
-    $_POST['multi'] = false;
-}
+//if (!isset($_POST['module'])){
+//    $_POST['module'] = false;
+//}
+//
+//if (!isset($_POST['multi'])){
+//    $_POST['multi'] = false;
+//}
 
 
 
