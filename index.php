@@ -11,7 +11,6 @@ if (isset($_GET['timezone'])){
 if (isset($_GET['logout'])){
     _iapi(array('module' => 'staff.logout', 'method' => 'GET'), 'json', true);
     $fixed = WWW_PATH;
-    $fixed = str_replace('//', '/', $fixed);
     $fixed = str_replace('?logout=true', ' ', $fixed);
     header('Location: ' . $fixed);
 }
