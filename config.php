@@ -3,6 +3,18 @@ session_start();
 //error_reporting(E_ALL);
 //ini_set("display_errors", 1);
 //check is it live server or dev.
+
+
+/* fix some vars */
+
+
+if (!isset($_POST['module'])){
+    $_POST['module'] = false;
+}
+
+
+
+
 define('IS_TEST_SERVER', (strpos($_SERVER['SERVER_NAME'], '.dev.') !== false || strpos($_SERVER['SERVER_NAME'], '192.168') !== false) ? true : false);
 define('_lang_', $_SERVER['DOCUMENT_ROOT']);
 define('DEBUGGER', true);
