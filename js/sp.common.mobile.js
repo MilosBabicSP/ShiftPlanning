@@ -154,7 +154,9 @@ ShiftPlanning.prototype.initialize = function(){
             if ($(this).attr('page') == sp.hash()){
                 return false;
             }
-            self.toggleMenu();
+            setTimeout(function(){
+                self.toggleMenu();
+            }, 100);
             sp.hash($(this).attr('page'));
         });
         $(window).hashchange();
