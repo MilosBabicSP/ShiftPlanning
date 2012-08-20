@@ -15,11 +15,11 @@ function _iapi($request_vars, $output='json', $dataOnly = false, $multi = false)
         $request['module'] = $request_vars['module'];
     }
     //var_dump($request);
-    $ch = curl_init(API_URL);
-    curl_setopt($ch, CURLOPT_URL, API_URL);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    curl_setopt($ch, CURLOPT_POST, 1);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, 'data='.urlencode(json_encode($request)));
+//    $ch = curl_init(API_URL);
+//    curl_setopt($ch, CURLOPT_URL, API_URL);
+//    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+//    curl_setopt($ch, CURLOPT_POST, 1);
+//    curl_setopt($ch, CURLOPT_POSTFIELDS, 'data='.urlencode(json_encode($request)));
 
     //var_dump($request);
     $response = curl_exec($ch);
