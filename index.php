@@ -10,7 +10,10 @@ if (isset($_GET['timezone'])){
 
 if (isset($_GET['logout'])){
     _iapi(array('module' => 'staff.logout', 'method' => 'GET'), 'json', true);
-    header('Location: index.php');
+    $fixed = WWW_PATH;
+    $fixed = str_replace('//', '/', $fixed);
+    $fixed = str_replace('?logout=true', ' ', $fixed);
+    header('Location: ' . WWW_PATH);
 }
 
 require_once('jspacker.php');
@@ -256,7 +259,7 @@ if ($vtoken['data'] != '1') {
                     <li id="menu_staff"><a class="staf" href="#" page="staff" ><?=_s('Staff')?></a></li>
 					<li id="menu_training"><a class="trai" href="#" page="training"><?=_s('Training')?></a></li>				
                     <li id="menu_reports"><a class="repo" href="#" page="reports" ><?=_s('Reports')?></a></li>
-                    <li id="menu_logout"><a class="exit" href="<?php echo WWW_PATH;?>index.php?logout=true"><?=_s('Logout')?></a></li>
+                    <li id="menu_logout"><a class="exit" href="index.php?logout=true"><?=_s('Logout')?></a></li>
                 </ul>
             </div>
 			
