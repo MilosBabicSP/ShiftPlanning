@@ -13,7 +13,7 @@ if (isset($_GET['logout'])){
     $fixed = WWW_PATH;
     $fixed = str_replace('//', '/', $fixed);
     $fixed = str_replace('?logout=true', ' ', $fixed);
-    header('Location: ' . WWW_PATH);
+    header('Location: ' . $fixed);
 }
 
 require_once('jspacker.php');
