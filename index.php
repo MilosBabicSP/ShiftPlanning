@@ -10,7 +10,7 @@ if (isset($_GET['timezone'])){
 
 if (isset($_GET['logout'])){
     _iapi(array('module' => 'staff.logout', 'method' => 'GET'), 'json', true);
-    header('Location: ' . WWW_PATH);
+    header('Location: index.php');
 }
 
 require_once('jspacker.php');
