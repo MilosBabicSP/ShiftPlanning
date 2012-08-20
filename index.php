@@ -8,8 +8,6 @@ if (isset($_GET['timezone'])){
     die();
 }
 
-require_once('config.php');
-
 require_once('jspacker.php');
 include 'i18n/lib/class.i18n.php';
 if (Functions::getInstance()->getCurrentLang() != 'en_US'):
