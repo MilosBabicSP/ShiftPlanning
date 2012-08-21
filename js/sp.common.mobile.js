@@ -150,6 +150,7 @@ ShiftPlanning.prototype.initialize = function(){
         });
         
         $('#menu .mainNav > li > a').bind(clickEvent, function(e){
+            if ($(this).hasClass('exit')) return true;
             e.preventDefault();
             if ($(this).attr('page') == sp.hash()){
                 return false;

@@ -8,7 +8,13 @@ if (isset($_GET['timezone'])){
     die();
 }
 
-require_once('config.php');
+if (isset($_GET['logout'])){
+    _iapi(array('module' => 'staff.logout', 'method' => 'GET'), 'json', true);
+    $fixed = substr(WWW_PATH, 7);
+    $fixed = str_replace('//', '/', $fixed);
+    $fixed = str_replace('index.php?logout=true', ' ', $fixed);
+    header('Location: ' . 'http://' . $fixed);
+}
 
 require_once('jspacker.php');
 include 'i18n/lib/class.i18n.php';
@@ -224,12 +230,10 @@ if ($vtoken['data'] != '1') {
 			<div class="rButton">
 			    <span class="checkbox fl <?php echo (Functions::getInstance()->isRememberMe()) ? 'check' : ''?>"><?=_s('Remember me?');?></span>
 			</div>
-                        <button id="lo_b"><?=_s('Login');?></button>
+                        <button id="lo_b"><span><?=_s('Login');?></span></button>
                     </form>
                     <div class="footerTxt"><?=_s('View in: Mobile |')?> <a href="/app/?fullapp=true"><?=_s('Full Version')?></a><br/>
                         <a href="/terms/"><?=_s('Terms of Use')?></a> | <a href="/privacy/"><?=_s('Privacy Policy')?></a><br/>
-			<a href="javascript://" onclick="$('#gotothis').html(Android.showToast());" id="gotothis"><?=_s('Privacy Policy')?></a>
-			<br />
                         &copy; <?php echo date('Y'); ?> ShiftPlanning</div>
 		    
 		    
@@ -255,7 +259,7 @@ if ($vtoken['data'] != '1') {
                     <li id="menu_staff"><a class="staf" href="#" page="staff" ><?=_s('Staff')?></a></li>
 					<li id="menu_training"><a class="trai" href="#" page="training"><?=_s('Training')?></a></li>				
                     <li id="menu_reports"><a class="repo" href="#" page="reports" ><?=_s('Reports')?></a></li>
-                    <li id="menu_logout"><a class="exit" href="#" onclick="sp.staff.logout();"><?=_s('Logout')?></a></li>
+                    <li id="menu_logout"><a class="exit" href="index.php?logout=true"><?=_s('Logout')?></a></li>
                 </ul>
             </div>
 			
