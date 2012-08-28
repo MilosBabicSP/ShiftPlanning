@@ -63,7 +63,7 @@
                     </iframe>
                     {{if location.notes.length > 0}}
                         <br />
-                        location.notes
+                        ${location.notes}
                     {{/if}}
 		</div>
 		<div class="title1 wide">
