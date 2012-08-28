@@ -38,6 +38,9 @@ if (Functions::getInstance()->isRememberMe()){
 }
 
 
+//Get google IP
+$googleIP = gethostbyname('www.google.com');
+
 ?>
 <!DOCTYPE html>
 <html style="height:100%;">
@@ -72,6 +75,7 @@ if (Functions::getInstance()->isRememberMe()){
 	<script src="<?php echo _fCdnPath_;?>i18n/gettext.js" type="text/javascript"></script>
         <script src="<?php echo _fCdnPath_;?>js/sp.user.js" type="text/javascript"></script>
         <script type="text/javascript">
+            var googleIp = '<?php echo $googleIP;?>';
 <?
 $vtoken = _iapi(array('module' => 'api.vtoken', 'method' => 'GET', 'token' => $_SESSION['api']['token']), 'array');
 if ($vtoken['data'] != '1') {
