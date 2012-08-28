@@ -38,6 +38,10 @@ if (Functions::getInstance()->isRememberMe()){
 }
 
 
+//Get google IP
+$googleIP = gethostbyname('www.google.com');
+print_r($googleIP);
+
 ?>
 <!DOCTYPE html>
 <html style="height:100%;">
