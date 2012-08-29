@@ -438,6 +438,10 @@ ShiftPlanningSchedule.prototype.shiftDisplaySubEvents = function(){
     this.resetPublishFields(true);
     
     $('#sc_sub_shift_display ul a').attr('rel', this.shift.id);
+    
+    if (this.shift.location != 0){
+        $('#sc_location_iframe').html('<iframe  id="map" width="100%" height="220" frameborder="0" scrolling="no" src="http://' + googleIp + '/maps/?f=d&source=s_d&saddr=' + this.shift.location.address + '&hl=en&z=15&output=embed"></iframe>');
+    }
 }
 
 ShiftPlanningSchedule.prototype.resetPublishFields = function(f){

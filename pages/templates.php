@@ -51,24 +51,24 @@
 	    </div>
 	    {{/if}}
 		{{if location != 0}}
-		<div class="title1 regular wide" style="margin-left:-5px;">
-			<h3 class="icoLoc"><?=_s('Remote site');?>:</h3>
-		</div>
-		<div class="title1 wide">
-			<b>${location.name}</b>
-		</div>
-		<div class="title1 wide" >
-                    <iframe  id="map" width="100%" height="220" frameborder="0" scrolling="no" src="http://${googleIp}/maps/?f=d&source=s_d&saddr=${location.address}&hl=en&z=15&output=embed">
+                    <div class="title1 regular wide" style="margin-left:-5px;">
+                            <h3 class="icoLoc"><?=_s('Remote site');?>:</h3>
+                    </div>
+                    <div class="title1 wide">
+                            <b>${location.name}</b>
+                    </div>
+                    <div class="title1 wide">
+                        <div id="sc_location_iframe">
 
-                    </iframe>
-                    {{if location.notes.length > 0}}
-                        <br />
-                        ${location.notes}
-                    {{/if}}
-		</div>
-		<div class="title1 wide">
-			<a target="_blank" onclick = "void(0)" id="get_directions" href="http://${googleIp}/maps/?f=d&hl=en&geocode=&saddr=${user_location}&daddr=${location.address}&ie=UTF8&z=7&output=embed">Get directions</a>
-		</div>
+                        </div>
+                        {{if location.notes.length > 0}}
+                            <br />
+                            ${location.notes}
+                        {{/if}}
+                    </div>
+                    <div class="title1 wide">
+                            <a target="_blank" onclick = "void(0)" id="get_directions" href="http://${googleIp}/maps/?f=d&hl=en&geocode=&saddr=${user_location}&daddr=${location.address}&ie=UTF8&z=7&output=embed">Get directions</a>
+                    </div>
 		{{/if}}
 	    {{if employees.length > 0 }}
 	    <div class="title1 regular wide">
