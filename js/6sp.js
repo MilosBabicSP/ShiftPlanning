@@ -1683,7 +1683,7 @@ return((r[1].length===0)?r[0]:null);};};$D.parseExact=function(s,fx){return $D.g
      * Converts the value of the current Date object to its equivalent string representation using a PHP/Unix style of date format specifiers.
      *
      * The following descriptions are from http://www.php.net/strftime and http://www.php.net/manual/en/function.date.php.
-     * Copyright © 2001-2008 The PHP Group
+     * Copyright ï¿½ 2001-2008 The PHP Group
      *
      * Format Specifiers
      <pre>
@@ -2664,6 +2664,19 @@ ShiftPlanningView.prototype.timeRanges = function(){
     
     return res;
 }
+
+ShiftPlanningView.prototype.customFields = function(employee){
+    var l = '';
+    if (typeof employee.custom != 'undefined') {
+        $.each(employee.custom, function(i, item){
+            l += '<li>';
+            l += item;
+            l += '</li>';
+        });
+    }
+    return (l.length > 0) ? l : this.emptyResult('No custom fields to display', 'li', 'noBorder');
+}
+    
 
 ShiftPlanningView.prototype.editableSchedules = function(employee){
     var l = '';
@@ -4029,9 +4042,9 @@ ShiftPlanningDashboard.prototype.prefillOverview = function(employee){
         
     
 
-
+    $('#da_se_ov_cu').html(spView.customFields(employee));
     $('#da_se_ov_po').html(spView.editableSchedules(employee));
-
+    
     $('#da_se_ov_sk').html(spView.editableSkills(employee));
     $('#da_se_ov_no').html((employee.notes.length > 0) ? employee.notes : '');
     $('#da_se_ov_pos').html('');
