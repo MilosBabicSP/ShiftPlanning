@@ -292,7 +292,17 @@ ShiftPlanningDashboard.prototype.settingsEvents = function(){
 	sp.fixCheckboxes();
     });
     
-    $('#da_se').delegate('.checkbox', clickEvent, function(){
+    $('#da_se_ed_cu').delegate('.checkbox', clickEvent, function(){
+        var obj = this;
+        var checked = ($(this).hasClass('check')) ? true : false;
+           if (checked) {
+		$(obj).removeClass('check');
+	    } else {
+		$(obj).addClass('check');
+	    }
+    });
+    
+    $('#da_se_ed_po, #da_se_ov_po, #da_se_ed_sk, #da_se_ov_sk').delegate('.checkbox', clickEvent, function(){
 	var sid = $(this).attr('itemId');
 	var skills = ($(this).parents('.skills').length > 0) ? true : false;
 	var checked = ($(this).hasClass('check')) ? true : false;
@@ -668,7 +678,7 @@ ShiftPlanningDashboard.prototype.prefillOverview = function(employee){
         
     
 
-
+    $('#da_se_ov_cu').html(spView.customFields(employee));
     $('#da_se_ov_po').html(spView.editableSchedules(employee));
 
     $('#da_se_ov_sk').html(spView.editableSkills(employee));
@@ -720,6 +730,8 @@ ShiftPlanningDashboard.prototype.prepareEditDetails = function(employee){
     $('#da_se_ed_bday_d').val(employee.birth_day);
     $('#da_se_ed_no').val(employee.notes);
     
+    //custome fields have to create divs
+    $('#da_se_ed_cu').html(spView.editableCustomFields(employee));
     
     $('#da_se_ed_po').html(spView.editableSchedules(employee));
     $('#da_se_ed_sk').html(spView.editableSkills(employee));
@@ -877,6 +889,29 @@ ShiftPlanningDashboard.prototype.saveEditForm = function(obj){
 	data.home_phone = $('#da_se_ed_hph_0').val() + '-' + $('#da_se_ed_hph_1').val() + '-' + $('#da_se_ed_hph_2').val();
     }
     
+    var customFields = {};   
+    var value="";
+    $('#da_se_ed_cu li [item="edit"]').each(function(i,field) {
+        
+        value = $(field).val();
+        
+        if (value.lenght == 0){
+            value = "";
+        }
+        
+        if ($(field).hasClass('checkbox check')){    
+            value = 1;
+            }
+        
+        else if ($(field).hasClass('checkbox')){
+            value = 0;
+            }
+ 
+        customFields[$(field).attr('id')] = value;
+    });
+
+    customFields = JSON.stringify(customFields);
+    data.custom = customFields;
     
     spModel.staff.update('employee', data, function(response){
 	if (employee.id == sp.staff.admin.info.id && employee.language != response.data.language){
