@@ -128,7 +128,7 @@ ShiftPlanning.prototype.initialize = function(){
     });  
     $(document).ready(function(){
         //For phonegap app only
-        if (typeof gap == 'undefined'){
+        if (typeof gap == 'undefined') {
             init();
         }
         $('.toggleMenu').bind('click', function(e){
