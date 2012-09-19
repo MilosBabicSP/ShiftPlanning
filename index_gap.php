@@ -1,3 +1,9 @@
+<?
+require_once('functions.php');
+require_once('api.php');
+
+?>
+
 <!DOCTYPE html>
 <html style="height:100%;">
     <head>
