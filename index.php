@@ -275,7 +275,7 @@ if ($vtoken['data'] != '1') {
                     <?php Functions::getInstance()->loadFile('menus/requests') ?>
                     <?php Functions::getInstance()->loadFile('menus/staff') ?>
                     <?php Functions::getInstance()->loadFile('menus/reports') ?>
-					<?php Functions::getInstance()->loadFile('menus/training')?>
+                    <?php Functions::getInstance()->loadFile('menus/training')?>
                 </div>
                 <div id="pages">
                     <div class="dashboard" id="dashboard">
@@ -295,7 +295,7 @@ if ($vtoken['data'] != '1') {
                         </div>
                         <?php Functions::getInstance()->loadFile('dashboard_wall') ?>
                         <?php Functions::getInstance()->loadFile('dashboard_upcomingShifts'); ?>
-						<?php Functions::getInstance()->loadFile('dashboard_files'); ?>
+                        <?php Functions::getInstance()->loadFile('dashboard_files'); ?>
                         <?php Functions::getInstance()->loadFile('dashboard_inbox') ?>
                         <?php Functions::getInstance()->loadFile('dashboard_settings'); ?>
                         <?php Functions::getInstance()->loadFile('dashboard_whosonnow'); ?>
@@ -615,16 +615,15 @@ if ($vtoken['data'] != '1') {
                                 <img width="41" height="30" src="<?php echo _fCdnPath_; ?>images/BackMenu.png">
                             </a>
                         </div>						
-						<?php Functions::getInstance()->loadFile('training_overview')?>
-						<?php Functions::getInstance()->loadFile('training_singleModule')?>
-						<?php Functions::getInstance()->loadFile('training_statistic')?>
-						<?php Functions::getInstance()->loadFile('training_singleSection')?>
-						<div class="main topicstatistic" id="tr_top_stat" style="padding: 0px;">
-							<ul class="training_topic_stat staff big">
-							</ul>	
-						</div>						
-					</div>
-				
+                        <?php Functions::getInstance()->loadFile('training_overview')?>
+                        <?php Functions::getInstance()->loadFile('training_singleModule')?>
+                        <?php Functions::getInstance()->loadFile('training_statistic')?>
+                        <?php Functions::getInstance()->loadFile('training_singleSection')?>
+                        <div class="main topicstatistic" id="tr_top_stat" style="padding: 0px;">
+                            <ul class="training_topic_stat staff big">
+                            </ul>	
+                        </div>						
+                    </div>
                 </div>
             </div>
         </div>
