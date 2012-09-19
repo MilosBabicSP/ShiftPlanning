@@ -33,7 +33,7 @@ if ($vtoken['data'] != '1') {
     $res['firstLoad'] .= 'user.loggedIn = 1;';
 }
 $res['firstLoad'] .= 'user.name = \'' . (($_SESSION['api']['token']) ? $_SESSION['user']['employee']['name'] : ''). '\';';
-$res['firstLoad'] .= 'user.company = ' . (($_SESSION['api']['token']) ? $_SESSION['user']['business']['name'] : '') . '\';';
+$res['firstLoad'] .= 'user.company = \'' . (($_SESSION['api']['token']) ? $_SESSION['user']['business']['name'] : '') . '\';';
 $res['firstLoad'] .= 'user.phone = \'' . (($_SESSION['api']['token']) ? $_SESSION['user']['business']['phone'] : '') . '\';';
 $res['firstLoad'] .= '</script>';
 
