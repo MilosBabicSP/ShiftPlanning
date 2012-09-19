@@ -3,7 +3,6 @@ $(document).ready(function() {
     $.ajax({
         url: 'load.php',
         success : function(res){
-            console.log(res, $('#prepLoadFiles'));
             $('#prepLoadFiles').after(res);
 //            sp = new ShiftPlanning();
 //            ShiftPlanning.prototype.staff = new ShiftPlanningStaff();
