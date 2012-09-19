@@ -1,48 +1,3 @@
-<?php
-require_once('functions.php');
-require_once('api.php');
-
-/* fast hack for displaying correct time */
-if (isset($_GET['timezone'])){
-    echo Functions::getInstance()->getCurrentTime();
-    die();
-}
-
-if (isset($_GET['logout'])){
-    _iapi(array('module' => 'staff.logout', 'method' => 'GET'), 'json', true);
-    $fixed = substr(WWW_PATH, 7);
-    $fixed = str_replace('//', '/', $fixed);
-    $fixed = str_replace('index.php?logout=true', ' ', $fixed);
-    header('Location: ' . 'http://' . $fixed);
-    die();
-}
-
-require_once('jspacker.php');
-include 'i18n/lib/class.i18n.php';
-if (Functions::getInstance()->getCurrentLang() != 'en_US'):
-     i18n::setLanguage(Functions::getInstance()->getCurrentLang(), _lang_ . '/lang/');
-endif;
-
-$jse = new JSPacker('sp.js');
-if(DEBUGGER){
-	$encrypt = false;
-} else {
-	$encrypt = true;
-}
-
-if (Functions::getInstance()->isRememberMe()){
-    $_SESSION['api']['token']		    = Functions::getInstance()->getCookie('shiftplanning_mobile_usertoken');
-    $_SESSION['user']['employee']['name']   = Functions::getInstance()->getCookie('shiftplanning_mobile_username');
-    $_SESSION['user']['employee']['id']	    = Functions::getInstance()->getCookie('shiftplanning_mobile_userid');
-    $_SESSION['user']['business']['name']   = Functions::getInstance()->getCookie('shiftplanning_mobile_usercompany');
-    $_SESSION['user']['business']['phone']  = Functions::getInstance()->getCookie('shiftplanning_mobile_userphone');
-}
-
-
-//Get google IP
-$googleIP = gethostbyname('www.google.com');
-
-?>
 <!DOCTYPE html>
 <html style="height:100%;">
     <head>
@@ -52,155 +7,91 @@ $googleIP = gethostbyname('www.google.com');
         <meta name="viewport" content="width=device-width" />
 	<meta name="apple-mobile-web-app-capable" content="yes" />
         <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Qwigley">
-        <link rel="stylesheet" type="text/css" href="<?php echo _fCdnPath_;?>css/style_<?php echo _jsV_;?>.mobile.css" />
-        <link rel="stylesheet" type="text/css" href="<?php echo _fCdnPath_;?>css/mobiscroll.css" />
+        <link rel="stylesheet" type="text/css" href="css/style.mobile.css" />
+        <link rel="stylesheet" type="text/css" href="css/mobiscroll.css" />
 	
 	<link rel="shortcut icon" href="http://cdn.shiftplanning.com/app/layout/1/images/favicon.ico" type="image/x-icon" id="favicon">
-	<link rel="apple-touch-startup-image" href="<?php echo _fCdnPath_;?>images/default.png" />
+	<link rel="apple-touch-startup-image" href="images/default.png" />
 	
-	<link rel="apple-touch-startup-image" href="<?php echo _fCdnPath_;?>images/sc/x320.png" media="screen and (max-device-width: 320px)" />
-	<link rel="apple-touch-startup-image" media="(max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2)" href="<?php echo _fCdnPath_;?>images/sc/x640.png" />
+	<link rel="apple-touch-startup-image" href="images/sc/x320.png" media="screen and (max-device-width: 320px)" />
+	<link rel="apple-touch-startup-image" media="(max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2)" href="images/sc/x640.png" />
 
 	<!-- For iPhone with high-resolution Retina display: -->
-	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="<?php echo _fCdnPath_;?>images/sc/iPhone-114x114.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/sc/iPhone-114x114.png">
 	<!-- For first- and second-generation iPad: -->
-	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="<?php echo _fCdnPath_;?>images/sc/iPhone-72x72.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/sc/iPhone-72x72.png">
 	<!-- For non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
-	<link rel="apple-touch-icon-precomposed" href="<?php echo _fCdnPath_;?>images/sc/iPhone-57x57.png">
-	
-	<?php if (Functions::getInstance()->getCurrentLang() != 'en_US'):?>
-	    <link rel="gettext" href="<?php echo LANG_PATH;?>lang/<?php echo Functions::getInstance()->getCurrentLang();?>/LC_MESSAGES/ShiftPlanning.json" />
-	<?php endif;?>
-	
-	
-	<script src="<?php echo _fCdnPath_;?>i18n/gettext.js" type="text/javascript"></script>
-        <script src="<?php echo _fCdnPath_;?>js/sp.user.js" type="text/javascript"></script>
-        <script type="text/javascript">
-            var googleIp = '<?php echo $googleIP;?>';
-<?
-$vtoken = _iapi(array('module' => 'api.vtoken', 'method' => 'GET', 'token' => $_SESSION['api']['token']), 'array');
-if ($vtoken['data'] != '1') {
-    unset($_SESSION['api']['token']);
-    ?>
-            user.loggedIn = 0;
-    <?
-} else {
-    ?>
-            user.loggedIn = 1;
-<? } ?>
-    user.name = '<?= ($_SESSION['api']['token']) ? $_SESSION['user']['employee']['name'] : '' ?>';
-    user.company = '<?= ($_SESSION['api']['token']) ? $_SESSION['user']['business']['name'] : '' ?>';
-    user.phone = '<?= ($_SESSION['api']['token']) ? $_SESSION['user']['business']['phone'] : '' ?>';
-            
+	<link rel="apple-touch-icon-precomposed" href="images/sc/iPhone-57x57.png">
+        <script type="text/javascript" id="prepLoadFiles">
+            var gap = true;
         </script>
-
-        <!-- Core Parts -->
-
-        <!-- jQuery -->
-	<?php 
-        //json obj 
-        $jse->_add('js/json2.js', $encrypt);
+	<script src="i18n/gettext.js" type="text/javascript"></script>
+        <script src="js/sp.user.js" type="text/javascript"></script>
+        <script src="js/json2.js" type="text/javascript"></script>
 	
-	//main jquery
-	$jse->_add('js/jquery/jquery-1.6.4.min.js', $encrypt);
-	$jse->_add('js/jquery/jquery.timeago.js', $encrypt);
-	$jse->_add('js/jquery/jquery.tmpl.js', $encrypt);
-	$jse->_add('js/jquery/jquery.ba-hashchange.min.js', $encrypt);
-	$jse->_add('js/jquery/jquery.contains.js', $encrypt);
+	<!-- main jquery -->
+	<script src="js/jquery/jquery-1.6.4.min.js" type="text/javascript"></script>
+	<script src="js/jquery/jquery.timeago.js" type="text/javascript"></script>
+	<script src="js/jquery/jquery.tmpl.js" type="text/javascript"></script>
+	<script src="js/jquery/jquery.ba-hashchange.min.js" type="text/javascript"></script>
+	<script src="js/jquery/jquery.contains.js" type="text/javascript"></script>
+        
+        <!-- specially for phonegap -->
+        <script src="js/sp.common.mobile.gap.js" type="text/javascript"></script>
 	
-	//specially for mobile device.
-	$jse->_add('js/plugins/mobiscroll.min.js', $encrypt);
+	<!-- specially for mobile device. -->
+	<script src="js/plugins/mobiscroll.min.js" type="text/javascript"></script>
 	
-	//models
-	$jse->_add('js/models/sp.schedule.model.js', $encrypt);
-	$jse->_add('js/models/sp.requests.model.js', $encrypt);
-	$jse->_add('js/models/sp.admin.model.js', $encrypt);
-	$jse->_add('js/models/sp.messaging.model.js', $encrypt);
-	$jse->_add('js/models/sp.timeclock.model.js', $encrypt);
-	$jse->_add('js/models/sp.staff.model.js', $encrypt);
-	$jse->_add('js/models/sp.payroll.model.js', $encrypt);
-	$jse->_add('js/models/sp.location.model.js', $encrypt);
-	$jse->_add('js/models/sp.training.model.js',$encrypt);
+	<!-- models -->
+	<script src="js/models/sp.schedule.model.js" type="text/javascript"></script>
+	<script src="js/models/sp.requests.model.js" type="text/javascript"></script>
+	<script src="js/models/sp.admin.model.js" type="text/javascript"></script>
+	<script src="js/models/sp.messaging.model.js" type="text/javascript"></script>
+	<script src="js/models/sp.timeclock.model.js" type="text/javascript"></script>
+	<script src="js/models/sp.staff.model.js" type="text/javascript"></script>
+	<script src="js/models/sp.payroll.model.js" type="text/javascript"></script>
+	<script src="js/models/sp.location.model.js" type="text/javascript"></script>
+	<script src="js/models/sp.training.model.js" type="text/javascript"></script>
 	
-	//plugins
-	$jse->_add('js/plugins/date.js', $encrypt);
-	$jse->_add('js/plugins/cookie.js', $encrypt);
-	$jse->_add('js/plugins/sp.cache.js', $encrypt);
-	$jse->_add('js/schedule/date.js', $encrypt);
-	$jse->_add('js/schedule/date.extras.js', $encrypt);
-	$jse->_add('js/plugins/objSort.js', $encrypt);
-	$jse->_add('js/plugins/outerClick.js', $encrypt);
-        $jse->_add('js/plugins/shorten.js', $encrypt);
+	<!-- plugins -->
+	<script src="js/plugins/date.js" type="text/javascript"></script>
+	<script src="js/plugins/cookie.js" type="text/javascript"></script>
+	<script src="js/plugins/sp.cache.js" type="text/javascript"></script>
+	<script src="js/schedule/date.js" type="text/javascript"></script>
+	<script src="js/schedule/date.extras.js" type="text/javascript"></script>
+	<script src="js/plugins/objSort.js" type="text/javascript"></script>
+	<script src="js/plugins/outerClick.js" type="text/javascript"></script>
+        <script src="js/plugins/shorten.js" type="text/javascript"></script>
 	
-	//system
-	$jse->_add('js/sp.common.js', $encrypt);
-	$jse->_add('js/sp.model.js', $encrypt);
-	$jse->_add('js/sp.view.js', $encrypt);
-	$jse->_add('js/sp.ranges.js', $encrypt);
+	<!-- system -->
+	<script src="js/sp.common.js" type="text/javascript"></script>
+	<script src="js/sp.model.js" type="text/javascript"></script>
+	<script src="js/sp.view.js" type="text/javascript"></script>
+	<script src="js/sp.ranges.js" type="text/javascript"></script>
 	
-	//base
-	$jse->_add('js/sp.staff.js', $encrypt);
-	$jse->_add('js/sp.schedule.js', $encrypt);
-	$jse->_add('js/sp.dashboard.js', $encrypt);
-	$jse->_add('js/sp.timeclock.js', $encrypt);
-	$jse->_add('js/sp.reports.js', $encrypt);
-	$jse->_add('js/sp.requests.js', $encrypt);
-	$jse->_add('js/sp.location.js', $encrypt);
-	$jse->_add('js/sp.permissions.js', $encrypt);
-	$jse->_add('js/sp.training.js',$encrypt);
+	<!-- base -->
+	<script src="js/sp.staff.js" type="text/javascript"></script>
+	<script src="js/sp.schedule.js" type="text/javascript"></script>
+	<script src="js/sp.dashboard.js" type="text/javascript"></script>
+	<script src="js/sp.timeclock.js" type="text/javascript"></script>
+	<script src="js/sp.reports.js" type="text/javascript"></script>
+	<script src="js/sp.requests.js" type="text/javascript"></script>
+	<script src="js/sp.location.js" type="text/javascript"></script>
+	<script src="js/sp.permissions.js" type="text/javascript"></script>
+	<script src="js/sp.training.js" type="text/javascript"></script>
 	
-	//extension
-	$jse->_add('js/sp.staff.mobile.js', $encrypt);
-	$jse->_add('js/sp.dashboard.mobile.js', $encrypt);
-	$jse->_add('js/sp.timeclock.mobile.js', $encrypt);
-	$jse->_add('js/sp.reports.mobile.js', $encrypt);
-	$jse->_add('js/sp.requests.mobile.js', $encrypt);
-	$jse->_add('js/sp.schedule.mobile.js', $encrypt);
-	$jse->_add('js/sp.permissions.mobile.js', $encrypt);
-	$jse->_add('js/sp.training.mobile.js', $encrypt);
+	<!-- extension -->
+	<script src="js/sp.staff.mobile.js" type="text/javascript"></script>
+	<script src="js/sp.dashboard.mobile.js" type="text/javascript"></script>
+	<script src="js/sp.timeclock.mobile.js" type="text/javascript"></script>
+	<script src="js/sp.reports.mobile.js" type="text/javascript"></script>
+	<script src="js/sp.requests.mobile.js" type="text/javascript"></script>
+	<script src="js/sp.schedule.mobile.js" type="text/javascript"></script>
+	<script src="js/sp.permissions.mobile.js" type="text/javascript"></script>
+	<script src="js/sp.training.mobile.js" type="text/javascript"></script>
 	
-	//Loader
-	$jse->_add('js/sp.common.mobile.js', $encrypt);
-	
-	echo $jse->_dump();
-	
-	?>
-        <script type="text/javascript">
-            function init(){
-		<? if ($_SESSION['api']['token']) { ?>
-			    sp.staff.raw.employees = <?= _iapi(array('module' => 'staff.employees', 'method' => 'GET'), 'json', true) ?>;
-			    sp.staff.data.employees = sp.map(sp.staff.raw.employees);
-			    sp.schedule.raw.schedules = <?= _iapi(array('module' => 'schedule.schedules', 'perms' => 1, 'method' => 'GET'), 'json', true) ?>;
-			    sp.schedule.data.schedules = sp.map(sp.schedule.raw.schedules);
-			    sp.staff.admin.settings = <?= _iapi(array('module' => 'admin.settings', 'method' => 'GET'), 'json', true) ?>;
-			    sp.staff.admin.info = <?= _iapi(array('module' => 'staff.employee', 'method' => 'GET', 'id' => $_SESSION['user']['employee']['id']), 'json', true) ?>;
-			    sp.staff.admin.business = <?= _iapi(array('module' => 'admin.business', 'method' => 'GET'), 'json', true) ?>;
-			    var lang = sp.staff.admin.info.language;
-			    if (lang == null){
-				lang = sp.staff.admin.business.language;
-			    }
-			    if (lang != '<?php echo Functions::getInstance()->getCurrentLang();?>'){
-				setCookie('shiftplanning_mobile_lang', lang, cookieExpire);
-				window.location.reload();
-			    }
-			    sp.staff.raw.skills = <?= _iapi(array('module' => 'staff.skills', 'method' => 'GET'), 'json', true) ?>;
-			    sp.staff.data.skills = sp.map(sp.staff.raw.skills);
-			    sp.staff.raw.locations = <?= _iapi(array('module' => 'location.locations', 'method' => 'GET'), 'json', true) ?>;
-			    sp.staff.data.locations = sp.map(sp.staff.raw.locations);
-			    sp.raw.config = <?= _iapi(array('module' => 'api.config', 'method' => 'GET'), 'json', true) ?>;
-			    sp.schedule.dateId = sp.raw.config.today.id;
-			    sp.staff.admin.info.dfAvatar = (typeof sp.staff.admin.info.avatar != 'undefined' && typeof sp.staff.admin.info.avatar.small != 'undefined') ? sp.staff.admin.info.avatar.small : 'images/no-avatar.png';
-			    sp.staff.prepareConfig();
-			    $('.userName').html(user.name);
-			    $('company').html(user.company);
-			    spRanges.fixRanges();
-			    sp.staff.fixed.employees = sp.permissions.fixStaffListing();
-			    sp.raw.config.today.formatted = Date.parse(sp.raw.config.today.formatted).toString(cal.dformat);
-		<? } ?>
-    $('body').css('display', 'block');
-    }
-        </script>
-	
+	<!-- Loader -->
+	<script src="js/sp.common.mobile.js" type="text/javascript"></script>	
 	<script type="text/javascript">
             if ('standalone' in navigator && !navigator.standalone && (/iphone|ipod|ipad/gi).test(navigator.platform) && (/Safari/i).test(navigator.appVersion)) {
                     var addToHomeConfig = {

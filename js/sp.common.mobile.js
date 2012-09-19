@@ -127,7 +127,10 @@ ShiftPlanning.prototype.initialize = function(){
         }
     });  
     $(document).ready(function(){
-        init();
+        //For phonegap app only
+        if (typeof gap == 'undefined'){
+            init();
+        }
         $('.toggleMenu').bind('click', function(e){
             e.preventDefault();
             self.toggleMenu();
@@ -246,14 +249,17 @@ function callAndroid(func, callback){
     return false;
 }
 
+
+if (typeof gap == 'undefined') {
 //Initalizing javascript library
-var sp = new ShiftPlanning();
-ShiftPlanning.prototype.staff = new ShiftPlanningStaff();
-ShiftPlanning.prototype.schedule = new ShiftPlanningSchedule();
-ShiftPlanning.prototype.dashboard = new ShiftPlanningDashboard();
-ShiftPlanning.prototype.timeClock = new ShiftPlanningTimeClock();
-ShiftPlanning.prototype.reports = new ShiftPlanningReports();
-ShiftPlanning.prototype.requests = new ShiftPlanningRequests();
-ShiftPlanning.prototype.location = new ShiftPlanningLocation();
-ShiftPlanning.prototype.permissions = new ShiftPlanningPermissions();
-ShiftPlanning.prototype.training = new ShiftPlanningTraining();
+    var sp = new ShiftPlanning();
+    ShiftPlanning.prototype.staff = new ShiftPlanningStaff();
+    ShiftPlanning.prototype.schedule = new ShiftPlanningSchedule();
+    ShiftPlanning.prototype.dashboard = new ShiftPlanningDashboard();
+    ShiftPlanning.prototype.timeClock = new ShiftPlanningTimeClock();
+    ShiftPlanning.prototype.reports = new ShiftPlanningReports();
+    ShiftPlanning.prototype.requests = new ShiftPlanningRequests();
+    ShiftPlanning.prototype.location = new ShiftPlanningLocation();
+    ShiftPlanning.prototype.permissions = new ShiftPlanningPermissions();
+    ShiftPlanning.prototype.training = new ShiftPlanningTraining();
+}
