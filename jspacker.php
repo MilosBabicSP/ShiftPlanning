@@ -39,10 +39,13 @@ class JSPacker {
     }
 
     function _toHtml() {
+        $res = '';
 	foreach ($this->scripts as $script) {
 	    # REMOTE SCRIPT
-	    echo '<script type="text/javascript" src="' . $script['path'] . '"></script>';
+	    $res .= '<script type="text/javascript" src="' . $script['path'] . '"></script>';
 	}
+        
+        return $res;
     }
 
     function _build() {
@@ -70,7 +73,7 @@ class JSPacker {
 	    }
 	    file_put_contents(_root_ . 'js/' . _jsV_ . $this->output, implode("\n ", $output));
 	}
-	echo '<script type="text/javascript" src="' . _fCdnPath_ . 'js/' . _jsV_ . $this->output . '"></script>';
+	return '<script type="text/javascript" src="' . _fCdnPath_ . 'js/' . _jsV_ . $this->output . '"></script>';
     }
 }
 

@@ -161,7 +161,7 @@ if ($vtoken['data'] != '1') {
 	//Loader
 	$jse->_add('js/sp.common.mobile.js', $encrypt);
 	
-	$jse->_dump();
+	echo $jse->_dump();
 	
 	?>
         <script type="text/javascript">
