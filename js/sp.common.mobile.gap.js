@@ -3,7 +3,9 @@ $(document).ready(function() {
     $.ajax({
         url: 'load.php',
         success : function(res){
+            console.log(res, $('#prepLoadFiles'));
             $('#prepLoadFiles').after(res);
+            console.log(ShiftPlanning());
             sp = new ShiftPlanning();
             ShiftPlanning.prototype.staff = new ShiftPlanningStaff();
             ShiftPlanning.prototype.schedule = new ShiftPlanningSchedule();
