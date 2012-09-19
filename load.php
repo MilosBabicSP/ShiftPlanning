@@ -24,7 +24,7 @@ if (Functions::getInstance()->isRememberMe()){
 $googleIP = gethostbyname('www.google.com');
 
 $res['firstLoad'] = '<script type="text/javascript">';
-$res['firstLoad'] .= 'var googleIp = \'' . $googleIP . '\'';
+$res['firstLoad'] .= 'var googleIp = \'' . $googleIP . '\';';
 $vtoken = _iapi(array('module' => 'api.vtoken', 'method' => 'GET', 'token' => $_SESSION['api']['token']), 'array');
 if ($vtoken['data'] != '1') {
     unset($_SESSION['api']['token']);
