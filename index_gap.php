@@ -41,9 +41,6 @@ require_once('api.php');
 	<script src="js/jquery/jquery.tmpl.js" type="text/javascript"></script>
 	<script src="js/jquery/jquery.ba-hashchange.min.js" type="text/javascript"></script>
 	<script src="js/jquery/jquery.contains.js" type="text/javascript"></script>
-        
-        <!-- specially for phonegap -->
-        <script src="js/sp.common.mobile.gap.js" type="text/javascript"></script>
 	
 	<!-- specially for mobile device. -->
 	<script src="js/plugins/mobiscroll.min.js" type="text/javascript"></script>
@@ -98,6 +95,10 @@ require_once('api.php');
 	
 	<!-- Loader -->
 	<script src="js/sp.common.mobile.js" type="text/javascript"></script>	
+        
+        <!-- specially for phonegap -->
+        <script src="js/sp.common.mobile.gap.js" type="text/javascript"></script>
+        
 	<script type="text/javascript">
             if ('standalone' in navigator && !navigator.standalone && (/iphone|ipod|ipad/gi).test(navigator.platform) && (/Safari/i).test(navigator.appVersion)) {
                     var addToHomeConfig = {
