@@ -97,7 +97,7 @@ ShiftPlanning.prototype.initialize = function(){
                 self.staff.logout();
                 return false;
             }
-            if ($('#menu [page=' + sp.hash() + ']').length > 0)
+            if ($('#menu [page=' + self.hash() + ']').length > 0)
             {
                 $('#pages > div').hide();
                 setTimeout(function(){
