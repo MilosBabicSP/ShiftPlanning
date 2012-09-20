@@ -141,13 +141,13 @@ ShiftPlanning.prototype.initialize = function(){
             $('body').removeClass('login');
             $('html').css('height','auto');
             $('.applicationContainer').show();
-            if (sp.hash().length == 0 || sp.hash() == 'login'){
-                sp.hash('dashboard');
+            if (self.hash().length == 0 || self.hash() == 'login'){
+                self.hash('dashboard');
             }
         } else {
             $('.loginContainer').show();
             $('body').addClass('login');
-            sp.hash('login');
+            self.hash('login');
             $('#lo_u').focus();
         }
         
@@ -159,11 +159,11 @@ ShiftPlanning.prototype.initialize = function(){
         $('#menu .mainNav > li > a').bind(clickEvent, function(e){
             if ($(this).hasClass('exit')) return true;
             e.preventDefault();
-            if ($(this).attr('page') == sp.hash()){
+            if ($(this).attr('page') == self.hash()){
                 return false;
             }
             self.toggleMenu();
-            sp.hash($(this).attr('page'));
+            self.hash($(this).attr('page'));
         });
         $(window).hashchange();
         
@@ -175,7 +175,7 @@ ShiftPlanning.prototype.initialize = function(){
         
         //all mainUser names to lead to settings 
         $('.userName').bind(clickEvent, function(){
-            sp.loadSubPage('', 'dashboard', 'settings');
+            self.loadSubPage('', 'dashboard', 'settings');
         });
         
         $('#wrapper').bind(clickEvent, function(e){
