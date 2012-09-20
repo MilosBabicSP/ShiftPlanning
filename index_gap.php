@@ -137,7 +137,7 @@ require_once('api.php');
                     </form>
                     <div class="footerTxt">View in: Mobile | <a href="/app/?fullapp=true">Full Version</a><br/>
                         <a href="/terms/">Terms of Use</a> | <a href="/privacy/">Privacy Policy</a><br/>
-                        &copy; <?php echo date('Y'); ?> ShiftPlanning
+                        &copy; 2012 ShiftPlanning
                     </div>
                 </td>
             </tr>
@@ -145,23 +145,23 @@ require_once('api.php');
         <div class="applicationContainer">
             <div class="mainMenu hidden" id="menu">
                 <a href="#">
-                    <img height="61" width="190" src="<?php echo _fCdnPath_;?>images/logo.png" />
+                    <img height="61" width="190" src="images/logo.png" />
                 </a>
                 <ul class="mainNav">
-                    <li id="menu_dashboard"><a class="dash" href="#" page="dashboard"><?=_s('Dashboard')?></a></li>
-                    <li id="menu_timeClock"><a class="ticl" href="#" page="timeClock"><?=_s('Time Clock')?></a></li>
-                    <li id="menu_schedule"><a class="sche" href="#" page="schedule"><?=_s('Schedule')?></a></li>
-                    <li class="active" id="menu_requests"><a class="requ" href="#" page="requests"><?=_s('Requests')?></a>
+                    <li id="menu_dashboard"><a class="dash" href="#" page="dashboard">Dashboard</a></li>
+                    <li id="menu_timeClock"><a class="ticl" href="#" page="timeClock">Time Clock</a></li>
+                    <li id="menu_schedule"><a class="sche" href="#" page="schedule">Schedule</a></li>
+                    <li class="active" id="menu_requests"><a class="requ" href="#" page="requests">Requests</a>
                         <ul class="hidden">
-                            <li><a href="#"><span>4</span><?=_s('Vacation requests')?></a></li>
-                            <li><a href="#"><span>208</span><?=_s('Shift Approvals')?></a></li>
-                            <li><a href="#"><span>126</span><?=_s('Shifts Available')?></a></li>
+                            <li><a href="#"><span>4</span>Vacation requests</a></li>
+                            <li><a href="#"><span>208</span>Shift Approvals</a></li>
+                            <li><a href="#"><span>126</span>Shifts Available</a></li>
                         </ul>
                     </li>
-                    <li id="menu_staff"><a class="staf" href="#" page="staff" ><?=_s('Staff')?></a></li>
-                    <li id="menu_training"><a class="trai" href="#" page="training"><?=_s('Training')?></a></li>				
-                    <li id="menu_reports"><a class="repo" href="#" page="reports" ><?=_s('Reports')?></a></li>
-                    <li id="menu_logout"><a class="exit" href="index.php?logout=true"><?=_s('Logout')?></a></li>
+                    <li id="menu_staff"><a class="staf" href="#" page="staff" >Staff</a></li>
+                    <li id="menu_training"><a class="trai" href="#" page="training">Training</a></li>				
+                    <li id="menu_reports"><a class="repo" href="#" page="reports" >Reports</a></li>
+                    <li id="menu_logout"><a class="exit" href="index.php?logout=true">Logout</a></li>
                 </ul>
             </div>
 			
@@ -179,16 +179,16 @@ require_once('api.php');
                     <div class="dashboard" id="dashboard">
                         <div class="search settings mainSub">
                             <ul class="filters" style="width:270px">
-                                <li class="first active"><a href="#" subpage="overview"><?=_s('Overview');?></a></li>
-                                <li><a href="#" subpage="edit"><?=_s('Edit');?></a></li>
-                                <li><a href="#" subpage="recentShifts"><?=_s('Recent Shifts');?></a></li>
-                                <li><a href="#" subpage="upcomingShifts"><?=_s('Upcoming Shifts');?></a></li>
-                                <li class="last" ><a href="#" subpage="password"><?=_s('Password');?></a></li>
+                                <li class="first active"><a href="#" subpage="overview">Overview</a></li>
+                                <li><a href="#" subpage="edit">Edit</a></li>
+                                <li><a href="#" subpage="recentShifts">Recent Shifts</a></li>
+                                <li><a href="#" subpage="upcomingShifts">Upcoming Shifts</a></li>
+                                <li class="last" ><a href="#" subpage="password">Password</a></li>
                             </ul>
                         </div>
                         <div class="subLevel mainSub pingUser" id="pingUser">
                             <a class="backMenu" href="#">
-                                <img width="41" height="30" src="<?php echo _fCdnPath_;?>images/BackMenu.png">
+                                <img width="41" height="30" src="images/BackMenu.png">
                             </a>
                         </div>
                         <?php Functions::getInstance()->loadFile('dashboard_wall') ?>
@@ -204,22 +204,22 @@ require_once('api.php');
                     <div class="timeClock" id="timeClock">
                         <div class="subLevel mainSub displayTimeClock">
                             <a class="backMenu" href="#">
-                                <img width="41" height="30" src="<?php echo _fCdnPath_;?>images/BackMenu.png">
+                                <img width="41" height="30" src="images/BackMenu.png">
                             </a>
                             <ul class="subMenu" id="tc_dtc_buttons">
                                 <li class="first">
                                     <a href="#" class="approve" id="tc_dtc_ap">
-                                        <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/tc_approve.png">
+                                        <img width="16" height="16" src="images/tc_approve.png">
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#" class="edit">
-                                        <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/tc_edit.png">
+                                        <img width="16" height="16" src="images/tc_edit.png">
                                     </a>
                                 </li>
                                 <li class="last">
                                     <a href="#" class="delete">
-                                        <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/tc_delete.png">
+                                        <img width="16" height="16" src="images/tc_delete.png">
                                     </a>
                                 </li>
                             </ul>
@@ -251,12 +251,12 @@ require_once('api.php');
                             <ul class="subMenu">
                                 <li class="first">
                                     <a href="#" id="sc_prev_month">
-                                        <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/sch_pre.png" />
+                                        <img width="16" height="16" src="images/sch_pre.png" />
                                     </a>
                                 </li>
                                 <li class="last">
                                     <a href="#" id="sc_next_month">
-                                        <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/sch_nex.png" />
+                                        <img width="16" height="16" src="images/sch_nex.png" />
                                     </a>
                                 </li>
                             </ul>
@@ -264,7 +264,7 @@ require_once('api.php');
                         <table class="calendar mainSub month" cellpadding="0" cellspacing="0" width="100%">
                             <thead>
                                 <tr id="sc_ca_he">
-                                    <th><?=_s('Sun');?></th><th><?=_s('Mon');?></th><th><?=_s('Tue');?></th><th><?=_s('Wed');?></th><th><?=_s('Thu');?></th><th><?=_s('Fri');?></th><th><?=_s('Sat');?></th>
+                                    <th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th>
                                 </tr>
                             </thead>
                             <tbody id="sc_ca_bo">
@@ -272,52 +272,52 @@ require_once('api.php');
                         </table>
                         <div class="search mainSub today day" id="sc_days_m">
                             <div class="fl">
-                                <span><?=_s('Today')?></span>
+                                <span>Today</span>
                                 <time id="sc_to_sub"></time>
                             </div>
                             <ul class="subMenu">
                                 <li class="first">
                                     <a href="#" id="sc_prev_day">
-                                        <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/sch_pre.png">
+                                        <img width="16" height="16" src="images/sch_pre.png">
                                     </a>
                                 </li>
                                 <li class="last">
                                     <a href="#" id="sc_next_day">
-                                        <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/sch_nex.png">
+                                        <img width="16" height="16" src="images/sch_nex.png">
                                     </a>
                                 </li>
                             </ul>
                         </div>
                         <div class="subLevel mainSub shiftDisplay" id="sc_sub_shift_display">
                             <a href="#" class="backMenu">
-                                <img width="41" height="30" src="<?php echo _fCdnPath_;?>images/BackMenu.png">
+                                <img width="41" height="30" src="images/BackMenu.png">
                             </a>
                             <ul class="subMenu">
                                 <li class="single">
                                     <a href="#" class="icoReqWor publish">
-                                        <span><?=_s('Publish')?></span>
+                                        <span>Publish</span>
                                     </a>
                                 </li>
                                 <li class="single">
                                     <a href="#" class="icoReqEdi edit">
-                                        <span><?=_s('Edit')?></span>
+                                        <span>Edit</span>
                                     </a>
                                 </li>
                                 <li class="single">
                                     <a href="#" class="icoReqDel delete">
-                                        <span><?= _s('Delete') ?></span>
+                                        <span>Delete</span>
                                     </a>
                                 </li>
                             </ul>
                         </div>
                         <div class="subLevel mainSub addShift" id="sc_edit_submenu">
                             <a href="#" class="backMenu">
-                                <img width="41" height="30" src="<?php echo _fCdnPath_;?>images/BackMenu.png">
+                                <img width="41" height="30" src="images/BackMenu.png">
                             </a>
                             <ul class="subMenu">
                                 <li class="single hidden">
                                     <a href="#" class="icoReqWor">
-                                        <span><?=_s('Approve Shift')?></span>
+                                        <span>Approve Shift</span>
                                     </a>
                                 </li>
                             </ul>
@@ -331,110 +331,110 @@ require_once('api.php');
                     <div class="requests" id="requests">
                         <div class="subLevel mainSub vacationRequestManage">
                             <a class="backMenu" href="#" subpage="vacation">
-                                <img width="41" height="30" src="<?php echo _fCdnPath_;?>images/BackMenu.png" />
+                                <img width="41" height="30" src="images/BackMenu.png" />
                             </a>
                             <ul class="subMenu">
                                 <li class="first">
                                     <a href="#" id="rq_va_ma_acp">
-                                        <span><img width="16" height="16" src="<?php echo _fCdnPath_;?>images/request_1.png" /></span>
+                                        <span><img width="16" height="16" src="images/request_1.png" /></span>
                                     </a>
                                 </li>
                                 <li class="last">
                                     <a href="#" id="rq_va_ma_dec">
-                                        <span><img width="16" height="16" src="<?php echo _fCdnPath_;?>images/request_2.png" /></span>
+                                        <span><img width="16" height="16" src="images/request_2.png" /></span>
                                     </a>
                                 </li>
                             </ul>
                         </div>
                         <div class="subLevel mainSub shiftTradeManager" id="rq_st_mts_sub">
                             <a class="backMenu" href="#" subpage="shiftTrades">
-                                <img width="41" height="30" src="<?php echo _fCdnPath_;?>images/BackMenu.png">
+                                <img width="41" height="30" src="images/BackMenu.png">
                             </a>
                             <ul class="subMenu" id="rq_st_mts_fm">
                                 <li class="first">
                                     <a href="#" class="activate">
-                                        <span><img width="16" height="16" src="<?php echo _fCdnPath_;?>images/request_1.png" /></span>
+                                        <span><img width="16" height="16" src="images/request_1.png" /></span>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#" class="deactivate">
-                                        <span><img width="16" height="16" src="<?php echo _fCdnPath_;?>images/request_2.png" /></span>
+                                        <span><img width="16" height="16" src="images/request_2.png" /></span>
                                     </a>
                                 </li>
                                 <li class="last">
                                     <a href="#" class="cancel">
-                                        <span><img width="16" height="16" src="<?php echo _fCdnPath_;?>images/tc_delete.png" /></span>
+                                        <span><img width="16" height="16" src="images/tc_delete.png" /></span>
                                     </a>
                                 </li>
                             </ul>
                             <ul class="subMenu hidden" id="rq_st_mts_sm">
                                 <li class="single">
                                     <a href="#" class="icoReqCan cancel">
-                                        <span><?=_s('Cancel')?></span>
+                                        <span>Cancel</span>
                                     </a>
                                 </li>
                             </ul>
                         </div>
                         <div class="subLevel mainSub shiftTradeManagerAP" id="rq_st_ap_sub">
                             <a class="backMenu" href="#" subpage="shiftTrades">
-                                <img width="41" height="30" src="<?php echo _fCdnPath_;?>images/BackMenu.png">
+                                <img width="41" height="30" src="images/BackMenu.png">
                             </a>
                             <ul class="subMenu">
                                 <li class="first">
                                     <a href="#" class="accept">
-                                        <span><img width="16" height="16" src="<?php echo _fCdnPath_;?>images/request_1.png" /></span>
+                                        <span><img width="16" height="16" src="images/request_1.png" /></span>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#" class="reject">
-                                        <span><img width="16" height="16" src="<?php echo _fCdnPath_;?>images/request_2.png" /></span>
+                                        <span><img width="16" height="16" src="images/request_2.png" /></span>
                                     </a>
                                 </li>
                             </ul>
                         </div>
                         <div class="subLevel mainSub shiftTradeManagerIM">
                             <a class="backMenu" href="#" subpage="shiftTrades">
-                                <img width="41" height="30" src="<?php echo _fCdnPath_;?>images/BackMenu.png">
+                                <img width="41" height="30" src="images/BackMenu.png">
                             </a>
                             <ul class="subMenu" id="rq_st_im_sm">
                                 <li class="single">
                                     <a href="#" class="icoReqCan cancel">
-                                        <span><?=_s('Cancel')?></span>
+                                        <span>Cancel</span>
                                     </a>
                                 </li>
                             </ul>
                         </div>
                         <div class="subLevel mainSub openShiftsOpen" id="rq_os_sub">
                             <a class="backMenu" href="#" subpage="openShifts">
-                                <img width="41" height="30" src="<?php echo _fCdnPath_;?>images/BackMenu.png">
+                                <img width="41" height="30" src="images/BackMenu.png">
                             </a>
                             <ul class="subMenu">
-                                <li class="single"><a class="icoReqWor" href="#" id="rq_os_rtw"><span><?=_s('Request to work')?></span></a></li>
+                                <li class="single"><a class="icoReqWor" href="#" id="rq_os_rtw"><span>Request to work</span></a></li>
                             </ul>
                         </div>
                         <div class="subLevel mainSub openShiftsRequest" id="rq_os_spr_sub">
                             <a class="backMenu" href="#" subpage="openShifts">
-                                <img width="41" height="30" src="<?php echo _fCdnPath_;?>images/BackMenu.png">
+                                <img width="41" height="30" src="images/BackMenu.png">
                             </a>
                             <ul class="subMenu">
                                 <li class="first">
                                     <a href="#" class="accept">
-                                        <span><img width="16" height="16" src="<?php echo _fCdnPath_;?>images/request_1.png" /></span>
+                                        <span><img width="16" height="16" src="images/request_1.png" /></span>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#" class="reject">
-                                        <span><img width="16" height="16" src="<?php echo _fCdnPath_;?>images/request_2.png" /></span>
+                                        <span><img width="16" height="16" src="images/request_2.png" /></span>
                                     </a>
                                 </li>
                             </ul>
                         </div>
                         <div class="subLevel mainSub shiftApprovalsSingle" id="rq_sa_sub">
                             <a href="#" class="backMenu" subpage="shiftApprovals">
-                                <img width="41" height="30" src="<?php echo _fCdnPath_;?>images/BackMenu.png">
+                                <img width="41" height="30" src="images/BackMenu.png">
                             </a>
                             <ul class="subMenu">
-                                <li class="single"><a href="#" class="icoReqWor"><span><?=_s('Save & Close')?></span></a></li>
+                                <li class="single"><a href="#" class="icoReqWor"><span>Save & Close</span></a></li>
                             </ul>
                         </div>
                         <?php Functions::getInstance()->loadFile('requests_overview'); ?>
@@ -468,7 +468,7 @@ require_once('api.php');
                         <div class="search list mainSub">
                             <input type="submit" value="search" id="st_li_se_b" />
                             <span class="input">
-                                <input type="text" value="<?=_s('Search...')?>" name="" onblur="if(this.value=='')this.value=this.defaultValue;" onfocus="if(this.value==this.defaultValue)this.value='';" id="st_li_se_te" />
+                                <input type="text" value="Search..." name="" onblur="if(this.value=='')this.value=this.defaultValue;" onfocus="if(this.value==this.defaultValue)this.value='';" id="st_li_se_te" />
                             </span>
                         </div>
                         <?php Functions::getInstance()->loadFile('staff_list'); ?>
@@ -478,7 +478,7 @@ require_once('api.php');
                     <div class="reports" id="reports">
                         <div class="subLevel hidden mainSub singleViewDisplay" id="re_si_inf">
                             <a class="backMenu" href="#">
-                                <img width="41" height="30" src="<?php echo _fCdnPath_;?>images/BackMenu.png">
+                                <img width="41" height="30" src="images/BackMenu.png">
                             </a>
                         </div>
                         <?php Functions::getInstance()->loadFile('reports_scheduleHours'); ?>
@@ -492,25 +492,22 @@ require_once('api.php');
 					<div class="training" id="training">
 						<div class="subLevel hidden mainSub singleSection" id="tr_si_se">
                             <a class="backMenu" href="#">
-                                <img width="41" height="30" src="<?php echo _fCdnPath_; ?>images/BackMenu.png">
+                                <img width="41" height="30" src="images/BackMenu.png">
                             </a>
                         </div>
 						<div class="subLevel hidden mainSub singleModule" id="tr_si_se">
                             <a class="backMenu"  href="#" >
-                                <img width="41" height="30" src="<?php echo _fCdnPath_; ?>images/BackMenu.png">
+                                <img width="41" height="30" src="images/BackMenu.png">
                             </a>
                             <ul class="subMenu hidden" >
                                 <li class="first">
-                                    <a href="#" class="topic_stat" style="margin-right: 5px;">
-                                        <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/stats.png">
-										<?=_s('Statistics')?>										
-                                    </a>
+                                    <a href="#" class="topic_stat" style="margin-right: 5px;"><img width="16" height="16" src="images/stats.png">Statistics</a>
                                 </li>
                             </ul>							
                         </div>
 						<div class="subLevel hidden mainSub topicstatistic"  id="tr_to_st">
                             <a class="backMenu"  href="#">
-                                <img width="41" height="30" src="<?php echo _fCdnPath_; ?>images/BackMenu.png">
+                                <img width="41" height="30" src="images/BackMenu.png">
                             </a>
                         </div>						
                         <?php Functions::getInstance()->loadFile('training_overview')?>
