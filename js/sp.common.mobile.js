@@ -91,36 +91,36 @@ ShiftPlanning.prototype.loadSubPage = function(obj, page, subpage){
 ShiftPlanning.prototype.initialize = function(){
     var self = this;
     $(window).hashchange(function(){
-        if (sp.hash().length > 0) {
-            if(sp.hash() == 'logout')
+        if (self.hash().length > 0) {
+            if(self.hash() == 'logout')
             {
-                sp.staff.logout();
+                self.staff.logout();
                 return false;
             }
             if ($('#menu [page=' + sp.hash() + ']').length > 0)
             {
                 $('#pages > div').hide();
                 setTimeout(function(){
-                    $('#menu [page=' + sp.hash() + ']').parent().parent().find('li').removeClass('active');
-                    $('#menu [page=' + sp.hash() + ']').parent().addClass('active');
-                    self.loadPage(sp.hash());
+                    $('#menu [page=' + self.hash() + ']').parent().parent().find('li').removeClass('active');
+                    $('#menu [page=' + self.hash() + ']').parent().addClass('active');
+                    self.loadPage(self.hash());
                 }, 50);
             }
             else
             {
-                if(sp.hash() != 'login' && sp.hash() != 'logout')
+                if(self.hash() != 'login' && self.hash() != 'logout')
                 {
-                        user.loggedIn ? sp.hash('dashboard') : sp.hash('login') ;
+                        user.loggedIn ? self.hash('dashboard') : self.hash('login') ;
                 }
                 else
                 {
-                    if(sp.hash() == 'logout' && user.loggedIn)
+                    if(self.hash() == 'logout' && user.loggedIn)
                     {
-                            sp.staff.logout();
+                            self.staff.logout();
                     }
-                    if(sp.hash() == 'sp.hash()login' && user.loggedIn)
+                    if(self.hash() == 'sp.hash()login' && user.loggedIn)
                     {
-                            sp.hash('dashboard');
+                            self.hash('dashboard');
                     }
                 }
             }
