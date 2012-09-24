@@ -127,15 +127,13 @@ ShiftPlanning.prototype.initialize = function(){
         }
     }); 
     
-//    if (typeof gap != 'undefined') {
-//        console.log('gap');
-//        self.loadSite();
-//    } else {
-//        $(document).ready(function(){
-//            console.log('not');
-//            self.loadSite();
-//        });
-//    }
+    if (typeof gap != 'undefined') {
+        self.loadSite();
+    } else {
+        $(document).ready(function(){
+            self.loadSite();
+        });
+    }
     
     
     $(window).bind('resize', function(){
@@ -146,7 +144,6 @@ ShiftPlanning.prototype.initialize = function(){
 
 ShiftPlanning.prototype.loadSite = function() {
     var self = this;
-    console.log(sp);
     init();
     $('.toggleMenu').bind('click', function(e){
         e.preventDefault();
@@ -182,9 +179,9 @@ ShiftPlanning.prototype.loadSite = function() {
         self.toggleMenu();
         self.hash($(this).attr('page'));
     }); 
+    $(window).hashchange();
     setInterval(function(){
         $('#menu').css('height', ($(window).height() > $(document).height() ? $(window).height() : $(document).height()));
-        $(window).hashchange();
     }, 1000);
     $('#wrapper').width($(window).width());
     $('body').width($(window).width());
