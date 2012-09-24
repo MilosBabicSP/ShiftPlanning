@@ -5,7 +5,7 @@ $(document).ready(function() {
         success : function(res){
             $('#prepLoadFiles').after(res);
             console.log(sp, 'test', ShiftPlanning());
-            sp = new ShiftPlanning();
+            //sp = new ShiftPlanning();
 //            ShiftPlanning.prototype.staff = new ShiftPlanningStaff();
 //            ShiftPlanning.prototype.schedule = new ShiftPlanningSchedule();
 //            ShiftPlanning.prototype.dashboard = new ShiftPlanningDashboard();
