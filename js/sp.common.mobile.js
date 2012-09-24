@@ -258,7 +258,6 @@ function callAndroid(func, callback){
 
 
 if (typeof gap == 'undefined') {
-    console.log('test');
 //Initalizing javascript library
     var sp = new ShiftPlanning();
     ShiftPlanning.prototype.staff = new ShiftPlanningStaff();
