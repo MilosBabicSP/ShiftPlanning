@@ -4,7 +4,7 @@ $(document).ready(function() {
         url: 'load.php',
         success : function(res){
             $('#prepLoadFiles').after(res);
-            console.log(sp);
+            console.log(sp, 'test');
             sp = new ShiftPlanning();
 //            ShiftPlanning.prototype.staff = new ShiftPlanningStaff();
 //            ShiftPlanning.prototype.schedule = new ShiftPlanningSchedule();
