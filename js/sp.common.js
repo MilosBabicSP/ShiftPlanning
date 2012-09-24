@@ -1,11 +1,9 @@
 function ShiftPlanning(){
-//    this.raw = {};
-//    //api cals
-//    this.apiCalls = {};
-//    this.successMessage = '';
-//    var self = this;
+    this.raw = {};
+    //api cals
+    this.apiCalls = {};
+    this.successMessage = '';
 //    this.initialize();
-//    return true;
 }
 
 ShiftPlanning.prototype = {
