@@ -63,7 +63,7 @@ ShiftPlanning.prototype.toggleMenu = function(){
 
 ShiftPlanning.prototype.loadSubPage = function(obj, page, subpage){
     if (subpage == 'logout'){
-        sp.staff.logout();
+        this.staff.logout();
         return false;
     }
     
@@ -85,7 +85,7 @@ ShiftPlanning.prototype.loadSubPage = function(obj, page, subpage){
         this[page].loadSubPageEvents(subpage);
     }
     
-    sp.fixCheckboxes();
+    this.fixCheckboxes();
 }
 
 ShiftPlanning.prototype.initialize = function(){
@@ -118,7 +118,7 @@ ShiftPlanning.prototype.initialize = function(){
                     {
                             self.staff.logout();
                     }
-                    if(self.hash() == 'sp.hash()login' && user.loggedIn)
+                    if(self.hash() == 'login' && user.loggedIn)
                     {
                             self.hash('dashboard');
                     }
