@@ -127,15 +127,15 @@ ShiftPlanning.prototype.initialize = function(){
         }
     }); 
     
-    if (typeof gap != 'undefined') {
-        console.log('gap');
-        self.loadSite();
-    } else {
-        $(document).ready(function(){
-            console.log('not');
-            self.loadSite();
-        });
-    }
+//    if (typeof gap != 'undefined') {
+//        console.log('gap');
+//        self.loadSite();
+//    } else {
+//        $(document).ready(function(){
+//            console.log('not');
+//            self.loadSite();
+//        });
+//    }
     
     
     $(window).bind('resize', function(){
