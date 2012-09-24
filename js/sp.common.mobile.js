@@ -144,8 +144,6 @@ ShiftPlanning.prototype.initialize = function(){
 
 ShiftPlanning.prototype.loadSite = function() {
     var self = this;
-    
-    
     init();
     $('.toggleMenu').bind('click', function(e){
         e.preventDefault();
@@ -180,11 +178,10 @@ ShiftPlanning.prototype.loadSite = function() {
         }
         self.toggleMenu();
         self.hash($(this).attr('page'));
-    });
-    $(window).hashchange();
-        
+    }); 
     setInterval(function(){
         $('#menu').css('height', ($(window).height() > $(document).height() ? $(window).height() : $(document).height()));
+        $(window).hashchange();
     }, 1000);
     $('#wrapper').width($(window).width());
     $('body').width($(window).width());
