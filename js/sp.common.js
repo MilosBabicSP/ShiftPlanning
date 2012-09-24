@@ -4,6 +4,8 @@ function ShiftPlanning(){
     this.apiCalls = {};
     this.successMessage = '';
     this.initialize();
+    
+    return this;
 }
 
 ShiftPlanning.prototype = {
