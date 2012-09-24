@@ -2244,7 +2244,7 @@
                     </div>
                     {{if title.length > 0 }}
                     <div class="title1 regular wide">
-                        <h3>'Title'</h3>
+                        <h3>Title</h3>
                     </div>
                     <div class="title wide">
                         ${title}
@@ -2252,7 +2252,7 @@
                     {{/if}}
                     {{if notes.length > 0 }}
                     <div class="title1 regular wide">
-                        <h3>'Notes'></h3>
+                        <h3>Notes></h3>
                     </div>
                     <div class="title wide">
                         ${notes}
@@ -2260,7 +2260,7 @@
                     {{/if}}
                         {{if location != 0}}
                             <div class="title1 regular wide" style="margin-left:-5px;">
-                                    <h3 class="icoLoc">'Remote site'</h3>
+                                    <h3 class="icoLoc">Remote site</h3>
                             </div>
                             <div class="title1 wide">
                                     <b>${location.name}</b>
@@ -2280,7 +2280,7 @@
                         {{/if}}
                     {{if employees.length > 0 }}
                     <div class="title1 regular wide">
-                        <h3>'Who 's Working'</h3>
+                        <h3>Who 's Working</h3>
                     </div>
                     <ul class="acceptors wide">
                         {{tmpl(employees) "#te_sc_shift_display_u"}}
@@ -2290,22 +2290,22 @@
                 <div id="te_sc_shift_display_publish" class="hidden">
                     <div class="title1 regular wide">
                         <div>
-                            <span class="radio" value="0">'Don't notify Employees'</span>
+                            <span class="radio" value="0">Don't notify Employees</span>
                         </div>
                     </div>
                     <div class="title1 regular wide">
                         <div>
-                            <span class="radio check"  value="1">'Send Notifications to Employees'</span>
+                            <span class="radio check"  value="1">Send Notifications to Employees</span>
                         </div>
                     </div>
                     <div class="title1 regular wide"  value="2">
                         <div>
-                            <span class="radio">'Send Notifications to Employees & Managers'</span>
+                            <span class="radio">Send Notifications to Employees & Managers</span>
                         </div>
                     </div>
                     <div class="title1 regular wide"  value="2">
                         <div>
-                            <span class="checkbox">'Include custom message in Notification'></span>
+                            <span class="checkbox">Include custom message in Notification></span>
                         </div>
                     </div>
                     <div class="title wide hidden" id="tc_sc_shift_display_publish_textarea">
@@ -2320,17 +2320,17 @@
                     <div class="hidden" id="te_sc_shift_display_delete">
                          <div class="title1 regular wide">
                         <div>
-                            <span class="radio check" value="">'Only this Shift'</span>
+                            <span class="radio check" value="">Only this Shift</span>
                         </div>
                     </div>
                     <div class="title1 regular wide">
                         <div>
-                            <span class="radio"  value="following">'This shift + All following'</span>
+                            <span class="radio"  value="following">This shift + All following</span>
                         </div>
                     </div>
                     <div class="title1 regular wide">
                         <div>
-                            <span class="radio" value="all">'All shifts in this series'?></span>
+                            <span class="radio" value="all">All shifts in this series</span>
                         </div>
                     </div>
                 </div>
@@ -2362,7 +2362,7 @@
             </script>
             <script id="te_rq_sa_s" type="text/x-jquery-tmpl">
                 <ul class="timeSheet">
-                    <li><span class="date"><b>Shift:</b></span><span class="time">${start_time.time} - ${end_time.time}</span><span class="last">'>Worked?'</span></li>
+                    <li><span class="date"><b>Shift:</b></span><span class="time">${start_time.time} - ${end_time.time}</span><span class="last">>Worked?</span></li>
                     {{if employees != null}}
                     {{tmpl(employees) "#te_rq_sa_s_in"}}
                     {{/if}}
@@ -2397,7 +2397,7 @@
                 </ul>
                 {{if notes.length > 0}}
                 <div class="title1 regular wide">
-                    <h3>'Title / Notes'></h3>
+                    <h3>Title / Notes></h3>
                 </div>
                 <div class="additional">
                     <p>${notes}</p>
@@ -2428,7 +2428,7 @@
                 </ul>
                 {{if notes.length > 0}}
                 <div class="title1">
-                    <h3>'Title / Notes'</h3>
+                    <h3>Title / Notes</h3>
                 </div>
                 <div class="additional">
                     <p>${notes}</p>
@@ -2488,7 +2488,7 @@
                 {{/if}}
                 {{if confirmed.length == 1}}
                 <div class="additional">
-                    <p>'Waiting for Manager to Approve.'</p>
+                    <p>Waiting for Manager to Approve.</p>
                 </div>
                 {{/if}}
             </script>
@@ -2512,7 +2512,7 @@
                     <p>${reason}</p>
                 </div>
                 <div class="title1 regular wide mar">
-                    <h3>'Potentional Acceptors'></h3>
+                    <h3>Potentional Acceptors></h3>
                 </div>
                 <div class="traders {{if confirm_before == 1}}confirmBefore{{/if}}">
                     {{tmpl(traders.data) "#te_rq_st_mst_s_l"}}
@@ -2522,7 +2522,7 @@
                 <div class="title">
                     {{if confirmed == 1 && approved == 0}}  
                     <ul class="subMenu">
-                        <li><span>'Accepted'></span></li>
+                        <li><span>Accepted></span></li>
                         <li class="first">
                             <a href="#" tradeId="${trade_id}" userId="${user}" class="accept" >
                                 <span><img width="16" height="16" src="images/request_1.png"></span>
@@ -2536,10 +2536,10 @@
                     </ul>
                     {{/if}}
                     {{if (confirmed == -1 && approved == -1) || (confirmed == 1 && approved == -1)}}
-                    <span class="fr">'Rejected'</span>
+                    <span class="fr">Rejected</span>
                     {{else}}
                     {{if confirmed == 0 && approved == 0}}
-                    <span class="fr avaitingST">'Awaiting response'</span>
+                    <span class="fr avaitingST">Awaiting response</span>
                     {{/if}}
                     {{/if}}
                     <div>
@@ -2993,13 +2993,13 @@
                     </li>
                     <li class="odd">
                         <div>
-                            <label><?=_s('Total');?></label>
+                            <label>'Total'</label>
                             <b>${hours.total.toFixed(2)}</b>
                         </div>
                     </li>
                     <li class="even">
                         <div>
-                            <label><?=_s('Cost');?></label>
+                            <label>'Cost'</label>
                             <b><span class="currency">$</span>${hours.cost.toFixed(2)}</b>
                         </div>
                     </li>
@@ -3007,7 +3007,7 @@
             </script>
             <script id="te_re_info" type="text/x-jquery-tmpl">
                 <li>
-                    <a href="#" class="fr" rel="${rId}"><img width="43" height="30" src="<?php echo _fCdnPath_;?>images/NextMenu.png"></a>
+                    <a href="#" class="fr" rel="${rId}"><img width="43" height="30" src="images/NextMenu.png"></a>
 
                         <img width="30" height="30" src="${avatar}">
                         <span class="twoLine">
@@ -3028,7 +3028,7 @@
                         <li class="idle">
                                                 <div rel="${id}" onclick = "void(0)" id="tr_touch">
                                 <div class="oneLine" style="width:80%;overflow:hidden">
-                                    <b {{if notfinished_count > 0}}style="float:left"{{/if}} >${title}</b>{{if notfinished_count > 0}}<a style="padding-left:10px;"><img style="width:16px;height:16px;padding-bottom:5px;" src="<?php echo _fCdnPath_;?>images/req_1.png"></a> {{/if}}
+                                    <b {{if notfinished_count > 0}}style="float:left"{{/if}} >${title}</b>{{if notfinished_count > 0}}<a style="padding-left:10px;"><img style="width:16px;height:16px;padding-bottom:5px;" src="images/req_1.png"></a> {{/if}}
                                 </div>
                                                                 </div>				
                         </li>
@@ -3043,12 +3043,12 @@
                 <li staffId="${id}" >
                     <img width="50" height="50" src="${avatar}" />
                     <span>${name}{{if finished == null }} 
-                                                                <b><img style="width:16px;height:16px" src="<?php echo _fCdnPath_;?>images/tc_delete.png"></b></span>
+                                                                <b><img style="width:16px;height:16px" src="images/tc_delete.png"></b></span>
                                                          {{else}}
                                                                 {{if typeof outdated != 'undefined' && outdated > 0 }}
-                                                                        <b><img style="width:16px;height:16px" src="<?php echo _fCdnPath_;?>images/req_1.png"></b></span>
+                                                                        <b><img style="width:16px;height:16px" src="images/req_1.png"></b></span>
                                                                 {{else}}
-                                                                        <b><img style="width:16px;height:16px" src="<?php echo _fCdnPath_;?>images/tc_approve.png"></b></span>
+                                                                        <b><img style="width:16px;height:16px" src="images/tc_approve.png"></b></span>
                                                                 {{/if}}								
                                                         {{/if}}
                                 </span>
@@ -3058,8 +3058,8 @@
                         <li class="idle">
                                                 <div rel="${id}" onclick = "void(0)" id="tr_touch">
                                 <div class="oneLine" style="width:80%;overflow:hidden;">
-                                    <b {{if finished_flag != -99}}style="float:left"{{/if}}>${title}</b>{{if finished_flag == 99 || finished_flag == 0}}<a style="padding-left:10px;"><img style="width:16px;height:16px;padding-bottom:5px;" src="<?php echo _fCdnPath_;?>images/req_1.png"></a> 
-                                                                                                        {{else}}{{if finished_flag == 1 }} <a style="padding-left:10px;"><img style="width:16px;height:16px;padding-bottom:3px;" src="<?php echo _fCdnPath_;?>images/tc_approve.png"></a> {{/if}}
+                                    <b {{if finished_flag != -99}}style="float:left"{{/if}}>${title}</b>{{if finished_flag == 99 || finished_flag == 0}}<a style="padding-left:10px;"><img style="width:16px;height:16px;padding-bottom:5px;" src="images/req_1.png"></a> 
+                                                                                                        {{else}}{{if finished_flag == 1 }} <a style="padding-left:10px;"><img style="width:16px;height:16px;padding-bottom:3px;" src="images/tc_approve.png"></a> {{/if}}
                                                                                                 {{/if}}
                                 </div>
                                                                 </div>	
@@ -3155,7 +3155,7 @@
             <script id="te_da_ping" type="text/x-jquery-tmpl">
                 <div class="title1 wide" style="background-color: #ebefd6; color: #565551;">
                     <div>
-                        <h3><?=_s('Ping ${name} via Email & SMS');?></h3>
+                        <h3>'Ping ${name} via Email & SMS'</h3>
                     </div>
                 </div>
                 <span class="input" >
@@ -3164,18 +3164,18 @@
                 </br>
                 <div id="da_who_tmpl">
                     <div class="title1 regular wide">
-                    <?=_s('Late');?>:
-                    <span><?=_s('You\'re late for a shift. Please contact us right away.');?> {{if company_phone.length != 0}} <?=_s('Phone');?> : ${company_phone}{{/if}}</span>
+                    'Late':
+                    <span>'You 're late for a shift. Please contact us right away.' {{if company_phone.length != 0}} 'Phone' : ${company_phone}{{/if}}</span>
                 </div>
 
                 <div class="title1 regular wide">
-                    <?=_s('P. Contact');?>:
-                    <span><?=_s('Please contact ${name} right away.');?> {{if cell_phone.length != 0}}<?=_s('Cell phone');?> : ${cell_phone}{{/if}} </span>
+                    'P. Contact':
+                    <span>'Please contact ${name} right away.' {{if cell_phone.length != 0}}'Cell phone' : ${cell_phone}{{/if}} </span>
                 </div>
 
                 <div class="title1 regular wide">
-                    <?=_s('B. Contact');?>:
-                    <span><?=_s('Please contact ${company} right away.');?> {{if company_phone.length != 0}} <?=_s('Phone');?> : ${company_phone}{{/if}}</span>
+                    'B. Contact':
+                    <span>'Please contact ${company} right away.' {{if company_phone.length != 0}} 'Phone' : ${company_phone}{{/if}}</span>
                 </div>
 
                 <div class="title1 regular wide">
@@ -3296,7 +3296,7 @@
                     <span class="time">
                         <span class="tStart">${in_time.time}</span>
                         {{if out_time.time != ""}}
-                            <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/tc_sm_clock.png" />
+                            <img width="16" height="16" src="images/tc_sm_clock.png" />
                             <span class="tEnd">${out_time.time}</span>                                       
                         {{/if}}
                     </span>
@@ -3319,7 +3319,7 @@
             <script id="te_da_up_li" type="text/x-jquery-tmpl">
                 <li>
                     <a class="fr" href="#" rel="${id}">
-                        <img width="43" height="30" src="<?php echo _fCdnPath_;?>images/NextMenu.png" />
+                        <img width="43" height="30" src="images/NextMenu.png" />
                     </a>
                     <span class="names">${start_date.formatted}</span>
                     <span class="time">${start_time.time} - ${end_time.time}</span>
