@@ -2328,7 +2328,7 @@
                             <span class="radio"  value="following"><?=_s('This shift + All following');?></span>
                         </div>
                     </div>
-                    <div class="title1 regular wide"  >
+                    <div class="title1 regular wide">
                         <div>
                             <span class="radio" value="all"><?=_s('All shifts in this series');?></span>
                         </div>
