@@ -589,7 +589,7 @@
                                 </ul>
                                 <ul class="detailsGrid">
                                     <li>
-                                        <label>'Notes'</label>
+                                        <label>Notes</label>
                                         <span class="input">
                                             <textarea id="da_se_ov_no">Write Notes...</textarea>
                                         </span>
@@ -846,7 +846,7 @@
                         </div>
                         <div class="main whosonnow" id="da_wo">
                             <div class="title">
-                                <h3>Who\'s on now</h3>
+                                <h3>Who 's on now</h3>
                             </div>
                             <ul class="timeSheet" id="da_wo_li">
 
@@ -2571,14 +2571,14 @@
                 <li {{if start_day.id < sp.raw.config.today.id}} class="hidden pastDate"{{/if}} id="rq_va_tb_tr_${id}">
                     {{if start_day.id >= sp.raw.config.today.id}}<a class="fr deleteVacation" href="#" rel="${id}"><img width="43" height="30" src="images/DelMenu.png"></a>{{/if}}
                     <span>${start_day.formatted} - ${end_day.formatted}</span>
-                    ${total_days + 1} 'Day(s), Approved'>
+                    ${total_days + 1} Day(s), Approved>
                 </li>
             </script>
             <script id="te_rq_va_aa" type="text/x-jquery-tmpl">
                 <li id="rq_va_tb_tr_${id}">
                     <a class="fr deleteVacation" href="#" rel="${id}"><img width="43" height="30" src="images/DelMenu.png"></a>
                     <span>${start_day.formatted} - ${end_day.formatted}</span>
-                    ${length} 'Day(s), Pending'>
+                    ${length} Day(s), Pending>
                 </li>
             </script>
             <script id="te_rq_va_ma_s" type="text/x-jquery-tmpl">
@@ -2591,22 +2591,22 @@
                 <ul class="multiInput">
                     <li class="even">
                         <div>
-                            <b class="fromI">'From'></b><br/>
+                            <b class="fromI">From></b><br/>
                             <span>${start_day.formatted}</span>
                         </div>
                     </li>
                     <li class="odd">
                         <div>
-                            <b class="untilI">'Until'></b><br/>
+                            <b class="untilI">Until></b><br/>
                             <span>${end_day.formatted}</span>
                         </div>
                     </li>
                 </ul>
                 <div class="title1">
-                    '<b>Status:</b> Pending'>
+                    <b>Status:</b> Pending
                 </div>
                 <div class="title1">
-                    <b>'Conflicts':</b>
+                    <b>Conflicts:</b>
                     {{if conflicts.count > 0}}
                         <br />
                         {{tmpl(conflicts.data) "#te_rq_va_ma_co"}}
@@ -2638,43 +2638,43 @@
                 <ul class="multiInput">
                     <li class="even">
                         <div>
-                            <label>'Eid'</label>
+                            <label>Eid</label>
                             <b>${eid}&nbsp;</b>
                         </div>
                     </li>
                     <li class="odd">
                         <div>
-                            <label>'Ratecard'</label>
+                            <label>Ratecard</label>
                             <b>{{if typeof hours.ratecard != 'undefined'}}${hours.ratecard.name}{{/if}}&nbsp;</b>
                         </div>
                     </li>
                     <li class="even">
                         <div>
-                            <label>'Regular'</label>
+                            <label>Regular</label>
                             <b>${hours.regular.toFixed(2)}&nbsp;</b>
                         </div>
                     </li>
                     <li class="odd">
                         <div>
-                            <label>'Special'></label>
+                            <label>Special></label>
                             <b>${hours.special.toFixed(2)}&nbsp;</b>
                         </div>
                     </li>
                     <li class="even">
                         <div>
-                            <label>'Overtime'</label>
+                            <label>Overtime</label>
                             <b>${hours.overtime.toFixed(2)}&nbsp;</b>
                         </div>
                     </li>
                     <li class="odd">
                         <div>
-                            <label>'Total'</label>
+                            <label>Total</label>
                             <b>${hours.total.toFixed(2)}&nbsp;</b>
                         </div>
                     </li>
                     <li class="even">
                         <div>
-                            <label>'Cost'></label>
+                            <label>Cost></label>
                             <b><span class="currency">$</span>${hours.cost.toFixed(2)}&nbsp;</b>
                         </div>
                     </li>
@@ -2691,43 +2691,43 @@
                 <ul class="multiInput">
                     <li class="even">
                         <div>
-                            <label>'Eid'</label>
+                            <label>Eid</label>
                             <b>${eid}&nbsp;</b>
                         </div>
                     </li>
                     <li class="odd">
                         <div>
-                            <label>'Rate'></label>
+                            <label>Rate></label>
                             <b>${hours.rate}&nbsp;</b>
                         </div>
                     </li>
                     <li class="even">
                         <div>
-                            <label>'Regular'</label>
+                            <label>Regular</label>
                             <b>${hours.regular.toFixed(2)}&nbsp;</b>
                         </div>
                     </li>
                     <li class="odd">
                         <div>
-                            <label>'Special'</label>
+                            <label>Special</label>
                             <b>${hours.special.toFixed(2)}&nbsp;</b>
                         </div>
                     </li>
                     <li class="even">
                         <div>
-                            <label>'Overtime'</label>
+                            <label>Overtime</label>
                             <b>${hours.overtime.toFixed(2)}&nbsp;</b>
                         </div>
                     </li>
                     <li class="odd">
                         <div>
-                            <label>'Total'></label>
+                            <label>Total></label>
                             <b>${hours.total.toFixed(2)}&nbsp;</b>
                         </div>
                     </li>
                     <li class="even">
                         <div>
-                            <label>'Cost'></label>
+                            <label>Cost></label>
                             <b><span class="currency">$</span>${hours.cost.toFixed(2)}&nbsp;</b>
                         </div>
                     </li>
@@ -2744,73 +2744,73 @@
                 <ul class="multiInput">
                     <li class="even">
                         <div>
-                            <label>'Eid'</label>
+                            <label>Eid</label>
                             <b>${eid}&nbsp;</b>
                         </div>
                     </li>
                     <li class="odd">
                         <div>
-                            <label>'Position'></label>
+                            <label>Position></label>
                             <b>${position.name}&nbsp;</b>
                         </div>
                     </li>
                     <li class="even">
                         <div>
-                            <label>'Location'></label>
+                            <label>Location></label>
                             <b>${hours.location.name}&nbsp;</b>
                         </div>
                     </li>
                     <li class="odd">
                         <div>
-                            <label>'Rate'></label>
+                            <label>Rate></label>
                             <b>${hours.rate}&nbsp;</b>
                         </div>
                     </li>
                     <li class="even">
                         <div>
-                            <label>'Ratecard'</label>
+                            <label>Ratecard</label>
                             <b>{{if typeof hours.ratecard != 'undefined'}}${hours.ratecard.name}{{/if}}&nbsp;</b>
                         </div>
                     </li>
                     <li class="odd">
                         <div>
-                            <label>'Start Time'</label>
+                            <label>Start Time</label>
                             <b>${start_time.time}&nbsp;</b>
                         </div>
                     </li>
                     <li class="even">
                         <div>
-                            <label>'End Time'</label>
+                            <label>End Time</label>
                             <b>${end_time.time}&nbsp;</b>
                         </div>
                     </li>
                     <li class="odd">
                         <div>
-                            <label>'Regular'</label>
+                            <label>Regular</label>
                             <b>${hours.regular.toFixed(2)}&nbsp;</b>
                         </div>
                     </li>
                     <li class="even">
                         <div>
-                            <label>'Special'</label>
+                            <label>Special</label>
                             <b>${hours.special.toFixed(2)}&nbsp;</b>
                         </div>
                     </li>
                     <li class="odd">
                         <div>
-                            <label>'Overtime'</label>
+                            <label>Overtime</label>
                             <b>${hours.overtime.toFixed(2)}&nbsp;</b>
                         </div>
                     </li>
                     <li class="even">
                         <div>
-                            <label>'Total'</label>
+                            <label>Total</label>
                             <b>${hours.total.toFixed(2)}&nbsp;</b>
                         </div>
                     </li>
                     <li class="odd">
                         <div>
-                            <label>'Cost'</label>
+                            <label>Cost</label>
                             <b><span class="currency">$</span>${hours.cost.toFixed(2)}&nbsp;</b>
                         </div>
                     </li>
@@ -2827,43 +2827,43 @@
                 <ul class="multiInput">
                     <li class="even">
                         <div>
-                            <label>'Eid'</label>
+                            <label>Eid</label>
                             <b>${eid}&nbsp;</b>
                         </div>
                     </li>
                     <li class="odd">
                         <div>
-                            <label>'Rate'</label>
+                            <label>Rate</label>
                             <b>&nbsp;</b>
                         </div>
                     </li>
                     <li class="even">
                         <div>
-                            <label>'Regular'</label>
+                            <label>Regular</label>
                             <b>${hours.regular.toFixed(2)}</b>
                         </div>
                     </li>
                     <li class="odd">
                         <div>
-                            <label>'Special'</label>
+                            <label>Special</label>
                             <b>${hours.special.toFixed(2)}</b>
                         </div>
                     </li>
                     <li class="even">
                         <div>
-                            <label>'Overtime'</label>
+                            <label>Overtime</label>
                             <b>${hours.overtime.toFixed(2)}</b>
                         </div>
                     </li>
                     <li class="odd">
                         <div>
-                            <label>'Total'</label>
+                            <label>Total</label>
                             <b>${hours.total.toFixed(2)}</b>
                         </div>
                     </li>
                     <li class="even">
                         <div>
-                            <label>'Cost'</label>
+                            <label>Cost</label>
                             <b><span class="currency">$</span>${hours.cost.toFixed(2)}</b>
                         </div>
                     </li>
@@ -2880,73 +2880,73 @@
                 <ul class="multiInput">
                     <li class="even">
                         <div>
-                            <label>'Eid'</label>
+                            <label>Eid</label>
                             <b>${eid}&nbsp;</b>
                         </div>
                     </li>
                     <li class="odd">
                         <div>
-                            <label>'Position'</label>
+                            <label>Position</label>
                             <b>${position.name}&nbsp;</b>
                         </div>
                     </li>
                     <li class="even">
                         <div>
-                            <label>'Location'</label>
+                            <label>Location</label>
                             <b>${hours.location.name}&nbsp;</b>
                         </div>
                     </li>
                     <li class="odd">
                         <div>
-                            <label>'Rate'</label>
+                            <label>Rate</label>
                             <b>${hours.rate}&nbsp;</b>
                         </div>
                     </li>
                     <li class="even">
                         <div>
-                            <label>'Ratecard'</label>
+                            <label>Ratecard</label>
                             <b>{{if typeof hours.ratecard != 'undefined'}}${hours.ratecard.name}{{/if}}&nbsp;</b>
                         </div>
                     </li>
                     <li class="odd">
                         <div>
-                            <label>'Start Time'</label>
+                            <label>Start Time</label>
                             <b>${start_time.time}&nbsp;</b>
                         </div>
                     </li>
                     <li class="even">
                         <div>
-                            <label>'End Time'</label>
+                            <label>End Time</label>
                             <b>${end_time.time}&nbsp;</b>
                         </div>
                     </li>
                     <li class="odd">
                         <div>
-                            <label>'Regular'</label>
+                            <label>Regular</label>
                             <b>${hours.regular.toFixed(2)}&nbsp;</b>
                         </div>
                     </li>
                     <li class="even">
                         <div>
-                            <label>'Special'</label>
+                            <label>Special</label>
                             <b>${hours.special.toFixed(2)}&nbsp;</b>
                         </div>
                     </li>
                     <li class="odd">
                         <div>
-                            <label>'Overtime'</label>
+                            <label>Overtime</label>
                             <b>${hours.overtime.toFixed(2)}&nbsp;</b>
                         </div>
                     </li>
                     <li class="even">
                         <div>
-                            <label>'Total'</label>
+                            <label>Total</label>
                             <b>${hours.total.toFixed(2)}&nbsp;</b>
                         </div>
                     </li>
                     <li class="odd">
                         <div>
-                            <label>'Cost'</label>
+                            <label>Cost</label>
                             <b><span class="currency">$</span>${hours.cost.toFixed(2)}&nbsp;</b>
                         </div>
                     </li>
@@ -2963,43 +2963,43 @@
                 <ul class="multiInput">
                     <li class="even">
                         <div>
-                            <label>'Eid'</label>
+                            <label>Eid</label>
                             <b>${eid}&nbsp;</b>
                         </div>
                     </li>
                     <li class="odd">
                         <div>
-                            <label>'Rate'</label>
+                            <label>Rate</label>
                             <b>&nbsp;</b>
                         </div>
                     </li>
                     <li class="even">
                         <div>
-                            <label>'Regular'</label>
+                            <label>Regular</label>
                             <b>${hours.regular.toFixed(2)}</b>
                         </div>
                     </li>
                     <li class="odd">
                         <div>
-                            <label>'Special'</label>
+                            <label>Special</label>
                             <b>${hours.special.toFixed(2)}</b>
                         </div>
                     </li>
                     <li class="even">
                         <div>
-                            <label>'Overtime'</label>
+                            <label>Overtime</label>
                             <b>${hours.overtime.toFixed(2)}</b>
                         </div>
                     </li>
                     <li class="odd">
                         <div>
-                            <label>'Total'</label>
+                            <label>Total</label>
                             <b>${hours.total.toFixed(2)}</b>
                         </div>
                     </li>
                     <li class="even">
                         <div>
-                            <label>'Cost'</label>
+                            <label>Cost</label>
                             <b><span class="currency">$</span>${hours.cost.toFixed(2)}</b>
                         </div>
                     </li>
@@ -3155,7 +3155,7 @@
             <script id="te_da_ping" type="text/x-jquery-tmpl">
                 <div class="title1 wide" style="background-color: #ebefd6; color: #565551;">
                     <div>
-                        <h3>'Ping ${name} via Email & SMS'</h3>
+                        <h3>Ping ${name} via Email & SMS</h3>
                     </div>
                 </div>
                 <span class="input" >
@@ -3164,18 +3164,18 @@
                 </br>
                 <div id="da_who_tmpl">
                     <div class="title1 regular wide">
-                    'Late':
-                    <span>'You 're late for a shift. Please contact us right away.' {{if company_phone.length != 0}} 'Phone' : ${company_phone}{{/if}}</span>
+                    Late:
+                    <span>You 're late for a shift. Please contact us right away. {{if company_phone.length != 0}} Phone : ${company_phone}{{/if}}</span>
                 </div>
 
                 <div class="title1 regular wide">
-                    'P. Contact':
-                    <span>'Please contact ${name} right away.' {{if cell_phone.length != 0}}'Cell phone' : ${cell_phone}{{/if}} </span>
+                    P. Contact:
+                    <span>Please contact ${name} right away. {{if cell_phone.length != 0}} Cell phone: ${cell_phone}{{/if}} </span>
                 </div>
 
                 <div class="title1 regular wide">
-                    'B. Contact':
-                    <span>'Please contact ${company} right away.' {{if company_phone.length != 0}} 'Phone' : ${company_phone}{{/if}}</span>
+                    B. Contact:
+                    <span>Please contact ${company} right away. {{if company_phone.length != 0}} Phone: ${company_phone}{{/if}}</span>
                 </div>
 
                 <div class="title1 regular wide">
@@ -3253,7 +3253,7 @@
                 </div>
                 <div class="title">
                     <div>                 
-                        <span>Length')</span>
+                        <span>Length</span>
                         ${length.total_hours}h
                     </div>         
                 </div>
