@@ -1,4 +1,5 @@
 var sp = new ShiftPlanning();
+console.log(sp);
 $(document).ready(function() {
     $.ajax({
         url: 'load.php',

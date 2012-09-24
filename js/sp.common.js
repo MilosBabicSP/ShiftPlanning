@@ -3,7 +3,10 @@ function ShiftPlanning(){
     //api cals
     this.apiCalls = {};
     this.successMessage = '';
-    this.initialize();
+    
+    if (typeof gap == 'undefined') {
+        this.initialize();
+    }
     
     return this;
 }
