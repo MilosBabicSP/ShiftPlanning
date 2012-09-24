@@ -150,12 +150,12 @@ ShiftPlanning.prototype.loadSite = function() {
         self.toggleMenu();
     });
         
-    if(user.loggedIn){
+    if(user.loggedIn) {
         $('.loginContainer').hide();
         $('body').removeClass('login');
         $('html').css('height','auto');
         $('.applicationContainer').show();
-        if (self.hash().length == 0 || self.hash() == 'login'){
+        if (self.hash().length == 0 || self.hash() == 'login') {
             self.hash('dashboard');
         }
     } else {
