@@ -3,7 +3,7 @@ function ShiftPlanning(){
     //api cals
     this.apiCalls = {};
     this.successMessage = '';
-//    this.initialize();
+    this.initialize();
 }
 
 ShiftPlanning.prototype = {
