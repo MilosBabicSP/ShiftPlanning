@@ -125,75 +125,84 @@ ShiftPlanning.prototype.initialize = function(){
                 }
             }
         }
-    });  
-    $(document).ready(function(){
-        //For phonegap app only
-        if (typeof gap == 'undefined') {
-            console.log('test');
-            init();
-        }
-        $('.toggleMenu').bind('click', function(e){
-            e.preventDefault();
-            self.toggleMenu();
+    }); 
+    
+    if (typeof gap != 'undefined') {
+        self.loadSite();
+    } else {
+        $(document).ready(function(){
+            self.loadSite();
         });
-        
-        if(user.loggedIn){
-            $('.loginContainer').hide();
-            $('body').removeClass('login');
-            $('html').css('height','auto');
-            $('.applicationContainer').show();
-            if (self.hash().length == 0 || self.hash() == 'login'){
-                self.hash('dashboard');
-            }
-        } else {
-            $('.loginContainer').show();
-            $('body').addClass('login');
-            self.hash('login');
-            $('#lo_u').focus();
-        }
-        
-        $('#wrapper .subNavigation .subNav:not(.notMain) a').bind(clickEvent, function(e){
-            e.preventDefault();
-            self.loadSubPage($(this), $(this).parent().parent().attr('page'), $(this).attr('subpage'));
-        });
-        
-        $('#menu .mainNav > li > a').bind(clickEvent, function(e){
-            if ($(this).hasClass('exit')) return true;
-            e.preventDefault();
-            if ($(this).attr('page') == self.hash()){
-                return false;
-            }
-            self.toggleMenu();
-            self.hash($(this).attr('page'));
-        });
-        $(window).hashchange();
-        
-        setInterval(function(){
-            $('#menu').css('height', ($(window).height() > $(document).height() ? $(window).height() : $(document).height()));
-        }, 1000);
-        $('#wrapper').width($(window).width());
-        $('body').width($(window).width());
-        
-        //all mainUser names to lead to settings 
-        $('.userName').bind(clickEvent, function(){
-            self.loadSubPage('', 'dashboard', 'settings');
-        });
-        
-        $('#wrapper').bind(clickEvent, function(e){
-            if ($('#wrapper').hasClass('extended') && !$(e.target.parentElement).hasClass('toggleMenu')){
-                self.toggleMenu();
-            }
-        })
-        
-        if (isAndroid){
-            $('#da_up_fi_hide').hide();
-        }
-    });
+    }
+    
     
     $(window).bind('resize', function(){
         $('#wrapper').width($(window).width());
         $('body').width($(window).width());
     });
+}
+
+ShiftPlanning.prototype.loadSite = function() {
+    var self = this;
+    
+    
+    init();
+    $('.toggleMenu').bind('click', function(e){
+        e.preventDefault();
+        self.toggleMenu();
+    });
+        
+    if(user.loggedIn){
+        $('.loginContainer').hide();
+        $('body').removeClass('login');
+        $('html').css('height','auto');
+        $('.applicationContainer').show();
+        if (self.hash().length == 0 || self.hash() == 'login'){
+            self.hash('dashboard');
+        }
+    } else {
+        $('.loginContainer').show();
+        $('body').addClass('login');
+        self.hash('login');
+        $('#lo_u').focus();
+    }
+        
+    $('#wrapper .subNavigation .subNav:not(.notMain) a').bind(clickEvent, function(e){
+        e.preventDefault();
+        self.loadSubPage($(this), $(this).parent().parent().attr('page'), $(this).attr('subpage'));
+    });
+        
+    $('#menu .mainNav > li > a').bind(clickEvent, function(e){
+        if ($(this).hasClass('exit')) return true;
+        e.preventDefault();
+        if ($(this).attr('page') == self.hash()){
+            return false;
+        }
+        self.toggleMenu();
+        self.hash($(this).attr('page'));
+    });
+    $(window).hashchange();
+        
+    setInterval(function(){
+        $('#menu').css('height', ($(window).height() > $(document).height() ? $(window).height() : $(document).height()));
+    }, 1000);
+    $('#wrapper').width($(window).width());
+    $('body').width($(window).width());
+        
+    //all mainUser names to lead to settings 
+    $('.userName').bind(clickEvent, function(){
+        self.loadSubPage('', 'dashboard', 'settings');
+    });
+        
+    $('#wrapper').bind(clickEvent, function(e){
+        if ($('#wrapper').hasClass('extended') && !$(e.target.parentElement).hasClass('toggleMenu')){
+            self.toggleMenu();
+        }
+    })
+        
+    if (isAndroid){
+        $('#da_up_fi_hide').hide();
+    }
 }
 
 ShiftPlanning.prototype.globalLoader = function(){
