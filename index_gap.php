@@ -2328,7 +2328,7 @@
                             <span class="radio"  value="following">'This shift + All following'</span>
                         </div>
                     </div>
-                    <div class="title1 regular wide"  >
+                    <div class="title1 regular wide">
                         <div>
                             <span class="radio" value="all">'All shifts in this series'?></span>
                         </div>
@@ -3179,14 +3179,14 @@
                 </div>
 
                 <div class="title1 regular wide">
-                    <?=_s('Birthday');?>:
-                    <span><?=_s('Happy Birthday from everyone at ${company}.');?></span>
+                    Birthday:
+                    <span>Happy Birthday from everyone at ${company}.</span>
                 </div>
 
                 <div class="title">
                     <span class="fr">
                         <a id="da_who_send" href="#">
-                            <span><?=_s('Send Ping');?></span>
+                            <span>Send Ping</span>
                         </a>
                     </span>
                 </div>
@@ -3202,13 +3202,13 @@
                         ${start_time.time} - ${end_time.time}
                     </span>
                     <a class="fr" shiftId="${id}" href="#">
-                        <img height="30" width="43" src="<?php echo _fCdnPath_;?>images/NextMenu.png">
+                        <img height="30" width="43" src="images/NextMenu.png">
                     </a>
                 </li>
             </script>
                 <script id="te_da_onnow" type="text/x-jquery-tmpl">
                 <li>
-                    <a href="#" class="fr" userID="${userID}"><img width="43" height="30" src="<?php echo _fCdnPath_;?>images/NextMenu.png"></a>
+                    <a href="#" class="fr" userID="${userID}"><img width="43" height="30" src="images/NextMenu.png"></a>
 
                         <img width="30" height="30" src="${avatar}">
                         <span class="twoLine">
@@ -3222,7 +3222,7 @@
                     {{if typeof avatar.medium != 'undefined'}}
                     <img src="${avatar.medium}" />
                     {{else}}
-                    <img src="<?php echo _fCdnPath_;?>images/no-avatar.png" />
+                    <img src="images/no-avatar.png" />
                     {{/if}}
                     <span>${name}</span>
                 </li>
@@ -3239,33 +3239,33 @@
                 </div>
                 <div class="title">
                     <div>                 
-                        <span><?=_s('In time');?></span>
+                        <span>In time</span>
                         ${in_time.day} <br/>
                         ${in_time.time}
                     </div>         
                 </div>
                 <div class="title">
                     <div>                 
-                        <span><?=_s('Out time');?></span>
+                        <span>Out time</span>
                         ${out_time.day} <br/>
                         ${out_time.time}
                     </div>         
                 </div>
                 <div class="title">
                     <div>                 
-                        <span><?=_s('Length');?></span>
+                        <span>Length')</span>
                         ${length.total_hours}h
                     </div>         
                 </div>
                 <div class="title">
                     <div>                 
-                        <span><?=_s('In location');?></span>
+                        <span>In location</span>
                         ${in_location}
                     </div>         
                 </div>
                 <div class="title">
                     <div>                 
-                        <span><?=_s('Out location');?></span>
+                        <span>Out location</span>
                         ${out_location}
                     </div>         
                 </div>
@@ -3336,28 +3336,28 @@
                 <li id="da_in_msg_${id}" class="{{if date_read == 0}}unread{{/if}}">
                     <div class="msgHead" messageId="${id}">
                         <h5>${subject}</h5>
-                        <p><span class="fr">${date_sent_formatted.formatted}</span><?=_s('From');?>: ${from.name}</p>
+                        <p><span class="fr">${date_sent_formatted.formatted}</span>From: ${from.name}</p>
                     </div>
                     <div class="msgBody">
                         <p>{{html message_formatted}}</p>
                         <div class="newMsg hidden">
                             <input type="hidden" value="${from.id}" />
-                            <label><?=_s('Subject');?></label>
+                            <label>Subject</label>
                             <span class="input">
                                 <input type="text" name="" value=""/>
                             </span>
-                            <label><?=_s('Message');?></label>
+                            <label>Message</label>
                             <span class="input">
                                 <textarea></textarea>
                             </span>
                             <div class="title">
-                                <span class="fr"><a href="#"><span><?=_s('Send Message');?></span></a></span>
-                                <span class="fl"><a href="#"><?=_s('Cancel');?></a></span>
+                                <span class="fr"><a href="#"><span>Send Message</span></a></span>
+                                <span class="fl"><a href="#">Cancel</a></span>
                             </div>
                         </div>
                         <div class="title">
-                            <span class="fr"><a class="butDel" href="#" rel="${id}"><span><?=_s('Delete');?></span></a></span>
-                            <span class="fl"><a class="butRpl" href="#" rel="${id}"><?=_s('Reply');?></a></span>
+                            <span class="fr"><a class="butDel" href="#" rel="${id}"><span>Delete</span></a></span>
+                            <span class="fl"><a class="butRpl" href="#" rel="${id}">Reply</a></span>
                         </div>
                     </div>
                 </li>
@@ -3375,14 +3375,14 @@
                     {{/if}}
                     <a href="#" class="msgRpl" rel="${id}"></a>
                     {{if comments.length > 0}}
-                    <a href="#" class="cmtCount" rel="${id}"><span class="ico">${comments.length} <?=_s('Comments');?></span><span class="tip"></span></a>
+                    <a href="#" class="cmtCount" rel="${id}"><span class="ico">${comments.length} Comments</span><span class="tip"></span></a>
                     {{/if}}
                     <ul class="cmts">
                         {{tmpl(comments) "#te_da_wa_me_co"}}
                         <li class="last">
                             <input type="submit" value="" rel="${id}" />
                             <span class="input">
-                                <input type="text" name="" value="<?=_s('Write a comment...');?>" />
+                                <input type="text" name="" value="Write a comment..." />
                             </span>
                         </li>
                     </ul>
