@@ -1798,7 +1798,7 @@ require_once('api.php');
                                 </div>
                                 <ul class="detailsGrid">
                                     <li>
-                                        <ul>    
+                                        <ul>
 
                                         </ul>
                                     </li>
