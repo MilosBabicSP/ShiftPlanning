@@ -2,7 +2,7 @@ var sp = {};
 $(document).ready(function() {
     $.ajax({
         url: 'load.php',
-        success : function(res){
+        success : function(res) {
             $('#prepLoadFiles').after(res);
             console.log(sp, 'test', ShiftPlanning);
             //sp = new ShiftPlanning();
