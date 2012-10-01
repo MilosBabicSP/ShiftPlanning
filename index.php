@@ -13,12 +13,27 @@ if (isset($_GET['logout'])){
     $fixed = substr(WWW_PATH, 7);
     $fixed = str_replace('//', '/', $fixed);
     $fixed = str_replace('index.php?logout=true', ' ', $fixed);
-	unset($_COOKIE['shiftplanning_mobile_rememberme']);
-	unset($_COOKIE['shiftplanning_mobile_usertoken']);
-	unset($_COOKIE['shiftplanning_mobile_username']);
-	unset($_COOKIE['shiftplanning_mobile_userid']);
-	unset($_COOKIE['shiftplanning_mobile_usercompany']);
-	unset($_COOKIE['shiftplanning_mobile_userphone']);
+	
+	$ccks = array(
+		'shiftplanning_mobile_rememberme',
+		'shiftplanning_mobile_usertoken',
+		'shiftplanning_mobile_username',
+		'shiftplanning_mobile_userid',
+		'shiftplanning_mobile_usercompany',
+		'shiftplanning_mobile_userphone'
+		);
+	
+	if (isset($_SERVER['HTTP_COOKIE'])) {
+		$cookies = explode(';', $_SERVER['HTTP_COOKIE']);
+		foreach ($cookies as $cookie) {
+			$parts = explode('=', $cookie);
+			$name = trim($parts[0]);
+			if(in_array($name, $ccks)){
+				setcookie($name, '', time() - 1000);
+				setcookie($name, '', time() - 1000, '/');
+			}
+		}
+	}
     header('Location: ' . 'http://' . $fixed);
 }
 
