@@ -34,7 +34,6 @@ class Functions{
 	$this->settings = json_decode(_iapi(array('module' => 'admin.settings', 'method' => 'GET'), 'json', true), true);
         $employee = json_decode(_iapi(array('module' => 'staff.employee', 'method' => 'GET', 'id' => $_GET['id']), 'json', true), true);
         
-        print_r($employee['timezone_info']);
 	$timezones['-12:00,0'] = '(-12:00) International Date Line West';
 	$tzPhp_val['-12:00,0'] = 'Etc/GMT+12';
 
@@ -196,7 +195,7 @@ class Functions{
 	$tzPhp_val['+13:00,0'] = 'Pacific/Tongatapu';
 	
 	
-	date_default_timezone_set($tzPhp_val[$this->settings['timezone']]);
+	date_default_timezone_set($tzPhp_val[$employee['timezone_info']['name']]);
     }
     
     function getCurrentTime(){
