@@ -13,6 +13,12 @@ if (isset($_GET['logout'])){
     $fixed = substr(WWW_PATH, 7);
     $fixed = str_replace('//', '/', $fixed);
     $fixed = str_replace('index.php?logout=true', ' ', $fixed);
+	unset($_COOKIE['shiftplanning_mobile_rememberme']);
+	unset($_COOKIE['shiftplanning_mobile_usertoken']);
+	unset($_COOKIE['shiftplanning_mobile_username']);
+	unset($_COOKIE['shiftplanning_mobile_userid']);
+	unset($_COOKIE['shiftplanning_mobile_usercompany']);
+	unset($_COOKIE['shiftplanning_mobile_userphone']);
     header('Location: ' . 'http://' . $fixed);
 }
 
