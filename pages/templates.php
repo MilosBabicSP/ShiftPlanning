@@ -1160,7 +1160,7 @@
             <img width="50" height="50" title="user name" src="${avatar}" />
             <div class="msg">
                 <h4>${userName}</h4>
-                {{if title.length > 0}}<p>${title}<br /><p><p>{{/if}}{{html post}}</p>
+                {{if title.length > 0}}<p>{{html title}}<br /><p><p>{{/if}}{{html post}}</p>
                 <span>${time}</span>
             </div>
             {{if owner}}
