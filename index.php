@@ -1,9 +1,5 @@
 <?php
-<<<<<<< HEAD
-die('die');
-=======
 die('test');
->>>>>>> 469d51dd3d06ff4afa359751cbc385bb94a6997d
 require_once('functions.php');
 require_once('api.php');
 
