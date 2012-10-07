@@ -1,4 +1,5 @@
 <?php
+die('die');
 require_once('functions.php');
 require_once('api.php');
 
