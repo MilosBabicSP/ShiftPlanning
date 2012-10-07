@@ -4,6 +4,10 @@ var lastTouch;
 var clickEvent = 'click';
 var deviceAgent = navigator.userAgent.toLowerCase();
 var agentID = deviceAgent.match(/(iphone|ipod|ipad)/);
+
+var ua = navigator.userAgent.toLowerCase();
+var isAndroid = ua.indexOf("android") > -1; //&& ua.indexOf("mobile");
+
 if (agentID) {
     clickEvent = 'touch';
 }
@@ -150,6 +154,7 @@ ShiftPlanning.prototype.initialize = function(){
         });
         
         $('#menu .mainNav > li > a').bind(clickEvent, function(e){
+            if ($(this).hasClass('exit')) return true;
             e.preventDefault();
             if ($(this).attr('page') == sp.hash()){
                 return false;
@@ -175,6 +180,10 @@ ShiftPlanning.prototype.initialize = function(){
                 self.toggleMenu();
             }
         })
+        
+        if (isAndroid){
+            $('#da_up_fi_hide').hide();
+        }
     });
     
     $(window).bind('resize', function(){

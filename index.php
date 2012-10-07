@@ -8,7 +8,34 @@ if (isset($_GET['timezone'])){
     die();
 }
 
-require_once('config.php');
+if (isset($_GET['logout'])){
+    _iapi(array('module' => 'staff.logout', 'method' => 'GET'), 'json', true);
+    $fixed = substr(WWW_PATH, 7);
+    $fixed = str_replace('//', '/', $fixed);
+    $fixed = str_replace('index.php?logout=true', ' ', $fixed);
+	
+	$ccks = array(
+		'shiftplanning_mobile_rememberme',
+		'shiftplanning_mobile_usertoken',
+		'shiftplanning_mobile_username',
+		'shiftplanning_mobile_userid',
+		'shiftplanning_mobile_usercompany',
+		'shiftplanning_mobile_userphone'
+		);
+	
+	if (isset($_SERVER['HTTP_COOKIE'])) {
+		$cookies = explode(';', $_SERVER['HTTP_COOKIE']);
+		foreach ($cookies as $cookie) {
+			$parts = explode('=', $cookie);
+			$name = trim($parts[0]);
+			if(in_array($name, $ccks)){
+				setcookie($name, '', time() - 1000);
+				setcookie($name, '', time() - 1000, '/');
+			}
+		}
+	}
+    header('Location: ' . 'http://' . $fixed);
+}
 
 require_once('jspacker.php');
 include 'i18n/lib/class.i18n.php';
@@ -31,6 +58,9 @@ if (Functions::getInstance()->isRememberMe()){
     $_SESSION['user']['business']['phone']  = Functions::getInstance()->getCookie('shiftplanning_mobile_userphone');
 }
 
+
+//Get google IP
+$googleIP = gethostbyname('www.google.com');
 
 ?>
 <!DOCTYPE html>
@@ -66,6 +96,7 @@ if (Functions::getInstance()->isRememberMe()){
 	<script src="<?php echo _fCdnPath_;?>i18n/gettext.js" type="text/javascript"></script>
         <script src="<?php echo _fCdnPath_;?>js/sp.user.js" type="text/javascript"></script>
         <script type="text/javascript">
+            var googleIp = '<?php echo $googleIP;?>';
 <?
 $vtoken = _iapi(array('module' => 'api.vtoken', 'method' => 'GET', 'token' => $_SESSION['api']['token']), 'array');
 if ($vtoken['data'] != '1') {
@@ -228,8 +259,6 @@ if ($vtoken['data'] != '1') {
                     </form>
                     <div class="footerTxt"><?=_s('View in: Mobile |')?> <a href="/app/?fullapp=true"><?=_s('Full Version')?></a><br/>
                         <a href="/terms/"><?=_s('Terms of Use')?></a> | <a href="/privacy/"><?=_s('Privacy Policy')?></a><br/>
-			<a href="javascript://" onclick="$('#gotothis').html(Android.showToast());" id="gotothis"><?=_s('Privacy Policy')?></a>
-			<br />
                         &copy; <?php echo date('Y'); ?> ShiftPlanning</div>
 		    
 		    
@@ -253,9 +282,9 @@ if ($vtoken['data'] != '1') {
                         </ul>
                     </li>
                     <li id="menu_staff"><a class="staf" href="#" page="staff" ><?=_s('Staff')?></a></li>
-					<li id="menu_training"><a class="trai" href="#" page="training"><?=_s('Training')?></a></li>				
+                    <li id="menu_training"><a class="trai" href="#" page="training"><?=_s('Training')?></a></li>				
                     <li id="menu_reports"><a class="repo" href="#" page="reports" ><?=_s('Reports')?></a></li>
-                    <li id="menu_logout"><a class="exit" href="#" onclick="sp.staff.logout();"><?=_s('Logout')?></a></li>
+                    <li id="menu_logout"><a class="exit" href="index.php?logout=true"><?=_s('Logout')?></a></li>
                 </ul>
             </div>
 			

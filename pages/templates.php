@@ -51,21 +51,24 @@
 	    </div>
 	    {{/if}}
 		{{if location != 0}}
-		<div class="title1 regular wide" style="margin-left:-5px;">
-			<h3 class="icoLoc"><?=_s('Remote site');?>:</h3>
-		</div>
-		<div class="title1 wide">
-			<b>${location.name}</b>
-		</div>
-		<div class="title1 wide" >
-		<iframe  id="map" width="100%" height="180" frameborder="0" scrolling="no" src="http://maps.google.com/maps?f=d&source=s_d&saddr=${location.address}&hl=en&z=15&output=embed">
-		
-		</iframe>
-		</div>
-		<div class="title1 wide">
-			<a target="_blank" onclick = "void(0)" id="get_directions" href="http://maps.google.com/maps?f=d&hl=en&geocode=&saddr=${user_location}&daddr=${location.address}&ie=UTF8&z=7&output=embed">Get directions</a>
-			
-		</div>
+                    <div class="title1 regular wide" style="margin-left:-5px;">
+                            <h3 class="icoLoc"><?=_s('Remote site');?>:</h3>
+                    </div>
+                    <div class="title1 wide">
+                            <b>${location.name}</b>
+                    </div>
+                    <div class="title1 wide">
+                        <div id="sc_location_iframe">
+
+                        </div>
+                        {{if location.notes.length > 0}}
+                            <br />
+                            ${location.notes}
+                        {{/if}}
+                    </div>
+                    <div class="title1 wide">
+                            <a target="_blank" onclick = "void(0)" id="get_directions" href="http://${googleIp}/maps/?f=d&hl=en&geocode=&saddr=${user_location}&daddr=${location.address}&ie=UTF8&z=7&output=embed">Get directions</a>
+                    </div>
 		{{/if}}
 	    {{if employees.length > 0 }}
 	    <div class="title1 regular wide">
@@ -856,7 +859,13 @@
 	</script>
 	<script id="te_tr_module" type="text/x-jquery-tmpl">
 		<div class="title" style="display: block;">
-			<h3 class="fl">${title}{{if duedate != 0 }} {{if finished_flag == 0 || finished_flag == 99 }}<br><a style="color:${color}">Due date: ${duedate_formated}</a> {{/if}}{{/if}} </h3>
+			<h3 class="fl">${title}{{if duedate != 0 }} {{if finished_flag == 0 || finished_flag == 99 }}<br><a style="color:${color}">Due date: ${duedate_formated}</a> {{/if}}{{/if}} 
+			{{if est_time > 0}} 		
+				<br/>	
+				<a style="color:green">Est. time : ${est_time} min</a>		
+			{{/if}}	
+			</h3>
+		
 		</div>
 		<div class="wys" contents="content_${id}" style="border-bottom: 1px solid #DBDBDB; padding-bottom: 10px;">
 			${contents}
@@ -1151,7 +1160,7 @@
             <img width="50" height="50" title="user name" src="${avatar}" />
             <div class="msg">
                 <h4>${userName}</h4>
-                {{if title.length > 0}}<p>${title}<br /><p><p>{{/if}}{{html post}}</p>
+                {{if title.length > 0}}<p>{{html title}}<br /><p><p>{{/if}}{{html post}}</p>
                 <span>${time}</span>
             </div>
             {{if owner}}

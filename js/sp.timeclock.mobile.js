@@ -202,7 +202,7 @@ ShiftPlanningTimeClock.prototype.overviewSubEvents = function(){
     $('#tc_ov_cb .icoClock').html('<time style="height:35px;display:block;">' + sp.raw.config.today.formatted + '</time>');
     
     $.ajax({
-	url: 'index.php?timezone=true',
+	url: 'index.php?timezone=true&id=' + sp.staff.admin.info.id,
 	type: 'get',
 	success: function(response){
 	    $('#tc_ov_cb .icoClock').html(response);

@@ -242,10 +242,10 @@ ShiftPlanningStaff.prototype.login = function(){
         ['location.locations', 'GET', {}]
         ]
         sp.multiApi(calls, function(response){
-            $('#lo_b').removeClass('loading');
             sp.api('api.config', 'GET', {}, function(config){
                 //was hitting the 5 request limit for multi api so we needed to send a separate call
                 $('.loginContainer').fadeOut(500, function(){
+                    $('#lo_b').removeClass('loading');
                     user.loggedIn = 1;
                     user.name = loginResponse.data.employee.name;
                     user.company = loginResponse.data.business.name;
