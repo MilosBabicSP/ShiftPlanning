@@ -133,7 +133,7 @@
     <script id="te_sc_shifts" type="text/x-jquery-tmpl">
         <tr shiftId="${id}" class="isShift">
             <td class="dTime" style="background-color: #${sp.schedule.getColorsBySchedule(schedule)[1]}; color: #${sp.schedule.getColorsBySchedule(schedule)[2]}">${start_time.time} - ${end_time.time}</td>
-            <td class="dTitle {{if (published == 0 || (published < edited && published != 0)) && perms == 2 && sp.staff.admin.settings.draft == 1}}notPublished{{/if}}">${schedule_name}<br/>{{if employees != null}}<span>{{tmpl(employees) "#te_sc_shifts_names"}}</span>{{/if}}</td>
+            <td class="dTitle {{if (published == 0 || (published < edited && published != 0)) && perms == 2 && sp.staff.admin.settings.draft == 1}}notPublished{{/if}}">${schedule_name}<br/>{{if typeof employees != 'undefined' && employees != null}}<span>{{tmpl(employees) "#te_sc_shifts_names"}}</span>{{/if}}</td>
         </tr>
     </script>
     <script id="te_rq_sa_s_in" type="text/x-jquery-tmpl">
