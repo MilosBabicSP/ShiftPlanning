@@ -44,6 +44,7 @@ if (Functions::getInstance()->getCurrentLang() != 'en_US'):
 endif;
 
 $jse = new JSPacker('sp.js');
+$cse = new JSPacker('sp.css', 'css');
 if(DEBUGGER){
 	$encrypt = false;
 } else {
@@ -71,9 +72,15 @@ $googleIP = gethostbyname('www.google.com');
         <meta content='width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;' name='viewport' />
         <meta name="viewport" content="width=device-width" />
 	<meta name="apple-mobile-web-app-capable" content="yes" />
-	 <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Qwigley">
-        <link rel="stylesheet" type="text/css" href="<?php echo _fCdnPath_;?>css/style.mobile.css" />
-        <link rel="stylesheet" type="text/css" href="<?php echo _fCdnPath_;?>css/mobiscroll.css" />
+        <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Qwigley">
+        <?php
+        $cse->_add('css/style.mobile.css', $encrypt);
+	
+	//main jquery
+	$cse->_add('css/mobiscroll.css', $encrypt);
+        
+        $cse->_dump();
+        ?>
 	
 	<link rel="shortcut icon" href="http://cdn.shiftplanning.com/app/layout/1/images/favicon.ico" type="image/x-icon" id="favicon">
 	<link rel="apple-touch-startup-image" href="<?php echo _fCdnPath_;?>images/default.png" />
