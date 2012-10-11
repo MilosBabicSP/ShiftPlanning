@@ -21,12 +21,7 @@ class JSPacker {
     function _dump() {
 	//we check do we wanna create single file
 	if ($this->_store) {
-            if ($this->_type == 'css'){
-                $this->_build();
-            } else {
-                $this->_toHtml();
-            }
-	    
+	    $this->_toHtml();
 	} else {
 	    $this->_build();
 	}
