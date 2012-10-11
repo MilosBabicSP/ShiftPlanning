@@ -7,10 +7,12 @@ class JSPacker {
     private $build = false;
     public $reset = false;
     public $_store = false;
+    public $_type = 'js';
 
-    function __construct($output) {
+    function __construct($output, $type = 'js') {
 	$this->output = $output;
 	$this->_store = IS_TEST_SERVER;
+        $this->_type = $type;
 	$this->build = file_exists(_root_ . 'js/' . _jsV_ . $this->output) ? false : true;
 
 	# WRITE TO SCREEN
@@ -39,10 +41,18 @@ class JSPacker {
     }
 
     function _toHtml() {
-	foreach ($this->scripts as $script) {
+        if ($this->_type == 'js'){
+            foreach ($this->scripts as $script) {
 	    # REMOTE SCRIPT
-	    echo '<script type="text/javascript" src="' . $script['path'] . '"></script>';
-	}
+                echo '<script type="text/javascript" src="' . $script['path'] . '"></script>';
+            }
+        } else {
+            foreach ($this->scripts as $script) {
+	    # REMOTE SCRIPT
+                echo '<link rel="stylesheet" type="text/css" href="' . $script['path'] . '">';
+            }
+        }
+	
     }
 
     function _build() {
@@ -70,7 +80,12 @@ class JSPacker {
 	    }
 	    file_put_contents(_root_ . 'js/' . _jsV_ . $this->output, implode("\n ", $output));
 	}
-	echo '<script type="text/javascript" src="' . _fCdnPath_ . 'js/' . _jsV_ . $this->output . '"></script>';
+        if ($this->_type == 'js'){
+            echo '<script type="text/javascript" src="' . _fCdnPath_ . 'js/' . _jsV_ . $this->output . '"></script>';
+        } else {
+            echo '<link rel="stylesheet" type="text/css" href="' . _fCdnPath_ . 'js/' . _jsV_ . $this->output . '">';
+        }
+	
     }
 }
 
