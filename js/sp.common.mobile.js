@@ -171,7 +171,7 @@ ShiftPlanning.prototype.loadSite = function() {
     });
         
     $('#menu .mainNav > li > a').bind(clickEvent, function(e){
-        if ($(this).hasClass('exit')) return true;
+        if ($(this).hasClass('exit') && $(this).attr('page') != 'logout') return true;
         e.preventDefault();
         if ($(this).attr('page') == self.hash()){
             return false;
