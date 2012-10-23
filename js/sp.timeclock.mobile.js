@@ -37,7 +37,7 @@ ShiftPlanningTimeClock.prototype.overviewEvents = function(){
 	if ($('#tc_ov_ss').val() != 0){
 	    data.schedule = $('#tc_ov_ss').val();
 	}
-	if(sp.staff.admin.settings.tc_require_pos && $('#tc_ov_ss').val() == 0){
+	if(sp.staff.admin.business.pref_tc_require_pos && $('#tc_ov_ss').val() == 0){
 		sp.showError(_s('Please choose schedule first'));
 		return false;
 	}
@@ -46,7 +46,7 @@ ShiftPlanningTimeClock.prototype.overviewEvents = function(){
 	    data.notes = $('#tc_ov_no').val();
 	}
 	
-	if(sp.staff.admin.settings.tc_require_notes && notes.length == 0){
+	if(sp.staff.admin.business.pref_tc_require_notes && notes.length == 0){
 		sp.showError(_s('Please provide some notes'));
 		return false;
 	}
