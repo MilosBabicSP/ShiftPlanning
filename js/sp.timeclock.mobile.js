@@ -33,12 +33,22 @@ ShiftPlanningTimeClock.prototype.overviewEvents = function(){
     $('#tc_ov_co').bind(clickEvent, function(e){
         e.preventDefault();
 	var data = {}
+	var notes = $.trim($('#tc_ov_no').val());
 	if ($('#tc_ov_ss').val() != 0){
 	    data.schedule = $('#tc_ov_ss').val();
 	}
+	if(sp.staff.admin.settings.tc_require_pos && $('#tc_ov_ss').val() == 0){
+		sp.showError(_s('Please choose schedule first'));
+		return false;
+	}
 
-	if ($('#tc_ov_no').val() != 0){
+	if (notes.length != 0 ){
 	    data.notes = $('#tc_ov_no').val();
+	}
+	
+	if(sp.staff.admin.settings.tc_require_notes && notes.length == 0){
+		sp.showError(_s('Please provide some notes'));
+		return false;
 	}
         spModel.timeclock.get('clockout', data, function(response){
             $('#tc_ov_cb span.fr a').hide();
@@ -51,9 +61,9 @@ ShiftPlanningTimeClock.prototype.overviewEvents = function(){
         self.saveClockInChanges();
     });
     
-    $('#tc_ov_no').bind('blur', function(){
-        self.saveClockInChanges();
-    });
+//    $('#tc_ov_no').bind('blur', function(){
+//        self.saveClockInChanges();
+//    });
     
     $('#tc_ov_sa').bind(clickEvent, function(e){
         e.preventDefault();
