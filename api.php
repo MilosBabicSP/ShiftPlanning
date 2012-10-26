@@ -4,7 +4,6 @@ function _iapi($request_vars, $output='json', $dataOnly = false, $multi = false)
     //$request = $request_vars;
     $request['key'] = API_KEY;
     $request['token'] = ($_SESSION['api']['token'] ? $_SESSION['api']['token'] : '');
-	$request_vars['token'] = $request['token'];
     $request['output'] = 'json';
     if($multi){
         if (get_magic_quotes_gpc()) {
