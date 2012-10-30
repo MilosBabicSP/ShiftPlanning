@@ -608,7 +608,9 @@ ShiftPlanningTimeClock.prototype.saveClockTime = function(){
     
     sp.api('timeclock.addclocktime', '', data, function(response){
 	sp.showSuccess(_s('Clock Time added'));
-        $('.subNavigation div.timeClock ul.timeClock a[subpage=manageTimeSheets]').trigger(clickEvent);
+	setTimeout(function(){
+		$('.subNavigation div.timeClock ul.timeClock a[subpage=displayTimeSheets]').trigger(clickEvent);
+	},400);        
     }, function(response){
 		sp.showError(response.error);}
 	);
