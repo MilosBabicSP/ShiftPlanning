@@ -588,7 +588,7 @@ ShiftPlanningTimeClock.prototype.saveClockInChanges = function(){
 
 ShiftPlanningTimeClock.prototype.saveClockTime = function(){
     var data = {};
-    var f = 'create';
+    var f = 'blank';
     if ($('#tc_act_tc_id').hasClass('editOn') == true){
         f = 'update';
         data.id = $('#tc_act_tc_id').val();
@@ -597,20 +597,21 @@ ShiftPlanningTimeClock.prototype.saveClockTime = function(){
     data.schedule = $('#tc_act_sc').val();
     data.employee = $('#tc_act_em').val();
     
-    data.start_time = $('#tc_act_tclin').val();
-    data.start_date = $('#tc_act_c_cl_dp_i').val();
-    
-    if (!$('#tc_act .detailsGrid .odd').hasClass('nonVisible')){
-        data.end_time = $('#tc_act_tclou').val();
-        data.end_date = $('#tc_act_c_co_dp_i').val();
+    data.datein = $('#tc_act_c_cl_dp_i').val() +' '+ $('#tc_act_tclin').val();    
+	data.dateout = $('#tc_act_c_co_dp_i').val() + ' ' + $('#tc_act_tclou').val();
+	
+    if ($('#tc_act .detailsGrid .odd').hasClass('nonVisible')){
+        data.onlyin = 'checked';
     }
     
     data.notes = $('#tc_act_no').val();
     
-    spModel.timeclock[f]('timeclock', data, function(response){
+    sp.api('timeclock.addclocktime', '', data, function(response){
 	sp.showSuccess(_s('Clock Time added'));
         $('.subNavigation div.timeClock ul.timeClock a[subpage=manageTimeSheets]').trigger(clickEvent);
-    });
+    }, function(response){
+		sp.showError(response.error);}
+	);
 }
 
 
