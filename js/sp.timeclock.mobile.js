@@ -609,7 +609,11 @@ ShiftPlanningTimeClock.prototype.saveClockTime = function(){
     sp.api('timeclock.addclocktime', '', data, function(response){
 	sp.showSuccess(_s('Clock Time added'));
 	setTimeout(function(){
-		$('.subNavigation div.timeClock ul.timeClock a[subpage=displayTimeSheets]').trigger(clickEvent);
+		var subpage = 'displayTimeSheets'
+		if(sp.staff.admin.info.group <=2){
+			subpage = 'manageTimeSheets';
+		}
+		$('.subNavigation div.timeClock ul.timeClock a[subpage='+subpage+']').trigger(clickEvent);
 	},400);        
     }, function(response){
 		sp.showError(response.error);}

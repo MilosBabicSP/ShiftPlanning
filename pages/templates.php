@@ -1074,14 +1074,16 @@
             <span class="time">
                 <span class="tStart">${st.time}</span>
                 <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/tc_sm_clock.png" />
-                {{if length.total_hours == ""}}
+                {{if length.length == 0 }}
                     <span class="tPending" user="${user}">Clock Out</span>
                 {{else}}
                     <span class="tEnd">${out.time}</span>
-                {{/if}}
-                
+                {{/if}}                
             </span>
-            <span class="last">${length.hours}h, ${length.mins}min</span></li>
+			{{if length.length != 0 }}
+				<span class="last">${length.hours}h, ${length.mins}min</span>
+			{{/if}}
+		</li>
     </script>
     <script id="te_tc_dts_li" type="text/x-jquery-tmpl">
         <li class="app_${approved_by}">
