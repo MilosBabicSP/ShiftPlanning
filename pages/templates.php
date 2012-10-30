@@ -1088,14 +1088,14 @@
             <span class="names"><b>${in_time.day}</b></span>
             <span class="time">
                 <span class="tStart">${in_time.time}</span>
-                {{if out_time.time != ""}}
+                {{if out_time.length != 0 }}
                     <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/tc_sm_clock.png" />
                     <span class="tEnd">${out_time.time}</span>                                       
                 {{/if}}
             </span>
-            {{if length.hours != ""}}
+            {{if length.length != 0 }}
                 <span class="last">${length.hours}h, ${length.mins} min</span>
-                {{else}}{{if length.mins != ""}}
+                {{else}}{{if length.mins != "" && length.length != 0}}
                 <span class="last">${length.mins} min</span>
                 {{/if}}
             {{/if}}    
