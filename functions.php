@@ -20,7 +20,7 @@ class Functions{
     
     //lang functions
     function getCurrentLang(){
-	$lang = (isset($_SESSION['lang'])) ? $_SESSION['lang'] : (!$this->getCookie('shiftplanning_mobile_lang')) ? 'en_US' : $this->getCookie('shiftplanning_mobile_lang');
+	$lang = (isset($_SESSION['lang'])) ? $_SESSION['lang'] : (!$this->getCookie('shiftplanning_mobile_lang') || $this->getCookie('shiftplanning_mobile_lang') == 'undefined') ? 'en_US' : $this->getCookie('shiftplanning_mobile_lang');
 	return ($lang == 'null') ? 'en_US' : $lang;
     }
     
