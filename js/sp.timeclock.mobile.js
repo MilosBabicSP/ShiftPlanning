@@ -410,6 +410,8 @@ ShiftPlanningTimeClock.prototype.getTimeSheets = function(){
             end_time : Date.parse($('#tc_mts_ed_i').val()).getTime()
         }
     }
+	console.log(period);
+	console.log(times);
     var p = new Date(times.start_time);
     var e = new Date(times.end_time);
     
@@ -418,7 +420,7 @@ ShiftPlanningTimeClock.prototype.getTimeSheets = function(){
     
     d.start_date = p.toString(cal.dformat);
     d.end_date = e.toString(cal.dformat);
-    
+    console.log(d);
     spModel.timeclock.get('timeclocks', d, function(response){
         self.renderManageTimeSheets(response.data); 
     });
