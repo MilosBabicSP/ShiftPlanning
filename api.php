@@ -14,7 +14,6 @@ function _iapi($request_vars, $output='json', $dataOnly = false, $multi = false)
         $request['request'] = $request_vars;
         $request['module'] = $request_vars['module'];
     }
-	header('Debug: '.json_encode($request));
     //var_dump($request);
     $ch = curl_init(API_URL);
     curl_setopt($ch, CURLOPT_URL, API_URL);
