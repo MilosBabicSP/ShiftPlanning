@@ -1074,7 +1074,7 @@
             <span class="time">
                 <span class="tStart">${st.time}</span>
                 <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/tc_sm_clock.png" />
-                {{if length.total_hours == "" || length.total_hours == "undefined" }}
+                {{if length.length == 0 }}
                     <span class="tPending" user="${user}">Clock Out</span>
                 {{else}}
                     <span class="tEnd">${out.time}</span>
