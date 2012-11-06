@@ -133,7 +133,7 @@
     <script id="te_sc_shifts" type="text/x-jquery-tmpl">
         <tr shiftId="${id}" class="isShift">
             <td class="dTime" style="background-color: #${sp.schedule.getColorsBySchedule(schedule)[1]}; color: #${sp.schedule.getColorsBySchedule(schedule)[2]}">${start_time.time} - ${end_time.time}</td>
-            <td class="dTitle {{if (published == 0 || (published < edited && published != 0)) && perms == 2 && sp.staff.admin.settings.draft == 1}}notPublished{{/if}}">${schedule_name}<br/>{{if employees != null}}<span>{{tmpl(employees) "#te_sc_shifts_names"}}</span>{{/if}}</td>
+            <td class="dTitle {{if (published == 0 || (published < edited && published != 0)) && perms == 2 && sp.staff.admin.settings.draft == 1}}notPublished{{/if}}">${schedule_name}<br/>{{if typeof employees != 'undefined' && employees != null}}<span>{{tmpl(employees) "#te_sc_shifts_names"}}</span>{{/if}}</td>
         </tr>
     </script>
     <script id="te_rq_sa_s_in" type="text/x-jquery-tmpl">
@@ -1078,24 +1078,26 @@
                     <span class="tPending" user="${user}">Clock Out</span>
                 {{else}}
                     <span class="tEnd">${out.time}</span>
-                {{/if}}
-                
+                {{/if}}                
             </span>
-            <span class="last">${length.hours}h, ${length.mins}min</span></li>
+			{{if length.length != 0 }}
+				<span class="last">${length.hours}h, ${length.mins}min</span>
+			{{/if}}
+		</li>
     </script>
     <script id="te_tc_dts_li" type="text/x-jquery-tmpl">
         <li class="app_${approved_by}">
             <span class="names"><b>${in_time.day}</b></span>
             <span class="time">
                 <span class="tStart">${in_time.time}</span>
-                {{if out_time.time != ""}}
+                {{if out_time.length != 0 }}
                     <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/tc_sm_clock.png" />
                     <span class="tEnd">${out_time.time}</span>                                       
                 {{/if}}
             </span>
-            {{if length.hours != ""}}
+            {{if length.length != 0 }}
                 <span class="last">${length.hours}h, ${length.mins} min</span>
-                {{else}}{{if length.mins != ""}}
+                {{else}}{{if length.mins != "" && length.length != 0}}
                 <span class="last">${length.mins} min</span>
                 {{/if}}
             {{/if}}    
@@ -1160,7 +1162,7 @@
             <img width="50" height="50" title="user name" src="${avatar}" />
             <div class="msg">
                 <h4>${userName}</h4>
-                {{if title.length > 0}}<p>${title}<br /><p><p>{{/if}}{{html post}}</p>
+                {{if title.length > 0}}<p>{{html title}}<br /><p><p>{{/if}}{{html post}}</p>
                 <span>${time}</span>
             </div>
             {{if owner}}

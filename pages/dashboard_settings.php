@@ -81,6 +81,14 @@
                 <a class="button fl" href="#" type="delete"><?=_s('Permanently Delete This Employee')?></a>
             </li>
         </ul>
+        <div class="title aPerm"><!-- begin of da_se_ov_cu -->
+            <h3 class="icoCusFie"><?=_s('Custom Fields')?></h3>
+        </div>
+        <ul class="detailsGrid aPerm">
+            <ul id="da_se_ov_cu">
+                
+            </ul>
+        </ul><!-- end of da_se_ov_cu -->
         <div class="title aPerm">
             <h3 class="icoEmpPos"><?=_s('Employee Positions')?></h3>
         </div>
@@ -277,6 +285,11 @@
             </li>
 
         </ul>
+        <div class="title aPerm"><!-- begin of da_se_ov_cu in edit subpage -->
+            <h3 class="icoCusFie"><?=_s('Custom Fields')?></h3>
+        </div>
+        <ul class="detailsGrid aPerm" id="da_se_ed_cu">
+        </ul><!-- end of da_se_ov_cu in edit subpage -->
         <div class="title aPerm">
             <h3 class="icoEmpPos"><?=_s('Employee Positions')?></h3>
         </div>

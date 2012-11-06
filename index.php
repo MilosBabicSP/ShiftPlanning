@@ -13,6 +13,27 @@ if (isset($_GET['logout'])){
     $fixed = substr(WWW_PATH, 7);
     $fixed = str_replace('//', '/', $fixed);
     $fixed = str_replace('index.php?logout=true', ' ', $fixed);
+	
+	$ccks = array(
+		'shiftplanning_mobile_rememberme',
+		'shiftplanning_mobile_usertoken',
+		'shiftplanning_mobile_username',
+		'shiftplanning_mobile_userid',
+		'shiftplanning_mobile_usercompany',
+		'shiftplanning_mobile_userphone'
+		);
+	
+	if (isset($_SERVER['HTTP_COOKIE'])) {
+		$cookies = explode(';', $_SERVER['HTTP_COOKIE']);
+		foreach ($cookies as $cookie) {
+			$parts = explode('=', $cookie);
+			$name = trim($parts[0]);
+			if(in_array($name, $ccks)){
+				setcookie($name, '', time() - 1000);
+				setcookie($name, '', time() - 1000, '/');
+			}
+		}
+	}
     header('Location: ' . 'http://' . $fixed);
     die();
 }
@@ -24,6 +45,7 @@ if (Functions::getInstance()->getCurrentLang() != 'en_US'):
 endif;
 
 $jse = new JSPacker('sp.js');
+$cse = new JSPacker('sp.css', 'css');
 if(DEBUGGER){
 	$encrypt = false;
 } else {
@@ -52,8 +74,14 @@ $googleIP = gethostbyname('www.google.com');
         <meta name="viewport" content="width=device-width" />
 	<meta name="apple-mobile-web-app-capable" content="yes" />
         <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Qwigley">
-        <link rel="stylesheet" type="text/css" href="<?php echo _fCdnPath_;?>css/style_<?php echo _jsV_;?>.mobile.css" />
-        <link rel="stylesheet" type="text/css" href="<?php echo _fCdnPath_;?>css/mobiscroll.css" />
+        <?php
+        $cse->_add('css/style.mobile.css', $encrypt);
+	
+	//main jquery
+	$cse->_add('css/mobiscroll.css', $encrypt);
+        
+        $cse->_dump();
+        ?>
 	
 	<link rel="shortcut icon" href="http://cdn.shiftplanning.com/app/layout/1/images/favicon.ico" type="image/x-icon" id="favicon">
 	<link rel="apple-touch-startup-image" href="<?php echo _fCdnPath_;?>images/default.png" />
