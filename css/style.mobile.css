@@ -163,7 +163,7 @@ ul.mainNav > li.active > a {background-color:#8f1a1a; border-top-color:#8f1a1a;}
 ul.mainNav ul li a {display:block; line-height:20px; padding:5px 10px 5px 20px; color:#FFF; border-bottom:solid 1px #841717; border-top:solid 1px #b23939; text-shadow:0 1px 2px #841717;}
 ul.mainNav ul li a span {display:block; float:right; padding:4px; font-size:11px; line-height:10px; background-color:#7c1515; border:solid 1px #691010; border-radius:2px;}
 
-ul.subNav {overflow:hidden; margin:0 auto;}
+ul.subNav {overflow:hidden; position:absolute; right:0; top:0;}
 ul.subNav li {float:left;}
 ul.subNav li a {display:block; padding:5px;}
 ul.subNav li a span {margin:0 -7px;}
