@@ -167,7 +167,7 @@ ul.subNav {overflow:hidden; position:absolute; right:0; top:0;}
 ul.subNav li {float:left;}
 ul.subNav li a {display:block; padding:5px;}
 ul.subNav li a span {margin:0 -7px;}
-ul.subNav li.active a {border-bottom:solid 4px red;}
+ul.subNav li.active a {border-bottom:solid 3px #c52424;}
 
 ul.subMenu {overflow:hidden; position:absolute; right:15px; top:15px; line-height:15px;}
 .title ul.subMenu {right:0;}
