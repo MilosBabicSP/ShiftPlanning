@@ -680,7 +680,7 @@
             <li class="odd">
                 <div>
                     <label><?=_s('Position');?></label>
-                        <b>&nbsp;</b>
+                        <b>${hours.position.name}&nbsp;</b>
                 </div>
             </li>
             <li class="even">
