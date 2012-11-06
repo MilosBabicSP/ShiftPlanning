@@ -33,12 +33,22 @@ ShiftPlanningTimeClock.prototype.overviewEvents = function(){
     $('#tc_ov_co').bind(clickEvent, function(e){
         e.preventDefault();
 	var data = {}
+	var notes = $.trim($('#tc_ov_no').val());
 	if ($('#tc_ov_ss').val() != 0){
 	    data.schedule = $('#tc_ov_ss').val();
 	}
+	if(sp.staff.admin.business.pref_tc_require_pos && $('#tc_ov_ss').val() == 0){
+		sp.showError(_s('Please choose schedule first'));
+		return false;
+	}
 
-	if ($('#tc_ov_no').val() != 0){
+	if (notes.length != 0 ){
 	    data.notes = $('#tc_ov_no').val();
+	}
+	
+	if(sp.staff.admin.business.pref_tc_require_notes && notes.length == 0){
+		sp.showError(_s('Please provide some notes'));
+		return false;
 	}
         spModel.timeclock.get('clockout', data, function(response){
             $('#tc_ov_cb span.fr a').hide();
@@ -51,9 +61,9 @@ ShiftPlanningTimeClock.prototype.overviewEvents = function(){
         self.saveClockInChanges();
     });
     
-    $('#tc_ov_no').bind('blur', function(){
-        self.saveClockInChanges();
-    });
+//    $('#tc_ov_no').bind('blur', function(){
+//        self.saveClockInChanges();
+//    });
     
     $('#tc_ov_sa').bind(clickEvent, function(e){
         e.preventDefault();
@@ -133,6 +143,7 @@ ShiftPlanningTimeClock.prototype.manageTimeSheetsEvents = function(){
                 break;
             case 'edit':
                 self.edit = true;
+				$('#tc_act_onci').hide();
                 sp.loadSubPage('', 'timeClock', 'addClockTime');
                 break;
             case 'delete':
@@ -202,7 +213,7 @@ ShiftPlanningTimeClock.prototype.overviewSubEvents = function(){
     $('#tc_ov_cb .icoClock').html('<time style="height:35px;display:block;">' + sp.raw.config.today.formatted + '</time>');
     
     $.ajax({
-	url: 'index.php?timezone=true',
+	url: 'index.php?timezone=true&id=' + sp.staff.admin.info.id,
 	type: 'get',
 	success: function(response){
 	    $('#tc_ov_cb .icoClock').html(response);
@@ -293,6 +304,8 @@ ShiftPlanningTimeClock.prototype.addClockTimeSubEvents = function(){
         $('#tc_act .title h3').html(_s('Edit Clock Time'));
         $('#tc_act_tc_id').removeClass('editOn').addClass('editOn');
         $('#tc_act_tc_id').val(emp.id);
+		$('.addClockTime .odd').removeClass('nonVisible');
+		$('#tc_act_onci').removeClass('check');
 	emp.in_time.time = sp.strReplace(['am','pm'],[' AM',' PM'],emp.in_time.time);
 	emp.out_time.time = sp.strReplace(['am','pm'],[' AM',' PM'],emp.out_time.time);
 	emp.in_time.day = Date.parse(emp.in_time.day).toString(cal.dformat);
@@ -300,6 +313,7 @@ ShiftPlanningTimeClock.prototype.addClockTimeSubEvents = function(){
     } else {
         $('#tc_act .title h3').html(_s('Add Clock Time'));
         $('#tc_act_tc_id').removeClass('editOn');
+		$('#tc_act_onci').show();
         emp.in_timestamp = Date.parse('today at 9am').getTime()/1000;
         emp.out_timestamp = Date.parse('today at 5pm').getTime()/1000;
     }
@@ -400,6 +414,7 @@ ShiftPlanningTimeClock.prototype.getTimeSheets = function(){
             end_time : Date.parse($('#tc_mts_ed_i').val()).getTime()
         }
     }
+	
     var p = new Date(times.start_time);
     var e = new Date(times.end_time);
 	console.log(p);
@@ -409,7 +424,7 @@ ShiftPlanningTimeClock.prototype.getTimeSheets = function(){
     
     d.start_date = p.toString(cal.dformat);
     d.end_date = e.toString(cal.dformat);
-    console.log(d);
+
     spModel.timeclock.get('timeclocks', d, function(response){
         self.renderManageTimeSheets(response.data); 
     });
@@ -579,29 +594,44 @@ ShiftPlanningTimeClock.prototype.saveClockInChanges = function(){
 
 ShiftPlanningTimeClock.prototype.saveClockTime = function(){
     var data = {};
-    var f = 'create';
+    var f = '';
+	var module = 'timeclock.addclocktime';
+	var success = _s('Clock Time added');
     if ($('#tc_act_tc_id').hasClass('editOn') == true){
         f = 'update';
+		module = 'timeclock.timeclock'
         data.id = $('#tc_act_tc_id').val();
-    }
+		success = _s('Clock time edited');
+		data.start_date = $('#tc_act_c_cl_dp_i').val() +' '+ $('#tc_act_tclin').val();
+		data.start_time = $('#tc_act_c_cl_dp_i').val() +' '+ $('#tc_act_tclin').val();  
+		data.end_date = $('#tc_act_c_co_dp_i').val() + ' ' + $('#tc_act_tclou').val();
+		data.end_time = $('#tc_act_c_co_dp_i').val() + ' ' + $('#tc_act_tclou').val();
+    }else{
+		data.datein = $('#tc_act_c_cl_dp_i').val() +' '+ $('#tc_act_tclin').val();    
+		data.dateout = $('#tc_act_c_co_dp_i').val() + ' ' + $('#tc_act_tclou').val();		
+	}
     
     data.schedule = $('#tc_act_sc').val();
     data.employee = $('#tc_act_em').val();
-    
-    data.start_time = $('#tc_act_tclin').val();
-    data.start_date = $('#tc_act_c_cl_dp_i').val();
-    
-    if (!$('#tc_act .detailsGrid .odd').hasClass('nonVisible')){
-        data.end_time = $('#tc_act_tclou').val();
-        data.end_date = $('#tc_act_c_co_dp_i').val();
+    	
+    if ($('#tc_act .detailsGrid .odd').hasClass('nonVisible')){
+        data.onlyin = 'checked';
     }
     
     data.notes = $('#tc_act_no').val();
     
-    spModel.timeclock[f]('timeclock', data, function(response){
-	sp.showSuccess(_s('Clock Time added'));
-        $('.subNavigation div.timeClock ul.timeClock a[subpage=manageTimeSheets]').trigger(clickEvent);
-    });
+    sp.api(module, f, data, function(response){
+	sp.showSuccess(success);
+	setTimeout(function(){
+		var subpage = 'displayTimeSheets'
+		if(sp.staff.admin.info.group <=2){
+			subpage = 'manageTimeSheets';
+		}
+		$('.subNavigation div.timeClock ul.timeClock a[subpage='+subpage+']').trigger(clickEvent);
+	},400);        
+    }, function(response){
+		sp.showError(response.error);}
+	);
 }
 
 
