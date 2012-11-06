@@ -164,8 +164,8 @@ ul.mainNav ul li a {display:block; line-height:20px; padding:5px 10px 5px 20px; 
 ul.mainNav ul li a span {display:block; float:right; padding:4px; font-size:11px; line-height:10px; background-color:#7c1515; border:solid 1px #691010; border-radius:2px;}
 
 ul.subNav {overflow:hidden; position:absolute; right:0; top:0;}
-ul.subNav li {float:left;}
-ul.subNav li a {display:block; padding:5px;}
+ul.subNav li {float:left; margin:0 5px 0 0;}
+ul.subNav li a {display:block; width:32px; padding:5px 0;}
 ul.subNav li a span {margin:0 -7px;}
 ul.subNav li.active a {border-bottom:solid 3px #c52424;}
 
