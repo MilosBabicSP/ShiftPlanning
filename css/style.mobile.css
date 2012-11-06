@@ -167,7 +167,7 @@ ul.subNav {overflow:hidden; margin:0 auto;}
 ul.subNav li {float:left;}
 ul.subNav li a {display:block; padding:6px 15px; line-height:16px; color:#333; text-align:center; border:solid 1px #d8d8d8; border-left:none; background-color:#FFF;}
 ul.subNav li a span {margin:0 -7px;}
-ul.subNav li.active a {background-color:#e8e8e8;}
+ul.subNav li.active a {border-bottom:solid 4px red;}
 ul.subNav li.first a {border-radius:2px 0 0 2px; border-left:solid 1px #d8d8d8;}
 ul.subNav li.last a {border-radius:0 2px 2px 0;}
 
