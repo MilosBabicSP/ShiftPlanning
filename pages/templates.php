@@ -680,7 +680,7 @@
             <li class="odd">
                 <div>
                     <label><?=_s('Position');?></label>
-                        <b>{{if position !== undefined }} ${position.name}{{/if}}&nbsp;</b>
+                        <b>&nbsp;</b>
                 </div>
             </li>
             <li class="even">
