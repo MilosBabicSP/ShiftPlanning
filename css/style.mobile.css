@@ -168,8 +168,6 @@ ul.subNav li {float:left;}
 ul.subNav li a {display:block; padding:5px;}
 ul.subNav li a span {margin:0 -7px;}
 ul.subNav li.active a {border-bottom:solid 4px red;}
-ul.subNav li.first a {border-radius:2px 0 0 2px; border-left:solid 1px #d8d8d8;}
-ul.subNav li.last a {border-radius:0 2px 2px 0;}
 
 ul.subMenu {overflow:hidden; position:absolute; right:15px; top:15px; line-height:15px;}
 .title ul.subMenu {right:0;}
