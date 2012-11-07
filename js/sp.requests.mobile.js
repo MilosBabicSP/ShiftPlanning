@@ -840,20 +840,55 @@ ShiftPlanningRequests.prototype.displayOpenShifts = function(){
     $('#rq_os_os_s').html($.tmpl($('#te_rq_os_os_s'), this.current));
     
     var h = '';
+    var una = _s('You are un-available');
     var s = this.current.status;
-    console.log(this.current);
-    if (s == 10 || s == 4) {
-        h = '<a class="icoReqWor" href="#" id="rq_os_rtw" rel="' + this.current.id + _s('"><span>Request to work</span></a>');
-    } else if (s == 1) {
-        h = _s('Management rejected your request for this shift');
-    } else if (s == 0) {
-        h = '<a class="icoReqCan" href="#" id="rq_os_rtw" rel="' + this.current.id + _s('"><span>Cancel pending request</span></a>');
-    } else if (s == 2) {
-        h = _s('Already on this shift');
-    } else {
-        h = _s('Will put you into overtime');
+    if (typeof sp.staff.admin.settings.open_overtime == 'undefined'){
+        sp.staff.admin.settings.open_overtime = false;
     }
-    
+    switch (s){
+        case 0 :
+            h = '<a class="icoReqCan" href="#" id="rq_os_rtw" rel="' + this.current.id + _s('"><span>Cancel pending request</span></a>');
+            if (!this.current.available) {
+                h += una;
+            }
+            break;
+        case 1 : 
+            h = _s('Management rejected your request for this shift');
+            break;
+        case 2 :
+            h = _s('Already on this shift');
+            break;
+        case 3 :
+            h = _s('Booked Off');
+            break;
+        case 5 :
+        case 6 :
+            if (!sp.staff.admin.settings.open_overtime){
+                if (s == 5){
+                    h = _s('Will put you into weekly overtime');
+                } else {
+                    h = _s('Will put you into daily overtime');
+                }
+            } else {
+                h = '<a class="icoReqWor" href="#" id="rq_os_rtw" rel="' + this.current.id + _s('"><span>Request to work</span></a>');
+            }
+            break;
+        case 7 :
+            h = _s('Max Days in a Row Breached');
+            break;
+        case 8 :
+            h = _s('Scheduled during this time');
+            break;
+        case 9 :
+            h = _s('Invalid time between shifts');
+            break;
+        case 10 :
+            h = '<a class="icoReqWor" href="#" id="rq_os_rtw" rel="' + this.current.id + _s('"><span>Request to work</span></a>');
+            if (!this.current.available) {
+                h += una;
+            }
+            break;
+    }
     $('#rq_os_sub .subMenu .single').html(h);
 }
 
