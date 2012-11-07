@@ -14,11 +14,16 @@
                     <img width="16" height="17" src="<?php echo _fCdnPath_;?>images/Dashboard_UpcomingShifts16x16.png" />
                 </a>
             </li>
-            <li id="da_up_fi_hide">
+            <li>
+                <a href="#" subpage="">
+                    <img width="16" height="17" src="<?php echo _fCdnPath_;?>images/Dashboard_messages16x16.png" />
+                </a>
+            </li>
+            <!-- li id="da_up_fi_hide">
                 <a href="#" subpage="files">
                     <img width="16" height="17" src="<?php echo _fCdnPath_;?>images/uploaded-files.png" />
                 </a>
-            </li>
+            </li-->
             <li class="hidden">
                 <a href="#" subpage="whosonnow">
                     <img width="16" height="17" src="<?php echo _fCdnPath_;?>images/Dashboard_whosonnow.png" />
