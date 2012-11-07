@@ -92,7 +92,7 @@ html {overflow-x:hidden;}
 .wrapper.extended {margin:0 0 0 190px; width:100%;} 
 .mainMenu {background-color:#a32525; width:189px; float:left; border-right:solid 1px #711111;}
 .subWrapp {overflow:hidden; margin:0 auto;}
-.subNavigation, .subLevel {height:39px; border-top:solid 1px #FFF; position:relative; background:#f2f2f2 url('../images/header_bg.png') scroll repeat-x 0 0;}
+.subNavigation, .subLevel {height:40px; position:relative; background:#f2f2f2 url('../images/header_bg.png') scroll repeat-x 0 0;}
 
 .main {padding:0 20px 20px;}
 #pages {overflow:hidden;}
