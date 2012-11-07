@@ -841,13 +841,14 @@ ShiftPlanningRequests.prototype.displayOpenShifts = function(){
     
     var h = '';
     var s = this.current.status;
-    if (s == 10 || s == 4){
+    console.log(this.current);
+    if (s == 10 || s == 4) {
         h = '<a class="icoReqWor" href="#" id="rq_os_rtw" rel="' + this.current.id + _s('"><span>Request to work</span></a>');
-    } else if (s == 1){
+    } else if (s == 1) {
         h = _s('Management rejected your request for this shift');
-    } else if (s == 0){
+    } else if (s == 0) {
         h = '<a class="icoReqCan" href="#" id="rq_os_rtw" rel="' + this.current.id + _s('"><span>Cancel pending request</span></a>');
-    } else if (s == 2){
+    } else if (s == 2) {
         h = _s('Already on this shift');
     } else {
         h = _s('Will put you into overtime');
