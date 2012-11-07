@@ -418,6 +418,11 @@ if ($vtoken['data'] != '1') {
                                 </li>
                             </ul>
                         </div>
+						<div class="subLevel mainSub trade" id="sc_sub_trade">
+							<a href="#" class="backMenu">
+                                <img width="41" height="30" src="<?php echo _fCdnPath_;?>images/BackMenu.png">
+                            </a>
+						</div>
                         <div class="subLevel mainSub shiftDisplay" id="sc_sub_shift_display">
                             <a href="#" class="backMenu">
                                 <img width="41" height="30" src="<?php echo _fCdnPath_;?>images/BackMenu.png">
@@ -426,6 +431,11 @@ if ($vtoken['data'] != '1') {
                                 <li class="single">
                                     <a href="#" class="icoReqWor publish">
                                         <span><?=_s('Publish')?></span>
+                                    </a>
+                                </li>
+								<li class="single">
+                                    <a href="#" class="icoReqWor trade">
+                                        <span><?=_s('Trade')?></span>
                                     </a>
                                 </li>
                                 <li class="single">
@@ -454,6 +464,7 @@ if ($vtoken['data'] != '1') {
                         </div>
                         <?php Functions::getInstance()->loadFile('schedule_today'); ?>
                         <?php Functions::getInstance()->loadFile('schedule_day'); ?>
+						<?php Functions::getInstance()->loadFile('schedule_trade'); ?>
                         <div class="main shiftDisplay" id="sc_shift_display">
 
                         </div>

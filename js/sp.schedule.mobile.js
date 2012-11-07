@@ -182,7 +182,32 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
             }
         })
         }
-    })
+    });
+	$('#sc_sub_shift_display ul a.trade').bind(clickEvent, function(e){
+		e.preventDefault();
+		sp.loadSubPage('','schedule','trade');
+	});
+	$('#schedule .trade').delegate('.tradepick a',clickEvent,function(e){
+		e.preventDefault();
+		var type = $(this).attr('id');
+		$('#schedule .trade>div').hide();
+		$('#te_sc_shift_display_trade_'+type).show();		
+	});
+	$('#te_sc_shift_display_trade_swap,#te_sc_shift_display_trade_release').delegate('.steps a',clickEvent,function(e){
+		e.preventDefault();
+		var move = $(this).attr('id');
+		if(move == 'step_back'){
+			self.state = self.state - 1;
+		}else if(move == 'step_next'){
+			self.state = self.state + 1;
+		}
+		if(self.state <=0 ){
+			sp.loadSubPage('','schedule','trade');
+		}else{
+			$('#schedule .trade>div:visible')
+		}
+		
+	});
     $('#sc_sub_shift_display ul a.publish').bind(clickEvent, function(e){
 	e.preventDefault();
 	if ($(this).attr('first') == 'true'){
@@ -357,7 +382,7 @@ ShiftPlanningSchedule.prototype.loadSubPageEvents = function(subpage){
     $('#sc_edit_id').val(0);
     $('.subNavigation').show();
     $('#sc_additional_menu').show();
-    if (subpage == 'shiftDisplay' || subpage == 'addShift'){
+    if (subpage == 'shiftDisplay' || subpage == 'addShift' || subpage == 'trade'){
         $('.subNavigation').hide();
     }
     
@@ -373,6 +398,11 @@ ShiftPlanningSchedule.prototype.todaySubEvents = function(){
     $('#sc_to_sub').prev().html('Today');
     this.page = 'today';
     this.displayShifts();
+}
+
+ShiftPlanningSchedule.prototype.tradeSubEvents = function (){
+	console.log(this.shift);
+	
 }
 
 ShiftPlanningSchedule.prototype.daySubEvents = function(){

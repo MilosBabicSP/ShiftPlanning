@@ -125,7 +125,8 @@
 		    <span class="radio" value="all"><?=_s('All shifts in this series');?></span>
 		</div>
 	    </div>
-	</div>
+		</div>
+			
     </script>
     <script id="te_sc_shifts_names" type="text/x-jquery-tmpl">
         <t>${name}, </t>
