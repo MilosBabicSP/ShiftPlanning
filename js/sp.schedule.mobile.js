@@ -183,6 +183,10 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
         })
         }
     });
+	$('#sc_sub_trade a.backMenu').bind(clickEvent,function(e){
+		e.preventDefault();
+		sp.loadSubPage('','schedule','shiftDisplay')
+	})
 	$('#sc_sub_shift_display ul a.trade').bind(clickEvent, function(e){
 		e.preventDefault();
 		sp.loadSubPage('','schedule','trade');
@@ -202,9 +206,14 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
 			self.state = self.state + 1;
 		}
 		if(self.state <=0 ){
-			sp.loadSubPage('','schedule','trade');
+			$('#schedule .trade>div').hide();
+			$('#schedule .trade>div:first').show();
+			self.state = 1;
 		}else{
-			$('#schedule .trade>div:visible')
+			self.state = self.state > 3 ? 3 : self.state ;
+			$('#schedule .trade>div:visible [id^="step"]').hide();
+			$('#schedule .trade>div #step_'+self.state).show()
+			
 		}
 		
 	});
@@ -402,7 +411,11 @@ ShiftPlanningSchedule.prototype.todaySubEvents = function(){
 
 ShiftPlanningSchedule.prototype.tradeSubEvents = function (){
 	console.log(this.shift);
-	
+	$('span[rel=formatted_date]').html(this.shift.start_date.weekday+','+this.shift.start_date.formatted);
+	$('span[rel=formatted_time]').html(this.shift.start_time.time+'-'+this.shift.end_time.time);
+	$('span[rel=schedule_background]').css('background-color',sp.schedule.getColorsBySchedule(this.shift.schedule)[1]);
+	$('span[rel=schedule_background]').css('color',sp.schedule.getColorsBySchedule(this.shift.schedule)[2]);
+	$('h3[rel=schedule_name]').html(this.shift.schedule_name);
 }
 
 ShiftPlanningSchedule.prototype.daySubEvents = function(){

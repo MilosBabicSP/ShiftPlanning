@@ -15,13 +15,13 @@
 				</ul>			
 	</div>
 	<div class="hidden" id="te_sc_shift_display_trade_swap">
-		<div class="title1 wide" style="background-color: #${sp.schedule.getColorsBySchedule(schedule)[1]}; color: #${sp.schedule.getColorsBySchedule(schedule)[2]}">
-		<h3>${schedule_name}</h3>
+		<div class="title1 wide" rel="schedule_background" style="background-color: #${sp.schedule.getColorsBySchedule(schedule)[1]}; color: #${sp.schedule.getColorsBySchedule(schedule)[2]}">
+		<h3 rel="schedule_name">${schedule_name}</h3>
 		</div>
 		<div class="title wide">
 		<div>
-			<span>${start_date.weekday}, ${start_date.formatted}</span>
-			${start_time.time} - ${end_time.time}
+			<span rel="formatted_date">${start_date.weekday}, ${start_date.formatted}</span>
+			<span rel="formatted_time">${start_time.time} - ${end_time.time}</span>
 		</div>
 		</div>
 	<div class="subLevel" style="position:relative">
@@ -40,24 +40,32 @@
 		</ul>
 	</div>
 	<div class="title1 regular wide">
-		<h3>Trade Shift : <span>${start_date.weekday}, ${start_date.formatted}</span></h3>
+		<h3>Trade Shift : <span rel="formatted_date">${start_date.weekday}, ${start_date.formatted}</span></h3>
 	</div>
-	<div class="title wide">
-	<p>1. You will be asked to enter your reason for requesting the Change, as well as to select possible shifts to trade with.</p>
-	<p>2. Management will approve your request to change shift and employees will be notified</p>
-	<p>3. If another employee accepts your shift, Management will confirm and the swap will be made.</p>
-	<p><b>Note - </b>There is no guarantee that another employee will be able cover your shift or that management will approve your request. </p>
-	</div>
+		<div id="step_1">
+			<div class="title wide">
+			<p>1. You will be asked to enter your reason for requesting the Change, as well as to select possible shifts to trade with.</p>
+			<p>2. Management will approve your request to change shift and employees will be notified</p>
+			<p>3. If another employee accepts your shift, Management will confirm and the swap will be made.</p>
+			<p><b>Note - </b>There is no guarantee that another employee will be able cover your shift or that management will approve your request. </p>
+			</div>
+		</div>
+		<div class ="hidden" id="step_2">
+			stepppp 2
+		</div>
+		<div class ="hidden" id="step_3">
+			stepppp 33333
+		</div>
 	</div>
 
 	<div class="hidden" id="te_sc_shift_display_trade_release">
-		<div class="title1 wide" style="background-color: #${sp.schedule.getColorsBySchedule(schedule)[1]}; color: #${sp.schedule.getColorsBySchedule(schedule)[2]}">
-		<h3>${schedule_name}</h3>
+		<div class="title1 wide" id="schedule_background" style="background-color: #${sp.schedule.getColorsBySchedule(schedule)[1]}; color: #${sp.schedule.getColorsBySchedule(schedule)[2]}">
+		<h3 rel="schedule_name">${schedule_name}</h3>
 		</div>
 		<div class="title wide">
 		<div>
-			<span>${start_date.weekday}, ${start_date.formatted}</span>
-			${start_time.time} - ${end_time.time}
+			<span rel="formatted_date">${start_date.weekday}, ${start_date.formatted}</span>
+			<span rel="formatted_time">${start_time.time} - ${end_time.time}</span>
 		</div>
 		</div>
 		<div class="subLevel" style="position:relative">
@@ -76,14 +84,22 @@
 			</ul>
 		</div>
 	<div class="title1 regular wide">
-		<h3>Release Shift : <span>${start_date.weekday}, ${start_date.formatted}</span></h3>
+		<h3>Release Shift : <span rel="formatted_date">${start_date.weekday}, ${start_date.formatted}</span></h3>
 	</div>
-	<div class="title wide">
-	<p>1. You will be asked to enter your reason for requesting the Change, as well as to select possible employees to release your shift to.</p>
-	<p>2. Management will approve your request to change shift and employees will be notified </p>
-	<p>3. If another employee accepts your shift, Management will confirm and the trade will be made.</p>
-	<p><b>Note - </b>There is no guarantee that another employee will be able cover your shift or that management will approve your request. </p>
-	</div>
+		<div id="step_1">
+			<div class="title wide">
+			<p>1. You will be asked to enter your reason for requesting the Change, as well as to select possible employees to release your shift to.</p>
+			<p>2. Management will approve your request to change shift and employees will be notified </p>
+			<p>3. If another employee accepts your shift, Management will confirm and the trade will be made.</p>
+			<p><b>Note - </b>There is no guarantee that another employee will be able cover your shift or that management will approve your request. </p>
+			</div>
+		</div>
+		<div class ="hidden" id="step_2">
+			stepppp 2
+		</div>
+		<div class ="hidden" id="step_3">
+			stepppp 33333
+		</div>		
 	</div>			
 
 </div>
