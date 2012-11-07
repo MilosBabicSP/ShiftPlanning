@@ -1,6 +1,6 @@
 <div class="dashboard">
     <a href="#" class="toggleMenu">
-        <img width="24" height="24" src="<?php echo _fCdnPath_;?>images/ShowHideMenu.png" />
+        <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/ShowHideMenu.png" />
     </a>
     <div class="subWrapp">
         <ul class="subNav" page="dashboard">
