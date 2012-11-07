@@ -36,13 +36,13 @@ h5 {font-size:14px; font-weight:normal; color:#333;}
 .trai_down {background-image:url(../images/DownMenu.png); background-repeat:no-repeat;}
 .trai_up{background-image:url(../images/UpMenu.png); background-repeat:no-repeat;}
 .dash {background-position:5px 0;}
-.ticl {background-position:5px -50px;}
-.sche {background-position:5px -100px;}
-.requ {background-position:5px -150px;}
-.staf {background-position:5px -200px;}
-.repo {background-position:5px -250px;}
-.trai {background-position:5px -1450px;}
-.exit {background-position:5px -1495px;}
+.ticl {background-position:5px -40px;}
+.sche {background-position:5px -80px;}
+.requ {background-position:5px -120px;}
+.staf {background-position:5px -160px;}
+.repo {background-position:5px -200px;}
+.trai {background-position:5px -240px;}
+.exit {background-position:5px -280px;}
 
 .pdf {background:transparent url('../images/document-pdf.png') scroll no-repeat 0 50%}
 .txt {background:transparent url('../images/document-text.png') scroll no-repeat 0 50%}
@@ -158,7 +158,7 @@ ul.cmts .msgDel {top:15px; right:15px; background-position:-13px 0;}
 
 ul.mainNav {}
 ul.mainNav > li {overflow:hidden;}
-ul.mainNav > li > a {display:block; line-height:40px; padding:0 20px 0 47px; color:#666; font-size:14px;}
+ul.mainNav > li > a {display:block; line-height:40px; padding:0 20px 0 42px; color:#666; font-size:14px;}
 ul.mainNav > li.active > a {background-color:#e5e5e5; border-left:solid 3px #c52424;}
 ul.mainNav ul li a {display:block; line-height:20px; padding:5px 10px 5px 20px; color:#FFF; border-bottom:solid 1px #841717; border-top:solid 1px #b23939; text-shadow:0 1px 2px #841717;}
 ul.mainNav ul li a span {display:block; float:right; padding:4px; font-size:11px; line-height:10px; background-color:#7c1515; border:solid 1px #691010; border-radius:2px;}
