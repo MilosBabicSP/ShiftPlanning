@@ -31,6 +31,9 @@ ShiftPlanningDashboard.prototype.loadSubPageEvents = function(subpage){
 	case 'whosonnow':
 	    this.whosonnowSubEvents();
 	    break;
+	case 'dashboard':
+		this.dashboardSubEvents();
+		break;
 	case 'logout':
 	    sp.staff.logout();
 	    break;
@@ -566,6 +569,10 @@ ShiftPlanningDashboard.prototype.settingsSubEvents = function(employee){
 ShiftPlanningDashboard.prototype.whosonnowSubEvents = function(){
     $('#wrapper > .subNavigation').show();
     this.getWhosOn();        
+}
+
+ShiftPlanningDashboard.prototype.dashboardSubEvents = function(){
+	console.log('widgets');
 }
 
 //functions

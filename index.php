@@ -328,6 +328,7 @@ if ($vtoken['data'] != '1') {
                         <?php Functions::getInstance()->loadFile('dashboard_inbox') ?>
                         <?php Functions::getInstance()->loadFile('dashboard_settings'); ?>
                         <?php Functions::getInstance()->loadFile('dashboard_whosonnow'); ?>
+						<?php Functions::getInstance()->loadFile('dashboard_widgets'); ?>
                         <div class="main pingUser" id="da_who_ping">
                                                     
                         </div>

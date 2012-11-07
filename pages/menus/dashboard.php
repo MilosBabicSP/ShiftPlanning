@@ -5,7 +5,7 @@
     <div class="subWrapp">
         <ul class="subNav" page="dashboard">
             <li class="first active">
-                <a href="#" subpage="wall">
+                <a href="#" subpage="dashboard">
                     <img width="16" height="17" src="<?php echo _fCdnPath_;?>images/Dashboard_Home16x16.png" />
                 </a>
             </li>
@@ -15,7 +15,7 @@
                 </a>
             </li>
             <li>
-                <a href="#" subpage="">
+                <a href="#" subpage="wall">
                     <img width="16" height="17" src="<?php echo _fCdnPath_;?>images/Dashboard_messages16x16.png" />
                 </a>
             </li>
