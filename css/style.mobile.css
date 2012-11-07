@@ -158,8 +158,8 @@ ul.cmts .msgDel {top:15px; right:15px; background-position:-13px 0;}
 
 ul.mainNav {border-top:solid 1px #841717; border-bottom:solid 1px #b23939;}
 ul.mainNav > li {overflow:hidden;}
-ul.mainNav > li > a {display:block; line-height:50px; padding:0 20px 0 60px; color:#FFF; font-size:14px; font-weight:bold; text-shadow:0 1px 2px #841717; border-bottom:solid 1px #841717; border-top:solid 1px #b23939;}
-ul.mainNav > li.active > a {background-color:#8f1a1a; border-top-color:#8f1a1a;}
+ul.mainNav > li > a {display:block; line-height:40px; padding:0 20px 0 60px; color:#FFF; font-size:14px; font-weight:bold; text-shadow:0 1px 2px #841717; border-bottom:solid 1px #841717; border-top:solid 1px #b23939;}
+ul.mainNav > li.active > a {background-color:#e5e5e5; border-top-color:#8f1a1a;}
 ul.mainNav ul li a {display:block; line-height:20px; padding:5px 10px 5px 20px; color:#FFF; border-bottom:solid 1px #841717; border-top:solid 1px #b23939; text-shadow:0 1px 2px #841717;}
 ul.mainNav ul li a span {display:block; float:right; padding:4px; font-size:11px; line-height:10px; background-color:#7c1515; border:solid 1px #691010; border-radius:2px;}
 
