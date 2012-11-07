@@ -156,7 +156,7 @@ ul.msgWall .msgRpl {top:20px; right:40px; background-position:0 0;}
 ul.msgWall .msgDel {top:20px; right:0; background-position:-13px 0;}
 ul.cmts .msgDel {top:15px; right:15px; background-position:-13px 0;}
 
-ul.mainNav {border-top:solid 1px #841717; border-bottom:solid 1px #b23939;}
+ul.mainNav {}
 ul.mainNav > li {overflow:hidden;}
 ul.mainNav > li > a {display:block; line-height:40px; padding:0 20px 0 60px; color:#666; font-size:14px;}
 ul.mainNav > li.active > a {background-color:#e5e5e5; border-left:solid 3px #c52424;}
