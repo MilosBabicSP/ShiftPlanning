@@ -109,7 +109,7 @@ html {overflow-x:hidden;}
 .additional p {padding:5px 0;}
 .centered {text-align:center;}
 
-.toggleMenu {position:absolute; top:10px; left:10px;}
+.toggleMenu {position:absolute; top:11px; left:11px;}
 .backMenu {position:absolute; top:15px; left:15px;}
 .title1 {overflow:hidden; padding:5px 0; line-height:30px; border-bottom:solid 1px #DBDBDB;}
 .title1.wide {padding:5px 20px;}
