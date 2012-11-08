@@ -1,4 +1,4 @@
-<div class="main dashboard" id="da_widgets">
+<div class="main dashboard" id="da_widgets" style="padding:0">
     <ul class="widgets">
         <li class="timeClock out">
             <a href="#">
