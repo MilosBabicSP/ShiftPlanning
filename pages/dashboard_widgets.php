@@ -57,7 +57,20 @@
     </ul>
     <ul class="shifts">
         <li>
-            asdsadsadas
+            <span>
+                <p>31. Oct, 2012</p> <br/>
+                <p>08:00 - 16:00</p> 
+            </span>
+            <b>development</b><br/>
+            <p>Desktop app</p>
+        </li>
+        <li>
+            <span>
+                <p>31. Oct, 2012</p> <br/>
+                <p>08:00 - 16:00</p> 
+            </span>
+            <b>development</b><br/>
+            <p>Desktop app</p>
         </li>
     </ul>
 </div>
