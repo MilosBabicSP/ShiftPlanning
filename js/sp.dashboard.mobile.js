@@ -617,7 +617,7 @@ ShiftPlanningDashboard.prototype.dashboardSubEvents = function(){
         }]
     ]
     sp.multiApi(calls, function(response){
-            $('#da_widgets ul.shifts').html($.tmpl('#te_da_widget_shift', response.data[3]));
+            $('#da_widgets ul.shifts').html($.tmpl('#te_da_widget_shift', response[3].data));
     });
     console.log('widgets');
 }
