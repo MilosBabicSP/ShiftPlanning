@@ -45,8 +45,11 @@ ShiftPlanningDashboard.prototype.loadSubPageEvents = function(subpage){
 }
 
 ShiftPlanningDashboard.prototype.dashboardEvents = function(){
+    console.log('test');
+    
     $('#da_widgets .timeClock a').bind(clickEvent, function(e){
         e.preventDefault();
+        console.log('djole');
         sp.hash('timeClock');
     });
 }
