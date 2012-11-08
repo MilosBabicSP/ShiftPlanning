@@ -56,21 +56,23 @@
         </li>
     </ul>
     <ul class="shifts">
-        <li>
-            <span class="fr">
-                <p>31. Oct, 2012</p> <br/>
-                <p>08:00 - 16:00</p> 
-            </span>
-            <b>development</b><br/>
-            <p>Desktop app</p>
+        <li><a>
+                <span class="fr">
+                    <p>31. Oct, 2012</p><br/>
+                    <p>08:00 - 16:00</p> 
+                </span>
+                <b>development</b><br/>
+                <p>Desktop app</p>
+            </a>
         </li>
-        <li>
-            <span class="fr">
-                <p>31. Oct, 2012</p> <br/>
-                <p>08:00 - 16:00</p> 
-            </span>
-            <b>development</b><br/>
-            <p>Desktop app</p>
+        <li><a>
+                <span class="fr">
+                    <p>31. Oct, 2012</p><br/>
+                    <p>08:00 - 16:00</p> 
+                </span>
+                <b>development</b><br/>
+                <p>Desktop app</p>
+            </a>
         </li>
     </ul>
 </div>
