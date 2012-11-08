@@ -583,8 +583,7 @@ ShiftPlanningRequests.prototype.openShiftsSubEvents = function(){
     
     if (sp.staff.admin.info.group < 4){
         spModel.schedule.get('shifts', {
-            mode: 'openapproval',
-            detailed : 1
+            mode: 'openapproval'
         }, function(response){
             if (response.data.length == 0){
                 $('#rq_os_spr').hide();
