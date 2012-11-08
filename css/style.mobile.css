@@ -370,5 +370,6 @@ ul.widgets li.timeClock.out {background:transparent url('../images/widget_clocke
 ul.widgets li.timeClock {background:transparent url('../images/widget_clockedin.png') scroll no-repeat 15px 50%;}
 ul.widgets li.schedule {background:transparent url('../images/widget_calendar.png') scroll no-repeat 15px 50%;}
 
-
+ul.shifts {margin:-5px 0 0;}
+ul.shifts li {border-bottom:solid 1px #DDD; border-right:solid 1px #24a5d0; padding:15px 0;}
 
