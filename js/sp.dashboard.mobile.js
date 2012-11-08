@@ -604,8 +604,9 @@ ShiftPlanningDashboard.prototype.whosonnowSubEvents = function(){
 }
 
 ShiftPlanningDashboard.prototype.dashboardSubEvents = function(){
+    $('#da_widgets .timeClock.out, #da_widgets .timeClock.in').hide();
     var calls = [
-        ['timeclock.status','GET', {}],
+        ['timeclock.status','GET', {details : 1}],
         ['schedule.shifts','GET', {
             'mode': 'open'
         }],
@@ -617,7 +618,11 @@ ShiftPlanningDashboard.prototype.dashboardSubEvents = function(){
         }]
     ]
     sp.multiApi(calls, function(response){
-            $('#da_widgets ul.shifts').html($.tmpl($('#te_da_widget_shift'), response[3].data));
+        console.log(response);
+        if (response[0].data == 'in') {
+            
+        }
+        $('#da_widgets ul.shifts').html($.tmpl($('#te_da_widget_shift'), response[3].data));
     });
     console.log('widgets');
 }

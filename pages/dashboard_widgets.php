@@ -11,7 +11,7 @@
                 </span>
             </a>
         </li>
-        <li class="timeClock">
+        <li class="timeClock in">
             <a href="#">
                 <span class="icon">
 

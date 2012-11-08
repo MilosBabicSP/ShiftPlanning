@@ -8,7 +8,7 @@
                     <p>${start_time.time} - ${end_time.time}</p> 
                 </span>
                 <b>${schedule_name}</b><br/>
-                <p>${title} asd</p>
+                <p>${title}</p>
             </a>
         </li>
     </script>
