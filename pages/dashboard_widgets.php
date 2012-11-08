@@ -100,7 +100,6 @@
     
     <!-- SVETA -->
     
-    
     <ul class="shifts">
         <li style="border-color:#24a5d0">
             <a href="#">
@@ -128,6 +127,9 @@
     
     <div class="cap trade">
         Trade Shift
+    </div>
+    <div class="steps">
+        steps
     </div>
     <div class="greyed">
         asdasdasdsa
