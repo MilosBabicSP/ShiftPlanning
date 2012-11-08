@@ -378,5 +378,7 @@ ul.shifts li a {padding:10px 20px 10px 10px; display:block; line-height:20px; co
 ul.shifts li a p {line-height:20px;}
 
 .cap {padding:10px 20px 10px 45px; font-weight:bold;}
+.cap.working {background:transparent url('../images/title_working.png') scroll no-repeat 10px 50%;}
+.cap.trade {background:transparent url('../images/title_trade.png') scroll no-repeat 10px 50%;}
 
 

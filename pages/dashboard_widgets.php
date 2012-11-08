@@ -97,7 +97,10 @@
             </a>
         </li>
     </ul>
-    <div class="cap">
+    <div class="cap working">
         Who's Working
+    </div>
+    <div class="cap trade">
+        Trade Shift
     </div>
 </div>
