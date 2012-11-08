@@ -29,7 +29,7 @@ function _iapi($request_vars, $output='json', $dataOnly = false, $multi = false)
     
     
     if ($request['request']['mode'] == 'openapproval')
-        var_dump($response);
+        print $response;
     
     //Set token, maybe there is some more efficient way to do this
     $decoded = json_decode($response,true);
