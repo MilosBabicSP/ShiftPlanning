@@ -129,7 +129,9 @@
         Trade Shift
     </div>
     <div class="steps">
-        steps
+        <a class="fl" href="#">back</a>
+        <a class="fr" href="#">next</a>
+        <span>step<br/>1 / 3</span>
     </div>
     <div class="greyed">
         asdasdasdsa
