@@ -61,7 +61,7 @@
                     <p>31. Oct, 2012</p>
                     <p>08:00 - 16:00</p> 
                 </span>
-                <b>development</b><br/>
+                <b>Development</b><br/>
                 <p>Desktop app</p>
             </a>
         </li>
@@ -70,7 +70,7 @@
                     <p>31. Oct, 2012</p>
                     <p>08:00 - 16:00</p> 
                 </span>
-                <b>development</b><br/>
+                <b>Dev Support</b><br/>
                 <p>Desktop app</p>
             </a>
         </li>
