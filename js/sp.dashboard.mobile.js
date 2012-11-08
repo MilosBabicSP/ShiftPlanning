@@ -61,9 +61,24 @@ ShiftPlanningDashboard.prototype.dashboardEvents = function(){
     $('#da_widgets .pickupPage').bind(clickEvent, function(e){
         e.preventDefault();
         $('#menu_requests a').trigger(clickEvent);
-        setTimeout(function(){
-            $('.subNavigation .requests a[subpage=openShifts]').trigger(clickEvent);
-        }, 500);
+        sp.loadSubPage('', 'requests', 'openShifts');
+//        setTimeout(function(){
+//            $('.subNavigation .requests a[subpage=openShifts]').trigger(clickEvent);
+//        }, 500);
+    });
+    
+    
+    $('#da_widgets .shifts').delegate('a', clickEvent, function(e){
+	e.preventDefault();
+	$(this).addClass('loading');
+	spModel.schedule.get('shift', {
+	    id : $(this).attr('rel'), 
+	    detailed : 1
+	}, function(response){
+	    sp.schedule.fromDashboard = true;
+	    sp.schedule.shift = response.data;
+	    sp.loadSubPage('', 'schedule', 'shiftDisplay');
+	});
     });
 }
 
