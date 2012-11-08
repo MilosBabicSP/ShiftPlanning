@@ -1,6 +1,6 @@
 <div class="main dashboard" id="da_widgets">
     <ul class="widgets">
-        <li class="timeClock">
+        <li class="timeClock out">
             <a href="#">
                 <span class="icon">
 
@@ -11,7 +11,7 @@
                 </span>
             </a>
         </li>
-        <li class="timeClock clocked">
+        <li class="timeClock">
             <a href="#">
                 <span class="icon">
 
