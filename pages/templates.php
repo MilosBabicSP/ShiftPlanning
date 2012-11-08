@@ -1,5 +1,17 @@
 <!-- ID rulez first is "te" shorten from template, next is 2 letter from module name, than 2 letter from page name, than 2 letters from page method -->
 <div id="templates">
+    <script id="te_da_widget_shift" type="text/x-jquery-tmpl">
+        <li style="border-color:#${sp.schedule.getColorsBySchedule(schedule)[schedule_color]}">
+            <a href="#">
+                <span class="fr">
+                    <p>${start_date.formatted}</p>
+                    <p>${start_time.time} - ${end_time.time}</p> 
+                </span>
+                <b>${schedule_name}</b><br/>
+                <p>${title}</p>
+            </a>
+        </li>
+    </script>
     <script id="te_sc_usersU" type="text/x-jquery-tmpl">
         <li ><div><span class="checkbox disabled" user="${id}">${name}</span></div></li>
     </script>
