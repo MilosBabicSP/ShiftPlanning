@@ -103,4 +103,7 @@
     <div class="cap trade">
         Trade Shift
     </div>
+    <div class="greyed">
+        asdasda
+    </div>
 </div>
