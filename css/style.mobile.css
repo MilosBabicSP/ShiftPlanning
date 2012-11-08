@@ -354,6 +354,7 @@ ul.training_sections li.unread {background-color:#FFC;}
 /* dashboard */
 ul.widgets {}
 ul.widgets li {border-top:solid 1px #DDD;}
+ul.widgets li:first-child {border:none;}
 ul.widgets li a {display:block; padding:20px 0;}
 ul.widgets li.shifts a {display:block; padding:15px 0;}
 ul.widgets li a span.icon {display:block; float:left; width:80px; text-align:center;}
