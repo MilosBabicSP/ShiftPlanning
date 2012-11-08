@@ -29,7 +29,7 @@ function _iapi($request_vars, $output='json', $dataOnly = false, $multi = false)
     
     
     if ($request['request']['mode'] == 'openapproval') {
-        var_dump($request);
+        print_r($request);
         print $response;
     }
         
