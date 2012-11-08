@@ -50,7 +50,7 @@
                 </span>
                 <span class="details">
                     <h3>Scheduler</h3>
-                    <p>You have <b>2 shifts</b></p>
+                    <p>You have <b>2 shifts</b> today</p>
                 </span>
             </a>
         </li>
