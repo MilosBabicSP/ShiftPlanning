@@ -22,7 +22,7 @@
                 </span>
             </a>
         </li>
-        <li class="shifts">
+        <li class="shifts tradePage">
             <a href="#">
                 <span class="icon">
                     <b>12</b>
@@ -32,7 +32,7 @@
                 </span>
             </a>
         </li>
-        <li class="shifts">
+        <li class="shifts pickupPage">
             <a href="#">
                 <span class="icon">
                     <b>8</b>

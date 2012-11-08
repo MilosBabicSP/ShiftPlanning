@@ -45,12 +45,14 @@ ShiftPlanningDashboard.prototype.loadSubPageEvents = function(subpage){
 }
 
 ShiftPlanningDashboard.prototype.dashboardEvents = function(){
-    console.log('test');
-    
     $('#da_widgets .timeClock a').bind(clickEvent, function(e){
         e.preventDefault();
-        console.log('djole');
         sp.hash('timeClock');
+    });
+    
+    $('#da_widgets .tradePage').bind(clickEvent, function(e){
+        $('#menu_requests').trigger(clickEvent);
+        $('.subNavigation .requests a[subpage=openShifts]').trigger(clickEvent);
     });
 }
 
