@@ -60,7 +60,7 @@ ShiftPlanningDashboard.prototype.dashboardEvents = function(){
     
     $('#da_widgets .pickupPage').bind(clickEvent, function(e){
         e.preventDefault();
-        $('#menu_requests a').trigger(clickEvent);
+        //$('#menu_requests a').trigger(clickEvent);
         sp.loadSubPage('', 'requests', 'openShifts');
 //        setTimeout(function(){
 //            $('.subNavigation .requests a[subpage=openShifts]').trigger(clickEvent);
