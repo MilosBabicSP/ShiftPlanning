@@ -1,6 +1,7 @@
 ShiftPlanningDashboard.prototype.initialize = function(){
     var self = this;
     $(document).ready(function(){
+        self.dashboardEvents();
 	self.wallEvents();
 	self.inboxEvents();
 	self.settingsEvents();
@@ -41,6 +42,13 @@ ShiftPlanningDashboard.prototype.loadSubPageEvents = function(subpage){
 	    this.pingUser();
 	    break;
     }
+}
+
+ShiftPlanningDashboard.prototype.dashboardEvents = function(){
+    $('#da_widgets .timeClock a').bind(clickEvent, function(e){
+        e.preventDefault();
+        sp.hash('timeClock');
+    });
 }
 
 ShiftPlanningDashboard.prototype.wallEvents = function(){
