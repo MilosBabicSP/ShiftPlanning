@@ -28,10 +28,10 @@ function _iapi($request_vars, $output='json', $dataOnly = false, $multi = false)
     curl_close($ch);
     
     
-    if ($request['request']['mode'] == 'openapproval') {
-        print_r($request);
-        print $response;
-    }
+//    if ($request['request']['mode'] == 'openapproval') {
+//        print_r($request);
+//        print $response;
+//    }
         
     
     //Set token, maybe there is some more efficient way to do this
