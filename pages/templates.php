@@ -2,7 +2,7 @@
 <div id="templates">
     <script id="te_da_widget_shift" type="text/x-jquery-tmpl">
         <li style="border-color:#${sp.schedule.getColorsBySchedule(schedule)[schedule_color]}">
-            <a href="#">
+            <a href="#" rel="${id}">
                 <span class="fr">
                     <p>${start_date.formatted}</p>
                     <p>${start_time.time} - ${end_time.time}</p> 
