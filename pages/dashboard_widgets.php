@@ -46,7 +46,7 @@
             <a href="#">
                 <span class="icon">
                     <p>OCT</p>
-                    <h4>31</h4>
+                    <h3>31</h3>
                 </span>
                 <span class="details">
                     <h3>Scheduler</h3>
