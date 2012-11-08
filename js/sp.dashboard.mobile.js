@@ -52,19 +52,12 @@ ShiftPlanningDashboard.prototype.dashboardEvents = function(){
     
     $('#da_widgets .tradePage').bind(clickEvent, function(e){
         e.preventDefault();
-        $('#menu_requests a').trigger(clickEvent);
-        setTimeout(function(){
-            $('.subNavigation .requests a[subpage=shiftTrades]').trigger(clickEvent);
-        }, 500);
+        sp.loadSubPage('', 'requests', 'shiftTrades');
     });
     
     $('#da_widgets .pickupPage').bind(clickEvent, function(e){
         e.preventDefault();
-        //$('#menu_requests a').trigger(clickEvent);
         sp.loadSubPage('', 'requests', 'openShifts');
-//        setTimeout(function(){
-//            $('.subNavigation .requests a[subpage=openShifts]').trigger(clickEvent);
-//        }, 500);
     });
     
     
