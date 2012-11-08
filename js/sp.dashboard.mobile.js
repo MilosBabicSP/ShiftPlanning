@@ -625,8 +625,8 @@ ShiftPlanningDashboard.prototype.dashboardSubEvents = function(){
             $('#da_widgets .timeClock.out').show();
         }
         
-        $('#da_widgets .tradePage .icon b').html(response[1].data.length);
-        $('#da_widgets .pickupPage .icon b').html(response[2].data.length);
+        $('#da_widgets .tradePage .icon b').html(response[2].data.length);
+        $('#da_widgets .pickupPage .icon b').html(response[1].data.length);
         
         $('#da_widgets ul.shifts').html($.tmpl($('#te_da_widget_shift'), response[3].data));
     });
