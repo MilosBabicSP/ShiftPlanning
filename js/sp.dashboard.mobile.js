@@ -20,8 +20,8 @@ ShiftPlanningDashboard.prototype.loadSubPageEvents = function(subpage){
 	    this.upcomingShiftsSubEvents();
 	    break;
 	case 'files':
-		this.filesSubEvents();
-		break;
+            this.filesSubEvents();
+            break;
 	case 'inbox':
 	    this.inboxSubEvents();
 	    break;
@@ -32,8 +32,8 @@ ShiftPlanningDashboard.prototype.loadSubPageEvents = function(subpage){
 	    this.whosonnowSubEvents();
 	    break;
 	case 'dashboard':
-		this.dashboardSubEvents();
-		break;
+            this.dashboardSubEvents();
+            break;
 	case 'logout':
 	    sp.staff.logout();
 	    break;

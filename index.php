@@ -322,13 +322,13 @@ if ($vtoken['data'] != '1') {
                                 <img width="41" height="30" src="<?php echo _fCdnPath_;?>images/BackMenu.png">
                             </a>
                         </div>
+                        <?php Functions::getInstance()->loadFile('dashboard_widgets'); ?>
                         <?php Functions::getInstance()->loadFile('dashboard_wall') ?>
                         <?php Functions::getInstance()->loadFile('dashboard_upcomingShifts'); ?>
-						<?php Functions::getInstance()->loadFile('dashboard_files'); ?>
+                        <?php Functions::getInstance()->loadFile('dashboard_files'); ?>
                         <?php Functions::getInstance()->loadFile('dashboard_inbox') ?>
                         <?php Functions::getInstance()->loadFile('dashboard_settings'); ?>
                         <?php Functions::getInstance()->loadFile('dashboard_whosonnow'); ?>
-						<?php Functions::getInstance()->loadFile('dashboard_widgets'); ?>
                         <div class="main pingUser" id="da_who_ping">
                                                     
                         </div>
