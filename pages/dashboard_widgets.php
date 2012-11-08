@@ -134,6 +134,7 @@
         <span>Step<br/>1/3</span>
     </div>
     <div class="greyed">
-        asdasdasdsa
+        <h4>Reason for request</h4>
+        <p>The more information you can provide the better odds your shift request will be successful.</p>
     </div>
 </div>
