@@ -604,7 +604,22 @@ ShiftPlanningDashboard.prototype.whosonnowSubEvents = function(){
 }
 
 ShiftPlanningDashboard.prototype.dashboardSubEvents = function(){
-	console.log('widgets');
+    var calls = [
+        ['timeclock.status','GET', {}],
+        ['schedule.shifts','GET', {
+            'mode': 'open'
+        }],
+        ['schedule.trades','GET', {}],
+        ['schedule.shifts', 'GET', {
+            start_date: 'today', 
+            end_date: 'today +2 months', 
+            mode: 'employee'
+        }]
+    ]
+    sp.multiApi(calls, function(response){
+            console.log(response);
+    });
+    console.log('widgets');
 }
 
 //functions
