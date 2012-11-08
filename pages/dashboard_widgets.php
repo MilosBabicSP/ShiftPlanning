@@ -56,7 +56,7 @@
         </li>
     </ul>
     <ul class="shifts">
-        <li>
+        <li style="border-color:#24a5d0">
             <a>
                 <span class="fr">
                     <p>31. Oct, 2012</p>
@@ -66,7 +66,27 @@
                 <p>Desktop app</p>
             </a>
         </li>
-        <li>
+        <li style="border-color:#b1c71d">
+            <a>
+                <span class="fr">
+                    <p>31. Oct, 2012</p>
+                    <p>08:00 - 16:00</p> 
+                </span>
+                <b>Dev Support</b><br/>
+                <p>Desktop app</p>
+            </a>
+        </li>
+        <li style="border-color:#d85d03">
+            <a>
+                <span class="fr">
+                    <p>31. Oct, 2012</p>
+                    <p>08:00 - 16:00</p> 
+                </span>
+                <b>Dev Support</b><br/>
+                <p>Desktop app</p>
+            </a>
+        </li>
+        <li style="border-color:#24a5d0">
             <a>
                 <span class="fr">
                     <p>31. Oct, 2012</p>
