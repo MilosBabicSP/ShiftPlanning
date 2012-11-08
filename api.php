@@ -24,7 +24,11 @@ function _iapi($request_vars, $output='json', $dataOnly = false, $multi = false)
     //var_dump($request);
     $response = curl_exec($ch);
     
+    
     curl_close($ch);
+    
+    var_dump($response);
+    die();
     //Set token, maybe there is some more efficient way to do this
     $decoded = json_decode($response,true);
     
