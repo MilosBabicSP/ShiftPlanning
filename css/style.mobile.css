@@ -352,7 +352,7 @@ ul.training_sections li.unread {background-color:#FFC;}
 .dig_signature span {display:block; border-top:1px solid #E4E4E4; font-size:13px; color:#444; line-height:30px; margin:-15px 0 0;}
 
 /* dashboard */
-ul.widgets {padding:0 0 5px; background:transparent url('../images/shadow.png') scroll repeat-x 100% 0;}
+ul.widgets {padding:0 0 5px; background:transparent url('../images/shadow.png') scroll repeat-x 0 100%;}
 ul.widgets li {border-top:solid 1px #DDD;}
 ul.widgets li:first-child {border:none;}
 ul.widgets li a {display:block; padding:20px 0;}
