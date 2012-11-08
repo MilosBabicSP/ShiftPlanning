@@ -140,7 +140,7 @@
         <div class="title">
             <h3 class="fl">${name}</h3>
         </div>
-        <ul class="timeSheet">
+        <ul class="">
             {{tmpl(shifts) "#te_sc_trade_shifts_in"}}
         </ul>
     </script>	

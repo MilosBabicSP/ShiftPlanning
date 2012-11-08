@@ -187,7 +187,37 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
 		e.preventDefault();
 		sp.loadSubPage('','schedule','shiftDisplay');
 		self.state = 1;
-	})
+	});
+	$('.listEmployees1').delegate('.checkbox',clickEvent,function(e){
+		e.preventDefault();
+		var that = this;
+		var shiftId=$(this).attr('rel');
+		if(!$(this).hasClass('check')){
+			spModel.schedule.get('shift',{id:shiftId,detailed:1},function(response){
+				console.log(response);
+				var isAvail = false ;
+				if(response.data.staff.available.length > 0){
+					$.each(response.data.staff.available,function(key,item){
+						console.log(item[0]);
+						isAvail = item[0] == sp.staff.admin.info.id ? true : isAvail;
+					});
+				}
+				if(response.data.staff.sameday.length > 0){
+					$.each(response.data.staff.available,function(key,item){
+						console.log(item[0]);
+						isAvail = item[0] == sp.staff.admin.info.id ? true : isAvail;
+					});
+				}
+				if (isAvail){
+					$(that).addClass('check');
+				}else{
+					sp.showError('You aren\'t available for this shift!')
+				}
+			});
+		}else{
+			$(this).removeClass('check');
+		}
+	});
 	$('#sc_sub_shift_display ul a.trade').bind(clickEvent, function(e){
 		e.preventDefault();
 		sp.loadSubPage('','schedule','trade');
@@ -225,13 +255,15 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
 						d.id = key;
 						d.avatar = sp.getAvatar(key);
 						d.name = item.name;
-						d.shifts = [];
-						$.each(item.shifts,function(i,it){
-							var shifts = {};
-							shifts.id = i;
-							shifts.start = it.start;
-							d.shifts.push(shifts);
-						});
+						if(typeof item.shifts != 'undefined'){
+							d.shifts = [];
+							$.each(item.shifts,function(i,it){
+								var shifts = {};
+								shifts.id = i;
+								shifts.start = it.start;
+								d.shifts.push(shifts);
+							});
+						}
 						data.push(d);
 					});
 					console.log(data);
@@ -256,11 +288,17 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
 				selected.each(function(i,j){
 					packedItems.push($(j).attr('rel'));
 				});
-				spModel.schedule.create(call,{field:packedItems.join(','),shift:self.shift.id,reason:'Not Big Reason'},function(response){
+				var params = {};
+				params[field]=packedItems.join(',');
+				params['shift']=self.shift.id;
+				params['reason']='Not Big Reason';
+				spModel.schedule.create(call,params,function(response){
 					console.log(response);
+					self.state = 3;
 					$('#schedule .trade>div [id^="step"]').hide();
-					$('#schedule .trade>div #step_'+self.state).show();						
+					$('#schedule .trade>div #step_'+self.state).show();
 				});
+				self.state = 2;
 				break;
 			default:
 				self.state = self.state > 3 ? 3 : self.state ;
