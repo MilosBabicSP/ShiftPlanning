@@ -361,7 +361,7 @@ ul.widgets li a span.icon {display:block; float:left; width:80px; text-align:cen
 ul.widgets li a span.icon b {line-height:30px; font-size:30px; color:#333;}
 ul.widgets li a span.icon p {color:#FFF; text-transform:uppercase; font-size:10px; line-height:15px;}
 ul.widgets li a span.icon h3 {line-height:28px; color:#333; font-size:16px;}
-ul.widgets li a span.details {display:block; margin:0 0 0 80px; background:transparent url('../images/arrow_light_forward.png') scroll no-repeat 100% 50%;}
+ul.widgets li a span.details {display:block; margin:0 20px 0 80px; background:transparent url('../images/arrow_light_forward.png') scroll no-repeat 100% 50%;}
 ul.widgets li a:active span.details {background:transparent url('../images/arrow_forward.png') scroll no-repeat 100% 50%;}
 ul.widgets li a span.details h3 {font-weight:normal; font-size:18px; line-height:25px; color:#333;}
 ul.widgets li a span.details p {line-height:15px; color:#333;}
