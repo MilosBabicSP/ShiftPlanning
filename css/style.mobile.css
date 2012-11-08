@@ -372,7 +372,7 @@ ul.widgets li.schedule {background:transparent url('../images/widget_calendar.pn
 
 ul.shifts {margin:-5px 0 0;}
 ul.shifts li {border-bottom:solid 1px #DDD; border-left:solid 5px #24a5d0;}
-ul.shifts li a {padding:15px 20px; display:block; line-height:20px;}
+ul.shifts li a {padding:10px 20px 10px 10px; display:block; line-height:20px;}
 ul.shifts li a p {line-height:20px;}
 
 
