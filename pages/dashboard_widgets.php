@@ -104,6 +104,12 @@
         Trade Shift
     </div>
     <div class="greyed">
-        asdasda
+        <ul class="empList">
+            <li><img style="display:block; height:30px; width:30px; background-color:#333" /> <span>Marko Zivanovic</span></li>
+            <li><img style="display:block; height:30px; width:30px; background-color:#333" /> <span>Marko Zivanovic</span></li>
+            <li><img style="display:block; height:30px; width:30px; background-color:#333" /> <span>Marko Zivanovic</span></li>
+            <li><img style="display:block; height:30px; width:30px; background-color:#333" /> <span>Marko Zivanovic</span></li>
+            <li><img style="display:block; height:30px; width:30px; background-color:#333" /> <span>Marko Zivanovic</span></li>
+        </ul>
     </div>
 </div>
