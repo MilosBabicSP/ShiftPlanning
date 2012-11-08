@@ -361,6 +361,9 @@ ul.widgets li a span.details {display:block; margin:0 0 0 80px;}
 ul.widgets li a span.details h3 {font-weight:normal; font-size:18px; line-height:25px; color:#333;}
 ul.widgets li a span.details p {line-height:15px; color:#333;}
 ul.widgets li.timeClock.out span.details p {color:#CCC;}
+ul.widgets li.timeClock.out {background:transparent url('../images/widget_clockedout.png') scroll no-repeat 20px 50%;}
+ul.widgets li.timeClock {}
+ul.widgets li.schedule {}
 
 
 
