@@ -97,7 +97,7 @@
             </a>
         </li>
     </ul>
-    <div class="title">
+    <div class="cap">
         Who's Working
     </div>
 </div>
