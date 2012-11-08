@@ -51,6 +51,7 @@ ShiftPlanningDashboard.prototype.dashboardEvents = function(){
     });
     
     $('#da_widgets .tradePage').bind(clickEvent, function(e){
+        e.preventDefault();
         $('#menu_requests').trigger(clickEvent);
         $('.subNavigation .requests a[subpage=openShifts]').trigger(clickEvent);
     });
