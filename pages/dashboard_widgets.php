@@ -97,6 +97,22 @@
             </a>
         </li>
     </ul>
+    
+    <!-- SVETA -->
+    
+    
+    <ul class="shifts">
+        <li style="border-color:#24a5d0">
+            <a href="#">
+                <span class="fr">
+                    <p>31. Oct, 2012</p>
+                    <p>08:00 - 16:00</p> 
+                </span>
+                <b>Development</b><br/>
+                <p>Desktop app</p>
+            </a>
+        </li>
+    </ul>
     <div class="cap working">
         Who's Working
     </div>
