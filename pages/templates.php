@@ -128,6 +128,29 @@
 		</div>
 			
     </script>
+    <script id="te_sc_shift_release0" type="text/x-jquery-tmpl">
+		<li>  
+			<div>
+			<span class="checkbox" rel ="${id}" onclick="$(this).toggleClass('check')">${name}</span>	
+			</div>                 
+			<img width="30" height="30" src="${avatar}" class="fr">
+        </li>
+    </script>	
+    <script id="te_sc_shift_release1" type="text/x-jquery-tmpl">
+        <div class="title">
+            <h3 class="fl">${name}</h3>
+        </div>
+        <ul class="timeSheet">
+            {{tmpl(shifts) "#te_sc_trade_shifts_in"}}
+        </ul>
+    </script>	
+	<script id="te_sc_trade_shifts_in" type="text/x-jquery-tmpl">
+		<li>  
+			<div>
+			<span class="checkbox" rel ="${id}" >${start}</span>	
+			</div>                 
+        </li>
+	</script>
     <script id="te_sc_shifts_names" type="text/x-jquery-tmpl">
         <t>${name}, </t>
     </script>

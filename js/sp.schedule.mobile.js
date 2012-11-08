@@ -185,7 +185,8 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
     });
 	$('#sc_sub_trade a.backMenu').bind(clickEvent,function(e){
 		e.preventDefault();
-		sp.loadSubPage('','schedule','shiftDisplay')
+		sp.loadSubPage('','schedule','shiftDisplay');
+		self.state = 1;
 	})
 	$('#sc_sub_shift_display ul a.trade').bind(clickEvent, function(e){
 		e.preventDefault();
@@ -195,27 +196,79 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
 		e.preventDefault();
 		var type = $(this).attr('id');
 		$('#schedule .trade>div').hide();
-		$('#te_sc_shift_display_trade_'+type).show();		
+		$('#te_sc_shift_display_trade_'+type).show();	
+		$('#schedule .trade>div [id^="step"]').hide();
+		$('#schedule .trade>div #step_'+self.state).show();		
 	});
 	$('#te_sc_shift_display_trade_swap,#te_sc_shift_display_trade_release').delegate('.steps a',clickEvent,function(e){
 		e.preventDefault();
 		var move = $(this).attr('id');
-		if(move == 'step_back'){
+		var type = $(this).attr('swap');
+		if(move == '_back'){
 			self.state = self.state - 1;
-		}else if(move == 'step_next'){
+		}else if(move == '_next'){
 			self.state = self.state + 1;
 		}
-		if(self.state <=0 ){
-			$('#schedule .trade>div').hide();
-			$('#schedule .trade>div:first').show();
-			self.state = 1;
-		}else{
-			self.state = self.state > 3 ? 3 : self.state ;
-			$('#schedule .trade>div:visible [id^="step"]').hide();
-			$('#schedule .trade>div #step_'+self.state).show()
-			
+		switch(self.state){
+			case  0:
+			case -1:
+					$('#schedule .trade>div').hide();
+					$('#schedule .trade>div:first').show();
+					self.state = 1;
+				break;
+			case 2:
+				spModel.schedule.get('tradelist',{id:self.shift.id,swap:type},function(response){
+					var data = [];
+					$.each(response.data,function(key,item){
+						var d = {};
+						console.log(item);
+						d.id = key;
+						d.avatar = sp.getAvatar(key);
+						d.name = item.name;
+						d.shifts = [];
+						$.each(item.shifts,function(i,it){
+							var shifts = {};
+							shifts.id = i;
+							shifts.start = it.start;
+							d.shifts.push(shifts);
+						});
+						data.push(d);
+					});
+					console.log(data);
+					$('.listEmployees'+type).html('');
+					if(type == 0){
+						$('.listEmployees'+type).append('<li><div onclick="$(this).parent().parent().find(\'.checkbox\').toggleClass(\'check\')"><span class="checkbox all">Select All</span></div><span class="twoLine"><br></span></li>');
+					}					
+					$('.listEmployees'+type).append($.tmpl($('#te_sc_shift_release'+type),data));
+					$('#schedule .trade>div [id^="step"]').hide();
+					$('#schedule .trade>div #step_'+self.state).show();						
+				});
+				break;
+			case 3:
+				var selected =  $('.listEmployees'+type+' .check:not(.all)');
+				var call = type == '0' ? 'trade' : 'tradeswap' ;
+				var field = type == '0' ? 'tradewith' : 'swap' ;
+				if(!selected.length){
+					sp.showError(_s('You need to select at least one item'));
+					return false;
+				}
+				var packedItems = []
+				selected.each(function(i,j){
+					packedItems.push($(j).attr('rel'));
+				});
+				spModel.schedule.create(call,{field:packedItems.join(','),shift:self.shift.id,reason:'Not Big Reason'},function(response){
+					console.log(response);
+					$('#schedule .trade>div [id^="step"]').hide();
+					$('#schedule .trade>div #step_'+self.state).show();						
+				});
+				break;
+			default:
+				self.state = self.state > 3 ? 3 : self.state ;
+				self.state = self.state < 0 ? 1 : self.state ;
+				$('#schedule .trade>div [id^="step"]').hide();
+				$('#schedule .trade>div #step_'+self.state).show();	
+			break;			
 		}
-		
 	});
     $('#sc_sub_shift_display ul a.publish').bind(clickEvent, function(e){
 	e.preventDefault();
@@ -411,6 +464,8 @@ ShiftPlanningSchedule.prototype.todaySubEvents = function(){
 
 ShiftPlanningSchedule.prototype.tradeSubEvents = function (){
 	console.log(this.shift);
+	$('#schedule .trade>div').hide();
+	$('#schedule .trade>div:first').show();	
 	$('span[rel=formatted_date]').html(this.shift.start_date.weekday+','+this.shift.start_date.formatted);
 	$('span[rel=formatted_time]').html(this.shift.start_time.time+'-'+this.shift.end_time.time);
 	$('span[rel=schedule_background]').css('background-color',sp.schedule.getColorsBySchedule(this.shift.schedule)[1]);

@@ -27,13 +27,13 @@
 	<div class="subLevel" style="position:relative">
 		<ul class="subMenu">
 			<li class="first steps">
-				<a id="step_back" href="#">
+				<a id="_back" swap="1" href="#">
 					<img width="16" height="16" src="<?php echo _fCdnPath_;?>images/sch_pre.png">
 				</a>
 			</li>
 			<span id="state">1</span>/3			
 			<li class="last steps">
-				<a id="step_next" href="#">
+				<a id="_next" swap="1" href="#">
 					<img width="16" height="16" src="<?php echo _fCdnPath_;?>images/sch_nex.png">
 				</a>
 			</li>
@@ -51,7 +51,9 @@
 			</div>
 		</div>
 		<div class ="hidden" id="step_2">
-			stepppp 2
+			<ul class="listEmployees1">
+				
+			</ul>
 		</div>
 		<div class ="hidden" id="step_3">
 			stepppp 33333
@@ -71,13 +73,13 @@
 		<div class="subLevel" style="position:relative">
 			<ul class="subMenu">
 				<li class="first steps">
-					<a id="step_back" href="#">
+					<a id="_back" swap="0" href="#">
 						<img width="16" height="16" src="<?php echo _fCdnPath_;?>images/sch_pre.png">
 					</a>
 				</li>
 				<span id="state">1</span>/3				
 				<li class="last steps">
-					<a id="step_next" href="#">
+					<a id="_next" swap="0" href="#">
 						<img width="16" height="16" src="<?php echo _fCdnPath_;?>images/sch_nex.png">
 					</a>
 				</li>
@@ -95,7 +97,9 @@
 			</div>
 		</div>
 		<div class ="hidden" id="step_2">
-			stepppp 2
+			<ul class="listEmployees0">
+				
+			</ul>
 		</div>
 		<div class ="hidden" id="step_3">
 			stepppp 33333
