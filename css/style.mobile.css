@@ -387,6 +387,7 @@ ul.empList li span {display:block; margin:0 0 0 40px; line-height:30px;}
 .cap.trade {background:transparent url('../images/title_trade.png') scroll no-repeat 20px 50%;}
 
 .steps {overflow:hidden; border-top:solid 1px #DDD; padding:20px; text-align:center;}
+.steps span {color:#CCC;}
 .greyed {overflow:hidden; background:#F4F4F4 url('../images/shadow.png') scroll repeat-x 0 0;}
 
 
