@@ -57,7 +57,7 @@
     </ul>
     <ul class="shifts">
         <li>
-            <span>
+            <span class="fr">
                 <p>31. Oct, 2012</p> <br/>
                 <p>08:00 - 16:00</p> 
             </span>
@@ -65,7 +65,7 @@
             <p>Desktop app</p>
         </li>
         <li>
-            <span>
+            <span class="fr">
                 <p>31. Oct, 2012</p> <br/>
                 <p>08:00 - 16:00</p> 
             </span>
