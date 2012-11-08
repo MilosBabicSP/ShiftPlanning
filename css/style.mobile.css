@@ -356,6 +356,7 @@ ul.widgets {}
 ul.widgets li {border-top:solid 1px #DDD;}
 ul.widgets li a {display:block; padding:15px 0;}
 ul.widgets li a span.icon {display:block; float:left; width:80px; text-align:center;}
+ul.widgets li a span.icon b {line-height:30px; font-size:30px;}
 ul.widgets li a span.details {display:block; margin:0 0 0 80px;}
 ul.widgets li a span.details h3 {font-weight:normal; font-size:18px; line-height:25px; color:#333;}
 ul.widgets li a span.details p {line-height:15px; color:#333;}
