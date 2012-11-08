@@ -350,3 +350,13 @@ ul.training_sections li.unread {background-color:#FFC;}
 .dig_signature input {font-size:40px; height:55px; width:100%; background-color:transparent !important; border:none !important; font-family:"Qwigley",cursive,Arial;}
 .dig_signature p, .trainingAssign .topicTop p {color:#999; margin:0; padding:0;}
 .dig_signature span {display:block; border-top:1px solid #E4E4E4; font-size:13px; color:#444; line-height:30px; margin:-15px 0 0;}
+
+/* dashboard */
+ul.widgets {}
+ul.widgets li {border-top:solid 1px #DDD;}
+ul.widgets li a {display:block;}
+ul.widgets li a span.icon {display:block; float:left; width:80px; text-align:center;}
+ul.widgets li a span.details {display:block; margin:0 0 0 80px;}
+
+
+
