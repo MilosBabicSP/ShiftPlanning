@@ -125,9 +125,6 @@
         </ul>
     </div>
     <!-- screen 2 -->
-    <div class="cap trade">
-        Trade or Release Shift
-    </div>
     <ul class="shifts">
         <li style="border-color:#24a5d0">
             <div>
@@ -140,6 +137,9 @@
             </div>
         </li>
     </ul>
+    <div class="cap trade">
+        Trade or Release Shift
+    </div>
     <div class="steps">
         <a class="fl" href="#">back</a>
         <a class="fr" href="#">next</a>
