@@ -421,7 +421,7 @@ ShiftPlanningRequests.prototype.overviewSubEvents = function(){
         if (response.data.shift_request_waiting == 0){
             $('#rq_rl_sr').parent().hide();
         } else {
-            $('#rq_rl_sr').parent().hide();
+            $('#rq_rl_sr').parent().show();
         }
         
         if (response.data.trade_approval == 0){
@@ -433,7 +433,7 @@ ShiftPlanningRequests.prototype.overviewSubEvents = function(){
         if (response.data.shift_available == 0){
             $('#rq_rl_sv').parent().hide();
         } else {
-            $('#rq_rl_sv').parent().hide();
+            $('#rq_rl_sv').parent().show();
         }
         
         $('#rq_rl_va').parent().find('info').html(response.data.vacation);
