@@ -89,6 +89,8 @@ ShiftPlanning.prototype.loadSubPage = function(obj, page, subpage) {
     
     $('.subNavigation div.' + page + ' .subnNav[page=' + page + '] li a[page=' + subpage + ']').parent().addClass('active');
     
+    sp.hash(page);
+    
     if (typeof this[page] != 'undefined' && 'loadSubPageEvents' in this[page]){
         this[page].loadSubPageEvents(subpage);
     }
