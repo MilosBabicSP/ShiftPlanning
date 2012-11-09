@@ -140,6 +140,20 @@
     <div class="cap trade">
         Trade or Release Shift
     </div>
+    <ul class="step">
+        <li>
+            <a href="#">Trade</a>
+            <p>
+                Will let you choose potential employees to pick-up this shift from you
+            </p>
+        </li>
+        <li>
+            <a  href="#">Release</a>
+            <p>
+                Will let you select shifts from other employees to trade this shift for
+            </p>
+        </li>
+    </ul>
     <div class="steps">
         <a class="fl" href="#">back</a>
         <a class="fr" href="#">next</a>
