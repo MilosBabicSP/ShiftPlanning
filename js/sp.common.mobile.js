@@ -63,7 +63,7 @@ ShiftPlanning.prototype.toggleMenu = function(){
 
 ShiftPlanning.prototype.loadSubPage = function(obj, page, subpage){
     if (subpage == 'logout'){
-        sp.staff.logout();
+        this.staff.logout();
         return false;
     }
     
@@ -85,111 +85,121 @@ ShiftPlanning.prototype.loadSubPage = function(obj, page, subpage){
         this[page].loadSubPageEvents(subpage);
     }
     
-    sp.fixCheckboxes();
+    this.fixCheckboxes();
 }
 
 ShiftPlanning.prototype.initialize = function(){
     var self = this;
     $(window).hashchange(function(){
-        if (sp.hash().length > 0) {
-            if(sp.hash() == 'logout')
+        if (self.hash().length > 0) {
+            if(self.hash() == 'logout')
             {
-                sp.staff.logout();
+                self.staff.logout();
                 return false;
             }
-            if ($('#menu [page=' + sp.hash() + ']').length > 0)
+            if ($('#menu [page=' + self.hash() + ']').length > 0)
             {
                 $('#pages > div').hide();
                 setTimeout(function(){
-                    $('#menu [page=' + sp.hash() + ']').parent().parent().find('li').removeClass('active');
-                    $('#menu [page=' + sp.hash() + ']').parent().addClass('active');
-                    self.loadPage(sp.hash());
+                    $('#menu [page=' + self.hash() + ']').parent().parent().find('li').removeClass('active');
+                    $('#menu [page=' + self.hash() + ']').parent().addClass('active');
+                    self.loadPage(self.hash());
                 }, 50);
             }
             else
             {
-                if(sp.hash() != 'login' && sp.hash() != 'logout')
+                if(self.hash() != 'login' && self.hash() != 'logout')
                 {
-                        user.loggedIn ? sp.hash('dashboard') : sp.hash('login') ;
+                        user.loggedIn ? self.hash('dashboard') : self.hash('login') ;
                 }
                 else
                 {
-                    if(sp.hash() == 'logout' && user.loggedIn)
+                    if(self.hash() == 'logout' && user.loggedIn)
                     {
-                            sp.staff.logout();
+                            self.staff.logout();
                     }
-                    if(sp.hash() == 'sp.hash()login' && user.loggedIn)
+                    if(self.hash() == 'login' && user.loggedIn)
                     {
-                            sp.hash('dashboard');
+                            self.hash('dashboard');
                     }
                 }
             }
         }
-    });  
-    $(document).ready(function(){
-        init();
-        $('.toggleMenu').bind('click', function(e){
-            e.preventDefault();
-            self.toggleMenu();
+    }); 
+    
+    if (typeof gap != 'undefined') {
+        self.loadSite();
+    } else {
+        $(document).ready(function(){
+            self.loadSite();
         });
-        
-        if(user.loggedIn){
-            $('.loginContainer').hide();
-            $('body').removeClass('login');
-            $('html').css('height','auto');
-            $('.applicationContainer').show();
-            if (sp.hash().length == 0 || sp.hash() == 'login'){
-                sp.hash('dashboard');
-            }
-        } else {
-            $('.loginContainer').show();
-            $('body').addClass('login');
-            sp.hash('login');
-            $('#lo_u').focus();
-        }
-        
-        $('#wrapper .subNavigation .subNav:not(.notMain) a').bind(clickEvent, function(e){
-            e.preventDefault();
-            self.loadSubPage($(this), $(this).parent().parent().attr('page'), $(this).attr('subpage'));
-        });
-        
-        $('#menu .mainNav > li > a').bind(clickEvent, function(e){
-            if ($(this).hasClass('exit')) return true;
-            e.preventDefault();
-            if ($(this).attr('page') == sp.hash()){
-                return false;
-            }
-            self.toggleMenu();
-            sp.hash($(this).attr('page'));
-        });
-        $(window).hashchange();
-        
-        setInterval(function(){
-            $('#menu').css('height', ($(window).height() > $(document).height() ? $(window).height() : $(document).height()));
-        }, 1000);
-        $('#wrapper').width($(window).width());
-        $('body').width($(window).width());
-        
-        //all mainUser names to lead to settings 
-        $('.userName').bind(clickEvent, function(){
-            sp.loadSubPage('', 'dashboard', 'settings');
-        });
-        
-        $('#wrapper').bind(clickEvent, function(e){
-            if ($('#wrapper').hasClass('extended') && !$(e.target.parentElement).hasClass('toggleMenu')){
-                self.toggleMenu();
-            }
-        })
-        
-        if (isAndroid){
-            $('#da_up_fi_hide').hide();
-        }
-    });
+    }
+    
     
     $(window).bind('resize', function(){
         $('#wrapper').width($(window).width());
         $('body').width($(window).width());
     });
+}
+
+ShiftPlanning.prototype.loadSite = function() {
+    var self = this;
+    init();
+    $('.toggleMenu').bind('click', function(e){
+        e.preventDefault();
+        self.toggleMenu();
+    });
+        
+    if(user.loggedIn) {
+        $('.loginContainer').hide();
+        $('body').removeClass('login');
+        $('html').css('height','auto');
+        $('.applicationContainer').show();
+        if (self.hash().length == 0 || self.hash() == 'login') {
+            self.hash('dashboard');
+        }
+    } else {
+        $('.loginContainer').show();
+        $('body').addClass('login');
+        self.hash('login');
+        $('#lo_u').focus();
+    }
+        
+    $('#wrapper .subNavigation .subNav:not(.notMain) a').bind(clickEvent, function(e){
+        e.preventDefault();
+        self.loadSubPage($(this), $(this).parent().parent().attr('page'), $(this).attr('subpage'));
+    });
+        
+    $('#menu .mainNav > li > a').bind(clickEvent, function(e){
+        if ($(this).hasClass('exit') && $(this).attr('page') != 'logout') return true;
+        e.preventDefault();
+        if ($(this).attr('page') == self.hash()){
+            return false;
+        }
+        self.toggleMenu();
+        self.hash($(this).attr('page'));
+    }); 
+    $(window).hashchange();
+    setInterval(function(){
+        $('#menu').css('height', ($(window).height() > $(document).height() ? $(window).height() : $(document).height()));
+    }, 1000);
+    $('#wrapper').width($(window).width());
+    $('body').width($(window).width());
+        
+    //all mainUser names to lead to settings 
+    $('.userName').bind(clickEvent, function(){
+        self.loadSubPage('', 'dashboard', 'settings');
+    });
+        
+    $('#wrapper').bind(clickEvent, function(e){
+        if ($('#wrapper').hasClass('extended') && !$(e.target.parentElement).hasClass('toggleMenu')){
+            self.toggleMenu();
+        }
+    })
+        
+    if (isAndroid){
+        $('#da_up_fi_hide').hide();
+    }
 }
 
 ShiftPlanning.prototype.globalLoader = function(){
@@ -246,14 +256,17 @@ function callAndroid(func, callback){
     return false;
 }
 
+
+if (typeof gap == 'undefined') {
 //Initalizing javascript library
-var sp = new ShiftPlanning();
-ShiftPlanning.prototype.staff = new ShiftPlanningStaff();
-ShiftPlanning.prototype.schedule = new ShiftPlanningSchedule();
-ShiftPlanning.prototype.dashboard = new ShiftPlanningDashboard();
-ShiftPlanning.prototype.timeClock = new ShiftPlanningTimeClock();
-ShiftPlanning.prototype.reports = new ShiftPlanningReports();
-ShiftPlanning.prototype.requests = new ShiftPlanningRequests();
-ShiftPlanning.prototype.location = new ShiftPlanningLocation();
-ShiftPlanning.prototype.permissions = new ShiftPlanningPermissions();
-ShiftPlanning.prototype.training = new ShiftPlanningTraining();
+    var sp = new ShiftPlanning();
+    ShiftPlanning.prototype.staff = new ShiftPlanningStaff();
+    ShiftPlanning.prototype.schedule = new ShiftPlanningSchedule();
+    ShiftPlanning.prototype.dashboard = new ShiftPlanningDashboard();
+    ShiftPlanning.prototype.timeClock = new ShiftPlanningTimeClock();
+    ShiftPlanning.prototype.reports = new ShiftPlanningReports();
+    ShiftPlanning.prototype.requests = new ShiftPlanningRequests();
+    ShiftPlanning.prototype.location = new ShiftPlanningLocation();
+    ShiftPlanning.prototype.permissions = new ShiftPlanningPermissions();
+    ShiftPlanning.prototype.training = new ShiftPlanningTraining();
+}

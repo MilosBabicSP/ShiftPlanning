@@ -3,9 +3,12 @@ function ShiftPlanning(){
     //api cals
     this.apiCalls = {};
     this.successMessage = '';
-    var self = this;
-    this.initialize();
-    return true;
+    
+    if (typeof gap == 'undefined') {
+        this.initialize();
+    }
+    
+    return this;
 }
 
 ShiftPlanning.prototype = {
@@ -71,11 +74,11 @@ ShiftPlanning.prototype = {
                 }
                 if(response.status == 3){
                     //We are not logged in!
-                    sp.hash('logout');
+                    self.hash('logout');
                     user.loggedIn = 0;
                     user.name = '';
                     user.company = '';
-                    sp.staff.data.employees = {};
+                    self.staff.data.employees = {};
                     $('.applicationContainer').fadeOut(500,function(){
 			window.location.reload();
                         $('body').addClass('login');
@@ -136,7 +139,7 @@ ShiftPlanning.prototype = {
         return $('<div>').append(obj.clone()).remove().html();
     },
     hasPermission: function(needed){
-        var perm = sp.staff.admin.info.group;
+        var perm = this.staff.admin.info.group;
         if (perm <= needed){
             return true;
         } else {
@@ -197,7 +200,7 @@ ShiftPlanning.prototype = {
         return sa ? s : s[0];
     },
     getAvatar : function(id){
-        return (typeof sp.staff.data.employees[id] != 'undefined' && typeof sp.staff.data.employees[id].avatar != 'undefined' && sp.staff.data.employees[id].avatar != '' && typeof sp.staff.data.employees[id].avatar.small != 'undefined') ? sp.staff.data.employees[id].avatar.small : 'images/no-avatar.png';
+        return (typeof this.staff.data.employees[id] != 'undefined' && typeof this.staff.data.employees[id].avatar != 'undefined' && this.staff.data.employees[id].avatar != '' && typeof this.staff.data.employees[id].avatar.small != 'undefined') ? this.staff.data.employees[id].avatar.small : 'images/no-avatar.png';
     },
     isL : function(data){
 	if ($.trim(data).length > 0){
