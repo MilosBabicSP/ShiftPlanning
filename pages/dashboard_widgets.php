@@ -28,17 +28,7 @@
                     <b>12</b>
                 </span>
                 <span class="details">
-                    <p>Shifts available<br/>for <b>trade</b></p>
-                </span>
-            </a>
-        </li>
-        <li class="shifts pickupPage">
-            <a href="#">
-                <span class="icon">
-                    <b>8</b>
-                </span>
-                <span class="details">
-                    <p>Shifts available<br/>for <b>pick-up</b></p>
+                    <p>Shifts available<br/>for <b>trade</b> or <b>pick-up</b></p>
                 </span>
             </a>
         </li>
