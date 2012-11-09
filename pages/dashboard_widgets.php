@@ -99,7 +99,7 @@
     </ul>
     
     <!-- SVETA -->
-    
+    <!-- screen 1 -->
     <ul class="shifts">
         <li style="border-color:#24a5d0">
             <div>
@@ -124,9 +124,9 @@
             <li><img style="display:block; height:30px; width:30px; background-color:#333" /> <span>Marko Zivanovic</span></li>
         </ul>
     </div>
-    
+    <!-- screen 2 -->
     <div class="cap trade">
-        Trade Shift
+        Trade or Release Shift
     </div>
     <div class="steps">
         <a class="fl" href="#">back</a>
