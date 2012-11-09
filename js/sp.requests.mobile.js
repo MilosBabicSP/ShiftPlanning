@@ -141,7 +141,7 @@ ShiftPlanningRequests.prototype.openShiftsEvents = function(){
             id : $(this).attr('rel'), 
             add : sp.staff.admin.info.id
         }, function(response){
-            obj.removeClass('loading').removeClass('icoReqWork').addClass('icoReqCan').html(_s('<span>Cancel pending request</span>'));
+            obj.removeClass('loading').removeClass('icoReqWor').addClass('icoReqCan').html(_s('<span>Cancel pending request</span>'));
         });
     });
     
@@ -153,7 +153,7 @@ ShiftPlanningRequests.prototype.openShiftsEvents = function(){
             id : $(this).attr('rel'), 
             remove : sp.staff.admin.info.id
         }, function(response){
-            obj.removeClass('loading').removeClass('icoReqCan').removeClass('icoReqWork').html(_s('Request Removed'));
+            obj.removeClass('loading').removeClass('icoReqCan').removeClass('icoReqWor').html(_s('Request Removed'));
         });
     });
     
