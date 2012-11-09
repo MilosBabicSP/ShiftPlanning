@@ -695,18 +695,18 @@ ShiftPlanningSchedule.prototype.clearSchedules = function(){
     return schedules;
 }
 
-ShiftPlanningSchedule.prototype.checkSchedulePerm = function(scheduleID){
-    if (typeof sp.schedule.data.schedules[scheduleID] == 'undefined'){
+ShiftPlanningSchedule.prototype.checkSchedulePerm = function(scheduleID) {
+    if (typeof sp.schedule.data.schedules[scheduleID] == 'undefined') {
 	return 0;
     } else {
 	return sp.schedule.data.schedules[scheduleID].perms;
     }
 }
 
-ShiftPlanningSchedule.prototype.fillCalendar = function(data){
+ShiftPlanningSchedule.prototype.fillCalendar = function(data) {
     var res = {};
     $.each(data, function(i, item){
-        if (typeof res[item.start_date.day + ''] == 'undefined'){
+        if (typeof res[item.start_date.day + ''] == 'undefined') {
             res[item.start_date.day + ''] = {
                 dateToday : item.start_date.formatted,
                 shifts : []
