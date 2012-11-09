@@ -1,7 +1,7 @@
 <!-- ID rulez first is "te" shorten from template, next is 2 letter from module name, than 2 letter from page name, than 2 letters from page method -->
 <div id="templates">
     <script id="te_da_widget_shift" type="text/x-jquery-tmpl">
-        <li {{if start_date.id > sp.raw.config.today.id}} class="upcoming" {{/if}} style="border-color:#${sp.schedule.getColorsBySchedule(schedule)[2]}">
+        <li {{if start_date.id > sp.raw.config.today.id}} class="upcoming" {{/if}} style="border-color:#${sp.schedule.getColorsBySchedule(schedule)[3]}">
             <a href="#" rel="${id}">
                 <span class="fr">
                     <p>${start_date.formatted}</p>
