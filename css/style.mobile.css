@@ -394,6 +394,7 @@ ul.step {overflow:hidden; padding:10px; border-top:solid 1px #DDD;}
 ul.step li {width:50%; float:left;}
 ul.step li div {padding:10px;}
 ul.step li div p {padding:20px 0 0;}
+ul.step li div a {display:block; color:#FFF; line-height:28px; text-align:center; background-color:#7bab66; border:solid 1px #52843a;}
 
 .cap {padding:15px 20px 15px 45px; font-weight:bold; font-size:13px;}
 .cap.working {background:transparent url('../images/title_working.png') scroll no-repeat 20px 50%;}
