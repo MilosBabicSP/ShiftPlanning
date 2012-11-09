@@ -385,7 +385,7 @@ ul.empList li {padding:5px 0;}
 ul.empList li img {float:left;}
 ul.empList li span {display:block; margin:0 0 0 40px; line-height:30px;}
 
-ul.step {overflow:hidden; padding:10px;}
+ul.step {overflow:hidden; padding:10px; border-top:solid 1px #DDD;}
 ul.step li {width:50%; float:left;}
 ul.step li div {padding:10px;}
 ul.step li div p {padding:20px 0 0;}
