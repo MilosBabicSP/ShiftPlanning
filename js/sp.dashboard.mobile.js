@@ -68,6 +68,11 @@ ShiftPlanningDashboard.prototype.dashboardEvents = function(){
 	    sp.loadSubPage('', 'schedule', 'shiftDisplay');
 	});
     });
+    
+    $('#da_widgets .schedule a').bind(clickEvent, function(e){
+        e.preventDefault();
+        sp.loadSubPage('', 'schedule', 'today');
+    });
 }
 
 ShiftPlanningDashboard.prototype.wallEvents = function(){
