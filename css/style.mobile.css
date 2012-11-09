@@ -375,11 +375,40 @@ ul.widgets li.timeClock.out {background:transparent url('../images/widget_clocke
 ul.widgets li.timeClock {background:transparent url('../images/widget_clockedin.png') scroll no-repeat 15px 50%;}
 ul.widgets li.schedule {background:transparent url('../images/widget_calendar.png') scroll no-repeat 15px 50%;}
 
-ul.shifts {margin:-5px 0 0;}
+ul.shifts.moved {margin:-5px 0 0;}
 ul.shifts li {border-left:solid 5px #EEE;}
 ul.shifts li.upcoming {background-color:#F4F4F4;}
 ul.shifts li a span {color:#999; text-align:center;}
 ul.shifts li a {padding:10px 20px 10px 10px; display:block; line-height:20px; color:#333; border-bottom:solid 1px #DDD;}
 ul.shifts li a p {line-height:20px;}
+ul.shifts li div span {color:#999; text-align:center;}
+ul.shifts li div {padding:10px 20px 10px 10px; display:block; line-height:20px; color:#333; border-bottom:solid 1px #DDD;}
+ul.shifts li div p {line-height:20px;}
+
+ul.empList {padding:15px 20px;}
+ul.empList li {padding:5px 0;}
+ul.empList li img {float:left;}
+ul.empList li span {display:block; margin:0 0 0 40px; line-height:30px;}
+
+ul.step {overflow:hidden; padding:10px; border-top:solid 1px #DDD;}
+ul.step li {width:50%; float:left;}
+ul.step li div {padding:10px;}
+ul.step li div p {padding:20px 0 0;}
+
+.cap {padding:15px 20px 15px 45px; font-weight:bold; font-size:13px;}
+.cap.working {background:transparent url('../images/title_working.png') scroll no-repeat 20px 50%;}
+.cap.trade {background:transparent url('../images/title_trade.png') scroll no-repeat 20px 50%;}
+
+.steps {overflow:hidden; border-top:solid 1px #DDD; padding:20px; text-align:center;}
+.steps span {color:#CCC;}
+.greyed {overflow:hidden; background:#F4F4F4 url('../images/shadow.png') scroll repeat-x 0 0;}
+
+.greyed ol.reg {padding:10px 20px 0;}
+.greyed ol.reg li {list-style:decimal outside; padding:10px 0; margin:0 0 0 17px;}
+.greyed ul.reg {padding:0 20px 10px;}
+.greyed ul.reg li {list-style:none inside; padding:10px 0; margin:0 0 0 17px;}
+
+.greyed .text {padding:20px 20px 10px; border-bottom:solid 1px #DDD;}
+.greyed .text p {padding:10px 0;}
 
 
