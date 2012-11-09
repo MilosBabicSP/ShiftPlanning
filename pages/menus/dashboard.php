@@ -1,39 +1,44 @@
 <div class="dashboard">
     <a href="#" class="toggleMenu">
-        <img width="24" height="24" src="<?php echo _fCdnPath_;?>images/ShowHideMenu.png" />
+        <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/ShowHideMenu.png" />
     </a>
     <div class="subWrapp">
         <ul class="subNav" page="dashboard">
             <li class="first active">
-                <a href="#" subpage="wall">
-                    <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/Dashboard_Home16x16.png" />
+                <a href="#" subpage="dashboard">
+                    <img width="16" height="17" src="<?php echo _fCdnPath_;?>images/Dashboard_Home16x16.png" />
                 </a>
             </li>
             <li>
                 <a href="#" subpage="upcomingShifts">
-                    <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/Dashboard_UpcomingShifts16x16.png" />
+                    <img width="16" height="17" src="<?php echo _fCdnPath_;?>images/Dashboard_UpcomingShifts16x16.png" />
                 </a>
             </li>
-            <li id="da_up_fi_hide">
+            <li>
+                <a href="#" subpage="wall">
+                    <img width="16" height="17" src="<?php echo _fCdnPath_;?>images/Dashboard_messages16x16.png" />
+                </a>
+            </li>
+            <!-- li id="da_up_fi_hide">
                 <a href="#" subpage="files">
-                    <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/uploaded-files.png" />
+                    <img width="16" height="17" src="<?php echo _fCdnPath_;?>images/uploaded-files.png" />
                 </a>
-            </li>
+            </li-->
             <li class="hidden">
                 <a href="#" subpage="whosonnow">
-                    <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/Dashboard_whosonnow.png" />
+                    <img width="16" height="17" src="<?php echo _fCdnPath_;?>images/Dashboard_whosonnow.png" />
                 </a>
             </li>            
             <li>
                 <a href="#" subpage="inbox">
-                    <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/Dashboard_Inbox16x16.png" />
+                    <img width="16" height="17" src="<?php echo _fCdnPath_;?>images/Dashboard_Inbox16x16.png" />
                 </a>
             </li>
-            <li class="last">
+            <!--li class="last">
                 <a href="#" subpage="settings">
-                    <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/Dashboard_Settings16x16.png" />
+                    <img width="16" height="17" src="<?php echo _fCdnPath_;?>images/Dashboard_Settings16x16.png" />
                 </a>
-            </li>
+            </li-->
         </ul>
     </div>
 </div>

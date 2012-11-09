@@ -31,18 +31,19 @@ h5 {font-size:14px; font-weight:normal; color:#333;}
 /*SPRITE*/
 .msgDel, .msgRpl, .cmtCount span.tip, ul.cmts, ul.cmts li.last input[type=submit], .search input[type=submit] {background-image:url(../images/icos.png); background-repeat:no-repeat;}
 .cmtCount span.ico {background-image:url(../images/sprite.png); background-repeat:no-repeat;}
-.fromI, .untilI, span.checkbox, span.radio, .dash, .ticl, .sche, .requ, .staf, .repo, .trai, .exit, .icoClock, .icoEmpDet, .icoAdmAct, .icoEmpPos, .icoEmpSki, .icoEmpAdd, .icoDat, .icoNot, .icoAct, .icoSta, .icoReqWor, .icoReqCan, .icoReqEdi, .icoReqDel, .icoLoc, .icoSch {background-image:url(../images/mainNav_bg.png); background-repeat:no-repeat;}
+.fromI, .untilI, span.checkbox, span.radio, .dash, .ticl, .sche, .requ, .staf, .repo, .trai, .sett, .exit, .icoClock, .icoEmpDet, .icoAdmAct, .icoEmpPos, .icoEmpSki, .icoEmpAdd, .icoDat, .icoNot, .icoAct, .icoSta, .icoReqWor, .icoReqCan, .icoReqEdi, .icoReqDel, .icoLoc, .icoSch {background-image:url(../images/mainNav_bg.png); background-repeat:no-repeat;}
 .calendar td.today, .calendar th, .calendar td.hasAny {background-image: url(../images/callendar_bg.png); background-repeat:repeat-x;}
 .trai_down {background-image:url(../images/DownMenu.png); background-repeat:no-repeat;}
 .trai_up{background-image:url(../images/UpMenu.png); background-repeat:no-repeat;}
-.dash {background-position:10px 0;}
-.ticl {background-position:10px -50px;}
-.sche {background-position:10px -100px;}
-.requ {background-position:10px -150px;}
-.staf {background-position:10px -200px;}
-.repo {background-position:10px -250px;}
-.trai {background-position:10px -1450px;}
-.exit {background-position:10px -1495px;}
+.dash {background-position:5px 0;}
+.ticl {background-position:5px -40px;}
+.sche {background-position:5px -80px;}
+.requ {background-position:5px -120px;}
+.staf {background-position:5px -160px;}
+.repo {background-position:5px -240px;}
+.trai {background-position:5px -200px;}
+.sett {background-position:5px -1450px;}
+.exit {background-position:5px -1490px;}
 
 .pdf {background:transparent url('../images/document-pdf.png') scroll no-repeat 0 50%}
 .txt {background:transparent url('../images/document-text.png') scroll no-repeat 0 50%}
@@ -90,9 +91,9 @@ table.loading tr, ul.loading li, tr.loading td, div.loading span, li.loading spa
 html {overflow-x:hidden;}
 .wrapper { background-color:#FFF;}
 .wrapper.extended {margin:0 0 0 190px; width:100%;} 
-.mainMenu {background-color:#a32525; width:189px; float:left; border-right:solid 1px #711111;}
+.mainMenu {background-color:#f1f1f1; width:190px; float:left;}
 .subWrapp {overflow:hidden; margin:0 auto;}
-.subNavigation, .subLevel {padding:15px 20px 15px 60px; height:30px; background-color:#F2F2F2; border-top:solid 1px #FFF; border-bottom:solid 1px #DBDBDB; position:relative;}
+.subNavigation, .subLevel {height:40px; position:relative; background:#f2f2f2 url('../images/header_bg.png') scroll repeat-x 0 0;}
 
 .main {padding:0 20px 20px;}
 #pages {overflow:hidden;}
@@ -109,7 +110,7 @@ html {overflow-x:hidden;}
 .additional p {padding:5px 0;}
 .centered {text-align:center;}
 
-.toggleMenu {position:absolute; top:17px; left:19px;}
+.toggleMenu {position:absolute; top:12px; left:12px;}
 .backMenu {position:absolute; top:15px; left:15px;}
 .title1 {overflow:hidden; padding:5px 0; line-height:30px; border-bottom:solid 1px #DBDBDB;}
 .title1.wide {padding:5px 20px;}
@@ -156,20 +157,18 @@ ul.msgWall .msgRpl {top:20px; right:40px; background-position:0 0;}
 ul.msgWall .msgDel {top:20px; right:0; background-position:-13px 0;}
 ul.cmts .msgDel {top:15px; right:15px; background-position:-13px 0;}
 
-ul.mainNav {border-top:solid 1px #841717; border-bottom:solid 1px #b23939;}
+ul.mainNav {}
 ul.mainNav > li {overflow:hidden;}
-ul.mainNav > li > a {display:block; line-height:50px; padding:0 20px 0 60px; color:#FFF; font-size:14px; font-weight:bold; text-shadow:0 1px 2px #841717; border-bottom:solid 1px #841717; border-top:solid 1px #b23939;}
-ul.mainNav > li.active > a {background-color:#8f1a1a; border-top-color:#8f1a1a;}
+ul.mainNav > li > a {display:block; line-height:40px; padding:0 20px 0 42px; color:#666; font-size:14px;}
+ul.mainNav > li.active > a {background-color:#e5e5e5; border-left:solid 3px #c52424;}
 ul.mainNav ul li a {display:block; line-height:20px; padding:5px 10px 5px 20px; color:#FFF; border-bottom:solid 1px #841717; border-top:solid 1px #b23939; text-shadow:0 1px 2px #841717;}
 ul.mainNav ul li a span {display:block; float:right; padding:4px; font-size:11px; line-height:10px; background-color:#7c1515; border:solid 1px #691010; border-radius:2px;}
 
-ul.subNav {overflow:hidden; margin:0 auto;}
-ul.subNav li {float:left;}
-ul.subNav li a {display:block; padding:6px 15px; line-height:16px; color:#333; text-align:center; border:solid 1px #d8d8d8; border-left:none; background-color:#FFF;}
+ul.subNav {overflow:hidden; position:absolute; right:0; top:0;}
+ul.subNav li {float:left; margin:0 5px 0 0;}
+ul.subNav li a {display:block; width:32px; padding:11px 0 8px; text-align:center;}
 ul.subNav li a span {margin:0 -7px;}
-ul.subNav li.active a {background-color:#e8e8e8;}
-ul.subNav li.first a {border-radius:2px 0 0 2px; border-left:solid 1px #d8d8d8;}
-ul.subNav li.last a {border-radius:0 2px 2px 0;}
+ul.subNav li.active a {border-bottom:solid 3px #c52424;}
 
 ul.subMenu {overflow:hidden; position:absolute; right:15px; top:15px; line-height:15px;}
 .title ul.subMenu {right:0;}
@@ -351,3 +350,60 @@ ul.training_sections li.unread {background-color:#FFC;}
 .dig_signature input {font-size:40px; height:55px; width:100%; background-color:transparent !important; border:none !important; font-family:"Qwigley",cursive,Arial;}
 .dig_signature p, .trainingAssign .topicTop p {color:#999; margin:0; padding:0;}
 .dig_signature span {display:block; border-top:1px solid #E4E4E4; font-size:13px; color:#444; line-height:30px; margin:-15px 0 0;}
+
+/* dashboard */
+ul.widgets {padding:0 0 5px; background:transparent url('../images/shadow.png') scroll repeat-x 0 100%; position:relative;}
+ul.widgets li {border-top:solid 1px #DDD;}
+ul.widgets li:first-child {border:none;}
+ul.widgets li a {display:block; padding:20px 0;}
+ul.widgets li.shifts a {display:block; padding:15px 0;}
+ul.widgets li a span.icon {display:block; float:left; width:80px; text-align:center;}
+ul.widgets li a span.icon b {line-height:30px; font-size:30px; color:#333;}
+ul.widgets li a span.icon p {color:#FFF; text-transform:uppercase; font-size:10px; line-height:15px;}
+ul.widgets li a span.icon h3 {line-height:28px; color:#333; font-size:16px;}
+ul.widgets li a span.details {display:block; margin:0 20px 0 80px; background:transparent url('../images/arrow_light_forward.png') scroll no-repeat 100% 50%;}
+ul.widgets li a:active span.details {background:transparent url('../images/arrow_forward.png') scroll no-repeat 100% 50%;}
+ul.widgets li a span.details h3 {font-weight:normal; font-size:18px; line-height:25px; color:#333;}
+ul.widgets li a span.details p {line-height:15px; color:#333;}
+ul.widgets li.timeClock.out span.details p {color:#CCC;}
+ul.widgets li.timeClock.out {background:transparent url('../images/widget_clockedout.png') scroll no-repeat 15px 50%;}
+ul.widgets li.timeClock {background:transparent url('../images/widget_clockedin.png') scroll no-repeat 15px 50%;}
+ul.widgets li.schedule {background:transparent url('../images/widget_calendar.png') scroll no-repeat 15px 50%;}
+
+ul.shifts.moved {margin:-5px 0 0;}
+ul.shifts li {border-left:solid 5px #EEE;}
+ul.shifts li.upcoming {background-color:#F4F4F4;}
+ul.shifts li a span {color:#999; text-align:center;}
+ul.shifts li a {padding:10px 20px 10px 10px; display:block; line-height:20px; color:#333; border-bottom:solid 1px #DDD;}
+ul.shifts li a p {line-height:20px;}
+ul.shifts li div span {color:#999; text-align:center;}
+ul.shifts li div {padding:10px 20px 10px 10px; display:block; line-height:20px; color:#333; border-bottom:solid 1px #DDD;}
+ul.shifts li div p {line-height:20px;}
+
+ul.empList {padding:15px 20px;}
+ul.empList li {padding:5px 0;}
+ul.empList li img {float:left;}
+ul.empList li span {display:block; margin:0 0 0 40px; line-height:30px;}
+
+ul.step {overflow:hidden; padding:10px; border-top:solid 1px #DDD;}
+ul.step li {width:50%; float:left;}
+ul.step li div {padding:10px;}
+ul.step li div p {padding:20px 0 0;}
+
+.cap {padding:15px 20px 15px 45px; font-weight:bold; font-size:13px;}
+.cap.working {background:transparent url('../images/title_working.png') scroll no-repeat 20px 50%;}
+.cap.trade {background:transparent url('../images/title_trade.png') scroll no-repeat 20px 50%;}
+
+.steps {overflow:hidden; border-top:solid 1px #DDD; padding:20px; text-align:center;}
+.steps span {color:#CCC;}
+.greyed {overflow:hidden; background:#F4F4F4 url('../images/shadow.png') scroll repeat-x 0 0;}
+
+.greyed ol.reg {padding:10px 20px 0;}
+.greyed ol.reg li {list-style:decimal outside; padding:10px 0; margin:0 0 0 17px;}
+.greyed ul.reg {padding:0 20px 10px;}
+.greyed ul.reg li {list-style:none inside; padding:10px 0; margin:0 0 0 17px;}
+
+.greyed .text {padding:20px 20px 10px; border-bottom:solid 1px #DDD;}
+.greyed .text p {padding:10px 0;}
+
+

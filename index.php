@@ -291,6 +291,7 @@ if ($vtoken['data'] != '1') {
                     <li id="menu_staff"><a class="staf" href="#" page="staff" ><?=_s('Staff')?></a></li>
                     <li id="menu_training"><a class="trai" href="#" page="training"><?=_s('Training')?></a></li>				
                     <li id="menu_reports"><a class="repo" href="#" page="reports" ><?=_s('Reports')?></a></li>
+                    <li id="menu_settings"><a class="sett" href="#" page="settings" ><?=_s('Settings')?></a></li>
                     <li id="menu_logout"><a class="exit" href="index.php?logout=true"><?=_s('Logout')?></a></li>
                 </ul>
             </div>
@@ -327,6 +328,7 @@ if ($vtoken['data'] != '1') {
                         <?php Functions::getInstance()->loadFile('dashboard_inbox') ?>
                         <?php Functions::getInstance()->loadFile('dashboard_settings'); ?>
                         <?php Functions::getInstance()->loadFile('dashboard_whosonnow'); ?>
+						<?php Functions::getInstance()->loadFile('dashboard_widgets'); ?>
                         <div class="main pingUser" id="da_who_ping">
                                                     
                         </div>
