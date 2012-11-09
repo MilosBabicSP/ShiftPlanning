@@ -163,10 +163,6 @@
         <a class="fr" href="#">next</a>
         <span>Step<br/>1/3</span>
     </div>
-    <div class="greyed">
-        <h4>Reason for request</h4>
-        <p>The more information you can provide the better odds your shift request will be successful.</p>
-    </div>
     <!-- screen 3 -->
     <ul class="shifts">
         <li style="border-color:#24a5d0">
