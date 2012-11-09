@@ -223,6 +223,8 @@
         <div class="text">
             <h4>Reason for request</h4>
             <p>The more information you can provide the better odds your shift request will be successful.</p>
+            <textarea name="" rows="4" cols="20">Add reason...</textarea>
+            <p>The more information you can provide the better odds your shift request will be successful.</p>
         </div>
     </div>
 </div>
