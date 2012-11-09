@@ -727,10 +727,14 @@ ShiftPlanningSchedule.prototype.fillCalendar = function(data) {
     this.shifts = fin;
 }
 
-ShiftPlanningSchedule.prototype.getColorsBySchedule = function(id){
+ShiftPlanningSchedule.prototype.getColorsBySchedule = function(id, color_id){
     if (typeof sp.schedule.data.schedules[id] != 'undefined') {
-        console.log(sp.raw.config.newcolorsets, sp.schedule.data.schedules[id].color, sp.raw.config.newcolorsets[sp.schedule.data.schedules[id].color][1]);
-        return sp.raw.config.newcolorsets[sp.schedule.data.schedules[id].color];
+        if (typeof color_id != 'undefined'){
+            console.log(sp.raw.config.newcolorsets[sp.schedule.data.schedules[id].color][color_id]);
+            return sp.raw.config.newcolorsets[sp.schedule.data.schedules[id].color][color_id];
+        } else {
+            return sp.raw.config.newcolorsets[sp.schedule.data.schedules[id].color];
+        }
     } else {
         return ['000', 'aaa', 'fff', 'fff', '000'];
     }
