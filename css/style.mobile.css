@@ -398,10 +398,10 @@ ul.step li div p {padding:20px 0 0;}
 .steps span {color:#CCC;}
 .greyed {overflow:hidden; background:#F4F4F4 url('../images/shadow.png') scroll repeat-x 0 0;}
 
-.greyed ol {padding:10px 20px 0;}
-.greyed ol li {list-style:decimal outside; padding:10px 0; margin:0 0 0 17px;}
-.greyed ul {padding:0 20px 10px;}
-.greyed ul li {list-style:none inside; padding:10px 0; margin:0 0 0 17px;}
+.greyed ol.reg {padding:10px 20px 0;}
+.greyed ol.reg li {list-style:decimal outside; padding:10px 0; margin:0 0 0 17px;}
+.greyed ul.reg {padding:0 20px 10px;}
+.greyed ul.reg li {list-style:none inside; padding:10px 0; margin:0 0 0 17px;}
 
 .greyed .text {padding:20px; border-bottom:solid 1px #DDD;}
 .greyed .text p {padding:10px 0;}

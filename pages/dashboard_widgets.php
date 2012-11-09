@@ -185,12 +185,12 @@
         <span>Step<br/>1/3</span>
     </div>
     <div class="greyed">
-        <ol>
+        <ol class="reg">
             <li>You will be asked to enter your reason for requesting the Change, as well as to select possible shifts to trade with.</li>
             <li>Management will approve your request to change shift and employees will be notified.</li>
             <li>If another employee accepts your shift, Management will confirm and the swap will be made.</li>
         </ol>
-        <ul>
+        <ul class="reg">
             <li><b>Note</b> - There is no guarantee that another employee will be able cover your shift or that management will approve your request.</li>
         </ul>
     </div>
