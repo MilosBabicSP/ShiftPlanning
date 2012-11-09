@@ -614,8 +614,6 @@ ShiftPlanningDashboard.prototype.dashboardSubEvents = function(){
         }]
     ]
     sp.multiApi(calls, function(response){
-        console.log(response);
-        console.log(response[0].data['length']);
         if (response[0].data != 'out') {
             $('#da_widgets .timeClock.in').show();
             $('#da_widgets .timeClock.in .details b').html(response[0].data.current_length.hours + _s('h') + ' ' + response[0].data.current_length.mins + _('mins'));

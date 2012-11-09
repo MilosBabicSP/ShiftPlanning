@@ -87,7 +87,7 @@
             </a>
         </li>
     </ul>
-    
+    <?if (0){?>
     <!-- SVETA -->
     <!-- screen 1 -->
     <ul class="shifts">
@@ -248,4 +248,5 @@
             <p>You have currently selected to receive notifications via <b>SMS & Email</b></p>
         </div>
     </div>
+    <?}?>
 </div>
