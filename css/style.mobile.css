@@ -401,6 +401,7 @@ ul.step li div a {display:block; color:#FFF; line-height:28px; text-align:center
 .cap.trade {background:transparent url('../images/title_trade.png') scroll no-repeat 20px 50%;}
 
 .steps {overflow:hidden; border-top:solid 1px #DDD; padding:20px; text-align:center;}
+.steps a {display:block; padding:0 20px; color:#FFF; line-height:28px; text-align:center; background-color:#7bab66; border:solid 1px #52843a; box-shadow:0 1px 0 0 #a8c89b inset;}
 .steps span {color:#CCC;}
 .greyed {overflow:hidden; background:#F4F4F4 url('../images/shadow.png') scroll repeat-x 0 0;}
 
