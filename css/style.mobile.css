@@ -356,7 +356,6 @@ ul.widgets {padding:0 0 5px; background:transparent url('../images/shadow.png') 
 ul.widgets li {border-top:solid 1px #DDD;}
 ul.widgets li:first-child {border:none;}
 ul.widgets li a {display:block; padding:20px 0;}
-ul.widgets li > div {display:block; padding:20px 0;}
 ul.widgets li.shifts a {display:block; padding:15px 0;}
 ul.widgets li a span.icon {display:block; float:left; width:80px; text-align:center;}
 ul.widgets li a span.icon b {line-height:30px; font-size:30px; color:#333;}
@@ -377,6 +376,9 @@ ul.shifts li.upcoming {background-color:#F4F4F4;}
 ul.shifts li a span {color:#999; text-align:center;}
 ul.shifts li a {padding:10px 20px 10px 10px; display:block; line-height:20px; color:#333; border-bottom:solid 1px #DDD;}
 ul.shifts li a p {line-height:20px;}
+ul.shifts li div span {color:#999; text-align:center;}
+ul.shifts li div {padding:10px 20px 10px 10px; display:block; line-height:20px; color:#333; border-bottom:solid 1px #DDD;}
+ul.shifts li div p {line-height:20px;}
 
 ul.empList {padding:15px 20px;}
 ul.empList li {padding:5px 0;}
