@@ -93,10 +93,10 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
             $('#dashboard .search.settings.mainSub li a[subpage=upcomingShifts]').trigger(clickEvent);
             }
         }else{
-        if(self.fromRecent){
+        if(self.fromRecent) {
             self.fromRecent = false;
             $('.subNavigation').show();
-                    if(self.fromStaff){
+                    if(self.fromStaff) {
                 self.fromStaff = false;
                 $('.subNavigation .schedule').hide()
                 $('.staff .subWrapp ul li a[subpage=list]').trigger(clickEvent);
