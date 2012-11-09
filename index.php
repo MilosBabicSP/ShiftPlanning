@@ -574,6 +574,7 @@ if ($vtoken['data'] != '1') {
                             </ul>
                         </div>
                         <?php Functions::getInstance()->loadFile('requests_overview'); ?>
+                        <?php Functions::getInstance()->loadFile('requests_tradePage'); ?>
                         <?php Functions::getInstance()->loadFile('requests_vacation'); ?>
                         <?php Functions::getInstance()->loadFile('requests_openShifts'); ?>
                         <?php Functions::getInstance()->loadFile('requests_shiftTrades'); ?>
