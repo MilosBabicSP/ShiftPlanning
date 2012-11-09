@@ -176,6 +176,7 @@ ShiftPlanning.prototype.initialize = function(){
         
         setInterval(function(){
             $('#menu').css('height', ($(window).height() > $(document).height() ? $(window).height() : $(document).height()));
+            $('#wrapper').height($(document).height());
         }, 1000);
         $('#wrapper').width($(window).width());
         $('body').width($(window).width());
@@ -198,9 +199,6 @@ ShiftPlanning.prototype.initialize = function(){
     
     $(window).bind('resize', function(){
         $('#wrapper').width($(window).width());
-        if ($('#wrapper').height() < $(document).height()){
-            $('#wrapper').height($(document).height());
-        }
         $('#wrapper').width($(window).width());
         $('body').width($(window).width());
     });
