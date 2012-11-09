@@ -128,6 +128,18 @@
     <div class="cap trade">
         Trade or Release Shift
     </div>
+    <ul class="shifts">
+        <li style="border-color:#24a5d0">
+            <div>
+                <span class="fr">
+                    <p>31. Oct, 2012</p>
+                    <p>08:00 - 16:00</p> 
+                </span>
+                <b>Development</b><br/>
+                <p>Desktop app</p>
+            </div>
+        </li>
+    </ul>
     <div class="steps">
         <a class="fl" href="#">back</a>
         <a class="fr" href="#">next</a>
