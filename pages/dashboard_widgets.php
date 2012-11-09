@@ -167,4 +167,36 @@
         <h4>Reason for request</h4>
         <p>The more information you can provide the better odds your shift request will be successful.</p>
     </div>
+    <!-- screen 3 -->
+    <ul class="shifts">
+        <li style="border-color:#24a5d0">
+            <div>
+                <span class="fr">
+                    <p>31. Oct, 2012</p>
+                    <p>08:00 - 16:00</p> 
+                </span>
+                <b>Development</b><br/>
+                <p>Desktop app</p>
+            </div>
+        </li>
+    </ul>
+    <div class="cap trade">
+        Trade Shift
+    </div>
+    <div class="steps">
+        <a class="fl" href="#">Cancel</a>
+        <a class="fr" href="#">Continue</a>
+        <span>Step<br/>1/3</span>
+    </div>
+    <div class="greyed">
+        <ol>
+            <li>asdasdas</li>
+            <li>asdasdas</li>
+            <li>asdasdas</li>
+        </ol>
+    </div>
+    <div class="greyed">
+        <h4>Reason for request</h4>
+        <p>The more information you can provide the better odds your shift request will be successful.</p>
+    </div>
 </div>
