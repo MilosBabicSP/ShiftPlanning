@@ -730,7 +730,6 @@ ShiftPlanningSchedule.prototype.fillCalendar = function(data) {
 ShiftPlanningSchedule.prototype.getColorsBySchedule = function(id, color_id){
     if (typeof sp.schedule.data.schedules[id] != 'undefined') {
         if (typeof color_id != 'undefined'){
-            console.log(sp.raw.config.newcolorsets[sp.schedule.data.schedules[id].color][color_id], color_id);
             return sp.raw.config.newcolorsets[sp.schedule.data.schedules[id].color][color_id];
         } else {
             return sp.raw.config.newcolorsets[sp.schedule.data.schedules[id].color];
