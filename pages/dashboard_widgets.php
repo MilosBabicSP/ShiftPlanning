@@ -142,16 +142,20 @@
     </div>
     <ul class="step">
         <li>
+            <div>
             <a href="#">Trade</a>
             <p>
                 Will let you choose potential employees to pick-up this shift from you
             </p>
+            </div>
         </li>
         <li>
+            <div>
             <a  href="#">Release</a>
             <p>
                 Will let you select shifts from other employees to trade this shift for
             </p>
+            </div>
         </li>
     </ul>
     <div class="steps">
