@@ -189,7 +189,7 @@
         <span>Step<br/>1/3</span>
     </div>
     <div class="greyed">
-        <ol>
+        <ol type="1">
             <li>asdasdas</li>
             <li>asdasdas</li>
             <li>asdasdas</li>
