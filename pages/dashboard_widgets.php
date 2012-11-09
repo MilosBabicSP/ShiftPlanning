@@ -190,14 +190,12 @@
     </div>
     <div class="greyed">
         <ol>
-            <li>asdasdas</li>
-            <li>asdasdas</li>
-            <li>asdasdas</li>
+            <li>You will be asked to enter your reason for requesting the Change, as well as to select possible shifts to trade with.</li>
+            <li>Management will approve your request to change shift and employees will be notified.</li>
+            <li>If another employee accepts your shift, Management will confirm and the swap will be made.</li>
         </ol>
         <ul>
-            <li>asdasdas</li>
-            <li>asdasdas</li>
-            <li>asdasdas</li>
+            <li><b>Note</b> - There is no guarantee that another employee will be able cover your shift or that management will approve your request.</li>
         </ul>
     </div>
     <div class="greyed">
