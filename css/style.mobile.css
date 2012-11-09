@@ -33,7 +33,7 @@ h5 {font-size:14px; font-weight:normal; color:#333;}
 
 .extended .blackMask {display:block;}
 
-.bigLoader {left: 0px; right: 0px; top: 0px; bottom: 0px; position: absolute; display:none; z-index: 998; color: white;}
+.bigLoader {left: 0px; right: 0px; top: 0px; bottom: 0px; position: absolute; display:none; z-index: 998; background-color: white;}
 
 /*SPRITE*/
 .msgDel, .msgRpl, .cmtCount span.tip, ul.cmts, ul.cmts li.last input[type=submit], .search input[type=submit] {background-image:url(../images/icos.png); background-repeat:no-repeat;}
