@@ -319,7 +319,7 @@ if ($vtoken['data'] != '1') {
                         </div>
                         <div class="subLevel mainSub pingUser" id="pingUser">
                             <a class="backMenu" href="#">
-                                <img width="41" height="30" src="<?php echo _fCdnPath_;?>images/BackMenu.png">
+                                <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/arrow_back.png">
                             </a>
                         </div>
                         <?php Functions::getInstance()->loadFile('dashboard_wall') ?>
@@ -336,7 +336,7 @@ if ($vtoken['data'] != '1') {
                     <div class="timeClock" id="timeClock">
                         <div class="subLevel mainSub displayTimeClock">
                             <a class="backMenu" href="#">
-                                <img width="41" height="30" src="<?php echo _fCdnPath_;?>images/BackMenu.png">
+                                <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/arrow_back.png">
                             </a>
                             <ul class="subMenu" id="tc_dtc_buttons">
                                 <li class="first">
@@ -422,12 +422,12 @@ if ($vtoken['data'] != '1') {
                         </div>
 						<div class="subLevel mainSub trade" id="sc_sub_trade">
 							<a href="#" class="backMenu">
-                                <img width="41" height="30" src="<?php echo _fCdnPath_;?>images/BackMenu.png">
+                                <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/arrow_back.png">
                             </a>
 						</div>
                         <div class="subLevel mainSub shiftDisplay" id="sc_sub_shift_display">
                             <a href="#" class="backMenu">
-                                <img width="41" height="30" src="<?php echo _fCdnPath_;?>images/BackMenu.png">
+                                <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/arrow_back.png">
                             </a>
                             <ul class="subMenu">
                                 <li class="single">
@@ -454,7 +454,7 @@ if ($vtoken['data'] != '1') {
                         </div>
                         <div class="subLevel mainSub addShift" id="sc_edit_submenu">
                             <a href="#" class="backMenu">
-                                <img width="41" height="30" src="<?php echo _fCdnPath_;?>images/BackMenu.png">
+                                <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/arrow_back.png">
                             </a>
                             <ul class="subMenu">
                                 <li class="single hidden">
@@ -491,7 +491,7 @@ if ($vtoken['data'] != '1') {
                         </div>
                         <div class="subLevel mainSub shiftTradeManager" id="rq_st_mts_sub">
                             <a class="backMenu" href="#" subpage="shiftTrades">
-                                <img width="41" height="30" src="<?php echo _fCdnPath_;?>images/BackMenu.png">
+                                <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/arrow_back.png">
                             </a>
                             <ul class="subMenu" id="rq_st_mts_fm">
                                 <li class="first">
@@ -520,7 +520,7 @@ if ($vtoken['data'] != '1') {
                         </div>
                         <div class="subLevel mainSub shiftTradeManagerAP" id="rq_st_ap_sub">
                             <a class="backMenu" href="#" subpage="shiftTrades">
-                                <img width="41" height="30" src="<?php echo _fCdnPath_;?>images/BackMenu.png">
+                                <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/arrow_back.png">
                             </a>
                             <ul class="subMenu">
                                 <li class="first">
@@ -537,7 +537,7 @@ if ($vtoken['data'] != '1') {
                         </div>
                         <div class="subLevel mainSub shiftTradeManagerIM">
                             <a class="backMenu" href="#" subpage="shiftTrades">
-                                <img width="41" height="30" src="<?php echo _fCdnPath_;?>images/BackMenu.png">
+                                <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/arrow_back.png">
                             </a>
                             <ul class="subMenu" id="rq_st_im_sm">
                                 <li class="single">
@@ -549,7 +549,7 @@ if ($vtoken['data'] != '1') {
                         </div>
                         <div class="subLevel mainSub openShiftsOpen" id="rq_os_sub">
                             <a class="backMenu" href="#" subpage="openShifts">
-                                <img width="41" height="30" src="<?php echo _fCdnPath_;?>images/BackMenu.png">
+                                <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/arrow_back.png">
                             </a>
                             <ul class="subMenu">
                                 <li class="single"><a class="icoReqWor" href="#" id="rq_os_rtw"><span><?=_s('Request to work')?></span></a></li>
@@ -557,7 +557,7 @@ if ($vtoken['data'] != '1') {
                         </div>
                         <div class="subLevel mainSub openShiftsRequest" id="rq_os_spr_sub">
                             <a class="backMenu" href="#" subpage="openShifts">
-                                <img width="41" height="30" src="<?php echo _fCdnPath_;?>images/BackMenu.png">
+                                <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/arrow_back.png">
                             </a>
                             <ul class="subMenu">
                                 <li class="first">
@@ -574,7 +574,7 @@ if ($vtoken['data'] != '1') {
                         </div>
                         <div class="subLevel mainSub shiftApprovalsSingle" id="rq_sa_sub">
                             <a href="#" class="backMenu" subpage="shiftApprovals">
-                                <img width="41" height="30" src="<?php echo _fCdnPath_;?>images/BackMenu.png">
+                                <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/arrow_back.png">
                             </a>
                             <ul class="subMenu">
                                 <li class="single"><a href="#" class="icoReqWor"><span><?=_s('Save & Close')?></span></a></li>
@@ -621,7 +621,7 @@ if ($vtoken['data'] != '1') {
                     <div class="reports" id="reports">
                         <div class="subLevel hidden mainSub singleViewDisplay" id="re_si_inf">
                             <a class="backMenu" href="#">
-                                <img width="41" height="30" src="<?php echo _fCdnPath_;?>images/BackMenu.png">
+                                <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/arrow_back.png">
                             </a>
                         </div>
                         <?php Functions::getInstance()->loadFile('reports_scheduleHours'); ?>
