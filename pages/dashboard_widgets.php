@@ -45,7 +45,7 @@
             </a>
         </li>
     </ul>
-    <ul class="shifts">
+    <ul class="shifts listing">
         <li style="border-color:#24a5d0">
             <a href="#">
                 <span class="fr">
