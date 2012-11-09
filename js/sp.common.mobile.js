@@ -195,6 +195,10 @@ ShiftPlanning.prototype.initialize = function(){
     
     $(window).bind('resize', function(){
         $('#wrapper').width($(window).width());
+        if ($('#wrapper').height() < $(window).height()){
+            $('#wrapper').height($(window).height());
+        }
+        $('#wrapper').width($(window).width());
         $('body').width($(window).width());
     });
 }
