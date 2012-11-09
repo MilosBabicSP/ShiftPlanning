@@ -31,7 +31,7 @@ h5 {font-size:14px; font-weight:normal; color:#333;}
 /*SPRITE*/
 .msgDel, .msgRpl, .cmtCount span.tip, ul.cmts, ul.cmts li.last input[type=submit], .search input[type=submit] {background-image:url(../images/icos.png); background-repeat:no-repeat;}
 .cmtCount span.ico {background-image:url(../images/sprite.png); background-repeat:no-repeat;}
-.fromI, .untilI, span.checkbox, span.radio, .dash, .ticl, .sche, .requ, .staf, .repo, .trai, .sett, .exit, .icoClock, .icoEmpDet, .icoAdmAct, .icoEmpPos, .icoEmpSki, .icoEmpAdd, .icoDat, .icoNot, .icoAct, .icoSta, .icoReqWor, .icoReqCan, .icoReqEdi, .icoReqDel, .icoLoc, .icoSch {background-image:url(../images/mainNav_bg.png); background-repeat:no-repeat;}
+.fromI, .untilI, span.checkbox, span.chk, span.radio, .dash, .ticl, .sche, .requ, .staf, .repo, .trai, .sett, .exit, .icoClock, .icoEmpDet, .icoAdmAct, .icoEmpPos, .icoEmpSki, .icoEmpAdd, .icoDat, .icoNot, .icoAct, .icoSta, .icoReqWor, .icoReqCan, .icoReqEdi, .icoReqDel, .icoLoc, .icoSch {background-image:url(../images/mainNav_bg.png); background-repeat:no-repeat;}
 .calendar td.today, .calendar th, .calendar td.hasAny {background-image: url(../images/callendar_bg.png); background-repeat:repeat-x;}
 .trai_down {background-image:url(../images/DownMenu.png); background-repeat:no-repeat;}
 .trai_up{background-image:url(../images/UpMenu.png); background-repeat:no-repeat;}
@@ -381,9 +381,14 @@ ul.shifts li div {padding:10px 20px 10px 10px; display:block; line-height:20px; 
 ul.shifts li div p {line-height:20px;}
 
 ul.empList {padding:15px 20px;}
-ul.empList li {padding:5px 0;}
-ul.empList li img {float:left;}
-ul.empList li span {display:block; margin:0 0 0 40px; line-height:30px;}
+ul.empList li {padding:5px 0; overflow:hidden;}
+ul.empList li img {float:left; margin:0 10px 0 0; width:30px; height:30px; display:block;}
+ul.empList li span.name {float:left; display:block; line-height:30px;}
+ul.empList li ul {margin:0 0 0 30px;}
+
+span.chk {display:block; height:30px; width:29px; float:left; margin:0 10px 0 0; background-position:-5px -610px;}
+span.chk.check {background-position:-5px -560px;}
+span.chk.disabled {background-position:-5px -910px;}
 
 ul.step {overflow:hidden; padding:10px; border-top:solid 1px #DDD;}
 ul.step li {width:50%; float:left;}
