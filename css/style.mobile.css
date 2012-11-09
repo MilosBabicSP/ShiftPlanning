@@ -400,5 +400,7 @@ ul.step li div p {padding:20px 0 0;}
 
 .greyed ol {padding:10px 20px 0;}
 .greyed ol li {list-style:decimal inside; padding:10px 0;}
+.greyed ul {padding:0 20px;}
+.greyed ul li {list-style:none inside; padding:10px 0;}
 
 
