@@ -374,10 +374,10 @@ ul.shifts.moved {margin:-5px 0 0;}
 ul.shifts li {border-left:solid 5px #EEE;}
 ul.shifts li.upcoming {background-color:#F4F4F4;}
 ul.shifts li a span {color:#999; text-align:center;}
-ul.shifts li a {padding:10px 20px 10px 10px; display:block; line-height:20px; color:#333; border-bottom:solid 1px #DDD;}
+ul.shifts li a {padding:10px 20px 10px 10px; display:block; line-height:20px; color:#333; border-bottom:solid 1px #DDD; min-height:40px;}
 ul.shifts li a p {line-height:20px;}
 ul.shifts li div span {color:#999; text-align:center;}
-ul.shifts li div {padding:10px 20px 10px 10px; display:block; line-height:20px; color:#333; border-bottom:solid 1px #DDD;}
+ul.shifts li div {padding:10px 20px 10px 10px; display:block; line-height:20px; color:#333; border-bottom:solid 1px #DDD; min-height:40px;}
 ul.shifts li div p {line-height:20px;}
 
 ul.empList {padding:15px 20px;}
