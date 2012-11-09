@@ -28,6 +28,9 @@ h2 {}
 h3 {font-size:14px; line-height:30px;}
 h4 {font-size:14px; line-height:20px;}
 h5 {font-size:14px; font-weight:normal; color:#333;}
+
+.blackMask {left: 0px; right: 0px; top: 0px; bottom: 0px; background-color: #000000;opacity: 0.5; position: absolute;}
+
 /*SPRITE*/
 .msgDel, .msgRpl, .cmtCount span.tip, ul.cmts, ul.cmts li.last input[type=submit], .search input[type=submit] {background-image:url(../images/icos.png); background-repeat:no-repeat;}
 .cmtCount span.ico {background-image:url(../images/sprite.png); background-repeat:no-repeat;}

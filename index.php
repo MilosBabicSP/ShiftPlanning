@@ -297,6 +297,7 @@ if ($vtoken['data'] != '1') {
             </div>
 			
             <div id="wrapper" class="wrapper">
+                <div class="blackMask"></div>
                 <div class="subNavigation">
                     <?php Functions::getInstance()->loadFile('menus/dashboard') ?>
                     <?php Functions::getInstance()->loadFile('menus/timeclock') ?>
