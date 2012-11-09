@@ -1,7 +1,7 @@
 <div class="main trade" id="cs_sh_trade">
 
 		<ul class="shifts">
-			<li rel="schedule_background" style="border-color:#24a5d0">
+			<li rel="schedule_background">
 				<div>
 					<span class="fr">
 						<p rel="formatted_date" >31. Oct, 2012</p>
@@ -59,7 +59,7 @@
 					<div class="text">
 						<h4>Reason for request</h4>
 						<p>The more information you can provide the better odds your shift request will be successful.</p>
-						<textarea cols="20" rows="4" name="">Add reason...</textarea>
+						<textarea cols="20" rows="4" name="reason_trade1">Add reason...</textarea>
 						<p>The more information you can provide the better odds your shift request will be successful.</p>
 					</div>
 				</div>				
@@ -114,7 +114,7 @@
 					<div class="text">
 						<h4>Reason for request</h4>
 						<p>The more information you can provide the better odds your shift request will be successful.</p>
-						<textarea cols="20" rows="4" name="">Add reason...</textarea>
+						<textarea cols="20" rows="4" name="reason_trade0">Add reason...</textarea>
 						<p>The more information you can provide the better odds your shift request will be successful.</p>
 					</div>
 				</div>				

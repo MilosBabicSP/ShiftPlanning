@@ -192,25 +192,24 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
 		e.preventDefault();
 		var that = this;
 		var shiftId=$(this).attr('rel');
-		if(!$(this).hasClass('check')){
+		if(!$(this).hasClass('check') && !$(this).hasClass('disabled')){
 			spModel.schedule.get('shift',{id:shiftId,detailed:1},function(response){
 				console.log(response);
 				var isAvail = false ;
 				if(response.data.staff.available.length > 0){
 					$.each(response.data.staff.available,function(key,item){
-						console.log(item[0]);
 						isAvail = item[0] == sp.staff.admin.info.id ? true : isAvail;
 					});
 				}
 				if(response.data.staff.sameday.length > 0){
 					$.each(response.data.staff.available,function(key,item){
-						console.log(item[0]);
 						isAvail = item[0] == sp.staff.admin.info.id ? true : isAvail;
 					});
 				}
 				if (isAvail){
 					$(that).addClass('check');
 				}else{
+					$(that).addClass('disabled');
 					sp.showError('You aren\'t available for this shift!')
 				}
 			});
@@ -252,7 +251,6 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
 					var data = [];
 					$.each(response.data,function(key,item){
 						var d = {};
-						console.log(item);
 						d.id = key;
 						d.avatar = sp.getAvatar(key);
 						d.name = item.name;
@@ -292,9 +290,8 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
 				var params = {};
 				params[field]=packedItems.join(',');
 				params['shift']=self.shift.id;
-				params['reason']='Not Big Reason';
+				params['reason']=$('textarea[name=reason_trade'+type+']').val();
 				spModel.schedule.create(call,params,function(response){
-					console.log(response);
 					self.state = 3;
 					$('#schedule .trade>div [id^="step"]').hide();
 					$('#schedule .trade>div #step_'+self.state).show();
@@ -504,13 +501,11 @@ ShiftPlanningSchedule.prototype.todaySubEvents = function(){
 }
 
 ShiftPlanningSchedule.prototype.tradeSubEvents = function (){
-	console.log(this.shift);
 	$('#schedule .trade>div').hide();
 	$('#schedule .trade>div:first').show();	
 	$('p[rel=formatted_date]').html(this.shift.start_date.weekday+','+this.shift.start_date.formatted);
 	$('p[rel=formatted_time]').html(this.shift.start_time.time+'-'+this.shift.end_time.time);
-	$('li[rel=schedule_background]').css('background-color',sp.schedule.getColorsBySchedule(this.shift.schedule)[1]);
-	$('li[rel=schedule_background]').css('color',sp.schedule.getColorsBySchedule(this.shift.schedule)[2]);
+	$('li[rel=schedule_background]').css('border-color',sp.schedule.getColorsBySchedule(this.shift.schedule)[0]);
 	$('b[rel=schedule_name]').html(this.shift.schedule_name);
 }
 
