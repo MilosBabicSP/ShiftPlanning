@@ -209,7 +209,7 @@ ShiftPlanningDashboard.prototype.upcomingShiftsEvents = function(){
 	    id : $(this).attr('rel'), 
 	    detailed : 1
 	}, function(response){
-	    sp.schedule.fromDashboard = true;
+	    sp.schedule.fromDashboardUpcoming = true;
 	    sp.schedule.shift = response.data;
 	    sp.loadSubPage('', 'schedule', 'shiftDisplay');
 	});

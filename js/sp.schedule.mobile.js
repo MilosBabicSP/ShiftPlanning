@@ -110,8 +110,12 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
             if (self.fromDashboard){
                 self.fromDashboard = false;
                 $('.subNavigation').show();
+                $('.subNavigation .dashboard li a[subpage=dashboard]').trigger(clickEvent);
+            } if (self.fromDashboardUpcoming) { 
+                self.fromDashboardUpcoming = false;
+                $('.subNavigation').show();
                 $('.subNavigation .dashboard li a[subpage=upcomingShifts]').trigger(clickEvent);
-            } else {
+            }else {
                 if ($('#sc_sub_shift_display ul a.publish').attr('first') == 'false'){
                     self.resetPublishFields(true);
                 } else {

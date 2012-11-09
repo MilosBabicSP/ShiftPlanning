@@ -9,9 +9,10 @@ function ShiftPlanningSchedule(){
     this.loaded = false;
     this.edit = false;
     this.fromDashboard = false;
-    this.fromRecent = false ;//
-    this.fromUpcoming = false ;//
-    this.fromStaff=false;//
+    this.fromRecent = false ;
+    this.fromUpcoming = false ;
+    this.fromDashboardUpcoming = false;
+    this.fromStaff=false;
     this.settings = {
         mode : 'employee',
         start_date : 'yesterday',
