@@ -166,7 +166,7 @@ ShiftPlanningRequests.prototype.openShiftsEvents = function(){
             type : 'openshifts'
         }
         
-        if ($(this).hasClass('approve')){
+        if ($(this).hasClass('accept')){
             data.mode = 'approve';
         } else {
             data.mode = 'reject';
