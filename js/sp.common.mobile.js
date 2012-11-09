@@ -61,7 +61,7 @@ ShiftPlanning.prototype.toggleMenu = function(){
     $('#wrapper').toggleClass('extended');
 }
 
-ShiftPlanning.prototype.loadSubPage = function(obj, page, subpage){
+ShiftPlanning.prototype.loadSubPage = function(obj, page, subpage) {
     if (subpage == 'logout'){
         sp.staff.logout();
         return false;
@@ -71,6 +71,7 @@ ShiftPlanning.prototype.loadSubPage = function(obj, page, subpage){
         obj.parent().parent().find('li').removeClass('active');
         obj.parent().addClass('active');
     }
+    
     $('.subNavigation > div').hide();
     $('.subNavigation > div.' + page).show();
     
