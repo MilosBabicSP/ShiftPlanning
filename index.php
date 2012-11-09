@@ -429,25 +429,25 @@ if ($vtoken['data'] != '1') {
                             <a href="#" class="backMenu">
                                 <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/arrow_back.png">
                             </a>
-                            <ul class="subMenu">
+                            <ul class="subNav">
                                 <li class="single">
                                     <a href="#" class="icoReqWor publish">
-                                        <span><?=_s('Publish')?></span>
+                                        <span></span>
                                     </a>
                                 </li>
 								<li class="single">
                                     <a href="#" class="icoReqWor trade">
-                                        <span><?=_s('Trade')?></span>
+                                        <span></span>
                                     </a>
                                 </li>
                                 <li class="single">
                                     <a href="#" class="icoReqEdi edit">
-                                        <span><?=_s('Edit')?></span>
+                                        <span></span>
                                     </a>
                                 </li>
                                 <li class="single">
                                     <a href="#" class="icoReqDel delete">
-                                        <span><?= _s('Delete') ?></span>
+                                        <span></span>
                                     </a>
                                 </li>
                             </ul>
@@ -493,7 +493,7 @@ if ($vtoken['data'] != '1') {
                             <a class="backMenu" href="#" subpage="shiftTrades">
                                 <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/arrow_back.png">
                             </a>
-                            <ul class="subMenu" id="rq_st_mts_fm">
+                            <ul class="subNav" id="rq_st_mts_fm">
                                 <li class="first">
                                     <a href="#" class="activate">
                                         <span><img width="16" height="16" src="<?php echo _fCdnPath_;?>images/request_1.png" /></span>
@@ -506,14 +506,15 @@ if ($vtoken['data'] != '1') {
                                 </li>
                                 <li class="last">
                                     <a href="#" class="cancel">
-                                        <span><img width="16" height="16" src="<?php echo _fCdnPath_;?>images/tc_delete.png" /></span>
+                                        <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/tc_delete.png" />
+										<span></span>
                                     </a>
                                 </li>
                             </ul>
-                            <ul class="subMenu hidden" id="rq_st_mts_sm">
+                            <ul class="subNav hidden" id="rq_st_mts_sm">
                                 <li class="single">
                                     <a href="#" class="icoReqCan cancel">
-                                        <span><?=_s('Cancel')?></span>
+                                        <span></span>
                                     </a>
                                 </li>
                             </ul>
@@ -522,7 +523,7 @@ if ($vtoken['data'] != '1') {
                             <a class="backMenu" href="#" subpage="shiftTrades">
                                 <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/arrow_back.png">
                             </a>
-                            <ul class="subMenu">
+                            <ul class="subNav">
                                 <li class="first">
                                     <a href="#" class="accept">
                                         <span><img width="16" height="16" src="<?php echo _fCdnPath_;?>images/request_1.png" /></span>
@@ -539,10 +540,10 @@ if ($vtoken['data'] != '1') {
                             <a class="backMenu" href="#" subpage="shiftTrades">
                                 <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/arrow_back.png">
                             </a>
-                            <ul class="subMenu" id="rq_st_im_sm">
+                            <ul class="subNav" id="rq_st_im_sm">
                                 <li class="single">
                                     <a href="#" class="icoReqCan cancel">
-                                        <span><?=_s('Cancel')?></span>
+                                        <span></span>
                                     </a>
                                 </li>
                             </ul>

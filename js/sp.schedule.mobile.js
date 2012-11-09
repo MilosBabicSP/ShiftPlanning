@@ -461,7 +461,7 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
         });
     });
     
-    $('#sc_edit_submenu .subMenu a').bind(clickEvent, function(e){
+    $('#sc_edit_submenu .subNav a').bind(clickEvent, function(e){
         var obj = $(this);
         e.preventDefault();
         obj.addClass('loading');
@@ -543,7 +543,7 @@ ShiftPlanningSchedule.prototype.shiftDisplaySubEvents = function(){
 		$('#sc_sub_shift_display a.publish span').html('Publish');
 	    } else if (this.shift.published < this.shift.edited && this.shift.published != 0) {
 		$('#sc_sub_shift_display a.publish').show();
-		$('#sc_sub_shift_display a.publish span').html('Republish');
+		$('#sc_sub_shift_display a.publish span').html();
 	    } else {
 		$('#sc_sub_shift_display a.publish').hide();
 	    }
@@ -666,9 +666,9 @@ ShiftPlanningSchedule.prototype.addShiftSubEvents = function(){
         $('#sc_edit_id').val(emp.id);
         $('#sc_edit_submenu .backMenu').attr('bck', 'edit');
         if (emp.confirmed == 0 && emp.end_date.id < sp.raw.config.today.id && sp.staff.admin.settings.shift_confirm == 1){
-            $('#sc_edit_submenu .subMenu').show();
+            $('#sc_edit_submenu .subNav').show();
         } else {
-            $('#sc_edit_submenu .subMenu').hide();
+            $('#sc_edit_submenu .subNav').hide();
         }
     } else {
         $('#sc_edit_submenu .subMenu').hide();

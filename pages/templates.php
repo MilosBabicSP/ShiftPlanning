@@ -327,6 +327,17 @@
             {{tmpl(traders.data) "#te_rq_st_mst_s_l"}}
         </div>
     </script>
+    <script id="te_rq_swap_single" type="text/x-jquery-tmpl">
+        <li>
+            <a class="fr" href="#" rel="${id}"><img width="43" height="30" src="<?php echo _fCdnPath_;?>images/NextMenu.png"></a>
+            <img width="30" height="30" src="${avatar}" />
+            <span class="twoLine">
+                ${user_name}
+                <br />
+                ${shift_start_date.formatted} &raquo; ${shift_start_date.time} - ${shift_end_date.time}
+            </span>
+        </li>
+    </script>	
     <script id="te_rq_st_mst_s_l" type="text/x-jquery-tmpl">
         <div class="title">
             {{if confirmed == 1 && approved == 0}}  

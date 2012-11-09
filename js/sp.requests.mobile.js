@@ -39,7 +39,11 @@ ShiftPlanningRequests.prototype.loadSubPageEvents = function(subpage){
         case 'shiftTradeManagerAP':
             $('.subNavigation').hide();
             this.displayShiftTradeManagerAP();
-            break;    
+            break; 
+		case 'shiftSwapRequest':
+			$('.subNavigation').hide();
+			this.shiftSwapRequestSubEvents();
+			break;
         case 'shiftTradeManagerIM':
             $('.subNavigation').hide();
             this.displayShiftTradeManagerIM();
@@ -199,7 +203,11 @@ ShiftPlanningRequests.prototype.shiftTradesEvents = function(){
         self.current = self.trades['requested'][$(this).attr('rel')];
         sp.loadSubPage('', 'requests', 'shiftTradeManagerIM');
     });
-    
+    $('#rq_st_swap').delegate('a',clickEvent,function(e){
+		e.preventDefault();
+		self.current = self.swaps[$(this).attr('rel')];
+		sp.loadSubPage('', 'requests', 'shiftSwapRequest');
+	});
     $('#rq_st_mst_s').delegate('.traders a', clickEvent, function(e){
         var obj = $(this);
         obj.addClass('loading');
@@ -616,6 +624,7 @@ ShiftPlanningRequests.prototype.shiftTradesSubEvents = function(){
     var self = this;
     $('#rq_st_mst').html(spView.ulLoader());
     $('#rq_st_ap').html(spView.ulLoader());
+	$('#rq_st_swap').html(spView.ulLoader());
     $('#rq_st_im').html(spView.ulLoader());
     
     $('#rq_st_mst').show();
@@ -693,6 +702,22 @@ ShiftPlanningRequests.prototype.shiftTradesSubEvents = function(){
     }, function(response){
         sp.showError(response.error);
     });
+	
+	spModel.schedule.get('trades',{
+		mode : 'swap'
+	},function(response){
+		if(response.data != ''){
+			self.swaps= response.data;
+			var swap = [];
+			$.each(response.data,function(key,item){
+				item.avatar = sp.getAvatar(item.user);
+				swap.push(item);
+			});
+			$('#rq_st_swap').html($.tmpl($('#te_rq_swap_single'),swap));
+			console.log(swap);
+			
+		}
+	});
 }
 
 ShiftPlanningRequests.prototype.clearVacations = function(data){
@@ -819,6 +844,10 @@ ShiftPlanningRequests.prototype.displayShiftTradeManagerIM = function(){
     $('#rq_st_im_s').html($.tmpl($('#te_rq_st_im_s'), this.current));
     
     $('#rq_st_im_sm a').attr('rel', this.current.id);
+}
+
+ShiftPlanningRequests.prototype.shiftSwapRequestSubEvents = function(){
+	console.log(this.current);
 }
 
 ShiftPlanningRequests.prototype.displayShiftTradeManagerAP = function(){
