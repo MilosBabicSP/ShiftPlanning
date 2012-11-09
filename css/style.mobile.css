@@ -403,4 +403,6 @@ ul.step li div p {padding:20px 0 0;}
 .greyed ul {padding:0 20px 10px;}
 .greyed ul li {list-style:none inside; padding:10px 0; margin:0 0 0 17px;}
 
+.greyed .text {padding:20px; border-bottom:solid 1px #DDD;}
+
 
