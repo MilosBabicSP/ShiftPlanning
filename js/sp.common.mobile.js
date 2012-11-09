@@ -88,8 +88,8 @@ ShiftPlanning.prototype.loadSubPage = function(obj, page, subpage) {
     $('.subNavigation div.' + page + ' .subnNav[page=' + page + '] li').removeClass('active');
     
     $('.subNavigation div.' + page + ' .subnNav[page=' + page + '] li a[page=' + subpage + ']').parent().addClass('active');
-    
-    //sp.hash(page);
+    sp.hashChange = false;
+    sp.hash(page);
     
     if (typeof this[page] != 'undefined' && 'loadSubPageEvents' in this[page]){
         this[page].loadSubPageEvents(subpage);
@@ -101,6 +101,10 @@ ShiftPlanning.prototype.loadSubPage = function(obj, page, subpage) {
 ShiftPlanning.prototype.initialize = function(){
     var self = this;
     $(window).hashchange(function(){
+        if (sp.hashChange == false){
+            sp.hashChange = true;
+            return false;
+        }
         if (sp.hash().length > 0) {
             if(sp.hash() == 'logout')
             {

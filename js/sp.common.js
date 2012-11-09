@@ -5,6 +5,7 @@ function ShiftPlanning(){
     this.successMessage = '';
     var self = this;
     this.initialize();
+    this.hashChange = true;
     return true;
 }
 
