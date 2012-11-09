@@ -374,10 +374,10 @@ ul.shifts.moved {margin:-5px 0 0;}
 ul.shifts li {border-left:solid 5px #EEE;}
 ul.shifts li.upcoming {background-color:#F4F4F4;}
 ul.shifts li a span {color:#999; text-align:center;}
-ul.shifts li a {padding:10px 20px 10px 10px; display:block; line-height:20px; color:#333; border-bottom:solid 1px #DDD;}
+ul.shifts li a {padding:10px 20px 10px 10px; display:block; line-height:20px; color:#333; border-bottom:solid 1px #DDD; min-height:40px;}
 ul.shifts li a p {line-height:20px;}
 ul.shifts li div span {color:#999; text-align:center;}
-ul.shifts li div {padding:10px 20px 10px 10px; display:block; line-height:20px; color:#333; border-bottom:solid 1px #DDD;}
+ul.shifts li div {padding:10px 20px 10px 10px; display:block; line-height:20px; color:#333; border-bottom:solid 1px #DDD; min-height:40px;}
 ul.shifts li div p {line-height:20px;}
 
 ul.empList {padding:15px 20px;}
@@ -394,12 +394,14 @@ ul.step {overflow:hidden; padding:10px; border-top:solid 1px #DDD;}
 ul.step li {width:50%; float:left;}
 ul.step li div {padding:10px;}
 ul.step li div p {padding:20px 0 0;}
+ul.step li div a {display:block; color:#FFF; line-height:30px; text-align:center; background-color:#7cb017;}
 
 .cap {padding:15px 20px 15px 45px; font-weight:bold; font-size:13px;}
 .cap.working {background:transparent url('../images/title_working.png') scroll no-repeat 20px 50%;}
 .cap.trade {background:transparent url('../images/title_trade.png') scroll no-repeat 20px 50%;}
 
 .steps {overflow:hidden; border-top:solid 1px #DDD; padding:20px; text-align:center;}
+.steps a {display:block; padding:0 20px; color:#FFF; line-height:30px; text-align:center; background-color:#7cb017;}
 .steps span {color:#CCC;}
 .greyed {overflow:hidden; background:#F4F4F4 url('../images/shadow.png') scroll repeat-x 0 0;}
 
