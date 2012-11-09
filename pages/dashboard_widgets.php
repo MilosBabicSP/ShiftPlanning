@@ -189,11 +189,16 @@
         <span>Step<br/>1/3</span>
     </div>
     <div class="greyed">
-        <ol type="1">
+        <ol>
             <li>asdasdas</li>
             <li>asdasdas</li>
             <li>asdasdas</li>
         </ol>
+        <ul>
+            <li>asdasdas</li>
+            <li>asdasdas</li>
+            <li>asdasdas</li>
+        </ul>
     </div>
     <div class="greyed">
         <h4>Reason for request</h4>
