@@ -729,7 +729,7 @@ ShiftPlanningSchedule.prototype.fillCalendar = function(data) {
 
 ShiftPlanningSchedule.prototype.getColorsBySchedule = function(id){
     if (typeof sp.schedule.data.schedules[id] != 'undefined') {
-        console.log(sp.raw.config.newcolorsets, sp.schedule.data.schedules[id].color, sp.raw.config.newcolorsets[sp.schedule.data.schedules[id].color]);
+        console.log(sp.raw.config.newcolorsets, sp.schedule.data.schedules[id].color, sp.raw.config.newcolorsets[sp.schedule.data.schedules[id].color][1]);
         return sp.raw.config.newcolorsets[sp.schedule.data.schedules[id].color];
     } else {
         return ['000', 'aaa', 'fff', 'fff', '000'];
