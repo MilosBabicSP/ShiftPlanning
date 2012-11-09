@@ -370,7 +370,7 @@ ul.widgets li.timeClock.out {background:transparent url('../images/widget_clocke
 ul.widgets li.timeClock {background:transparent url('../images/widget_clockedin.png') scroll no-repeat 15px 50%;}
 ul.widgets li.schedule {background:transparent url('../images/widget_calendar.png') scroll no-repeat 15px 50%;}
 
-ul.shifts {margin:-5px 0 0;}
+ul.shifts.moved {margin:-5px 0 0;}
 ul.shifts li {border-left:solid 5px #EEE;}
 ul.shifts li.upcoming {background-color:#F4F4F4;}
 ul.shifts li a span {color:#999; text-align:center;}
