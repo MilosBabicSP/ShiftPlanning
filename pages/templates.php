@@ -327,6 +327,64 @@
             {{tmpl(traders.data) "#te_rq_st_mst_s_l"}}
         </div>
     </script>
+    <script id="te_rq_st_swap_single" type="text/x-jquery-tmpl">
+        <div class="title wide mar">
+            <div>
+                <img width="30" height="30" src="${avatar}">
+                <span>${user_name}</span>
+                ${shift_start_date.formatted}
+            </div>
+        </div>
+        <div class="title1 sales wide mar">
+            <h3>${name}</h3>
+        </div>
+        <ul class="requests">
+            <li>
+                <span>${shift_start_date.time} - ${shift_end_date.time}</span> <span>${shift_start_date.formatted}</span>
+            </li>
+        </ul>
+        <div class="additional wide mar">
+            <p>${reason}</p>
+        </div>
+        <div class="title1 regular wide mar">
+            <h3><?=_s('Shifts requested for trade');?></h3>
+        </div>
+        <div class="traders {{if confirm_before == 1}}confirmBefore{{/if}}">
+            {{if data.length > 0 }}
+			
+				{{each data}}
+				
+					<div class="title">
+						{{if confirmed == 1 && approved == 0}}  
+							<span class="fr avaitingST"><?=_s('Awaiting response');?></span>
+						{{/if}}
+						{{if (confirmed == -1 && approved == -1) || (confirmed == 1 && approved == -1)}}
+							<span class="fr"><?=_s('Rejected');?></span>
+						{{else}}
+						{{if confirmed == 0 && approved == 0}}
+						<ul class="subNav">
+							<li class="first">
+								<a href="#" swapId="${trade_id}" shiftId="${shift}" userId="${user}" class="accept" >
+									<span><img width="16" height="16" src="<?php echo _fCdnPath_;?>images/request_1.png"></span>
+								</a>
+							</li>
+							<li class="last">
+								<a href="#" swapId="${trade_id}" shiftId="${shift}" userId="${user}" class="reject" >
+									<span><img width="16" height="16" src="<?php echo _fCdnPath_;?>images/request_2.png"></span>
+								</a>
+							</li>
+						</ul>											
+						{{/if}}
+						{{/if}}
+						<div>
+							<span>${schedule_name}-${start_timestamp}</span>
+						</div>
+					</div>				
+
+				{{/each}}
+			{{/if}}
+        </div>
+    </script>	
     <script id="te_rq_swap_single" type="text/x-jquery-tmpl">
         <li>
             <a class="fr" href="#" rel="${id}"><img width="43" height="30" src="<?php echo _fCdnPath_;?>images/NextMenu.png"></a>

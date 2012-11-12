@@ -22,7 +22,10 @@
     </div>
     <ul class="requests" id="rq_st_swap">
         
-    </ul>		
+    </ul>	
+    <div class="additional" id="rq_st_swap_empty">
+        <p><?=_s('You have no shifts availabile for swap')?></p>
+    </div>	
     <div class="title">
         <h3><?=_s("Shifts I'm trading")?></h3>
     </div>

@@ -201,11 +201,11 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
 						isAvail = item[0] == sp.staff.admin.info.id ? true : isAvail;
 					});
 				}
-				if(response.data.staff.sameday.length > 0){
-					$.each(response.data.staff.available,function(key,item){
-						isAvail = item[0] == sp.staff.admin.info.id ? true : isAvail;
-					});
-				}
+//				if(response.data.staff.sameday.length > 0){
+//					$.each(response.data.staff.available,function(key,item){
+//						isAvail = item[0] == sp.staff.admin.info.id ? true : isAvail;
+//					});
+//				}
 				if (isAvail){
 					$(that).addClass('check');
 				}else{

@@ -489,6 +489,11 @@ if ($vtoken['data'] != '1') {
                                 </li>
                             </ul>
                         </div>
+						<div class="subLevel mainSub shiftSwapRequest" id="rq_st_mts_swap">
+                            <a class="backMenu" href="#" subpage="shiftTrades">
+                                <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/arrow_back.png">
+                            </a>							
+						</div>
                         <div class="subLevel mainSub shiftTradeManager" id="rq_st_mts_sub">
                             <a class="backMenu" href="#" subpage="shiftTrades">
                                 <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/arrow_back.png">
@@ -607,6 +612,9 @@ if ($vtoken['data'] != '1') {
                         <div class="main shiftApprovalsSingle" id="rq_sa_s">
 
                         </div>
+						<div class="main shiftSwapRequest" id="rq_st_sh_swap">
+							
+						</div>
                     </div>
                     <div class="staff" id="staff">
                         <div class="search list mainSub">
