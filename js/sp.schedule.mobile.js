@@ -79,6 +79,7 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
     
     $('#schedule .shiftDisplay .backMenu').bind(clickEvent, function(e){
         e.preventDefault();
+		e.stopPropagation();
         if(self.fromUpcoming){
             self.fromUpcoming = false;
             $('.subNavigation').show();
