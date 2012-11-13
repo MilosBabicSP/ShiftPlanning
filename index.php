@@ -278,9 +278,9 @@ if ($vtoken['data'] != '1') {
                     <img height="61" width="190" src="<?php echo _fCdnPath_;?>images/logo.png" />
                 </a>
                 <ul class="mainNav">
-                    <li id="menu_dashboard"><a class="dash"  page="dashboard"><?=_s('Dashboard')?></a></li>
-                    <li id="menu_timeClock"><a class="ticl"  page="timeClock"><?=_s('Time Clock')?></a></li>
-                    <li id="menu_schedule"><a class="sche"  page="schedule"><?=_s('Schedule')?></a></li>
+                    <li id="menu_dashboard"><a class="dash" href="#" page="dashboard"><?=_s('Dashboard')?></a></li>
+                    <li id="menu_timeClock"><a class="ticl" href="#" page="timeClock"><?=_s('Time Clock')?></a></li>
+                    <li id="menu_schedule"><a class="sche" href="#" page="schedule"><?=_s('Schedule')?></a></li>
                     <li class="active" id="menu_requests"><a class="requ" href="#" page="requests"><?=_s('Requests')?></a>
                         <ul class="hidden">
                             <li><a href="#"><span>4</span><?=_s('Vacation requests')?></a></li>
@@ -288,10 +288,10 @@ if ($vtoken['data'] != '1') {
                             <li><a href="#"><span>126</span><?=_s('Shifts Available')?></a></li>
                         </ul>
                     </li>
-                    <li id="menu_staff"><a class="staf"  page="staff" ><?=_s('Staff')?></a></li>
-                    <li id="menu_training"><a class="trai"  page="training"><?=_s('Training')?></a></li>				
-                    <li id="menu_reports"><a class="repo"  page="reports" ><?=_s('Reports')?></a></li>
-                    <li id="menu_settings"><a class="sett"  page="settings" ><?=_s('Settings')?></a></li>
+                    <li id="menu_staff"><a class="staf" href="#" page="staff" ><?=_s('Staff')?></a></li>
+                    <li id="menu_training"><a class="trai" href="#" page="training"><?=_s('Training')?></a></li>				
+                    <li id="menu_reports"><a class="repo" href="#" page="reports" ><?=_s('Reports')?></a></li>
+                    <li id="menu_settings"><a class="sett" href="#" page="settings" ><?=_s('Settings')?></a></li>
                     <li id="menu_logout"><a class="exit" href="index.php?logout=true"><?=_s('Logout')?></a></li>
                 </ul>
             </div>
