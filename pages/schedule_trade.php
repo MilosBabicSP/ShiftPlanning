@@ -1,16 +1,6 @@
 <div class="main trade" id="cs_sh_trade">
 
 		<ul class="shifts">
-			<li rel="schedule_background">
-				<div>
-					<span class="fr">
-						<p rel="formatted_date" >31. Oct, 2012</p>
-						<p rel="formatted_time">08:00 - 16:00</p> 
-					</span>
-					<b rel="schedule_name">Development</b><br/>
-	<!--				<p>Desktop app</p>-->
-				</div>
-			</li>
 		</ul>
 		<div>
 			<div class="cap trade">
@@ -42,7 +32,7 @@
 			<div class="steps">
 				<a class="fl" id="_back" swap="1" >Back</a>
 				<a class="fr" id="_next" swap="1" >Continue</a>
-				<span>Step<br/><span id="self_state">1</span>/3</span>
+				<span>Step<br/><span rel="self_state">1</span>/3</span>
 			</div>
 			<div class="greyed" id="step_1">
 				<ol class="reg">
@@ -97,7 +87,7 @@
 			<div class="steps">
 				<a class="fl" id="_back" swap="0" >Back</a>
 				<a class="fr" id="_next" swap="0" >Continue</a>
-				<span>Step<br/><span id="self_state">1</span>/3</span>
+				<span>Step<br/><span rel="self_state">1</span>/3</span>
 			</div>
 			<div class="greyed" id="step_1">
 				<ol class="reg">

@@ -436,7 +436,7 @@ if ($vtoken['data'] != '1') {
                                     </a>
                                 </li>
 								<li class="single">
-                                    <a href="#" class="icoReqWor trade">
+                                    <a href="#" class="icoReqTra trade" style="margin: 7px -13px 0 0;">
                                         <span></span>
                                     </a>
                                 </li>

@@ -23,6 +23,20 @@
             <span>${name}</span>
         </li>
     </script>
+	<script id="te_cs_sh" type="text/x-jquery-tmpl">
+		<li style="border-color: #${sp.schedule.getColorsBySchedule(schedule)[1]};">
+			<div>
+				<span class="fr">
+					<p >${start_date.weekday},${start_date.formatted}</p>
+					<p >${start_time.time}-${end_time.time}</p> 
+				</span>
+				<b>${schedule_name}</b><br>
+				{{if title != ''}}
+					<p>Desktop app</p>
+				{{/if}}
+			</div>
+		</li>		
+	</script>
     <script id="te_sc_shift_display" type="text/x-jquery-tmpl">
 	<div id="te_sc_shift_display_info">
 	    <div class="title1 wide" style="background-color: #${sp.schedule.getColorsBySchedule(schedule)[1]}; color: #${sp.schedule.getColorsBySchedule(schedule)[2]}">

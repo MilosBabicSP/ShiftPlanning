@@ -196,16 +196,11 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
 			spModel.schedule.get('shift',{id:shiftId,detailed:1},function(response){
 				console.log(response);
 				var isAvail = false ;
-				if(response.data.staff.available.length > 0){
+				if( response.data && response.data.staff.available.length > 0){
 					$.each(response.data.staff.available,function(key,item){
 						isAvail = item[0] == sp.staff.admin.info.id ? true : isAvail;
 					});
 				}
-//				if(response.data.staff.sameday.length > 0){
-//					$.each(response.data.staff.available,function(key,item){
-//						isAvail = item[0] == sp.staff.admin.info.id ? true : isAvail;
-//					});
-//				}
 				if (isAvail){
 					$(that).addClass('check');
 				}else{
@@ -224,15 +219,24 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
 	$('#schedule .trade').delegate('.tradepick a',clickEvent,function(e){
 		e.preventDefault();
 		var type = $(this).attr('id');
-		$('#schedule .trade>div').hide();
-		$('#te_sc_shift_display_trade_'+type).show();	
-		$('#schedule .trade>div [id^="step"]').hide();
-		$('#schedule .trade>div #step_'+self.state).show();		
+		var that = this;
+		$(this).addClass('loading');
+		setTimeout(function(){
+			$('#cs_sh_trade .steps').show();
+			$('#schedule .trade>div').hide();
+			$('#te_sc_shift_display_trade_'+type).show();	
+			$('#schedule .trade>div [id^="step"]').hide();
+			$('#schedule .trade>div #step_'+self.state).show();		
+			$(that).removeClass('loading');
+		},400);
+		
 	});
 	$('#te_sc_shift_display_trade_swap,#te_sc_shift_display_trade_release').delegate('.steps a',clickEvent,function(e){
 		e.preventDefault();
 		var move = $(this).attr('id');
 		var type = $(this).attr('swap');
+		var that = this;
+		$(this).addClass('loading');
 		if(move == '_back'){
 			self.state = self.state - 1;
 		}else if(move == '_next'){
@@ -241,10 +245,13 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
 		switch(self.state){
 			case  0:
 			case -1:
-					$('#schedule .trade>div').hide();
-					$('#schedule .trade>div:first').show();
-					self.state = 1;
-					$('#self_state').html(self.state);
+					setTimeout(function(){
+						$('#schedule .trade>div').hide();
+						$('#schedule .trade>div:first').show();
+						self.state = 1;
+						$('span[rel=self_state]').html(self.state);
+						$(that).removeClass('loading');
+					},400);
 				break;
 			case 2:
 				spModel.schedule.get('tradelist',{id:self.shift.id,swap:type},function(response){
@@ -272,7 +279,8 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
 					$('#empList'+type).append($.tmpl($('#te_sc_shift_release'+type),data));
 					$('#schedule .trade>div [id^="step"]').hide();
 					$('#schedule .trade>div #step_'+self.state).show();	
-					$('#self_state').html(self.state);					
+					$('span[rel=self_state]').html(self.state);
+					$(that).removeClass('loading');					
 				});
 				break;
 			case 3:
@@ -281,6 +289,8 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
 				var field = type == '0' ? 'tradewith' : 'swap' ;
 				if(!selected.length){
 					sp.showError(_s('You need to select at least one item'));
+					$(that).removeClass('loading');
+					self.state = self.state -1;
 					return false;
 				}
 				var packedItems = []
@@ -295,16 +305,21 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
 					self.state = 3;
 					$('#schedule .trade>div [id^="step"]').hide();
 					$('#schedule .trade>div #step_'+self.state).show();
-					$('#self_state').html(self.state);
+					$('span[rel=self_state]').html(self.state);
+					$(that).removeClass('loading');
+					$('#cs_sh_trade .steps').hide();
 				});
 				self.state = 2;
 				break;
 			default:
-				self.state = self.state > 3 ? 3 : self.state ;
-				self.state = self.state < 0 ? 1 : self.state ;
-				$('#schedule .trade>div [id^="step"]').hide();
-				$('#schedule .trade>div #step_'+self.state).show();
-				$('#self_state').html(self.state);
+				setTimeout(function(){
+					self.state = self.state > 3 ? 3 : self.state ;
+					self.state = self.state < 0 ? 1 : self.state ;
+					$('#schedule .trade>div [id^="step"]').hide();
+					$('#schedule .trade>div #step_'+self.state).show();
+					$('span[rel=self_state]').html(self.state);
+					$(that).removeClass('loading');
+				},400);
 			break;			
 		}
 	});
@@ -502,11 +517,12 @@ ShiftPlanningSchedule.prototype.todaySubEvents = function(){
 
 ShiftPlanningSchedule.prototype.tradeSubEvents = function (){
 	$('#schedule .trade>div').hide();
-	$('#schedule .trade>div:first').show();	
-	$('p[rel=formatted_date]').html(this.shift.start_date.weekday+','+this.shift.start_date.formatted);
-	$('p[rel=formatted_time]').html(this.shift.start_time.time+'-'+this.shift.end_time.time);
-	$('li[rel=schedule_background]').css('border-color',sp.schedule.getColorsBySchedule(this.shift.schedule)[0]);
-	$('b[rel=schedule_name]').html(this.shift.schedule_name);
+	$('#schedule .trade>div:first').show();
+	$('#cs_sh_trade ul.shifts').html($.tmpl($('#te_cs_sh'),this.shift));
+//	$('p[rel=formatted_date]').html(this.shift.start_date.weekday+','+this.shift.start_date.formatted);
+//	$('p[rel=formatted_time]').html(this.shift.start_time.time+'-'+this.shift.end_time.time);
+//	$('li[rel=schedule_background]').css('border-color',sp.schedule.getColorsBySchedule(this.shift.schedule)[0]);
+//	$('b[rel=schedule_name]').html(this.shift.schedule_name);
 }
 
 ShiftPlanningSchedule.prototype.daySubEvents = function(){
@@ -571,6 +587,12 @@ ShiftPlanningSchedule.prototype.shiftDisplaySubEvents = function(){
     
     this.resetPublishFields(true);
     
+	if(this.shift.trades != null && this.shift.trades != ''){
+		$('#sc_sub_shift_display a.trade').hide();
+	}else{
+		$('#sc_sub_shift_display a.trade').show();
+	}
+	
     $('#sc_sub_shift_display ul a').attr('rel', this.shift.id);
     
     if (this.shift.location != 0){
