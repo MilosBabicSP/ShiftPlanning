@@ -101,10 +101,11 @@ ShiftPlanning.prototype.loadSubPage = function(obj, page, subpage) {
 ShiftPlanning.prototype.initialize = function(){
     var self = this;
     $(window).hashchange(function(){
-        if (sp.hashChange == false){
-            sp.hashChange = true;
-            return false;
-        }
+        console.log(sp.hashChange);
+//        if (sp.hashChange == false){
+//            sp.hashChange = true;
+//            return false;
+//        }
         if (sp.hash().length > 0) {
             if(sp.hash() == 'logout')
             {

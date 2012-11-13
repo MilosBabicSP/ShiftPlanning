@@ -79,6 +79,7 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
     
     $('#schedule .shiftDisplay .backMenu').bind(clickEvent, function(e){
         e.preventDefault();
+		e.stopPropagation();
         if(self.fromUpcoming){
             self.fromUpcoming = false;
             $('.subNavigation').show();
@@ -186,7 +187,148 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
             }
         })
         }
-    })
+    });
+	$('#sc_sub_trade a.backMenu').bind(clickEvent,function(e){
+		e.preventDefault();
+		sp.loadSubPage('','schedule','shiftDisplay');
+		self.state = 1;
+	});
+	$('#empList1').delegate('.checkbox',clickEvent,function(e){
+		e.preventDefault();
+		var that = this;
+		var shiftId=$(this).attr('rel');
+		if(!$(this).hasClass('check') && !$(this).hasClass('disabled')){
+			spModel.schedule.get('shift',{id:shiftId,detailed:1},function(response){
+				console.log(response);
+				var isAvail = false ;
+				if( response.data && response.data.staff.available.length > 0){
+					$.each(response.data.staff.available,function(key,item){
+						isAvail = item[0] == sp.staff.admin.info.id ? true : isAvail;
+					});
+				}
+				if (isAvail){
+					$(that).addClass('check');
+				}else{
+					$(that).addClass('disabled');
+					sp.showError('You aren\'t available for this shift!')
+				}
+			});
+		}else{
+			$(this).removeClass('check');
+		}
+	});
+	$('#sc_sub_shift_display ul a.trade').bind(clickEvent, function(e){
+		e.preventDefault();
+		sp.loadSubPage('','schedule','trade');
+	});
+	$('#schedule .trade').delegate('.tradepick a',clickEvent,function(e){
+		e.preventDefault();
+		var type = $(this).attr('id');
+		var that = this;
+		$(this).addClass('loading');
+		setTimeout(function(){
+			$('#cs_sh_trade .steps').show();
+			$('#schedule .trade>div').hide();
+			$('#te_sc_shift_display_trade_'+type).show();	
+			$('#schedule .trade>div [id^="step"]').hide();
+			$('#schedule .trade>div #step_'+self.state).show();		
+			$(that).removeClass('loading');
+		},400);
+		
+	});
+	$('#te_sc_shift_display_trade_swap,#te_sc_shift_display_trade_release').delegate('.steps a',clickEvent,function(e){
+		e.preventDefault();
+		var move = $(this).attr('id');
+		var type = $(this).attr('swap');
+		var that = this;
+		$(this).addClass('loading');
+		if(move == '_back'){
+			self.state = self.state - 1;
+		}else if(move == '_next'){
+			self.state = self.state + 1;
+		}
+		switch(self.state){
+			case  0:
+			case -1:
+					setTimeout(function(){
+						$('#schedule .trade>div').hide();
+						$('#schedule .trade>div:first').show();
+						self.state = 1;
+						$('span[rel=self_state]').html(self.state);
+						$(that).removeClass('loading');
+					},400);
+				break;
+			case 2:
+				spModel.schedule.get('tradelist',{id:self.shift.id,swap:type},function(response){
+					var data = [];
+					$.each(response.data,function(key,item){
+						var d = {};
+						d.id = key;
+						d.avatar = sp.getAvatar(key);
+						d.name = item.name;
+						if(typeof item.shifts != 'undefined'){
+							d.shifts = [];
+							$.each(item.shifts,function(i,it){
+								var shifts = {};
+								shifts.id = i;
+								shifts.start = it.start;
+								d.shifts.push(shifts);
+							});
+						}
+						data.push(d);
+					});
+					$('#empList'+type).html('');
+					if(type == 0 && data.length > 0){
+						$('#empList'+type).append('<li><span class="chk"></span> <span class="name">'+_s('Select All')+'</span></li>');
+					}					
+					$('#empList'+type).append($.tmpl($('#te_sc_shift_release'+type),data));
+					$('#schedule .trade>div [id^="step"]').hide();
+					$('#schedule .trade>div #step_'+self.state).show();	
+					$('span[rel=self_state]').html(self.state);
+					$(that).removeClass('loading');					
+				});
+				break;
+			case 3:
+				var selected =  $('#empList'+type+' .check:not(.all)');
+				var call = type == '0' ? 'trade' : 'tradeswap' ;
+				var field = type == '0' ? 'tradewith' : 'swap' ;
+				if(!selected.length){
+					sp.showError(_s('You need to select at least one item'));
+					$(that).removeClass('loading');
+					self.state = self.state -1;
+					return false;
+				}
+				var packedItems = []
+				selected.each(function(i,j){
+					packedItems.push($(j).attr('rel'));
+				});
+				var params = {};
+				params[field]=packedItems.join(',');
+				params['shift']=self.shift.id;
+				params['reason']=$('textarea[name=reason_trade'+type+']').val();
+				spModel.schedule.create(call,params,function(response){
+					self.state = 3;
+					$('#schedule .trade>div [id^="step"]').hide();
+					$('#schedule .trade>div #step_'+self.state).show();
+					$('span[rel=self_state]').html(self.state);
+					$(that).removeClass('loading');
+					$('#cs_sh_trade .steps').hide();
+					self.state = 1;
+				});
+				self.state = 2;
+				break;
+			default:
+				setTimeout(function(){
+					self.state = self.state > 3 ? 3 : self.state ;
+					self.state = self.state < 0 ? 1 : self.state ;
+					$('#schedule .trade>div [id^="step"]').hide();
+					$('#schedule .trade>div #step_'+self.state).show();
+					$('span[rel=self_state]').html(self.state);
+					$(that).removeClass('loading');
+				},400);
+			break;			
+		}
+	});
     $('#sc_sub_shift_display ul a.publish').bind(clickEvent, function(e){
 	e.preventDefault();
 	if ($(this).attr('first') == 'true'){
@@ -340,7 +482,7 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
         });
     });
     
-    $('#sc_edit_submenu .subMenu a').bind(clickEvent, function(e){
+    $('#sc_edit_submenu .subNav a').bind(clickEvent, function(e){
         var obj = $(this);
         e.preventDefault();
         obj.addClass('loading');
@@ -361,7 +503,7 @@ ShiftPlanningSchedule.prototype.loadSubPageEvents = function(subpage){
     $('#sc_edit_id').val(0);
     $('.subNavigation').show();
     $('#sc_additional_menu').show();
-    if (subpage == 'shiftDisplay' || subpage == 'addShift'){
+    if (subpage == 'shiftDisplay' || subpage == 'addShift' || subpage == 'trade'){
         $('.subNavigation').hide();
     }
     
@@ -377,6 +519,16 @@ ShiftPlanningSchedule.prototype.todaySubEvents = function(){
     $('#sc_to_sub').prev().html('Today');
     this.page = 'today';
     this.displayShifts();
+}
+
+ShiftPlanningSchedule.prototype.tradeSubEvents = function (){
+	$('#schedule .trade>div').hide();
+	$('#schedule .trade>div:first').show();
+	$('#cs_sh_trade ul.shifts').html($.tmpl($('#te_cs_sh'),this.shift));
+//	$('p[rel=formatted_date]').html(this.shift.start_date.weekday+','+this.shift.start_date.formatted);
+//	$('p[rel=formatted_time]').html(this.shift.start_time.time+'-'+this.shift.end_time.time);
+//	$('li[rel=schedule_background]').css('border-color',sp.schedule.getColorsBySchedule(this.shift.schedule)[0]);
+//	$('b[rel=schedule_name]').html(this.shift.schedule_name);
 }
 
 ShiftPlanningSchedule.prototype.daySubEvents = function(){
@@ -413,7 +565,7 @@ ShiftPlanningSchedule.prototype.shiftDisplaySubEvents = function(){
 		$('#sc_sub_shift_display a.publish span').html('Publish');
 	    } else if (this.shift.published < this.shift.edited && this.shift.published != 0) {
 		$('#sc_sub_shift_display a.publish').show();
-		$('#sc_sub_shift_display a.publish span').html('Republish');
+		$('#sc_sub_shift_display a.publish span').html();
 	    } else {
 		$('#sc_sub_shift_display a.publish').hide();
 	    }
@@ -441,6 +593,12 @@ ShiftPlanningSchedule.prototype.shiftDisplaySubEvents = function(){
     
     this.resetPublishFields(true);
     
+	if(this.shift.trades != null && this.shift.trades != ''){
+		$('#sc_sub_shift_display a.trade').hide();
+	}else{
+		$('#sc_sub_shift_display a.trade').show();
+	}
+	
     $('#sc_sub_shift_display ul a').attr('rel', this.shift.id);
     
     if (this.shift.location != 0){
@@ -536,9 +694,9 @@ ShiftPlanningSchedule.prototype.addShiftSubEvents = function(){
         $('#sc_edit_id').val(emp.id);
         $('#sc_edit_submenu .backMenu').attr('bck', 'edit');
         if (emp.confirmed == 0 && emp.end_date.id < sp.raw.config.today.id && sp.staff.admin.settings.shift_confirm == 1){
-            $('#sc_edit_submenu .subMenu').show();
+            $('#sc_edit_submenu .subNav').show();
         } else {
-            $('#sc_edit_submenu .subMenu').hide();
+            $('#sc_edit_submenu .subNav').hide();
         }
     } else {
         $('#sc_edit_submenu .subMenu').hide();

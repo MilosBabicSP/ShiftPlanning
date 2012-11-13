@@ -13,6 +13,7 @@ function ShiftPlanningSchedule(){
     this.fromUpcoming = false ;
     this.fromDashboardUpcoming = false;
     this.fromStaff=false;
+	this.state =1;
     this.settings = {
         mode : 'employee',
         start_date : 'yesterday',

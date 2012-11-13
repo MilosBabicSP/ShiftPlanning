@@ -35,6 +35,20 @@
             <span>${name}</span>
         </li>
     </script>
+	<script id="te_cs_sh" type="text/x-jquery-tmpl">
+		<li style="border-color: #${sp.schedule.getColorsBySchedule(schedule)[1]};">
+			<div>
+				<span class="fr">
+					<p >${start_date.weekday},${start_date.formatted}</p>
+					<p >${start_time.time}-${end_time.time}</p> 
+				</span>
+				<b>${schedule_name}</b><br>
+				{{if title != ''}}
+					<p>Desktop app</p>
+				{{/if}}
+			</div>
+		</li>		
+	</script>
     <script id="te_sc_shift_display" type="text/x-jquery-tmpl">
 	<div id="te_sc_shift_display_info">
 	    <div class="title1 wide" style="background-color: #${sp.schedule.getColorsBySchedule(schedule)[1]}; color: #${sp.schedule.getColorsBySchedule(schedule)[2]}">
@@ -137,8 +151,25 @@
 		    <span class="radio" value="all"><?=_s('All shifts in this series');?></span>
 		</div>
 	    </div>
-	</div>
+		</div>
+			
     </script>
+    <script id="te_sc_shift_release0" type="text/x-jquery-tmpl">
+		<li><span class="chk" rel ="${id}" onclick="$(this).toggleClass('check')"></span><img src="${avatar}"><span class="name">${name}</span></li>
+    </script>	
+    <script id="te_sc_shift_release1" type="text/x-jquery-tmpl">
+        <li><img src="${avatar}"><span class="name">${name}</span></li>
+        <li>
+			<ul class="">
+				{{tmpl(shifts) "#te_sc_trade_shifts_in"}}
+			</ul>
+		</li>
+    </script>	
+	<script id="te_sc_trade_shifts_in" type="text/x-jquery-tmpl">
+		<li>  
+			<span class="checkbox" rel ="${id}" >${start}</span>	                
+        </li>
+	</script>
     <script id="te_sc_shifts_names" type="text/x-jquery-tmpl">
         <t>${name}, </t>
     </script>
@@ -322,6 +353,75 @@
             {{tmpl(traders.data) "#te_rq_st_mst_s_l"}}
         </div>
     </script>
+    <script id="te_rq_st_swap_single" type="text/x-jquery-tmpl">
+        <div class="title wide mar">
+            <div>
+                <img width="30" height="30" src="${avatar}">
+                <span>${user_name}</span>
+                ${shift_start_date.formatted}
+            </div>
+        </div>
+        <div class="title1 sales wide mar">
+            <h3>${name}</h3>
+        </div>
+        <ul class="requests">
+            <li>
+                <span>${shift_start_date.time} - ${shift_end_date.time}</span> <span>${shift_start_date.formatted}</span>
+            </li>
+        </ul>
+        <div class="additional wide mar">
+            <p>${reason}</p>
+        </div>
+        <div class="title1 regular wide mar">
+            <h3><?=_s('Shifts requested for trade');?></h3>
+        </div>
+        <div class="traders {{if confirm_before == 1}}confirmBefore{{/if}}">
+            {{if data.length > 0 }}
+			
+				{{each data}}
+				
+					<div class="title">
+						{{if confirmed == 1 && approved == 0}}  
+							<span class="fr avaitingST"><?=_s('Awaiting response');?></span>
+						{{/if}}
+						{{if (confirmed == -1 && approved == -1) || (confirmed == 1 && approved == -1)}}
+							<span class="fr"><?=_s('Rejected');?></span>
+						{{else}}
+						{{if confirmed == 0 && approved == 0}}
+						<ul class="subNav">
+							<li class="first">
+								<a href="#" swapId="${trade_id}" shiftId="${shift}" userId="${user}" class="accept" >
+									<span><img width="16" height="16" src="<?php echo _fCdnPath_;?>images/request_1.png"></span>
+								</a>
+							</li>
+							<li class="last">
+								<a href="#" swapId="${trade_id}" shiftId="${shift}" userId="${user}" class="reject" >
+									<span><img width="16" height="16" src="<?php echo _fCdnPath_;?>images/request_2.png"></span>
+								</a>
+							</li>
+						</ul>											
+						{{/if}}
+						{{/if}}
+						<div>
+							<span>${schedule_name}-${start_timestamp}</span>
+						</div>
+					</div>				
+
+				{{/each}}
+			{{/if}}
+        </div>
+    </script>	
+    <script id="te_rq_swap_single" type="text/x-jquery-tmpl">
+        <li>
+            <a class="fr" href="#" rel="${id}"><img width="43" height="30" src="<?php echo _fCdnPath_;?>images/NextMenu.png"></a>
+            <img width="30" height="30" src="${avatar}" />
+            <span class="twoLine">
+                ${user_name}
+                <br />
+                ${shift_start_date.formatted} &raquo; ${shift_start_date.time} - ${shift_end_date.time}
+            </span>
+        </li>
+    </script>	
     <script id="te_rq_st_mst_s_l" type="text/x-jquery-tmpl">
         <div class="title">
             {{if confirmed == 1 && approved == 0}}  

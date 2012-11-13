@@ -39,7 +39,11 @@ ShiftPlanningRequests.prototype.loadSubPageEvents = function(subpage){
         case 'shiftTradeManagerAP':
             $('.subNavigation').hide();
             this.displayShiftTradeManagerAP();
-            break;    
+            break; 
+		case 'shiftSwapRequest':
+			$('.subNavigation').hide();
+			this.shiftSwapRequestSubEvents();
+			break;
         case 'shiftTradeManagerIM':
             $('.subNavigation').hide();
             this.displayShiftTradeManagerIM();
@@ -199,7 +203,25 @@ ShiftPlanningRequests.prototype.shiftTradesEvents = function(){
         self.current = self.trades['requested'][$(this).attr('rel')];
         sp.loadSubPage('', 'requests', 'shiftTradeManagerIM');
     });
-    
+    $('#rq_st_swap').delegate('a',clickEvent,function(e){
+		e.preventDefault();
+		self.current = self.swaps[$(this).attr('rel')];
+		sp.loadSubPage('', 'requests', 'shiftSwapRequest');
+	});
+	$('#rq_st_sh_swap').delegate('.traders a', clickEvent, function(){
+		var swapId = $(this).attr('swapId');
+		var shift = $(this).attr('shiftId');
+		var action = $(this).attr('class');
+		var obj = $(this);
+        obj.addClass('loading');		
+		var message = action == 'accept' ? 'You have accepted this shift trade.' : 'You have rejected this shift trade.' ;
+		spModel.schedule.update('tradeswap',{shift_for_swap:shift,trade:swapId,action:action},function(response){
+			obj.removeClass('loading');
+			sp.showSuccess(message);
+			$('.subNavigation .requests li a[subpage=shiftTrades]').trigger(clickEvent);
+		});
+		
+	});
     $('#rq_st_mst_s').delegate('.traders a', clickEvent, function(e){
         var obj = $(this);
         obj.addClass('loading');
@@ -616,6 +638,7 @@ ShiftPlanningRequests.prototype.shiftTradesSubEvents = function(){
     var self = this;
     $('#rq_st_mst').html(spView.ulLoader());
     $('#rq_st_ap').html(spView.ulLoader());
+	$('#rq_st_swap').html(spView.ulLoader());
     $('#rq_st_im').html(spView.ulLoader());
     
     $('#rq_st_mst').show();
@@ -625,6 +648,7 @@ ShiftPlanningRequests.prototype.shiftTradesSubEvents = function(){
     $('#rq_st_mst').next().hide();
     $('#rq_st_ap').next().hide();
     $('#rq_st_im').next().hide();
+	$('#rq_st_swap').next().hide();
     if (sp.staff.admin.info.group <= 4){
         spModel.schedule.get('trades', {
             mode : 'manage'
@@ -693,6 +717,26 @@ ShiftPlanningRequests.prototype.shiftTradesSubEvents = function(){
     }, function(response){
         sp.showError(response.error);
     });
+	
+	spModel.schedule.get('trades',{
+		mode : 'swap'
+	},function(response){
+		if(response.data != ''){
+			self.swaps= response.data;
+			var swap = [];
+			$('#rq_st_swap').show();
+			$.each(response.data,function(key,item){
+				item.avatar = sp.getAvatar(item.user);
+				swap.push(item);
+			});
+			$('#rq_st_swap').html($.tmpl($('#te_rq_swap_single'),swap));
+			console.log(swap);
+			
+		}else{
+			$('#rq_st_swap').hide();
+			$('#rq_st_swap_empty').show();
+		}
+	});
 }
 
 ShiftPlanningRequests.prototype.clearVacations = function(data){
@@ -821,6 +865,11 @@ ShiftPlanningRequests.prototype.displayShiftTradeManagerIM = function(){
     $('#rq_st_im_sm a').attr('rel', this.current.id);
 }
 
+ShiftPlanningRequests.prototype.shiftSwapRequestSubEvents = function(){
+	console.log(this.current);
+	$('#rq_st_sh_swap').html($.tmpl($('#te_rq_st_swap_single'),this.current));
+}
+
 ShiftPlanningRequests.prototype.displayShiftTradeManagerAP = function(){
     
     $('#rq_st_ap_s').html($.tmpl($('#te_rq_st_ap_s'), this.current));
@@ -923,6 +972,9 @@ ShiftPlanningRequests.prototype.prepareSingleViewTrade = function (data){
     
     data.traders.data = d;
     return data;
+}
+ShiftPlanningRequests.prototype.prepareSingleViewSwap = function(data){
+	
 }
 
 ShiftPlanningRequests.prototype.prepareOpenShiftsNA = function(data){

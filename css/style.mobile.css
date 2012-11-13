@@ -38,7 +38,7 @@ h5 {font-size:14px; font-weight:normal; color:#333;}
 /*SPRITE*/
 .msgDel, .msgRpl, .cmtCount span.tip, ul.cmts, ul.cmts li.last input[type=submit], .search input[type=submit] {background-image:url(../images/icos.png); background-repeat:no-repeat;}
 .cmtCount span.ico {background-image:url(../images/sprite.png); background-repeat:no-repeat;}
-.fromI, .untilI, span.checkbox, span.radio, .dash, .ticl, .sche, .requ, .staf, .repo, .trai, .sett, .exit, .icoClock, .icoEmpDet, .icoAdmAct, .icoEmpPos, .icoEmpSki, .icoEmpAdd, .icoDat, .icoNot, .icoAct, .icoSta, .icoReqWor, .icoReqCan, .icoReqEdi, .icoReqDel, .icoLoc, .icoSch {background-image:url(../images/mainNav_bg.png); background-repeat:no-repeat;}
+.fromI, .untilI, span.checkbox, span.chk, span.radio, .dash, .ticl, .sche, .requ, .staf, .repo, .trai, .sett, .exit, .icoClock, .icoEmpDet, .icoAdmAct, .icoEmpPos, .icoEmpSki, .icoEmpAdd, .icoDat, .icoNot, .icoAct, .icoSta, .icoReqWor, .icoReqCan, .icoReqEdi, .icoReqDel, .icoLoc, .icoSch {background-image:url(../images/mainNav_bg.png); background-repeat:no-repeat;}
 .calendar td.today, .calendar th, .calendar td.hasAny {background-image: url(../images/callendar_bg.png); background-repeat:repeat-x;}
 .trai_down {background-image:url(../images/DownMenu.png); background-repeat:no-repeat;}
 .trai_up{background-image:url(../images/UpMenu.png); background-repeat:no-repeat;}
@@ -75,6 +75,7 @@ h5 {font-size:14px; font-weight:normal; color:#333;}
 .icoReqCan {background-position:0 -1160px;}
 .icoReqEdi {background-position:0 -1260px;}
 .icoReqDel {background-position:0 -1160px;}
+.icoReqTra {background-image: url(../images/title_trade.png); background-repeat:no-repeat;}
 .fromI {background-position:-10px -1065px; padding:0 0 0 20px;}
 .untilI {background-position:-10px -1115px; padding:0 0 0 20px;}
 
@@ -334,7 +335,7 @@ body {display:none;}
 .checkbox.failsafe {line-height:15px;}
 
 /* training */
-.trainingBar {font-size:14px; line-height:17px;margin:0 110px 0 0;}
+.trainingBar {font-size:14px; line-height:17px;margin:0 110px 0 50px;}
 .barholder {position:relative; height:10px; background-color:#FFF; border:solid 1px #DDD;}
 .progress {position:absolute; height:12px; top:-1px; left:-1px; border-left:1px solid #5F894D; border-right:1px solid #5F894D; background:transparent url(../images/progress_bg.png) scroll repeat-x 0 0;}
 
@@ -381,27 +382,34 @@ ul.shifts.moved {margin:-5px 0 0;}
 ul.shifts li {border-left:solid 5px #EEE;}
 ul.shifts li.upcoming {background-color:#F4F4F4;}
 ul.shifts li a span {color:#999; text-align:center;}
-ul.shifts li a {padding:10px 20px 10px 10px; display:block; line-height:20px; color:#333; border-bottom:solid 1px #DDD;}
+ul.shifts li a {padding:10px 20px 10px 10px; display:block; line-height:20px; color:#333; border-bottom:solid 1px #DDD; min-height:40px;}
 ul.shifts li a p {line-height:20px;}
 ul.shifts li div span {color:#999; text-align:center;}
-ul.shifts li div {padding:10px 20px 10px 10px; display:block; line-height:20px; color:#333; border-bottom:solid 1px #DDD;}
+ul.shifts li div {padding:10px 20px 10px 10px; display:block; line-height:20px; color:#333; border-bottom:solid 1px #DDD; min-height:40px;}
 ul.shifts li div p {line-height:20px;}
 
 ul.empList {padding:15px 20px;}
-ul.empList li {padding:5px 0;}
-ul.empList li img {float:left;}
-ul.empList li span {display:block; margin:0 0 0 40px; line-height:30px;}
+ul.empList li {padding:5px 0; overflow:hidden;}
+ul.empList li img {float:left; margin:0 10px 0 0; width:30px; height:30px; display:block;}
+ul.empList li span.name {float:left; display:block; line-height:30px;}
+ul.empList li ul {margin:0 0 0 30px;}
+
+span.chk {display:block; height:30px; width:29px; float:left; margin:0 10px 0 0; background-position:-5px -610px;}
+span.chk.check {background-position:-5px -560px;}
+span.chk.disabled {background-position:-5px -910px;}
 
 ul.step {overflow:hidden; padding:10px; border-top:solid 1px #DDD;}
 ul.step li {width:50%; float:left;}
 ul.step li div {padding:10px;}
 ul.step li div p {padding:20px 0 0;}
+ul.step li div a {display:block; color:#FFF; line-height:30px; text-align:center; background-color:#7cb017;}
 
 .cap {padding:15px 20px 15px 45px; font-weight:bold; font-size:13px;}
 .cap.working {background:transparent url('../images/title_working.png') scroll no-repeat 20px 50%;}
 .cap.trade {background:transparent url('../images/title_trade.png') scroll no-repeat 20px 50%;}
 
 .steps {overflow:hidden; border-top:solid 1px #DDD; padding:20px; text-align:center;}
+.steps a {display:block; padding:0 20px; color:#FFF; line-height:30px; text-align:center; background-color:#7cb017;}
 .steps span {color:#CCC;}
 .greyed {overflow:hidden; background:#F4F4F4 url('../images/shadow.png') scroll repeat-x 0 0;}
 
