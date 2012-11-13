@@ -1,7 +1,7 @@
 <div class="main inbox" id="da_in">
     <!-- Inbox -->
     <div class="title wide">
-        <span class="fr"><a href="#" id="da_in_nm_b"><?=_s('New Message')?></a></span>
+        <span class="fr"><a  id="da_in_nm_b"><?=_s('New Message')?></a></span>
         <h3><?=_s('Inbox')?></h3>
     </div>
     <div class="newMsg hidden wide" id="da_in_nm_f">
@@ -18,8 +18,8 @@
             <textarea id="da_in_nm_me"></textarea>
         </span>
         <div class="title">
-            <span class="fr"><a href="#" id="da_in_nm_sa"><span><?=_s('Send Message')?></span></a></span>
-            <span class="fl"><a href="#" id="da_in_nm_ca"><?=_s('Cancel')?></a></span>
+            <span class="fr"><a  id="da_in_nm_sa"><span><?=_s('Send Message')?></span></a></span>
+            <span class="fl"><a  id="da_in_nm_ca"><?=_s('Cancel')?></a></span>
         </div>
     </div>
     <ul class="inbox" id="da_in_me">

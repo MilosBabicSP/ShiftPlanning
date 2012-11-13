@@ -949,7 +949,7 @@
 	</script>	
 	<script id="te_tr_singleSection" type="text/x-jquery-tmpl">
 		<li class="idle">
-					<div rel="${id}" onclick = "void(0)" id="tr_touch">
+					<div rel="${id}" onclick = "void(0)" href="#" id="tr_touch">
 			<div class="oneLine" style="width:80%;overflow:hidden;">
                             <b {{if finished_flag != -99}}style="float:left"{{/if}}>${title}</b>{{if finished_flag == 99 || finished_flag == 0}}<a style="padding-left:10px;"><img style="width:16px;height:16px;padding-bottom:5px;" src="<?php echo _fCdnPath_;?>images/req_1.png"></a> 
 												{{else}}{{if finished_flag == 1 }} <a style="padding-left:10px;"><img style="width:16px;height:16px;padding-bottom:3px;" src="<?php echo _fCdnPath_;?>images/tc_approve.png"></a> {{/if}}
