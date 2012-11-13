@@ -11,7 +11,7 @@
                 </span>
             </a>
         </li>
-        <li class="timeClock">
+        <li class="timeClock in">
             <a href="#">
                 <span class="icon">
 
@@ -22,23 +22,13 @@
                 </span>
             </a>
         </li>
-        <li class="shifts">
+        <li class="shifts tradePage">
             <a href="#">
                 <span class="icon">
                     <b>12</b>
                 </span>
                 <span class="details">
-                    <p>Shifts available<br/>for <b>trade</b></p>
-                </span>
-            </a>
-        </li>
-        <li class="shifts">
-            <a href="#">
-                <span class="icon">
-                    <b>8</b>
-                </span>
-                <span class="details">
-                    <p>Shifts available<br/>for <b>pick-up</b></p>
+                    <p>Shifts available<br/>for <b>trade</b> or <b>pick-up</b></p>
                 </span>
             </a>
         </li>
@@ -55,7 +45,7 @@
             </a>
         </li>
     </ul>
-    <ul class="shifts">
+    <ul class="shifts listing moved">
         <li style="border-color:#24a5d0">
             <a href="#">
                 <span class="fr">
@@ -97,7 +87,7 @@
             </a>
         </li>
     </ul>
-    
+    <?if (0){?>
     <!-- SVETA -->
     <!-- screen 1 -->
     <ul class="shifts">
@@ -258,4 +248,5 @@
             <p>You have currently selected to receive notifications via <b>SMS & Email</b></p>
         </div>
     </div>
+    <?}?>
 </div>

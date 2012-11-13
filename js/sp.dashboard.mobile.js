@@ -1,6 +1,7 @@
 ShiftPlanningDashboard.prototype.initialize = function(){
     var self = this;
     $(document).ready(function(){
+        self.dashboardEvents();
 	self.wallEvents();
 	self.inboxEvents();
 	self.settingsEvents();
@@ -20,8 +21,8 @@ ShiftPlanningDashboard.prototype.loadSubPageEvents = function(subpage){
 	    this.upcomingShiftsSubEvents();
 	    break;
 	case 'files':
-		this.filesSubEvents();
-		break;
+            this.filesSubEvents();
+            break;
 	case 'inbox':
 	    this.inboxSubEvents();
 	    break;
@@ -32,8 +33,8 @@ ShiftPlanningDashboard.prototype.loadSubPageEvents = function(subpage){
 	    this.whosonnowSubEvents();
 	    break;
 	case 'dashboard':
-		this.dashboardSubEvents();
-		break;
+            this.dashboardSubEvents();
+            break;
 	case 'logout':
 	    sp.staff.logout();
 	    break;
@@ -41,6 +42,37 @@ ShiftPlanningDashboard.prototype.loadSubPageEvents = function(subpage){
 	    this.pingUser();
 	    break;
     }
+}
+
+ShiftPlanningDashboard.prototype.dashboardEvents = function(){
+    $('#da_widgets .timeClock a').bind(clickEvent, function(e){
+        e.preventDefault();
+        sp.hash('timeClock');
+    });
+    
+    $('#da_widgets .tradePage').bind(clickEvent, function(e){
+        e.preventDefault();
+        sp.loadSubPage('', 'requests', 'tradePage');
+    });
+    
+    
+    $('#da_widgets ul.shifts').delegate('a', clickEvent, function(e){
+	e.preventDefault();
+	$(this).addClass('loading');
+	spModel.schedule.get('shift', {
+	    id : $(this).attr('rel'), 
+	    detailed : 1
+	}, function(response){
+	    sp.schedule.fromDashboard = true;
+	    sp.schedule.shift = response.data;
+	    sp.loadSubPage('', 'schedule', 'shiftDisplay');
+	});
+    });
+    
+    $('#da_widgets .schedule a').bind(clickEvent, function(e){
+        e.preventDefault();
+        sp.loadSubPage('', 'schedule', 'today');
+    });
 }
 
 ShiftPlanningDashboard.prototype.wallEvents = function(){
@@ -177,7 +209,7 @@ ShiftPlanningDashboard.prototype.upcomingShiftsEvents = function(){
 	    id : $(this).attr('rel'), 
 	    detailed : 1
 	}, function(response){
-	    sp.schedule.fromDashboard = true;
+	    sp.schedule.fromDashboardUpcoming = true;
 	    sp.schedule.shift = response.data;
 	    sp.loadSubPage('', 'schedule', 'shiftDisplay');
 	});
@@ -572,7 +604,35 @@ ShiftPlanningDashboard.prototype.whosonnowSubEvents = function(){
 }
 
 ShiftPlanningDashboard.prototype.dashboardSubEvents = function(){
-	console.log('widgets');
+    $('.bigLoader').show();
+    $('#da_widgets .timeClock.out, #da_widgets .timeClock.in').hide();
+    var calls = [
+        ['timeclock.status','GET', {details : 1}],
+        ['schedule.shifts','GET', {
+            'mode': 'open'
+        }],
+        ['schedule.trades','GET', {}],
+        ['schedule.shifts', 'GET', {
+            start_date: 'today', 
+            end_date: 'today +2 months', 
+            mode: 'employee'
+        }]
+    ]
+    sp.multiApi(calls, function(response){
+        if (response[0].data != 'out') {
+            $('#da_widgets .timeClock.in').show();
+            $('#da_widgets .timeClock.in .details b').html(response[0].data.current_length.hours + _s('h') + ' ' + response[0].data.current_length.mins + _('mins'));
+        } else {
+            $('#da_widgets .timeClock.out').show();
+        }
+        
+        $('#da_widgets .tradePage .icon b').html((response[1].data.length + response[2].data.length));
+        
+        $('#da_widgets ul.shifts.listing').html($.tmpl($('#te_da_widget_shift'), response[3].data));
+        
+        $('.bigLoader').hide();
+    });
+    console.log('widgets');
 }
 
 //functions

@@ -94,25 +94,29 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
             $('#dashboard .search.settings.mainSub li a[subpage=upcomingShifts]').trigger(clickEvent);
             }
         }else{
-        if(self.fromRecent){
+        if(self.fromRecent) {
             self.fromRecent = false;
             $('.subNavigation').show();
-                    if(self.fromStaff){
+                    if(self.fromStaff) {
                 self.fromStaff = false;
                 $('.subNavigation .schedule').hide()
                 $('.staff .subWrapp ul li a[subpage=list]').trigger(clickEvent);
                 sp.staff.displayEmployee($('#da_se_cur_us_id').val());
                 $('#dashboard .search.settings.mainSub li a[subpage=recentShifts]').trigger(clickEvent);
-            }else{
-            $('.subNavigation .dashboard li a[subpage=settings]').trigger(clickEvent);
-            $('#dashboard .search.settings.mainSub li a[subpage=recentShifts]').trigger(clickEvent);
+            } else {
+                $('.subNavigation .dashboard li a[subpage=settings]').trigger(clickEvent);
+                $('#dashboard .search.settings.mainSub li a[subpage=recentShifts]').trigger(clickEvent);
             }
         }else{
             if (self.fromDashboard){
                 self.fromDashboard = false;
                 $('.subNavigation').show();
+                $('.subNavigation .dashboard li a[subpage=dashboard]').trigger(clickEvent);
+            } if (self.fromDashboardUpcoming) { 
+                self.fromDashboardUpcoming = false;
+                $('.subNavigation').show();
                 $('.subNavigation .dashboard li a[subpage=upcomingShifts]').trigger(clickEvent);
-            } else {
+            }else {
                 if ($('#sc_sub_shift_display ul a.publish').attr('first') == 'false'){
                     self.resetPublishFields(true);
                 } else {
@@ -853,18 +857,18 @@ ShiftPlanningSchedule.prototype.clearSchedules = function(){
     return schedules;
 }
 
-ShiftPlanningSchedule.prototype.checkSchedulePerm = function(scheduleID){
-    if (typeof sp.schedule.data.schedules[scheduleID] == 'undefined'){
+ShiftPlanningSchedule.prototype.checkSchedulePerm = function(scheduleID) {
+    if (typeof sp.schedule.data.schedules[scheduleID] == 'undefined') {
 	return 0;
     } else {
 	return sp.schedule.data.schedules[scheduleID].perms;
     }
 }
 
-ShiftPlanningSchedule.prototype.fillCalendar = function(data){
+ShiftPlanningSchedule.prototype.fillCalendar = function(data) {
     var res = {};
     $.each(data, function(i, item){
-        if (typeof res[item.start_date.day + ''] == 'undefined'){
+        if (typeof res[item.start_date.day + ''] == 'undefined') {
             res[item.start_date.day + ''] = {
                 dateToday : item.start_date.formatted,
                 shifts : []
@@ -885,9 +889,13 @@ ShiftPlanningSchedule.prototype.fillCalendar = function(data){
     this.shifts = fin;
 }
 
-ShiftPlanningSchedule.prototype.getColorsBySchedule = function(id){
-    if (typeof sp.schedule.data.schedules[id] != 'undefined'){
-        return sp.raw.config.newcolorsets[sp.schedule.data.schedules[id].color];
+ShiftPlanningSchedule.prototype.getColorsBySchedule = function(id, color_id){
+    if (typeof sp.schedule.data.schedules[id] != 'undefined') {
+        if (typeof color_id != 'undefined'){
+            return sp.raw.config.newcolorsets[sp.schedule.data.schedules[id].color][color_id];
+        } else {
+            return sp.raw.config.newcolorsets[sp.schedule.data.schedules[id].color];
+        }
     } else {
         return ['000', 'aaa', 'fff', 'fff', '000'];
     }

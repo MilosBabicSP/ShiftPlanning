@@ -5,6 +5,7 @@ function ShiftPlanning(){
     this.successMessage = '';
     var self = this;
     this.initialize();
+    this.hashChange = true;
     return true;
 }
 
@@ -30,6 +31,17 @@ ShiftPlanning.prototype = {
             data: 'multi=1&data=' + JSON.stringify(data),
             cache: false,
             success: function(response){
+                $.each(response, function(i, item){
+                    if (item.status == 3){
+                        sp.hash('logout');
+                        user.loggedIn = 0;
+                        user.name = '';
+                        user.company = '';
+                        sp.staff.data.employees = {};
+                        window.location.reload();
+                        return false;
+                    }
+                });
                 if(typeof callback == 'function'){
                     callback.call(this,response);
                 }

@@ -297,6 +297,7 @@ if ($vtoken['data'] != '1') {
             </div>
 			
             <div id="wrapper" class="wrapper">
+                <div class="blackMask"></div>
                 <div class="subNavigation">
                     <?php Functions::getInstance()->loadFile('menus/dashboard') ?>
                     <?php Functions::getInstance()->loadFile('menus/timeclock') ?>
@@ -307,6 +308,9 @@ if ($vtoken['data'] != '1') {
 					<?php Functions::getInstance()->loadFile('menus/training')?>
                 </div>
                 <div id="pages">
+                    <div class="bigLoader">
+                        Loading...
+                    </div>
                     <div class="dashboard" id="dashboard">
                         <div class="search settings mainSub">
                             <ul class="filters" style="width:270px">
@@ -322,13 +326,13 @@ if ($vtoken['data'] != '1') {
                                 <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/arrow_back.png">
                             </a>
                         </div>
+                        <?php Functions::getInstance()->loadFile('dashboard_widgets'); ?>
                         <?php Functions::getInstance()->loadFile('dashboard_wall') ?>
                         <?php Functions::getInstance()->loadFile('dashboard_upcomingShifts'); ?>
-						<?php Functions::getInstance()->loadFile('dashboard_files'); ?>
+                        <?php Functions::getInstance()->loadFile('dashboard_files'); ?>
                         <?php Functions::getInstance()->loadFile('dashboard_inbox') ?>
                         <?php Functions::getInstance()->loadFile('dashboard_settings'); ?>
                         <?php Functions::getInstance()->loadFile('dashboard_whosonnow'); ?>
-						<?php Functions::getInstance()->loadFile('dashboard_widgets'); ?>
                         <div class="main pingUser" id="da_who_ping">
                                                     
                         </div>
@@ -587,6 +591,7 @@ if ($vtoken['data'] != '1') {
                             </ul>
                         </div>
                         <?php Functions::getInstance()->loadFile('requests_overview'); ?>
+                        <?php Functions::getInstance()->loadFile('requests_tradePage'); ?>
                         <?php Functions::getInstance()->loadFile('requests_vacation'); ?>
                         <?php Functions::getInstance()->loadFile('requests_openShifts'); ?>
                         <?php Functions::getInstance()->loadFile('requests_shiftTrades'); ?>

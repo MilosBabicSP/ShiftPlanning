@@ -61,7 +61,7 @@ ShiftPlanning.prototype.toggleMenu = function(){
     $('#wrapper').toggleClass('extended');
 }
 
-ShiftPlanning.prototype.loadSubPage = function(obj, page, subpage){
+ShiftPlanning.prototype.loadSubPage = function(obj, page, subpage) {
     if (subpage == 'logout'){
         sp.staff.logout();
         return false;
@@ -71,6 +71,7 @@ ShiftPlanning.prototype.loadSubPage = function(obj, page, subpage){
         obj.parent().parent().find('li').removeClass('active');
         obj.parent().addClass('active');
     }
+    
     $('.subNavigation > div').hide();
     $('.subNavigation > div.' + page).show();
     
@@ -80,6 +81,15 @@ ShiftPlanning.prototype.loadSubPage = function(obj, page, subpage){
     $('#pages #' + page).show();
     $('#pages #' + page + ' .main.' + subpage).show();
     $('#pages #' + page + ' .mainSub.' + subpage).show();
+    
+    $('#menu .mainNav > li').removeClass('active');
+    $('#menu_' + page).addClass('active');
+    
+    $('.subNavigation div.' + page + ' .subnNav[page=' + page + '] li').removeClass('active');
+    
+    $('.subNavigation div.' + page + ' .subnNav[page=' + page + '] li a[page=' + subpage + ']').parent().addClass('active');
+    sp.hashChange = false;
+    sp.hash(page);
     
     if (typeof this[page] != 'undefined' && 'loadSubPageEvents' in this[page]){
         this[page].loadSubPageEvents(subpage);
@@ -91,6 +101,10 @@ ShiftPlanning.prototype.loadSubPage = function(obj, page, subpage){
 ShiftPlanning.prototype.initialize = function(){
     var self = this;
     $(window).hashchange(function(){
+        if (sp.hashChange == false){
+            sp.hashChange = true;
+            return false;
+        }
         if (sp.hash().length > 0) {
             if(sp.hash() == 'logout')
             {
@@ -166,6 +180,7 @@ ShiftPlanning.prototype.initialize = function(){
         
         setInterval(function(){
             $('#menu').css('height', ($(window).height() > $(document).height() ? $(window).height() : $(document).height()));
+            $('#wrapper').height($(document).height());
         }, 1000);
         $('#wrapper').width($(window).width());
         $('body').width($(window).width());
@@ -187,6 +202,7 @@ ShiftPlanning.prototype.initialize = function(){
     });
     
     $(window).bind('resize', function(){
+        $('#wrapper').width($(window).width());
         $('#wrapper').width($(window).width());
         $('body').width($(window).width());
     });
