@@ -96,6 +96,7 @@ ShiftPlanning.prototype.loadSubPage = function(obj, page, subpage) {
     }
     
     sp.fixCheckboxes();
+    $(document).scrollTop(0);
 }
 
 ShiftPlanning.prototype.initialize = function(){
@@ -180,7 +181,7 @@ ShiftPlanning.prototype.initialize = function(){
         
         setInterval(function(){
             $('#menu').css('height', ($(window).height() > $(document).height() ? $(window).height() : $(document).height()));
-            $('#wrapper').height($(document).height());
+            $('#wrapper').css('min-height', self.calculateWrapperHeight());
         }, 1000);
         $('#wrapper').width($(window).width());
         $('body').width($(window).width());
@@ -203,9 +204,24 @@ ShiftPlanning.prototype.initialize = function(){
     
     $(window).bind('resize', function(){
         $('#wrapper').width($(window).width());
-        $('#wrapper').width($(window).width());
         $('body').width($(window).width());
     });
+}
+
+ShiftPlanning.prototype.calculateWrapperHeight = function(){
+    var wrapperHeight = $('#wrapper').height();
+    var documentHeight = $(document).height();
+    var windowHeight = $(window).height();
+    
+    if (wrapperHeight < documentHeight) {
+        wrapperHeight = documentHeight;
+    }
+    
+    if (wrapperHeight < windowHeight) {
+        wrapperHeight = windowHeight;
+    }
+    
+    return wrapperHeight;
 }
 
 ShiftPlanning.prototype.globalLoader = function(){
