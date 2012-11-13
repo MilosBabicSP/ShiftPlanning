@@ -308,6 +308,7 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
 					$('span[rel=self_state]').html(self.state);
 					$(that).removeClass('loading');
 					$('#cs_sh_trade .steps').hide();
+					self.state = 1;
 				});
 				self.state = 2;
 				break;
