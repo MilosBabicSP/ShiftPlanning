@@ -616,7 +616,8 @@ ShiftPlanningDashboard.prototype.dashboardSubEvents = function(){
             start_date: 'today', 
             end_date: 'today +2 months', 
             mode: 'employee'
-        }]
+        }],
+        ['schedule.trades', 'get', {'mode' : 'swap'}]
     ]
     sp.multiApi(calls, function(response){
         if (response[0].data != 'out') {
@@ -626,7 +627,7 @@ ShiftPlanningDashboard.prototype.dashboardSubEvents = function(){
             $('#da_widgets .timeClock.out').show();
         }
         
-        $('#da_widgets .tradePage .icon b').html((response[1].data.length + response[2].data.length));
+        $('#da_widgets .tradePage .icon b').html((response[1].data.length + response[2].data.length + response[4].data.length));
         
         $('#da_widgets ul.shifts.listing').html($.tmpl($('#te_da_widget_shift'), response[3].data));
         

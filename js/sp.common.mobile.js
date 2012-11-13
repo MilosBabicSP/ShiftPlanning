@@ -146,7 +146,6 @@ ShiftPlanning.prototype.initialize = function(){
             e.preventDefault();
             self.toggleMenu();
         });
-        
         if(user.loggedIn){
             $('.loginContainer').hide();
             $('body').removeClass('login');
