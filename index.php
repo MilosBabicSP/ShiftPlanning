@@ -274,18 +274,18 @@ if ($vtoken['data'] != '1') {
         </table>
         <div class="applicationContainer">
             <div class="mainMenu hidden" id="menu">
-                <a href="#">
+                <a >
                     <img height="61" width="190" src="<?php echo _fCdnPath_;?>images/logo.png" />
                 </a>
                 <ul class="mainNav">
                     <li id="menu_dashboard"><a class="dash"  page="dashboard"><?=_s('Dashboard')?></a></li>
                     <li id="menu_timeClock"><a class="ticl"  page="timeClock"><?=_s('Time Clock')?></a></li>
                     <li id="menu_schedule"><a class="sche"  page="schedule"><?=_s('Schedule')?></a></li>
-                    <li class="active" id="menu_requests"><a class="requ" href="#" page="requests"><?=_s('Requests')?></a>
+                    <li class="active" id="menu_requests"><a class="requ" page="requests"><?=_s('Requests')?></a>
                         <ul class="hidden">
-                            <li><a href="#"><span>4</span><?=_s('Vacation requests')?></a></li>
-                            <li><a href="#"><span>208</span><?=_s('Shift Approvals')?></a></li>
-                            <li><a href="#"><span>126</span><?=_s('Shifts Available')?></a></li>
+                            <li><a  ><span>4</span><?=_s('Vacation requests')?></a></li>
+                            <li><a  ><span>208</span><?=_s('Shift Approvals')?></a></li>
+                            <li><a  ><span>126</span><?=_s('Shifts Available')?></a></li>
                         </ul>
                     </li>
                     <li id="menu_staff"><a class="staf"  page="staff" ><?=_s('Staff')?></a></li>
@@ -310,15 +310,15 @@ if ($vtoken['data'] != '1') {
                     <div class="dashboard" id="dashboard">
                         <div class="search settings mainSub">
                             <ul class="filters" style="width:270px">
-                                <li class="first active"><a href="#" subpage="overview"><?=_s('Overview');?></a></li>
-                                <li><a href="#" subpage="edit"><?=_s('Edit');?></a></li>
-                                <li><a href="#" subpage="recentShifts"><?=_s('Recent Shifts');?></a></li>
-                                <li><a href="#" subpage="upcomingShifts"><?=_s('Upcoming Shifts');?></a></li>
-                                <li class="last" ><a href="#" subpage="password"><?=_s('Password');?></a></li>
+                                <li class="first active"><a   subpage="overview"><?=_s('Overview');?></a></li>
+                                <li><a   subpage="edit"><?=_s('Edit');?></a></li>
+                                <li><a   subpage="recentShifts"><?=_s('Recent Shifts');?></a></li>
+                                <li><a   subpage="upcomingShifts"><?=_s('Upcoming Shifts');?></a></li>
+                                <li class="last" ><a   subpage="password"><?=_s('Password');?></a></li>
                             </ul>
                         </div>
                         <div class="subLevel mainSub pingUser" id="pingUser">
-                            <a class="backMenu" href="#">
+                            <a class="backMenu"  >
                                 <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/arrow_back.png">
                             </a>
                         </div>
@@ -335,22 +335,22 @@ if ($vtoken['data'] != '1') {
                     </div>
                     <div class="timeClock" id="timeClock">
                         <div class="subLevel mainSub displayTimeClock">
-                            <a class="backMenu" href="#">
+                            <a class="backMenu" >
                                 <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/arrow_back.png">
                             </a>
                             <ul class="subMenu" id="tc_dtc_buttons">
                                 <li class="first">
-                                    <a href="#" class="approve" id="tc_dtc_ap">
+                                    <a class="approve" id="tc_dtc_ap">
                                         <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/tc_approve.png">
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" class="edit">
+                                    <a  class="edit">
                                         <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/tc_edit.png">
                                     </a>
                                 </li>
                                 <li class="last">
-                                    <a href="#" class="delete">
+                                    <a  class="delete">
                                         <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/tc_delete.png">
                                     </a>
                                 </li>
@@ -382,12 +382,12 @@ if ($vtoken['data'] != '1') {
                             </div>
                             <ul class="subMenu">
                                 <li class="first">
-                                    <a href="#" id="sc_prev_month">
+                                    <a  id="sc_prev_month">
                                         <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/sch_pre.png" />
                                     </a>
                                 </li>
                                 <li class="last">
-                                    <a href="#" id="sc_next_month">
+                                    <a  id="sc_next_month">
                                         <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/sch_nex.png" />
                                     </a>
                                 </li>
@@ -409,56 +409,56 @@ if ($vtoken['data'] != '1') {
                             </div>
                             <ul class="subMenu">
                                 <li class="first">
-                                    <a href="#" id="sc_prev_day">
+                                    <a  id="sc_prev_day">
                                         <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/sch_pre.png">
                                     </a>
                                 </li>
                                 <li class="last">
-                                    <a href="#" id="sc_next_day">
+                                    <a  id="sc_next_day">
                                         <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/sch_nex.png">
                                     </a>
                                 </li>
                             </ul>
                         </div>
 						<div class="subLevel mainSub trade" id="sc_sub_trade">
-							<a href="#" class="backMenu">
+							<a  class="backMenu">
                                 <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/arrow_back.png">
                             </a>
 						</div>
                         <div class="subLevel mainSub shiftDisplay" id="sc_sub_shift_display">
-                            <a href="#" class="backMenu">
+                            <a  class="backMenu">
                                 <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/arrow_back.png">
                             </a>
                             <ul class="subNav">
                                 <li class="single">
-                                    <a href="#" class="icoReqWor publish">
+                                    <a  class="icoReqWor publish">
                                         <span></span>
                                     </a>
                                 </li>
 								<li class="single">
-                                    <a href="#" class="icoReqTra trade" style="margin: 7px -13px 0 0;">
+                                    <a  class="icoReqTra trade" style="margin: 7px -13px 0 0;">
                                         <span></span>
                                     </a>
                                 </li>
                                 <li class="single">
-                                    <a href="#" class="icoReqEdi edit">
+                                    <a  class="icoReqEdi edit">
                                         <span></span>
                                     </a>
                                 </li>
                                 <li class="single">
-                                    <a href="#" class="icoReqDel delete">
+                                    <a  class="icoReqDel delete">
                                         <span></span>
                                     </a>
                                 </li>
                             </ul>
                         </div>
                         <div class="subLevel mainSub addShift" id="sc_edit_submenu">
-                            <a href="#" class="backMenu">
+                            <a  class="backMenu">
                                 <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/arrow_back.png">
                             </a>
                             <ul class="subMenu">
                                 <li class="single hidden">
-                                    <a href="#" class="icoReqWor">
+                                    <a  class="icoReqWor">
                                         <span><?=_s('Approve Shift')?></span>
                                     </a>
                                 </li>
@@ -473,44 +473,44 @@ if ($vtoken['data'] != '1') {
                     </div>
                     <div class="requests" id="requests">
                         <div class="subLevel mainSub vacationRequestManage">
-                            <a class="backMenu" href="#" subpage="vacation">
+                            <a class="backMenu"  subpage="vacation">
                                 <img width="41" height="30" src="<?php echo _fCdnPath_;?>images/BackMenu.png" />
                             </a>
                             <ul class="subMenu">
                                 <li class="first">
-                                    <a href="#" id="rq_va_ma_acp">
+                                    <a  id="rq_va_ma_acp">
                                         <span><img width="16" height="16" src="<?php echo _fCdnPath_;?>images/request_1.png" /></span>
                                     </a>
                                 </li>
                                 <li class="last">
-                                    <a href="#" id="rq_va_ma_dec">
+                                    <a  id="rq_va_ma_dec">
                                         <span><img width="16" height="16" src="<?php echo _fCdnPath_;?>images/request_2.png" /></span>
                                     </a>
                                 </li>
                             </ul>
                         </div>
 						<div class="subLevel mainSub shiftSwapRequest" id="rq_st_mts_swap">
-                            <a class="backMenu" href="#" subpage="shiftTrades">
+                            <a class="backMenu" subpage="shiftTrades">
                                 <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/arrow_back.png">
                             </a>							
 						</div>
                         <div class="subLevel mainSub shiftTradeManager" id="rq_st_mts_sub">
-                            <a class="backMenu" href="#" subpage="shiftTrades">
+                            <a class="backMenu"  subpage="shiftTrades">
                                 <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/arrow_back.png">
                             </a>
                             <ul class="subNav" id="rq_st_mts_fm">
                                 <li class="first">
-                                    <a href="#" class="activate">
+                                    <a  class="activate">
                                         <span><img width="16" height="16" src="<?php echo _fCdnPath_;?>images/request_1.png" /></span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" class="deactivate">
+                                    <a  class="deactivate">
                                         <span><img width="16" height="16" src="<?php echo _fCdnPath_;?>images/request_2.png" /></span>
                                     </a>
                                 </li>
                                 <li class="last">
-                                    <a href="#" class="cancel">
+                                    <a  class="cancel">
                                         <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/tc_delete.png" />
 										<span></span>
                                     </a>
@@ -518,72 +518,72 @@ if ($vtoken['data'] != '1') {
                             </ul>
                             <ul class="subNav hidden" id="rq_st_mts_sm">
                                 <li class="single">
-                                    <a href="#" class="icoReqCan cancel">
+                                    <a  class="icoReqCan cancel">
                                         <span></span>
                                     </a>
                                 </li>
                             </ul>
                         </div>
                         <div class="subLevel mainSub shiftTradeManagerAP" id="rq_st_ap_sub">
-                            <a class="backMenu" href="#" subpage="shiftTrades">
+                            <a class="backMenu"  subpage="shiftTrades">
                                 <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/arrow_back.png">
                             </a>
                             <ul class="subNav">
                                 <li class="first">
-                                    <a href="#" class="accept">
+                                    <a   class="accept">
                                         <span><img width="16" height="16" src="<?php echo _fCdnPath_;?>images/request_1.png" /></span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" class="reject">
+                                    <a   class="reject">
                                         <span><img width="16" height="16" src="<?php echo _fCdnPath_;?>images/request_2.png" /></span>
                                     </a>
                                 </li>
                             </ul>
                         </div>
                         <div class="subLevel mainSub shiftTradeManagerIM">
-                            <a class="backMenu" href="#" subpage="shiftTrades">
+                            <a class="backMenu"   subpage="shiftTrades">
                                 <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/arrow_back.png">
                             </a>
                             <ul class="subNav" id="rq_st_im_sm">
                                 <li class="single">
-                                    <a href="#" class="icoReqCan cancel">
+                                    <a   class="icoReqCan cancel">
                                         <span></span>
                                     </a>
                                 </li>
                             </ul>
                         </div>
                         <div class="subLevel mainSub openShiftsOpen" id="rq_os_sub">
-                            <a class="backMenu" href="#" subpage="openShifts">
+                            <a class="backMenu"   subpage="openShifts">
                                 <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/arrow_back.png">
                             </a>
                             <ul class="subMenu">
-                                <li class="single"><a class="icoReqWor" href="#" id="rq_os_rtw"><span><?=_s('Request to work')?></span></a></li>
+                                <li class="single"><a class="icoReqWor"   id="rq_os_rtw"><span><?=_s('Request to work')?></span></a></li>
                             </ul>
                         </div>
                         <div class="subLevel mainSub openShiftsRequest" id="rq_os_spr_sub">
-                            <a class="backMenu" href="#" subpage="openShifts">
+                            <a class="backMenu"   subpage="openShifts">
                                 <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/arrow_back.png">
                             </a>
                             <ul class="subMenu">
                                 <li class="first">
-                                    <a href="#" class="accept">
+                                    <a   class="accept">
                                         <span><img width="16" height="16" src="<?php echo _fCdnPath_;?>images/request_1.png" /></span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" class="reject">
+                                    <a   class="reject">
                                         <span><img width="16" height="16" src="<?php echo _fCdnPath_;?>images/request_2.png" /></span>
                                     </a>
                                 </li>
                             </ul>
                         </div>
                         <div class="subLevel mainSub shiftApprovalsSingle" id="rq_sa_sub">
-                            <a href="#" class="backMenu" subpage="shiftApprovals">
+                            <a   class="backMenu" subpage="shiftApprovals">
                                 <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/arrow_back.png">
                             </a>
                             <ul class="subMenu">
-                                <li class="single"><a href="#" class="icoReqWor"><span><?=_s('Save & Close')?></span></a></li>
+                                <li class="single"><a   class="icoReqWor"><span><?=_s('Save & Close')?></span></a></li>
                             </ul>
                         </div>
                         <?php Functions::getInstance()->loadFile('requests_overview'); ?>
@@ -629,7 +629,7 @@ if ($vtoken['data'] != '1') {
                     </div>
                     <div class="reports" id="reports">
                         <div class="subLevel hidden mainSub singleViewDisplay" id="re_si_inf">
-                            <a class="backMenu" href="#">
+                            <a class="backMenu"  >
                                 <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/arrow_back.png">
                             </a>
                         </div>
@@ -643,17 +643,17 @@ if ($vtoken['data'] != '1') {
                     </div>
 					<div class="training" id="training">
 						<div class="subLevel hidden mainSub singleSection" id="tr_si_se">
-                            <a class="backMenu" href="#">
+                            <a class="backMenu"  >
                                 <img width="41" height="30" src="<?php echo _fCdnPath_; ?>images/BackMenu.png">
                             </a>
                         </div>
 						<div class="subLevel hidden mainSub singleModule" id="tr_si_se">
-                            <a class="backMenu"  href="#" >
+                            <a class="backMenu"    >
                                 <img width="41" height="30" src="<?php echo _fCdnPath_; ?>images/BackMenu.png">
                             </a>
                             <ul class="subMenu hidden" >
                                 <li class="first">
-                                    <a href="#" class="topic_stat" style="margin-right: 5px;">
+                                    <a   class="topic_stat" style="margin-right: 5px;">
                                         <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/stats.png">
 										<?=_s('Statistics')?>										
                                     </a>
@@ -661,7 +661,7 @@ if ($vtoken['data'] != '1') {
                             </ul>							
                         </div>
 						<div class="subLevel hidden mainSub topicstatistic"  id="tr_to_st">
-                            <a class="backMenu"  href="#">
+                            <a class="backMenu"   >
                                 <img width="41" height="30" src="<?php echo _fCdnPath_; ?>images/BackMenu.png">
                             </a>
                         </div>						
