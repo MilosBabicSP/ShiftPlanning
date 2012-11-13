@@ -273,8 +273,8 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
 						data.push(d);
 					});
 					$('#empList'+type).html('');
-					if(type == 0){
-						$('#empList'+type).append('<li><span class="chk"></span> <span class="name">Select All</span></li>');
+					if(type == 0 && data.length > 0){
+						$('#empList'+type).append('<li><span class="chk"></span> <span class="name">'+_s('Select All')+'</span></li>');
 					}					
 					$('#empList'+type).append($.tmpl($('#te_sc_shift_release'+type),data));
 					$('#schedule .trade>div [id^="step"]').hide();
