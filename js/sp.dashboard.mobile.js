@@ -523,7 +523,7 @@ ShiftPlanningDashboard.prototype.upcomingShiftsSubEvents = function(){
 	    $('#da_up_li').html($.tmpl($('#te_da_widget_shift'), data));
         }
         
-        $('#da_up .schedule .details b').html(data.length + ' shifts');
+        $('#da_up .shifts .icon b').html(data.length);
     });
 }
 

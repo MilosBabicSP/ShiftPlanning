@@ -1,14 +1,12 @@
 <div class="main upcomingShifts" id="da_up" style="padding:0">
     <ul class="widgets">
-        <li class="schedule">
+        <li class="shifts">
             <a href="#">
                 <span class="icon">
-                    <p>&nbsp;</p>
-                    <h3>&nbsp;</h3>
+                    <b>12</b>
                 </span>
                 <span class="details">
-                    <h3>Upcoming Shifts</h3>
-                    <p>You have <b>2 shifts</b> in next 2 months</p>
+                    <p>Upcoming shifts<br/>in next <b>2 months</b></p>
                 </span>
             </a>
         </li>
