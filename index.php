@@ -251,11 +251,9 @@ if ($vtoken['data'] != '1') {
                     <img class="logo" src="<?php echo _fCdnPath_;?>images/logo1.png" alt="ShiftPlanning" />
 
                     <form class="loginForm" method="post" id="lo_f" onsubmit="return false;">
-                        <label><?=_s('Email or Username');?></label>
                         <div class="holder">
                             <input autocorrect="off" autocapitalize="off" type="text" name="username" id="lo_u" />
                         </div>
-                        <label><?=_s('Password');?></label>
                         <div class="holder">
                             <input type="password" name="password" id="lo_p"/>
                         </div>
