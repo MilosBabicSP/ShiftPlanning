@@ -598,12 +598,12 @@ ShiftPlanningDashboard.prototype.settingsSubEvents = function(employee){
     sp.fixCheckboxes();
 }
 
-ShiftPlanningDashboard.prototype.whosonnowSubEvents = function(){
+ShiftPlanningDashboard.prototype.whosonnowSubEvents = function() {
     $('#wrapper > .subNavigation').show();
     this.getWhosOn();        
 }
 
-ShiftPlanningDashboard.prototype.dashboardSubEvents = function(){
+ShiftPlanningDashboard.prototype.dashboardSubEvents = function() {
     $('.bigLoader').show();
     $('#da_widgets .timeClock.out, #da_widgets .timeClock.in').hide();
     var calls = [
@@ -633,7 +633,6 @@ ShiftPlanningDashboard.prototype.dashboardSubEvents = function(){
         
         $('.bigLoader').hide();
     });
-    console.log('widgets');
 }
 
 //functions

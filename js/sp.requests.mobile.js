@@ -576,6 +576,19 @@ ShiftPlanningRequests.prototype.vacationSubEvents = function(){
 }
 
 ShiftPlanningRequests.prototype.availableSubEvents = function() {
+    $('.bigLoader').show();
+    $('#da_widgets .timeClock.out, #da_widgets .timeClock.in').hide();
+    var calls = [
+        ['schedule.shifts','GET', {
+            'mode': 'open'
+        }],
+        ['schedule.trades','GET', {}],
+        ['schedule.trades', 'get', {'mode' : 'swap'}]
+    ]
+    sp.multiApi(calls, function(response){
+        console.log(response);
+        $('.bigLoader').hide();
+    });
     console.log('availableSubEvents');
 }
 
