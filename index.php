@@ -249,26 +249,18 @@ if ($vtoken['data'] != '1') {
             <tr>
                 <td width="100%">
                     <img class="logo" src="<?php echo _fCdnPath_;?>images/logo1.png" alt="ShiftPlanning" />
-
-                    <form class="loginForm" method="post" id="lo_f" onsubmit="return false;">
-                        <label><?=_s('Email or Username');?></label>
+                     <form class="loginForm" method="post" id="lo_f" onsubmit="return false;">
                         <div class="holder">
-                            <input autocorrect="off" autocapitalize="off" type="text" name="username" id="lo_u" />
+                            <input autocorrect="off" value="username" autocapitalize="off" type="text" name="username" id="lo_u" />
                         </div>
-                        <label><?=_s('Password');?></label>
                         <div class="holder">
-                            <input type="password" name="password" id="lo_p"/>
+                            <input type="password" value="password" name="password" id="lo_p"/>
                         </div>
 			<div class="rButton">
 			    <span class="checkbox fl <?php echo (Functions::getInstance()->isRememberMe()) ? 'check' : ''?>"><?=_s('Remember me?');?></span>
 			</div>
                         <button id="lo_b"><span><?=_s('Login');?></span></button>
                     </form>
-                    <div class="footerTxt"><?=_s('View in: Mobile |')?> <a href="/app/?fullapp=true"><?=_s('Full Version')?></a><br/>
-                        <a href="/terms/"><?=_s('Terms of Use')?></a> | <a href="/privacy/"><?=_s('Privacy Policy')?></a><br/>
-                        &copy; <?php echo date('Y'); ?> ShiftPlanning</div>
-		    
-		    
                 </td>
             </tr>
         </table>
