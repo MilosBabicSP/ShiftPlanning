@@ -280,7 +280,7 @@ ul.requests li a {position:absolute; top:50%; right:0; margin:-15px 0 0;}
 .login table {height:100%;}
 .login table td {text-align:center;}
 .login label {display:block; line-height:20px; margin:15px 0 10px;}
-.login .holder {background-color:#FFF; border:1px solid #C6C6C6; color:#920000; font-size:14px; padding:10px 0; box-shadow:0 2px 2px #EEE inset, 0 1px 1px #FFF;}
+.login .holder {background-color:#FFF; border:1px solid #C6C6C6; color:#920000; font-size:14px; margin:15px 0 0; padding:10px 0; box-shadow:0 2px 2px #EEE inset, 0 1px 1px #FFF;}
 .login input {background-color:transparent; border:none; text-align:center; width:100%;}
 .login button {font-family:"Arial", sans-serif; font-weight:bold; background-color:#b90a0a; font-size:14px; border:none; color: #fff; line-height:40px; text-align:center; width: 100%;}
 .login td {vertical-align: middle;}
