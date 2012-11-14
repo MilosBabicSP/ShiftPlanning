@@ -6,7 +6,7 @@
                     <b>12</b>
                 </span>
                 <span class="details">
-                    <p>Upcoming shifts</p> in next <b>2 months</b>
+                    <p>Upcoming shifts<br/>in next <b>2 months</b></p>
                 </span>
             </a>
         </li>
