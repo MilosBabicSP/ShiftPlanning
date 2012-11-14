@@ -225,7 +225,7 @@ ShiftPlanning.prototype.calculateWrapperHeight = function(){
 }
 
 ShiftPlanning.prototype.globalLoader = function(){
-    
+    $('.bigLoader').show();
 }
 
 ShiftPlanning.prototype.fixCheckboxes = function(){
