@@ -329,7 +329,6 @@ body {display:none;}
 .notPublished {border: 1px solid #FF8800 !important; background: url(../images/warning.png) scroll no-repeat 98% 50%;}
 #da_in_me .additional {padding:15px 20px !important;}
 .noBorder {border:none !important;}
-#lo_f .rButton {margin-top:10px;}
 
 /*failsafe*/
 .checkbox.failsafe {line-height:15px;}
