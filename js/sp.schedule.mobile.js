@@ -112,7 +112,7 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
                 self.fromDashboard = false;
                 $('.subNavigation').show();
                 $('.subNavigation .dashboard li a[subpage=dashboard]').trigger(clickEvent);
-            } if (self.fromDashboardUpcoming) { 
+            }if (self.fromDashboardUpcoming) { 
                 self.fromDashboardUpcoming = false;
                 $('.subNavigation').show();
                 $('.subNavigation .dashboard li a[subpage=upcomingShifts]').trigger(clickEvent);
@@ -193,6 +193,18 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
 		sp.loadSubPage('','schedule','shiftDisplay');
 		self.state = 1;
 	});
+	$('#cs_sh_trade').delegate('.chk',clickEvent, function(e){
+		e.preventDefault();
+		if($(this).hasClass('all')){
+			if(!$(this).hasClass('check')){
+				$('#empList0 .chk').addClass('check');
+			}else{
+				$('#empList0 .chk').removeClass('check');
+			}
+		}else{
+			$(this).toggleClass('check');
+		}
+	})
 	$('#empList1').delegate('.checkbox',clickEvent,function(e){
 		e.preventDefault();
 		var that = this;
@@ -231,7 +243,8 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
 			$('#schedule .trade>div').hide();
 			$('#te_sc_shift_display_trade_'+type).show();	
 			$('#schedule .trade>div [id^="step"]').hide();
-			$('#schedule .trade>div #step_'+self.state).show();		
+			$('#schedule .trade>div #step_'+self.state).show();	
+			$('span[rel=self_state]').html(self.state)						
 			$(that).removeClass('loading');
 		},400);
 		
@@ -279,7 +292,7 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
 					});
 					$('#empList'+type).html('');
 					if(type == 0 && data.length > 0){
-						$('#empList'+type).append('<li><span class="chk"></span> <span class="name">'+_s('Select All')+'</span></li>');
+						$('#empList'+type).append('<li><span class="chk all"></span> <span class="name">'+_s('Select All')+'</span></li>');
 					}					
 					$('#empList'+type).append($.tmpl($('#te_sc_shift_release'+type),data));
 					$('#schedule .trade>div [id^="step"]').hide();

@@ -9,7 +9,7 @@ var ua = navigator.userAgent.toLowerCase();
 var isAndroid = ua.indexOf("android") > -1; //&& ua.indexOf("mobile");
 
 if (agentID) {
-    clickEvent = 'touch';
+    clickEvent = 'click';
 }
 
 jQuery.event.special.touch = {
