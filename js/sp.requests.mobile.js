@@ -586,13 +586,15 @@ ShiftPlanningRequests.prototype.availableSubEvents = function() {
         ['schedule.trades', 'get', {'mode' : 'swap'}]
     ]
     sp.multiApi(calls, function(response){
-        console.log(response);
+        $('#rq_av_pu').html($.tmpl($('#te_da_widget_shift'), response[0].data));
+        $('#rq_av_sw').html($.tmpl($('#te_da_widget_shift'), response[1].data));
+        $('#rq_av_tr').html($.tmpl($('#te_da_widget_shift'), response[2].data));
         $('.bigLoader').hide();
     });
     console.log('availableSubEvents');
 }
 
-ShiftPlanningRequests.prototype.openShiftsSubEvents = function(){
+ShiftPlanningRequests.prototype.openShiftsSubEvents = function() {
     var self = this;
     
     $('#rq_os_os').html(spView.ulLoader());
