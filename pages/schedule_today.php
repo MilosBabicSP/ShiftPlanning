@@ -8,4 +8,8 @@
     <div class="additional wide">
         <p><?=_s('No schedules for selected filters.')?></p>
     </div>
+    
+    <ul class="shifts moved" id="sc_td_list_new">
+
+    </ul>
 </div>
