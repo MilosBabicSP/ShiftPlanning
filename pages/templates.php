@@ -14,7 +14,7 @@
     </script>
     <script id="te_sc_shifts_new" type="text/x-jquery-tmpl">
         <li style="border-color:#${sp.schedule.getColorsBySchedule(schedule)[1]}" class="{{if (published == 0 || (published < edited && published != 0)) && perms == 2 && sp.staff.admin.settings.draft == 1}}notPublished{{/if}}">
-            <a href="#" rel="${id}">
+            <a href="#" rel="${id}" class="isShift">
                 <span class="fr">
                     <p>${start_date.formatted}</p>
                     <p>${start_time.time} - ${end_time.time}</p>
