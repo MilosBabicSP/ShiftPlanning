@@ -202,6 +202,11 @@ ShiftPlanningDashboard.prototype.filesEvents = function(){
 }
 
 ShiftPlanningDashboard.prototype.upcomingShiftsEvents = function(){
+    $('#da_up .shifts a').bind(clickEvent, function(e){
+        e.preventDefault();
+        sp.loadSubPage('', 'schedule', 'today');
+    });
+    
     $('#da_up_li').delegate('li a', clickEvent, function(e){
 	e.preventDefault();
 	$(this).addClass('loading');
