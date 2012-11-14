@@ -286,7 +286,7 @@ ul.requests li a {position:absolute; top:50%; right:0; margin:-15px 0 0;}
 .login button {font-family:"Arial", sans-serif; font-weight:bold; background-color:#b90a0a; font-size:14px; border:none; color: #fff; line-height:40px; text-align:center; width: 100%;}
 .login td {vertical-align: middle;}
 
-.login .loginForm {overflow: hidden; margin:10px auto; max-width:420px;}
+.login .loginForm {overflow:hidden; margin:0 auto; padding:0 10px; max-width:400px;}
 .login .loginForm a {margin:30px 0; font-size: 18px; text-decoration:none; color: #aaa; float: left; font-weight: 300; height: 45px; line-height: 40px; text-align: center;}
 .login .footerTxt {text-align:center;}
 .login .footerTxt {font-size:12px;}
