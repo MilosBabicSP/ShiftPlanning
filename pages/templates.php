@@ -35,11 +35,8 @@
     </script>
     <script id="te_sc_shifts_months" type="text/x-jquery-tmpl">
         <ul class="widget">
-            <li class="timeClock out" style="display: list-item;">
+            <li style="display: list-item;">
                 <a href="#">
-                    <span class="icon">
-
-                    </span>
                     <span class="details">
                         <h3>${dateToday}</h3>
                     </span>
