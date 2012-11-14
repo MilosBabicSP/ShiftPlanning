@@ -249,8 +249,7 @@ if ($vtoken['data'] != '1') {
             <tr>
                 <td width="100%">
                     <img class="logo" src="<?php echo _fCdnPath_;?>images/logo1.png" alt="ShiftPlanning" />
-
-                    <form class="loginForm" method="post" id="lo_f" onsubmit="return false;">
+                     <form class="loginForm" method="post" id="lo_f" onsubmit="return false;">
                         <div class="holder">
                             <input autocorrect="off" autocapitalize="off" type="text" name="username" id="lo_u" />
                         </div>
@@ -262,11 +261,6 @@ if ($vtoken['data'] != '1') {
 			</div>
                         <button id="lo_b"><span><?=_s('Login');?></span></button>
                     </form>
-                    <div class="footerTxt"><?=_s('View in: Mobile |')?> <a href="/app/?fullapp=true"><?=_s('Full Version')?></a><br/>
-                        <a href="/terms/"><?=_s('Terms of Use')?></a> | <a href="/privacy/"><?=_s('Privacy Policy')?></a><br/>
-                        &copy; <?php echo date('Y'); ?> ShiftPlanning</div>
-		    
-		    
                 </td>
             </tr>
         </table>
