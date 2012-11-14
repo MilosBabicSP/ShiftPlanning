@@ -6,4 +6,18 @@
 
     </ul>
     <div class="notif hidden"><?=_s('You are not scheduled on any shifts.')?></div>
+    <ul class="widgets">
+        <li class="schedule">
+            <a href="#">
+                <span class="icon">
+                    <p>OCT</p>
+                    <h3>31</h3>
+                </span>
+                <span class="details">
+                    <h3>Upcoming Shifts</h3>
+                    <p>You have <b>2 shifts</b> in next 2 months</p>
+                </span>
+            </a>
+        </li>
+    </ul>
 </div>
