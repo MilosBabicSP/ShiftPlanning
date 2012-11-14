@@ -34,8 +34,8 @@
         <li ><div><span class="checkbox" user="${id}">${name}</span></div></li>
     </script>
     <script id="te_sc_shifts_months" type="text/x-jquery-tmpl">
-        <ul class="widget">
-            <li style="display: list-item;">
+        <ul class="widgets">
+            <li>
                 <a href="#">
                     <span class="details">
                         <h3>${dateToday}</h3>
