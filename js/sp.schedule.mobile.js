@@ -211,9 +211,9 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
 		var shiftId=$(this).attr('rel');
 		if(!$(this).hasClass('check') && !$(this).hasClass('disabled')){
 			spModel.schedule.get('shift',{id:shiftId,detailed:1},function(response){
-				console.log(response);
+				console.log(response.data.length);
 				var isAvail = false ;
-				if( response.data && response.data.staff.available.length > 0){
+				if( response.data.length && response.data.staff.available.length > 0){
 					$.each(response.data.staff.available,function(key,item){
 						isAvail = item[0] == sp.staff.admin.info.id ? true : isAvail;
 					});
