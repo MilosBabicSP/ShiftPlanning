@@ -34,11 +34,20 @@
         <li ><div><span class="checkbox" user="${id}">${name}</span></div></li>
     </script>
     <script id="te_sc_shifts_months" type="text/x-jquery-tmpl">
-        <tr>
-            <td colspan="2" class="dTime" >${dateToday}</td>
-        </tr>
+        <ul class="widget">
+            <li class="timeClock out" style="display: list-item;">
+                <a href="#">
+                    <span class="icon">
+
+                    </span>
+                    <span class="details">
+                        <h3>${dateToday}</h3>
+                    </span>
+                </a>
+            </li>
+        </ul>
         {{if typeof shifts != 'undefined'}}
-            {{tmpl(shifts) "#te_sc_shifts"}}
+            {{tmpl(shifts) "#te_sc_shifts_new"}}
         {{/if}}
     </script>
     <script id="te_sc_shift_display_u" type="text/x-jquery-tmpl">
