@@ -6,7 +6,7 @@
                     img
                 </span>
                 <span class="details">
-                    <h3>Hi <name></name></h3>
+                    <h3>Hi <span class="userName"></span></h3>
                     <p>with <b><company></company></b></p>
                 </span>
             </a>
