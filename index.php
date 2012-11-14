@@ -647,25 +647,24 @@ if ($vtoken['data'] != '1') {
 					<div class="training" id="training">
 						<div class="subLevel hidden mainSub singleSection" id="tr_si_se">
                             <a class="backMenu" href="#">
-                                <img width="41" height="30" src="<?php echo _fCdnPath_; ?>images/BackMenu.png">
+                                <img width="16" height="16" src="<?php echo _fCdnPath_; ?>images/arrow_back.png">
                             </a>
                         </div>
 						<div class="subLevel hidden mainSub singleModule" id="tr_si_se">
                             <a class="backMenu"  href="#" >
-                                <img width="41" height="30" src="<?php echo _fCdnPath_; ?>images/BackMenu.png">
+                                <img width="16" height="16" src="<?php echo _fCdnPath_; ?>images/arrow_back.png">
                             </a>
-                            <ul class="subMenu hidden" >
+                            <ul class="subNav hidden" >
                                 <li class="first">
                                     <a href="#" class="topic_stat" style="margin-right: 5px;">
-                                        <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/stats.png">
-										<?=_s('Statistics')?>										
+                                        <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/stats.png">									
                                     </a>
                                 </li>
                             </ul>							
                         </div>
 						<div class="subLevel hidden mainSub topicstatistic"  id="tr_to_st">
                             <a class="backMenu"  href="#">
-                                <img width="41" height="30" src="<?php echo _fCdnPath_; ?>images/BackMenu.png">
+                                <img width="41" height="30" src="<?php echo _fCdnPath_; ?>images/arrow_back.png">
                             </a>
                         </div>						
 						<?php Functions::getInstance()->loadFile('training_overview')?>
