@@ -80,7 +80,7 @@ ShiftPlanning.prototype = {
                     }
                 });
                 if (closeLoader){
-                    $('.globalLoader').remove();
+                    $('.bigLoader').hide();
                     self.apiCalls = {};
                 }
                 if(response.status == 3){
