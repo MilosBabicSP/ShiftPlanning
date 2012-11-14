@@ -137,6 +137,8 @@ ShiftPlanningRequests.prototype.availableEvents = function() {
         e.preventDefault();
         sp.loadSubPage('', 'requests', 'shiftTrades');
     });
+    
+    
 
 }
 
@@ -594,7 +596,9 @@ ShiftPlanningRequests.prototype.availableSubEvents = function() {
         ['schedule.trades','GET', {}],
         ['schedule.trades', 'get', {'mode' : 'swap'}]
     ]
+    var self = this;
     sp.multiApi(calls, function(response){
+        self.available = response;
         $('#rq_av_pu .icon b').html(response[0].data.length);
         $('#rq_av_pu_li').html($.tmpl($('#te_da_widget_shift'), response[0].data));
         $('#rq_av_sw .icon b').html(response[1].data.length);
