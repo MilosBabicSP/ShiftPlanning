@@ -1,4 +1,4 @@
-<div class="main available" id="rq_av">
+<div class="main available" id="rq_av"  style="padding:0">
     <ul class="widgets">
         <li class="shifts tradePage">
             <a href="#">
