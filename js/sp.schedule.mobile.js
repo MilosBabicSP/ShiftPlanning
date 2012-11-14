@@ -50,12 +50,12 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
         $(this).addClass('today');
         var i = $(this).attr('time');
         if (typeof self.shifts[i] != 'undefined'){
-            $('#sc_td_list').parent().show();
+            $('#sc_td_list').show();
             $('#sc_td .loading').hide();
             $('#sc_td .additional').hide();
-            $('#sc_td_list').html($.tmpl($('#te_sc_shifts'), self.shifts[i].shifts));
+            $('#sc_td_list').html($.tmpl($('#te_sc_shifts_new'), self.shifts[i].shifts));
         } else {
-            $('#sc_td_list').parent().hide();
+            $('#sc_td_list').hide();
             $('#sc_td .loading').hide();
             $('#sc_td .additional').show();
         }
