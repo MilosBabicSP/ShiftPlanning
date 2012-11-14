@@ -70,7 +70,7 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
         }
         $(this).parent().addClass('loading');
         spModel.schedule.get('shift', {
-            id : $(this).attr('shiftId'), 
+            id : $(this).attr('rel'), 
             detailed : 1
         }, function(response){
             self.shift = response.data;
