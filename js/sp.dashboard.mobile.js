@@ -71,7 +71,7 @@ ShiftPlanningDashboard.prototype.dashboardEvents = function(){
     
     $('#da_widgets .schedule a').bind(clickEvent, function(e){
         e.preventDefault();
-        sp.loadSubPage('', 'schedule', 'today');
+        $('#menu_schedule a').trigger(clickEvent);
     });
     
     $('#da_widgets .user a').bind(clickEvent, function(e){
