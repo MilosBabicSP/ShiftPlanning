@@ -523,7 +523,7 @@ ShiftPlanningDashboard.prototype.upcomingShiftsSubEvents = function(){
 	    data = response.data;
 	}
 	if (data.length > 0){
-	    $('#da_up_li').html($.tmpl($('#te_da_up_li'), data));
+	    $('#da_up_li').html($.tmpl($('#te_da_widget_shift'), data));
 	    $('#da_up_li').next().hide();
 	}else {
 	    $('#da_up_li').hide()
