@@ -52,7 +52,7 @@ ShiftPlanningDashboard.prototype.dashboardEvents = function(){
     
     $('#da_widgets .tradePage').bind(clickEvent, function(e){
         e.preventDefault();
-        sp.loadSubPage('', 'requests', 'tradePage');
+        sp.loadSubPage('', 'requests', 'available');
     });
     
     

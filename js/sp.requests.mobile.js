@@ -3,6 +3,7 @@ ShiftPlanningRequests.prototype.initialize = function(){
     $(document).ready(function(){
         self.overviewEvents();
         self.vacationEvents();
+        self.availableEvents();
         self.openShiftsEvents();
         self.shiftTradesEvents();
         self.shiftApprovalsEvents();
@@ -18,6 +19,9 @@ ShiftPlanningRequests.prototype.loadSubPageEvents = function(subpage){
             break;
         case 'vacation':
             this.vacationSubEvents();
+            break;
+        case 'available':
+            this.availableSubEvents();
             break;
         case 'shiftTrades':
             this.shiftTradesSubEvents();
@@ -40,10 +44,10 @@ ShiftPlanningRequests.prototype.loadSubPageEvents = function(subpage){
             $('.subNavigation').hide();
             this.displayShiftTradeManagerAP();
             break; 
-		case 'shiftSwapRequest':
-			$('.subNavigation').hide();
-			this.shiftSwapRequestSubEvents();
-			break;
+        case 'shiftSwapRequest':
+            $('.subNavigation').hide();
+            this.shiftSwapRequestSubEvents();
+            break;
         case 'shiftTradeManagerIM':
             $('.subNavigation').hide();
             this.displayShiftTradeManagerIM();
@@ -121,6 +125,10 @@ ShiftPlanningRequests.prototype.vacationEvents = function(){
         e.preventDefault();
         self.cancelVacationRequest($(this).attr('rel'));
     });
+}
+
+ShiftPlanningRequests.prototype.availableEvents = function() {
+    console.log('availableEvents');
 }
 
 ShiftPlanningRequests.prototype.openShiftsEvents = function(){
@@ -565,6 +573,10 @@ ShiftPlanningRequests.prototype.vacationSubEvents = function(){
     });
 //    
 //    $('#rq_va_up').addClass('appHidden');
+}
+
+ShiftPlanningRequests.prototype.availableSubEvents = function() {
+    console.log('availableSubEvents');
 }
 
 ShiftPlanningRequests.prototype.openShiftsSubEvents = function(){

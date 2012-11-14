@@ -305,7 +305,7 @@ if ($vtoken['data'] != '1') {
                     <?php Functions::getInstance()->loadFile('menus/requests') ?>
                     <?php Functions::getInstance()->loadFile('menus/staff') ?>
                     <?php Functions::getInstance()->loadFile('menus/reports') ?>
-					<?php Functions::getInstance()->loadFile('menus/training')?>
+                    <?php Functions::getInstance()->loadFile('menus/training')?>
                 </div>
                 <div id="pages">
                     <div class="bigLoader"></div>
@@ -589,6 +589,7 @@ if ($vtoken['data'] != '1') {
                             </ul>
                         </div>
                         <?php Functions::getInstance()->loadFile('requests_overview'); ?>
+                        <?php Functions::getInstance()->loadFile('requests_available'); ?>
                         <?php Functions::getInstance()->loadFile('requests_tradePage'); ?>
                         <?php Functions::getInstance()->loadFile('requests_vacation'); ?>
                         <?php Functions::getInstance()->loadFile('requests_openShifts'); ?>
