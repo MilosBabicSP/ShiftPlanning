@@ -1,7 +1,7 @@
 <div class="main available" id="rq_av"  style="padding:0">
     <ul class="widgets">
         <li class="shifts">
-            <a href="#">
+            <a href="#" id="rq_av_pu">
                 <span class="icon">
                     <b>12</b>
                 </span>
@@ -11,12 +11,12 @@
             </a>
         </li>
     </ul>
-    <ul class="shifts moved" id="rq_av_pu">
+    <ul class="shifts moved" id="rq_av_pu_li">
         
     </ul>
     <ul class="widgets">
         <li class="shifts">
-            <a href="#">
+            <a href="#" id="rq_av_sw">
                 <span class="icon">
                     <b>12</b>
                 </span>
@@ -26,12 +26,12 @@
             </a>
         </li>
     </ul>
-    <ul class="shifts moved" id="rq_av_sw">
+    <ul class="shifts moved" id="rq_av_sw_li">
         
     </ul>
     <ul class="widgets">
         <li class="shifts tradePage">
-            <a href="#">
+            <a href="#" id="rq_av_tr">
                 <span class="icon">
                     <b>12</b>
                 </span>
@@ -41,7 +41,7 @@
             </a>
         </li>
     </ul>
-    <ul class="shifts moved" id="rq_av_tr">
+    <ul class="shifts moved" id="rq_av_tr_li">
         
     </ul>
 </div>

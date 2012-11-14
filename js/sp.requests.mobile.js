@@ -128,7 +128,16 @@ ShiftPlanningRequests.prototype.vacationEvents = function(){
 }
 
 ShiftPlanningRequests.prototype.availableEvents = function() {
-    console.log('availableEvents');
+    $('#rq_av_pu').bind(clickEvent, function(e){
+        e.preventDefault();
+        sp.loadSubPage('', 'requests', 'openShifts');
+    });
+    
+    $('#rq_av_sw, #rq_av_tr').bind(clickEvent, function(e) {
+        e.preventDefault();
+        sp.loadSubPage('', 'requests', 'shiftTrades');
+    });
+
 }
 
 ShiftPlanningRequests.prototype.openShiftsEvents = function(){
@@ -586,9 +595,12 @@ ShiftPlanningRequests.prototype.availableSubEvents = function() {
         ['schedule.trades', 'get', {'mode' : 'swap'}]
     ]
     sp.multiApi(calls, function(response){
-        $('#rq_av_pu').html($.tmpl($('#te_da_widget_shift'), response[0].data));
-        $('#rq_av_sw').html($.tmpl($('#te_da_widget_shift'), response[1].data));
-        $('#rq_av_tr').html($.tmpl($('#te_da_widget_shift'), response[2].data));
+        $('#rq_av_pu .icon b').html(response[0].data.length);
+        $('#rq_av_pu_li').html($.tmpl($('#te_da_widget_shift'), response[0].data));
+        $('#rq_av_sw .icon b').html(response[1].data.length);
+        $('#rq_av_sw_li').html($.tmpl($('#te_da_widget_shift'), response[1].data));
+        $('#rq_av_tr .icon b').html(response[2].data.length);
+        $('#rq_av_tr_li').html($.tmpl($('#te_da_widget_shift'), response[2].data));
         $('.bigLoader').hide();
     });
     console.log('availableSubEvents');
