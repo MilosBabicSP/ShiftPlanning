@@ -10,8 +10,8 @@
         <li class="schedule">
             <a href="#">
                 <span class="icon">
-                    <p>OCT</p>
-                    <h3>31</h3>
+                    <p>&nbsp;</p>
+                    <h3>&nbsp;</h3>
                 </span>
                 <span class="details">
                     <h3>Upcoming Shifts</h3>
