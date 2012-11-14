@@ -270,7 +270,8 @@ ShiftPlanningStaff.prototype.login = function(){
 						$('.applicationContainer').fadeIn(500);
 						sp.hash('dashboard');
 						self.prepareConfig();
-						$('.userName').html(user.name);
+						$('name').html(user.name);
+                                                $('company').html(user.company);
 						sp.permissions.preparePermissions();
 				spRanges.fixRanges();
 				sp.staff.fixed.employees = sp.permissions.fixStaffListing();

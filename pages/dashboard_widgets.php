@@ -1,5 +1,16 @@
 <div class="main dashboard" id="da_widgets" style="padding:0">
     <ul class="widgets">
+        <li class="shifts user">
+            <a href="#">
+                <span class="icon">
+                    img
+                </span>
+                <span class="details">
+                    <h3>Hi <name></name></h3>
+                    <p>with <b><company></company></b></p>
+                </span>
+            </a>
+        </li>
         <li class="timeClock out">
             <a href="#">
                 <span class="icon">
