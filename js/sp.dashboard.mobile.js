@@ -508,9 +508,6 @@ ShiftPlanningDashboard.prototype.filesSubEvents = function(){
 }
 
 ShiftPlanningDashboard.prototype.upcomingShiftsSubEvents = function(){
-    $('#da_up_li').html(spView.ulLoader());
-    $('#da_up_li').show();
-    $('#da_up_li').next().hide();
     var send = {
 	start_date: 'today', 
 	end_date: 'today +2 months', 
@@ -523,12 +520,10 @@ ShiftPlanningDashboard.prototype.upcomingShiftsSubEvents = function(){
 	    data = response.data;
 	}
 	if (data.length > 0){
-	    $('#da_up_li').html($.tmpl($('#te_da_up_li'), data));
-	    $('#da_up_li').next().hide();
-	}else {
-	    $('#da_up_li').hide()
-	    $('#da_up_li').next().show();
-	}
+	    $('#da_up_li').html($.tmpl($('#te_da_widget_shift'), data));
+        }
+        
+        $('#da_up .schedule .details b').html(data.length + ' shifts');
     });
 }
 
