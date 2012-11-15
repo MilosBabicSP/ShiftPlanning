@@ -10,7 +10,7 @@ ShiftPlanningStaff.prototype.initialize = function(){
 	
 	$('#lo_f .checkbox').bind(clickEvent, function(){
 	    $(this).toggleClass('check');
-	})
+	});
         
         self.listEvents();
         self.addStaffEvents();
@@ -271,6 +271,7 @@ ShiftPlanningStaff.prototype.login = function(){
                                     sp.hash('dashboard');
                                     self.prepareConfig();
                                     $('.userName').html(user.name);
+                                    $('#da_widget .user .icon').html('<img src="' + sp.getAvatar() + '" />');
                                     $('company').html(user.company);
                                     sp.permissions.preparePermissions();
                                     spRanges.fixRanges();

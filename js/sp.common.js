@@ -211,6 +211,9 @@ ShiftPlanning.prototype = {
         return sa ? s : s[0];
     },
     getAvatar : function(id){
+        if (typeof id == 'undefined'){
+            id = sp.staff.admin.info.id;
+        }
         return (typeof sp.staff.data.employees[id] != 'undefined' && typeof sp.staff.data.employees[id].avatar != 'undefined' && sp.staff.data.employees[id].avatar != '' && typeof sp.staff.data.employees[id].avatar.small != 'undefined') ? sp.staff.data.employees[id].avatar.small : 'images/no-avatar.png';
     },
     isL : function(data){
