@@ -103,7 +103,7 @@ html {overflow-x:hidden;}
 .subWrapp {overflow:hidden; margin:0 auto;}
 .subNavigation, .subLevel {height:40px; position:relative; background:#f2f2f2 url('../images/header_bg.png') scroll repeat-x 0 0;}
 
-.main {padding:0 20px 20px;}
+.main {padding:0 0 20px;}
 #pages {overflow:hidden; position: relative;}
 
 .notification {padding:21px 0; text-align:center; line-height:20px; color:#FFF; display:none; position:absolute; width:100%; top:0;}
@@ -125,7 +125,7 @@ html {overflow-x:hidden;}
 .title1.mar, .title.mar {margin:0 -20px;}
 .title1.regular {background-color:#F5F5F5;}
 
-.title {overflow:hidden; padding:15px 0; line-height:30px; border-bottom:solid 1px #DBDBDB; position:relative;}
+.title {overflow:hidden; padding:15px 20px; line-height:30px; border-bottom:solid 1px #DBDBDB; position:relative;}
 .title.wide {padding:15px 20px;}
 .title span a {display:block; padding:0 10px; background-color:#f0f0f0; border:solid 1px #DBDBDB; color:#333; border-radius:2px;}
 .title div {line-height:15px; font-size:14px;}
