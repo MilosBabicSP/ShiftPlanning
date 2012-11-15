@@ -175,6 +175,7 @@ if ($vtoken['data'] != '1') {
 	$jse->_add('js/sp.location.js', $encrypt);
 	$jse->_add('js/sp.permissions.js', $encrypt);
 	$jse->_add('js/sp.training.js',$encrypt);
+	$jse->_add('js/sp.settings.js',$encrypt);
 	
 	//extension
 	$jse->_add('js/sp.staff.mobile.js', $encrypt);
@@ -185,6 +186,7 @@ if ($vtoken['data'] != '1') {
 	$jse->_add('js/sp.schedule.mobile.js', $encrypt);
 	$jse->_add('js/sp.permissions.mobile.js', $encrypt);
 	$jse->_add('js/sp.training.mobile.js', $encrypt);
+	$jse->_add('js/sp.settings.mobile.js',$encrypt);
 	
 	//Loader
 	$jse->_add('js/sp.common.mobile.js', $encrypt);
@@ -298,6 +300,7 @@ if ($vtoken['data'] != '1') {
                     <?php Functions::getInstance()->loadFile('menus/staff') ?>
                     <?php Functions::getInstance()->loadFile('menus/reports') ?>
                     <?php Functions::getInstance()->loadFile('menus/training')?>
+					<?php Functions::getInstance()->loadFile('menus/settings')?>
                 </div>
                 <div id="pages">
                     <div class="bigLoader"></div>
@@ -321,12 +324,14 @@ if ($vtoken['data'] != '1') {
                         <?php Functions::getInstance()->loadFile('dashboard_upcomingShifts'); ?>
                         <?php Functions::getInstance()->loadFile('dashboard_files'); ?>
                         <?php Functions::getInstance()->loadFile('dashboard_inbox') ?>
-                        <?php Functions::getInstance()->loadFile('dashboard_settings'); ?>
                         <?php Functions::getInstance()->loadFile('dashboard_whosonnow'); ?>
                         <div class="main pingUser" id="da_who_ping">
                                                     
                         </div>
                     </div>
+					<div class="settings" id="settings">
+						<?php Functions::getInstance()->loadFile('dashboard_settings'); ?>
+					</div>
                     <div class="timeClock" id="timeClock">
                         <div class="subLevel mainSub displayTimeClock">
                             <a class="backMenu" href="#">
@@ -430,8 +435,8 @@ if ($vtoken['data'] != '1') {
                                     </a>
                                 </li>
 								<li class="single">
-                                    <a href="#" class="icoReqTra trade" style="margin: 7px -13px 0 0;">
-                                        <span></span>
+                                    <a href="#" class="icoReqTra trade">
+                                        <span><img width="16" height="17" src="<?php echo _fCdnPath_;?>images/req_4.png" /></span>
                                     </a>
                                 </li>
                                 <li class="single">

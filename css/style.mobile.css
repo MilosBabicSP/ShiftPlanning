@@ -75,7 +75,7 @@ h5 {font-size:14px; font-weight:normal; color:#333;}
 .icoReqCan {background-position:0 -1160px;}
 .icoReqEdi {background-position:0 -1260px;}
 .icoReqDel {background-position:0 -1160px;}
-.icoReqTra {background-image: url(../images/title_trade.png); background-repeat:no-repeat;}
+.icoReqTra {}
 .fromI {background-position:-10px -1065px; padding:0 0 0 20px;}
 .untilI {background-position:-10px -1115px; padding:0 0 0 20px;}
 
