@@ -271,7 +271,7 @@ ShiftPlanningStaff.prototype.login = function(){
                                     sp.hash('dashboard');
                                     self.prepareConfig();
                                     $('.userName').html(user.name);
-                                    $('#da_widget .user .icon').html('<img src="' + sp.getAvatar() + '" />');
+                                    $('#da_widgets .user .icon').html('<img src="' + sp.getAvatar() + '" />');
                                     $('company').html(user.company);
                                     sp.permissions.preparePermissions();
                                     spRanges.fixRanges();
