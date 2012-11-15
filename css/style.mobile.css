@@ -118,7 +118,7 @@ html {overflow-x:hidden;}
 .additional p {padding:5px 0;}
 .centered {text-align:center;}
 
-.toggleMenu {position:absolute; top:12px; left:12px;}
+.toggleMenu {position:absolute; top:0; left:0; padding:11px 12px;}
 .backMenu {position:absolute; top:15px; left:15px;}
 .title1 {overflow:hidden; padding:5px 0; line-height:30px; border-bottom:solid 1px #DBDBDB;}
 .title1.wide {padding:5px 20px;}
@@ -275,17 +275,18 @@ ul.requests li {padding:10px 53px 10px 0; border-bottom:solid 1px #DBDBDB; posit
 ul.requests li span {display:block; font-weight:bold; line-height:20px;}
 ul.requests li a {position:absolute; top:50%; right:0; margin:-15px 0 0;}
 
-.login {background-color:#ECECDB; color: #414141; font-size:17px; height:100%; background-image: url(../images/mainBg.png); overflow: auto;} 
+.login {background-color:#F5F5F5; color: #666; font-size:14px; height:100%; overflow: auto;} 
 .login .logo {margin: 5px auto; display: block;}
 .login table {height:100%;}
 .login table td {text-align:center;}
 .login label {display:block; line-height:20px; margin:15px 0 10px;}
-.login .holder {background-color:#F6F6F6; border:1px solid #999997; color:#920000; font-size:14px; padding:10px 0;}
-.login input {background-color:transparent; border:none; text-align:center; width:100%;}
-.login button {font-family:"Arial", sans-serif; background:-webkit-gradient(linear, left top, left bottom, from(#ac2929), to(#982121)); background-image: -moz-linear-gradient(top,#ac2929, #982121);margin:20px 0; font-size:17px; border: 1px solid #610000; color: #fff; line-height:40px; text-align:center; text-shadow:1px 1px 1px rgba(0, 0, 0, 0.9); width: 100%;}
+.login .holder {background-color:#FFF; border:1px solid #C6C6C6; color:#920000; font-size:14px; margin:15px 0 0; padding:10px 20px; box-shadow:0 2px 2px #EEE inset, 0 1px 1px #FFF;}
+.login .rButton {padding:10px 0; overflow:hidden;}
+.login input {background-color:transparent; border:none; width:100%; color:#999; font-family:"Arial", sans-serif; font-size:14px;}
+.login button {font-family:"Arial", sans-serif; font-weight:bold; background-color:#b90a0a; font-size:14px; border:none; color: #fff; line-height:40px; text-align:center; width: 100%;}
 .login td {vertical-align: middle;}
 
-.login .loginForm {overflow: hidden; padding:0 10px;}
+.login .loginForm {overflow:hidden; margin:0 auto; padding:0 10px; max-width:400px;}
 .login .loginForm a {margin:30px 0; font-size: 18px; text-decoration:none; color: #aaa; float: left; font-weight: 300; height: 45px; line-height: 40px; text-align: center;}
 .login .footerTxt {text-align:center;}
 .login .footerTxt {font-size:12px;}
@@ -329,7 +330,6 @@ body {display:none;}
 .notPublished {border: 1px solid #FF8800 !important; background: url(../images/warning.png) scroll no-repeat 98% 50%;}
 #da_in_me .additional {padding:15px 20px !important;}
 .noBorder {border:none !important;}
-#lo_f .rButton {margin-top:10px;}
 
 /*failsafe*/
 .checkbox.failsafe {line-height:15px;}

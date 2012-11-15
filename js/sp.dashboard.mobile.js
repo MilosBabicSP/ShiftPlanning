@@ -52,7 +52,7 @@ ShiftPlanningDashboard.prototype.dashboardEvents = function(){
     
     $('#da_widgets .tradePage').bind(clickEvent, function(e){
         e.preventDefault();
-        sp.loadSubPage('', 'requests', 'tradePage');
+        sp.loadSubPage('', 'requests', 'available');
     });
     
     
@@ -71,7 +71,12 @@ ShiftPlanningDashboard.prototype.dashboardEvents = function(){
     
     $('#da_widgets .schedule a').bind(clickEvent, function(e){
         e.preventDefault();
-        sp.loadSubPage('', 'schedule', 'today');
+        $('#menu_schedule a').trigger(clickEvent);
+    });
+    
+    $('#da_widgets .user a').bind(clickEvent, function(e){
+        e.preventDefault(); 
+        $('#menu_settings a').trigger(clickEvent);
     });
 }
 
@@ -194,14 +199,19 @@ ShiftPlanningDashboard.prototype.wallEvents = function(){
 }
 
 ShiftPlanningDashboard.prototype.filesEvents = function(){
-	$('#da_fi_list').delegate('li div',clickEvent,function(){
-		var id = $(this).find('a').attr('rel');
-		$('#da_fi_form input[name=id]').val(id);
-		$('#da_fi_form').submit();
-	});
+    $('#da_fi_list').delegate('li div',clickEvent,function(){
+        var id = $(this).find('a').attr('rel');
+        $('#da_fi_form input[name=id]').val(id);
+        $('#da_fi_form').submit();
+    });
 }
 
 ShiftPlanningDashboard.prototype.upcomingShiftsEvents = function(){
+    $('#da_up .shifts a').bind(clickEvent, function(e){
+        e.preventDefault();
+        sp.loadSubPage('', 'schedule', 'today');
+    });
+    
     $('#da_up_li').delegate('li a', clickEvent, function(e){
 	e.preventDefault();
 	$(this).addClass('loading');
@@ -508,9 +518,6 @@ ShiftPlanningDashboard.prototype.filesSubEvents = function(){
 }
 
 ShiftPlanningDashboard.prototype.upcomingShiftsSubEvents = function(){
-    $('#da_up_li').html(spView.ulLoader());
-    $('#da_up_li').show();
-    $('#da_up_li').next().hide();
     var send = {
 	start_date: 'today', 
 	end_date: 'today +2 months', 
@@ -523,12 +530,10 @@ ShiftPlanningDashboard.prototype.upcomingShiftsSubEvents = function(){
 	    data = response.data;
 	}
 	if (data.length > 0){
-	    $('#da_up_li').html($.tmpl($('#te_da_up_li'), data));
-	    $('#da_up_li').next().hide();
-	}else {
-	    $('#da_up_li').hide()
-	    $('#da_up_li').next().show();
-	}
+	    $('#da_up_li').html($.tmpl($('#te_da_widget_shift'), data));
+        }
+        
+        $('#da_up .shifts .icon b').html(data.length);
     });
 }
 
@@ -598,12 +603,12 @@ ShiftPlanningDashboard.prototype.settingsSubEvents = function(employee){
     sp.fixCheckboxes();
 }
 
-ShiftPlanningDashboard.prototype.whosonnowSubEvents = function(){
+ShiftPlanningDashboard.prototype.whosonnowSubEvents = function() {
     $('#wrapper > .subNavigation').show();
     this.getWhosOn();        
 }
 
-ShiftPlanningDashboard.prototype.dashboardSubEvents = function(){
+ShiftPlanningDashboard.prototype.dashboardSubEvents = function() {
     $('.bigLoader').show();
     $('#da_widgets .timeClock.out, #da_widgets .timeClock.in').hide();
     var calls = [
@@ -633,7 +638,6 @@ ShiftPlanningDashboard.prototype.dashboardSubEvents = function(){
         
         $('.bigLoader').hide();
     });
-    console.log('widgets');
 }
 
 //functions

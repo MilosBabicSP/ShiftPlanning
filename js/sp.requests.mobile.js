@@ -3,6 +3,7 @@ ShiftPlanningRequests.prototype.initialize = function(){
     $(document).ready(function(){
         self.overviewEvents();
         self.vacationEvents();
+        self.availableEvents();
         self.openShiftsEvents();
         self.shiftTradesEvents();
         self.shiftApprovalsEvents();
@@ -18,6 +19,9 @@ ShiftPlanningRequests.prototype.loadSubPageEvents = function(subpage){
             break;
         case 'vacation':
             this.vacationSubEvents();
+            break;
+        case 'available':
+            this.availableSubEvents();
             break;
         case 'shiftTrades':
             this.shiftTradesSubEvents();
@@ -40,10 +44,10 @@ ShiftPlanningRequests.prototype.loadSubPageEvents = function(subpage){
             $('.subNavigation').hide();
             this.displayShiftTradeManagerAP();
             break; 
-		case 'shiftSwapRequest':
-			$('.subNavigation').hide();
-			this.shiftSwapRequestSubEvents();
-			break;
+        case 'shiftSwapRequest':
+            $('.subNavigation').hide();
+            this.shiftSwapRequestSubEvents();
+            break;
         case 'shiftTradeManagerIM':
             $('.subNavigation').hide();
             this.displayShiftTradeManagerIM();
@@ -121,6 +125,41 @@ ShiftPlanningRequests.prototype.vacationEvents = function(){
         e.preventDefault();
         self.cancelVacationRequest($(this).attr('rel'));
     });
+}
+
+ShiftPlanningRequests.prototype.availableEvents = function() {
+    var self= this;
+    $('#rq_av_pu').bind(clickEvent, function(e){
+        e.preventDefault();
+        sp.loadSubPage('', 'requests', 'openShifts');
+    });
+    
+    $('#rq_av_sw, #rq_av_tr').bind(clickEvent, function(e) {
+        e.preventDefault();
+        sp.loadSubPage('', 'requests', 'shiftTrades');
+    });
+    
+    /*open shifts */
+    $('#rq_av_pu_li').delegate('a', clickEvent, function(e){
+        e.preventDefault();
+        self.current = self.available.pickup[$(this).attr('rel')];
+        sp.loadSubPage('', 'requests', 'openShiftsRequest');
+    });
+
+    /*shift swap*/
+    $('#rq_av_sw_li').delegate('a', clickEvent, function(e){
+        e.preventDefault();
+        self.current = self.available.swap[$(this).attr('rel')];
+        sp.loadSubPage('', 'requests', 'shiftSwapRequest');
+    });
+    
+    /*shift trades*/
+    $('#rq_av_tr_li').delegate('a', clickEvent, function(e){
+        e.preventDefault();
+        self.current = self.available.trade[$(this).attr('rel')];
+        sp.loadSubPage('', 'requests', 'shiftTradeManagerAP');
+    });
+    
 }
 
 ShiftPlanningRequests.prototype.openShiftsEvents = function(){
@@ -204,24 +243,23 @@ ShiftPlanningRequests.prototype.shiftTradesEvents = function(){
         sp.loadSubPage('', 'requests', 'shiftTradeManagerIM');
     });
     $('#rq_st_swap').delegate('a',clickEvent,function(e){
-		e.preventDefault();
-		self.current = self.swaps[$(this).attr('rel')];
-		sp.loadSubPage('', 'requests', 'shiftSwapRequest');
-	});
-	$('#rq_st_sh_swap').delegate('.traders a', clickEvent, function(){
-		var swapId = $(this).attr('swapId');
-		var shift = $(this).attr('shiftId');
-		var action = $(this).attr('class');
-		var obj = $(this);
-        obj.addClass('loading');		
-		var message = action == 'accept' ? 'You have accepted this shift trade.' : 'You have rejected this shift trade.' ;
-		spModel.schedule.update('tradeswap',{shift_for_swap:shift,trade:swapId,action:action},function(response){
-			obj.removeClass('loading');
-			sp.showSuccess(message);
-			$('.subNavigation .requests li a[subpage=shiftTrades]').trigger(clickEvent);
-		});
-		
-	});
+            e.preventDefault();
+            self.current = self.swaps[$(this).attr('rel')];
+            sp.loadSubPage('', 'requests', 'shiftSwapRequest');
+    });
+    $('#rq_st_sh_swap').delegate('.traders a', clickEvent, function(){
+            var swapId = $(this).attr('swapId');
+            var shift = $(this).attr('shiftId');
+            var action = $(this).attr('class');
+            var obj = $(this);
+            obj.addClass('loading');		
+            var message = action == 'accept' ? 'You have accepted this shift trade.' : 'You have rejected this shift trade.' ;
+            spModel.schedule.update('tradeswap',{shift_for_swap:shift,trade:swapId,action:action},function(response){
+                obj.removeClass('loading');
+                sp.showSuccess(message);
+                $('.subNavigation .requests li a[subpage=shiftTrades]').trigger(clickEvent);
+            });
+    });
     $('#rq_st_mst_s').delegate('.traders a', clickEvent, function(e){
         var obj = $(this);
         obj.addClass('loading');
@@ -567,7 +605,33 @@ ShiftPlanningRequests.prototype.vacationSubEvents = function(){
 //    $('#rq_va_up').addClass('appHidden');
 }
 
-ShiftPlanningRequests.prototype.openShiftsSubEvents = function(){
+ShiftPlanningRequests.prototype.availableSubEvents = function() {
+    $('.bigLoader').show();
+    $('#da_widgets .timeClock.out, #da_widgets .timeClock.in').hide();
+    var calls = [
+        ['schedule.shifts','GET', {
+            'mode': 'open'
+        }],
+        ['schedule.trades','GET', {}],
+        ['schedule.trades', 'get', {'mode' : 'swap'}]
+    ]
+    var self = this;
+    sp.multiApi(calls, function(response){
+        self.available.pickup = sp.map(response[0].data);
+        self.available.swap = sp.map(response[2].data);
+        self.available.trade = sp.map(response[1].data);
+        $('#rq_av_pu .icon b').html(response[0].data.length);
+        $('#rq_av_pu_li').html($.tmpl($('#te_da_widget_shift'), response[0].data));
+        $('#rq_av_sw .icon b').html(response[2].data.length);
+        $('#rq_av_sw_li').html($.tmpl($('#te_da_widget_shift'), response[2].data));
+        $('#rq_av_tr .icon b').html(response[1].data.length);
+        $('#rq_av_tr_li').html($.tmpl($('#te_da_widget_shift'), response[1].data));
+        $('.bigLoader').hide();
+    });
+    console.log('availableSubEvents');
+}
+
+ShiftPlanningRequests.prototype.openShiftsSubEvents = function() {
     var self = this;
     
     $('#rq_os_os').html(spView.ulLoader());

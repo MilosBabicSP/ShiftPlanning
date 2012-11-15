@@ -12,6 +12,18 @@
             </a>
         </li>
     </script>
+    <script id="te_sc_shifts_new" type="text/x-jquery-tmpl">
+        <li style="border-color:#${sp.schedule.getColorsBySchedule(schedule)[1]}" class="{{if (published == 0 || (published < edited && published != 0)) && perms == 2 && sp.staff.admin.settings.draft == 1}}notPublished{{/if}}">
+            <a href="#" rel="${id}" class="isShift">
+                <span class="fr">
+                    <p>${start_date.formatted}</p>
+                    <p>${start_time.time} - ${end_time.time}</p>
+                </span>
+                <b>${schedule_name}</b><br/>
+                <p>{{if typeof employees != 'undefined' && employees != null}}{{tmpl(employees) "#te_sc_shifts_names"}}{{else}}&nbsp;{{/if}}</p>
+            </a>
+        </li>
+    </script>
     <script id="te_sc_usersU" type="text/x-jquery-tmpl">
         <li ><div><span class="checkbox disabled" user="${id}">${name}</span></div></li>
     </script>
@@ -22,11 +34,17 @@
         <li ><div><span class="checkbox" user="${id}">${name}</span></div></li>
     </script>
     <script id="te_sc_shifts_months" type="text/x-jquery-tmpl">
-        <tr>
-            <td colspan="2" class="dTime" >${dateToday}</td>
-        </tr>
+        <ul class="widgets">
+            <li>
+                <a href="#">
+                    <span class="details">
+                        <h3>${dateToday}</h3>
+                    </span>
+                </a>
+            </li>
+        </ul>
         {{if typeof shifts != 'undefined'}}
-            {{tmpl(shifts) "#te_sc_shifts"}}
+            {{tmpl(shifts) "#te_sc_shifts_new"}}
         {{/if}}
     </script>
     <script id="te_sc_shift_display_u" type="text/x-jquery-tmpl">

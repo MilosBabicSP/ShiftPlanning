@@ -52,17 +52,19 @@ ShiftPlanning.prototype = {
         var self = this;
         //check is same api call runing and if it's running don't alow new one
         var a = module + '.' + method + '.' + JSON.stringify(arguments);
-        if (typeof this.apiCalls[a] != 'undefined' && this.apiCalls[a] != null){
+        if (typeof this.apiCalls[a] != 'undefined' && this.apiCalls[a] != null) {
             return false;
         }
         var data = {
             module: module,
             method: method
         };
-        $.each(arguments,function(index, item){
+        $.each(arguments,function(index, item) {
             data[index] = item;
         });
-        this.globalLoader();
+        if (method.toLowerCase() == 'get') {
+            this.globalLoader();
+        }
         this.apiCalls[a] = $.ajax({
             url: 'api.php',
             dataType: 'json',
@@ -78,7 +80,7 @@ ShiftPlanning.prototype = {
                     }
                 });
                 if (closeLoader){
-                    $('.globalLoader').remove();
+                    $('.bigLoader').hide();
                     self.apiCalls = {};
                 }
                 if(response.status == 3){
