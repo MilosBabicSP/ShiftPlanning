@@ -1,8 +1,4 @@
 <div class="main wall" id="da_wa">
-    <div class="head">
-        <h2>Message Wall</h2>
-        <span><a href="#">New Message</a></span>
-    </div>
     <div class="title">
         <span class="fr"><a href="#" id="da_wa_nm_b"><?=_s('New Message')?></a></span>
         <h3><?=_s('Message Wall')?></h3>
