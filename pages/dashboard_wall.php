@@ -1,9 +1,4 @@
 <div class="main wall" id="da_wa">
-    <div class="welcome">
-        <p><?=_s('Welcome Back,')?><br/>
-            <span class="userName"></span><?=_s(' with ')?><company></company>
-        </p>
-    </div>
     <div class="title">
         <span class="fr"><a href="#" id="da_wa_nm_b"><?=_s('New Message')?></a></span>
         <h3><?=_s('Message Wall')?></h3>
