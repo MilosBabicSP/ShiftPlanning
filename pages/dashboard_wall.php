@@ -3,7 +3,7 @@
         <span class="fr"><a href="#" id="da_wa_nm_b"><?=_s('New Message')?></a></span>
         <h3><?=_s('Message Wall')?></h3>
     </div>
-    <div class="newMsg hidden" id="da_wa_nm_f">
+    <div class="newMsg hidden wide" id="da_wa_nm_f">
         <label><?=_s('Title')?></label>
         <span class="input">
             <input type="text" name="" value="" id="da_wa_nm_ti" />
