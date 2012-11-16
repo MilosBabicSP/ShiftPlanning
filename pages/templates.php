@@ -44,7 +44,9 @@
             </li>
         </ul>
         {{if typeof shifts != 'undefined'}}
-            {{tmpl(shifts) "#te_sc_shifts_new"}}
+            <ul class="shifts moved">
+                {{tmpl(shifts) "#te_sc_shifts_new"}}
+            </ul>
         {{/if}}
     </script>
     <script id="te_sc_shift_display_u" type="text/x-jquery-tmpl">
