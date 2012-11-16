@@ -119,7 +119,7 @@ html {overflow-x:hidden;}
 .centered {text-align:center;}
 
 .toggleMenu {position:absolute; top:0; left:0; padding:11px 12px;}
-.backMenu {position:absolute; top:15px; left:15px;}
+.backMenu {position:absolute; top:0; left:0; padding:11px 12px;}
 .title1 {overflow:hidden; padding:5px 0; line-height:30px; border-bottom:solid 1px #DBDBDB;}
 .title1.wide {padding:5px 20px;}
 .title1.mar, .title.mar {margin:0 -20px;}
@@ -398,11 +398,14 @@ span.chk {display:block; height:30px; width:29px; float:left; margin:0 10px 0 0;
 span.chk.check {background-position:-5px -560px;}
 span.chk.disabled {background-position:-5px -910px;}
 
-ul.step {overflow:hidden; padding:10px; border-top:solid 1px #DDD;}
+ul.step {overflow:hidden; padding:10px;}
 ul.step li {width:50%; float:left;}
 ul.step li div {padding:10px;}
 ul.step li div p {padding:20px 0 0;}
-ul.step li div a {display:block; color:#FFF; line-height:30px; text-align:center; background-color:#7cb017;}
+ul.step li div 
+
+a.green {display:block; color:#FFF; line-height:30px; text-align:center; background-color:#7cb017;}
+a.grey {display:block; color:#FFF; line-height:30px; text-align:center; background-color:#aaaaaa;}
 
 .cap {padding:15px 20px 15px 45px; font-weight:bold; font-size:13px;}
 .cap.working {background:transparent url('../images/title_working.png') scroll no-repeat 20px 50%;}
