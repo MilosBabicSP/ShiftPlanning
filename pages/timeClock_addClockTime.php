@@ -2,7 +2,7 @@
     <div class="title">
         <h3><?=_s('Add Clock Time')?></h3>
     </div>
-    <div class="newMsg">
+    <div class="newMsg wide">
         <input type="hidden" id="tc_act_tc_id" />
         <label><?=_s('Employee')?></label>
         <span class="input">
