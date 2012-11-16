@@ -3,27 +3,27 @@
                             <ul style="width:270px" class="filters">
   <li class="first active">
                 <a href="#" subpage="overview">
-                    <img width="16" height="17" src="http://192.168.56.101//iphone/images/Dashboard_UpcomingShifts16x16.png">
+                    <img width="16" height="17" src="<?php echo _fCdnPath_;?>images/sett_1.png">
                 </a>
             </li>
             <li class="">
                 <a href="#" subpage="edit">
-                    <img width="16" height="17" src="http://192.168.56.101//iphone/images/Dashboard_UpcomingShifts16x16.png">
+                    <img width="16" height="17" src="<?php echo _fCdnPath_;?>images/sett_2.png">
                 </a>
             </li>
             <li class="">
                 <a href="#" subpage="recentShifts">
-                    <img width="16" height="17" src="http://192.168.56.101//iphone/images/Dashboard_UpcomingShifts16x16.png">
+                    <img width="16" height="17" src="<?php echo _fCdnPath_;?>images/sett_3.png">
                 </a>
             </li>
             <li class="">
                 <a href="#" subpage="upcomingShifts">
-                    <img width="16" height="17" src="http://192.168.56.101//iphone/images/Dashboard_UpcomingShifts16x16.png">
+                    <img width="16" height="17" src="<?php echo _fCdnPath_;?>images/sett_4.png">
                 </a>
             </li>            
             <li class="">
                 <a href="#" subpage="password">
-                    <img width="16" height="17" src="http://192.168.56.101//iphone/images/Dashboard_UpcomingShifts16x16.png">
+                    <img width="16" height="17" src="<?php echo _fCdnPath_;?>images/sett_5.png">
                 </a>
             </li>
                             </ul>
