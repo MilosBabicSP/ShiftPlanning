@@ -441,12 +441,12 @@ if ($vtoken['data'] != '1') {
                                 </li>
                                 <li class="single">
                                     <a href="#" class="edit">
-                                        <span><img width="16" height="17" src="<?php echo _fCdnPath_;?>images/req_4.png" /></span>
+                                        <span><img width="16" height="17" src="<?php echo _fCdnPath_;?>images/sett_2.png" /></span>
                                     </a>
                                 </li>
                                 <li class="single">
                                     <a href="#" class="delete">
-                                        <span><img width="16" height="17" src="<?php echo _fCdnPath_;?>images/req_4.png" /></span>
+                                        <span><img width="16" height="17" src="<?php echo _fCdnPath_;?>images/del.png" /></span>
                                     </a>
                                 </li>
                             </ul>
