@@ -8,7 +8,7 @@
         </div>
     </div>
     <div class="hidden" id="tc_ov_cf">
-        <div class="newMsg hidden wide" id="tc_ov_cf">
+        <div class="newMsg wide" id="tc_ov_cf">
             <label><?=_s('Schedule')?></label>
             <span class="input">
                 <select name="" id="tc_ov_ss">
