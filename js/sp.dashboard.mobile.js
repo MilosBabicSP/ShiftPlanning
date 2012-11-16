@@ -625,7 +625,7 @@ ShiftPlanningDashboard.prototype.dashboardSubEvents = function() {
         }],
         ['schedule.trades', 'get', {'mode' : 'swap'}]
     ]
-    sp.multiApi(calls, function(response){
+    sp.multiApi(calls, function(response) {
         if (response[0].data != 'out') {
             $('#da_widgets .timeClock.in').show();
             $('#da_widgets .timeClock.in .details b').html(response[0].data.current_length.hours + _s('h') + ' ' + response[0].data.current_length.mins + _('mins'));
@@ -635,6 +635,17 @@ ShiftPlanningDashboard.prototype.dashboardSubEvents = function() {
         
         $('#da_widgets .tradePage .icon b').html((response[1].data.length + response[2].data.length + response[4].data.length));
         
+        var br = 0;
+        $.each(response[3].data, function(i, item) {
+            if (item.start_date.id == sp.raw.config.today.id) {
+                br++;
+            }
+            if (item.start_date.id > sp.raw.config.today) {
+                return false;
+            }
+        });
+        
+        $('#da_widgets .schedule .details p').html(i18n.format(i18n.plural('how much shifts you have today', 'You have <b>{count} shift</b> today', 'You have <b>{count} shifts</b> today', count), {count: br}));
         $('#da_widgets ul.shifts.listing').html($.tmpl($('#te_da_widget_shift'), response[3].data));
         
         $('.bigLoader').hide();
