@@ -330,7 +330,7 @@ if ($vtoken['data'] != '1') {
                         </div>
                     </div>
 					<div class="settings" id="settings">
-						<?php Functions::getInstance()->loadFile('dashboard_settings'); ?>
+                        <?php Functions::getInstance()->loadFile('dashboard_settings'); ?>
 					</div>
                     <div class="timeClock" id="timeClock">
                         <div class="subLevel mainSub displayTimeClock">

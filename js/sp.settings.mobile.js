@@ -5,141 +5,19 @@ ShiftPlanningSettings.prototype.initialize = function(){
 	})
 }
 ShiftPlanningSettings.prototype.loadSubPageEvents = function(subpage){
-	    this[subpage + 'SubEvents']();
+	    if(subpage == 'recentShifts' || subpage == 'upcomingShifts'){
+			this.displayShifts(sp.staff.data.employees[$('#da_se_cur_us_id').val()],subpage);
+		}else{
+			this[subpage + 'SubEvents']();
+		}
 }
 ShiftPlanningSettings.prototype.loadPage = function(){
     
 }
 ShiftPlanningSettings.prototype.overviewEvents = function(){
-    var self = this;
-    $('#settings .search.settings.mainSub li a').bind(clickEvent, function(e){
-	e.preventDefault();
-	$('#da_se > div').hide();
-	$('#settings .search.settings.mainSub li').removeClass('active');
-	switch ($(this).attr('subpage')){
-	    case 'overview':
-		self.prefillOverview(sp.staff.data.employees[$('#da_se_cur_us_id').val()]);
-		break;
-	    case 'edit':
-		self.prepareEditDetails(sp.staff.data.employees[$('#da_se_cur_us_id').val()]);
-		break;
-	    case 'recentShifts':
-		self.displayShifts(sp.staff.data.employees[$('#da_se_cur_us_id').val()],'recentShifts');
-		break;
-	    case 'upcomingShifts':
-		self.displayShifts(sp.staff.data.employees[$('#da_se_cur_us_id').val()],'upcomingShifts');
-		break;                
-	}
-	$('#da_se_' + $(this).attr('subpage')).show();
-	$(this).parent().addClass('active');
-	sp.fixCheckboxes();
-    });
-    
-    $('#da_se_ed_cu').delegate('.checkbox', clickEvent, function(){
-        var obj = this;
-        var checked = ($(this).hasClass('check')) ? true : false;
-           if (checked) {
-		$(obj).removeClass('check');
-	    } else {
-		$(obj).addClass('check');
-	    }
-    });
-    
-    $('#da_se_ed_po, #da_se_ov_po, #da_se_ed_sk, #da_se_ov_sk').delegate('.checkbox', clickEvent, function(){
-	var sid = $(this).attr('itemId');
-	var skills = ($(this).parents('.skills').length > 0) ? true : false;
-	var checked = ($(this).hasClass('check')) ? true : false;
-	var obj = this;
-	$(obj).parent().addClass('loading');
-	var data = {
-	    id : $('#da_se_cur_us_id').val()
-	}
-	if (skills){
-	    if (checked) {
-		data.removeskill = sid;
-	    } else {
-		data.addskill = sid;
-	    }
-	} else {
-	    if (checked) {
-		data.removeschedule = sid;
-	    } else {
-		data.addschedule = sid;
-	    }
-	}
-	spModel.staff.update('employee', data, function(response){
-	    if (checked) {
-		$(obj).removeClass('check');
-	    } else {
-		$(obj).addClass('check');
-	    }
-	    $(obj).parent().removeClass('loading');
-	    self.updateUser($('#da_se_cur_us_id').val(), response, false);
-	});
-    });
-    
-    $('#da_se_ed_ue').bind(clickEvent, function(e){
-	$(this).addClass('loading');
-	e.preventDefault();
-	self.saveEditForm($(this));
-    });
-    
-    $('textarea#da_se_ov_no, textarea#da_se_ed_no').bind('blur', function(){
-	self.updateNotes($(this).val());
-    });
-    
-    $('#da_se_pa_up').bind(clickEvent, function(e){
-	e.preventDefault();
-	self.changePassword();
-    });
-    
-    $('#da_se_ov_aa a').bind(clickEvent, function(e){
-	e.preventDefault();
-	var c = confirm(_s('Are you sure?'));
-	if (c){
-	    self.adminActions(this);
-	}
-    })
-    $('#da_se_rs_li').delegate('.fr',clickEvent,function(e){
-	e.preventDefault()
-	switch($('#menu .mainNav .active').attr('id')){
-	    case 'menu_staff':
-		sp.schedule.fromStaff =true;
-		break;
-	    case 'menu_dashboard':
-		sp.schedule.fromStaff =false;
-	}
-	spModel.schedule.get('shift', {
-	    id : $(this).attr('shiftId'), 
-	    detailed : 1
-	}, function(response){
-	    sp.schedule.fromRecent = true ;
-	    sp.schedule.shift = response.data;
-	    sp.loadSubPage('', 'schedule', 'shiftDisplay');
-	});
-
-    })
-    $('#da_se_us_li').delegate('.fr',clickEvent,function(e){
-	e.preventDefault()
-	switch($('#menu .mainNav .active').attr('id')){
-	    case 'menu_staff':
-		sp.schedule.fromStaff =true;
-		break;
-	    case 'menu_dashboard':
-		sp.schedule.fromStaff =false;
-	}
-	spModel.schedule.get('shift', {
-	    id : $(this).attr('shiftId'), 
-	    detailed : 1
-	}, function(response){
-	    sp.schedule.fromUpcoming = true ;
-	    sp.schedule.shift = response.data;
-	    sp.loadSubPage('', 'schedule', 'shiftDisplay');
-	});
-
-    })
+	console.log('overview events');
 }
-ShiftPlanningSettings.prototype.overviewSubEvents = function(){
+ShiftPlanningSettings.prototype.overviewSubEvents = function(employee){
     var self = this;
 
     if (typeof employee == 'undefined'){
@@ -188,16 +66,16 @@ ShiftPlanningSettings.prototype.overviewSubEvents = function(){
     sp.fixCheckboxes();
 }
 ShiftPlanningSettings.prototype.editSubEvents = function(){
-	console.log('subevents');
+	console.log('EDITsubevents');
 }
 ShiftPlanningSettings.prototype.upcomingShiftsSubEvents = function(){
-	console.log('subevents');
+	console.log('Upcomingsubevents');
 }
 ShiftPlanningSettings.prototype.recentShiftsSubEvents = function(){
-	console.log('subevents');
+	console.log('RECENTsubevents');
 }
 ShiftPlanningSettings.prototype.passwordSubEvents = function(){
-	console.log('subevents');
+	console.log('PASORDsubevents');
 }
 ShiftPlanningSettings.prototype.prefillOverview = function(employee){
     var p = {};
@@ -319,4 +197,63 @@ ShiftPlanningSettings.prototype.prepareEditDetails = function(employee){
     
     $('#da_se_ed_lang').val(employee.language);
     
+}
+ShiftPlanningSettings.prototype.listLanguages = function (){
+    var result='<option  value="none">' + _s('Company default') + '</option>'
+    $.each(sp.raw.config.languages,function(key,value){
+	result+='<option value="'+value['code']+'">'+value['name']+' ' + ((value.machine == 1) ? '(machine)' : '') + '</option>'
+    });
+    $('#da_se_ed_lang').html(result);
+}
+ShiftPlanningSettings.prototype.preparePasswordField = function(){
+    $('#da_se_pa_np').val('');
+    $('#da_se_pa_cp').val('');
+}
+ShiftPlanningSettings.prototype.displayShifts = function (employee,from){
+    var element;
+    var notify;
+	var desc=false;
+    switch (from){
+	case 'recentShifts':
+	    $('#da_se_rs_li').html(spView.ulLoader());
+	    var params={
+		start_date: 'today -2 months', 
+		end_date: 'yesterday', 
+		mode: 'employee', 
+		employees: employee.id
+	    }
+		desc = true ;
+	    element=$('#da_se_rs_li');
+	    notify='No recent shifts'
+	    break;
+	case 'upcomingShifts':
+	    $('#da_se_us_li').html(spView.ulLoader());
+	    var params={
+		start_date: 'today ', 
+		end_date: 'today +2 months', 
+		mode: 'employee', 
+		employees: employee.id
+	    }
+	    element=$('#da_se_us_li');
+	    notify='No upcoming shifts'
+	    break;
+    }
+    spModel.schedule.get('shifts',params,function(response){
+	if(response.data == ""){
+	    $(element).html(spView.emptyResult(notify))   
+	}else{
+		if(desc){
+		desc = false ;
+		var data =[];
+		var j =response.data.length-1;
+		for(var count=0;count<response.data.length;count++){
+			data.push(response.data[j--]);
+			}
+			$(element).html($.tmpl($('#te_da_se_rs'),data));
+		}else{
+			$(element).html($.tmpl($('#te_da_se_rs'),response.data));   
+		}
+	}
+    }) 
+  
 }

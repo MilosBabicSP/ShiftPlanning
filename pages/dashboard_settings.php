@@ -1,6 +1,6 @@
-<div class="main settings" id="da_se">
+<!--<div class="main overview" id="da_se">-->
     <input type="hidden" id="da_se_cur_us_id" />
-    <div id="da_se_overview">
+    <div id="da_se_overview" class="main overview">
         <ul class="detailsGrid">
             <li>
                 <ul>    
@@ -116,7 +116,7 @@
             </li>
         </ul>
     </div>
-    <div id="da_se_edit">
+    <div id="da_se_edit" class="main edit">
         <div class="title">
             <h3 class="icoEmpDet"><?=_s('Employee Details')?></h3>
         </div>
@@ -320,7 +320,7 @@
             <span class="fr"><a id="da_se_ed_ue" href="#"><span><?=_s('Update Employee')?></span></a></span>
         </div>
     </div>
-    <div id="da_se_password">
+    <div id="da_se_password" class="main password">
         <div class="title">
             <h3 class="icoEmpDet"><?=_s('Employee Details')?></h3>
         </div>
@@ -352,7 +352,7 @@
             <span class="fr"><a id="da_se_pa_up" href="#"><?=_s('Update Employee')?></a></span>
         </div>
     </div>
-    <div id="da_se_recentShifts">
+    <div id="da_se_recentShifts" class="main recentShifts">
         <div class="title">
             <h3><?=_s('Recent shifts');?></h3>
         </div>
@@ -360,7 +360,7 @@
 
         </ul>
     </div>
-    <div id="da_se_upcomingShifts">
+    <div id="da_se_upcomingShifts" class="main upcomingShifts">
         <div class="title">
             <h3><?=_s('Upcoming shifts');?></h3>
         </div>
@@ -368,4 +368,4 @@
 
         </ul>
     </div>
-</div>
+<!--</div>-->
