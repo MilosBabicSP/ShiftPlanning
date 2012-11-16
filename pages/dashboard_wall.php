@@ -15,16 +15,16 @@
             </span>
         </div>
         <ul class="step tradepick">
-                <li>
-                        <div>
-                                <a href="#" id="da_wa_nm_sa"><span><?=_s('Save Message')?></span></a>
-                        </div>
-                </li>
-                <li>
-                        <div>
-                                <a href="#" id="da_wa_nm_ca"><?=_s('Cancel')?></a>
-                        </div>
-                </li>
+            <li>
+                <div>
+                    <a href="#" id="da_wa_nm_sa"><span><?=_s('Save Message')?></span></a>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <a href="#" id="da_wa_nm_ca"><?=_s('Cancel')?></a>
+                </div>
+            </li>
         </ul>
     </div>
     <ul class="msgWall" id="da_wa_li">
