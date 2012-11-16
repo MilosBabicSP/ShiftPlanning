@@ -17,12 +17,12 @@
         <ul class="step tradepick">
             <li>
                 <div>
-                    <a href="#" id="da_wa_nm_sa"><span><?=_s('Save Message')?></span></a>
+                    <a href="#" id="da_wa_nm_ca" class="grey"><?=_s('Cancel')?></a>
                 </div>
             </li>
             <li>
                 <div>
-                    <a href="#" id="da_wa_nm_ca"><?=_s('Cancel')?></a>
+                    <a href="#" id="da_wa_nm_sa" class="green"><span><?=_s('Save Message')?></span></a>
                 </div>
             </li>
         </ul>
