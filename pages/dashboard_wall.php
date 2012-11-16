@@ -14,7 +14,7 @@
                 <textarea id="da_wa_nm_me"></textarea>
             </span>
         </div>
-        <ul class="step tradepick">
+        <ul class="step">
             <li>
                 <div>
                     <a href="#" id="da_wa_nm_ca" class="grey"><?=_s('Cancel')?></a>
