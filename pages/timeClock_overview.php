@@ -7,7 +7,7 @@
             <span>13:55</span>
         </div>
     </div>
-    <div class="newMsg hidden" id="tc_ov_cf">
+    <div class="newMsg hidden wide" id="tc_ov_cf">
         <label><?=_s('Schedule')?></label>
         <span class="input">
             <select name="" id="tc_ov_ss">
