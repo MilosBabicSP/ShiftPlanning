@@ -645,7 +645,7 @@ ShiftPlanningDashboard.prototype.dashboardSubEvents = function() {
             }
         });
         
-        $('#da_widgets .schedule .details p').html(i18n.format(i18n.plural('how much shifts you have today', 'You have <b>{count} shift</b> today', 'You have <b>{count} shifts</b> today', count), {count: br}));
+        $('#da_widgets .schedule .details p').html(i18n.format(i18n.plural('how much shifts you have today', 'You have <b>{count} shift</b> today', 'You have <b>{count} shifts</b> today', br), {count: br}));
         $('#da_widgets ul.shifts.listing').html($.tmpl($('#te_da_widget_shift'), response[3].data));
         
         $('.bigLoader').hide();
