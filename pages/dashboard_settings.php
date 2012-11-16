@@ -1,4 +1,33 @@
 <!--<div class="main overview" id="da_se">-->
+<div style="display: none;" class="search settings mainSub">
+                            <ul style="width:270px" class="filters">
+  <li class="first active">
+                <a href="#" subpage="overview">
+                    <img width="16" height="17" src="http://192.168.56.101//iphone/images/Dashboard_UpcomingShifts16x16.png">
+                </a>
+            </li>
+            <li class="">
+                <a href="#" subpage="edit">
+                    <img width="16" height="17" src="http://192.168.56.101//iphone/images/Dashboard_UpcomingShifts16x16.png">
+                </a>
+            </li>
+            <li class="">
+                <a href="#" subpage="recentShifts">
+                    <img width="16" height="17" src="http://192.168.56.101//iphone/images/Dashboard_UpcomingShifts16x16.png">
+                </a>
+            </li>
+            <li class="">
+                <a href="#" subpage="upcomingShifts">
+                    <img width="16" height="17" src="http://192.168.56.101//iphone/images/Dashboard_UpcomingShifts16x16.png">
+                </a>
+            </li>            
+            <li class="">
+                <a href="#" subpage="password">
+                    <img width="16" height="17" src="http://192.168.56.101//iphone/images/Dashboard_UpcomingShifts16x16.png">
+                </a>
+            </li>
+                            </ul>
+</div>
     <input type="hidden" id="da_se_cur_us_id" />
     <div id="da_se_overview" class="main overview">
         <ul class="detailsGrid">

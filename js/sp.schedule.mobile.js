@@ -89,10 +89,10 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
                 $('.subNavigation .schedule').hide()
                 $('.staff .subWrapp ul li a[subpage=list]').trigger(clickEvent);
                 sp.staff.displayEmployee($('#da_se_cur_us_id').val());
-                $('#dashboard .search.settings.mainSub li a[subpage=upcomingShifts]').trigger(clickEvent);
+                $('#settings .search.settings.mainSub li a[subpage=upcomingShifts]').trigger(clickEvent);
             }else{
-            $('.subNavigation .dashboard li a[subpage=settings]').trigger(clickEvent);
-            $('#dashboard .search.settings.mainSub li a[subpage=upcomingShifts]').trigger(clickEvent);
+            $('.subNavigation .settings li a[subpage=upcomingShifts]').trigger(clickEvent);
+//            $('#settings .search.settings.mainSub li a[subpage=upcomingShifts]').trigger(clickEvent);
             }
         }else{
         if(self.fromRecent) {
@@ -103,10 +103,10 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
                 $('.subNavigation .schedule').hide()
                 $('.staff .subWrapp ul li a[subpage=list]').trigger(clickEvent);
                 sp.staff.displayEmployee($('#da_se_cur_us_id').val());
-                $('#dashboard .search.settings.mainSub li a[subpage=recentShifts]').trigger(clickEvent);
+                $('#settings .search.settings.mainSub li a[subpage=recentShifts]').trigger(clickEvent);
             } else {
-                $('.subNavigation .dashboard li a[subpage=settings]').trigger(clickEvent);
-                $('#dashboard .search.settings.mainSub li a[subpage=recentShifts]').trigger(clickEvent);
+                $('.subNavigation .settings li a[subpage=recentShifts]').trigger(clickEvent);
+//                $('#settings .search.settings.mainSub li a[subpage=recentShifts]').trigger(clickEvent);
             }
         }else{
             if (self.fromDashboard){

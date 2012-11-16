@@ -138,9 +138,16 @@ ShiftPlanningStaff.prototype.fastAssignmentSubEvents = function(){
 
 //Functions
 ShiftPlanningStaff.prototype.displayEmployee = function(id){
-	console.log(id);
-    $('#da_se_cur_us_id').val(id);
-	sp.loadPage('settings');
+    $('#st_tp_menu').hide();
+    $('#pages > div').hide();
+    $('#pages #settings .main').hide();
+    $('#pages #settings .mainSub').hide();
+    $('#pages #settings').show();
+    $('#pages #settings .main.settings').show();
+	$('#da_se_overview').show();
+    sp.settings.overviewSubEvents(spModel.staff.getEmployeeById(id));
+	$('#settings .mainSub.settings .filters li:first a').trigger(clickEvent);	
+	$('#pages #settings .mainSub.settings').show();
 }
 
 

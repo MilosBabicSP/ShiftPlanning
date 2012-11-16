@@ -2,6 +2,9 @@
     <a href="#" class="toggleMenu">
         <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/ShowHideMenu.png" />
     </a>
+	<a class="backMenu hidden" href="#">
+		<img width="16" height="16" src="<?php echo _fCdnPath_;?>images/arrow_back.png">
+	</a>	
     <div class="subWrapp">
         <ul class="subNav" page="settings">
             <li class="first active">
