@@ -431,7 +431,7 @@ if ($vtoken['data'] != '1') {
                             <ul class="subNav">
                                 <li class="single">
                                     <a href="#" class="publish">
-                                        <span></span>
+                                        <span><img width="16" height="17" src="<?php echo _fCdnPath_;?>images/publish.png" /></span>
                                     </a>
                                 </li>
 								<li class="single">
