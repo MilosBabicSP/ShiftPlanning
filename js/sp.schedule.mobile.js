@@ -799,7 +799,8 @@ ShiftPlanningSchedule.prototype.displayShifts = function(sDay){
                     $('#sc_ca_fi_' + sDay).trigger(clickEvent);
                 }
             } else {
-                $('#sc_td_list').html($.tmpl($('#te_sc_shifts_new'), response.data));
+                $('#sc_td_list').html('<ul class="shifts moved"></ul>');
+                $('#sc_td_list ul').html($.tmpl($('#te_sc_shifts_new'), response.data));
             }
             $('#sc_td_list').show();
             $('#sc_td .loading').hide();
