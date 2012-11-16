@@ -430,23 +430,23 @@ if ($vtoken['data'] != '1') {
                             </a>
                             <ul class="subNav">
                                 <li class="single">
-                                    <a href="#" class="icoReqWor publish">
+                                    <a href="#" class="publish">
                                         <span></span>
                                     </a>
                                 </li>
 								<li class="single">
-                                    <a href="#" class="icoReqTra trade">
+                                    <a href="#" class="trade">
                                         <span><img width="16" height="17" src="<?php echo _fCdnPath_;?>images/req_4.png" /></span>
                                     </a>
                                 </li>
                                 <li class="single">
-                                    <a href="#" class="icoReqEdi edit">
-                                        <span></span>
+                                    <a href="#" class="edit">
+                                        <span><img width="16" height="17" src="<?php echo _fCdnPath_;?>images/req_4.png" /></span>
                                     </a>
                                 </li>
                                 <li class="single">
-                                    <a href="#" class="icoReqDel delete">
-                                        <span></span>
+                                    <a href="#" class="delete">
+                                        <span><img width="16" height="17" src="<?php echo _fCdnPath_;?>images/req_4.png" /></span>
                                     </a>
                                 </li>
                             </ul>
