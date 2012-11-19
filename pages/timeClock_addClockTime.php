@@ -2,7 +2,7 @@
     <div class="title">
         <h3><?=_s('Add Clock Time')?></h3>
     </div>
-    <div class="newMsg">
+    <div class="newMsg wide">
         <input type="hidden" id="tc_act_tc_id" />
         <label><?=_s('Employee')?></label>
         <span class="input">
@@ -54,9 +54,17 @@
         <span class="input" >
             <textarea id="tc_act_no"></textarea>
         </span>
-        <div class="title">
-            <span class="fr"><span class="checkbox" id="tc_act_onci"><?=_s('Only Clock In?')?></span></span>
-            <span class="fl"><a href="#" id="tc_act_sa_b"><?=_s('Save')?></a></span>
-        </div>
     </div>
+    <ul class="step">
+        <li>
+            <div>
+                <a href="#" id="tc_act_sa_b" class="green"><?=_s('Save')?></a>
+            </div>
+        </li>
+        <li>
+            <div>
+                 <span class="fr"><span class="checkbox" id="tc_act_onci"><?=_s('Only Clock In?')?></span></span>
+            </div>
+        </li>
+    </ul>
 </div>

@@ -5,6 +5,7 @@ function ShiftPlanning(){
     this.successMessage = '';
     var self = this;
     this.initialize();
+    this.hashChange = true;
     return true;
 }
 
@@ -30,6 +31,17 @@ ShiftPlanning.prototype = {
             data: 'multi=1&data=' + JSON.stringify(data),
             cache: false,
             success: function(response){
+                $.each(response, function(i, item){
+                    if (item.status == 3){
+                        sp.hash('logout');
+                        user.loggedIn = 0;
+                        user.name = '';
+                        user.company = '';
+                        sp.staff.data.employees = {};
+                        window.location.reload();
+                        return false;
+                    }
+                });
                 if(typeof callback == 'function'){
                     callback.call(this,response);
                 }
@@ -40,17 +52,19 @@ ShiftPlanning.prototype = {
         var self = this;
         //check is same api call runing and if it's running don't alow new one
         var a = module + '.' + method + '.' + JSON.stringify(arguments);
-        if (typeof this.apiCalls[a] != 'undefined' && this.apiCalls[a] != null){
+        if (typeof this.apiCalls[a] != 'undefined' && this.apiCalls[a] != null) {
             return false;
         }
         var data = {
             module: module,
             method: method
         };
-        $.each(arguments,function(index, item){
+        $.each(arguments,function(index, item) {
             data[index] = item;
         });
-        this.globalLoader();
+        if (method.toLowerCase() == 'get') {
+            this.globalLoader();
+        }
         this.apiCalls[a] = $.ajax({
             url: 'api.php',
             dataType: 'json',
@@ -66,12 +80,12 @@ ShiftPlanning.prototype = {
                     }
                 });
                 if (closeLoader){
-                    $('.globalLoader').remove();
+                    $('.bigLoader').hide();
                     self.apiCalls = {};
                 }
                 if(response.status == 3){
                     //We are not logged in!
-                    sp.hash('logout');
+//                    sp.hash('logout');
                     user.loggedIn = 0;
                     user.name = '';
                     user.company = '';
@@ -197,6 +211,9 @@ ShiftPlanning.prototype = {
         return sa ? s : s[0];
     },
     getAvatar : function(id){
+        if (typeof id == 'undefined'){
+            id = sp.staff.admin.info.id;
+        }
         return (typeof sp.staff.data.employees[id] != 'undefined' && typeof sp.staff.data.employees[id].avatar != 'undefined' && sp.staff.data.employees[id].avatar != '' && typeof sp.staff.data.employees[id].avatar.small != 'undefined') ? sp.staff.data.employees[id].avatar.small : 'images/no-avatar.png';
     },
     isL : function(data){

@@ -25,24 +25,32 @@ label {font-size:14px; display:block; padding:3px 0;}
 
 h1 {}
 h2 {}
-h3 {font-size:14px; line-height:30px;}
+h3 {font-size:18px; line-height:30px; font-weight:normal;}
 h4 {font-size:14px; line-height:20px;}
 h5 {font-size:14px; font-weight:normal; color:#333;}
+
+.blackMask {left: 0px; right: 0px; top: 0px; bottom: 0px; background-color: #000000;opacity: 0.5; position: absolute; display:none; z-index: 999;}
+
+.extended .blackMask {display:block;}
+
+.bigLoader {left:0px; right:0px; top:0px; bottom:0px; position:absolute; display:none; z-index:998; background:#FFF url(../images/loaderBig.gif) scroll no-repeat 50% 100px;}
+
 /*SPRITE*/
 .msgDel, .msgRpl, .cmtCount span.tip, ul.cmts, ul.cmts li.last input[type=submit], .search input[type=submit] {background-image:url(../images/icos.png); background-repeat:no-repeat;}
 .cmtCount span.ico {background-image:url(../images/sprite.png); background-repeat:no-repeat;}
-.fromI, .untilI, span.checkbox, span.radio, .dash, .ticl, .sche, .requ, .staf, .repo, .trai, .exit, .icoClock, .icoEmpDet, .icoAdmAct, .icoEmpPos, .icoEmpSki, .icoEmpAdd, .icoDat, .icoNot, .icoAct, .icoSta, .icoReqWor, .icoReqCan, .icoReqEdi, .icoReqDel, .icoLoc, .icoSch {background-image:url(../images/mainNav_bg.png); background-repeat:no-repeat;}
+.fromI, .untilI, span.checkbox, span.chk, span.radio, .dash, .ticl, .sche, .requ, .staf, .repo, .trai, .sett, .exit, .icoClock, .icoEmpDet, .icoAdmAct, .icoEmpPos, .icoEmpSki, .icoEmpAdd, .icoDat, .icoNot, .icoAct, .icoSta, .icoReqWor, .icoReqCan, .icoReqEdi, .icoReqDel, .icoLoc, .icoSch {background-image:url(../images/mainNav_bg.png); background-repeat:no-repeat;}
 .calendar td.today, .calendar th, .calendar td.hasAny {background-image: url(../images/callendar_bg.png); background-repeat:repeat-x;}
 .trai_down {background-image:url(../images/DownMenu.png); background-repeat:no-repeat;}
 .trai_up{background-image:url(../images/UpMenu.png); background-repeat:no-repeat;}
-.dash {background-position:10px 0;}
-.ticl {background-position:10px -50px;}
-.sche {background-position:10px -100px;}
-.requ {background-position:10px -150px;}
-.staf {background-position:10px -200px;}
-.repo {background-position:10px -250px;}
-.trai {background-position:10px -1450px;}
-.exit {background-position:10px -1495px;}
+.dash {background-position:5px 0;}
+.ticl {background-position:5px -40px;}
+.sche {background-position:5px -80px;}
+.requ {background-position:5px -120px;}
+.staf {background-position:5px -160px;}
+.repo {background-position:5px -240px;}
+.trai {background-position:5px -200px;}
+.sett {background-position:5px -1450px;}
+.exit {background-position:5px -1490px;}
 
 .pdf {background:transparent url('../images/document-pdf.png') scroll no-repeat 0 50%}
 .txt {background:transparent url('../images/document-text.png') scroll no-repeat 0 50%}
@@ -67,6 +75,7 @@ h5 {font-size:14px; font-weight:normal; color:#333;}
 .icoReqCan {background-position:0 -1160px;}
 .icoReqEdi {background-position:0 -1260px;}
 .icoReqDel {background-position:0 -1160px;}
+.icoReqTra {}
 .fromI {background-position:-10px -1065px; padding:0 0 0 20px;}
 .untilI {background-position:-10px -1115px; padding:0 0 0 20px;}
 
@@ -88,14 +97,14 @@ table.loading tr, ul.loading li, tr.loading td, div.loading span, li.loading spa
 
 /*BUILD*/
 html {overflow-x:hidden;}
-.wrapper { background-color:#FFF;}
+.wrapper { background-color:#FFF; position: relative;}
 .wrapper.extended {margin:0 0 0 190px; width:100%;} 
-.mainMenu {background-color:#a32525; width:189px; float:left; border-right:solid 1px #711111;}
+.mainMenu {background-color:#f1f1f1; width:190px; float:left;}
 .subWrapp {overflow:hidden; margin:0 auto;}
-.subNavigation, .subLevel {padding:15px 20px 15px 60px; height:30px; background-color:#F2F2F2; border-top:solid 1px #FFF; border-bottom:solid 1px #DBDBDB; position:relative;}
+.subNavigation, .subLevel {height:40px; position:relative; background:#f2f2f2 url('../images/header_bg.png') scroll repeat-x 0 0;}
 
-.main {padding:0 20px 20px;}
-#pages {overflow:hidden;}
+.main {padding:0 0 20px;}
+#pages {overflow:hidden; position: relative;}
 
 .notification {padding:21px 0; text-align:center; line-height:20px; color:#FFF; display:none; position:absolute; width:100%; top:0;}
 .error {background-color:#D15050;}
@@ -109,14 +118,14 @@ html {overflow-x:hidden;}
 .additional p {padding:5px 0;}
 .centered {text-align:center;}
 
-.toggleMenu {position:absolute; top:17px; left:19px;}
-.backMenu {position:absolute; top:15px; left:15px;}
+.toggleMenu {position:absolute; top:0; left:0; padding:11px 12px;}
+.backMenu {position:absolute; top:0; left:0; padding:11px 12px;}
 .title1 {overflow:hidden; padding:5px 0; line-height:30px; border-bottom:solid 1px #DBDBDB;}
 .title1.wide {padding:5px 20px;}
 .title1.mar, .title.mar {margin:0 -20px;}
 .title1.regular {background-color:#F5F5F5;}
 
-.title {overflow:hidden; padding:15px 0; line-height:30px; border-bottom:solid 1px #DBDBDB; position:relative;}
+.title {overflow:hidden; padding:15px 20px 20px; line-height:25px; position:relative; background:url("../images/shadow.png") repeat-x scroll 0 100% transparent}
 .title.wide {padding:15px 20px;}
 .title span a {display:block; padding:0 10px; background-color:#f0f0f0; border:solid 1px #DBDBDB; color:#333; border-radius:2px;}
 .title div {line-height:15px; font-size:14px;}
@@ -156,20 +165,18 @@ ul.msgWall .msgRpl {top:20px; right:40px; background-position:0 0;}
 ul.msgWall .msgDel {top:20px; right:0; background-position:-13px 0;}
 ul.cmts .msgDel {top:15px; right:15px; background-position:-13px 0;}
 
-ul.mainNav {border-top:solid 1px #841717; border-bottom:solid 1px #b23939;}
+ul.mainNav {}
 ul.mainNav > li {overflow:hidden;}
-ul.mainNav > li > a {display:block; line-height:50px; padding:0 20px 0 60px; color:#FFF; font-size:14px; font-weight:bold; text-shadow:0 1px 2px #841717; border-bottom:solid 1px #841717; border-top:solid 1px #b23939;}
-ul.mainNav > li.active > a {background-color:#8f1a1a; border-top-color:#8f1a1a;}
+ul.mainNav > li > a {display:block; line-height:40px; padding:0 20px 0 42px; color:#666; font-size:14px;}
+ul.mainNav > li.active > a {background-color:#e5e5e5; border-left:solid 3px #c52424;}
 ul.mainNav ul li a {display:block; line-height:20px; padding:5px 10px 5px 20px; color:#FFF; border-bottom:solid 1px #841717; border-top:solid 1px #b23939; text-shadow:0 1px 2px #841717;}
 ul.mainNav ul li a span {display:block; float:right; padding:4px; font-size:11px; line-height:10px; background-color:#7c1515; border:solid 1px #691010; border-radius:2px;}
 
-ul.subNav {overflow:hidden; margin:0 auto;}
-ul.subNav li {float:left;}
-ul.subNav li a {display:block; padding:6px 15px; line-height:16px; color:#333; text-align:center; border:solid 1px #d8d8d8; border-left:none; background-color:#FFF;}
+ul.subNav {overflow:hidden; position:absolute; right:0; top:0;}
+ul.subNav li {float:left; margin:0 5px 0 0;}
+ul.subNav li a {display:block; width:32px; padding:11px 0 8px; text-align:center;}
 ul.subNav li a span {margin:0 -7px;}
-ul.subNav li.active a {background-color:#e8e8e8;}
-ul.subNav li.first a {border-radius:2px 0 0 2px; border-left:solid 1px #d8d8d8;}
-ul.subNav li.last a {border-radius:0 2px 2px 0;}
+ul.subNav li.active a {border-bottom:solid 3px #c52424;}
 
 ul.subMenu {overflow:hidden; position:absolute; right:15px; top:15px; line-height:15px;}
 .title ul.subMenu {right:0;}
@@ -268,17 +275,18 @@ ul.requests li {padding:10px 53px 10px 0; border-bottom:solid 1px #DBDBDB; posit
 ul.requests li span {display:block; font-weight:bold; line-height:20px;}
 ul.requests li a {position:absolute; top:50%; right:0; margin:-15px 0 0;}
 
-.login {background-color:#ECECDB; color: #414141; font-size:17px; height:100%; background-image: url(../images/mainBg.png); overflow: auto;} 
+.login {background-color:#F5F5F5; color: #666; font-size:14px; height:100%; overflow: auto;} 
 .login .logo {margin: 5px auto; display: block;}
 .login table {height:100%;}
 .login table td {text-align:center;}
 .login label {display:block; line-height:20px; margin:15px 0 10px;}
-.login .holder {background-color:#F6F6F6; border:1px solid #999997; color:#920000; font-size:14px; padding:10px 0;}
-.login input {background-color:transparent; border:none; text-align:center; width:100%;}
-.login button {font-family:"Arial", sans-serif; background:-webkit-gradient(linear, left top, left bottom, from(#ac2929), to(#982121)); background-image: -moz-linear-gradient(top,#ac2929, #982121);margin:20px 0; font-size:17px; border: 1px solid #610000; color: #fff; line-height:40px; text-align:center; text-shadow:1px 1px 1px rgba(0, 0, 0, 0.9); width: 100%;}
+.login .holder {background-color:#FFF; border:1px solid #C6C6C6; color:#920000; font-size:14px; margin:15px 0 0; padding:10px 20px; box-shadow:0 2px 2px #EEE inset, 0 1px 1px #FFF;}
+.login .rButton {padding:10px 0; overflow:hidden;}
+.login input {background-color:transparent; border:none; width:100%; color:#999; font-family:"Arial", sans-serif; font-size:14px;}
+.login button {font-family:"Arial", sans-serif; font-weight:bold; background-color:#b90a0a; font-size:14px; border:none; color: #fff; line-height:40px; text-align:center; width: 100%;}
 .login td {vertical-align: middle;}
 
-.login .loginForm {overflow: hidden; padding:0 10px;}
+.login .loginForm {overflow:hidden; margin:0 auto; padding:0 10px; max-width:400px;}
 .login .loginForm a {margin:30px 0; font-size: 18px; text-decoration:none; color: #aaa; float: left; font-weight: 300; height: 45px; line-height: 40px; text-align: center;}
 .login .footerTxt {text-align:center;}
 .login .footerTxt {font-size:12px;}
@@ -322,13 +330,12 @@ body {display:none;}
 .notPublished {border: 1px solid #FF8800 !important; background: url(../images/warning.png) scroll no-repeat 98% 50%;}
 #da_in_me .additional {padding:15px 20px !important;}
 .noBorder {border:none !important;}
-#lo_f .rButton {margin-top:10px;}
 
 /*failsafe*/
 .checkbox.failsafe {line-height:15px;}
 
 /* training */
-.trainingBar {font-size:14px; line-height:17px;margin:0 110px 0 0;}
+.trainingBar {font-size:14px; line-height:17px;margin:0 110px 0 50px;}
 .barholder {position:relative; height:10px; background-color:#FFF; border:solid 1px #DDD;}
 .progress {position:absolute; height:12px; top:-1px; left:-1px; border-left:1px solid #5F894D; border-right:1px solid #5F894D; background:transparent url(../images/progress_bg.png) scroll repeat-x 0 0;}
 
@@ -351,3 +358,69 @@ ul.training_sections li.unread {background-color:#FFC;}
 .dig_signature input {font-size:40px; height:55px; width:100%; background-color:transparent !important; border:none !important; font-family:"Qwigley",cursive,Arial;}
 .dig_signature p, .trainingAssign .topicTop p {color:#999; margin:0; padding:0;}
 .dig_signature span {display:block; border-top:1px solid #E4E4E4; font-size:13px; color:#444; line-height:30px; margin:-15px 0 0;}
+
+/* dashboard */
+ul.widgets {padding:0 0 5px; background:transparent url('../images/shadow.png') scroll repeat-x 0 100%; position:relative;}
+ul.widgets li {border-top:solid 1px #DDD;}
+ul.widgets li:first-child {border:none;}
+ul.widgets li a {display:block; padding:20px 0;}
+ul.widgets li.shifts a {display:block; padding:15px 0;}
+ul.widgets li a span.icon {display:block; float:left; width:80px; text-align:center;}
+ul.widgets li a span.icon b {line-height:30px; font-size:30px; color:#333;}
+ul.widgets li a span.icon p {color:#FFF; text-transform:uppercase; font-size:10px; line-height:15px;}
+ul.widgets li a span.icon h3 {line-height:28px; color:#333; font-size:16px;}
+ul.widgets li a span.details {display:block; margin:0 20px 0 80px; background:transparent url('../images/arrow_light_forward.png') scroll no-repeat 100% 50%;}
+ul.widgets li a:active span.details {background:transparent url('../images/arrow_forward.png') scroll no-repeat 100% 50%;}
+ul.widgets li a span.details h3 {font-weight:normal; font-size:18px; line-height:25px; color:#333;}
+ul.widgets li a span.details p {line-height:15px; color:#333;}
+ul.widgets li.timeClock.out span.details p {color:#CCC;}
+ul.widgets li.timeClock.out {background:transparent url('../images/widget_clockedout.png') scroll no-repeat 15px 50%;}
+ul.widgets li.timeClock {background:transparent url('../images/widget_clockedin.png') scroll no-repeat 15px 50%;}
+ul.widgets li.schedule {background:transparent url('../images/widget_calendar.png') scroll no-repeat 15px 50%;}
+
+ul.shifts.moved {margin:-5px 0 0;}
+ul.shifts li {border-left:solid 5px #EEE;}
+ul.shifts li.upcoming {background-color:#F4F4F4;}
+ul.shifts li a span {color:#999; text-align:center;}
+ul.shifts li a {padding:10px 20px 10px 10px; display:block; line-height:20px; color:#333; border-bottom:solid 1px #DDD; min-height:40px;}
+ul.shifts li a p {line-height:20px;}
+ul.shifts li div span {color:#999; text-align:center;}
+ul.shifts li div {padding:10px 20px 10px 10px; display:block; line-height:20px; color:#333; border-bottom:solid 1px #DDD; min-height:40px;}
+ul.shifts li div p {line-height:20px;}
+
+ul.empList {padding:15px 20px;}
+ul.empList li {padding:5px 0; overflow:hidden;}
+ul.empList li img {float:left; margin:0 10px 0 0; width:30px; height:30px; display:block;}
+ul.empList li span.name {float:left; display:block; line-height:30px;}
+ul.empList li ul {margin:0 0 0 30px;}
+
+span.chk {display:block; height:30px; width:29px; float:left; margin:0 10px 0 0; background-position:-5px -610px;}
+span.chk.check {background-position:-5px -560px;}
+span.chk.disabled {background-position:-5px -910px;}
+
+ul.step {overflow:hidden; padding:10px;}
+ul.step li {width:50%; float:left;}
+ul.step li div {padding:10px;}
+ul.step li div p {padding:20px 0 0;}
+
+a.green {display:block; color:#FFF; line-height:30px; text-align:center; background-color:#7cb017;}
+a.grey {display:block; color:#FFF; line-height:30px; text-align:center; background-color:#aaaaaa;}
+
+.cap {padding:15px 20px 15px 45px; font-weight:bold; font-size:13px; border-bottom:solid 1px #DDD;}
+.cap.working {background:transparent url('../images/title_working.png') scroll no-repeat 20px 50%;}
+.cap.trade {background:transparent url('../images/title_trade.png') scroll no-repeat 20px 50%;}
+
+.steps {overflow:hidden; border-top:solid 1px #DDD; padding:20px; text-align:center;}
+.steps a {display:block; padding:0 20px; color:#FFF; line-height:30px; text-align:center; background-color:#7cb017;}
+.steps span {color:#CCC;}
+.greyed {overflow:hidden; background:#F4F4F4 url('../images/shadow.png') scroll repeat-x 0 0;}
+
+.greyed ol.reg {padding:10px 20px 0;}
+.greyed ol.reg li {list-style:decimal outside; padding:10px 0; margin:0 0 0 17px;}
+.greyed ul.reg {padding:0 20px 10px;}
+.greyed ul.reg li {list-style:none inside; padding:10px 0; margin:0 0 0 17px;}
+
+.greyed .text {padding:20px 20px 10px; border-bottom:solid 1px #DDD;}
+.greyed .text p {padding:10px 0;}
+
+

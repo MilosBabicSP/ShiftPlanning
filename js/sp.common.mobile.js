@@ -9,7 +9,7 @@ var ua = navigator.userAgent.toLowerCase();
 var isAndroid = ua.indexOf("android") > -1; //&& ua.indexOf("mobile");
 
 if (agentID) {
-    clickEvent = 'touch';
+    clickEvent = 'click';
 }
 
 jQuery.event.special.touch = {
@@ -61,7 +61,7 @@ ShiftPlanning.prototype.toggleMenu = function(){
     $('#wrapper').toggleClass('extended');
 }
 
-ShiftPlanning.prototype.loadSubPage = function(obj, page, subpage){
+ShiftPlanning.prototype.loadSubPage = function(obj, page, subpage) {
     if (subpage == 'logout'){
         sp.staff.logout();
         return false;
@@ -71,6 +71,7 @@ ShiftPlanning.prototype.loadSubPage = function(obj, page, subpage){
         obj.parent().parent().find('li').removeClass('active');
         obj.parent().addClass('active');
     }
+    
     $('.subNavigation > div').hide();
     $('.subNavigation > div.' + page).show();
     
@@ -81,16 +82,30 @@ ShiftPlanning.prototype.loadSubPage = function(obj, page, subpage){
     $('#pages #' + page + ' .main.' + subpage).show();
     $('#pages #' + page + ' .mainSub.' + subpage).show();
     
+    $('#menu .mainNav > li').removeClass('active');
+    $('#menu_' + page).addClass('active');
+    
+    $('.subNavigation div.' + page + ' .subnNav[page=' + page + '] li').removeClass('active');
+    
+    $('.subNavigation div.' + page + ' .subnNav[page=' + page + '] li a[page=' + subpage + ']').parent().addClass('active');
+    sp.hashChange = false;
+    sp.hash(page);
+    
     if (typeof this[page] != 'undefined' && 'loadSubPageEvents' in this[page]){
         this[page].loadSubPageEvents(subpage);
     }
     
     sp.fixCheckboxes();
+    $(document).scrollTop(0);
 }
 
 ShiftPlanning.prototype.initialize = function(){
     var self = this;
     $(window).hashchange(function(){
+        if (sp.hashChange == false){
+            sp.hashChange = true;
+            return false;
+        }
         if (sp.hash().length > 0) {
             if(sp.hash() == 'logout')
             {
@@ -132,7 +147,6 @@ ShiftPlanning.prototype.initialize = function(){
             e.preventDefault();
             self.toggleMenu();
         });
-        
         if(user.loggedIn){
             $('.loginContainer').hide();
             $('body').removeClass('login');
@@ -160,12 +174,14 @@ ShiftPlanning.prototype.initialize = function(){
                 return false;
             }
             self.toggleMenu();
+            sp.hashChange = true;
             sp.hash($(this).attr('page'));
         });
         $(window).hashchange();
         
         setInterval(function(){
             $('#menu').css('height', ($(window).height() > $(document).height() ? $(window).height() : $(document).height()));
+            $('#wrapper').css('min-height', self.calculateWrapperHeight());
         }, 1000);
         $('#wrapper').width($(window).width());
         $('body').width($(window).width());
@@ -192,8 +208,24 @@ ShiftPlanning.prototype.initialize = function(){
     });
 }
 
-ShiftPlanning.prototype.globalLoader = function(){
+ShiftPlanning.prototype.calculateWrapperHeight = function(){
+    var wrapperHeight = $('#wrapper').height();
+    var documentHeight = $(document).height();
+    var windowHeight = $(window).height();
     
+    if (wrapperHeight < documentHeight) {
+        wrapperHeight = documentHeight;
+    }
+    
+    if (wrapperHeight < windowHeight) {
+        wrapperHeight = windowHeight;
+    }
+    
+    return wrapperHeight;
+}
+
+ShiftPlanning.prototype.globalLoader = function(){
+    $('.bigLoader').show();
 }
 
 ShiftPlanning.prototype.fixCheckboxes = function(){
@@ -257,3 +289,4 @@ ShiftPlanning.prototype.requests = new ShiftPlanningRequests();
 ShiftPlanning.prototype.location = new ShiftPlanningLocation();
 ShiftPlanning.prototype.permissions = new ShiftPlanningPermissions();
 ShiftPlanning.prototype.training = new ShiftPlanningTraining();
+ShiftPlanning.prototype.settings = new ShiftPlanningSettings();

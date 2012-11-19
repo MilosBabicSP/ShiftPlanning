@@ -1,22 +1,22 @@
 <div class="schedule">
     <div class="subWrapp">
         <a href="#" class="toggleMenu">
-            <img width="24" height="24" src="<?php echo _fCdnPath_;?>images/ShowHideMenu.png" />
+            <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/ShowHideMenu.png" />
         </a>
         <ul class="subNav schedule" page="schedule">
             <li class="first active">
                 <a href="#" subpage="today">
-                    <span><?php echo _s('Today');?></span>
+                    <span><img width="16" height="17" src="<?php echo _fCdnPath_;?>images/sc_today.png" /></span>
                 </a>
             </li>
             <li>
                 <a href="#" subpage="day">
-                    <span><?php echo _s('Day');?></span>
+                    <span><img width="16" height="17" src="<?php echo _fCdnPath_;?>images/sc_day.png" /></span>
                 </a>
             </li>
             <li class="last active">
                 <a href="#" subpage="month">
-                    <span><?php echo _s('Month');?></span>
+                    <span><img width="16" height="17" src="<?php echo _fCdnPath_;?>images/sc_month.png" /></span>
                 </a>
             </li>
         </ul>

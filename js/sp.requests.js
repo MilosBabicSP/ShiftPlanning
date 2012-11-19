@@ -5,7 +5,9 @@ var ShiftPlanningRequests = function(){
     this.shifts = [];
     this.shiftsR = [];
     this.vacations = [];
+	this.swaps = {};
     this.current = {};
+    this.available = {};
     this.trades = {
         'manage': [],
         'requested' : [],
