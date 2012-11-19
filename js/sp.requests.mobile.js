@@ -467,42 +467,42 @@ ShiftPlanningRequests.prototype.overviewSubEvents = function(){
         }
         
         if (response.data.vacation == 0){
-            $('#rq_rl_va').parent().hide();
+            $('#rq_rl_va').hide();
         } else {
-            $('#rq_rl_va').parent().show();
+            $('#rq_rl_va').show();
         }
         
         if (response.data.shift_approval == 0){
-            $('#rq_rl_sp').parent().hide();
+            $('#rq_rl_sp').hide();
         } else {
-            $('#rq_rl_sp').parent().show();
+            $('#rq_rl_sp').show();
         }
         
         if (response.data.shift_request_waiting == 0){
-            $('#rq_rl_sr').parent().hide();
+            $('#rq_rl_sr').hide();
         } else {
-            $('#rq_rl_sr').parent().hide();
+            $('#rq_rl_sr').show();
         }
         
         if (response.data.trade_approval == 0){
-            $('#rq_rl_ast').parent().hide();
+            $('#rq_rl_ast').hide();
         } else {
-            $('#rq_rl_ast').parent().show();
+            $('#rq_rl_ast').show();
         }
         
         if (response.data.shift_available == 0){
             $('#rq_rl_sv').parent().hide();
         } else {
-            $('#rq_rl_sv').parent().hide();
+            $('#rq_rl_sv').show();
         }
         
-        $('#rq_rl_va').parent().find('info').html(response.data.vacation);
-        $('#rq_rl_sp').parent().find('info').html(response.data.shift_approval);
-        $('#rq_rl_sr').parent().find('info').html(response.data.shift_request_waiting);
-        $('#rq_rl_ast').parent().find('info').html(response.data.trade_approval);
-        $('#rq_rl_sv').parent().find('info').html(response.data.shift_available);
+        $('#rq_rl_va .icon b').html(response.data.vacation);
+        $('#rq_rl_sp .icon b').html(response.data.shift_approval);
+        $('#rq_rl_sr .icon b').html(response.data.shift_request_waiting);
+        $('#rq_rl_ast .icon b').html(response.data.trade_approval);
+        $('#rq_rl_sv .icon b').html(response.data.shift_available);
 	
-	if ($('#rq_ov .requests:first li:visible').length == 0){
+	if ($('#rq_ov .widgets li:visible').length == 0){
 	    $('#rq_ov_hd').show();
 	} else {
 	    $('#rq_ov_hd').hide();

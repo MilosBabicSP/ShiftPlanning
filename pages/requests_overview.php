@@ -1,29 +1,74 @@
 <div class="main overview" id="rq_ov">
-    <ul class="requests">
-        <li>
-            <a class="fr" href="#" id="rq_rl_va" subpage="vacation"><img width="43" height="30" src="<?php echo _fCdnPath_;?>images/NextMenu.png"></a>
-            <span><?=_s('Vacation Requests');?></span>
-            <?=_s('<info>0</info> Vacation Request(s) needing approval');?>
+    <ul class="widgets">
+        <li class="shifts" id="rq_rl_va">
+            <a href="#" subpage="vacation">
+                <span class="icon">
+                    <b></b>
+                </span>
+                <span class="details">
+                    <p>
+                        Vacation request(s)
+                        <br />
+                        needing <b>approval</b>
+                    </p>
+                </span>
+            </a>
         </li>
-        <li>
-            <a class="fr" href="#" id="rq_rl_sp" subpage="shiftApprovals"><img width="43" height="30" src="<?php echo _fCdnPath_;?>images/NextMenu.png"></a>
-            <span><?=_s('Shift Approvals');?></span>
-            <?=_s('<info>0</info> Shift(s) needing approval');?>
+        <li class="shifts" id="rq_rl_sp">
+            <a href="#" subpage="shiftApprovals">
+                <span class="icon">
+                    <b></b>
+                </span>
+                <span class="details">
+                    <p>
+                        Shift(s)
+                        <br />
+                        needing <b>approval</b>
+                    </p>
+                </span>
+            </a>
         </li>
-        <li>
-            <a class="fr" href="#" id="rq_rl_sr" subpage="openShifts"><img width="43" height="30" src="<?php echo _fCdnPath_;?>images/NextMenu.png"></a>
-            <span><?=_s('Shift Requests Waiting');?></span>
-            <?=_s('There are <info>0</info> shift pickup request(s) waiting approval');?>
+        <li class="shifts" id="rq_rl_sr">
+            <a href="#" subpage="openShifts">
+                <span class="icon">
+                    <b></b>
+                </span>
+                <span class="details">
+                    <p>
+                        Shift pickup request(s)
+                        <br />
+                        waiting <b>approval</b>
+                    </p>
+                </span>
+            </a>
         </li>
-        <li>
-            <a class="fr" href="#" id="rq_rl_ast" subpage="shiftTrades"><img width="43" height="30" src="<?php echo _fCdnPath_;?>images/NextMenu.png"></a>
-            <span><?=_s('Approve Shift Trades');?></span>
-            <?=_s('There is <info>0</info> open trade request(s) needing approval');?>
+        <li class="shifts" id="rq_rl_ast">
+            <a href="#" subpage="shiftTrades">
+                <span class="icon">
+                    <b></b>
+                </span>
+                <span class="details">
+                    <p>
+                        Open trade request(s)
+                        <br />
+                        needing <b>approval</b>
+                    </p>
+                </span>
+            </a>
         </li>
-        <li>
-            <a class="fr" href="#" id="rq_rl_sv" subpage="openShifts"><img width="43" height="30" src="<?php echo _fCdnPath_;?>images/NextMenu.png"></a>
-            <span><?=_s('Shift Available');?></span>
-            <?=_s('There is <info>0</info>  Shifts(s) available for pickup');?>
+        <li class="shifts" id="rq_rl_sv">
+            <a href="#" subpage="openShifts">
+                <span class="icon">
+                    <b></b>
+                </span>
+                <span class="details">
+                    <p>
+                        Shift(s)
+                        <br />
+                        available for <b>pickup</b>
+                    </p>
+                </span>
+            </a>
         </li>
     </ul>
     <ul class="requests hidden" id="rq_ov_hd">
