@@ -63,7 +63,7 @@
         </li>
         <li>
             <div>
-                <span class="checkbox" id="tc_act_onci"><?=_s('Only Clock In?')?></span>
+                 <span class="fr"><span class="checkbox" id="tc_act_onci"><?=_s('Only Clock In?')?></span></span>
             </div>
         </li>
     </ul>
