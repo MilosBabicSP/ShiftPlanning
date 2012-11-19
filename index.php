@@ -251,10 +251,10 @@ if ($vtoken['data'] != '1') {
                     <img class="logo" src="<?php echo _fCdnPath_;?>images/logo1.png" alt="ShiftPlanning" />
                      <form class="loginForm" method="post" id="lo_f" onsubmit="return false;">
                         <div class="holder">
-                            <input autocorrect="off" value="Email" autocapitalize="off" type="text" name="username" id="lo_u" />
+                            <input autocorrect="off" value="Email" autocapitalize="off" type="text" name="username" id="lo_u" onblur="if(this.value=='')this.value=this.defaultValue;" onfocus="if(this.value==this.defaultValue)this.value='';" />
                         </div>
                         <div class="holder">
-                            <input type="password" value="Password" name="password" id="lo_p"/>
+                            <input type="password" value="Password" name="password" id="lo_p" onblur="if(this.value=='')this.value=this.defaultValue;" onfocus="if(this.value==this.defaultValue)this.value='';" />
                         </div>
 			<div class="rButton">
 			    <span class="checkbox fl <?php echo (Functions::getInstance()->isRememberMe()) ? 'check' : ''?>"><?=_s('Remember me?');?></span>
