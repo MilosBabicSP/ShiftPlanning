@@ -18,10 +18,6 @@
             <span class="input">
                 <textarea id="tc_ov_no"></textarea>
             </span>
-            <div class="title">
-                <span class="fr"><a href="#" id="tc_ov_ca"><?=_s('Cancel')?></a></span>
-                <span class="fl"><a href="#" id="tc_ov_sa"><?=_s('Save')?></a></span>
-            </div>
         </div>
         <ul class="step">
             <li>
