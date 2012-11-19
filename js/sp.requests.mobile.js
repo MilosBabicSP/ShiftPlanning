@@ -1086,8 +1086,15 @@ ShiftPlanningRequests.prototype.prepareOpenShiftsNA = function(data){
             res[item.user_id + item.start_date.formatted + item.start_time.time + item.end_time.time + item.schedule_name] = {
                 user_name : itemV2.name,
                 user_id : itemV2.id,
-                start_date : item.start_date.formatted,
-                hours : item.start_time.time + ' - ' + item.end_time.time,
+                start_date : {
+                    formatted: item.start_date.formatted
+                },
+                start_time : {
+                    time : item.start_time.time
+                },
+                end_time : {
+                    time : item.end_time.time
+                },
                 schedule_name : item.schedule_name,
                 notes : item.notes,
                 id : item.id,
