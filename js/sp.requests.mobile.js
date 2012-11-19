@@ -660,7 +660,7 @@ ShiftPlanningRequests.prototype.openShiftsSubEvents = function() {
                 d[i].rId = i;
             });
             self.shifts = d;
-            $('#rq_os_os').html($.tmpl($('#te_rq_os_os'), response.data));
+            $('#rq_os_os').html($.tmpl($('#te_da_widget_shift'), response.data));
         }
     }, function(response){
         sp.showError(response.error);

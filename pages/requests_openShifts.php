@@ -2,7 +2,7 @@
     <div class="title">
         <h3><?=_s('Shift Pickup Requests Needing Approval')?></h3>
     </div>
-    <ul id="rq_os_spr" class="requests">
+    <ul id="rq_os_spr" class="shifts">
 
     </ul>
     <div class="additional">
@@ -11,7 +11,7 @@
     <div class="title">
         <h3><?=_s('Available Shifts')?></h3>
     </div>
-    <ul class="requests" id="rq_os_os">
+    <ul class="shifts" id="rq_os_os">
 
     </ul>
     <div class="additional">
