@@ -34,7 +34,7 @@
 				<a class="fr" id="_next" swap="1" >Continue</a>
 				<span>Step<br/><span rel="self_state">1</span>/3</span>
 			</div>
-			<div class="greyed" id="step_1">
+			<div class="greyed" step="step_1">
 				<ol class="reg">
 					<li>You will be asked to enter your reason for requesting the Change, as well as to select possible shifts to trade with.</li>
 					<li>Management will approve your request to change shift and employees will be notified.</li>
@@ -44,7 +44,7 @@
 					<li><b>Note</b> - There is no guarantee that another employee will be able cover your shift or that management will approve your request.</li>
 				</ul>
 			</div>
-			<div id="step_2">
+			<div step="step_2">
 				<div class="greyed">
 					<div class="text">
 						<h4>Reason for request</h4>
@@ -63,7 +63,7 @@
 					</ul>
 				</div>	
 			</div>
-			<div id="step_3">
+			<div step="step_3">
 				<div class="greyed">
 					<div class="text">
 						<h4>Shift trade Opened!</h4>
@@ -89,7 +89,7 @@
 				<a class="fr" id="_next" swap="0" >Continue</a>
 				<span>Step<br/><span rel="self_state">1</span>/3</span>
 			</div>
-			<div class="greyed" id="step_1">
+			<div class="greyed" step="step_1">
 				<ol class="reg">
 					<li>You will be asked to enter your reason for requesting the Change, as well as to select possible shifts to trade with.</li>
 					<li>Management will approve your request to change shift and employees will be notified.</li>
@@ -99,7 +99,7 @@
 					<li><b>Note</b> - There is no guarantee that another employee will be able cover your shift or that management will approve your request.</li>
 				</ul>
 			</div>
-			<div id="step_2">
+			<div step="step_2">
 				<div class="greyed">
 					<div class="text">
 						<h4>Reason for request</h4>
@@ -118,7 +118,7 @@
 					</ul>
 				</div>	
 			</div>
-			<div id="step_3">
+			<div step="step_3">
 				<div class="greyed">
 					<div class="text">
 						<h4>Shift trade Opened!</h4>
