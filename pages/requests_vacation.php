@@ -67,9 +67,6 @@
                 </span>
             </li>
         </ul>
-        <div class="title">
-            <span class="fr"><a href="#" id="rq_va_sr"><span><?=_s('Submit Request')?></span></a></span>
-        </div>
     </div>
     <ul class="step">
         <li>
