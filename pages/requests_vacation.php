@@ -71,7 +71,7 @@
     <ul class="step">
         <li>
             <div>
-                <a href="#" id="rq_va_sr"><span><?=_s('Submit Request')?></span></a>
+                <a href="#" id="rq_va_sr" class="green"><span><?=_s('Submit Request')?></span></a>
             </div>
         </li>
     </ul>
