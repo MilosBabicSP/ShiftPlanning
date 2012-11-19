@@ -293,7 +293,10 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
 					$('#empList'+type).html('');
 					if(type == 0 && data.length > 0){
 						$('#empList'+type).append('<li><span class="chk all"></span> <span class="name">'+_s('Select All')+'</span></li>');
-					}					
+					}
+					if(type == 1 && data.length == 0){
+						$('#empList'+type).append('<li>'+_s('There are no available shifts to trade')+'</li>');
+					}
 					$('#empList'+type).append($.tmpl($('#te_sc_shift_release'+type),data));
 					$('#schedule .trade>div [id^="step"]').hide();
 					$('#schedule .trade>div #step_'+self.state).show();	
