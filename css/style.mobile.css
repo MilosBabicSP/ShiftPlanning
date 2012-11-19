@@ -112,7 +112,7 @@ html {overflow-x:hidden;}
 .info {background-color:#66A0BB;}
 .noResults {padding:10px; margin:10px; border:solid 1px #B1CAE4; color:#B1CAE4; font-size:14px; display:block;}
 .notif {line-height:20px; font-size:14px; color:#888; padding:15px 0;}
-.additional {font-size:13px; color:#888; padding:5px 0 !important; border-bottom:solid 1px #DBDBDB;}
+.additional {font-size:13px; color:#888; padding:15px 20px 20px !important; border-bottom:solid 1px #DBDBDB;}
 .additional.wide {padding:5px 20px !important;}
 .additional.mar {margin:0 -20px;}
 .additional p {padding:5px 0;}
