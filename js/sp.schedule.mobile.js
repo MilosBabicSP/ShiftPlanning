@@ -287,8 +287,8 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
 								shifts.start = it.start;
 								d.shifts.push(shifts);
 							});
-							data.push(d);
 						}
+						data.push(d);
 					});
 					$('#empList'+type).html('');
 					if(type == 0 && data.length > 0){
