@@ -83,23 +83,6 @@
                     </a>
                 </li>
             </ul>
-	    <div class="title1 wide" style="background-color: #${sp.schedule.getColorsBySchedule(schedule)[1]}; color: #${sp.schedule.getColorsBySchedule(schedule)[2]}">
-		<h3>${schedule_name}</h3>
-	    </div>
-	    <div class="title wide">
-		<div>
-		    <span>${start_date.weekday}, ${start_date.formatted}</span>
-		    ${start_time.time} - ${end_time.time}
-		</div>
-	    </div>
-	    {{if title.length > 0 }}
-	    <div class="title1 regular wide">
-		<h3><?=_s('Title');?></h3>
-	    </div>
-	    <div class="title wide">
-		${title}
-	    </div>
-	    {{/if}}
 	    {{if notes.length > 0 }}
 	    <div class="title1 regular wide">
 		<h3><?=_s('Notes');?></h3>
