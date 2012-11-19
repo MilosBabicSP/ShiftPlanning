@@ -32,7 +32,7 @@
     <div class="additional centered">
         <p><a href="#" id="rq_va_spd"><?=_s('Show past dates')?></a></p>
     </div>
-    <div class="newMsg">
+    <div class="newMsg wide">
         <label><?=_s('Employee')?></label>
         <span class="input">
             <select id="rq_va_en">
@@ -71,4 +71,11 @@
             <span class="fr"><a href="#" id="rq_va_sr"><span><?=_s('Submit Request')?></span></a></span>
         </div>
     </div>
+    <ul class="step">
+        <li>
+            <div>
+                <a href="#" id="rq_va_sr"><span><?=_s('Submit Request')?></span></a>
+            </div>
+        </li>
+    </ul>
 </div>
