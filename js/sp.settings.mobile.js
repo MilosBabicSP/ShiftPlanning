@@ -122,6 +122,7 @@ ShiftPlanningSettings.prototype.overviewEvents = function(){
 	$('.settings .backMenu').bind(clickEvent, function(e){
 		e.preventDefault();
 		sp.loadPage('staff');
+		$('.subNavigation').show()
 	});	
 	$('#settings .mainSub.settings .filters').delegate('a', clickEvent, function(e){
 		e.preventDefault();
