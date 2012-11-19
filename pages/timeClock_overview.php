@@ -1,7 +1,7 @@
 <div class="main overview" id="tc_ov">
     <div class="title" id="tc_ov_cb">
-        <div class="fr steps"><a href="#" id="tc_ov_ci"><?=_s('Clock In')?></a></div>
-        <div class="fr steps"><a href="#" id="tc_ov_co"><?=_s('Clock Out')?></a></div>
+        <span class="fr"><a href="#" id="tc_ov_ci"><?=_s('Clock In')?></a></span>
+        <span class="fr"><a href="#" id="tc_ov_co"><?=_s('Clock Out')?></a></span>
         <div class="icoClock fl">
             <time>january 8, 2012</time>
             <span>13:55</span>
