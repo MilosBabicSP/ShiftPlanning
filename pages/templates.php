@@ -71,6 +71,18 @@
 	</script>
     <script id="te_sc_shift_display" type="text/x-jquery-tmpl">
 	<div id="te_sc_shift_display_info">
+            <ul class="shifts">
+                <li style="border-color:#${sp.schedule.getColorsBySchedule(schedule, 1)}">
+                    <a href="#" rel="${id}">
+                        <span class="fr">
+                            <p>${start_date.formatted}</p>
+                            <p>${start_time.time} - ${end_time.time}</p> 
+                        </span>
+                        <b>${schedule_name}</b><br/>
+                        <p>${title} &nbsp;</p>
+                    </a>
+                </li>
+            </ul>
 	    <div class="title1 wide" style="background-color: #${sp.schedule.getColorsBySchedule(schedule)[1]}; color: #${sp.schedule.getColorsBySchedule(schedule)[2]}">
 		<h3>${schedule_name}</h3>
 	    </div>
