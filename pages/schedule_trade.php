@@ -9,7 +9,7 @@
 			<ul class="step tradepick">
 				<li>
 					<div>
-						<a id="swap" >Trade</a>
+						<a id="swap" class="green">Trade</a>
 						<p>
 							<?=_s('Will let you choose potential employees to pick-up this shift from you')?>
 						</p>
@@ -17,7 +17,7 @@
 				</li>
 				<li>
 					<div>
-						<a  id="release" >Release</a>
+						<a  id="release" class="green">Release</a>
 						<p>
 							<?=_s('Will let you select shifts from other employees to trade this shift for')?>
 						</p>
