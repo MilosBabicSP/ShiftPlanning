@@ -85,7 +85,7 @@ ShiftPlanning.prototype = {
                 }
                 if(response.status == 3){
                     //We are not logged in!
-                    sp.hash('logout');
+//                    sp.hash('logout');
                     user.loggedIn = 0;
                     user.name = '';
                     user.company = '';
