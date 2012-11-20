@@ -195,7 +195,7 @@ ShiftPlanning.prototype.initialize = function(){
             if ($('#wrapper').hasClass('extended') && !$(e.target.parentElement).hasClass('toggleMenu')){
                 self.toggleMenu();
             }
-        })
+        });
         
         if (isAndroid){
             $('#da_up_fi_hide').hide();
@@ -213,7 +213,7 @@ ShiftPlanning.prototype.calculateWrapperHeight = function(){
     var documentHeight = $(document).height();
     var windowHeight = $(window).height();
     
-    console.log(wrapperHeight, documentHeight, windowHeight);
+    console.log(wrapperHeight, documentHeight, windowHeight, parseInt($('.subNavigation').outerHeight()) + parseInt($('#pages').outerHeight()));
     
     if (wrapperHeight < documentHeight) {
         wrapperHeight = documentHeight;
