@@ -1272,18 +1272,6 @@
                 <h5>${subject}</h5>
                 <p><span class="fr">${date_sent_formatted.formatted}</span><?=_s('From');?>: ${from.name}</p>
             </div>
-            <ul class="step">
-                <li>
-                    <div>
-                        <a class="butDel grey" href="#" rel="${id}" ><span><?=_s('Delete');?></span></a>
-                    </div>
-                </li>
-                <li>
-                    <div>
-                        <a class="butRpl green" href="#" rel="${id}"><?=_s('Reply');?></a>
-                    </div>
-                </li>
-            </ul>
             <div class="msgBody">
                 <p>{{html message_formatted}}</p>
                 <div class="newMsg hidden">
@@ -1300,6 +1288,10 @@
                         <span class="fr"><a href="#"><span><?=_s('Send Message');?></span></a></span>
                         <span class="fl"><a href="#"><?=_s('Cancel');?></a></span>
                     </div>
+                </div>
+                <div class="title">
+                    <span class="fr"><a class="butDel grey" href="#" rel="${id}"><span><?=_s('Delete');?></span></a></span>
+                    <span class="fl"><a class="butRpl green" href="#" rel="${id}"><?=_s('Reply');?></a></span>
                 </div>
             </div>
         </li>
