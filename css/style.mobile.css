@@ -364,8 +364,8 @@ ul.widgets {padding:0 0 5px; background:transparent url('../images/shadow.png') 
 ul.widgets li {border-top:solid 1px #DDD;}
 ul.widgets li:first-child {border:none;}
 ul.widgets li a {display:block; padding:20px 0;}
-ul.widgets li.shifts a {display:block; padding:15px 0;}
-ul.widgets li.shifts.user a {padding:30px 0;}
+ul.widgets li.shifts a {display:block; padding:15px 0; overflow: hidden;}
+ul.widgets li.shifts.user a {padding:15px 0;}
 ul.widgets li a span.icon {display:block; float:left; width:80px; text-align:center;}
 ul.widgets li a span.icon b {line-height:30px; font-size:30px; color:#333;}
 ul.widgets li a span.icon p {color:#FFF; text-transform:uppercase; font-size:10px; line-height:15px;}
