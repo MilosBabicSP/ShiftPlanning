@@ -1272,19 +1272,19 @@
                 <h5>${subject}</h5>
                 <p><span class="fr">${date_sent_formatted.formatted}</span><?=_s('From');?>: ${from.name}</p>
             </div>
+            <ul class="step">
+                <li>
+                    <div>
+                        <a class="butDel grey" href="#" rel="${id}" ><span><?=_s('Delete');?></span></a>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <a class="butRpl green" href="#" rel="${id}"><?=_s('Reply');?></a>
+                    </div>
+                </li>
+            </ul>
             <div class="msgBody">
-                <ul class="step">
-                    <li>
-                        <div>
-                            <a class="butDel grey" href="#" rel="${id}" ><span><?=_s('Delete');?></span></a>
-                        </div>
-                    </li>
-                    <li>
-                        <div>
-                            <a class="butRpl green" href="#" rel="${id}"><?=_s('Reply');?></a>
-                        </div>
-                    </li>
-                </ul>
                 <p>{{html message_formatted}}</p>
                 <div class="newMsg hidden">
                     <input type="hidden" value="${from.id}" />
