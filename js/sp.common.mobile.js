@@ -209,21 +209,21 @@ ShiftPlanning.prototype.initialize = function(){
 }
 
 ShiftPlanning.prototype.calculateWrapperHeight = function(){
-    var wrapperHeight = $('#wrapper').height();
-    var documentHeight = $(document).height();
-    var windowHeight = $(window).height();
+//    var wrapperHeight = $('#wrapper').height();
+//    var documentHeight = $(document).height();
+//    var windowHeight = $(window).height();
+//    
+//    console.log(wrapperHeight, documentHeight, windowHeight, );
+//    
+//    if (wrapperHeight < documentHeight) {
+//        wrapperHeight = documentHeight;
+//    }
+//    
+//    if (wrapperHeight < windowHeight) {
+//        wrapperHeight = windowHeight;
+//    }
     
-    console.log(wrapperHeight, documentHeight, windowHeight, parseInt($('.subNavigation').outerHeight()) + parseInt($('#pages').outerHeight()));
-    
-    if (wrapperHeight < documentHeight) {
-        wrapperHeight = documentHeight;
-    }
-    
-    if (wrapperHeight < windowHeight) {
-        wrapperHeight = windowHeight;
-    }
-    
-    return wrapperHeight;
+    return parseInt($('.subNavigation').outerHeight()) + parseInt($('#pages').outerHeight());
 }
 
 ShiftPlanning.prototype.globalLoader = function(){
