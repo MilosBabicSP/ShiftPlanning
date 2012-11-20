@@ -213,6 +213,8 @@ ShiftPlanning.prototype.calculateWrapperHeight = function(){
     var documentHeight = $(document).height();
     var windowHeight = $(window).height();
     
+    console.log(wrapperHeight, documentHeight, windowHeight);
+    
     if (wrapperHeight < documentHeight) {
         wrapperHeight = documentHeight;
     }
