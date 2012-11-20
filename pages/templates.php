@@ -1273,6 +1273,18 @@
                 <p><span class="fr">${date_sent_formatted.formatted}</span><?=_s('From');?>: ${from.name}</p>
             </div>
             <div class="msgBody">
+                <ul class="step">
+                    <li>
+                        <div>
+                            <a class="butDel grey" href="#" rel="${id}" ><span><?=_s('Delete');?></span></a>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <a class="butRpl green" href="#" rel="${id}"><?=_s('Reply');?></a>
+                        </div>
+                    </li>
+                </ul>
                 <p>{{html message_formatted}}</p>
                 <div class="newMsg hidden">
                     <input type="hidden" value="${from.id}" />
@@ -1288,10 +1300,6 @@
                         <span class="fr"><a href="#"><span><?=_s('Send Message');?></span></a></span>
                         <span class="fl"><a href="#"><?=_s('Cancel');?></a></span>
                     </div>
-                </div>
-                <div class="title">
-                    <span class="fr"><a class="butDel" href="#" rel="${id}"><span><?=_s('Delete');?></span></a></span>
-                    <span class="fl"><a class="butRpl" href="#" rel="${id}"><?=_s('Reply');?></a></span>
                 </div>
             </div>
         </li>

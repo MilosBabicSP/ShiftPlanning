@@ -427,5 +427,6 @@ a.grey {display:block; color:#FFF; line-height:30px; text-align:center; backgrou
 
 /* added by zoran */
 .greenB {background-color: #7CB017; color: #FFFFFF; display: block; line-height: 30px; padding: 0 20px; text-align: center;}
+.greyB {background-color: #AAAAAA; color: #FFFFFF; display: block; line-height: 30px; padding: 0 20px; text-align: center;}
 
 
