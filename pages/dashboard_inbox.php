@@ -1,7 +1,7 @@
 <div class="main inbox" id="da_in">
     <!-- Inbox -->
     <div class="title wide">
-        <span class="fr"><a  id="da_in_nm_b"><?=_s('New Message')?></a></span>
+        <span class="fr"><a  id="da_in_nm_b" class="green"><?=_s('New Message')?></a></span>
         <h3><?=_s('Inbox')?></h3>
     </div>
     <div id="da_in_nm_f" class="hidden">
