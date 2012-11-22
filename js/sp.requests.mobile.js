@@ -180,9 +180,8 @@ ShiftPlanningRequests.prototype.openShiftsEvents = function(){
         e.preventDefault();
         var obj = $(this);
         obj.addClass('loading');
-        spModel.schedule.update('shift', {
-            id : $(this).attr('rel'), 
-            add : sp.staff.admin.info.id
+        spModel.schedule.create('shiftrequests', {
+            shift : $(this).attr('rel') 
         }, function(response){
             obj.removeClass('loading').removeClass('icoReqWor').addClass('icoReqCan').html(_s('<span>Cancel pending request</span>'));
         });
