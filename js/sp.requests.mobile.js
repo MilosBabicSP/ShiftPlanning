@@ -617,15 +617,15 @@ ShiftPlanningRequests.prototype.availableSubEvents = function() {
     ]
     var self = this;
     sp.multiApi(calls, function(response){
-        self.available.pickup = sp.map(self.prepareOpenShiftsNA(response[0].data));
+        self.available.pickup = sp.map(response[0].data);
         self.available.swap = sp.map(response[2].data);
         self.available.trade = sp.map(response[1].data);
         $('#rq_av_pu .icon b').html(response[0].data.length);
-        $('#rq_av_pu_li').html($.tmpl($('#te_da_all_shift'), response[0].data));
+        $('#rq_av_pu_li').html($.tmpl($('#te_da_all_shiftV2'), response[0].data));
         $('#rq_av_sw .icon b').html(response[2].data.length);
-        $('#rq_av_sw_li').html($.tmpl($('#te_da_all_shift'), response[2].data));
+        $('#rq_av_sw_li').html($.tmpl($('#te_da_all_shiftV2'), response[2].data));
         $('#rq_av_tr .icon b').html(response[1].data.length);
-        $('#rq_av_tr_li').html($.tmpl($('#te_da_all_shift'), response[1].data));
+        $('#rq_av_tr_li').html($.tmpl($('#te_da_all_shiftV2'), response[1].data));
         $('.bigLoader').hide();
     });
     console.log('availableSubEvents');
