@@ -143,6 +143,7 @@ ShiftPlanningRequests.prototype.availableEvents = function() {
     $('#rq_av_pu_li').delegate('a', clickEvent, function(e){
         e.preventDefault();
         self.current = self.available.pickup[$(this).attr('rel')];
+        console.log(self.current);
         sp.loadSubPage('', 'requests', 'openShiftsRequest');
     });
 
