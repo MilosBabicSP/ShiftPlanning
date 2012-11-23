@@ -187,10 +187,10 @@
     <script id="te_sc_shift_release1" type="text/x-jquery-tmpl">
         <li><img src="${avatar}"><span class="name">${name}</span></li>
         <li>
-			<ul class="">
-				{{tmpl(shifts) "#te_sc_trade_shifts_in"}}
-			</ul>
-		</li>
+                <ul class="">
+                        {{tmpl(shifts) "#te_sc_trade_shifts_in"}}
+                </ul>
+        </li>
     </script>	
 	<script id="te_sc_trade_shifts_in" type="text/x-jquery-tmpl">
 		<li>  
@@ -275,17 +275,16 @@
         </li>
     </script>
     <script id="te_rq_os_os_s" type="text/x-jquery-tmpl">
-        <div class="title wide mar">
-            <div>
-                <span>${start_date.formatted}</span>
-            </div>
-        </div>
-        <div class="title1 wide mar">
-            <h3>${schedule_name}</h3>
-        </div>
-        <ul class="requests">
-            <li>
-                <span>${start_time.time} - ${end_time.time}</span>
+        <ul class="shifts">
+            <li style="border-color:#${sp.schedule.getColorsBySchedule(schedule, 1)}">
+                <a href="#" rel="${id}">
+                    <span class="fr">
+                        <p>${start_date.formatted}</p>
+                        <p>${start_time.time} - ${end_time.time}</p> 
+                    </span>
+                    <b>${schedule_name}</b><br/>
+                    <p>${title} &nbsp;</p>
+                </a>
             </li>
         </ul>
         {{if notes.length > 0}}
