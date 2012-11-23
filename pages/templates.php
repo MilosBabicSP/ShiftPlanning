@@ -247,7 +247,7 @@
                 <a href="javascript://" >
                     <span class="fr">
                         <p>${start_date.formatted}</p>
-                        <p>${full.start_time.time} - ${fullend_time.time}</p>
+                        <p>${full.start_time.time} - ${full.end_time.time}</p>
                     </span>
                     <b>${schedule_name}</b><br/>
                     <p>${title} &nbsp;</p>
