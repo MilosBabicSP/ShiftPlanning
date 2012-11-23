@@ -295,6 +295,16 @@
             <p>${notes}</p>
         </div>
         {{/if}}
+        <ul class="step">
+            <li>
+                <div>
+                    <a href="#" id="rq_os_rtw" class="green"><?=_s('Request to work')?></a>
+                    <p>
+                        
+                    </p>
+                </div>
+            </li>
+        </ul>
     </script>
     <script id="te_rq_os_os" type="text/x-jquery-tmpl">
         <li>
