@@ -280,7 +280,22 @@
                 <span>${start_date.formatted}</span>
             </div>
         </div>
-
+        <div class="title1 wide mar">
+            <h3>${schedule_name}</h3>
+        </div>
+        <ul class="requests">
+            <li>
+                <span>${start_time.time} - ${end_time.time}</span>
+            </li>
+        </ul>
+        {{if notes.length > 0}}
+        <div class="title1">
+            <h3><?=_s('Title / Notes');?></h3>
+        </div>
+        <div class="additional">
+            <p>${notes}</p>
+        </div>
+        {{/if}}
     </script>
     <script id="te_rq_os_os" type="text/x-jquery-tmpl">
         <li>
