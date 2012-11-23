@@ -617,7 +617,7 @@ ShiftPlanningRequests.prototype.availableSubEvents = function() {
     ]
     var self = this;
     sp.multiApi(calls, function(response){
-        self.available.pickup = sp.map(response[0].data);
+        self.available.pickup = sp.map(self.prepareOpenShiftsNA(response[0].data));
         self.available.swap = sp.map(response[2].data);
         self.available.trade = sp.map(response[1].data);
         $('#rq_av_pu .icon b').html(response[0].data.length);
