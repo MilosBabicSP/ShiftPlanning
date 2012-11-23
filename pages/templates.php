@@ -277,10 +277,10 @@
     <script id="te_rq_os_os_s" type="text/x-jquery-tmpl">
         <ul class="shifts">
             <li style="border-color:#${sp.schedule.getColorsBySchedule(schedule, 1)}">
-                <a href="#" rel="${id}">
+                <a href="javascript://" rel="${id}">
                     <span class="fr">
                         <p>${start_date.formatted}</p>
-                        <p>${start_time.time} - ${end_time.time}</p> 
+                        <p>${start_time.time} - ${end_time.time}</p>
                     </span>
                     <b>${schedule_name}</b><br/>
                     <p>${title} &nbsp;</p>
