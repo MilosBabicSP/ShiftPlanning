@@ -200,7 +200,7 @@ ShiftPlanningRequests.prototype.openShiftsEvents = function(){
         });
     });
     
-    $('#rq_os_spr_sub a').bind(clickEvent, function(e){
+    $('#rq_os_spr_s').delegate('.step a', clickEvent, function(e){
         e.preventDefault();
         var obj = $(this);
         obj.addClass('loading');

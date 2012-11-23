@@ -242,21 +242,24 @@
         </ul>
     </script>
     <script id="te_rq_os_spr_s" type="text/x-jquery-tmpl">
+        <ul class="shifts">
+            <li style="border-color:#${sp.schedule.getColorsBySchedule(schedule, 1)}">
+                <a href="javascript://" >
+                    <span class="fr">
+                        <p>${start_date.formatted}</p>
+                        <p>${full.start_time.time} - ${fullend_time.time}</p>
+                    </span>
+                    <b>${schedule_name}</b><br/>
+                    <p>${title} &nbsp;</p>
+                </a>
+            </li>
+        </ul>
         <div class="title wide mar">
             <div>
                 <img width="30" height="30" src="${avatar}">
                 <span>${user_name}</span>
-                ${start_date.formatted}
             </div>
         </div>
-        <div class="title1 wide mar">
-            <h3>${schedule_name}</h3>
-        </div>
-        <ul class="requests">
-            <li>
-                <span>${full.start_time.time} - ${full.end_time.time}</span>
-            </li>
-        </ul>
         {{if notes.length > 0}}
         <div class="title1 regular wide">
             <h3><?=_s('Title / Notes');?></h3>
@@ -265,6 +268,18 @@
             <p>${notes}</p>
         </div>
         {{/if}}
+        <ul class="step">
+            <li>
+                <div>
+                    <a class="green accept" rel="${full.request_id}"><span><?php echo _s('Accept');?></span></a>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <a class="grey" rel="${full.request_id}"><span><?php echo _s('Reject');?></span></a>
+                </div>
+            </li>
+        </ul>
     </script>
     <script id="te_rq_os_spr" type="text/x-jquery-tmpl">
         <li>

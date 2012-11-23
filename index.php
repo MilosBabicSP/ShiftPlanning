@@ -561,18 +561,6 @@ if ($vtoken['data'] != '1') {
                             <a class="backMenu" href="#" subpage="openShifts">
                                 <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/arrow_back.png">
                             </a>
-                            <ul class="subMenu">
-                                <li class="first">
-                                    <a href="#" class="accept">
-                                        <span><img width="16" height="16" src="<?php echo _fCdnPath_;?>images/request_1.png" /></span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="reject">
-                                        <span><img width="16" height="16" src="<?php echo _fCdnPath_;?>images/request_2.png" /></span>
-                                    </a>
-                                </li>
-                            </ul>
                         </div>
                         <div class="subLevel mainSub shiftApprovalsSingle" id="rq_sa_sub">
                             <a href="#" class="backMenu" subpage="shiftApprovals">
