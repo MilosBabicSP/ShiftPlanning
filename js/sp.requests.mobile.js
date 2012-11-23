@@ -177,18 +177,18 @@ ShiftPlanningRequests.prototype.openShiftsEvents = function(){
         sp.loadSubPage('', 'requests', 'openShiftsRequest');
     });
     
-    $('#rq_os_sub').delegate('#rq_os_rtw.icoReqWor', clickEvent, function(e){
+    $('#rq_os_os_s').delegate('#rq_os_rtw.green', clickEvent, function(e){
         e.preventDefault();
         var obj = $(this);
         obj.addClass('loading');
         spModel.schedule.create('shiftrequests', {
             shift : $(this).attr('rel') 
         }, function(response){
-            obj.removeClass('loading').removeClass('icoReqWor').addClass('icoReqCan').html(_s('<span>Cancel pending request</span>'));
+            obj.removeClass('loading').removeClass('green').addClass('grey').html(_s('<span>Cancel pending request</span>'));
         });
     });
     
-    $('#rq_os_sub').delegate('#rq_os_rtw.icoReqCan', clickEvent, function(e){
+    $('#rq_os_os_s').delegate('#rq_os_rtw.grey', clickEvent, function(e){
         e.preventDefault();
         var obj = $(this);
         obj.addClass('loading');
@@ -196,7 +196,7 @@ ShiftPlanningRequests.prototype.openShiftsEvents = function(){
             id : $(this).attr('rel'), 
             remove : sp.staff.admin.info.id
         }, function(response){
-            obj.removeClass('loading').removeClass('icoReqCan').removeClass('icoReqWor').html(_s('Request Removed'));
+            obj.removeClass('loading').removeClass('grey').removeClass('green').html(_s('Request Removed'));
         });
     });
     
