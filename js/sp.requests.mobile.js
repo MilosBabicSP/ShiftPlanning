@@ -947,6 +947,7 @@ ShiftPlanningRequests.prototype.displayShiftTradeManagerAP = function(){
 }
 
 ShiftPlanningRequests.prototype.displayOpenShifts = function(){
+    console.log(this.current);
     $('#rq_os_rtw').removeClass('icoReqCan').addClass('icoReqWork').html(_s('<span>Request to work</span>'));
     
     $('#rq_os_os_s').html($.tmpl($('#te_rq_os_os_s'), this.current));
