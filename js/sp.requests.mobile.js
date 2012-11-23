@@ -168,6 +168,7 @@ ShiftPlanningRequests.prototype.openShiftsEvents = function(){
     $('#rq_os_os').delegate('a', clickEvent, function(e){
         e.preventDefault();
         self.current = self.shifts[$(this).attr('rel')];
+        console.log(self.current, self.shifts[$(this).attr('rel')], $(this).attr('rel'));
         sp.loadSubPage('', 'requests', 'openShiftsOpen');
     });
     
