@@ -556,9 +556,6 @@ if ($vtoken['data'] != '1') {
                             <a class="backMenu" href="#" subpage="openShifts">
                                 <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/arrow_back.png">
                             </a>
-                            <ul class="subMenu">
-                                <li class="single"><a class="icoReqWor" href="#" id="rq_os_rtw"><span><?=_s('Request to work')?></span></a></li>
-                            </ul>
                         </div>
                         <div class="subLevel mainSub openShiftsRequest" id="rq_os_spr_sub">
                             <a class="backMenu" href="#" subpage="openShifts">

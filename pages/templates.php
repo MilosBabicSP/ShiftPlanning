@@ -297,11 +297,8 @@
         {{/if}}
         <ul class="step">
             <li>
-                <div>
-                    <a href="#" id="rq_os_rtw" class="green"><?=_s('Request to work')?></a>
-                    <p>
-                        
-                    </p>
+                <div id="rq_os_pickup_req_button">
+                    
                 </div>
             </li>
         </ul>
