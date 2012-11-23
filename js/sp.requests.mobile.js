@@ -657,8 +657,8 @@ ShiftPlanningRequests.prototype.openShiftsSubEvents = function() {
             $('#rq_os_os').next().hide();
             var d = [];
             $.each(response.data, function(i, item){
-                d[item.id] = item;
-                d[item.id].rId = i;
+                d[i] = item;
+                d[i].rId = i;
             });
             self.shifts = d;
             console.log(self.shifts);

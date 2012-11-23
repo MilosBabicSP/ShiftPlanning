@@ -14,7 +14,7 @@
     </script>
     <script id="te_da_all_shift" type="text/x-jquery-tmpl">
         <li class="upcoming" style="border-color:#${sp.schedule.getColorsBySchedule(schedule, 1)}">
-            <a href="#" rel="${id}">
+            <a href="#" rel="${rId}">
                 <span class="fr">
                     <p>${start_date.formatted}</p>
                     <p>${start_time.time} - ${end_time.time}</p> 
