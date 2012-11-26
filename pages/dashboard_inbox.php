@@ -22,7 +22,7 @@
         <ul class="step">
             <li>
                 <div>
-                    <a href="#" id="da_wa_nm_ca" class="greyB"><?=_s('Cancel')?></a>
+                    <a href="#" id="da_in_nm_ca" class="greyB"><?=_s('Cancel')?></a>
                 </div>
             </li>
             <li>
