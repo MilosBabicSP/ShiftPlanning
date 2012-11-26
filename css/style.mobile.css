@@ -238,6 +238,7 @@ ul.timeSheet li > img {float:left;}
 ul.timeSheet li > span {display:inline-block; float:left;}
 ul.timeSheet li .date {width:25%; line-height:30px;}
 ul.timeSheet li .names {width:25%; line-height:15px;}
+ul.timeSheet li .names b {line-height: 35px; }
 ul.timeSheet li .twoLine {line-height:15px; padding:0 0 0 5px;}
 ul.timeSheet li .oneLine {line-height:30px; padding:0 0 0 5px;}
 ul.timeSheet li .stats {color:#999; font-size:13px;border: 1px solid #EAEAEA;border-radius: 3px 3px 3px 3px;margin-left:5px;margin-top:7px;}
