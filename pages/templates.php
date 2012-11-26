@@ -1318,13 +1318,13 @@
                         <textarea></textarea>
                     </span>
                     <div class="title">
-                        <span class="fr"><a href="#"><span><?=_s('Send Message');?></span></a></span>
-                        <span class="fl"><a href="#"><?=_s('Cancel');?></a></span>
+                        <span class="fr"><a href="#" class="greenB"><span><?=_s('Send Message');?></span></a></span>
+                        <span class="fl"><a href="#" class="greyB"><?=_s('Cancel');?></a></span>
                     </div>
                 </div>
                 <div class="title">
-                    <span class="fr"><a class="butDel grey" href="#" rel="${id}"><span><?=_s('Delete');?></span></a></span>
-                    <span class="fl"><a class="butRpl green" href="#" rel="${id}"><?=_s('Reply');?></a></span>
+                    <span class="fr"><a class="butDel greyB" href="#" rel="${id}"><span><?=_s('Delete');?></span></a></span>
+                    <span class="fl"><a class="butRpl greenB" href="#" rel="${id}"><?=_s('Reply');?></a></span>
                 </div>
             </div>
         </li>
