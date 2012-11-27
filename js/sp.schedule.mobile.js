@@ -380,7 +380,7 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
 		self.setConflicts(response.data);
 		if (typeof self.conflicts[obj.attr('rel')] != 'undefined'){
 		    var c = confirm(_s('This shift has conflicts, but you can\'t fix them from mobile app. Force publish?'));
-		    if (c){
+		    if (c) {
 			spModel.schedule.get('publish', {shifts: obj.attr('rel'), notify: $('#te_sc_shift_display_publish .radio.check').attr('value'), message: $('#tc_sc_shift_display_publish_textarea textarea').val()}, function(response){
 			    sp.showSuccess(response.data);
 			    obj.removeClass('loading');
@@ -418,6 +418,7 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
     });
     
     $('#sc_refresh').bind(clickEvent, function(e){
+        console.log($(this));
         e.preventDefault();
         self.displayShifts();
     });
