@@ -80,7 +80,9 @@
         </li>
     </ul>
     <div id="sc_add_user" class="hidden">
-        <h3><?= _s("Who's working") ?></h3>
+        <div class="title">
+            <h3><?= _s("Who's working") ?></h3>
+        </div>
         <ul class="detailsGrid working">
             <li>
                 <ul>
@@ -89,7 +91,9 @@
             </li>
         </ul>
         <div type="available">
-            <h3><?= _s('Available') ?></h3>
+            <div class="title">
+                <h3><?= _s('Available') ?></h3>
+            </div>
             <ul class="detailsGrid">
                 <li>
                     <ul>
@@ -99,7 +103,9 @@
             </ul>
         </div>
         <div type="vacation">
-            <h3><?= _s('Vacation') ?></h3>
+            <div class="title">
+                <h3><?= _s('Vacation') ?></h3>
+            </div>
             <ul class="detailsGrid">
                 <li>
                     <ul>
@@ -109,7 +115,9 @@
             </ul>
         </div>
         <div type="sameday">
-            <h3><?= _s('Scheduled Today') ?></h3>
+            <div class="title">
+                <h3><?= _s('Scheduled Today') ?></h3>
+            </div>
             <ul class="detailsGrid">
                 <li>
                     <ul>
@@ -119,7 +127,9 @@
             </ul>
         </div>
         <div type="overlap">
-            <h3><?= _s('Overlapping shift') ?></h3>
+            <div class="title">
+                <h3><?= _s('Overlapping shift') ?></h3>
+            </div>
             <ul class="detailsGrid">
                 <li>
                     <ul>
@@ -129,7 +139,9 @@
             </ul>
         </div>
         <div type="mintime">
-            <h3><?= _s(' Min time between shifts') ?></h3>
+            <div class="title">
+                <h3><?= _s(' Min time between shifts') ?></h3>
+            </div>
             <ul class="detailsGrid">
                 <li>
                     <ul>
@@ -139,7 +151,9 @@
             </ul>
         </div>
         <div type="unavail">
-            <h3><?= _s('Unavailable') ?></h3>
+            <div class="title">
+                <h3><?= _s('Unavailable') ?></h3>
+            </div>
             <ul class="detailsGrid">
                 <li>
                     <ul>
