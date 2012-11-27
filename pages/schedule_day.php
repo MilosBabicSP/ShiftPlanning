@@ -56,11 +56,11 @@
                 </li>
             </ul>
         </li>
-        <li>
-            <div class="title">
-                <h3 class="icoLoc"><?= _s('Work Sites') ?></h3>
-            </div>
-        </li>
+    </ul>
+    <div class="title">
+        <h3 class="icoLoc"><?= _s('Work Sites') ?></h3>
+    </div>
+    <ul class="detailsGrid">
         <li>
             <span class="input">
                 <select id="sc_add_lo" class="locations">
