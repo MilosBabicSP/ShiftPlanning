@@ -333,6 +333,7 @@ body {display:none;}
 .notPublished {border: none !important; border-bottom: 1px solid #FF8800 !important; background: url(../images/warning.png) scroll no-repeat 50% 50%;}
 #da_in_me .additional {padding:15px 20px !important;}
 .noBorder {border:none !important;}
+.main.addShift.normal > .detailsGrid {border-bottom: none;}
 
 /*failsafe*/
 .checkbox.failsafe {line-height:15px;}
