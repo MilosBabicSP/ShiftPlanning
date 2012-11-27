@@ -68,11 +68,11 @@
                 </select>
             </span>
         </li>
-        <li>
-            <div class="title">
-                <h3 class="icoNot"><?= _s('Notes') ?></h3>
-            </div>
-        </li>
+    </ul>
+    <div class="title">
+        <h3 class="icoNot"><?= _s('Notes') ?></h3>
+    </div>
+    <ul class="detailsGrid">
         <li>
             <span class="input">
                 <textarea id="sc_add_no"></textarea>
