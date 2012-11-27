@@ -216,7 +216,7 @@ ul.multiInput li.even div {margin:0 10px 0 0;}
 ul.multiInput li.odd div {margin:0 0 0 10px;}
 
 ul.detailsGrid {overflow:hidden; border-bottom:solid 1px #DBDBDB;padding: 5px 0px;}
-.main > ul.detailsGrid {padding:5px 20px;}
+.main > ul.detailsGrid, #sc_add_user ul.detailsGrid {padding:5px 20px;}
 ul.detailsGrid > li {padding:5px 0; overflow:hidden;}
 ul.detailsGrid ul {margin:-5px 0; overflow:hidden;}
 ul.detailsGrid ul li {float:left; width:50%; padding:5px 0;}
