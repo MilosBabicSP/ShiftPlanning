@@ -327,7 +327,6 @@ body {display:none;}
 #requests .confirmBefore .avaitingST {display:inline;}
 #schedule span.input {margin:0px;}
 #schedule .main {margin:0px; padding:0;}
-#schedule .main.normal {padding: 0 20px 20px;}
 #da_in {margin:0px; padding:0;}
 #tc_dtc_buttons .unapprove {opacity: 0.5}
 .permMsgCommentOff .msgRpl, .permMsgCommentOff li.last {display:none;}
