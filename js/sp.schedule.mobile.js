@@ -376,7 +376,7 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
 		obj.removeClass('loading');
 	    }
 	} else {
-	    spModel.schedule.get('conflicts', {schedule : $(this).attr('rel')}, function(response){
+	    spModel.schedule.get('conflicts', {schedule : $(this).attr('rel')}, function(response) {
 		self.setConflicts(response.data);
 		if (typeof self.conflicts[obj.attr('rel')] != 'undefined'){
 		    var c = confirm(_s('This shift has conflicts, but you can\'t fix them from mobile app. Force publish?'));
