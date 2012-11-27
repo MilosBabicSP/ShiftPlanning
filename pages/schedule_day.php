@@ -151,7 +151,7 @@
     </div>
     <div class="title">
         <span class="fr">
-            <a href="#" id="sc_add_add">
+            <a href="#" id="sc_add_add" class="greenB">
                 <span><?= _s('Add Shift And Set Users') ?></span>
             </a>
         </span>
