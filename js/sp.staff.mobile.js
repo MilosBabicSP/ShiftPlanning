@@ -140,12 +140,14 @@ ShiftPlanningStaff.prototype.fastAssignmentSubEvents = function(){
 ShiftPlanningStaff.prototype.displayEmployee = function(id){
     $('#st_tp_menu').hide();
     $('#pages > div').hide();
-    $('#pages #dashboard .main').hide();
-    $('#pages #dashboard .mainSub').hide();
-    $('#pages #dashboard').show();
-    $('#pages #dashboard .main.settings').show();
-    $('#pages #dashboard .mainSub.settings').show();
-    sp.dashboard.settingsSubEvents(spModel.staff.getEmployeeById(id));
+    $('#pages #settings .main').hide();
+    $('#pages #settings .mainSub').hide();
+    $('#pages #settings').show();
+    $('#da_se_overview').show();
+    sp.settings.overviewSubEvents(spModel.staff.getEmployeeById(id));
+    $('#settings .mainSub.settings .filters li:first a').trigger(clickEvent);
+    $('.subNavigation').hide();	
+    $('#pages #settings .mainSub.settings').show();
 }
 
 

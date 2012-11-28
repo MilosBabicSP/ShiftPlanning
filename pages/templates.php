@@ -12,6 +12,30 @@
             </a>
         </li>
     </script>
+    <script id="te_da_all_shift" type="text/x-jquery-tmpl">
+        <li class="upcoming" style="border-color:#${sp.schedule.getColorsBySchedule(schedule, 1)}">
+            <a href="#" rel="${rId}">
+                <span class="fr">
+                    <p>${start_date.formatted}</p>
+                    <p>${start_time.time} - ${end_time.time}</p> 
+                </span>
+                <b>${schedule_name}</b><br/>
+                <p>${title} &nbsp;</p>
+            </a>
+        </li>
+    </script>
+    <script id="te_da_all_shiftV2" type="text/x-jquery-tmpl">
+        <li class="upcoming" style="border-color:#${sp.schedule.getColorsBySchedule(schedule, 1)}">
+            <a href="#" rel="${id}">
+                <span class="fr">
+                    <p>${start_date.formatted}</p>
+                    <p>${start_time.time} - ${end_time.time}</p> 
+                </span>
+                <b>${schedule_name}</b><br/>
+                <p>${title} &nbsp;</p>
+            </a>
+        </li>
+    </script>
     <script id="te_sc_shifts_new" type="text/x-jquery-tmpl">
         <li style="border-color:#${sp.schedule.getColorsBySchedule(schedule)[1]}" class="{{if (published == 0 || (published < edited && published != 0)) && perms == 2 && sp.staff.admin.settings.draft == 1}}notPublished{{/if}}">
             <a href="#" rel="${id}" class="isShift">
@@ -71,23 +95,18 @@
 	</script>
     <script id="te_sc_shift_display" type="text/x-jquery-tmpl">
 	<div id="te_sc_shift_display_info">
-	    <div class="title1 wide" style="background-color: #${sp.schedule.getColorsBySchedule(schedule)[1]}; color: #${sp.schedule.getColorsBySchedule(schedule)[2]}">
-		<h3>${schedule_name}</h3>
-	    </div>
-	    <div class="title wide">
-		<div>
-		    <span>${start_date.weekday}, ${start_date.formatted}</span>
-		    ${start_time.time} - ${end_time.time}
-		</div>
-	    </div>
-	    {{if title.length > 0 }}
-	    <div class="title1 regular wide">
-		<h3><?=_s('Title');?></h3>
-	    </div>
-	    <div class="title wide">
-		${title}
-	    </div>
-	    {{/if}}
+            <ul class="shifts">
+                <li style="border-color:#${sp.schedule.getColorsBySchedule(schedule, 1)}">
+                    <a href="#" rel="${id}">
+                        <span class="fr">
+                            <p>${start_date.formatted}</p>
+                            <p>${start_time.time} - ${end_time.time}</p> 
+                        </span>
+                        <b>${schedule_name}</b><br/>
+                        <p>${title} &nbsp;</p>
+                    </a>
+                </li>
+            </ul>
 	    {{if notes.length > 0 }}
 	    <div class="title1 regular wide">
 		<h3><?=_s('Notes');?></h3>
@@ -175,15 +194,15 @@
 			
     </script>
     <script id="te_sc_shift_release0" type="text/x-jquery-tmpl">
-		<li><span class="chk" rel ="${id}" onclick="$(this).toggleClass('check')"></span><img src="${avatar}"><span class="name">${name}</span></li>
+		<li><span class="chk" rel ="${id}" ></span><img src="${avatar}"><span class="name">${name}</span></li>
     </script>	
     <script id="te_sc_shift_release1" type="text/x-jquery-tmpl">
         <li><img src="${avatar}"><span class="name">${name}</span></li>
         <li>
-			<ul class="">
-				{{tmpl(shifts) "#te_sc_trade_shifts_in"}}
-			</ul>
-		</li>
+                <ul class="">
+                        {{tmpl(shifts) "#te_sc_trade_shifts_in"}}
+                </ul>
+        </li>
     </script>	
 	<script id="te_sc_trade_shifts_in" type="text/x-jquery-tmpl">
 		<li>  
@@ -235,21 +254,24 @@
         </ul>
     </script>
     <script id="te_rq_os_spr_s" type="text/x-jquery-tmpl">
+        <ul class="shifts">
+            <li style="border-color:#${sp.schedule.getColorsBySchedule(schedule, 1)}">
+                <a href="javascript://" >
+                    <span class="fr">
+                        <p>${start_date.formatted}</p>
+                        <p>${full.start_time.time} - ${full.end_time.time}</p>
+                    </span>
+                    <b>${schedule_name}</b><br/>
+                    <p>${title} &nbsp;</p>
+                </a>
+            </li>
+        </ul>
         <div class="title wide mar">
             <div>
                 <img width="30" height="30" src="${avatar}">
                 <span>${user_name}</span>
-                ${start_date.formatted}
             </div>
         </div>
-        <div class="title1 wide mar">
-            <h3>${schedule_name}</h3>
-        </div>
-        <ul class="requests">
-            <li>
-                <span>${full.start_time.time} - ${full.end_time.time}</span>
-            </li>
-        </ul>
         {{if notes.length > 0}}
         <div class="title1 regular wide">
             <h3><?=_s('Title / Notes');?></h3>
@@ -258,6 +280,18 @@
             <p>${notes}</p>
         </div>
         {{/if}}
+        <ul class="step">
+            <li>
+                <div>
+                    <a class="green accept" rel="${full.request_id}"><span><?php echo _s('Accept');?></span></a>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <a class="grey" rel="${full.request_id}"><span><?php echo _s('Reject');?></span></a>
+                </div>
+            </li>
+        </ul>
     </script>
     <script id="te_rq_os_spr" type="text/x-jquery-tmpl">
         <li>
@@ -268,17 +302,16 @@
         </li>
     </script>
     <script id="te_rq_os_os_s" type="text/x-jquery-tmpl">
-        <div class="title wide mar">
-            <div>
-                <span>${start_date.formatted}</span>
-            </div>
-        </div>
-        <div class="title1 wide mar">
-            <h3>${schedule_name}</h3>
-        </div>
-        <ul class="requests">
-            <li>
-                <span>${start_time.time} - ${end_time.time}</span>
+        <ul class="shifts">
+            <li style="border-color:#${sp.schedule.getColorsBySchedule(schedule, 1)}">
+                <a href="javascript://" rel="${id}">
+                    <span class="fr">
+                        <p>${start_date.formatted}</p>
+                        <p>${start_time.time} - ${end_time.time}</p>
+                    </span>
+                    <b>${schedule_name}</b><br/>
+                    <p>${title} &nbsp;</p>
+                </a>
             </li>
         </ul>
         {{if notes.length > 0}}
@@ -289,6 +322,13 @@
             <p>${notes}</p>
         </div>
         {{/if}}
+        <ul class="step">
+            <li>
+                <div id="rq_os_pickup_req_button">
+                    
+                </div>
+            </li>
+        </ul>
     </script>
     <script id="te_rq_os_os" type="text/x-jquery-tmpl">
         <li>
@@ -1278,13 +1318,13 @@
                         <textarea></textarea>
                     </span>
                     <div class="title">
-                        <span class="fr"><a href="#"><span><?=_s('Send Message');?></span></a></span>
-                        <span class="fl"><a href="#"><?=_s('Cancel');?></a></span>
+                        <span class="fr"><a href="#" class="greenB"><span><?=_s('Send Message');?></span></a></span>
+                        <span class="fl"><a href="#" class="greyB"><?=_s('Cancel');?></a></span>
                     </div>
                 </div>
                 <div class="title">
-                    <span class="fr"><a class="butDel" href="#" rel="${id}"><span><?=_s('Delete');?></span></a></span>
-                    <span class="fl"><a class="butRpl" href="#" rel="${id}"><?=_s('Reply');?></a></span>
+                    <span class="fr"><a class="butDel greyB" href="#" rel="${id}"><span><?=_s('Delete');?></span></a></span>
+                    <span class="fl"><a class="butRpl greenB" href="#" rel="${id}"><?=_s('Reply');?></a></span>
                 </div>
             </div>
         </li>

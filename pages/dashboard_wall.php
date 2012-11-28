@@ -1,6 +1,6 @@
 <div class="main wall" id="da_wa">
     <div class="title">
-        <span class="fr"><a href="#" id="da_wa_nm_b"><?=_s('New Message')?></a></span>
+        <span class="fr"><a href="#" id="da_wa_nm_b" class="greenB"><?=_s('New Message')?></a></span>
         <h3><?=_s('Message Wall')?></h3>
     </div>
     <div id="da_wa_nm_f" class="hidden">

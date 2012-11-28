@@ -1,6 +1,38 @@
-<div class="main settings" id="da_se">
+<!--<div class="main overview" id="da_se">-->
+<div style="display: none;" class="search settings mainSub">
+    <a class="backMenu" href="#">
+	<img width="16" height="16" src="<?php echo _fCdnPath_;?>images/arrow_back.png">
+    </a>    
+                            <ul style="width:270px" class="filters fr">
+  <li class="first active">
+                <a href="#" subpage="overview">
+                    <img width="16" height="17" src="<?php echo _fCdnPath_;?>images/sett_1.png">
+                </a>
+            </li>
+            <li class="">
+                <a href="#" subpage="edit">
+                    <img width="16" height="17" src="<?php echo _fCdnPath_;?>images/sett_2.png">
+                </a>
+            </li>
+            <li class="">
+                <a href="#" subpage="recentShifts">
+                    <img width="16" height="17" src="<?php echo _fCdnPath_;?>images/sett_3.png">
+                </a>
+            </li>
+            <li class="">
+                <a href="#" subpage="upcomingShifts">
+                    <img width="16" height="17" src="<?php echo _fCdnPath_;?>images/sett_4.png">
+                </a>
+            </li>            
+            <li class="">
+                <a href="#" subpage="password">
+                    <img width="16" height="17" src="<?php echo _fCdnPath_;?>images/sett_5.png">
+                </a>
+            </li>
+                            </ul>
+</div>
     <input type="hidden" id="da_se_cur_us_id" />
-    <div id="da_se_overview">
+    <div id="da_se_overview" class="main overview">
         <ul class="detailsGrid">
             <li>
                 <ul>    
@@ -116,7 +148,7 @@
             </li>
         </ul>
     </div>
-    <div id="da_se_edit">
+    <div id="da_se_edit" class="main edit">
         <div class="title">
             <h3 class="icoEmpDet"><?=_s('Employee Details')?></h3>
         </div>
@@ -320,7 +352,7 @@
             <span class="fr"><a id="da_se_ed_ue" href="#"><span><?=_s('Update Employee')?></span></a></span>
         </div>
     </div>
-    <div id="da_se_password">
+    <div id="da_se_password" class="main password">
         <div class="title">
             <h3 class="icoEmpDet"><?=_s('Employee Details')?></h3>
         </div>
@@ -352,7 +384,7 @@
             <span class="fr"><a id="da_se_pa_up" href="#"><?=_s('Update Employee')?></a></span>
         </div>
     </div>
-    <div id="da_se_recentShifts">
+    <div id="da_se_recentShifts" class="main recentShifts">
         <div class="title">
             <h3><?=_s('Recent shifts');?></h3>
         </div>
@@ -360,7 +392,7 @@
 
         </ul>
     </div>
-    <div id="da_se_upcomingShifts">
+    <div id="da_se_upcomingShifts" class="main upcomingShifts">
         <div class="title">
             <h3><?=_s('Upcoming shifts');?></h3>
         </div>
@@ -368,4 +400,4 @@
 
         </ul>
     </div>
-</div>
+<!--</div>-->

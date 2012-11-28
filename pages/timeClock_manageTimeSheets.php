@@ -1,7 +1,7 @@
 <div class="main manageTimeSheets" id="tc_mts">
     <div class="title">
         <h3 class="fl"><?=_s('Manage Timesheets')?></h3>
-        <span class="fr"><a id="tc_mts_adv" href="#" style="display: block;"><?=_s('Advanced')?></a></span>
+        <span class="fr"><a id="tc_mts_adv" href="#" style="display: block;" class="greenB"><?=_s('Advanced')?></a></span>
     </div>
     <ul class="detailsGrid">
         <li>

@@ -1,7 +1,7 @@
 <div class="main inbox" id="da_in">
     <!-- Inbox -->
     <div class="title wide">
-        <span class="fr"><a  id="da_in_nm_b"><?=_s('New Message')?></a></span>
+        <span class="fr"><a  id="da_in_nm_b" class="greenB"><?=_s('New Message')?></a></span>
         <h3><?=_s('Inbox')?></h3>
     </div>
     <div id="da_in_nm_f" class="hidden">
@@ -22,12 +22,12 @@
         <ul class="step">
             <li>
                 <div>
-                    <a href="#" id="da_wa_nm_ca" class="grey"><?=_s('Cancel')?></a>
+                    <a href="#" id="da_in_nm_ca" class="greyB"><?=_s('Cancel')?></a>
                 </div>
             </li>
             <li>
                 <div>
-                    <a  id="da_in_nm_sa" class="green"><span><?=_s('Send Message')?></span></a>
+                    <a  id="da_in_nm_sa" class="greenB"><span><?=_s('Send Message')?></span></a>
                 </div>
             </li>
         </ul>

@@ -14,7 +14,7 @@ function _iapi($request_vars, $output='json', $dataOnly = false, $multi = false)
         $request['request'] = $request_vars;
         $request['module'] = $request_vars['module'];
     }
-    //var_dump($request);
+    
     $ch = curl_init(API_URL);
     curl_setopt($ch, CURLOPT_URL, API_URL);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -24,7 +24,16 @@ function _iapi($request_vars, $output='json', $dataOnly = false, $multi = false)
     //var_dump($request);
     $response = curl_exec($ch);
     
+    
     curl_close($ch);
+    
+    
+//    if ($request['request']['mode'] == 'openapproval') {
+//        print_r($request);
+//        print $response;
+//    }
+        
+    
     //Set token, maybe there is some more efficient way to do this
     $decoded = json_decode($response,true);
     

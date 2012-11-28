@@ -9,7 +9,7 @@ var ua = navigator.userAgent.toLowerCase();
 var isAndroid = ua.indexOf("android") > -1; //&& ua.indexOf("mobile");
 
 if (agentID) {
-    clickEvent = 'touch';
+    clickEvent = 'click';
 }
 
 jQuery.event.special.touch = {
@@ -195,7 +195,7 @@ ShiftPlanning.prototype.initialize = function(){
             if ($('#wrapper').hasClass('extended') && !$(e.target.parentElement).hasClass('toggleMenu')){
                 self.toggleMenu();
             }
-        })
+        });
         
         if (isAndroid){
             $('#da_up_fi_hide').hide();
@@ -289,3 +289,4 @@ ShiftPlanning.prototype.requests = new ShiftPlanningRequests();
 ShiftPlanning.prototype.location = new ShiftPlanningLocation();
 ShiftPlanning.prototype.permissions = new ShiftPlanningPermissions();
 ShiftPlanning.prototype.training = new ShiftPlanningTraining();
+ShiftPlanning.prototype.settings = new ShiftPlanningSettings();

@@ -14,7 +14,7 @@
                     <img width="16" height="17" src="<?php echo _fCdnPath_;?>images/req_2.png" />
                 </a>
             </li>
-            <li class="hidden">
+            <li>
                 <a href="#" subpage="openShifts">
                     <img width="16" height="17" src="<?php echo _fCdnPath_;?>images/req_3.png" />
                 </a>
