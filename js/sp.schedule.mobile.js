@@ -122,7 +122,7 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
                 if ($('#sc_sub_shift_display ul a.publish').attr('first') == 'false'){
                     self.resetPublishFields(true);
                 } else {
-                    $('.subNavigation .schedule li.active a').trigger(clickEvent);
+                    $('.subNavigation .schedule .schedule li.active a').trigger(clickEvent);
                 }
               }
             }
@@ -140,7 +140,7 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
                 sp.loadSubPage('', 'schedule', 'shiftDisplay');
             });
         } else {
-            $('.subNavigation .schedule li.active a').trigger(clickEvent);
+            $('.subNavigation .schedule .schedule li.active a').trigger(clickEvent);
         }
     });
     
@@ -418,7 +418,6 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
     });
     
     $('#sc_refresh').bind(clickEvent, function(e){
-        console.log($(this));
         e.preventDefault();
         self.displayShifts();
     });
@@ -531,7 +530,7 @@ ShiftPlanningSchedule.prototype.loadSubPageEvents = function(subpage){
     if (subpage == 'shiftDisplay' || subpage == 'addShift' || subpage == 'trade'){
         $('.subNavigation').hide();
     }
-    
+    console.log(subpage);
     if (subpage == 'addShift'){
         $('#sc_additional_menu').hide();
     }
@@ -815,8 +814,8 @@ ShiftPlanningSchedule.prototype.displayShifts = function(sDay){
     $('#sc_td .loading').show();
     $('#sc_td .additional').hide();
     $('#sc_ca_bo').parent().addClass('loading');
-
-    
+    $('#schedule').show();
+    $('.subNavigation .schedule').show();    
     var data = this.getSettings();
     
     spModel.schedule.get('shifts', data, function(response){
