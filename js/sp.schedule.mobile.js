@@ -140,7 +140,7 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
                 sp.loadSubPage('', 'schedule', 'shiftDisplay');
             });
         } else {
-            $('.subNavigation .schedule li.active a').trigger(clickEvent);
+            $('.subNavigation .schedule .schedule li.active a').trigger(clickEvent);
         }
     });
     
