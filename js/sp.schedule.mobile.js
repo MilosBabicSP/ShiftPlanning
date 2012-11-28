@@ -849,9 +849,9 @@ ShiftPlanningSchedule.prototype.displayShifts = function(sDay){
             $('#sc_td_list').hide();
             $('#sc_td .loading').hide();
             $('#sc_td .additional').show();
-	    $('#schedule').show();
-	    $('.subNavigation .schedule').show();
         }
+	$('#schedule').show();
+	$('.subNavigation .schedule').show();
     });
 }
 
