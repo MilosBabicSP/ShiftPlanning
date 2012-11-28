@@ -122,7 +122,7 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
                 if ($('#sc_sub_shift_display ul a.publish').attr('first') == 'false'){
                     self.resetPublishFields(true);
                 } else {
-                    $('.subNavigation .schedule li.active a').trigger(clickEvent);
+                    $('.subNavigation .schedule .schedule li.active a').trigger(clickEvent);
                 }
               }
             }
