@@ -418,7 +418,6 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
     });
     
     $('#sc_refresh').bind(clickEvent, function(e){
-        console.log($(this));
         e.preventDefault();
         self.displayShifts();
     });
