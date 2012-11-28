@@ -530,7 +530,7 @@ ShiftPlanningSchedule.prototype.loadSubPageEvents = function(subpage){
     if (subpage == 'shiftDisplay' || subpage == 'addShift' || subpage == 'trade'){
         $('.subNavigation').hide();
     }
-    
+    console.log(subpage);
     if (subpage == 'addShift'){
         $('#sc_additional_menu').hide();
     }
