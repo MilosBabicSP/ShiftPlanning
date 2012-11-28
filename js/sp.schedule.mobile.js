@@ -814,8 +814,8 @@ ShiftPlanningSchedule.prototype.displayShifts = function(sDay){
     $('#sc_td .loading').show();
     $('#sc_td .additional').hide();
     $('#sc_ca_bo').parent().addClass('loading');
-
-    
+    $('#schedule').show();
+    $('.subNavigation .schedule').show();    
     var data = this.getSettings();
     
     spModel.schedule.get('shifts', data, function(response){
@@ -850,8 +850,6 @@ ShiftPlanningSchedule.prototype.displayShifts = function(sDay){
             $('#sc_td .loading').hide();
             $('#sc_td .additional').show();
         }
-	$('#schedule').show();
-	$('.subNavigation .schedule').show();
     });
 }
 
