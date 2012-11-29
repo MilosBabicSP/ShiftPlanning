@@ -114,7 +114,7 @@ ShiftPlanningStaff.prototype.fastAssignmentEvents = function(){
                 $(obj).addClass('check');
             }
 	    $(obj).parent().removeClass('loading');
-            sp.dashboard.updateUser($('#st_fa_cu').val(), response, false);
+            sp.settings.updateUser($('#st_fa_cu').val(), response, false);
         });
     });
 }
