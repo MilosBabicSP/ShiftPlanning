@@ -365,7 +365,7 @@
         </li>
     </ul>
     <div class="title">
-        <span class="fr"><a id="da_se_ed_ue" href="#"><span><?= _s('Update Employee') ?></span></a></span>
+        <span class="fr"><a id="da_se_ed_ue" href="#" class="greenB"><span><?= _s('Update Employee') ?></span></a></span>
     </div>
 </div>
 <div id="da_se_password" class="main password">
