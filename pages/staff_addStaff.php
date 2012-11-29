@@ -73,6 +73,6 @@
         <p><?=_s('If left un-checked, they will be silently added to the system and can be sent their activation email or given their login details later.')?></p>
     </div>
     <div class="title">  
-        <span class="fr"><a href="#" id="st_ae_ce_b"><span><?=_s('Create Employee')?></span></a></span>
+        <span class="fr"><a href="#" id="st_ae_ce_b" class="greenB"><span><?=_s('Create Employee')?></span></a></span>
     </div>
 </div>
