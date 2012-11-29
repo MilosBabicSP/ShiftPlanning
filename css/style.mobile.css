@@ -220,8 +220,8 @@ ul.detailsGrid {overflow:hidden; border-bottom:solid 1px #DBDBDB;padding: 5px 0p
 ul.detailsGrid > li {padding:5px 0; overflow:hidden;}
 ul.detailsGrid ul {margin:-5px 0; overflow:hidden;}
 ul.detailsGrid ul li {float:left; width:50%; padding:5px 0;}
-ul.detailsGrid ul li.even div {margin:0 10px 0 0;}
-ul.detailsGrid ul li.odd div {margin:0 0 0 10px;}
+ul.detailsGrid ul li.even div {margin:0 10px 0 0; padding-left: 20px;}
+ul.detailsGrid ul li.odd div {margin:0 0 0 10px; padding-right: 20px;}
 
 ul.cmts {background-position:-40px 0; padding:10px 0 0;display:none;}
 ul.cmts li {padding:10px 15px 0; background-color:#f1f1f1; position:relative; overflow:hidden; border-bottom:solid 1px #e1e1e1;}
