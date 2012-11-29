@@ -397,7 +397,7 @@
         </li>
     </ul>
     <div class="title">
-        <span class="fr"><a id="da_se_pa_up" href="#"><?= _s('Update Employee') ?></a></span>
+        <span class="fr"><a id="da_se_pa_up" href="#" class="greenB"><?= _s('Update Employee') ?></a></span>
     </div>
 </div>
 <div id="da_se_recentShifts" class="main recentShifts">
