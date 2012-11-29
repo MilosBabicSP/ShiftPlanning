@@ -729,7 +729,7 @@ ShiftPlanningSchedule.prototype.addShiftSubEvents = function(){
             $('#sc_edit_submenu .subNav').hide();
         }
     } else {
-        $('#sc_edit_submenu .subMenu').hide();
+        $('#sc_edit_submenu .subNav').hide();
         $('#sc_edit_submenu .backMenu').attr('bck', 'add');
         $('#sc_add_add span').html(_s('Add Shift And Set Users'));
     }
