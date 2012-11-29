@@ -81,11 +81,11 @@
                     </li>
                 </ul>
             </li>
-            <li>
+            <li style="padding-left:20px;">
                 <label><?= _s('Email') ?>:</label>
                 <h4 id="da_se_ov_em"></h4>
             </li>
-            <li>
+            <li style="padding-left:20px;">
                 <label><?= _s('Positions') ?>:</label>
                 <h4 id="da_se_ov_pos"></h4> 
             </li>
