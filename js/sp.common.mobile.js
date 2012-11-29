@@ -67,6 +67,14 @@ ShiftPlanning.prototype.loadSubPage = function(obj, page, subpage) {
         return false;
     }
     
+    this.globalLoader();
+    
+    setTimeout(function(){
+        if (sp.countObject( sp.apiCalls ) == 0){
+            $('.bigLoader').hide();
+        }
+    }, 500);
+    
     if (obj != ''){
         obj.parent().parent().find('li').removeClass('active');
         obj.parent().addClass('active');

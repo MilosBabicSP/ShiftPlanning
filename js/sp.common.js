@@ -225,6 +225,13 @@ ShiftPlanning.prototype = {
     },
     isC : function(sel){
 	return $(sel).hasClass('check');
+    },
+    countObject : function( obj ){
+        var c = 0;
+        for ( var p in o ) {
+            if ( o.hasOwnProperty( p ) ) { c++; }
+        }
+        return c;
     }
 }
 
