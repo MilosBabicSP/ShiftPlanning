@@ -3,7 +3,7 @@
         <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/ShowHideMenu.png" />
     </a>
     <div class="subWrapp" style="width:257px">
-        <ul class="subNav fl" page="staff" style="right:75px;">
+        <ul class="subNav fl" page="staff" >
             <li class="first active">
                 <a href="#" subpage="list">
                     <img width="16" height="17" src="<?php echo _fCdnPath_;?>images/staff_1.png" />
@@ -21,7 +21,7 @@
             </li>
         </ul>
         <!-- staff filters -->
-        <ul class="subNav fr notMain"  page="staff" id="st_tp_menu">
+        <ul class="subNav fr notMain"  page="staff" id="st_tp_menu" style="right:112px;">
             <li class="first active">
                 <a href="#" id="st_sn_ga">
                     <img width="16" height="17" src="<?php echo _fCdnPath_;?>images/filterS.png" />
