@@ -473,9 +473,9 @@ if ($vtoken['data'] != '1') {
                     <div class="requests" id="requests">
                         <div class="subLevel mainSub vacationRequestManage">
                             <a class="backMenu" href="#" subpage="vacation">
-                                <img width="41" height="30" src="<?php echo _fCdnPath_;?>images/BackMenu.png" />
+                                <img height="16" width="16" src="<?php echo _fCdnPath_;?>images/arrow_back.png" />
                             </a>
-                            <ul class="subMenu">
+                            <ul class="subNav">
                                 <li class="first">
                                     <a href="#" id="rq_va_ma_acp">
                                         <span><img width="16" height="16" src="<?php echo _fCdnPath_;?>images/request_1.png" /></span>
@@ -488,11 +488,11 @@ if ($vtoken['data'] != '1') {
                                 </li>
                             </ul>
                         </div>
-						<div class="subLevel mainSub shiftSwapRequest" id="rq_st_mts_swap">
+                        <div class="subLevel mainSub shiftSwapRequest" id="rq_st_mts_swap">
                             <a class="backMenu" href="#" subpage="shiftTrades">
                                 <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/arrow_back.png">
                             </a>							
-						</div>
+                        </div>
                         <div class="subLevel mainSub shiftTradeManager" id="rq_st_mts_sub">
                             <a class="backMenu" href="#" subpage="shiftTrades">
                                 <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/arrow_back.png">
