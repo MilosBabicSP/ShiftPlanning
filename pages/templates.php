@@ -566,10 +566,10 @@
                 </div>
             </li>
         </ul>
-        <div class="title1">
+        <div class="title1 wide">
             <?=_s('<b>Status:</b> Pending');?>
         </div>
-        <div class="title1">
+        <div class="title1 wide">
             <b><?=_s('Conflicts');?>:</b>
 	    {{if conflicts.count > 0}}
 		<br />
