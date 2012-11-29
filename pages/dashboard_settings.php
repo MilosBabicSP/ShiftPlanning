@@ -118,19 +118,25 @@
     <div class="title aPerm"><!-- begin of da_se_ov_cu -->
         <h3 class="icoCusFie"><?= _s('Custom Fields') ?></h3>
     </div>
-    <ul class="detailsGrid aPerm">
-        <ul id="da_se_ov_cu">
+    <div>
+        <ul class="detailsGrid aPerm">
+            <ul id="da_se_ov_cu">
 
-        </ul>
-    </ul><!-- end of da_se_ov_cu -->
+            </ul>
+        </ul><!-- end of da_se_ov_cu -->
+    </div>
     <div class="title aPerm">
         <h3 class="icoEmpPos"><?= _s('Employee Positions') ?></h3>
     </div>
-    <ul class="detailsGrid aPerm">
-        <ul id="da_se_ov_po" class="positions">    
+    <div>
+        <ul class="detailsGrid aPerm">
+            <li>
+                <ul id="da_se_ov_po" class="positions">    
 
+                </ul>
+            </li>
         </ul>
-    </ul>
+    </div>
     <div class="title aPerm">
         <h3 class="icoEmpSki"><?= _s('Employee Skills') ?></h3>
     </div>
