@@ -143,7 +143,6 @@ ShiftPlanningRequests.prototype.availableEvents = function() {
     $('#rq_av_pu_li').delegate('a', clickEvent, function(e){
         e.preventDefault();
         self.current = self.available.pickup[$(this).attr('rel')];
-        console.log(self.current);
         sp.loadSubPage('', 'requests', 'openShiftsOpen');
     });
 
@@ -630,7 +629,6 @@ ShiftPlanningRequests.prototype.availableSubEvents = function() {
         $('#rq_av_tr_li').html($.tmpl($('#te_da_all_shiftV2'), response[1].data));
         $('.bigLoader').hide();
     });
-    console.log('availableSubEvents');
 }
 
 ShiftPlanningRequests.prototype.openShiftsSubEvents = function() {
@@ -795,8 +793,6 @@ ShiftPlanningRequests.prototype.shiftTradesSubEvents = function(){
 				swap.push(item);
 			});
 			$('#rq_st_swap').html($.tmpl($('#te_rq_swap_single'),swap));
-			console.log(swap);
-			
 		}else{
 			$('#rq_st_swap').hide();
 			$('#rq_st_swap_empty').show();
@@ -928,8 +924,7 @@ ShiftPlanningRequests.prototype.displayShiftTradeManagerIM = function(){
 }
 
 ShiftPlanningRequests.prototype.shiftSwapRequestSubEvents = function(){
-	console.log(this.current);
-	$('#rq_st_sh_swap').html($.tmpl($('#te_rq_st_swap_single'),this.current));
+    $('#rq_st_sh_swap').html($.tmpl($('#te_rq_st_swap_single'),this.current));
 }
 
 ShiftPlanningRequests.prototype.displayShiftTradeManagerAP = function(){
@@ -946,7 +941,6 @@ ShiftPlanningRequests.prototype.displayShiftTradeManagerAP = function(){
 }
 
 ShiftPlanningRequests.prototype.displayOpenShifts = function(){
-    console.log(this.current);
     $('#rq_os_os_s').html($.tmpl($('#te_rq_os_os_s'), this.current));
     
     var h = '';
