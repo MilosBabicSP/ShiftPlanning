@@ -1,6 +1,6 @@
 <div class="main scheduledHours" id="re_sh">
     <div class="title">
-        <span class="fr"><a href="#" class="advancedButton"><?=_s('Advanced')?></a></span>
+        <span class="fr"><a href="#" class="advancedButton greenB"><?=_s('Advanced')?></a></span>
         <div class="fl">
             <span><?=_s('Payroll - Scheduled Hours')?></span>
             <time class="from"></time> - <time class="to"></time>

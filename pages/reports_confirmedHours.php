@@ -1,6 +1,6 @@
 <div class="main confirmedHours" id="re_ch">
     <div class="title">
-        <span class="fr"><a href="#" class="advancedButton"><?php echo _s('Advanced');?></a></span>
+        <span class="fr"><a href="#" class="advancedButton greenB"><?php echo _s('Advanced');?></a></span>
         <div class="fl">
             <span><?=_s('Payroll - Confirmed Hours')?></span>
             <time class="from"></time> - <time class="to"></time>
