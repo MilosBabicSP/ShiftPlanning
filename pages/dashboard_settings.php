@@ -120,9 +120,11 @@
     </div>
     <div>
         <ul class="detailsGrid aPerm">
-            <ul id="da_se_ov_cu">
+            <li>
+                <ul id="da_se_ov_cu">
 
-            </ul>
+                </ul>
+            </li>
         </ul><!-- end of da_se_ov_cu -->
     </div>
     <div class="title aPerm">
