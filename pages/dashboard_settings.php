@@ -335,21 +335,27 @@
     <div class="title aPerm">
         <h3 class="icoEmpPos"><?= _s('Employee Positions') ?></h3>
     </div>
-    <ul class="detailsGrid aPerm">
-        <ul id="da_se_ed_po" class="positions">    
+    <div>
+        <ul class="detailsGrid aPerm">
+            <li>
+                <ul id="da_se_ed_po" class="positions">    
 
+                </ul>
+            </li>
         </ul>
-    </ul>
+    </div>
     <div class="title aPerm">
         <h3 class="icoEmpSki"><?= _s('Employee Skills') ?></h3>
     </div>
-    <ul class="detailsGrid aPerm">
-        <li>
-            <ul id="da_se_ed_sk" class="skills">    
+    <div>
+        <ul class="detailsGrid aPerm">
+            <li>
+                <ul id="da_se_ed_sk" class="skills">    
 
-            </ul>
-        </li>
-    </ul>
+                </ul>
+            </li>
+        </ul>
+    </div>        
     <ul class="detailsGrid">
         <li>
             <label><?= _s('Notes') ?></label>
