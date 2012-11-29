@@ -140,13 +140,15 @@
     <div class="title aPerm">
         <h3 class="icoEmpSki"><?= _s('Employee Skills') ?></h3>
     </div>
-    <ul class="detailsGrid aPerm">
-        <li>
-            <ul id="da_se_ov_sk" class="skills">    
+    <div>
+        <ul class="detailsGrid aPerm">
+            <li>
+                <ul id="da_se_ov_sk" class="skills">    
 
-            </ul>
-        </li>
-    </ul>
+                </ul>
+            </li>
+        </ul>
+    </div>
     <ul class="detailsGrid">
         <li>
             <label><?= _s('Notes') ?></label>
