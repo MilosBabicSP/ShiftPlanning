@@ -904,14 +904,11 @@ ShiftPlanningRequests.prototype.addVacationRequest = function(obj){
 }
 
 ShiftPlanningRequests.prototype.displayVacationRequest = function(){
-    console.log(this.current);
     $('#rq_va_ma_s').html($.tmpl($('#te_rq_va_ma_s'), this.current));   
 }
 
 ShiftPlanningRequests.prototype.displayShiftTradeManager = function(){
-    
     $('#rq_st_mst_s').html($.tmpl($('#te_rq_st_mst_s'), this.prepareSingleViewTrade(this.current)));
-    console.log(this.current);
     $('#rq_st_mts_sub ul a').attr('rel', this.current.id);
     
     if (parseInt(this.current.confirm_before) == 0){
