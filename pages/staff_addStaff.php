@@ -52,12 +52,10 @@
             </div>
         </li>
     </ul>
+    <div class="title">
+        <h3 class="icoNot" ><?=_s('Notes')?></h3>
+    </div>
     <ul class="detailsGrid">
-        <li>
-            <div class="title">
-                <h3 class="icoNot" ><?=_s('Notes')?></h3>
-            </div>
-        </li>
         <li>
             <span class="input">
                 <textarea id="st_ae_i_no"><?=_s('Write Notes...')?></textarea>
