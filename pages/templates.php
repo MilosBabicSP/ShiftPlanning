@@ -991,11 +991,11 @@
     </script>
 	<script id="te_tr_sections" type="text/x-jquery-tmpl">
 		<li class="idle">
-					<div rel="${id}" onclick = "void(0)" id="tr_touch">
+                    <div rel="${id}" onclick = "void(0)" id="tr_touch">
 			<div class="oneLine" style="width:80%;overflow:hidden">
                             <b {{if notfinished_count > 0}}style="float:left"{{/if}} >${title}</b>{{if notfinished_count > 0}}<a style="padding-left:10px;"><img style="width:16px;height:16px;padding-bottom:5px;" src="<?php echo _fCdnPath_;?>images/req_1.png"></a> {{/if}}
 			</div>
-							</div>				
+                    </div>				
 		</li>
 	</script>
 	<script id="te_tr_statistic" type="text/x-jquery-tmpl">
