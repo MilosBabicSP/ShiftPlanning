@@ -564,7 +564,7 @@ if ($vtoken['data'] != '1') {
                             <a href="#" class="backMenu" subpage="shiftApprovals">
                                 <img width="16" height="16" src="<?php echo _fCdnPath_; ?>images/arrow_back.png">
                             </a>
-                            <ul class="subMenu">
+                            <ul class="subNav">
                                 <li class="single"><a href="#" class="icoReqWor"><span><?= _s('Save & Close') ?></span></a></li>
                             </ul>
                         </div>
