@@ -228,8 +228,8 @@ ShiftPlanning.prototype = {
     },
     countObject : function( obj ){
         var c = 0;
-        for ( var p in o ) {
-            if ( o.hasOwnProperty( p ) ) { c++; }
+        for ( var p in obj ) {
+            if ( obj.hasOwnProperty( p ) ) { c++; }
         }
         return c;
     }
