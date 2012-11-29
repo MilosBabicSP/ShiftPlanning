@@ -3,7 +3,7 @@
         <img width="16" height="16" src="<?php echo _fCdnPath_;?>images/ShowHideMenu.png" />
     </a>
     <div class="subWrapp" style="width:257px">
-        <ul class="subNav fl" page="staff">
+        <ul class="subNav fl" page="staff" style="right:75px;">
             <li class="first active">
                 <a href="#" subpage="list">
                     <img width="16" height="17" src="<?php echo _fCdnPath_;?>images/staff_1.png" />
