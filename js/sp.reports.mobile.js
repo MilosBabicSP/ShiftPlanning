@@ -96,7 +96,7 @@ ShiftPlanningReports.prototype.displayReports = function(){
         return false;
     }
     
-    this.globalLoader();
+    sp.globalLoader();
     
     var self = this;
     var page = this.page;
