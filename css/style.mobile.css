@@ -275,7 +275,7 @@ ul.acceptors li img {float:left; width:30px; height:30px;}
 ul.acceptors li span {display:block; margin:0 0 0 40px; line-height:15px;}
 
 ul.requests {overflow:hidden; font-size:14px;}
-ul.requests li {padding:10px 53px 10px 0; border-bottom:solid 1px #DBDBDB; position:relative;}
+ul.requests li {padding:10px 20px 10px 20px; border-bottom:solid 1px #DBDBDB; position:relative;}
 ul.requests li span {display:block; font-weight:bold; line-height:20px;}
 ul.requests li a {position:absolute; top:50%; right:0; margin:-15px 0 0;}
 
