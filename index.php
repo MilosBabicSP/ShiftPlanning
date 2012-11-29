@@ -568,7 +568,7 @@ if ($vtoken['data'] != '1') {
                                 <li class="single"><a href="#" class="icoReqWor"><span><?= _s('Save & Close') ?></span></a></li>
                             </ul>
                         </div>
-<?php Functions::getInstance()->loadFile('requests_overview'); ?>
+                        <?php Functions::getInstance()->loadFile('requests_overview'); ?>
                         <?php Functions::getInstance()->loadFile('requests_available'); ?>
                         <?php Functions::getInstance()->loadFile('requests_tradePage'); ?>
                         <?php Functions::getInstance()->loadFile('requests_vacation'); ?>
