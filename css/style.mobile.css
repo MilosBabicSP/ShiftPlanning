@@ -353,7 +353,7 @@ ul.training_sections li.unread {background-color:#FFC;}
 
 .training_module li{list-style: none;}
 
-.wys {padding:10px 0 0;}
+.wys {padding:0px 20px;}
 .wys img {max-width:280px;}
 .wys .codebox {background-color:#CCDEE3; border:1px solid #62A3BA; cursor:text; margin:5px 0; padding:10px 20px;}
 .wys blockquote {background-color:#FCFDE2; border:1px solid #E9E3AC; font-style:italic; margin:5px 0; padding:10px 20px;}
