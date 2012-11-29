@@ -118,15 +118,13 @@
     <div class="title aPerm"><!-- begin of da_se_ov_cu -->
         <h3 class="icoCusFie"><?= _s('Custom Fields') ?></h3>
     </div>
-    <div>
-        <ul class="detailsGrid aPerm">
-            <li>
-                <ul id="da_se_ov_cu">
+    <ul class="detailsGrid aPerm">
+        <li>
+            <ul id="da_se_ov_cu">
 
-                </ul>
-            </li>
-        </ul><!-- end of da_se_ov_cu -->
-    </div>
+            </ul>
+        </li>
+    </ul><!-- end of da_se_ov_cu -->
     <div class="title aPerm">
         <h3 class="icoEmpPos"><?= _s('Employee Positions') ?></h3>
     </div>
