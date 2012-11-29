@@ -144,7 +144,7 @@ ShiftPlanningRequests.prototype.availableEvents = function() {
         e.preventDefault();
         self.current = self.available.pickup[$(this).attr('rel')];
         console.log(self.current);
-        sp.loadSubPage('', 'requests', 'openShiftsRequest');
+        sp.loadSubPage('', 'requests', 'openShiftsOpen');
     });
 
     /*shift swap*/
