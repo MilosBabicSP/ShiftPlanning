@@ -1003,6 +1003,9 @@ ShiftPlanningRequests.prototype.displayOpenShifts = function(){
 }
 
 ShiftPlanningRequests.prototype.displayOpenRequests = function(){
+    if (typeof this.current.full == 'undefined'){
+        this.current.full = this.current;
+    }
     $('#rq_os_spr_s').html($.tmpl($('#te_rq_os_spr_s'), this.current));
     
     $('#rq_os_spr_sub a').attr('rel',this.current.full.request_id);
