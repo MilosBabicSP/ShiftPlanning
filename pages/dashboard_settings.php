@@ -3,7 +3,7 @@
     <a class="backMenu" href="#">
         <img width="16" height="16" src="<?php echo _fCdnPath_; ?>images/arrow_back.png">
     </a>    
-    <ul style="width:270px" class="filters subNav">
+    <ul class="filters subNav">
         <li class="first active">
             <a href="#" subpage="overview">
                 <img width="16" height="17" src="<?php echo _fCdnPath_; ?>images/sett_1.png">
