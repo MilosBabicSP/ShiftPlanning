@@ -635,7 +635,7 @@ ShiftPlanningDashboard.prototype.dashboardSubEvents = function() {
         
         console.log( typeof response[4].data.length == 'undefined');
         
-        $('#da_widgets .tradePage .icon b').html((response[1].data.length + response[2].data.length + response[4].data.length));
+        $('#da_widgets .tradePage .icon b').html((sp.countResponse(response[1].data) + sp.countResponse(response[2].data) + sp.countResponse(response[4].data)));
         
         var br = 0;
         $.each(response[3].data, function(i, item) {

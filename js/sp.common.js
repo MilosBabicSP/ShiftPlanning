@@ -232,6 +232,13 @@ ShiftPlanning.prototype = {
             if ( obj.hasOwnProperty( p ) ) { c++; }
         }
         return c;
+    },
+    countResponse : function( res ) {
+        if (typeof res.length == 'undefined'){
+            return this.countObject( res );
+        } else {
+            return res.length;
+        }
     }
 }
 
