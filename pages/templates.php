@@ -32,14 +32,16 @@
                         <p>${shift_start_date.formatted}</p>
                         <p>${shift_start_date.time} - ${shift_end_date.time}</p> 
                     </span>
+                    <b>${name}</b><br/>
+                    <p>${user_name} &nbsp;</p>
                 {{else}}
                     <span class="fr">
                         <p>${start_date.formatted}</p>
                         <p>${start_time.time} - ${end_time.time}</p> 
                     </span>
+                    <b>${schedule_name}</b><br/>
+                    <p>${title} &nbsp;</p>
                 {{/if}}
-                <b>${schedule_name}</b><br/>
-                <p>${title} &nbsp;</p>
             </a>
         </li>
     </script>
