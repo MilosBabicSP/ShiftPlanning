@@ -219,7 +219,7 @@ ShiftPlanningSettings.prototype.prefillOverview = function(employee){
     $('#da_se_ov_un').html(employee.username);
     $('#da_se_ov_mo').html(employee.cell_phone);
     $('#da_se_ov_ho').html(employee.home_phone);
-	$('#da_se_ov_em').html(employee.email);
+    $('#da_se_ov_em').html(employee.email);
     if ($.trim(employee.wage).length != 0){
 	$('#da_se_ov_wa').html(spView.fixCurrency(sp.staff.admin.settings.currency, true) + employee.wage);
     }
