@@ -632,9 +632,7 @@ ShiftPlanningDashboard.prototype.dashboardSubEvents = function() {
         } else {
             $('#da_widgets .timeClock.out').show();
         }
-        
-        console.log( typeof response[4].data.length == 'undefined');
-        
+
         $('#da_widgets .tradePage .icon b').html((sp.countResponse(response[1].data) + sp.countResponse(response[2].data) + sp.countResponse(response[4].data)));
         
         var br = 0;
