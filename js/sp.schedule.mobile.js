@@ -741,7 +741,7 @@ ShiftPlanningSchedule.prototype.addShiftSubEvents = function(){
         
         $.each(emp.staff, function(i, item){
             console.log(item);
-            if (item == null ){
+            if ( item == null || item.length == 0 ){
                 $('#sc_add_user div[type=' + i + ']').hide();
             } else {
                 $('#sc_add_user div[type=' + i + '] ul.detailsGrid li ul').html($.tmpl($('#te_sc_users'), self.prepareStaff(item)));
