@@ -104,7 +104,7 @@ ShiftPlanning.prototype.loadSubPage = function(obj, page, subpage) {
     }
     
     sp.fixCheckboxes();
-    //$(document).scrollTop(0);
+    $(document).scrollTop(0);
 }
 
 ShiftPlanning.prototype.initialize = function(){
@@ -233,7 +233,7 @@ ShiftPlanning.prototype.calculateWrapperHeight = function(){
 }
 
 ShiftPlanning.prototype.globalLoader = function(){
-    //$('.bigLoader').show();
+    $('.bigLoader').show();
 }
 
 ShiftPlanning.prototype.fixCheckboxes = function(){
