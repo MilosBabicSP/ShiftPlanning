@@ -239,6 +239,17 @@ ShiftPlanning.prototype = {
         } else {
             return res.length;
         }
+    },
+    objToArray : function( res ) {
+        if ( typeof res == 'object' ) {
+            var r = [];
+            $.each(res, function(i, item){
+                r.push(item);
+            })
+            res = r;
+        }
+        
+        return res;
     }
 }
 

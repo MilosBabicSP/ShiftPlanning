@@ -622,11 +622,11 @@ ShiftPlanningRequests.prototype.availableSubEvents = function() {
         self.available.swap = sp.map(response[2].data);
         self.available.trade = sp.map(response[1].data);
         $('#rq_av_pu .icon b').html( sp.countResponse( response[0].data ) );
-        $('#rq_av_pu_li').html($.tmpl($('#te_da_all_shiftV2'), response[0].data));
+        $('#rq_av_pu_li').html($.tmpl($('#te_da_all_shiftV2'), sp.objToArray(response[0].data)));
         $('#rq_av_sw .icon b').html( sp.countResponse( response[2].data ) );
-        $('#rq_av_sw_li').html($.tmpl($('#te_da_all_shiftV2'), response[2].data));
+        $('#rq_av_sw_li').html($.tmpl($('#te_da_all_shiftV2'), sp.objToArray(response[2].data)));
         $('#rq_av_tr .icon b').html( sp.countResponse( response[1].data ) );
-        $('#rq_av_tr_li').html($.tmpl($('#te_da_all_shiftV2'), response[1].data));
+        $('#rq_av_tr_li').html($.tmpl($('#te_da_all_shiftV2'), sp.objToArray(response[1].data)));
         $('.bigLoader').hide();
     });
 }
