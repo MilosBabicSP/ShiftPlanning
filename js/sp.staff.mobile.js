@@ -144,10 +144,10 @@ ShiftPlanningStaff.prototype.displayEmployee = function(id){
     $('#pages #settings .mainSub').hide();
     $('#pages #settings').show();
     $('#da_se_overview').show();
+    sp.settings.overviewSubEvents(spModel.staff.getEmployeeById(id));
     $('#settings .mainSub.settings .filters li:first a').trigger(clickEvent);
     $('.subNavigation').hide();	
     $('#pages #settings .mainSub.settings').show();
-    sp.settings.overviewSubEvents(spModel.staff.getEmployeeById(id));
 }
 
 
