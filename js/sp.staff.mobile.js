@@ -147,8 +147,8 @@ ShiftPlanningStaff.prototype.displayEmployee = function(id){
 //    $('#settings .mainSub.settings .filters li:first a').trigger(clickEvent);
 //    $('.subNavigation').hide();	
 //    $('#pages #settings .mainSub.settings').show();
-    sp.settings.overviewSubEvents(spModel.staff.getEmployeeById(id));
     sp.loadSubPage('', 'settings', 'overview');
+    sp.settings.overviewSubEvents(spModel.staff.getEmployeeById(id));
 }
 
 
