@@ -189,16 +189,16 @@ ShiftPlanningSettings.prototype.overviewSubEvents = function(employee){
     sp.fixCheckboxes();
 }
 ShiftPlanningSettings.prototype.editSubEvents = function(){
-	console.log('EDITsubevents');
+	//console.log('EDITsubevents');
 }
 ShiftPlanningSettings.prototype.upcomingShiftsSubEvents = function(){
-	console.log('Upcomingsubevents');
+	//console.log('Upcomingsubevents');
 }
 ShiftPlanningSettings.prototype.recentShiftsSubEvents = function(){
-	console.log('RECENTsubevents');
+	//console.log('RECENTsubevents');
 }
 ShiftPlanningSettings.prototype.passwordSubEvents = function(){
-	console.log('PASORDsubevents');
+	//console.log('PASORDsubevents');
 }
 ShiftPlanningSettings.prototype.prefillOverview = function(employee){
     var p = {};
