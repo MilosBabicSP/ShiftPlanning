@@ -740,7 +740,6 @@ ShiftPlanningSchedule.prototype.addShiftSubEvents = function(){
         delete emp.staff.scheduled;
         
         $.each(emp.staff, function(i, item){
-            console.log(item);
             if ( item == null || item.length == 0 ){
                 $('#sc_add_user div[type=' + i + ']').hide();
             } else {
