@@ -21,42 +21,44 @@
     <div class="title">
         <h3 class="icoDat"><?= _s('Date') ?></h3>
     </div>
-    <ul class="detailsGrid">
-        <li>
-            <ul>                
-                <li class="even">
-                    <div>
-                        <label><?= _s('Start Date') ?></label>
-                        <span class="input">
-                            <input type="text" id="sc_date_st" readonly="" class="scroller">
-                        </span>
-                    </div>
-                </li>
-                <li class="odd">
-                    <div>
-                        <label><?= _s('End Date') ?></label>
-                        <span class="input">
-                            <input type="text" id="sc_date_et" readonly="" class="scroller">
-                        </span>
-                    </div>
-                </li>
-                <li class="even">
-                    <div>
-                        <span class="input">
-                            <input type="text" id="sc_date_sd" readonly="" class="scroller">
-                        </span>
-                    </div>
-                </li>
-                <li class="odd">
-                    <div>
-                        <span class="input">
-                            <input type="text" id="sc_date_ed" readonly="" class="scroller">
-                        </span>
-                    </div>
-                </li>
-            </ul>
-        </li>
-    </ul>
+    <div>
+        <ul class="detailsGrid">
+            <li>
+                <ul>                
+                    <li class="even">
+                        <div>
+                            <label><?= _s('Start Date') ?></label>
+                            <span class="input">
+                                <input type="text" id="sc_date_st" readonly="" class="scroller">
+                            </span>
+                        </div>
+                    </li>
+                    <li class="odd">
+                        <div>
+                            <label><?= _s('End Date') ?></label>
+                            <span class="input">
+                                <input type="text" id="sc_date_et" readonly="" class="scroller">
+                            </span>
+                        </div>
+                    </li>
+                    <li class="even">
+                        <div>
+                            <span class="input">
+                                <input type="text" id="sc_date_sd" readonly="" class="scroller">
+                            </span>
+                        </div>
+                    </li>
+                    <li class="odd">
+                        <div>
+                            <span class="input">
+                                <input type="text" id="sc_date_ed" readonly="" class="scroller">
+                            </span>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
     <div class="title">
         <h3 class="icoLoc"><?= _s('Work Sites') ?></h3>
     </div>
