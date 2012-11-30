@@ -418,6 +418,7 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
     });
     
     $('#sc_refresh').bind(clickEvent, function(e){
+        $(this).parent().removeClass('active');
         e.preventDefault();
         self.displayShifts();
     });
