@@ -607,7 +607,7 @@ ShiftPlanningRequests.prototype.vacationSubEvents = function(){
 }
 
 ShiftPlanningRequests.prototype.availableSubEvents = function() {
-    //$('.bigLoader').show();
+    $('.bigLoader').show();
     $('#da_widgets .timeClock.out, #da_widgets .timeClock.in').hide();
     var calls = [
         ['schedule.shifts','GET', {
