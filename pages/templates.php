@@ -27,10 +27,17 @@
     <script id="te_da_all_shiftV2" type="text/x-jquery-tmpl">
         <li class="upcoming" style="border-color:#${sp.schedule.getColorsBySchedule(schedule, 1)}">
             <a href="#" rel="${id}">
-                <span class="fr">
-                    <p>${start_date.formatted}</p>
-                    <p>${start_time.time} - ${end_time.time}</p> 
-                </span>
+                {{if typeof shift_start_date != 'undefined'}}
+                    <span class="fr">
+                        <p>${shift_start_date.formatted}</p>
+                        <p>${shift_start_date.time} - ${shift_end_date.time}</p> 
+                    </span>
+                {{else}}
+                    <span class="fr">
+                        <p>${start_date.formatted}</p>
+                        <p>${start_time.time} - ${end_time.time}</p> 
+                    </span>
+                {{/if}}
                 <b>${schedule_name}</b><br/>
                 <p>${title} &nbsp;</p>
             </a>
