@@ -124,7 +124,7 @@ ShiftPlanningSettings.prototype.overviewEvents = function(){
 		sp.loadPage('staff');
 		$('.subNavigation').show()
 	});	
-	$('#settings .mainSub.settings .filters').delegate('a', clickEvent, function(e){
+	$('#settings .mainSub.settings .subNav').delegate('a', clickEvent, function(e){
 		e.preventDefault();
 		var subpage = $(this).attr('subpage');
 		var id = $('#da_se_cur_us_id').val();
@@ -133,8 +133,8 @@ ShiftPlanningSettings.prototype.overviewEvents = function(){
 		}else{
 			self.loadSubPageEvents(subpage);			
 		}
-		$('#settings .mainSub.settings .filters li').removeClass('active');
-		$('#settings .mainSub.settings .filters a[subpage='+subpage+']').parent().addClass('active');
+		$('#settings .mainSub.settings .subNav li').removeClass('active');
+		$('#settings .mainSub.settings .subNav a[subpage='+subpage+']').parent().addClass('active');
 		$('#settings .main').hide();
 		$('#settings .main.'+subpage).show();
 		$('#settings .mainSub.settings').show();
@@ -150,15 +150,15 @@ ShiftPlanningSettings.prototype.overviewSubEvents = function(employee){
     if (employee.id == sp.staff.admin.info.id){
 	$('#settings .search').show();
 	if (!sp.permissions.hasPermission('edit_profile')){
-	    $('#settings .filters a[subpage=edit]').hide();
+	    $('#settings .subNav a[subpage=edit]').hide();
 	} else {
-	    $('#settings .filters a[subpage=edit]').show();
+	    $('#settings .subNav a[subpage=edit]').show();
 	}
     } else {
 	if (sp.staff.admin.info.group > 4){
 	    $('#settings .search').hide();
 	} else {
-	    $('#settings .filters a[subpage=edit]').show();
+	    $('#settings .subNav a[subpage=edit]').show();
 	    $('#settings .search').show();
 	}
     }
