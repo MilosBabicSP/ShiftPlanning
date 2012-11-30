@@ -633,7 +633,7 @@ ShiftPlanningDashboard.prototype.dashboardSubEvents = function() {
             $('#da_widgets .timeClock.out').show();
         }
         
-        console.log( typeof response[4].data.length );
+        console.log( typeof response[4].data.length == 'undefined');
         
         $('#da_widgets .tradePage .icon b').html((response[1].data.length + response[2].data.length + response[4].data.length));
         
