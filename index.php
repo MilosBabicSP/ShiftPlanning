@@ -338,17 +338,17 @@ if ($vtoken['data'] != '1') {
                             <ul class="subNav" id="tc_dtc_buttons">
                                 <li class="first">
                                     <a href="#" class="approve" id="tc_dtc_ap">
-                                        <img width="16" height="16" src="<?php echo _fCdnPath_; ?>images/tc_approve.png">
+                                        <img width="16" height="16" src="<?php echo _fCdnPath_; ?>images/approve.png">
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#" class="edit">
-                                        <img width="16" height="16" src="<?php echo _fCdnPath_; ?>images/tc_edit.png">
+                                        <img width="16" height="16" src="<?php echo _fCdnPath_; ?>images/sett_2.png.png">
                                     </a>
                                 </li>
                                 <li class="last">
                                     <a href="#" class="delete">
-                                        <img width="16" height="16" src="<?php echo _fCdnPath_; ?>images/tc_delete.png">
+                                        <img width="16" height="16" src="<?php echo _fCdnPath_; ?>images/del.png">
                                     </a>
                                 </li>
                             </ul>
