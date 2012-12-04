@@ -291,7 +291,7 @@ if ($vtoken['data'] != '1') {
             <div id="wrapper" class="wrapper">
                 <div class="blackMask"></div>
                 <div class="subNavigation">
-<?php Functions::getInstance()->loadFile('menus/dashboard') ?>
+                    <?php Functions::getInstance()->loadFile('menus/dashboard') ?>
                     <?php Functions::getInstance()->loadFile('menus/timeclock') ?>
                     <?php Functions::getInstance()->loadFile('menus/schedule') ?>
                     <?php Functions::getInstance()->loadFile('menus/requests') ?>
@@ -317,7 +317,7 @@ if ($vtoken['data'] != '1') {
                                 <img width="16" height="16" src="<?php echo _fCdnPath_; ?>images/arrow_back.png">
                             </a>
                         </div>
-<?php Functions::getInstance()->loadFile('dashboard_widgets'); ?>
+                        <?php Functions::getInstance()->loadFile('dashboard_widgets'); ?>
                         <?php Functions::getInstance()->loadFile('dashboard_wall') ?>
                         <?php Functions::getInstance()->loadFile('dashboard_upcomingShifts'); ?>
                         <?php Functions::getInstance()->loadFile('dashboard_files'); ?>
@@ -328,7 +328,7 @@ if ($vtoken['data'] != '1') {
                         </div>
                     </div>
                     <div class="settings" id="settings">
-<?php Functions::getInstance()->loadFile('dashboard_settings'); ?>
+                        <?php Functions::getInstance()->loadFile('dashboard_settings'); ?>
                     </div>
                     <div class="timeClock" id="timeClock">
                         <div class="subLevel mainSub displayTimeClock">
@@ -353,7 +353,7 @@ if ($vtoken['data'] != '1') {
                                 </li>
                             </ul>
                         </div>
-<?php Functions::getInstance()->loadFile('timeClock_overview'); ?>
+                        <?php Functions::getInstance()->loadFile('timeClock_overview'); ?>
                         <?php Functions::getInstance()->loadFile('timeClock_addClockTime'); ?>
                         <?php Functions::getInstance()->loadFile('timeClock_manageTimeSheets'); ?>
                         <?php Functions::getInstance()->loadFile('timeClock_displayTimeSheets'); ?>
