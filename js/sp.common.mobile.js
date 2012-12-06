@@ -9,7 +9,7 @@ var ua = navigator.userAgent.toLowerCase();
 var isAndroid = ua.indexOf("android") > -1; //&& ua.indexOf("mobile");
 
 if (agentID) {
-    clickEvent = 'touch';
+    clickEvent = 'click';
 }
 
 jQuery.event.special.touch = {
@@ -181,7 +181,6 @@ ShiftPlanning.prototype.initialize = function(){
         $('#menu .mainNav > li > a').bind(clickEvent, function(e){
             if ($(this).hasClass('exit')) return true;
             e.preventDefault();
-            e.stopPropagation();
             if ($(this).attr('page') == sp.hash()){
                 return false;
             }
