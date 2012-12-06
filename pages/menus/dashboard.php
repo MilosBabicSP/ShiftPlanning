@@ -21,7 +21,7 @@
             </li>
             <li id="da_up_fi_hide">
                 <a href="#" subpage="files">
-                    <img width="16" height="17" src="<?php echo _fCdnPath_;?>images/uploaded-files.png" />
+                    <img width="16" height="17" src="<?php echo _fCdnPath_;?>images/files-download.png" />
                 </a>
             </li>
             <li class="hidden">
