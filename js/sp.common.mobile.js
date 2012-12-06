@@ -57,6 +57,7 @@ jQuery.event.special.touch = {
 }
 
 ShiftPlanning.prototype.toggleMenu = function(){
+    console.log('test');
     $('#menu').toggleClass('hidden');
     $('#wrapper').toggleClass('extended');
 }
