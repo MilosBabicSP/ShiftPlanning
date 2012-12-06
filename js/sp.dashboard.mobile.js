@@ -513,7 +513,7 @@ ShiftPlanningDashboard.prototype.filesSubEvents = function(){
 		});
 		$('#da_fi_list').html($.tmpl($('#te_da_fi_list'),response.data));
 		
-		$('#da_fi_list li div:even').addClass('regular');
+		$('#da_fi_list li:even').addClass('regular');
 	});
 }
 
