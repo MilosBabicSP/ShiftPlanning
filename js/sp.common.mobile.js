@@ -153,12 +153,13 @@ ShiftPlanning.prototype.initialize = function(){
     $(document).ready(function(){
         console.log('test');
         init();
-
-//        $('.toggleMenu').bind(clickEvent, function(e){
-//            console.log($(this));
-//            e.preventDefault();
-//            self.toggleMenu();
-//        });
+        $('.toggleMenu').bind(clickEvent, function(e){
+            console.log($(this));
+            e.preventDefault();
+            self.toggleMenu();
+        });
+        
+        
         if(user.loggedIn){
             $('.loginContainer').hide();
             $('body').removeClass('login');
