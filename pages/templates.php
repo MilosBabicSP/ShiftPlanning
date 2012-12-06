@@ -1303,9 +1303,9 @@
     </script>
 	<script id="te_da_fi_list" type="text/x-jquery-tmpl">
 		<li>
-			<div class="title1 wide ${extraclass}" onclick="void(0)" >
-				<a target="_blank" rel="${id}"> ${filename}</a> (${file_size})
-			</div>
+                    <div class="title1 wide ${extraclass}" onclick="void(0)" >
+                            <a target="_blank" rel="${id}" href="api.php?module=admin.file&method=get&content=1&id=${id}"> ${filename}</a> (${file_size})
+                    </div>
 		</li>
 	</script>
     <script id="te_da_wa_in" type="text/x-jquery-tmpl">

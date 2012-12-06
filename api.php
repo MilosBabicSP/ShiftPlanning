@@ -78,7 +78,7 @@ function _iapi($request_vars, $output='json', $dataOnly = false, $multi = false)
     }
 }
 
-if($_POST['module'] && $_POST['module'] != 'admin.file'){
+if($_POST['module']){
     # SPILL JSON FROM API
     header('Content-type: application/json');
     echo _iapi($_POST);
@@ -86,9 +86,9 @@ if($_POST['module'] && $_POST['module'] != 'admin.file'){
     # SPILL JSON FROM API
     header('Content-type: application/json');
     echo _iapi($_POST,'json',false,true);
-} else if($_POST['module'] == 'admin.file'){
-	if($_POST['content']=='1'){
-		$data = json_decode(_iapi($_POST),true);
+} else if(!empty($_GET) && $_GET['module'] == 'admin.file'){
+	if($_GET['content']=='1'){
+		$data = json_decode(_iapi($_GET),true);
 		$return = base64_decode($data['data']['content']);
 		if(!$return){
 			echo 'failed to retrieve content ';
@@ -107,6 +107,6 @@ if($_POST['module'] && $_POST['module'] != 'admin.file'){
 		echo $return;
 	}else{
 		header('Content-type: application/json');
-		echo _iapi($_POST);	
+		echo _iapi($_GET);	
 	}
 }

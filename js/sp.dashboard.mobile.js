@@ -199,11 +199,7 @@ ShiftPlanningDashboard.prototype.wallEvents = function(){
 }
 
 ShiftPlanningDashboard.prototype.filesEvents = function(){
-    $('#da_fi_list').delegate('li div',clickEvent,function(){
-        var id = $(this).find('a').attr('rel');
-        $('#da_fi_form input[name=id]').val(id);
-        $('#da_fi_form').submit();
-    });
+
 }
 
 ShiftPlanningDashboard.prototype.upcomingShiftsEvents = function(){
