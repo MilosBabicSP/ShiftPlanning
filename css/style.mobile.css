@@ -438,3 +438,4 @@ a.grey {display:block; color:#FFF; line-height:30px; text-align:center; backgrou
 #da_fi_list li {padding:0px 20px;border-bottom: 1px solid #DBDBDB;}
 
 #da_fi_list li .title1 {border:none;}
+#da_fi_list li.regular {background-color:#F5F5F5;}
