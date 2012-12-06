@@ -152,6 +152,7 @@ ShiftPlanning.prototype.initialize = function(){
     });  
     $(document).ready(function(){
         init();
+        console.log('test');
         $('.toggleMenu').bind(clickEvent, function(e){
             console.log($(this));
             e.preventDefault();
