@@ -47,7 +47,7 @@ ShiftPlanningDashboard.prototype.loadSubPageEvents = function(subpage){
 ShiftPlanningDashboard.prototype.dashboardEvents = function(){
     $('#da_widgets .timeClock a').bind(clickEvent, function(e){
         e.preventDefault();
-        sp.hash('timeClock');
+        sp.loadSubPage('', 'timeClock', 'overview');
     });
     
     $('#da_widgets .tradePage').bind(clickEvent, function(e){
