@@ -220,20 +220,8 @@ ShiftPlanning.prototype.initialize = function(){
     });
 }
 
-ShiftPlanning.prototype.calculateWrapperHeight = function(){
-    var wrapperHeight = $('#wrapper').height();
-    var documentHeight = $(document).height();
-    var windowHeight = $(window).height();
-    
-    if (wrapperHeight < documentHeight) {
-        wrapperHeight = documentHeight;
-    }
-    
-    if (wrapperHeight < windowHeight) {
-        wrapperHeight = windowHeight;
-    }
-    
-    return wrapperHeight;
+ShiftPlanning.prototype.calculateWrapperHeight = function(){ 
+    var wrapperHeight = $('#pages').height() + $('.subNavigation').height() + 20; return wrapperHeight; 
 }
 
 ShiftPlanning.prototype.globalLoader = function(){
