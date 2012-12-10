@@ -182,6 +182,7 @@ ShiftPlanning.prototype.initialize = function(){
             if ($(this).hasClass('exit')) return true;
             e.preventDefault();
             if ($(this).attr('page') == sp.hash()){
+                self.toggleMenu();
                 return false;
             }
             self.toggleMenu();
