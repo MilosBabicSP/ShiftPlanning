@@ -463,6 +463,7 @@ ShiftPlanningView.prototype.bbc2HTML = function(S) {
     };		
     B['\\[/list]'] = '</ul>';
     B['\\[\\*]'] = '<li>';
+	B['\\[/\\*]'] = '</li>';
     B['\\[quote(?:=([^\\]]+))?]'] = function($0, $1) {
         return '<div class="bb-quote">'+ ($1 ? $1 +' wrote' : 'Quote') +':<blockquote>'
     };		
