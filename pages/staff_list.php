@@ -1,5 +1,5 @@
 <div class="main list" id="st_li">
-    <div class="title">
+    <div class="staffMenu">
         <div class="middle">
             <?= _s('Grid View');?>
         </div>
