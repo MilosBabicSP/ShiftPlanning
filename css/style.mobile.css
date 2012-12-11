@@ -441,5 +441,5 @@ a.grey {display:block; color:#FFF; line-height:30px; text-align:center; backgrou
 #da_fi_list li.regular {background-color:#F5F5F5;}
 
 .staffMenu {background: url("../images/shadow.png") repeat-x scroll 0 100% transparent; overflow: hidden;}
-.middle {float:left; width:50%;text-align: center;margin-bottom:5px;}
+.middle {float:left; width:50%;text-align: center;margin-bottom:5px; line-height: 50px;}
 .middle.active {border-bottom: 3px solid #C52424;}
