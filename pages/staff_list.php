@@ -1,9 +1,9 @@
 <div class="main list" id="st_li">
     <div class="title">
-        <div class="middle">
+        <div class="middle fl">
             <?= _s('Grid View');?>
         </div>
-        <div class="middle">
+        <div class="middle fr">
             <?= _s('List View');?>
         </div>
     </div>
