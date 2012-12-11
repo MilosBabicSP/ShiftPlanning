@@ -1,6 +1,6 @@
 <div class="main list" id="st_li">
     <div class="staffMenu">
-        <div class="middle active">
+        <div class="middle active" style="border-right:1px solid #DBDBDB;">
             <?= _s('Grid View');?>
         </div>
         <div class="middle">
