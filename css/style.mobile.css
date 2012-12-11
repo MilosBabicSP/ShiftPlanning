@@ -440,6 +440,5 @@ a.grey {display:block; color:#FFF; line-height:30px; text-align:center; backgrou
 #da_fi_list li .title1 {border:none;}
 #da_fi_list li.regular {background-color:#F5F5F5;}
 
-.middle {display:inline-block; width:50%;}
-
 .staffMenu {background: url("../images/shadow.png") repeat-x scroll 0 100% transparent;}
+.middle {float:left; width:50%;}
