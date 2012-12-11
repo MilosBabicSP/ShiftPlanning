@@ -442,3 +442,5 @@ a.grey {display:block; color:#FFF; line-height:30px; text-align:center; backgrou
 
 .staffMenu {background: url("../images/shadow.png") repeat-x scroll 0 100% transparent;}
 .middle {float:left; width:50%;text-align: center;}
+
+.middle.active {border-bottom: 3px solid #C52424;}
