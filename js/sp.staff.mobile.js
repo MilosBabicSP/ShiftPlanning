@@ -27,17 +27,21 @@ ShiftPlanningStaff.prototype.loadSubPageEvents = function(subpage){
 
 ShiftPlanningStaff.prototype.listEvents = function(){
     var self = this;
-    $('#st_sn_ga').bind(clickEvent, function(e){
-        e.preventDefault();
-        $(this).parents('ul').find('li').removeClass('active');
-        $(this).parent().addClass('active');
+    $('#st_sn_ga').bind(clickEvent, function(){
+        if ($(this).hasClass('active')){
+            return false;
+        }
+        $('#st_sn_ga').addClass('active');
+        $('#st_sn_li').removeClass('active');
         $('#st_li_ga').removeClass('small').addClass('big');
     });
     
     $('#st_sn_li').bind(clickEvent, function(e){
-        e.preventDefault();
-        $(this).parents('ul').find('li').removeClass('active');
-        $(this).parent().addClass('active');
+        if ($(this).hasClass('active')){
+            return false;
+        }
+        $('#st_sn_li').addClass('active');
+        $('#st_sn_ga').removeClass('active');
         $('#st_li_ga').removeClass('big').addClass('small');
     });
     
