@@ -20,18 +20,5 @@
                 </a>
             </li>
         </ul>
-        <!-- staff filters -->
-        <ul class="subNav fr notMain"  page="staff" id="st_tp_menu" style="right:112px;">
-            <li class="first active">
-                <a href="#" id="st_sn_ga">
-                    <img width="16" height="17" src="<?php echo _fCdnPath_;?>images/filterS.png" />
-                </a>
-            </li>
-            <li class="last">
-                <a href="#" id="st_sn_li">
-                    <img width="16" height="17" src="<?php echo _fCdnPath_;?>images/filterL.png" />
-                </a>
-            </li>
-        </ul>
     </div>
 </div>

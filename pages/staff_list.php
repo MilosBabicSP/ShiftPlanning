@@ -1,9 +1,9 @@
 <div class="main list" id="st_li">
-    <div class="staffMenu">
-        <div class="middle left">
+    <div class="staffMenu" id="st_tp_menu">
+        <div class="middle left" id="st_sn_ga">
             <?= _s('Grid View');?>
         </div>
-        <div class="middle right">
+        <div class="middle right" id="st_sn_li">
             <?= _s('List View');?>
         </div>
     </div>
