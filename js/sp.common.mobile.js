@@ -222,6 +222,16 @@ ShiftPlanning.prototype.initialize = function(){
                 $('#wrapper').removeClass('extended');
             }
         });
+        //dragstart drag dragend
+        $('.wrapper').bind('dragstart', function(e){
+            console.log(e);
+        });
+        $('.wrapper').bind('drag', function(e){
+            console.log(e);
+        });
+        $('.wrapper').bind('dragend', function(e){
+            console.log(e);
+        });
     });
     
     $(window).bind('resize', function(){
