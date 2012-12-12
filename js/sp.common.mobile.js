@@ -232,11 +232,11 @@ ShiftPlanning.prototype.initialize = function(){
         //dragstart drag dragend
         var start = false;
         var side = '';
-        $('.applicationContainer').bind('dragstart', function(e){
+        $('.wrapper, .blackMask').bind('dragstart', function(e){
             
         });
         
-        $('.applicationContainer').bind('drag', function(e){
+        $('.wrapper, .blackMask').bind('drag', function(e){
             if (e.distanceX <= 0){
                 e.distanceX = 0;
             }
@@ -253,8 +253,7 @@ ShiftPlanning.prototype.initialize = function(){
         });
         
         
-        $('.applicationContainer').bind('dragend', function(e){
-            console.log(e);
+        $('.wrapper, .blackMask').bind('dragend', function(e){
             start = false;
             var len = parseInt($('#wrapper').css('margin-left'));
             if ( len > 90 ) {
