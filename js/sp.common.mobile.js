@@ -258,7 +258,7 @@ ShiftPlanning.prototype.initialize = function(){
             if (!start){
                 return false;
             }
-            e.distance = 190 - parseInt(e.distance)
+            e.distance = 190 - Math.abs(parseInt(e.distance));
             if (e.distanceX <= 0){
                 e.distanceX = 0;
             }
