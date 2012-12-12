@@ -276,7 +276,7 @@ ShiftPlanning.prototype.initialize = function(){
         $('.wrapper, .blackMask').bind('dragend', function(e){
             start = false;
             var len = parseInt($('#wrapper').css('margin-left'));
-            console.log(len);
+            console.log(len, 'end');
             if ( len > 90 ) {
                 $('#menu').removeClass('hidden');
                 $('#wrapper').addClass('extended');
