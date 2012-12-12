@@ -214,7 +214,13 @@ ShiftPlanning.prototype.initialize = function(){
         }
         
         $('.wrapper').bind('swipe', function(e) {
-            console.log(e);
+            if (e.direction == 'right') {
+                $('#menu').removeClass('hidden');
+                $('#wrapper').addClass('extended');
+            } else {
+                $('#menu').addClass('hidden');
+                $('#wrapper').removeClass('extended');
+            }
         });
     });
     
@@ -224,7 +230,7 @@ ShiftPlanning.prototype.initialize = function(){
     });
 }
 
-ShiftPlanning.prototype.calculateWrapperHeight = function(){ 
+ShiftPlanning.prototype.calculateWrapperHeight = function(){
     var wrapperHeight = $('#pages').height() + $('.subNavigation').height() + 20; return wrapperHeight; 
 }
 
