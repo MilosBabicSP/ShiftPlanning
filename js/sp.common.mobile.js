@@ -241,6 +241,10 @@ ShiftPlanning.prototype.initialize = function(){
         });
         $('.wrapper').bind('dragend', function(e){
             start = false;
+            var len = parseInt($('#wrapper').css('margin-left'));
+            if ($('#wrapper').css('margin-left')) {
+                
+            }
             console.log(e);
         });
     });
