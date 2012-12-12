@@ -211,12 +211,6 @@ ShiftPlanning.prototype.initialize = function(){
             sp.loadSubPage('', 'dashboard', 'settings');
         });
         
-        $('#wrapper').bind(clickEvent, function(e){
-            if ($('#wrapper').hasClass('extended') && !$(e.target.parentElement).hasClass('toggleMenu')){
-                self.toggleMenu();
-            }
-        });
-        
         if (isAndroid){
             $('#da_up_fi_hide').hide();
         }
