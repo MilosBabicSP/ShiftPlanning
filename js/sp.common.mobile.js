@@ -252,7 +252,7 @@ ShiftPlanning.prototype.initialize = function(){
         });
         
         $('.blackMask').bind('drag', function(e) {
-            if (parseInt(e.distanceX) > 50 && e.direction == 'left'){
+            if (Math.abs(parseInt(e.distanceX)) > 50 && e.direction == 'left'){
                 start = true;
             }
             if (!start){
