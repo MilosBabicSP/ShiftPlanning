@@ -280,6 +280,7 @@ ShiftPlanning.prototype.initialize = function(){
             if ($(this).hasClass('blackMask') && element != 'blackMask'){
                 return false;
             }
+            console.log(this);
             start = false;
             var len = parseInt($('#wrapper').css('margin-left'));
             if ( len > 90 ) {
