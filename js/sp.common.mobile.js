@@ -249,10 +249,10 @@ ShiftPlanning.prototype.initialize = function(){
         $('.blackMask').bind('drag', function(e){
             e.distanceX = 190 - e.distanceX;
             if (e.distanceX <= 0){
-                e.distanceX = 190;
+                e.distanceX = 0;
             }
             if (e.distanceX >= 190){
-                e.distanceX = 0;
+                e.distanceX = 190;
             }
             if (parseInt(e.distanceX) > 50){
                 start = true;
