@@ -445,3 +445,5 @@ a.grey {display:block; color:#FFF; line-height:30px; text-align:center; backgrou
 .middle.active {border-bottom: 3px solid #C52424;padding-bottom:0px;}
 .middle.active.left {border-right:1px solid #DBDBDB;}
 .middle.active.right {border-left:1px solid #DBDBDB;}
+
+#st_tp_menu {background: url("../images/shadow.png") repeat-x scroll 0 100% transparent;}
