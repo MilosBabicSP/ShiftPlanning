@@ -258,28 +258,6 @@ ShiftPlanning.prototype.initialize = function(){
                 $('#menu').css('margin-left',(-190 + parseInt(e.distanceX)) );   
             }
         });
-//        
-//        $('.blackMask').bind('drag', function(e) {
-//            element = 'blackMask';
-//            if (Math.abs(parseInt(e.distanceX)) > 50 && e.direction == 'left'){
-//                start = true;
-//            }
-//            if (!start){
-//                return false;
-//            }
-//            e.distanceX = 190 + parseInt(e.distanceX);
-//            if (e.distanceX <= 0){
-//                e.distanceX = 0;
-//            }
-//            if (e.distanceX >= 190){
-//                e.distanceX = 190;
-//            }
-//            if (start) {
-//                $('#wrapper').css('margin-left', parseInt(e.distanceX));
-//                $('#menu').css('margin-left',(-190 + parseInt(e.distanceX)) );   
-//            }
-//        })
-        
         
         $('.wrapper').bind('dragend', function(e){
             start = false;
