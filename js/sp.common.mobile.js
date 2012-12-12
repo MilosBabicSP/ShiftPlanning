@@ -242,7 +242,6 @@ ShiftPlanning.prototype.initialize = function(){
                     start = true;
                 }
             }
-            console.log(e.direction);
             element = 'wrapper';
             if (!start){
                 return false;
