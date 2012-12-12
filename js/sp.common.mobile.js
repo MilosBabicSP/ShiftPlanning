@@ -232,6 +232,7 @@ ShiftPlanning.prototype.initialize = function(){
         var start = false;
         var element = 
         $('.wrapper').bind('drag', function(e){
+            console.log(e);
             element = 'wrapper';
             if (parseInt(e.distanceX) > 50){
                 start = true;
