@@ -231,8 +231,9 @@ ShiftPlanning.prototype.initialize = function(){
         });
         //dragstart drag dragend
         var start = false;
-        var side = '';
+        var element = 
         $('.wrapper').bind('drag', function(e){
+            element = 'wrapper';
             if (parseInt(e.distanceX) > 50){
                 start = true;
             }
@@ -252,6 +253,7 @@ ShiftPlanning.prototype.initialize = function(){
         });
         
         $('.blackMask').bind('drag', function(e) {
+            element = 'blackMask';
             if (Math.abs(parseInt(e.distanceX)) > 50 && e.direction == 'left'){
                 start = true;
             }
@@ -274,6 +276,12 @@ ShiftPlanning.prototype.initialize = function(){
         
         
         $('.wrapper, .blackMask').bind('dragend', function(e){
+            if ($(this).hasClass('wrapper') && element != 'wrapper'){
+                return false;
+            }
+            if ($(this).hasClass('blackMask') && element != 'blackMask'){
+                return false;
+            }
             start = false;
             var len = parseInt($('#wrapper').css('margin-left'));
             console.log(len, 'end', this);
