@@ -214,7 +214,7 @@ ShiftPlanning.prototype.initialize = function(){
         }
         
         $('.wrapper').bind('swipe', function(e) {
-            console.log('test');
+            console.log('test swipe');
             if (e.direction == 'right') {
                 $('#menu').removeClass('hidden');
                 $('#wrapper').addClass('extended');
