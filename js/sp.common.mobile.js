@@ -252,7 +252,6 @@ ShiftPlanning.prototype.initialize = function(){
         });
         
         $('.blackMask').bind('drag', function(e) {
-            console.log(e);
             if (parseInt(e.distanceX) > 50 && e.direction == 'left'){
                 start = true;
             }
