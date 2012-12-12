@@ -247,12 +247,12 @@ ShiftPlanning.prototype.initialize = function(){
             }
         });
         $('.blackMask').bind('drag', function(e){
-            console.log(e);
+            e.distanceX = 190 - e.distanceX;
             if (e.distanceX <= 0){
-                e.distanceX = 0;
+                e.distanceX = 190;
             }
             if (e.distanceX >= 190){
-                e.distanceX = 190;
+                e.distanceX = 0;
             }
             if (parseInt(e.distanceX) > 50){
                 start = true;
@@ -268,9 +268,6 @@ ShiftPlanning.prototype.initialize = function(){
             console.log(e);
             start = false;
             var len = parseInt($('#wrapper').css('margin-left'));
-            console.log(len);
-//            $('#menu').attr('style','');
-//            $('#wrapper').attr('style','');
             if ( len > 90 ) {
                 $('#menu').removeClass('hidden');
                 $('#wrapper').addClass('extended');
