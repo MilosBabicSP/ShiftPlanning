@@ -267,7 +267,6 @@ ShiftPlanning.prototype.initialize = function(){
                 e.distanceX = 190;
             }
             if (start) {
-                console.log(e.distanceX);
                 $('#wrapper').css('margin-left', parseInt(e.distanceX));
                 $('#menu').css('margin-left',(-190 + parseInt(e.distanceX)) );   
             }
