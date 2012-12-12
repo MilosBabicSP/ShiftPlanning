@@ -288,8 +288,8 @@ ShiftPlanning.prototype.initialize = function(){
                     $('#wrapper').removeClass('extended');
                     $('#wrapper').css('margin-left', 0);
                     $('#menu').css('margin-left', -190);
-                }                
-            }, 100);
+                }
+            }, 1000);
         });
     });
     
