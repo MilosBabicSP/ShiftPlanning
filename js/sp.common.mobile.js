@@ -214,7 +214,7 @@ ShiftPlanning.prototype.initialize = function(){
         }
         
         $('.wrapper').bind('swipe', function(e) {
-            alert(e);
+            console.log(e);
         });
     });
     
