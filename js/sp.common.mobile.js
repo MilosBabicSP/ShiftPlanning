@@ -212,6 +212,10 @@ ShiftPlanning.prototype.initialize = function(){
         if (isAndroid){
             $('#da_up_fi_hide').hide();
         }
+        
+        $('.wrapper').bind('swipe', function(e) {
+            alert(e);
+        });
     });
     
     $(window).bind('resize', function(){
