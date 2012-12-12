@@ -251,7 +251,6 @@ ShiftPlanning.prototype.initialize = function(){
                 $('#menu').addClass('hidden');
                 $('#wrapper').removeClass('extended');
             }
-            console.log(e);
         });
     });
     
