@@ -216,7 +216,6 @@ ShiftPlanning.prototype.initialize = function(){
         }
         
         $('.wrapper').bind('swipe', function(e) {
-            console.log('test swipe');
             if (e.direction == 'right') {
                 $('#menu').removeClass('hidden');
                 $('#wrapper').addClass('extended');
@@ -268,7 +267,6 @@ ShiftPlanning.prototype.initialize = function(){
                 e.distanceX = 190;
             }
             if (start) {
-                console.log(e.distanceX);
                 $('#wrapper').css('margin-left', parseInt(e.distanceX));
                 $('#menu').css('margin-left',(-190 + parseInt(e.distanceX)) );   
             }
@@ -284,7 +282,6 @@ ShiftPlanning.prototype.initialize = function(){
             }
             start = false;
             var len = parseInt($('#wrapper').css('margin-left'));
-            console.log(len, 'end', this);
             if ( len > 90 ) {
                 $('#menu').removeClass('hidden');
                 $('#wrapper').addClass('extended');
