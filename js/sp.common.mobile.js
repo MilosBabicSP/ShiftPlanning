@@ -242,6 +242,7 @@ ShiftPlanning.prototype.initialize = function(){
         $('.wrapper').bind('dragend', function(e){
             start = false;
             var len = parseInt($('#wrapper').css('margin-left'));
+            console.log(len);
             $('#menu').attr('style','');
             $('#wrapper').attr('style','');
             if (len > 80) {
