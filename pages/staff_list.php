@@ -1,12 +1,4 @@
 <div class="main list" id="st_li">
-    <div class="staffMenu" id="st_tp_menu">
-        <div class="middle left active">
-            <?= _s('Grid View');?>
-        </div>
-        <div class="middle right">
-            <?= _s('List View');?>
-        </div>
-    </div>
     <table width="100%" id="st_tp_menu">
         <tbody>
             <tr>
