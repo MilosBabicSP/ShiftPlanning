@@ -247,8 +247,8 @@ ShiftPlanning.prototype.initialize = function(){
 //            $('#wrapper').attr('style','');
             if (len > 80) {
                 console.log('test');
-                $('#menu').removeClass('hidden');
-                $('#wrapper').addClass('extended');
+                $('#menu').addClass('hidden');
+                $('#wrapper').removeClass('extended');
                 console.log($('#menu'));
             }
         });
