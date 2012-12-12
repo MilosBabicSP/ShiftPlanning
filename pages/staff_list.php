@@ -3,7 +3,7 @@
         <tbody>
             <tr>
                 <td id="st_sn_ga" class="active"><?= _s('Grid View');?></td>
-                <td style="border-right:1px solid #DBDBDB;width:0px;"></td>
+                <td style="background-color:#DBDBDB;; width:1px;"></td>
                 <td id="st_sn_li"><?= _s('List View');?></td>
             </tr>
         </tbody>
