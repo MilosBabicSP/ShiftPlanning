@@ -266,6 +266,7 @@ ShiftPlanning.prototype.initialize = function(){
                 e.distanceX = 190;
             }
             if (start) {
+                console.log(e);
                 $('#wrapper').css('margin-left', parseInt(e.distanceX));
                 $('#menu').css('margin-left',(-190 + parseInt(e.distanceX)) );   
             }
@@ -275,6 +276,7 @@ ShiftPlanning.prototype.initialize = function(){
         $('.wrapper, .blackMask').bind('dragend', function(e){
             start = false;
             var len = parseInt($('#wrapper').css('margin-left'));
+            console.log(len);
             if ( len > 90 ) {
                 $('#menu').removeClass('hidden');
                 $('#wrapper').addClass('extended');
