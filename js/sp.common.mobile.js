@@ -223,11 +223,18 @@ ShiftPlanning.prototype.initialize = function(){
             }
         });
         //dragstart drag dragend
+        var start = false;
         $('.wrapper').bind('drag', function(e){
-            $('#wrapper').css('margin-left', parseInt(e.distanceX));
-            $('#menu').css('margin-left',(-190 + parseInt(e.distanceX)) );
+            if (parseInt(e.distanceX) > 50){
+                start = true;
+            }
+            if (start) {
+                $('#wrapper').css('margin-left', parseInt(e.distanceX));
+                $('#menu').css('margin-left',(-190 + parseInt(e.distanceX)) );   
+            }
         });
         $('.wrapper').bind('dragend', function(e){
+            start = false;
             console.log(e);
         });
     });
