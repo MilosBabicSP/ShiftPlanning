@@ -241,6 +241,7 @@ ShiftPlanning.prototype.initialize = function(){
             }
         });
         $('.wrapper').bind('dragend', function(e){
+            console.log(e);
             start = false;
             var len = parseInt($('#wrapper').css('margin-left'));
             console.log(len);
