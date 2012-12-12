@@ -252,6 +252,24 @@ ShiftPlanning.prototype.initialize = function(){
                 $('#menu').css('margin-left',(-190 + parseInt(e.distanceX)) );   
             }
         });
+        $('.blackMask').bind('drag', function(e){
+            console.log(e);
+            if (e.distanceX <= 0){
+                e.distanceX = 0;
+            }
+            if (e.distanceX >= 190){
+                e.distanceX = 190;
+            }
+            if (parseInt(e.distanceX) > 50){
+                start = true;
+            }
+            if (start) {
+                $('#wrapper').css('margin-left', parseInt(e.distanceX));
+                $('#menu').css('margin-left',(-190 + parseInt(e.distanceX)) );   
+            }
+        });
+        
+        
         $('.wrapper').bind('dragend', function(e){
             console.log(e);
             start = false;
