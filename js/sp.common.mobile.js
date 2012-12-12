@@ -242,8 +242,14 @@ ShiftPlanning.prototype.initialize = function(){
         $('.wrapper').bind('dragend', function(e){
             start = false;
             var len = parseInt($('#wrapper').css('margin-left'));
-            if ($('#wrapper').css('margin-left')) {
-                
+            $('#menu').attr('style','');
+            $('#wrapper').attr('style','');
+            if (len > 80) {
+                $('#menu').removeClass('hidden');
+                $('#wrapper').addClass('extended');
+            } else {
+                $('#menu').addClass('hidden');
+                $('#wrapper').removeClass('extended');
             }
             console.log(e);
         });
