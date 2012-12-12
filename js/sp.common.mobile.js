@@ -233,8 +233,10 @@ ShiftPlanning.prototype.initialize = function(){
         var start = false;
         var side = '';
         $('body').bind('dragstart', function(e){
-            console.log(e);
-        }).bind('drag', function(e){
+            
+        });
+        
+        $('body').bind('drag', function(e){
             if (e.distanceX <= 0){
                 e.distanceX = 0;
             }
@@ -248,7 +250,10 @@ ShiftPlanning.prototype.initialize = function(){
                 $('#wrapper').css('margin-left', parseInt(e.distanceX));
                 $('#menu').css('margin-left',(-190 + parseInt(e.distanceX)) );   
             }
-        }).bind('dragend', function(e){
+        });
+        
+        
+        $('body').bind('dragend', function(e){
             console.log(e);
             start = false;
             var len = parseInt($('#wrapper').css('margin-left'));
