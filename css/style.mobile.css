@@ -447,3 +447,4 @@ a.grey {display:block; color:#FFF; line-height:30px; text-align:center; backgrou
 .middle.active.right {border-left:1px solid #DBDBDB;}
 
 #st_tp_menu {background: url("../images/shadow.png") repeat-x scroll 0 100% transparent;}
+#st_tp_menu tr td {text-align:center; line-break: 50px;}
