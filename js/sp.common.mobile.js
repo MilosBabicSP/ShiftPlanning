@@ -223,11 +223,9 @@ ShiftPlanning.prototype.initialize = function(){
             }
         });
         //dragstart drag dragend
-        $('.wrapper').bind('dragstart', function(e){
-            console.log(e);
-        });
         $('.wrapper').bind('drag', function(e){
-            console.log(e);
+            $('#wrapper').css('margin-left', parseInt(e.distanceX));
+            $('#menu').css('margin-left',(-190 + parseInt(e.distanceX)) );
         });
         $('.wrapper').bind('dragend', function(e){
             console.log(e);
