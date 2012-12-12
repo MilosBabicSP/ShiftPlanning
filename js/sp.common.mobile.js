@@ -292,7 +292,8 @@ ShiftPlanning.prototype.initialize = function(){
 }
 
 ShiftPlanning.prototype.calculateWrapperHeight = function(){
-    var wrapperHeight = $('#pages').height() + $('.subNavigation').height() + 20; return wrapperHeight; 
+    var wrapperHeight = $('#pages').height() + $('.subNavigation').height() + 20; 
+    return ($(window).height() > wrapperHeight) ? $(window).height() : wrapperHeight; 
 }
 
 ShiftPlanning.prototype.globalLoader = function(){
