@@ -250,9 +250,6 @@ ShiftPlanning.prototype.initialize = function(){
                 $('#menu').removeClass('hidden');
                 $('#wrapper').addClass('extended');
                 console.log($('#menu'));
-            } else {
-                $('#menu').addClass('hidden');
-                $('#wrapper').removeClass('extended');
             }
         });
     });
