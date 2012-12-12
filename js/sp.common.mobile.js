@@ -226,9 +226,13 @@ ShiftPlanning.prototype.initialize = function(){
             if (e.direction == 'right') {
                 $('#menu').removeClass('hidden');
                 $('#wrapper').addClass('extended');
+                $('#wrapper').css('margin-left', 190);
+                $('#menu').css('margin-left', 0);
             } else {
                 $('#menu').addClass('hidden');
                 $('#wrapper').removeClass('extended');
+                $('#wrapper').css('margin-left', 0);
+                $('#menu').css('margin-left', -190);
             }
         });
         //dragstart drag dragend
@@ -255,11 +259,16 @@ ShiftPlanning.prototype.initialize = function(){
             console.log(len);
 //            $('#menu').attr('style','');
 //            $('#wrapper').attr('style','');
-            if (len > 80) {
-                console.log('test');
+            if ( len > 90 ) {
                 $('#menu').removeClass('hidden');
                 $('#wrapper').addClass('extended');
-                console.log($('#menu'), $('#wrapper'));
+                $('#wrapper').css('margin-left', 190);
+                $('#menu').css('margin-left', 0);
+            } else {
+                $('#menu').addClass('hidden');
+                $('#wrapper').removeClass('extended');
+                $('#wrapper').css('margin-left', 0);
+                $('#menu').css('margin-left', -190);
             }
         });
     });
