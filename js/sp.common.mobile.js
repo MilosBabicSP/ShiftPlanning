@@ -276,20 +276,18 @@ ShiftPlanning.prototype.initialize = function(){
         $('.wrapper, .blackMask').bind('dragend', function(e){
             start = false;
             var len = parseInt($('#wrapper').css('margin-left'));
-            console.log(len, 'end');
-            setTimeout(function() {
-                if ( len > 90 ) {
-                    $('#menu').removeClass('hidden');
-                    $('#wrapper').addClass('extended');
-                    $('#wrapper').css('margin-left', 190);
-                    $('#menu').css('margin-left', 0);
-                } else {
-                    $('#menu').addClass('hidden');
-                    $('#wrapper').removeClass('extended');
-                    $('#wrapper').css('margin-left', 0);
-                    $('#menu').css('margin-left', -190);
-                }
-            }, 1000);
+            console.log(len, 'end', this);
+            if ( len > 90 ) {
+                $('#menu').removeClass('hidden');
+                $('#wrapper').addClass('extended');
+                $('#wrapper').css('margin-left', 190);
+                $('#menu').css('margin-left', 0);
+            } else {
+                $('#menu').addClass('hidden');
+                $('#wrapper').removeClass('extended');
+                $('#wrapper').css('margin-left', 0);
+                $('#menu').css('margin-left', -190);
+            }
         });
     });
     
