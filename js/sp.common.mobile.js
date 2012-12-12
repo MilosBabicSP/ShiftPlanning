@@ -250,7 +250,7 @@ ShiftPlanning.prototype.initialize = function(){
                 console.log('test');
                 $('#menu').removeClass('hidden');
                 $('#wrapper').addClass('extended');
-                console.log($('#menu'));
+                console.log($('#menu'), $('#wrapper'));
             }
         });
     });
