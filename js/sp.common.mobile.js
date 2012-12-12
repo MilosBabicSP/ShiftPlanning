@@ -241,19 +241,19 @@ ShiftPlanning.prototype.initialize = function(){
         });
         $('.wrapper').bind('dragend', function(e){
             start = false;
-//            var len = parseInt($('#wrapper').css('margin-left'));
-//            console.log(len);
+            var len = parseInt($('#wrapper').css('margin-left'));
+            console.log(len);
 //            $('#menu').attr('style','');
 //            $('#wrapper').attr('style','');
-//            if (len > 80) {
-//                console.log('test');
-//                $('#menu').removeClass('hidden');
-//                $('#wrapper').addClass('extended');
-//                console.log($('#menu'));
-//            } else {
-//                $('#menu').addClass('hidden');
-//                $('#wrapper').removeClass('extended');
-//            }
+            if (len > 80) {
+                console.log('test');
+                $('#menu').removeClass('hidden');
+                $('#wrapper').addClass('extended');
+                console.log($('#menu'));
+            } else {
+                $('#menu').addClass('hidden');
+                $('#wrapper').removeClass('extended');
+            }
         });
     });
     
