@@ -248,6 +248,23 @@ ShiftPlanning.prototype.initialize = function(){
             }
         });
         
+        $('.blackMask').bind('drag', function(e) {
+            if (parseInt(e.distanceX) > 50 && e.direction == 'left'){
+                start = true;
+            }
+            e.distance = 190 - parseInt(e.distance)
+            if (e.distanceX <= 0){
+                e.distanceX = 0;
+            }
+            if (e.distanceX >= 190){
+                e.distanceX = 190;
+            }
+            if (start) {
+                $('#wrapper').css('margin-left', parseInt(e.distanceX));
+                $('#menu').css('margin-left',(-190 + parseInt(e.distanceX)) );   
+            }
+        })
+        
         
         $('.wrapper').bind('dragend', function(e){
             start = false;
