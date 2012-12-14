@@ -244,13 +244,14 @@ ShiftPlanning.prototype.initialize = function(){
             $('.blackMask').css('opacity','0');
         });
         $('.wrapper').bind('drag', function(e){
+            var m = $('.wrapper').hasClass('extended');
             if (e.direction == 'left') {
                 e.distanceX = 190 + parseInt(e.distanceX);
                 if (Math.abs(parseInt(e.distanceX)) > 50 && e.direction == 'left'){
                     start = true;
                 }
             } else {
-                if (parseInt(e.distanceX) > 50){
+                if (parseInt(e.distanceX) > 50 && !m){
                     start = true;
                 }
             }
