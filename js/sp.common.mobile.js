@@ -225,11 +225,15 @@ ShiftPlanning.prototype.initialize = function(){
                 $('#wrapper').addClass('extended');
                 $('#wrapper').css('margin-left', 190);
                 $('#menu').css('margin-left', 0);
+                $('.blackMask').css('display','block');
+                $('.blackMask').css('opacity','0.5');
             } else {
                 $('#menu').addClass('hidden');
                 $('#wrapper').removeClass('extended');
                 $('#wrapper').css('margin-left', 0);
                 $('#menu').css('margin-left', -190);
+                $('.blackMask').css('display','none');
+                $('.blackMask').css('opacity','0');
             }
         });
         //dragstart drag dragend
