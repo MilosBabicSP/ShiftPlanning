@@ -239,6 +239,10 @@ ShiftPlanning.prototype.initialize = function(){
         //dragstart drag dragend
         var start = false;
         var element = 
+        $('.wrapper').bind('dragstart', function(e){
+            $('.blackMask').css('display','block');
+            $('.blackMask').css('opacity','0');
+        });
         $('.wrapper').bind('drag', function(e){
             if (e.direction == 'left') {
                 e.distanceX = 190 + parseInt(e.distanceX);
@@ -263,6 +267,7 @@ ShiftPlanning.prototype.initialize = function(){
             if (start) {
                 $('#wrapper').css('margin-left', parseInt(e.distanceX));
                 $('#menu').css('margin-left',(-190 + parseInt(e.distanceX)) );   
+                $('.blackMask').css('opacity',((0.5*parseInt(e.distanceX))/190));
             }
         });
         
