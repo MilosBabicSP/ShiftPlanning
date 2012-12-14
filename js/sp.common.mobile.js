@@ -270,7 +270,7 @@ ShiftPlanning.prototype.initialize = function(){
             if (start) {
                 $('#wrapper').css('margin-left', parseInt(e.distanceX));
                 $('#menu').css('margin-left',(-190 + parseInt(e.distanceX)) );   
-                $('.blackMask').css('opacity',((0.5*parseInt(e.distanceX))/190));
+                $('.blackMask').css('opacity',((0.5*parseInt(e.distanceX))/190).toFixed(1));
             }
         });
         
