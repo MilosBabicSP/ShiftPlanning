@@ -220,14 +220,15 @@ ShiftPlanning.prototype.initialize = function(){
         }
         
         $('.wrapper').bind('swipe', function(e) {
-            if (e.direction == 'right') {
+            var m = $('.wrapper').hasClass('extended');
+            if (e.direction == 'right' && !m) {
                 $('#menu').removeClass('hidden');
                 $('#wrapper').addClass('extended');
                 $('#wrapper').css('margin-left', 190);
                 $('#menu').css('margin-left', 0);
                 $('.blackMask').css('display','block');
                 $('.blackMask').css('opacity','0.5');
-            } else {
+            } else if (e.direction == 'left' && m) {
                 $('#menu').addClass('hidden');
                 $('#wrapper').removeClass('extended');
                 $('#wrapper').css('margin-left', 0);
