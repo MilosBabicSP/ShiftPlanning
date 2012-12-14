@@ -31,8 +31,6 @@ h5 {font-size:14px; font-weight:normal; color:#333;}
 
 .blackMask {left: 0px; right: 0px; top: 0px; bottom: 0px; background-color: #000000;opacity: 0.5; position: absolute; display:none; z-index: 999;}
 
-.extended .blackMask {display:block;}
-
 .bigLoader {left:0px; right:0px; top:0px; bottom:0px; position:absolute; display:none; z-index:998; background:#FFF url(../images/loaderBig.gif) scroll no-repeat 50% 100px;}
 
 /*SPRITE*/
