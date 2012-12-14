@@ -241,7 +241,6 @@ ShiftPlanning.prototype.initialize = function(){
         var start = false;
         var element = 
         $('.wrapper').bind('dragstart', function(e){
-            console.log(e);
             $('.blackMask').css('display','block');
             $('.blackMask').css('opacity','0');
         });
