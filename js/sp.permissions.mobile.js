@@ -87,6 +87,7 @@ ShiftPlanningPermissions.prototype.preparePermissions = function(){
     //Time Clock Module is on
     if (parseInt(perms.timeclock) == 0){
         $('#menu #menu_timeClock').unbind(clickEvent);
+        $('#da_widgets .timeClock').remove();
         $('#menu #menu_timeClock').remove();
         $('#timeClock').remove();
         $('.subNavigation div.timeClock').remove();

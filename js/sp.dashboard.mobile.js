@@ -622,13 +622,14 @@ ShiftPlanningDashboard.prototype.dashboardSubEvents = function() {
         ['schedule.trades', 'get', {'mode' : 'swap'}]
     ]
     sp.multiApi(calls, function(response) {
-        if (response[0].data != 'out') {
-            $('#da_widgets .timeClock.in').show();
-            $('#da_widgets .timeClock.in .details b').html(response[0].data.current_length.hours + _s('h') + ' ' + response[0].data.current_length.mins + _('mins'));
-        } else {
-            $('#da_widgets .timeClock.out').show();
+        if (parseInt(sp.staff.admin.settings.timeclock) != 0) {
+            if (response[0].data != 'out') {
+                $('#da_widgets .timeClock.in').show();
+                $('#da_widgets .timeClock.in .details b').html(response[0].data.current_length.hours + _s('h') + ' ' + response[0].data.current_length.mins + _('mins'));
+            } else {
+                $('#da_widgets .timeClock.out').show();
+            }
         }
-
         $('#da_widgets .tradePage .icon b').html((sp.countResponse(response[1].data) + sp.countResponse(response[2].data) + sp.countResponse(response[4].data)));
         
         var br = 0;
