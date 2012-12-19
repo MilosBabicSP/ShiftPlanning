@@ -241,10 +241,14 @@ ShiftPlanning.prototype.initialize = function(){
         var start = false;
         var element = 
         $('.wrapper').bind('dragstart', function(e){
+            e.preventDefault();
+            e.stopPropagation();
             $('.blackMask').css('display','block');
             $('.blackMask').css('opacity','0');
         });
         $('.wrapper').bind('drag', function(e){
+            e.preventDefault();
+            e.stopPropagation();
             var m = $('.wrapper').hasClass('extended');
             if (e.direction == 'left') {
                 e.distanceX = 190 + parseInt(e.distanceX);
