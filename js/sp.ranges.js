@@ -72,14 +72,14 @@ ShiftPlanningRanges.prototype.fixRanges = function(){
 	self.times[i].end_date = item.end_date + czm + (mp * (Math.abs(h) + min)) * 1000;
     });
     self.times[3] = {
-        title : 'This Week',
-        start_time : Date.parse(self.weekdays[sp.staff.admin.settings.startday]).addDays(-8).getTime(),
-        end_time : Date.parse(self.weekdays[sp.staff.admin.settings.startday]).addDays(-1).getTime()
+	title : 'This Week',
+	start_time : Date.parse(self.weekdays[sp.staff.admin.settings.startday]).addDays(-1).getTime(),
+	end_time : Date.parse('next '+self.weekdays[sp.staff.admin.settings.startday]).addDays(-2).getTime()
     }
     self.times[4] = {
-        title : 'Last Week',
-        start_time : Date.parse(self.weekdays[sp.staff.admin.settings.startday]).addDays(-15).getTime(),
-        end_time : Date.parse(self.weekdays[sp.staff.admin.settings.startday]).addDays(-8).getTime()
+	title : 'Last Week',
+	start_time : Date.parse(self.weekdays[sp.staff.admin.settings.startday]).addDays(-8).getTime(),
+	end_time : Date.parse('previous '+self.weekdays[sp.staff.admin.settings.startday]).addDays(-2).getTime()
     }
 }
 
