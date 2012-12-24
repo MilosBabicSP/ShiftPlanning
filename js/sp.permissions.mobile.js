@@ -66,7 +66,7 @@ ShiftPlanningPermissions.prototype.preparePermissions = function(){
         $('#menu_reports').remove();
         $('#reports').remove();
 	
-	$('#da_se .aPerm').remove();
+	$('#settings .aPerm').remove();
 	
 	//remove staff fast assignment and add staff for employee
         $('.subNavigation .staff a[subpage=addStaff]').remove();
