@@ -589,7 +589,7 @@ ShiftPlanningSchedule.prototype.shiftDisplaySubEvents = function(){
         } else {
 	    if (this.shift.published == 0){
 		$('#sc_sub_shift_display a.publish').show();
-		$('#sc_sub_shift_display a.publish span').html('Publish');
+		$('#sc_sub_shift_display a.publish span').html('<img width="16" height="17" src="images/approve.png">');
 	    } else if (this.shift.published < this.shift.edited && this.shift.published != 0) {
 		$('#sc_sub_shift_display a.publish').show();
 		$('#sc_sub_shift_display a.publish span').html();
