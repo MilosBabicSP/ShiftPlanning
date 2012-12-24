@@ -9,22 +9,22 @@
                 <img width="16" height="17" src="<?php echo _fCdnPath_; ?>images/sett_1.png">
             </a>
         </li>
-        <li class="">
+        <li class="" class="hideEm">
             <a href="#" subpage="edit">
                 <img width="16" height="17" src="<?php echo _fCdnPath_; ?>images/sett_2.png">
             </a>
         </li>
-        <li class="">
+        <li class="" class="hideEm" >
             <a href="#" subpage="recentShifts">
                 <img width="16" height="17" src="<?php echo _fCdnPath_; ?>images/sett_3.png">
             </a>
         </li>
-        <li class="">
+        <li class="" class="hideEm">
             <a href="#" subpage="upcomingShifts">
                 <img width="16" height="17" src="<?php echo _fCdnPath_; ?>images/sett_4.png">
             </a>
         </li>            
-        <li class="">
+        <li class="" class="hideEm">
             <a href="#" subpage="password">
                 <img width="16" height="17" src="<?php echo _fCdnPath_; ?>images/sett_5.png">
             </a>
