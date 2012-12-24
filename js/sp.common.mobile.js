@@ -197,7 +197,9 @@ ShiftPlanning.prototype.initialize = function(){
                 self.toggleMenu();
                 return false;
             }
-            self.toggleMenu();
+            if ( $('#wrapper').hasClass('extended') ) {
+                self.toggleMenu();
+            }
             sp.hashChange = true;
             sp.hash($(this).attr('page'));
         });
