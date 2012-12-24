@@ -614,7 +614,7 @@ ShiftPlanningTimeClock.prototype.saveClockTime = function(){
     data.employee = $('#tc_act_em').val();
     	
     if ( !$('#tc_act_onci').hasClass('check') ) {
-        data.onlyin = 'checked';
+        data.onlyin = 1;
     }
     
     data.notes = $('#tc_act_no').val();
