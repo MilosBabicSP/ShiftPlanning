@@ -13,7 +13,7 @@ var ShiftPlanningRanges = function(){
 	2 : {
 	    title : 'Last 7 Days',
 	    start_time : strtotime('now -7 day')*1000,
-	    end_time : strtotime('now')*1000
+	    end_time : strtotime('tomorrow')*1000
 	},
 	3 : {
 	    title : 'This Week',
