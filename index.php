@@ -349,7 +349,7 @@ if ($vtoken['data'] != '1') {
                                 </li>
                                 <li>
                                     <a href="#" class="edit">
-                                        <img width="16" height="16" src="<?php echo _fCdnPath_; ?>images/sett_2.png.png">
+                                        <img width="16" height="16" src="<?php echo _fCdnPath_; ?>images/sett_2.png">
                                     </a>
                                 </li>
                                 <li class="last">
