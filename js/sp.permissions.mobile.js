@@ -61,7 +61,6 @@ ShiftPlanningPermissions.prototype.preparePermissions = function(){
     }
     
     if (group >= this.scheduler){
-        console.log(group);
 
         $('#menu_reports').remove();
         $('#reports').remove();
