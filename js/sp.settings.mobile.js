@@ -150,15 +150,15 @@ ShiftPlanningSettings.prototype.overviewSubEvents = function(employee){
     if (employee.id == sp.staff.admin.info.id){
 	$('#settings .search').show();
 	if (!sp.permissions.hasPermission('edit_profile')){
-	    $('#settings .subNav a[subpage=edit]').hide();
+	    $('.subNavigation .settings .subNav a[subpage=edit]').hide();
 	} else {
-	    $('#settings .subNav a[subpage=edit]').show();
+	    $('.subNavigation .settings .subNav a[subpage=edit]').show();
 	}
     } else {
 	if (sp.staff.admin.info.group > 4){
 	    $('#settings .search').hide();
 	} else {
-	    $('#settings .subNav a[subpage=edit]').show();
+	    $('.subNavigation .settings .subNav a[subpage=edit]').show();
 	    $('#settings .search').show();
 	}
     }
