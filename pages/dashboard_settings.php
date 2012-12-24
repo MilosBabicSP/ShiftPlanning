@@ -2,7 +2,7 @@
 <div style="display: none;" class="search settings mainSub">
     <a class="backMenu" href="#">
         <img width="16" height="16" src="<?php echo _fCdnPath_; ?>images/arrow_back.png">
-    </a>    
+    </a>
     <ul class="subNav">
         <li class="first active">
             <a href="#" subpage="overview">
