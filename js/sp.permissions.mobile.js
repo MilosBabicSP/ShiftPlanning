@@ -102,7 +102,7 @@ ShiftPlanningPermissions.prototype.preparePermissions = function(){
         $('.subNavigation div.staff').remove();
     }
     
-    console.log(group >= this.scheduler && parseInt( perms.edit_staff ) == 0);
+    console.log(group >= this.scheduler && parseInt( perms.edit_staff ) == 0, group, perms.edit_staff);
     if ( group >= this.scheduler && parseInt( perms.edit_staff ) == 0 ) {
         $('.subNavigation .settings .subNav a[subpage=edit]').hide();
     }
