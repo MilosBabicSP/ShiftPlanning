@@ -593,7 +593,7 @@ ShiftPlanningTimeClock.prototype.saveClockInChanges = function(){
 
 ShiftPlanningTimeClock.prototype.saveClockTime = function(){
     var data = {};
-    var f = '';
+    var f = 'get';
     var module = 'timeclock.addclocktime';
     var success = _s('Clock Time added');
     if ($('#tc_act_tc_id').hasClass('editOn') == true){
