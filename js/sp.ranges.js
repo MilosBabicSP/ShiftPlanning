@@ -44,18 +44,18 @@ var ShiftPlanningRanges = function(){
     this.currencies = ['',
     '$', '&#163;', '&#8364;', '&#8360;', '&#165;', '&#8361;', 'R', 'kr', '&#8369;', 'RM'
     ]
-	this.weekdays = {
-		1:'Mon',
-		2:'Tue',
-		3:'Wed',
-		4:'Thu',
-		5:'Fri',
-		6:'Sat',
-		7:'Sun'
-	}
-	this.months = [
-		'Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'
-	]
+    this.weekdays = {
+            1:'Mon',
+            2:'Tue',
+            3:'Wed',
+            4:'Thu',
+            5:'Fri',
+            6:'Sat',
+            7:'Sun'
+    }
+    this.months = [
+            'Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'
+    ]
 }
 
 ShiftPlanningRanges.prototype.fixRanges = function(){
