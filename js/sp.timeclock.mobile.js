@@ -592,7 +592,6 @@ ShiftPlanningTimeClock.prototype.saveClockInChanges = function(){
 }
 
 ShiftPlanningTimeClock.prototype.saveClockTime = function(){
-    console.log('test');
     var data = {};
     var f = 'get';
     var module = 'timeclock.addclocktime';
