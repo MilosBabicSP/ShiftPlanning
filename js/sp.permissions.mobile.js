@@ -102,6 +102,10 @@ ShiftPlanningPermissions.prototype.preparePermissions = function(){
         $('.subNavigation div.staff').remove();
     }
     
+    if ( group >= this.scheduler && parseInt( perms.edit_staff ) == 0 ) {
+        $('.subNavigation .settings .subNav a[subpage=edit]').hide();
+    }
+    
 /*    
     //Employee can send private messages
     if (group >= this.employee && parseInt(perms.pm) == 0){
