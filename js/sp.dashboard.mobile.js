@@ -76,7 +76,7 @@ ShiftPlanningDashboard.prototype.dashboardEvents = function(){
     
     $('#da_widgets .user a').bind(clickEvent, function(e){
         e.preventDefault(); 
-        //$('#menu_settings a').trigger(clickEvent);
+        $('#menu_settings a').trigger(clickEvent);
     });
 }
 

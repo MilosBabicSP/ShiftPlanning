@@ -214,7 +214,7 @@ ShiftPlanning.prototype.initialize = function(){
         
         //all mainUser names to lead to settings 
         $('.userName').bind(clickEvent, function(){
-            sp.loadSubPage('', 'dashboard', 'settings');
+            sp.loadSubPage('', 'settings', 'overview');
         });
         
         if (isAndroid){
