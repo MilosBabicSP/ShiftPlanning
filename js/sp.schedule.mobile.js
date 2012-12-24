@@ -1049,7 +1049,7 @@ ShiftPlanningSchedule.prototype.generateMiddle = function(currentDate){
 ShiftPlanningSchedule.prototype.loadPage = function(){
     var opt = '';
     opt += _s('<option value="employee">My Schedules</option>');
-    if ( parseInt( sp.staff.admin.info.settings.visible_overview ) == 1 || parseInt( sp.staff.admin.info.group ) < 5 ) {
+    if ( parseInt( sp.staff.admin.settings.visible_overview ) == 1 || parseInt( sp.staff.admin.settings.group ) < 5 ) {
         opt += _s('<option value="overview">Schedule Overview</option>');
     }
     opt += spView.schedulerFilter();
