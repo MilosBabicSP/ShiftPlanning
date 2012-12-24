@@ -436,6 +436,7 @@ ShiftPlanningTimeClock.prototype.getMyTimeSheets = function(){
     var params={}
   
     times=spRanges.getRange('times', interval);
+    console.log(times);
     
     var startT = new Date(times.start_time);
     var endT = new Date(times.end_time);
