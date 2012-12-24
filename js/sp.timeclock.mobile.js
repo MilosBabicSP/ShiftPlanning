@@ -607,15 +607,13 @@ ShiftPlanningTimeClock.prototype.saveClockTime = function(){
         data.end_time = $('#tc_act_c_co_dp_i').val() + ' ' + $('#tc_act_tclou').val();
     } else {
         data.datein = $('#tc_act_c_cl_dp_i').val() +' '+ $('#tc_act_tclin').val();    
-        if ( !$('#tc_act_onci').hasClass('check') ) {
-            data.dateout = $('#tc_act_c_co_dp_i').val() + ' ' + $('#tc_act_tclou').val();		
-        }
+        data.dateout = $('#tc_act_c_co_dp_i').val() + ' ' + $('#tc_act_tclou').val();		
     }
     
     data.schedule = $('#tc_act_sc').val();
     data.employee = $('#tc_act_em').val();
     	
-    if ($('#tc_act .detailsGrid .odd').hasClass('nonVisible')){
+    if ( !$('#tc_act_onci').hasClass('check') ) {
         data.onlyin = 'checked';
     }
     
