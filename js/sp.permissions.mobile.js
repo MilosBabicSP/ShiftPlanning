@@ -96,7 +96,6 @@ ShiftPlanningPermissions.prototype.preparePermissions = function(){
 
     //Employees can view staff gallery
     if (group >= this.employee && parseInt(perms.visible_staff) == 0){
-        console.log(perms.visible_staff, group >= this.employee);
         $('#menu #menu_staff').unbind(clickEvent);
         $('#menu #menu_staff').remove();
         $('#staff').remove();
