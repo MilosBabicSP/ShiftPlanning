@@ -161,6 +161,9 @@ ShiftPlanningSettings.prototype.overviewSubEvents = function(employee){
 	    $('#settings .subNav a[subpage=edit]').show();
 	    $('#settings .search').show();
 	}
+        if ( sp.staff.admin.info.group >= 4 ) {
+            $('.settings .subNav .hideEm').hide();
+        }
     }
     
     if (employee.group <= 2){
