@@ -290,9 +290,6 @@ ShiftPlanningStaff.prototype.login = function(){
                                         setCookie('shiftplanning_mobile_usercompany', user.company, cookieExpire);
                                         setCookie('shiftplanning_mobile_userphone', user.phone, cookieExpire);
                                     }
-                                    setTimeout(function() {
-                                        $('.applicationContainer').fadeIn(500);
-                                    }, 2000);
                             });
                     });
             });

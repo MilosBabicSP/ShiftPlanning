@@ -653,6 +653,7 @@ ShiftPlanningDashboard.prototype.dashboardSubEvents = function() {
         $('#da_widgets ul.shifts.listing').html($.tmpl($('#te_da_widget_shift'), response[3].data));
         
         $('.bigLoader').hide();
+        $('.applicationContainer').fadeIn(500);
     });
 }
 
