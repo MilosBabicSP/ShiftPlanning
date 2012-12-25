@@ -150,7 +150,6 @@ ShiftPlanningRequests.prototype.availableEvents = function() {
     $('#rq_av_sw_li').delegate('a', clickEvent, function(e){
         e.preventDefault();
         self.current = self.available.swap[$(this).attr('rel')];
-        console.log(self.current);
         sp.loadSubPage('', 'requests', 'shiftSwapRequest');
     });
     
@@ -798,7 +797,6 @@ ShiftPlanningRequests.prototype.shiftTradesSubEvents = function(){
                             item.avatar = sp.getAvatar(item.user);
                             swap.push(item);
                     });
-                    console.log(swap);
                     $('#rq_st_swap').html($.tmpl($('#te_rq_swap_single'),swap));
             }else{
                     $('#rq_st_swap').hide();
