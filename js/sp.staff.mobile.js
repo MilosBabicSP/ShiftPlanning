@@ -292,7 +292,7 @@ ShiftPlanningStaff.prototype.login = function(){
                                     }
                                     setTimeout(function() {
                                         $('.applicationContainer').fadeIn(500);
-                                    }, 5000);
+                                    }, 2000);
                             });
                     });
             });
