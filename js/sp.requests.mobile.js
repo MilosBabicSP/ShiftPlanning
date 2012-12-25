@@ -702,7 +702,7 @@ ShiftPlanningRequests.prototype.shiftTradesSubEvents = function(){
     var self = this;
     $('#rq_st_mst').html(spView.ulLoader());
     $('#rq_st_ap').html(spView.ulLoader());
-	$('#rq_st_swap').html(spView.ulLoader());
+    $('#rq_st_swap').html(spView.ulLoader());
     $('#rq_st_im').html(spView.ulLoader());
     
     $('#rq_st_mst').show();
@@ -712,7 +712,7 @@ ShiftPlanningRequests.prototype.shiftTradesSubEvents = function(){
     $('#rq_st_mst').next().hide();
     $('#rq_st_ap').next().hide();
     $('#rq_st_im').next().hide();
-	$('#rq_st_swap').next().hide();
+    $('#rq_st_swap').next().hide();
     if (sp.staff.admin.info.group <= 4){
         spModel.schedule.get('trades', {
             mode : 'manage'
@@ -782,23 +782,24 @@ ShiftPlanningRequests.prototype.shiftTradesSubEvents = function(){
         sp.showError(response.error);
     });
 	
-	spModel.schedule.get('trades',{
-		mode : 'swap'
-	},function(response){
-		if(response.data != ''){
-			self.swaps= response.data;
-			var swap = [];
-			$('#rq_st_swap').show();
-			$.each(response.data,function(key,item){
-				item.avatar = sp.getAvatar(item.user);
-				swap.push(item);
-			});
-			$('#rq_st_swap').html($.tmpl($('#te_rq_swap_single'),swap));
-		}else{
-			$('#rq_st_swap').hide();
-			$('#rq_st_swap_empty').show();
-		}
-	});
+    spModel.schedule.get('trades',{
+            mode : 'swap'
+    },function(response){
+            if(response.data != ''){
+                    self.swaps= response.data;
+                    var swap = [];
+                    $('#rq_st_swap').show();
+                    $.each(response.data,function(key,item){
+                            item.avatar = sp.getAvatar(item.user);
+                            swap.push(item);
+                    });
+                    console.log(swap);
+                    $('#rq_st_swap').html($.tmpl($('#te_rq_swap_single'),swap));
+            }else{
+                    $('#rq_st_swap').hide();
+                    $('#rq_st_swap_empty').show();
+            }
+    });
 }
 
 ShiftPlanningRequests.prototype.clearVacations = function(data){
