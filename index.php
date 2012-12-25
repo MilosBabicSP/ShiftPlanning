@@ -1,4 +1,3 @@
-
 <?php
 die('test');
 require_once('functions.php');
