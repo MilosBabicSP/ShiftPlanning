@@ -445,7 +445,7 @@
             <h3><?=_s('Shifts requested for trade');?></h3>
         </div>
         <div class="traders {{if confirm_before == 1}}confirmBefore{{/if}}">
-            {{if data.length > 0 }}
+            {{if typeof data != 'undefined' && data.length > 0 }}
 			
 				{{each data}}
 				

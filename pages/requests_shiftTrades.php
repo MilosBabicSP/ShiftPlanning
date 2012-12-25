@@ -20,7 +20,7 @@
     <div class="title">
         <h3><?=_s('Shifts Available to Swap')?></h3>
     </div>
-    <ul class="requests" id="rq_st_swap">
+    <ul class="timeSheet" id="rq_st_swap">
         
     </ul>	
     <div class="additional" id="rq_st_swap_empty">
