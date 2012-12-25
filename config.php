@@ -36,7 +36,7 @@ if (IS_TEST_SERVER) {
     define('API_KEY', '49e4207b8459ef88e19de9b78b882ef15ec14d84');
     define('API_URL', 'http://www.openshiftzohan-s.dev.shiftplanning.com/api/');
 } else {
-    define('API_KEY', '859e49ab47bb3e6a9002f2053f43fa8110ce7f8e');
+    define('API_KEY', '79a331d71dc4d5edb4d7168f2de9c129bbf9e99a');
     define('API_URL', 'http://www.shiftplanning.com/api/');
 }
 
