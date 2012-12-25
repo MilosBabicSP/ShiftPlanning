@@ -273,7 +273,6 @@ ShiftPlanningStaff.prototype.login = function(){
                                     $('body').removeClass('login');
                                     $('.notification').remove();
                                     $('html').css('height','auto');
-                                    $('.applicationContainer').fadeIn(500);
                                     sp.hash('dashboard');
                                     self.prepareConfig();
                                     $('.userName').html(user.name);
