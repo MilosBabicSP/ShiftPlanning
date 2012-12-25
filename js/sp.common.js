@@ -82,6 +82,9 @@ ShiftPlanning.prototype = {
                 if (closeLoader){
                     $('.bigLoader').hide();
                     self.apiCalls = {};
+                    if ( !$('.applicationContainer').is(':visible') ) {
+                        $('.applicationContainer').fadeIn(500);
+                    }
                 }
                 if(response.status == 3){
                     //We are not logged in!
