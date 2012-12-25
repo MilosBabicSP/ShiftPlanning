@@ -150,6 +150,7 @@ ShiftPlanningRequests.prototype.availableEvents = function() {
     $('#rq_av_sw_li').delegate('a', clickEvent, function(e){
         e.preventDefault();
         self.current = self.available.swap[$(this).attr('rel')];
+        console.log(self.current);
         sp.loadSubPage('', 'requests', 'shiftSwapRequest');
     });
     
