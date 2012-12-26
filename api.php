@@ -4,6 +4,15 @@ function _iapi($request_vars, $output='json', $dataOnly = false, $multi = false)
     //$request = $request_vars;
     $request['key'] = API_KEY;
     $request['token'] = ($_SESSION['api']['token'] ? $_SESSION['api']['token'] : '');
+    
+    if( ( isset( $request_vars['data']['token'] ) || isset( $request_vars['token'] ) ) && $request['token'] == '' ){
+        //die('uso je');
+        $request['token'] = ( isset( $request_vars['data']['token'] ) ) ? $request_vars['data']['token'] : $request_vars['token'];
+        $_SESSION['api']['token'] = $request['token'];
+        //unset($request_vars['data']['token']);
+        //unset($request_vars['token']);
+    }
+    
     $request['output'] = 'json';
     if($multi){
         if (get_magic_quotes_gpc()) {
