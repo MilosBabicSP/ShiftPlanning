@@ -205,8 +205,8 @@ ShiftPlanning.prototype.initialize = function(){
         });
         $(window).hashchange();
         
-        setInterval(function(){
-            $('#menu').css('height', ($(window).height() > $(document).height() ? $(window).height() : $(document).height()));
+        setInterval(function() {
+            $('#menu').css('height', self.calculateMenuHeight() );
             $('#wrapper').css('min-height', self.calculateWrapperHeight());
             if ( $('.blackMask').css('opacity') == '0' ) {
                 $('.blackMask').hide();
@@ -303,15 +303,24 @@ ShiftPlanning.prototype.initialize = function(){
         });
     });
     
-    $(window).bind('resize', function(){
+    $(window).bind('resize', function() {
         $('#wrapper').width($(window).width());
         $('body').width($(window).width());
     });
 }
 
-ShiftPlanning.prototype.calculateWrapperHeight = function(){
+ShiftPlanning.prototype.calculateWrapperHeight = function() {
     var wrapperHeight = $('#pages').height() + $('.subNavigation').height() + 20; 
     return ($(window).height() > wrapperHeight) ? $(window).height() : wrapperHeight; 
+}
+
+ShiftPlanning.prototype.calculateMenuHeight = function () {
+    var h = this.calculateWrapperHeight();
+    if ( $('#menu .mainNav').height() + 150 > h) {
+        return $('#menu .mainNav').height() + 150;
+    } else {
+        return h;
+    }
 }
 
 ShiftPlanning.prototype.globalLoader = function(){
