@@ -54,6 +54,9 @@ if (IS_TEST_SERVER) {
     define('API_URL', 'http://www.shiftplanning.com/api/');
 }
 
+if (isset($_POST['application'])){
+    unset($_POST['application']);
+}
 
 define('_jsV_', 18);
 define('WWW_PATH', 'http://' . $_SERVER['SERVER_NAME'] . '/' . _ext_);
