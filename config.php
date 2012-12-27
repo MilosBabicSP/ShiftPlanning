@@ -33,7 +33,21 @@ define('_touch_', 'app/iphone');
 if (IS_TEST_SERVER) {
 //    define('API_KEY', '79a331d71dc4d5edb4d7168f2de9c129bbf9e99a');
 //    define('API_URL', 'http://www.shiftplanning.com/api/');
-    define('API_KEY', '49e4207b8459ef88e19de9b78b882ef15ec14d84');
+    if (!isset($_POST['application'])) {
+        //web mobile app
+        define('API_KEY', '859e49ab47bb3e6a9002f2053f43fa8110ce7f8e');
+    } else if ($_POST['application'] == 'android') {
+        //andorid phone gap
+        define('API_KEY', '1b1933e7e0a9fdeca1be7801ada2e04ad1719454');
+    } else if ($_POST['application'] == 'apple') {
+        //Phone Gap Iphone/Ipod App key:
+        define('API_KEY', '08b5181033e32284bb4f62b40ba00b721ed6282b'); 
+    } else if ($_POST['application'] == 'bb') {
+        define('API_KEY', '08b5181033e32284bb4f62b40ba00b721ed6282b'); 
+    } else {
+        define('API_KEY', '79a331d71dc4d5edb4d7168f2de9c129bbf9e99a');
+    }
+    //define('API_KEY', '49e4207b8459ef88e19de9b78b882ef15ec14d84');
     define('API_URL', 'http://www.openshiftzohan-s.dev.shiftplanning.com/api/');
 } else {
     if (!isset($_POST['application'])) {
