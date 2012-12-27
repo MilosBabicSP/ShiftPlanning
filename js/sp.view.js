@@ -156,14 +156,14 @@ ShiftPlanningView.prototype.locationSelector = function(type){
     if (typeof type == 'undefined'){
         type = 2;
     }
-    var opt = '<option value="0" selected="selected">' + ((type == 1) ? 'Select Location' : 'Select Work Slot') + '</option>';
+    var opt = '<option value="0" selected="selected">' + ((type == 1) ? 'Select Location' : 'Select Work Site') + '</option>';
     opt += '<optgroup lable="locations">';
     $.each(spModel.location.locationsList(), function(i, item){
         if (item.type == type){
             opt += '<option value="' + item.id + '">' + item.name + '</option>';
         }
     });
-    opt += '</optgroup><optgroup><option value="add" type="' + type + '">' + ((type == 1) ? 'New Location?' : 'New Work Slot?') + '</option></optgroup>';
+    opt += '</optgroup><optgroup><option value="add" type="' + type + '">' + ((type == 1) ? 'New Location?' : 'New Work Site?') + '</option></optgroup>';
     return opt;
 }
 
