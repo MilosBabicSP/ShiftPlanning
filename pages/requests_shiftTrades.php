@@ -18,6 +18,15 @@
         <p><?=_s('There are no shifts available for pick-up.')?></p>
     </div>
     <div class="title">
+        <h3><?=_s('Shifts Available to Swap')?></h3>
+    </div>
+    <ul class="timeSheet" id="rq_st_swap">
+        
+    </ul>	
+    <div class="additional" id="rq_st_swap_empty">
+        <p><?=_s('You have no shifts availabile for swap')?></p>
+    </div>	
+    <div class="title">
         <h3><?=_s("Shifts I'm trading")?></h3>
     </div>
     <ul class="requests" id="rq_st_im">

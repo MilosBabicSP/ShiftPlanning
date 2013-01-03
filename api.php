@@ -4,6 +4,15 @@ function _iapi($request_vars, $output='json', $dataOnly = false, $multi = false)
     //$request = $request_vars;
     $request['key'] = API_KEY;
     $request['token'] = ($_SESSION['api']['token'] ? $_SESSION['api']['token'] : '');
+    
+    if( ( isset( $request_vars['data']['token'] ) || isset( $request_vars['token'] ) ) && $request['token'] == '' ){
+        //die('uso je');
+        $request['token'] = ( isset( $request_vars['data']['token'] ) ) ? $request_vars['data']['token'] : $request_vars['token'];
+        $_SESSION['api']['token'] = $request['token'];
+        //unset($request_vars['data']['token']);
+        //unset($request_vars['token']);
+    }
+    
     $request['output'] = 'json';
     if($multi){
         if (get_magic_quotes_gpc()) {
@@ -14,7 +23,7 @@ function _iapi($request_vars, $output='json', $dataOnly = false, $multi = false)
         $request['request'] = $request_vars;
         $request['module'] = $request_vars['module'];
     }
-    //var_dump($request);
+    
     $ch = curl_init(API_URL);
     curl_setopt($ch, CURLOPT_URL, API_URL);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -24,7 +33,16 @@ function _iapi($request_vars, $output='json', $dataOnly = false, $multi = false)
     //var_dump($request);
     $response = curl_exec($ch);
     
+    
     curl_close($ch);
+    
+    
+//    if ($request['request']['mode'] == 'openapproval') {
+//        print_r($request);
+//        print $response;
+//    }
+        
+    
     //Set token, maybe there is some more efficient way to do this
     $decoded = json_decode($response,true);
     
@@ -69,7 +87,7 @@ function _iapi($request_vars, $output='json', $dataOnly = false, $multi = false)
     }
 }
 
-if($_POST['module'] && $_POST['module'] != 'admin.file'){
+if($_POST['module']){
     # SPILL JSON FROM API
     header('Content-type: application/json');
     echo _iapi($_POST);
@@ -77,9 +95,9 @@ if($_POST['module'] && $_POST['module'] != 'admin.file'){
     # SPILL JSON FROM API
     header('Content-type: application/json');
     echo _iapi($_POST,'json',false,true);
-} else if($_POST['module'] == 'admin.file'){
-	if($_POST['content']=='1'){
-		$data = json_decode(_iapi($_POST),true);
+} else if(!empty($_GET) && $_GET['module'] == 'admin.file'){
+	if($_GET['content']=='1'){
+		$data = json_decode(_iapi($_GET),true);
 		$return = base64_decode($data['data']['content']);
 		if(!$return){
 			echo 'failed to retrieve content ';
@@ -98,6 +116,6 @@ if($_POST['module'] && $_POST['module'] != 'admin.file'){
 		echo $return;
 	}else{
 		header('Content-type: application/json');
-		echo _iapi($_POST);	
+		echo _iapi($_GET);	
 	}
 }

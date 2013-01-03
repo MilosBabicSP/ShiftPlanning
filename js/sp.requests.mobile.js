@@ -3,6 +3,7 @@ ShiftPlanningRequests.prototype.initialize = function(){
     $(document).ready(function(){
         self.overviewEvents();
         self.vacationEvents();
+        self.availableEvents();
         self.openShiftsEvents();
         self.shiftTradesEvents();
         self.shiftApprovalsEvents();
@@ -18,6 +19,9 @@ ShiftPlanningRequests.prototype.loadSubPageEvents = function(subpage){
             break;
         case 'vacation':
             this.vacationSubEvents();
+            break;
+        case 'available':
+            this.availableSubEvents();
             break;
         case 'shiftTrades':
             this.shiftTradesSubEvents();
@@ -39,7 +43,11 @@ ShiftPlanningRequests.prototype.loadSubPageEvents = function(subpage){
         case 'shiftTradeManagerAP':
             $('.subNavigation').hide();
             this.displayShiftTradeManagerAP();
-            break;    
+            break; 
+        case 'shiftSwapRequest':
+            $('.subNavigation').hide();
+            this.shiftSwapRequestSubEvents();
+            break;
         case 'shiftTradeManagerIM':
             $('.subNavigation').hide();
             this.displayShiftTradeManagerIM();
@@ -119,6 +127,41 @@ ShiftPlanningRequests.prototype.vacationEvents = function(){
     });
 }
 
+ShiftPlanningRequests.prototype.availableEvents = function() {
+    var self= this;
+    $('#rq_av_pu').bind(clickEvent, function(e){
+        e.preventDefault();
+        sp.loadSubPage('', 'requests', 'openShifts');
+    });
+    
+    $('#rq_av_sw, #rq_av_tr').bind(clickEvent, function(e) {
+        e.preventDefault();
+        sp.loadSubPage('', 'requests', 'shiftTrades');
+    });
+    
+    /*open shifts */
+    $('#rq_av_pu_li').delegate('a', clickEvent, function(e){
+        e.preventDefault();
+        self.current = self.available.pickup[$(this).attr('rel')];
+        sp.loadSubPage('', 'requests', 'openShiftsOpen');
+    });
+
+    /*shift swap*/
+    $('#rq_av_sw_li').delegate('a', clickEvent, function(e){
+        e.preventDefault();
+        self.current = self.available.swap[$(this).attr('rel')];
+        sp.loadSubPage('', 'requests', 'shiftSwapRequest');
+    });
+    
+    /*shift trades*/
+    $('#rq_av_tr_li').delegate('a', clickEvent, function(e){
+        e.preventDefault();
+        self.current = self.available.trade[$(this).attr('rel')];
+        sp.loadSubPage('', 'requests', 'shiftTradeManagerAP');
+    });
+    
+}
+
 ShiftPlanningRequests.prototype.openShiftsEvents = function(){
     var self = this;
     $('#rq_os_os').delegate('a', clickEvent, function(e){
@@ -133,19 +176,18 @@ ShiftPlanningRequests.prototype.openShiftsEvents = function(){
         sp.loadSubPage('', 'requests', 'openShiftsRequest');
     });
     
-    $('#rq_os_sub').delegate('#rq_os_rtw.icoReqWor', clickEvent, function(e){
+    $('#rq_os_os_s').delegate('#rq_os_rtw.green', clickEvent, function(e){
         e.preventDefault();
         var obj = $(this);
         obj.addClass('loading');
-        spModel.schedule.update('shift', {
-            id : $(this).attr('rel'), 
-            add : sp.staff.admin.info.id
+        spModel.schedule.create('shiftrequests', {
+            shift : $(this).attr('rel') 
         }, function(response){
-            obj.removeClass('loading').removeClass('icoReqWork').addClass('icoReqCan').html(_s('<span>Cancel pending request</span>'));
+            obj.removeClass('loading').removeClass('green').addClass('grey').html(_s('<span>Cancel pending request</span>'));
         });
     });
     
-    $('#rq_os_sub').delegate('#rq_os_rtw.icoReqCan', clickEvent, function(e){
+    $('#rq_os_os_s').delegate('#rq_os_rtw.grey', clickEvent, function(e){
         e.preventDefault();
         var obj = $(this);
         obj.addClass('loading');
@@ -153,11 +195,11 @@ ShiftPlanningRequests.prototype.openShiftsEvents = function(){
             id : $(this).attr('rel'), 
             remove : sp.staff.admin.info.id
         }, function(response){
-            obj.removeClass('loading').removeClass('icoReqCan').removeClass('icoReqWork').html(_s('Request Removed'));
+            obj.removeClass('loading').removeClass('grey').removeClass('green').html(_s('Request Removed'));
         });
     });
     
-    $('#rq_os_spr_sub a').bind(clickEvent, function(e){
+    $('#rq_os_spr_s').delegate('.step a', clickEvent, function(e){
         e.preventDefault();
         var obj = $(this);
         obj.addClass('loading');
@@ -166,7 +208,7 @@ ShiftPlanningRequests.prototype.openShiftsEvents = function(){
             type : 'openshifts'
         }
         
-        if ($(this).hasClass('approve')){
+        if ($(this).hasClass('accept')){
             data.mode = 'approve';
         } else {
             data.mode = 'reject';
@@ -199,7 +241,24 @@ ShiftPlanningRequests.prototype.shiftTradesEvents = function(){
         self.current = self.trades['requested'][$(this).attr('rel')];
         sp.loadSubPage('', 'requests', 'shiftTradeManagerIM');
     });
-    
+    $('#rq_st_swap').delegate('a',clickEvent,function(e){
+            e.preventDefault();
+            self.current = self.swaps[$(this).attr('rel')];
+            sp.loadSubPage('', 'requests', 'shiftSwapRequest');
+    });
+    $('#rq_st_sh_swap').delegate('.traders a', clickEvent, function(){
+            var swapId = $(this).attr('swapId');
+            var shift = $(this).attr('shiftId');
+            var action = $(this).attr('class');
+            var obj = $(this);
+            obj.addClass('loading');		
+            var message = action == 'accept' ? 'You have accepted this shift trade.' : 'You have rejected this shift trade.' ;
+            spModel.schedule.update('tradeswap',{shift_for_swap:shift,trade:swapId,action:action},function(response){
+                obj.removeClass('loading');
+                sp.showSuccess(message);
+                $('.subNavigation .requests li a[subpage=shiftTrades]').trigger(clickEvent);
+            });
+    });
     $('#rq_st_mst_s').delegate('.traders a', clickEvent, function(e){
         var obj = $(this);
         obj.addClass('loading');
@@ -407,42 +466,42 @@ ShiftPlanningRequests.prototype.overviewSubEvents = function(){
         }
         
         if (response.data.vacation == 0){
-            $('#rq_rl_va').parent().hide();
+            $('#rq_rl_va').hide();
         } else {
-            $('#rq_rl_va').parent().show();
+            $('#rq_rl_va').show();
         }
         
         if (response.data.shift_approval == 0){
-            $('#rq_rl_sp').parent().hide();
+            $('#rq_rl_sp').hide();
         } else {
-            $('#rq_rl_sp').parent().show();
+            $('#rq_rl_sp').show();
         }
         
         if (response.data.shift_request_waiting == 0){
-            $('#rq_rl_sr').parent().hide();
+            $('#rq_rl_sr').hide();
         } else {
-            $('#rq_rl_sr').parent().hide();
+            $('#rq_rl_sr').show();
         }
         
         if (response.data.trade_approval == 0){
-            $('#rq_rl_ast').parent().hide();
+            $('#rq_rl_ast').hide();
         } else {
-            $('#rq_rl_ast').parent().show();
+            $('#rq_rl_ast').show();
         }
         
         if (response.data.shift_available == 0){
             $('#rq_rl_sv').parent().hide();
         } else {
-            $('#rq_rl_sv').parent().hide();
+            $('#rq_rl_sv').show();
         }
         
-        $('#rq_rl_va').parent().find('info').html(response.data.vacation);
-        $('#rq_rl_sp').parent().find('info').html(response.data.shift_approval);
-        $('#rq_rl_sr').parent().find('info').html(response.data.shift_request_waiting);
-        $('#rq_rl_ast').parent().find('info').html(response.data.trade_approval);
-        $('#rq_rl_sv').parent().find('info').html(response.data.shift_available);
+        $('#rq_rl_va .icon b').html(response.data.vacation);
+        $('#rq_rl_sp .icon b').html(response.data.shift_approval);
+        $('#rq_rl_sr .icon b').html(response.data.shift_request_waiting);
+        $('#rq_rl_ast .icon b').html(response.data.trade_approval);
+        $('#rq_rl_sv .icon b').html(response.data.shift_available);
 	
-	if ($('#rq_ov .requests:first li:visible').length == 0){
+	if ($('#rq_ov .widgets li:visible').length == 0){
 	    $('#rq_ov_hd').show();
 	} else {
 	    $('#rq_ov_hd').hide();
@@ -457,8 +516,10 @@ ShiftPlanningRequests.prototype.vacationSubEvents = function(){
     
     if (sp.staff.admin.settings.book_days_off == 1){
 	$('#rq_va .newMsg').show();
+        $('#rq_va .newMsg').next().show();
     } else {
 	$('#rq_va .newMsg').hide();
+        $('#rq_va .newMsg').next().hide();
     }
     
     $('#rq_va_en').html(spView.staffOption((sp.staff.admin.info.group <= 4) ? false : true));
@@ -545,7 +606,37 @@ ShiftPlanningRequests.prototype.vacationSubEvents = function(){
 //    $('#rq_va_up').addClass('appHidden');
 }
 
-ShiftPlanningRequests.prototype.openShiftsSubEvents = function(){
+ShiftPlanningRequests.prototype.availableSubEvents = function() {
+    $('.bigLoader').show();
+    $('#da_widgets .timeClock.out, #da_widgets .timeClock.in').hide();
+    var calls = [
+        ['schedule.shifts','GET', {
+            'mode': 'open'
+        }],
+        ['schedule.trades','GET', {}],
+        ['schedule.trades', 'get', {'mode' : 'swap'}]
+    ]
+    var self = this;
+    sp.multiApi(calls, function(response){
+        self.available.pickup = sp.map(response[0].data);
+        self.available.swap = sp.map(response[2].data);
+        self.available.trade = sp.map(response[1].data);
+        $('#rq_av_pu .icon b').html( sp.countResponse( response[0].data ) );
+        $('#rq_av_pu_li').html($.tmpl($('#te_da_all_shiftV2'), sp.objToArray(response[0].data)));
+        $('#rq_av_sw .icon b').html( sp.countResponse( response[2].data ) );
+        var swap = [];
+        $.each(response[2].data,function(key,item){
+                item.avatar = sp.getAvatar(item.user);
+                swap.push(item);
+        });
+        $('#rq_av_sw_li').html($.tmpl($('#te_da_all_shiftV2'), swap ));
+        $('#rq_av_tr .icon b').html( sp.countResponse( response[1].data ) );
+        $('#rq_av_tr_li').html($.tmpl($('#te_da_all_shiftV2'), sp.objToArray(response[1].data)));
+        $('.bigLoader').hide();
+    });
+}
+
+ShiftPlanningRequests.prototype.openShiftsSubEvents = function() {
     var self = this;
     
     $('#rq_os_os').html(spView.ulLoader());
@@ -574,7 +665,7 @@ ShiftPlanningRequests.prototype.openShiftsSubEvents = function(){
                 d[i].rId = i;
             });
             self.shifts = d;
-            $('#rq_os_os').html($.tmpl($('#te_rq_os_os'), response.data));
+            $('#rq_os_os').html($.tmpl($('#te_da_all_shift'), response.data));
         }
     }, function(response){
         sp.showError(response.error);
@@ -583,8 +674,7 @@ ShiftPlanningRequests.prototype.openShiftsSubEvents = function(){
     
     if (sp.staff.admin.info.group < 4){
         spModel.schedule.get('shifts', {
-            mode: 'openapproval',
-            detailed : 1
+            mode: 'openapproval'
         }, function(response){
             if (response.data.length == 0){
                 $('#rq_os_spr').hide();
@@ -600,7 +690,7 @@ ShiftPlanningRequests.prototype.openShiftsSubEvents = function(){
                     d[i].rId = i;
                 });
                 self.shiftsR = d;
-                $('#rq_os_spr').html($.tmpl($('#te_rq_os_spr'), response.data));
+                $('#rq_os_spr').html($.tmpl($('#te_da_all_shift'), response.data));
             }
         }, function(response){
             sp.showError(response.error);
@@ -616,6 +706,7 @@ ShiftPlanningRequests.prototype.shiftTradesSubEvents = function(){
     var self = this;
     $('#rq_st_mst').html(spView.ulLoader());
     $('#rq_st_ap').html(spView.ulLoader());
+    $('#rq_st_swap').html(spView.ulLoader());
     $('#rq_st_im').html(spView.ulLoader());
     
     $('#rq_st_mst').show();
@@ -625,6 +716,7 @@ ShiftPlanningRequests.prototype.shiftTradesSubEvents = function(){
     $('#rq_st_mst').next().hide();
     $('#rq_st_ap').next().hide();
     $('#rq_st_im').next().hide();
+    $('#rq_st_swap').next().hide();
     if (sp.staff.admin.info.group <= 4){
         spModel.schedule.get('trades', {
             mode : 'manage'
@@ -692,6 +784,24 @@ ShiftPlanningRequests.prototype.shiftTradesSubEvents = function(){
         }
     }, function(response){
         sp.showError(response.error);
+    });
+	
+    spModel.schedule.get('trades',{
+            mode : 'swap'
+    },function(response){
+            if(response.data != ''){
+                    self.swaps= response.data;
+                    var swap = [];
+                    $('#rq_st_swap').show();
+                    $.each(response.data,function(key,item){
+                            item.avatar = sp.getAvatar(item.user);
+                            swap.push(item);
+                    });
+                    $('#rq_st_swap').html($.tmpl($('#te_rq_swap_single'),swap));
+            }else{
+                    $('#rq_st_swap').hide();
+                    $('#rq_st_swap_empty').show();
+            }
     });
 }
 
@@ -795,14 +905,11 @@ ShiftPlanningRequests.prototype.addVacationRequest = function(obj){
 }
 
 ShiftPlanningRequests.prototype.displayVacationRequest = function(){
-    console.log(this.current);
     $('#rq_va_ma_s').html($.tmpl($('#te_rq_va_ma_s'), this.current));   
 }
 
 ShiftPlanningRequests.prototype.displayShiftTradeManager = function(){
-    
     $('#rq_st_mst_s').html($.tmpl($('#te_rq_st_mst_s'), this.prepareSingleViewTrade(this.current)));
-    console.log(this.current);
     $('#rq_st_mts_sub ul a').attr('rel', this.current.id);
     
     if (parseInt(this.current.confirm_before) == 0){
@@ -821,6 +928,10 @@ ShiftPlanningRequests.prototype.displayShiftTradeManagerIM = function(){
     $('#rq_st_im_sm a').attr('rel', this.current.id);
 }
 
+ShiftPlanningRequests.prototype.shiftSwapRequestSubEvents = function(){
+    $('#rq_st_sh_swap').html($.tmpl($('#te_rq_st_swap_single'),this.current));
+}
+
 ShiftPlanningRequests.prototype.displayShiftTradeManagerAP = function(){
     
     $('#rq_st_ap_s').html($.tmpl($('#te_rq_st_ap_s'), this.current));
@@ -835,28 +946,65 @@ ShiftPlanningRequests.prototype.displayShiftTradeManagerAP = function(){
 }
 
 ShiftPlanningRequests.prototype.displayOpenShifts = function(){
-    $('#rq_os_rtw').removeClass('icoReqCan').addClass('icoReqWork').html(_s('<span>Request to work</span>'));
-    
     $('#rq_os_os_s').html($.tmpl($('#te_rq_os_os_s'), this.current));
     
     var h = '';
+    var una = '<p>' + _s('You are un-available') + '</p>';
     var s = this.current.status;
-    if (s == 10 || s == 4){
-        h = '<a class="icoReqWor" href="#" id="rq_os_rtw" rel="' + this.current.id + _s('"><span>Request to work</span></a>');
-    } else if (s == 1){
-        h = _s('Management rejected your request for this shift');
-    } else if (s == 0){
-        h = '<a class="icoReqCan" href="#" id="rq_os_rtw" rel="' + this.current.id + _s('"><span>Cancel pending request</span></a>');
-    } else if (s == 2){
-        h = _s('Already on this shift');
-    } else {
-        h = _s('Will put you into overtime');
+    if (typeof sp.staff.admin.settings.open_overtime == 'undefined'){
+        sp.staff.admin.settings.open_overtime = false;
     }
-    
-    $('#rq_os_sub .subMenu .single').html(h);
+    switch (s){
+        case 0 :
+            h = '<a class="grey" href="#" id="rq_os_rtw" rel="' + this.current.id + _s('"><span>Cancel pending request</span>');
+            if (!this.current.available) {
+                h += una;
+            }
+            break;
+        case 1 : 
+            h = '<p>' + _s('Management rejected your request for this shift') + '</p>';
+            break;
+        case 2 :
+            h = '<p>' + _s('Already on this shift') + '</p>';
+            break;
+        case 3 :
+            h = '<p>' + _s('Booked Off') + '</p>';
+            break;
+        case 5 :
+        case 6 :
+            if (!sp.staff.admin.settings.open_overtime) {
+                if (s == 5) {
+                    h = '<p>' + _s('Will put you into weekly overtime') + '</p>';
+                } else {
+                    h = '<p>' + _s('Will put you into daily overtime') + '</p>';
+                }
+            } else {
+                h = '<a class="green" href="#" id="rq_os_rtw" rel="' + this.current.id + _s('"><span>Request to work</span>') + '</a>';
+            }
+            break;
+        case 7 :
+            h = '<p>' + _s('Max Days in a Row Breached') + '</p>';
+            break;
+        case 8 :
+            h = '<p>' + _s('Scheduled during this time') + '</p>';
+            break;
+        case 9 :
+            h = '<p>' + _s('Invalid time between shifts') + '</p>';
+            break;
+        case 10 :
+            h = '<a class="green" href="#" id="rq_os_rtw" rel="' + this.current.id + _s('"><span>Request to work</span>') + '</a>';
+            if (!this.current.available) {
+                h += una;
+            }
+            break;
+    }
+    $('#rq_os_pickup_req_button').html(h);
 }
 
 ShiftPlanningRequests.prototype.displayOpenRequests = function(){
+    if (typeof this.current.full == 'undefined'){
+        this.current.full = this.current;
+    }
     $('#rq_os_spr_s').html($.tmpl($('#te_rq_os_spr_s'), this.current));
     
     $('#rq_os_spr_sub a').attr('rel',this.current.full.request_id);
@@ -924,6 +1072,9 @@ ShiftPlanningRequests.prototype.prepareSingleViewTrade = function (data){
     data.traders.data = d;
     return data;
 }
+ShiftPlanningRequests.prototype.prepareSingleViewSwap = function(data){
+	
+}
 
 ShiftPlanningRequests.prototype.prepareOpenShiftsNA = function(data){
     var res = {};
@@ -935,8 +1086,15 @@ ShiftPlanningRequests.prototype.prepareOpenShiftsNA = function(data){
             res[item.user_id + item.start_date.formatted + item.start_time.time + item.end_time.time + item.schedule_name] = {
                 user_name : itemV2.name,
                 user_id : itemV2.id,
-                start_date : item.start_date.formatted,
-                hours : item.start_time.time + ' - ' + item.end_time.time,
+                start_date : {
+                    formatted: item.start_date.formatted
+                },
+                start_time : {
+                    time : item.start_time.time
+                },
+                end_time : {
+                    time : item.end_time.time
+                },
                 schedule_name : item.schedule_name,
                 notes : item.notes,
                 id : item.id,

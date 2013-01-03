@@ -9,7 +9,7 @@ var ua = navigator.userAgent.toLowerCase();
 var isAndroid = ua.indexOf("android") > -1; //&& ua.indexOf("mobile");
 
 if (agentID) {
-    clickEvent = 'touch';
+    clickEvent = 'click';
 }
 
 jQuery.event.special.touch = {
@@ -59,18 +59,39 @@ jQuery.event.special.touch = {
 ShiftPlanning.prototype.toggleMenu = function(){
     $('#menu').toggleClass('hidden');
     $('#wrapper').toggleClass('extended');
+    
+    if ($('#wrapper').hasClass('extended')){
+        $('#wrapper').css('margin-left', 190);
+        $('#menu').css('margin-left', 0);
+        $('.blackMask').css('display','block');
+        $('.blackMask').css('opacity','0.5');
+    } else {
+        $('#wrapper').css('margin-left', 0);
+        $('#menu').css('margin-left', -190);
+        $('.blackMask').css('display','none');
+        $('.blackMask').css('opacity','0');
+    }
 }
 
-ShiftPlanning.prototype.loadSubPage = function(obj, page, subpage){
+ShiftPlanning.prototype.loadSubPage = function(obj, page, subpage) {
     if (subpage == 'logout'){
         this.staff.logout();
         return false;
     }
     
+    this.globalLoader();
+    
+    setTimeout(function(){
+        if (sp.countObject( sp.apiCalls ) == 0){
+            $('.bigLoader').hide();
+        }
+    }, 500);
+    
     if (obj != ''){
         obj.parent().parent().find('li').removeClass('active');
         obj.parent().addClass('active');
     }
+    
     $('.subNavigation > div').hide();
     $('.subNavigation > div.' + page).show();
     
@@ -81,18 +102,32 @@ ShiftPlanning.prototype.loadSubPage = function(obj, page, subpage){
     $('#pages #' + page + ' .main.' + subpage).show();
     $('#pages #' + page + ' .mainSub.' + subpage).show();
     
+    $('#menu .mainNav > li').removeClass('active');
+    $('#menu_' + page).addClass('active');
+    
+    $('.subNavigation div.' + page + ' .subnNav[page=' + page + '] li').removeClass('active');
+    
+    $('.subNavigation div.' + page + ' .subnNav[page=' + page + '] li a[page=' + subpage + ']').parent().addClass('active');
+    sp.hashChange = false;
+    sp.hash(page);
+    
     if (typeof this[page] != 'undefined' && 'loadSubPageEvents' in this[page]){
         this[page].loadSubPageEvents(subpage);
     }
     
-    this.fixCheckboxes();
+    sp.fixCheckboxes();
+    $(document).scrollTop(0);
 }
 
 ShiftPlanning.prototype.initialize = function(){
     var self = this;
     $(window).hashchange(function(){
-        if (self.hash().length > 0) {
-            if(self.hash() == 'logout')
+        if (sp.hashChange == false){
+            sp.hashChange = true;
+            return false;
+        }
+        if (sp.hash().length > 0) {
+            if(sp.hash() == 'logout')
             {
                 self.staff.logout();
                 return false;
@@ -125,85 +160,171 @@ ShiftPlanning.prototype.initialize = function(){
                 }
             }
         }
-    }); 
-    
-    if (typeof gap != 'undefined') {
-        self.loadSite();
-    } else {
-        $(document).ready(function(){
-            self.loadSite();
+    });  
+    $(document).ready(function(){
+        init();
+        $('.toggleMenu').bind(clickEvent, function(e){
+            e.stopPropagation();
+            e.preventDefault();
+            self.toggleMenu();
         });
-    }
+        
+        
+        if(user.loggedIn){
+            $('.loginContainer').hide();
+            $('body').removeClass('login');
+            $('html').css('height','auto');
+            $('.applicationContainer').show();
+            if (sp.hash().length == 0 || sp.hash() == 'login'){
+                sp.hash('dashboard');
+            }
+        } else {
+            $('.loginContainer').show();
+            $('body').addClass('login');
+            sp.hash('login');
+            $('#lo_u').focus();
+        }
+        
+        $('#wrapper .subNavigation .subNav:not(.notMain) a').bind(clickEvent, function(e){
+            e.preventDefault();
+            self.loadSubPage($(this), $(this).parent().parent().attr('page'), $(this).attr('subpage'));
+        });
+        
+        $('#menu .mainNav > li > a').bind(clickEvent, function(e){
+            if ($(this).hasClass('exit')) return true;
+            e.preventDefault();
+            if ( $(this).attr('page') == sp.hash() ) {
+                self.toggleMenu();
+                return false;
+            }
+            if ( $('#wrapper').hasClass('extended') ) {
+                self.toggleMenu();
+            }
+            sp.hashChange = true;
+            sp.hash($(this).attr('page'));
+        });
+        $(window).hashchange();
+        
+        setInterval(function() {
+            $('#menu').css('height', self.calculateMenuHeight() );
+            $('#wrapper').css('min-height', self.calculateWrapperHeight());
+            if ( $('.blackMask').css('opacity') == '0' ) {
+                $('.blackMask').hide();
+            }
+        }, 1000);
+        $('#wrapper').width($(window).width());
+        $('body').width($(window).width());
+
+        //all mainUser names to lead to settings 
+        $('.userName').bind(clickEvent, function(){
+            sp.loadSubPage('', 'settings', 'overview');
+        });
+        
+        if (isAndroid){
+            $('#da_up_fi_hide').hide();
+        }
+        
+        $('.wrapper').bind('swipe', function(e) {
+            var m = $('.wrapper').hasClass('extended');
+            if (e.direction == 'right' && !m) {
+                $('#menu').removeClass('hidden');
+                $('#wrapper').addClass('extended');
+                $('#wrapper').css('margin-left', 190);
+                $('#menu').css('margin-left', 0);
+                $('.blackMask').css('display','block');
+                $('.blackMask').css('opacity','0.5');
+            } else if (e.direction == 'left' && m) {
+                $('#menu').addClass('hidden');
+                $('#wrapper').removeClass('extended');
+                $('#wrapper').css('margin-left', 0);
+                $('#menu').css('margin-left', -190);
+                $('.blackMask').css('display','none');
+                $('.blackMask').css('opacity','0');
+            }
+        });
+        //dragstart drag dragend
+        var start = false;
+        var element = 
+        $('.wrapper').bind('dragstart', function(e){
+            e.preventDefault();
+            e.stopPropagation();
+            $('.blackMask').css('display','block');
+            $('.blackMask').css('opacity','0');
+        });
+        $('.wrapper').bind('drag', function(e){
+            e.preventDefault();
+            e.stopPropagation();
+            var m = $('.wrapper').hasClass('extended');
+            if (e.direction == 'left') {
+                e.distanceX = 190 + parseInt(e.distanceX);
+                if (Math.abs(parseInt(e.distanceX)) > 50 && m){
+                    start = true;
+                }
+            } else {
+                if (parseInt(e.distanceX) > 50 && !m){
+                    start = true;
+                }
+            }
+            element = 'wrapper';
+            if (!start){
+                return false;
+            }
+            if (e.distanceX <= 0){
+                e.distanceX = 0;
+            }
+            if (e.distanceX >= 190){
+                e.distanceX = 190;
+            }
+            if (start) {
+                $('#wrapper').css('margin-left', parseInt(e.distanceX));
+                $('#menu').css('margin-left',(-190 + parseInt(e.distanceX)) );   
+                $('.blackMask').css('opacity',((0.5*parseInt(e.distanceX))/190).toFixed(1));
+            }
+        });
+        
+        $('.wrapper').bind('dragend', function(e){
+            start = false;
+            var len = parseInt($('#wrapper').css('margin-left'));
+            if ( len > 90 ) {
+                $('#menu').removeClass('hidden');
+                $('#wrapper').addClass('extended');
+                $('#wrapper').css('margin-left', 190);
+                $('#menu').css('margin-left', 0);
+                $('.blackMask').css('display','block');
+                $('.blackMask').css('opacity','0.5');
+            } else {
+                $('#menu').addClass('hidden');
+                $('#wrapper').removeClass('extended');
+                $('#wrapper').css('margin-left', 0);
+                $('#menu').css('margin-left', -190);
+                $('.blackMask').css('display','none');
+                $('.blackMask').css('opacity','0');
+            }
+        });
+    });
     
-    
-    $(window).bind('resize', function(){
+    $(window).bind('resize', function() {
         $('#wrapper').width($(window).width());
         $('body').width($(window).width());
     });
 }
 
-ShiftPlanning.prototype.loadSite = function() {
-    var self = this;
-    init();
-    $('.toggleMenu').bind('click', function(e){
-        e.preventDefault();
-        self.toggleMenu();
-    });
-        
-    if(user.loggedIn) {
-        $('.loginContainer').hide();
-        $('body').removeClass('login');
-        $('html').css('height','auto');
-        $('.applicationContainer').show();
-        if (self.hash().length == 0 || self.hash() == 'login') {
-            self.hash('dashboard');
-        }
+ShiftPlanning.prototype.calculateWrapperHeight = function() {
+    var wrapperHeight = $('#pages').height() + $('.subNavigation').height() + 20; 
+    return ($(window).height() > wrapperHeight) ? $(window).height() : wrapperHeight; 
+}
+
+ShiftPlanning.prototype.calculateMenuHeight = function () {
+    var h = this.calculateWrapperHeight();
+    if ( $('#menu .mainNav').height() + 150 > h) {
+        return $('#menu .mainNav').height() + 150;
     } else {
-        $('.loginContainer').show();
-        $('body').addClass('login');
-        self.hash('login');
-        $('#lo_u').focus();
-    }
-        
-    $('#wrapper .subNavigation .subNav:not(.notMain) a').bind(clickEvent, function(e){
-        e.preventDefault();
-        self.loadSubPage($(this), $(this).parent().parent().attr('page'), $(this).attr('subpage'));
-    });
-        
-    $('#menu .mainNav > li > a').bind(clickEvent, function(e){
-        if ($(this).hasClass('exit') && $(this).attr('page') != 'logout') return true;
-        e.preventDefault();
-        if ($(this).attr('page') == self.hash()){
-            return false;
-        }
-        self.toggleMenu();
-        self.hash($(this).attr('page'));
-    }); 
-    $(window).hashchange();
-    setInterval(function(){
-        $('#menu').css('height', ($(window).height() > $(document).height() ? $(window).height() : $(document).height()));
-    }, 1000);
-    $('#wrapper').width($(window).width());
-    $('body').width($(window).width());
-        
-    //all mainUser names to lead to settings 
-    $('.userName').bind(clickEvent, function(){
-        self.loadSubPage('', 'dashboard', 'settings');
-    });
-        
-    $('#wrapper').bind(clickEvent, function(e){
-        if ($('#wrapper').hasClass('extended') && !$(e.target.parentElement).hasClass('toggleMenu')){
-            self.toggleMenu();
-        }
-    })
-        
-    if (isAndroid){
-        $('#da_up_fi_hide').hide();
+        return h;
     }
 }
 
 ShiftPlanning.prototype.globalLoader = function(){
-    
+    $('.bigLoader').show();
 }
 
 ShiftPlanning.prototype.fixCheckboxes = function(){
@@ -256,17 +377,15 @@ function callAndroid(func, callback){
     return false;
 }
 
-
-if (typeof gap == 'undefined') {
 //Initalizing javascript library
-    var sp = new ShiftPlanning();
-    ShiftPlanning.prototype.staff = new ShiftPlanningStaff();
-    ShiftPlanning.prototype.schedule = new ShiftPlanningSchedule();
-    ShiftPlanning.prototype.dashboard = new ShiftPlanningDashboard();
-    ShiftPlanning.prototype.timeClock = new ShiftPlanningTimeClock();
-    ShiftPlanning.prototype.reports = new ShiftPlanningReports();
-    ShiftPlanning.prototype.requests = new ShiftPlanningRequests();
-    ShiftPlanning.prototype.location = new ShiftPlanningLocation();
-    ShiftPlanning.prototype.permissions = new ShiftPlanningPermissions();
-    ShiftPlanning.prototype.training = new ShiftPlanningTraining();
-}
+var sp = new ShiftPlanning();
+ShiftPlanning.prototype.staff = new ShiftPlanningStaff();
+ShiftPlanning.prototype.schedule = new ShiftPlanningSchedule();
+ShiftPlanning.prototype.dashboard = new ShiftPlanningDashboard();
+ShiftPlanning.prototype.timeClock = new ShiftPlanningTimeClock();
+ShiftPlanning.prototype.reports = new ShiftPlanningReports();
+ShiftPlanning.prototype.requests = new ShiftPlanningRequests();
+ShiftPlanning.prototype.location = new ShiftPlanningLocation();
+ShiftPlanning.prototype.permissions = new ShiftPlanningPermissions();
+ShiftPlanning.prototype.training = new ShiftPlanningTraining();
+ShiftPlanning.prototype.settings = new ShiftPlanningSettings();

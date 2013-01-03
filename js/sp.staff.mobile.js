@@ -10,7 +10,7 @@ ShiftPlanningStaff.prototype.initialize = function(){
 	
 	$('#lo_f .checkbox').bind(clickEvent, function(){
 	    $(this).toggleClass('check');
-	})
+	});
         
         self.listEvents();
         self.addStaffEvents();
@@ -27,17 +27,21 @@ ShiftPlanningStaff.prototype.loadSubPageEvents = function(subpage){
 
 ShiftPlanningStaff.prototype.listEvents = function(){
     var self = this;
-    $('#st_sn_ga').bind(clickEvent, function(e){
-        e.preventDefault();
-        $(this).parents('ul').find('li').removeClass('active');
-        $(this).parent().addClass('active');
+    $('#st_sn_ga').bind(clickEvent, function(){
+        if ($(this).hasClass('active')){
+            return false;
+        }
+        $('#st_sn_ga').addClass('active');
+        $('#st_sn_li').removeClass('active');
         $('#st_li_ga').removeClass('small').addClass('big');
     });
     
     $('#st_sn_li').bind(clickEvent, function(e){
-        e.preventDefault();
-        $(this).parents('ul').find('li').removeClass('active');
-        $(this).parent().addClass('active');
+        if ($(this).hasClass('active')){
+            return false;
+        }
+        $('#st_sn_li').addClass('active');
+        $('#st_sn_ga').removeClass('active');
         $('#st_li_ga').removeClass('big').addClass('small');
     });
     
@@ -114,7 +118,7 @@ ShiftPlanningStaff.prototype.fastAssignmentEvents = function(){
                 $(obj).addClass('check');
             }
 	    $(obj).parent().removeClass('loading');
-            sp.dashboard.updateUser($('#st_fa_cu').val(), response, false);
+            sp.settings.updateUser($('#st_fa_cu').val(), response, false);
         });
     });
 }
@@ -140,12 +144,14 @@ ShiftPlanningStaff.prototype.fastAssignmentSubEvents = function(){
 ShiftPlanningStaff.prototype.displayEmployee = function(id){
     $('#st_tp_menu').hide();
     $('#pages > div').hide();
-    $('#pages #dashboard .main').hide();
-    $('#pages #dashboard .mainSub').hide();
-    $('#pages #dashboard').show();
-    $('#pages #dashboard .main.settings').show();
-    $('#pages #dashboard .mainSub.settings').show();
-    sp.dashboard.settingsSubEvents(spModel.staff.getEmployeeById(id));
+    $('#pages #settings .main').hide();
+    $('#pages #settings .mainSub').hide();
+    $('#pages #settings').show();
+    $('#da_se_overview').show();
+    sp.settings.overviewSubEvents(spModel.staff.getEmployeeById(id));
+    $('#settings .mainSub.settings .subNav li:first a').trigger(clickEvent);
+    $('.subNavigation').hide();	
+    $('#pages #settings .mainSub.settings').show();
 }
 
 
@@ -243,48 +249,49 @@ ShiftPlanningStaff.prototype.login = function(){
         ]
         sp.multiApi(calls, function(response){
             sp.api('api.config', 'GET', {}, function(config){
-				sp.api('admin.business', 'GET', {},function(business){
-					//was hitting the 5 request limit for multi api so we needed to send a separate call
-					$('.loginContainer').fadeOut(500, function(){
-						$('#lo_b').removeClass('loading');
-						user.loggedIn = 1;
-						user.name = loginResponse.data.employee.name;
-						user.company = loginResponse.data.business.name;
-						user.phone = loginResponse.data.business.phone;
-						sp.staff.raw.employees = response[0].data;
-						sp.staff.data.employees = sp.map(response[0].data);
-						sp.schedule.raw.schedules = response[1].data;
-						sp.schedule.data.schedules = sp.map(response[1].data);
-						sp.staff.admin.settings = response[2].data;
-						sp.staff.raw.skills = response[3].data;
-						sp.staff.data.skills = sp.map(response[3].data);
-						sp.staff.raw.locations = response[4].data;
-						sp.staff.data.locations = sp.map(response[4].data);
-						sp.staff.admin.info.dfAvatar = sp.getAvatar(sp.staff.admin.info.id);
-						sp.raw.config = config.data;
-						sp.schedule.dateId = sp.raw.config.today.id;
-						sp.staff.admin.business = business.data;
-						$('body').removeClass('login');
-						$('.notification').remove();
-						$('html').css('height','auto');
-						$('.applicationContainer').fadeIn(500);
-						sp.hash('dashboard');
-						self.prepareConfig();
-						$('.userName').html(user.name);
-						sp.permissions.preparePermissions();
-				spRanges.fixRanges();
-				sp.staff.fixed.employees = sp.permissions.fixStaffListing();
-				sp.raw.config.today.formatted = Date.parse(sp.raw.config.today.formatted).toString(cal.dformat);
-				if ($('#lo_f .checkbox').hasClass('check')){
-				setCookie('shiftplanning_mobile_rememberme', 1, cookieExpire);
-				setCookie('shiftplanning_mobile_usertoken', loginResponse.token, cookieExpire);
-				setCookie('shiftplanning_mobile_userid', loginResponse.data.employee.id, cookieExpire);
-				setCookie('shiftplanning_mobile_username', user.name, cookieExpire);
-				setCookie('shiftplanning_mobile_usercompany', user.company, cookieExpire);
-				setCookie('shiftplanning_mobile_userphone', user.phone, cookieExpire);
-				}
-					});
-				});
+                    sp.api('admin.business', 'GET', {},function(business){
+                            //was hitting the 5 request limit for multi api so we needed to send a separate call
+                            $('.loginContainer').fadeOut(500, function(){
+                                    $('#lo_b').removeClass('loading');
+                                    user.loggedIn = 1;
+                                    user.name = loginResponse.data.employee.name;
+                                    user.company = loginResponse.data.business.name;
+                                    user.phone = loginResponse.data.business.phone;
+                                    sp.staff.raw.employees = response[0].data;
+                                    sp.staff.data.employees = sp.map(response[0].data);
+                                    sp.schedule.raw.schedules = response[1].data;
+                                    sp.schedule.data.schedules = sp.map(response[1].data);
+                                    sp.staff.admin.settings = response[2].data;
+                                    sp.staff.raw.skills = response[3].data;
+                                    sp.staff.data.skills = sp.map(response[3].data);
+                                    sp.staff.raw.locations = response[4].data;
+                                    sp.staff.data.locations = sp.map(response[4].data);
+                                    sp.staff.admin.info.dfAvatar = sp.getAvatar(sp.staff.admin.info.id);
+                                    sp.raw.config = config.data;
+                                    sp.schedule.dateId = sp.raw.config.today.id;
+                                    sp.staff.admin.business = business.data;
+                                    $('body').removeClass('login');
+                                    $('.notification').remove();
+                                    $('html').css('height','auto');
+                                    sp.hash('dashboard');
+                                    self.prepareConfig();
+                                    $('.userName').html(user.name);
+                                    $('#da_widgets .user .icon').html('<img  height="40" width="40"  src="' + sp.getAvatar() + '" />');
+                                    $('company').html(user.company);
+                                    sp.permissions.preparePermissions();
+                                    spRanges.fixRanges();
+                                    sp.staff.fixed.employees = sp.permissions.fixStaffListing();
+                                    sp.raw.config.today.formatted = Date.parse(sp.raw.config.today.formatted).toString(cal.dformat);
+                                    if ($('#lo_f .checkbox').hasClass('check')){
+                                        setCookie('shiftplanning_mobile_rememberme', 1, cookieExpire);
+                                        setCookie('shiftplanning_mobile_usertoken', loginResponse.token, cookieExpire);
+                                        setCookie('shiftplanning_mobile_userid', loginResponse.data.employee.id, cookieExpire);
+                                        setCookie('shiftplanning_mobile_username', user.name, cookieExpire);
+                                        setCookie('shiftplanning_mobile_usercompany', user.company, cookieExpire);
+                                        setCookie('shiftplanning_mobile_userphone', user.phone, cookieExpire);
+                                    }
+                            });
+                    });
             });
         });
 

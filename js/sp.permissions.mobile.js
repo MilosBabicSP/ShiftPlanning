@@ -65,7 +65,7 @@ ShiftPlanningPermissions.prototype.preparePermissions = function(){
         $('#menu_reports').remove();
         $('#reports').remove();
 	
-	$('#da_se .aPerm').remove();
+	$('#settings .aPerm').remove();
 	
 	//remove staff fast assignment and add staff for employee
         $('.subNavigation .staff a[subpage=addStaff]').remove();
@@ -87,6 +87,7 @@ ShiftPlanningPermissions.prototype.preparePermissions = function(){
     //Time Clock Module is on
     if (parseInt(perms.timeclock) == 0){
         $('#menu #menu_timeClock').unbind(clickEvent);
+        $('#da_widgets .timeClock').remove();
         $('#menu #menu_timeClock').remove();
         $('#timeClock').remove();
         $('.subNavigation div.timeClock').remove();
@@ -99,6 +100,10 @@ ShiftPlanningPermissions.prototype.preparePermissions = function(){
         $('#menu #menu_staff').remove();
         $('#staff').remove();
         $('.subNavigation div.staff').remove();
+    }
+    
+    if ( group >= this.scheduler && parseInt( perms.edit_profile ) == 0 ) {
+        $('.subNavigation .settings .subNav a[subpage=edit]').hide();
     }
     
 /*    

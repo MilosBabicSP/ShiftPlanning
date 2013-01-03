@@ -143,7 +143,7 @@ ShiftPlanningTimeClock.prototype.manageTimeSheetsEvents = function(){
                 break;
             case 'edit':
                 self.edit = true;
-				$('#tc_act_onci').hide();
+                $('#tc_act_onci').hide();
                 sp.loadSubPage('', 'timeClock', 'addClockTime');
                 break;
             case 'delete':
@@ -304,8 +304,8 @@ ShiftPlanningTimeClock.prototype.addClockTimeSubEvents = function(){
         $('#tc_act .title h3').html(_s('Edit Clock Time'));
         $('#tc_act_tc_id').removeClass('editOn').addClass('editOn');
         $('#tc_act_tc_id').val(emp.id);
-		$('.addClockTime .odd').removeClass('nonVisible');
-		$('#tc_act_onci').removeClass('check');
+        $('.addClockTime .odd').removeClass('nonVisible');
+        $('#tc_act_onci').removeClass('check');
 	emp.in_time.time = sp.strReplace(['am','pm'],[' AM',' PM'],emp.in_time.time);
 	emp.out_time.time = sp.strReplace(['am','pm'],[' AM',' PM'],emp.out_time.time);
 	emp.in_time.day = Date.parse(emp.in_time.day).toString(cal.dformat);
@@ -313,7 +313,7 @@ ShiftPlanningTimeClock.prototype.addClockTimeSubEvents = function(){
     } else {
         $('#tc_act .title h3').html(_s('Add Clock Time'));
         $('#tc_act_tc_id').removeClass('editOn');
-		$('#tc_act_onci').show();
+        $('#tc_act_onci').show();
         emp.in_timestamp = Date.parse('today at 9am').getTime()/1000;
         emp.out_timestamp = Date.parse('today at 5pm').getTime()/1000;
     }
@@ -594,44 +594,44 @@ ShiftPlanningTimeClock.prototype.saveClockInChanges = function(){
 
 ShiftPlanningTimeClock.prototype.saveClockTime = function(){
     var data = {};
-    var f = '';
-	var module = 'timeclock.addclocktime';
-	var success = _s('Clock Time added');
+    var f = 'get';
+    var module = 'timeclock.addclocktime';
+    var success = _s('Clock Time added');
     if ($('#tc_act_tc_id').hasClass('editOn') == true){
         f = 'update';
-		module = 'timeclock.timeclock'
+        module = 'timeclock.timeclock'
         data.id = $('#tc_act_tc_id').val();
-		success = _s('Clock time edited');
-		data.start_date = $('#tc_act_c_cl_dp_i').val() +' '+ $('#tc_act_tclin').val();
-		data.start_time = $('#tc_act_c_cl_dp_i').val() +' '+ $('#tc_act_tclin').val();  
-		data.end_date = $('#tc_act_c_co_dp_i').val() + ' ' + $('#tc_act_tclou').val();
-		data.end_time = $('#tc_act_c_co_dp_i').val() + ' ' + $('#tc_act_tclou').val();
-    }else{
-		data.datein = $('#tc_act_c_cl_dp_i').val() +' '+ $('#tc_act_tclin').val();    
-		data.dateout = $('#tc_act_c_co_dp_i').val() + ' ' + $('#tc_act_tclou').val();		
-	}
+        success = _s('Clock time edited');
+        data.start_date = $('#tc_act_c_cl_dp_i').val() +' '+ $('#tc_act_tclin').val();
+        data.start_time = $('#tc_act_c_cl_dp_i').val() +' '+ $('#tc_act_tclin').val();  
+        data.end_date = $('#tc_act_c_co_dp_i').val() + ' ' + $('#tc_act_tclou').val();
+        data.end_time = $('#tc_act_c_co_dp_i').val() + ' ' + $('#tc_act_tclou').val();
+    } else {
+        data.datein = $('#tc_act_c_cl_dp_i').val() +' '+ $('#tc_act_tclin').val();    
+        data.dateout = $('#tc_act_c_co_dp_i').val() + ' ' + $('#tc_act_tclou').val();		
+    }
     
     data.schedule = $('#tc_act_sc').val();
     data.employee = $('#tc_act_em').val();
     	
-    if ($('#tc_act .detailsGrid .odd').hasClass('nonVisible')){
-        data.onlyin = 'checked';
+    if ( $('#tc_act_onci').hasClass('check') ) {
+        data.onlyin = 1;
     }
     
     data.notes = $('#tc_act_no').val();
     
     sp.api(module, f, data, function(response){
 	sp.showSuccess(success);
-	setTimeout(function(){
-		var subpage = 'displayTimeSheets'
-		if(sp.staff.admin.info.group <=2){
-			subpage = 'manageTimeSheets';
-		}
-		$('.subNavigation div.timeClock ul.timeClock a[subpage='+subpage+']').trigger(clickEvent);
+	setTimeout(function() {
+            var subpage = 'displayTimeSheets'
+            if(sp.staff.admin.info.group <=2){
+                subpage = 'manageTimeSheets';
+            }
+            $('.subNavigation div.timeClock ul.timeClock a[subpage='+subpage+']').trigger(clickEvent);
 	},400);        
     }, function(response){
-		sp.showError(response.error);}
-	);
+        sp.showError(response.error);
+    });
 }
 
 

@@ -105,7 +105,7 @@ ShiftPlanningTraining.prototype.sectionsSubEvents = function (){
 		$('.training  a[subpage=statistic]').parent().removeClass('hidden');
 		$('.training .singleModule .subMenu').removeClass('hidden');		
 	}else{
-		$('.trainingBar').css('margin','0 60px 0 0 ');
+		//$('.trainingBar').css('margin','0 60px 0 0 ');
 	}
 	$('.training_sections').html(spView.ulLoader());
 	var s=[];
@@ -148,6 +148,10 @@ ShiftPlanningTraining.prototype.sectionsSubEvents = function (){
 				}
 				$('.training_sections').html($.tmpl($('#te_tr_sections'),data));
 				$('.training div.oneLine b').shorten();	
+                                
+                                if ( $('.training_sections > *').length == 0 ) {
+                                    $('.training_sections').html( spView.emptyResult( _s('No training topics.'), 'li') );
+                                }
 			})			
 		})		
 	})

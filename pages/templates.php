@@ -1,5 +1,62 @@
 <!-- ID rulez first is "te" shorten from template, next is 2 letter from module name, than 2 letter from page name, than 2 letters from page method -->
 <div id="templates">
+    <script id="te_da_widget_shift" type="text/x-jquery-tmpl">
+        <li {{if start_date.id > sp.raw.config.today.id}} class="upcoming" {{/if}} style="border-color:#${sp.schedule.getColorsBySchedule(schedule, 1)}">
+            <a href="#" rel="${id}">
+                <span class="fr">
+                    <p>${start_date.formatted}</p>
+                    <p>${start_time.time} - ${end_time.time}</p> 
+                </span>
+                <b>${schedule_name}</b><br/>
+                <p>${title} &nbsp;</p>
+            </a>
+        </li>
+    </script>
+    <script id="te_da_all_shift" type="text/x-jquery-tmpl">
+        <li class="upcoming" style="border-color:#${sp.schedule.getColorsBySchedule(schedule, 1)}">
+            <a href="#" rel="${rId}">
+                <span class="fr">
+                    <p>${start_date.formatted}</p>
+                    <p>${start_time.time} - ${end_time.time}</p> 
+                </span>
+                <b>${schedule_name}</b><br/>
+                <p>${title} &nbsp;</p>
+            </a>
+        </li>
+    </script>
+    <script id="te_da_all_shiftV2" type="text/x-jquery-tmpl">
+        <li class="upcoming" style="border-color:#${sp.schedule.getColorsBySchedule(schedule, 1)}">
+            <a href="#" rel="${id}">
+                {{if typeof shift_start_date != 'undefined'}}
+                    <span class="fr">
+                        <p>${shift_start_date.formatted}</p>
+                        <p>${shift_start_date.time} - ${shift_end_date.time}</p> 
+                    </span>
+                    <b>${name}</b><br/>
+                    <p>${user_name} &nbsp;</p>
+                {{else}}
+                    <span class="fr">
+                        <p>${start_date.formatted}</p>
+                        <p>${start_time.time} - ${end_time.time}</p> 
+                    </span>
+                    <b>${schedule_name}</b><br/>
+                    <p>${title} &nbsp;</p>
+                {{/if}}
+            </a>
+        </li>
+    </script>
+    <script id="te_sc_shifts_new" type="text/x-jquery-tmpl">
+        <li style="border-color:#${sp.schedule.getColorsBySchedule(schedule)[1]}" class="{{if (published == 0 || (published < edited && published != 0)) && perms == 2 && sp.staff.admin.settings.draft == 1}}notPublished{{/if}}">
+            <a href="#" rel="${id}" class="isShift">
+                <span class="fr">
+                    <p>${start_date.formatted}</p>
+                    <p>${start_time.time} - ${end_time.time}</p>
+                </span>
+                <b>${schedule_name}</b><br/>
+                <p>{{if typeof employees != 'undefined' && employees != null}}{{tmpl(employees) "#te_sc_shifts_names"}}{{else}}&nbsp;{{/if}}</p>
+            </a>
+        </li>
+    </script>
     <script id="te_sc_usersU" type="text/x-jquery-tmpl">
         <li ><div><span class="checkbox disabled" user="${id}">${name}</span></div></li>
     </script>
@@ -10,11 +67,19 @@
         <li ><div><span class="checkbox" user="${id}">${name}</span></div></li>
     </script>
     <script id="te_sc_shifts_months" type="text/x-jquery-tmpl">
-        <tr>
-            <td colspan="2" class="dTime" >${dateToday}</td>
-        </tr>
+        <ul class="widgets">
+            <li>
+                <a href="#">
+                    <span class="details">
+                        <h3>${dateToday}</h3>
+                    </span>
+                </a>
+            </li>
+        </ul>
         {{if typeof shifts != 'undefined'}}
-            {{tmpl(shifts) "#te_sc_shifts"}}
+            <ul class="shifts moved">
+                {{tmpl(shifts) "#te_sc_shifts_new"}}
+            </ul>
         {{/if}}
     </script>
     <script id="te_sc_shift_display_u" type="text/x-jquery-tmpl">
@@ -23,25 +88,34 @@
             <span>${name}</span>
         </li>
     </script>
+	<script id="te_cs_sh" type="text/x-jquery-tmpl">
+		<li style="border-color: #${sp.schedule.getColorsBySchedule(schedule)[1]};">
+			<div>
+				<span class="fr">
+					<p >${start_date.weekday},${start_date.formatted}</p>
+					<p >${start_time.time}-${end_time.time}</p> 
+				</span>
+				<b>${schedule_name}</b><br>
+				{{if title != ''}}
+					<p>Desktop app</p>
+				{{/if}}
+			</div>
+		</li>		
+	</script>
     <script id="te_sc_shift_display" type="text/x-jquery-tmpl">
 	<div id="te_sc_shift_display_info">
-	    <div class="title1 wide" style="background-color: #${sp.schedule.getColorsBySchedule(schedule)[1]}; color: #${sp.schedule.getColorsBySchedule(schedule)[2]}">
-		<h3>${schedule_name}</h3>
-	    </div>
-	    <div class="title wide">
-		<div>
-		    <span>${start_date.weekday}, ${start_date.formatted}</span>
-		    ${start_time.time} - ${end_time.time}
-		</div>
-	    </div>
-	    {{if title.length > 0 }}
-	    <div class="title1 regular wide">
-		<h3><?=_s('Title');?></h3>
-	    </div>
-	    <div class="title wide">
-		${title}
-	    </div>
-	    {{/if}}
+            <ul class="shifts">
+                <li style="border-color:#${sp.schedule.getColorsBySchedule(schedule, 1)}">
+                    <a href="#" rel="${id}">
+                        <span class="fr">
+                            <p>${start_date.formatted}</p>
+                            <p>${start_time.time} - ${end_time.time}</p> 
+                        </span>
+                        <b>${schedule_name}</b><br/>
+                        <p>${title} &nbsp;</p>
+                    </a>
+                </li>
+            </ul>
 	    {{if notes.length > 0 }}
 	    <div class="title1 regular wide">
 		<h3><?=_s('Notes');?></h3>
@@ -125,8 +199,25 @@
 		    <span class="radio" value="all"><?=_s('All shifts in this series');?></span>
 		</div>
 	    </div>
-	</div>
+		</div>
+			
     </script>
+    <script id="te_sc_shift_release0" type="text/x-jquery-tmpl">
+		<li><span class="chk" rel ="${id}" ></span><img src="${avatar}"><span class="name">${name}</span></li>
+    </script>	
+    <script id="te_sc_shift_release1" type="text/x-jquery-tmpl">
+        <li><img src="${avatar}"><span class="name">${name}</span></li>
+        <li>
+                <ul class="">
+                        {{tmpl(shifts) "#te_sc_trade_shifts_in"}}
+                </ul>
+        </li>
+    </script>	
+	<script id="te_sc_trade_shifts_in" type="text/x-jquery-tmpl">
+		<li>  
+			<span class="checkbox" rel ="${id}" >${start}</span>	                
+        </li>
+	</script>
     <script id="te_sc_shifts_names" type="text/x-jquery-tmpl">
         <t>${name}, </t>
     </script>
@@ -172,21 +263,24 @@
         </ul>
     </script>
     <script id="te_rq_os_spr_s" type="text/x-jquery-tmpl">
+        <ul class="shifts">
+            <li style="border-color:#${sp.schedule.getColorsBySchedule(schedule, 1)}">
+                <a href="javascript://" >
+                    <span class="fr">
+                        <p>${start_date.formatted}</p>
+                        <p>${full.start_time.time} - ${full.end_time.time}</p>
+                    </span>
+                    <b>${schedule_name}</b><br/>
+                    <p>${title} &nbsp;</p>
+                </a>
+            </li>
+        </ul>
         <div class="title wide mar">
             <div>
                 <img width="30" height="30" src="${avatar}">
                 <span>${user_name}</span>
-                ${start_date.formatted}
             </div>
         </div>
-        <div class="title1 wide mar">
-            <h3>${schedule_name}</h3>
-        </div>
-        <ul class="requests">
-            <li>
-                <span>${full.start_time.time} - ${full.end_time.time}</span>
-            </li>
-        </ul>
         {{if notes.length > 0}}
         <div class="title1 regular wide">
             <h3><?=_s('Title / Notes');?></h3>
@@ -195,6 +289,18 @@
             <p>${notes}</p>
         </div>
         {{/if}}
+        <ul class="step">
+            <li>
+                <div>
+                    <a class="green accept" rel="${full.request_id}"><span><?php echo _s('Accept');?></span></a>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <a class="grey" rel="${full.request_id}"><span><?php echo _s('Reject');?></span></a>
+                </div>
+            </li>
+        </ul>
     </script>
     <script id="te_rq_os_spr" type="text/x-jquery-tmpl">
         <li>
@@ -205,17 +311,16 @@
         </li>
     </script>
     <script id="te_rq_os_os_s" type="text/x-jquery-tmpl">
-        <div class="title wide mar">
-            <div>
-                <span>${start_date.formatted}</span>
-            </div>
-        </div>
-        <div class="title1 wide mar">
-            <h3>${schedule_name}</h3>
-        </div>
-        <ul class="requests">
-            <li>
-                <span>${start_time.time} - ${end_time.time}</span>
+        <ul class="shifts">
+            <li style="border-color:#${sp.schedule.getColorsBySchedule(schedule, 1)}">
+                <a href="javascript://" rel="${id}">
+                    <span class="fr">
+                        <p>${start_date.formatted}</p>
+                        <p>${start_time.time} - ${end_time.time}</p>
+                    </span>
+                    <b>${schedule_name}</b><br/>
+                    <p>${title} &nbsp;</p>
+                </a>
             </li>
         </ul>
         {{if notes.length > 0}}
@@ -226,6 +331,13 @@
             <p>${notes}</p>
         </div>
         {{/if}}
+        <ul class="step">
+            <li>
+                <div id="rq_os_pickup_req_button">
+                    
+                </div>
+            </li>
+        </ul>
     </script>
     <script id="te_rq_os_os" type="text/x-jquery-tmpl">
         <li>
@@ -310,6 +422,75 @@
             {{tmpl(traders.data) "#te_rq_st_mst_s_l"}}
         </div>
     </script>
+    <script id="te_rq_st_swap_single" type="text/x-jquery-tmpl">
+        <div class="title wide mar">
+            <div>
+                <img width="30" height="30" src="${avatar}">
+                <span>${user_name}</span>
+                ${shift_start_date.formatted}
+            </div>
+        </div>
+        <div class="title1 sales wide mar">
+            <h3>${name}</h3>
+        </div>
+        <ul class="requests">
+            <li>
+                <span>${shift_start_date.time} - ${shift_end_date.time}</span> <span>${shift_start_date.formatted}</span>
+            </li>
+        </ul>
+        <div class="additional wide mar">
+            <p>${reason}</p>
+        </div>
+        <div class="title1 regular wide mar">
+            <h3><?=_s('Shifts requested for trade');?></h3>
+        </div>
+        <div class="traders {{if confirm_before == 1}}confirmBefore{{/if}}">
+            {{if typeof data != 'undefined' && data.length > 0 }}
+			
+				{{each data}}
+				
+					<div class="title">
+						{{if confirmed == 1 && approved == 0}}  
+							<span class="fr avaitingST"><?=_s('Awaiting response');?></span>
+						{{/if}}
+						{{if (confirmed == -1 && approved == -1) || (confirmed == 1 && approved == -1)}}
+							<span class="fr"><?=_s('Rejected');?></span>
+						{{else}}
+						{{if confirmed == 0 && approved == 0}}
+						<ul class="subNav">
+							<li class="first">
+								<a href="#" swapId="${trade_id}" shiftId="${shift}" userId="${user}" class="accept" >
+									<span><img width="16" height="16" src="<?php echo _fCdnPath_;?>images/request_1.png"></span>
+								</a>
+							</li>
+							<li class="last">
+								<a href="#" swapId="${trade_id}" shiftId="${shift}" userId="${user}" class="reject" >
+									<span><img width="16" height="16" src="<?php echo _fCdnPath_;?>images/request_2.png"></span>
+								</a>
+							</li>
+						</ul>											
+						{{/if}}
+						{{/if}}
+						<div>
+							<span>${schedule_name}-${start_timestamp}</span>
+						</div>
+					</div>				
+
+				{{/each}}
+			{{/if}}
+        </div>
+    </script>	
+    <script id="te_rq_swap_single" type="text/x-jquery-tmpl">
+        <li>
+            <a class="fr" href="#" rel="${id}"><img width="43" height="30" src="<?php echo _fCdnPath_;?>images/NextMenu.png"></a>
+            <img width="30" height="30" src="${avatar}" />
+            <span class="twoLine">
+                ${user_name}
+                <br />
+                ${shift_start_date.formatted} &raquo; ${shift_start_date.time} - ${shift_end_date.time}
+            </span>
+        </li>
+    </script>	
     <script id="te_rq_st_mst_s_l" type="text/x-jquery-tmpl">
         <div class="title">
             {{if confirmed == 1 && approved == 0}}  
@@ -394,10 +575,10 @@
                 </div>
             </li>
         </ul>
-        <div class="title1">
+        <div class="title1 wide">
             <?=_s('<b>Status:</b> Pending');?>
         </div>
-        <div class="title1">
+        <div class="title1 wide">
             <b><?=_s('Conflicts');?>:</b>
 	    {{if conflicts.count > 0}}
 		<br />
@@ -544,7 +725,7 @@
             <li class="odd">
                 <div>
                     <label><?=_s('Position');?></label>
-                    <b>${position.name}&nbsp;</b>
+                    <b>{{if typeof position != 'undefined' }} ${position.name} {{/if}}&nbsp;</b>
                 </div>
             </li>
             <li class="even">
@@ -680,7 +861,7 @@
             <li class="odd">
                 <div>
                     <label><?=_s('Position');?></label>
-                        <b>${hours.position.name}&nbsp;</b>
+                    <b>{{if typeof position != 'undefined' }} ${position.name} {{/if}}&nbsp;</b>
                 </div>
             </li>
             <li class="even">
@@ -819,11 +1000,11 @@
     </script>
 	<script id="te_tr_sections" type="text/x-jquery-tmpl">
 		<li class="idle">
-					<div rel="${id}" onclick = "void(0)" id="tr_touch">
+                    <div rel="${id}" onclick = "void(0)" id="tr_touch">
 			<div class="oneLine" style="width:80%;overflow:hidden">
                             <b {{if notfinished_count > 0}}style="float:left"{{/if}} >${title}</b>{{if notfinished_count > 0}}<a style="padding-left:10px;"><img style="width:16px;height:16px;padding-bottom:5px;" src="<?php echo _fCdnPath_;?>images/req_1.png"></a> {{/if}}
 			</div>
-							</div>				
+                    </div>				
 		</li>
 	</script>
 	<script id="te_tr_statistic" type="text/x-jquery-tmpl">
@@ -1122,9 +1303,9 @@
     </script>
 	<script id="te_da_fi_list" type="text/x-jquery-tmpl">
 		<li>
-			<div class="title1 wide ${extraclass}" onclick="void(0)" >
-				<a target="_blank" rel="${id}"> ${filename}</a> (${file_size})
-			</div>
+                    <div class="title1 wide ${extraclass}" onclick="void(0)" >
+                            <a target="_blank" rel="${id}" href="api.php?module=admin.file&method=get&content=1&id=${id}"> ${filename}</a> (${file_size})
+                    </div>
 		</li>
 	</script>
     <script id="te_da_wa_in" type="text/x-jquery-tmpl">
@@ -1146,13 +1327,13 @@
                         <textarea></textarea>
                     </span>
                     <div class="title">
-                        <span class="fr"><a href="#"><span><?=_s('Send Message');?></span></a></span>
-                        <span class="fl"><a href="#"><?=_s('Cancel');?></a></span>
+                        <span class="fr"><a href="#" class="greenB"><span><?=_s('Send Message');?></span></a></span>
+                        <span class="fl"><a href="#" class="greyB"><?=_s('Cancel');?></a></span>
                     </div>
                 </div>
                 <div class="title">
-                    <span class="fr"><a class="butDel" href="#" rel="${id}"><span><?=_s('Delete');?></span></a></span>
-                    <span class="fl"><a class="butRpl" href="#" rel="${id}"><?=_s('Reply');?></a></span>
+                    <span class="fr"><a class="butDel greyB" href="#" rel="${id}"><span><?=_s('Delete');?></span></a></span>
+                    <span class="fl"><a class="butRpl greenB" href="#" rel="${id}"><?=_s('Reply');?></a></span>
                 </div>
             </div>
         </li>

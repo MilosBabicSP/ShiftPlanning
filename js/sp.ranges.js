@@ -13,7 +13,7 @@ var ShiftPlanningRanges = function(){
 	2 : {
 	    title : 'Last 7 Days',
 	    start_time : strtotime('now -7 day')*1000,
-	    end_time : strtotime('now')*1000
+	    end_time : strtotime('tomorrow')*1000
 	},
 	3 : {
 	    title : 'This Week',
@@ -44,18 +44,18 @@ var ShiftPlanningRanges = function(){
     this.currencies = ['',
     '$', '&#163;', '&#8364;', '&#8360;', '&#165;', '&#8361;', 'R', 'kr', '&#8369;', 'RM'
     ]
-	this.weekdays = {
-		1:'Mon',
-		2:'Tue',
-		3:'Wed',
-		4:'Thu',
-		5:'Fri',
-		6:'Sat',
-		7:'Sun'
-	}
-	this.months = [
-		'Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'
-	]
+    this.weekdays = {
+            1:'Mon',
+            2:'Tue',
+            3:'Wed',
+            4:'Thu',
+            5:'Fri',
+            6:'Sat',
+            7:'Sun'
+    }
+    this.months = [
+            'Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'
+    ]
 }
 
 ShiftPlanningRanges.prototype.fixRanges = function(){
@@ -72,14 +72,14 @@ ShiftPlanningRanges.prototype.fixRanges = function(){
 	self.times[i].end_date = item.end_date + czm + (mp * (Math.abs(h) + min)) * 1000;
     });
     self.times[3] = {
-	title : 'This Week',
-	start_time : Date.parse(self.weekdays[sp.staff.admin.settings.startday]).addDays(-8).getTime(),
-	end_time : Date.parse(self.weekdays[sp.staff.admin.settings.startday]).addDays(-1).getTime()
+        title : 'This Week',
+        start_time : Date.parse('sunday').add(sp.staff.admin.settings.startday - 1).days().getTime(),
+        end_time : Date.parse('next saturday').add(sp.staff.admin.settings.startday - 1).days().getTime()
     }
     self.times[4] = {
-	title : 'Last Week',
-	start_time : Date.parse(self.weekdays[sp.staff.admin.settings.startday]).addDays(-15).getTime(),
-	end_time : Date.parse(self.weekdays[sp.staff.admin.settings.startday]).addDays(-8).getTime()
+        title : 'Last Week',
+        start_time : Date.parse('today').moveToDayOfWeek(0).addWeeks(-2).add(sp.staff.admin.settings.startday - 1).days().getTime(),
+        end_time : Date.parse('previous saturday').add(sp.staff.admin.settings.startday - 1).days().getTime()
     }
 }
 
