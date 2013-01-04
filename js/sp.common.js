@@ -89,7 +89,7 @@ ShiftPlanning.prototype = {
                     user.loggedIn = 0;
                     user.name = '';
                     user.company = '';
-                    sp.staff.data.employees = {};
+                    self.staff.data.employees = {};
                     $('.applicationContainer').fadeOut(500,function(){
 			window.location.reload();
                         $('body').addClass('login');
@@ -150,7 +150,7 @@ ShiftPlanning.prototype = {
         return $('<div>').append(obj.clone()).remove().html();
     },
     hasPermission: function(needed){
-        var perm = sp.staff.admin.info.group;
+        var perm = this.staff.admin.info.group;
         if (perm <= needed){
             return true;
         } else {

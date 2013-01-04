@@ -215,7 +215,7 @@
     </script>	
 	<script id="te_sc_trade_shifts_in" type="text/x-jquery-tmpl">
 		<li>  
-			<span class="checkbox" rel ="${id}" >${start}</span>	                
+			<span class="checkbox" rel ="${id}" shift_user="${shift_user}">${start}</span>	                
         </li>
 	</script>
     <script id="te_sc_shifts_names" type="text/x-jquery-tmpl">
