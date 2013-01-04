@@ -21,9 +21,9 @@ class JSPacker {
     function _dump() {
 	//we check do we wanna create single file
 	if ($this->_store) {
-	    $this->_toHtml();
+	    return $this->_toHtml();
 	} else {
-	    $this->_build();
+	    return $this->_build();
 	}
     }
 
