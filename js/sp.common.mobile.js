@@ -209,7 +209,6 @@ ShiftPlanning.prototype.initialize = function(){
             $('#menu').css('height', self.calculateMenuHeight() );
             var h = self.calculateMenuHeight();
             $('#wrapper').css('min-height', (h > self.calculateWrapperHeight() ? h : self.calculateWrapperHeight()));
-            console.log((h > self.calculateWrapperHeight() ? h : self.calculateWrapperHeight()), h, self.calculateWrapperHeight());
             if ( $('.blackMask').css('opacity') == '0' ) {
                 $('.blackMask').hide();
             }
