@@ -62,9 +62,9 @@ ShiftPlanning.prototype = {
         $.each(arguments,function(index, item) {
             data[index] = item;
         });
-        if (method.toLowerCase() == 'get') {
-            this.globalLoader();
-        }
+//        if (method.toLowerCase() == 'get') {
+//            this.globalLoader();
+//        }
         this.apiCalls[a] = $.ajax({
             url: 'api.php',
             dataType: 'json',
