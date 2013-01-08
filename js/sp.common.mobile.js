@@ -116,7 +116,6 @@ ShiftPlanning.prototype.loadSubPage = function(obj, page, subpage) {
     }
     
     sp.fixCheckboxes();
-    $(window).scrollTop(0);
 }
 
 ShiftPlanning.prototype.initialize = function(){

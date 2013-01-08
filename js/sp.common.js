@@ -102,6 +102,9 @@ ShiftPlanning.prototype = {
                             response.data = [];
                         }
                         callback.call(this,response);
+                        if (method.toLowerCase() == 'get') {
+                            $(window).scrollTop(0);
+                        }
                     }
                 } else {
                     if(typeof errorCallback == 'function'){
