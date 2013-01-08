@@ -610,8 +610,8 @@ ShiftPlanningDashboard.prototype.whosonnowSubEvents = function() {
 }
 
 ShiftPlanningDashboard.prototype.dashboardSubEvents = function() {
-    $('.bigLoader').show();
-    $('#da_widgets .widgets').html('');
+    //$('.bigLoader').show();
+    $('#da_widgets .widgets').html(spView.ulLoader());
     var calls = [
         ['timeclock.status','GET', {details : 1}],
         ['schedule.shifts','GET', {
@@ -626,7 +626,7 @@ ShiftPlanningDashboard.prototype.dashboardSubEvents = function() {
         ['schedule.trades', 'get', {'mode' : 'swap'}]
     ]
     sp.multiApi(calls, function(response) {
-        $('#da_widgets .widgets').html('');
+        $('#da_widgets .widgets').html(spView.ulLoader());
         $('#da_widgets .widgets').append($.tmpl($('#te_da_widget_profile'), { avatar: sp.getAvatar(), name: user.name, company:  user.company} ));
         if (parseInt(sp.staff.admin.settings.timeclock) != 0) {
             if (response[0].data != 'out') {
@@ -651,7 +651,7 @@ ShiftPlanningDashboard.prototype.dashboardSubEvents = function() {
         
         $('#da_widgets ul.shifts.listing').html($.tmpl($('#te_da_widget_shift'), response[3].data));
         
-        $('.bigLoader').hide();
+        //$('.bigLoader').hide();
         $('.applicationContainer').fadeIn(500);
     });
 }
