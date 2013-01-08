@@ -237,7 +237,7 @@ ul.timeSheet ul li:last-child {padding:5px 0 0;}
 ul.timeSheet li > img {float:left;}
 ul.timeSheet li > span {display:inline-block; float:left;}
 ul.timeSheet li .date {width:25%; line-height:30px;}
-ul.timeSheet li .names {width:25%; line-height:15px; font-size:12px;}
+ul.timeSheet li .names {width:25%; line-height:15px; font-size:11px;}
 ul.timeSheet li .names b {line-height: 35px; }
 ul.timeSheet li .twoLine {line-height:15px; padding:0 0 0 5px; font-size:12px;}
 ul.timeSheet li .oneLine {line-height:30px; padding:0 0 0 5px;}
@@ -246,7 +246,7 @@ ul.timeSheet li .time {width:50%; text-align:center; color:#888; line-height:20p
 ul.timeSheet li .time .tStart {background-color:#75BE66; display:inline-block; padding:5px; border-radius:2px; color:#FFF;}
 ul.timeSheet li .time .tEnd {background-color:#D15050; display:inline-block; padding:5px; border-radius:2px; color:#FFF;}
 ul.timeSheet li .time .tPending {background-color:#999; display:inline-block; padding:5px; border-radius:2px; color:#FFF;}
-ul.timeSheet li .last {width:25%; text-align:right; line-height:30px; font-size:13px;}
+ul.timeSheet li .last {width:25%; text-align:right; line-height:30px; font-size:11px;}
 ul.timeSheet li .quarter:first-child {line-height:15px;}
 ul.timeSheet li .quarter {width:25%;}
 ul.timeSheet li .quarter.even span {margin:0 5px 0 0;}
