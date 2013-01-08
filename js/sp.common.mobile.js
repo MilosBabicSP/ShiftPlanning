@@ -63,7 +63,7 @@ ShiftPlanning.prototype.toggleMenu = function(){
     if ($('#wrapper').hasClass('extended')){
         $('#wrapper').css('margin-left', 190);
         $('#menu').css('margin-left', 0);
-        $('.blackMask').css('display','none');
+        $('.blackMask').css('display','block');
         $('.blackMask').css('opacity','0.5');
     } else {
         $('#wrapper').css('margin-left', 0);
