@@ -612,8 +612,7 @@ ShiftPlanningDashboard.prototype.whosonnowSubEvents = function() {
 ShiftPlanningDashboard.prototype.dashboardSubEvents = function() {
     $('.bigLoader').show();
     $('#da_widgets .widgets').html('');
-    setTimeout(function() {
-        var calls = [
+    var calls = [
         ['timeclock.status','GET', {details : 1}],
         ['schedule.shifts','GET', {
             'mode': 'open'
@@ -654,7 +653,6 @@ ShiftPlanningDashboard.prototype.dashboardSubEvents = function() {
         $('.bigLoader').hide();
         $('.applicationContainer').fadeIn(500);
     });
-    }, 20000);
 }
 
 //functions
