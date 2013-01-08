@@ -607,7 +607,9 @@ ShiftPlanningRequests.prototype.vacationSubEvents = function(){
 }
 
 ShiftPlanningRequests.prototype.availableSubEvents = function() {
-    $('.bigLoader').show();
+    $('#rq_av_pu_li').html(spView.ulLoader());
+    $('#rq_av_sw_li').html(spView.ulLoader());
+    $('#rq_av_tr_li').html(spView.ulLoader());
     var calls = [
         ['schedule.shifts','GET', {
             'mode': 'open'
@@ -631,7 +633,6 @@ ShiftPlanningRequests.prototype.availableSubEvents = function() {
         $('#rq_av_sw_li').html($.tmpl($('#te_da_all_shiftV2'), swap ));
         $('#rq_av_tr .icon b').html( sp.countResponse( response[1].data ) );
         $('#rq_av_tr_li').html($.tmpl($('#te_da_all_shiftV2'), sp.objToArray(response[1].data)));
-        $('.bigLoader').hide();
     });
 }
 
