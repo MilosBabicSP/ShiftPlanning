@@ -635,7 +635,7 @@ ShiftPlanningDashboard.prototype.dashboardSubEvents = function() {
                 $('#da_widgets .widgets').append($.tmpl($('#te_da_widget_timeclock_out')));
             }
         }
-        $('#da_widgets .tradePage .icon b').html((sp.countResponse(response[1].data) + sp.countResponse(response[2].data) + sp.countResponse(response[4].data)));
+        $('#da_widgets .widgets').append($.tmpl($('#te_da_widget_tradePage'), { count: (sp.countResponse(response[1].data) + sp.countResponse(response[2].data) + sp.countResponse(response[4].data))}));
         
         var br = 0;
         $.each(response[3].data, function(i, item) {
@@ -647,9 +647,8 @@ ShiftPlanningDashboard.prototype.dashboardSubEvents = function() {
             }
         });
         
-        $('#da_widgets .schedule .details p').html(i18n.format(i18n.plural('how much shifts you have today', 'You have <b>{count} shift</b> today', 'You have <b>{count} shifts</b> today', br), {count: br}));
-        $('#da_widgets .schedule .icon p').html(sp.raw.config.today.mname.toUpperCase());
-        $('#da_widgets .schedule .icon h3').html(sp.raw.config.today.day);
+        $('#da_widgets .widgets').append($.tmpl($('#te_da_widget_schedule'), { month: sp.raw.config.today.mname.toUpperCase(), day: sp.raw.config.today.day, count: br } ));
+        
         $('#da_widgets ul.shifts.listing').html($.tmpl($('#te_da_widget_shift'), response[3].data));
         
         $('.bigLoader').hide();

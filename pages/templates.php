@@ -1,5 +1,31 @@
 <!-- ID rulez first is "te" shorten from template, next is 2 letter from module name, than 2 letter from page name, than 2 letters from page method -->
 <div id="templates">
+    <script id="te_da_widget_schedule" type="text/x-jquery-tmpl">
+        <li class="schedule">
+            <a href="#">
+                <span class="icon">
+                    <p>${month}</p>
+                    <h3>${day}</h3>
+                </span>
+                <span class="details">
+                    <h3>Scheduler</h3>
+                    <p>You have <b>{count} shift(s)</b> today</p>
+                </span>
+            </a>
+        </li>
+    </script>
+    <script id="te_da_widget_tradePage" type="text/x-jquery-tmpl">
+        <li class="shifts tradePage">
+            <a href="#">
+                <span class="icon">
+                    <b>${count}</b>
+                </span>
+                <span class="details">
+                    <p>Shifts available<br/>for <b>trade</b> or <b>pick-up</b></p>
+                </span>
+            </a>
+        </li>
+    </script>
     <script id="te_da_widget_timeclock_in" type="text/x-jquery-tmpl">
         <li class="timeClock in">
             <a href="#">
