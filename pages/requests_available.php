@@ -1,4 +1,7 @@
 <div class="main available" id="rq_av"  style="padding:0">
+    <div class="title">
+        <h3><?= _s('Available shifts'); ?></h3>
+    </div>
     <ul class="widgets">
         <li class="shifts">
             <a href="#" id="rq_av_pu">
