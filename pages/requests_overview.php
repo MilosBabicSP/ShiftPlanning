@@ -1,4 +1,5 @@
 <div class="main overview" id="rq_ov">
+    <ul class="requests" id="rq_ov_loader"></ul>
     <ul class="widgets">
         <li class="shifts" id="rq_rl_va">
             <a href="#" subpage="vacation">

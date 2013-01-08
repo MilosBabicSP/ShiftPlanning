@@ -445,6 +445,8 @@ ShiftPlanningRequests.prototype.shiftApprovalsEvents = function(){
 
 //sub events
 ShiftPlanningRequests.prototype.overviewSubEvents = function(){
+    $('#rq_ov_loader').show();
+    $('#rq_ov_loader').html(spView.ulLoader());
     spModel.admin.get('nrequests', {}, function(response){
         if (typeof response.data.vacation == 'undefined'){
             response.data.vacation = 0;
@@ -506,6 +508,7 @@ ShiftPlanningRequests.prototype.overviewSubEvents = function(){
 	} else {
 	    $('#rq_ov_hd').hide();
 	}
+        $('#rq_ov_loader').hide();
     }, function(response){
         sp.showError(response.error);
     });
