@@ -634,7 +634,7 @@ ShiftPlanningDashboard.prototype.dashboardSubEvents = function() {
                 $('#da_widgets .timeClock.out').hide();
                 $('#da_widgets .timeClock.in .details b').html(response[0].data.current_length.hours + _s('h') + ' ' + response[0].data.current_length.mins + _('mins'));
             } else {
-                $('#da_widgets .timeClock.in').show();
+                $('#da_widgets .timeClock.in').hide();
             }
         }
         $('#da_widgets .tradePage .icon b').html((sp.countResponse(response[1].data) + sp.countResponse(response[2].data) + sp.countResponse(response[4].data)));
