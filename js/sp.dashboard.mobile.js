@@ -45,18 +45,18 @@ ShiftPlanningDashboard.prototype.loadSubPageEvents = function(subpage){
 }
 
 ShiftPlanningDashboard.prototype.dashboardEvents = function(){
-    $('#da_widgets .timeClock a').bind(clickEvent, function(e){
+    $('#da_widgets').delegate('.timeClock a').bind(clickEvent, function(e){
         e.preventDefault();
         sp.loadSubPage('', 'timeClock', 'overview');
     });
     
-    $('#da_widgets .tradePage').bind(clickEvent, function(e){
+    $('#da_widgets').delegate('.tradePage').bind(clickEvent, function(e){
         e.preventDefault();
         sp.loadSubPage('', 'requests', 'available');
     });
     
     
-    $('#da_widgets ul.shifts').delegate('a', clickEvent, function(e){
+    $('#da_widgets').delegate('ul.shifts').delegate('a', clickEvent, function(e){
 	e.preventDefault();
 	$(this).addClass('loading');
 	spModel.schedule.get('shift', {
@@ -69,12 +69,12 @@ ShiftPlanningDashboard.prototype.dashboardEvents = function(){
 	});
     });
     
-    $('#da_widgets .schedule a').bind(clickEvent, function(e){
+    $('#da_widgets').delegate('.schedule a').bind(clickEvent, function(e){
         e.preventDefault();
         $('#menu_schedule a').trigger(clickEvent);
     });
     
-    $('#da_widgets .user a').bind(clickEvent, function(e){
+    $('#da_widgets').delegate('.user a').bind(clickEvent, function(e){
         e.preventDefault(); 
         $('#menu_settings a').trigger(clickEvent);
     });
