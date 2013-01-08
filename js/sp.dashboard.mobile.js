@@ -45,15 +45,15 @@ ShiftPlanningDashboard.prototype.loadSubPageEvents = function(subpage){
 }
 
 ShiftPlanningDashboard.prototype.dashboardEvents = function(){
-//    $('#da_widgets').delegate('.timeClock a').bind(clickEvent, function(e){
-//        e.preventDefault();
-//        sp.loadSubPage('', 'timeClock', 'overview');
-//    });
-//    
-//    $('#da_widgets').delegate('.tradePage').bind(clickEvent, function(e){
-//        e.preventDefault();
-//        sp.loadSubPage('', 'requests', 'available');
-//    });
+    $('#da_widgets').delegate('.timeClock a').bind(clickEvent, function(e){
+        e.preventDefault();
+        sp.loadSubPage('', 'timeClock', 'overview');
+    });
+    
+    $('#da_widgets').delegate('.tradePage').bind(clickEvent, function(e){
+        e.preventDefault();
+        sp.loadSubPage('', 'requests', 'available');
+    });
 //    
 //    
 //    $('#da_widgets').delegate('ul.shifts').delegate('a', clickEvent, function(e){
