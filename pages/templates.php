@@ -9,7 +9,7 @@
                 </span>
                 <span class="details">
                     <h3>Scheduler</h3>
-                    <p>You have <b>{count} shift(s)</b> today</p>
+                    <p>You have <b>${count} shift(s)</b> today</p>
                 </span>
             </a>
         </li>
