@@ -626,7 +626,7 @@ ShiftPlanningDashboard.prototype.dashboardSubEvents = function() {
         ['schedule.trades', 'get', {'mode' : 'swap'}]
     ]
     sp.multiApi(calls, function(response) {
-        $('#da_widgets .widgets').html(spView.ulLoader());
+        $('#da_widgets .widgets').html('');
         $('#da_widgets .widgets').append($.tmpl($('#te_da_widget_profile'), { avatar: sp.getAvatar(), name: user.name, company:  user.company} ));
         if (parseInt(sp.staff.admin.settings.timeclock) != 0) {
             if (response[0].data != 'out') {
