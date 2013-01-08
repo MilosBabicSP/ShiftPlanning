@@ -614,7 +614,6 @@ ShiftPlanningDashboard.prototype.dashboardSubEvents = function() {
     $('#da_widgets .user .icon').html('<img src="' + sp.getAvatar() + '" height="50" width="50" />');
     $('#da_widgets .timeClock.in').show();
     $('#da_widgets .timeClock.out').show();
-    $('#da_widgets .timeClock.out, #da_widgets .timeClock.in').hide();
     var calls = [
         ['timeclock.status','GET', {details : 1}],
         ['schedule.shifts','GET', {
