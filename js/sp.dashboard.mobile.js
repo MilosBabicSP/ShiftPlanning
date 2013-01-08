@@ -56,7 +56,7 @@ ShiftPlanningDashboard.prototype.dashboardEvents = function(){
     });
     
     
-    $('#da_widgets').delegate('ul.shifts').delegate('a', clickEvent, function(e){
+    $('#da_widgets').delegate('ul.shifts a', clickEvent, function(e){
 	e.preventDefault();
 	$(this).addClass('loading');
 	spModel.schedule.get('shift', {
