@@ -3,7 +3,7 @@
         <li class="shifts">
             <a href="#">
                 <span class="icon">
-                    <b>12</b>
+                    <b></b>
                 </span>
                 <span class="details">
                     <p>Upcoming shifts<br/>in next <b>2 months</b></p>
