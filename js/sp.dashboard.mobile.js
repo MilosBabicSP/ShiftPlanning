@@ -610,7 +610,7 @@ ShiftPlanningDashboard.prototype.whosonnowSubEvents = function() {
 }
 
 ShiftPlanningDashboard.prototype.dashboardSubEvents = function() {
-    //$('.bigLoader').show();
+    $('.bigLoader').show();
     $('#da_widgets .widgets').html('');
     var calls = [
         ['timeclock.status','GET', {details : 1}],
@@ -650,7 +650,7 @@ ShiftPlanningDashboard.prototype.dashboardSubEvents = function() {
         
         $('#da_widgets ul.shifts.listing').html($.tmpl($('#te_da_widget_shift'), response[3].data));
         
-        //$('.bigLoader').hide();
+        $('.bigLoader').hide();
         $('.applicationContainer').fadeIn(500);
     });
 }
