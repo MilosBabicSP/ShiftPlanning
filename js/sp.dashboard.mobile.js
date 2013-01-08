@@ -610,8 +610,10 @@ ShiftPlanningDashboard.prototype.whosonnowSubEvents = function() {
 }
 
 ShiftPlanningDashboard.prototype.dashboardSubEvents = function() {
-    $('#da_widgets .user .icon').html('<img src="' + sp.getAvatar() + '" height="50" width="50" />');
     $('.bigLoader').show();
+    $('#da_widgets .user .icon').html('<img src="' + sp.getAvatar() + '" height="50" width="50" />');
+    $('#da_widgets .timeClock.in').show();
+    $('#da_widgets .timeClock.out').show();
     $('#da_widgets .timeClock.out, #da_widgets .timeClock.in').hide();
     var calls = [
         ['timeclock.status','GET', {details : 1}],
@@ -629,10 +631,10 @@ ShiftPlanningDashboard.prototype.dashboardSubEvents = function() {
     sp.multiApi(calls, function(response) {
         if (parseInt(sp.staff.admin.settings.timeclock) != 0) {
             if (response[0].data != 'out') {
-                $('#da_widgets .timeClock.in').show();
+                $('#da_widgets .timeClock.out').hide();
                 $('#da_widgets .timeClock.in .details b').html(response[0].data.current_length.hours + _s('h') + ' ' + response[0].data.current_length.mins + _('mins'));
             } else {
-                $('#da_widgets .timeClock.out').show();
+                $('#da_widgets .timeClock.in').show();
             }
         }
         $('#da_widgets .tradePage .icon b').html((sp.countResponse(response[1].data) + sp.countResponse(response[2].data) + sp.countResponse(response[4].data)));
