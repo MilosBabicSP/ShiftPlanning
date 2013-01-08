@@ -72,42 +72,44 @@ ShiftPlanning.prototype = {
             data: data,
             cache: false,
             success: function(response){
-                self.apiCalls[a] = null;
-                var closeLoader = true;
-                $.each(self.apiCalls, function(i, item){
-                    if (item != null){
-                        closeLoader = false;
-                    }
-                });
-                if (closeLoader){
-                    $('.bigLoader').hide();
-                    self.apiCalls = {};
-                }
-                if(response.status == 3){
-                    //We are not logged in!
-//                    sp.hash('logout');
-                    user.loggedIn = 0;
-                    user.name = '';
-                    user.company = '';
-                    sp.staff.data.employees = {};
-                    $('.applicationContainer').fadeOut(500,function(){
-			window.location.reload();
-                        $('body').addClass('login');
-                        $('html').css('height','100%');
-                        $('.loginContainer').fadeIn(500);
-                    });
-                } else if(response.status == 1){
-                    if(typeof callback == 'function'){
-                        if (response.data == false || response.data == null){
-                            response.data = [];
+                setTimeout(function() {
+                    self.apiCalls[a] = null;
+                    var closeLoader = true;
+                    $.each(self.apiCalls, function(i, item){
+                        if (item != null){
+                            closeLoader = false;
                         }
-                        callback.call(this,response);
+                    });
+                    if (closeLoader){
+                        $('.bigLoader').hide();
+                        self.apiCalls = {};
                     }
-                } else {
-                    if(typeof errorCallback == 'function'){
-                        errorCallback.call(this,response);
+                    if(response.status == 3){
+                        //We are not logged in!
+    //                    sp.hash('logout');
+                        user.loggedIn = 0;
+                        user.name = '';
+                        user.company = '';
+                        sp.staff.data.employees = {};
+                        $('.applicationContainer').fadeOut(500,function(){
+                            window.location.reload();
+                            $('body').addClass('login');
+                            $('html').css('height','100%');
+                            $('.loginContainer').fadeIn(500);
+                        });
+                    } else if(response.status == 1){
+                        if(typeof callback == 'function'){
+                            if (response.data == false || response.data == null){
+                                response.data = [];
+                            }
+                            callback.call(this,response);
+                        }
+                    } else {
+                        if(typeof errorCallback == 'function'){
+                            errorCallback.call(this,response);
+                        }
                     }
-                }
+               } , 1000);
             }
 
         });
