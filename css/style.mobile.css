@@ -444,3 +444,5 @@ a.grey {display:block; color:#FFF; line-height:30px; text-align:center; backgrou
 #rq_sa .detailsGrid .even div, #rq_va_date .even div {padding-left:0px;}
 #rq_sa .detailsGrid .odd div, #rq_va_date .odd div  {padding-right:0px;}
 
+#tc_dts_ul span.names b {font-weight: normal;}
+
