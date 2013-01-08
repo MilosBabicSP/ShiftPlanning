@@ -607,6 +607,9 @@ ShiftPlanningRequests.prototype.vacationSubEvents = function(){
 }
 
 ShiftPlanningRequests.prototype.availableSubEvents = function() {
+    $('#rq_av_pu .icon b').html('');
+    $('#rq_av_sw .icon b').html('');
+    $('#rq_av_tr .icon b').html('');
     $('#rq_av_pu_li').html(spView.ulLoader());
     $('#rq_av_sw_li').html(spView.ulLoader());
     $('#rq_av_tr_li').html(spView.ulLoader());
