@@ -441,5 +441,6 @@ a.grey {display:block; color:#FFF; line-height:30px; text-align:center; backgrou
 #st_tp_menu tr td {text-align:center; line-height: 50px;}
 #st_tp_menu tr td.active {border-bottom: 3px solid #C52424;}
 
-#rq_sa .detailsGrid .even div {padding-left:0px;}
-#rq_sa .detailsGrid .odd div {padding-right:0px;}
+#rq_sa .detailsGrid .even div, #rq_va_date .even div {padding-left:0px;}
+#rq_sa .detailsGrid .odd div, #rq_va_date .odd div  {padding-right:0px;}
+
