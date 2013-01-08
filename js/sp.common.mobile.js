@@ -311,7 +311,7 @@ ShiftPlanning.prototype.initialize = function(){
 
 ShiftPlanning.prototype.calculateWrapperHeight = function() {
     var wrapperHeight = $('#pages').height() + $('.subNavigation').height() + 20; 
-    return ($(window).height() > wrapperHeight) ? $(window).height() : wrapperHeight; 
+    return (this.calculateMenuHeight < wrapperHeight ? wrapperHeight : this.calculateMenuHeight); 
 }
 
 ShiftPlanning.prototype.calculateMenuHeight = function () {
