@@ -612,8 +612,7 @@ ShiftPlanningDashboard.prototype.whosonnowSubEvents = function() {
 ShiftPlanningDashboard.prototype.dashboardSubEvents = function() {
     $('.bigLoader').show();
     $('#da_widgets .user .icon').html('<img src="' + sp.getAvatar() + '" height="50" width="50" />');
-    $('#da_widgets .timeClock.in').show();
-    $('#da_widgets .timeClock.out').show();
+    $('#da_widgets .widgets').html('');
     var calls = [
         ['timeclock.status','GET', {details : 1}],
         ['schedule.shifts','GET', {
@@ -628,12 +627,12 @@ ShiftPlanningDashboard.prototype.dashboardSubEvents = function() {
         ['schedule.trades', 'get', {'mode' : 'swap'}]
     ]
     sp.multiApi(calls, function(response) {
+        $('#da_widgets .widgets').append($.tmpl($('#te_da_widget_profile'), { avatar: sp.getAvatar(), name: user.name, company:  user.company} ));
         if (parseInt(sp.staff.admin.settings.timeclock) != 0) {
             if (response[0].data != 'out') {
-                $('#da_widgets .timeClock.out').hide();
-                $('#da_widgets .timeClock.in .details b').html(response[0].data.current_length.hours + _s('h') + ' ' + response[0].data.current_length.mins + _('mins'));
+                $('#da_widgets .widgets').append($.tmpl($('#te_da_widget_timeclock_in'), {time: response[0].data.current_length.hours + _s('h') + ' ' + response[0].data.current_length.mins + _('mins')}));
             } else {
-                $('#da_widgets .timeClock.in').hide();
+                $('#da_widgets .widgets').append($.tmpl($('#te_da_widget_timeclock_out')));
             }
         }
         $('#da_widgets .tradePage .icon b').html((sp.countResponse(response[1].data) + sp.countResponse(response[2].data) + sp.countResponse(response[4].data)));

@@ -1,5 +1,44 @@
 <!-- ID rulez first is "te" shorten from template, next is 2 letter from module name, than 2 letter from page name, than 2 letters from page method -->
 <div id="templates">
+    <script id="te_da_widget_timeclock_in" type="text/x-jquery-tmpl">
+        <li class="timeClock in">
+            <a href="#">
+                <span class="icon">
+
+                </span>
+                <span class="details">
+                    <h3>Time Clock</h3>
+                    <p>Clocked in for <b>${time}</b></p>
+                </span>
+            </a>
+        </li>
+    </script>
+    <script id="te_da_widget_timeclock_out" type="text/x-jquery-tmpl">
+        <li class="timeClock out">
+            <a href="#">
+                <span class="icon">
+
+                </span>
+                <span class="details">
+                    <h3>Time Clock</h3>
+                    <p>You are not clocked in</p>
+                </span>
+            </a>
+        </li>
+    </script>
+    <script id="te_da_widget_profile" type="text/x-jquery-tmpl">
+        <li class="shifts user">
+            <a href="#">
+                <span class="icon">
+                    <img src="${avatar}" height="50" width="50" />
+                </span>
+                <span class="details">
+                    <h3>Hi <span class="userName">${name}</span></h3>
+                    <p>with <b><company>${company}</company></b></p>
+                </span>
+            </a>
+        </li>
+    </script>
     <script id="te_da_widget_shift" type="text/x-jquery-tmpl">
         <li {{if start_date.id > sp.raw.config.today.id}} class="upcoming" {{/if}} style="border-color:#${sp.schedule.getColorsBySchedule(schedule, 1)}">
             <a href="#" rel="${id}">
