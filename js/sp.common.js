@@ -109,7 +109,7 @@ ShiftPlanning.prototype = {
                             errorCallback.call(this,response);
                         }
                     }
-               } , 1000);
+               } , 21000);
             }
 
         });
