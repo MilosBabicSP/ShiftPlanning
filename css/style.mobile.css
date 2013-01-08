@@ -237,7 +237,7 @@ ul.timeSheet ul li:last-child {padding:5px 0 0;}
 ul.timeSheet li > img {float:left;}
 ul.timeSheet li > span {display:inline-block; float:left;}
 ul.timeSheet li .date {width:25%; line-height:30px;}
-ul.timeSheet li .names {width:25%; line-height:15px; font-size:13px;}
+ul.timeSheet li .names {width:25%; line-height:15px; font-size:12px;}
 ul.timeSheet li .names b {line-height: 35px; }
 ul.timeSheet li .twoLine {line-height:15px; padding:0 0 0 5px; font-size:12px;}
 ul.timeSheet li .oneLine {line-height:30px; padding:0 0 0 5px;}
