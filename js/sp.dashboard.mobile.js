@@ -45,39 +45,39 @@ ShiftPlanningDashboard.prototype.loadSubPageEvents = function(subpage){
 }
 
 ShiftPlanningDashboard.prototype.dashboardEvents = function(){
-    $('#da_widgets').delegate('.timeClock a').bind(clickEvent, function(e){
+    $('#da_widgets').delegate('.timeClock a',clickEvent, function(e){
         e.preventDefault();
         sp.loadSubPage('', 'timeClock', 'overview');
     });
     
-    $('#da_widgets').delegate('.tradePage').bind(clickEvent, function(e){
+    $('#da_widgets').delegate('.tradePage',clickEvent, function(e){
         e.preventDefault();
         sp.loadSubPage('', 'requests', 'available');
     });
-//    
-//    
-//    $('#da_widgets').delegate('ul.shifts').delegate('a', clickEvent, function(e){
-//	e.preventDefault();
-//	$(this).addClass('loading');
-//	spModel.schedule.get('shift', {
-//	    id : $(this).attr('rel'), 
-//	    detailed : 1
-//	}, function(response){
-//	    sp.schedule.fromDashboard = true;
-//	    sp.schedule.shift = response.data;
-//	    sp.loadSubPage('', 'schedule', 'shiftDisplay');
-//	});
-//    });
-//    
-//    $('#da_widgets').delegate('.schedule a').bind(clickEvent, function(e){
-//        e.preventDefault();
-//        $('#menu_schedule a').trigger(clickEvent);
-//    });
-//    
-//    $('#da_widgets').delegate('.user a').bind(clickEvent, function(e){
-//        e.preventDefault(); 
-//        $('#menu_settings a').trigger(clickEvent);
-//    });
+    
+    
+    $('#da_widgets').delegate('ul.shifts').delegate('a', clickEvent, function(e){
+	e.preventDefault();
+	$(this).addClass('loading');
+	spModel.schedule.get('shift', {
+	    id : $(this).attr('rel'), 
+	    detailed : 1
+	}, function(response){
+	    sp.schedule.fromDashboard = true;
+	    sp.schedule.shift = response.data;
+	    sp.loadSubPage('', 'schedule', 'shiftDisplay');
+	});
+    });
+    
+    $('#da_widgets').delegate('.schedule a',clickEvent, function(e){
+        e.preventDefault();
+        $('#menu_schedule a').trigger(clickEvent);
+    });
+    
+    $('#da_widgets').delegate('.user a',clickEvent, function(e){
+        e.preventDefault(); 
+        $('#menu_settings a').trigger(clickEvent);
+    });
 }
 
 ShiftPlanningDashboard.prototype.wallEvents = function(){
