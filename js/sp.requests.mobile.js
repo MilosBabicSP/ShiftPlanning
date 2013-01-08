@@ -620,6 +620,9 @@ ShiftPlanningRequests.prototype.availableSubEvents = function() {
     $('#rq_av_pu_li').html(spView.ulLoader());
     $('#rq_av_sw_li').html(spView.ulLoader());
     $('#rq_av_tr_li').html(spView.ulLoader());
+    $('#rq_av_pu_li').hide();
+    $('#rq_av_sw_li').hide();
+    $('#rq_av_tr_li').hide();
     var calls = [
         ['schedule.shifts','GET', {
             'mode': 'open'
@@ -634,14 +637,26 @@ ShiftPlanningRequests.prototype.availableSubEvents = function() {
         self.available.trade = sp.map(response[1].data);
         $('#rq_av_pu .icon b').html( sp.countResponse( response[0].data ) );
         $('#rq_av_pu_li').html($.tmpl($('#te_da_all_shiftV2'), sp.objToArray(response[0].data)));
+        if ( sp.countResponse( response[0].data ) > 0 ) {
+            $('#rq_av_pu_li').show();
+        }
         $('#rq_av_sw .icon b').html( sp.countResponse( response[2].data ) );
         var swap = [];
         $.each(response[2].data,function(key,item){
                 item.avatar = sp.getAvatar(item.user);
                 swap.push(item);
         });
+        
+        if ( sp.countResponse( response[2].data ) > 0 ) {
+            $('#rq_av_sw_li').show();
+        }
+        
         $('#rq_av_sw_li').html($.tmpl($('#te_da_all_shiftV2'), swap ));
         $('#rq_av_tr .icon b').html( sp.countResponse( response[1].data ) );
+        
+        if ( sp.countResponse( response[1].data ) > 0 ) {
+            $('#rq_av_tr_li').show();
+        }
         $('#rq_av_tr_li').html($.tmpl($('#te_da_all_shiftV2'), sp.objToArray(response[1].data)));
     });
 }
