@@ -440,3 +440,6 @@ a.grey {display:block; color:#FFF; line-height:30px; text-align:center; backgrou
 #st_tp_menu {background: url("../images/shadow.png") repeat-x scroll 0 100% transparent;padding-bottom:3px;}
 #st_tp_menu tr td {text-align:center; line-height: 50px;}
 #st_tp_menu tr td.active {border-bottom: 3px solid #C52424;}
+
+#rq_sa .detailsGrid .even {padding-left:0px;}
+#rq_sa .detailsGrid .odd {padding-right:0px;}
