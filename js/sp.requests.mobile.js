@@ -504,6 +504,8 @@ ShiftPlanningRequests.prototype.overviewSubEvents = function(){
         $('#rq_rl_ast .icon b').html(response.data.trade_approval);
         $('#rq_rl_sv .icon b').html(response.data.shift_available);
 	$('#rq_ov_widgets').show();
+        $('#rq_ov .widgets li:visible').attr('css','');
+        $('#rq_ov .widgets li:visible:first').css('border-top', 'none');
 	if ($('#rq_ov .widgets li:visible').length == 0){
 	    $('#rq_ov_hd').show();
 	} else {
