@@ -15,7 +15,7 @@
             </select>
         </span>
         <div>
-            <ul class="detailsGrid borTB">
+            <ul class="detailsGrid borTB" id="tc_act_date">
                 <li>
                     <ul>                
                         <li class="even">
