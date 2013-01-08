@@ -493,7 +493,7 @@ ShiftPlanningRequests.prototype.overviewSubEvents = function(){
         }
         
         if (response.data.shift_available == 0){
-            $('#rq_rl_sv').parent().hide();
+            $('#rq_rl_sv').hide();
         } else {
             $('#rq_rl_sv').show();
         }
