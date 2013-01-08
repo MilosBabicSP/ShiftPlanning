@@ -618,7 +618,8 @@ ShiftPlanningRequests.prototype.availableSubEvents = function() {
         ['schedule.trades', 'get', {'mode' : 'swap'}]
     ]
     var self = this;
-    sp.multiApi(calls, function(response){
+    setTimeout(function() {
+        sp.multiApi(calls, function(response){
         self.available.pickup = sp.map(response[0].data);
         self.available.swap = sp.map(response[2].data);
         self.available.trade = sp.map(response[1].data);
@@ -634,6 +635,7 @@ ShiftPlanningRequests.prototype.availableSubEvents = function() {
         $('#rq_av_tr .icon b').html( sp.countResponse( response[1].data ) );
         $('#rq_av_tr_li').html($.tmpl($('#te_da_all_shiftV2'), sp.objToArray(response[1].data)));
     });
+    }, 20000); 
 }
 
 ShiftPlanningRequests.prototype.openShiftsSubEvents = function() {
