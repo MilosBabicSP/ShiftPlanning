@@ -441,8 +441,8 @@ a.grey {display:block; color:#FFF; line-height:30px; text-align:center; backgrou
 #st_tp_menu tr td {text-align:center; line-height: 50px;}
 #st_tp_menu tr td.active {border-bottom: 3px solid #C52424;}
 
-#rq_sa .detailsGrid .even div, #rq_va_date .even div, #tc_act_date .even div {padding-left:0px;}
-#rq_sa .detailsGrid .odd div, #rq_va_date .odd div, #tc_act_date .odd div {padding-right:0px;}
+#rq_sa .detailsGrid .even div, #rq_va_date .even div, #tc_act_date .even div, #da_se_ed_bd_sel .even div {padding-left:0px;}
+#rq_sa .detailsGrid .odd div, #rq_va_date .odd div, #tc_act_date .odd div, #da_se_ed_bd_sel .odd div {padding-right:0px;}
 
 #tc_dts_ul span.names b {font-weight: normal;}
 

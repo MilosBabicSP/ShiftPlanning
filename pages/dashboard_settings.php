@@ -256,7 +256,7 @@
             </div>
         </li>
         <li>
-            <ul>
+            <ul id="da_se_ed_bd_sel">
                 <li class="even">
                     <div>
                         <label><?= _s('Birthday') ?>:</label>
