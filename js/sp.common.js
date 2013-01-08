@@ -72,44 +72,42 @@ ShiftPlanning.prototype = {
             data: data,
             cache: false,
             success: function(response){
-                setTimeout(function() {
-                    self.apiCalls[a] = null;
-                    var closeLoader = true;
-                    $.each(self.apiCalls, function(i, item){
-                        if (item != null){
-                            closeLoader = false;
-                        }
+                self.apiCalls[a] = null;
+                var closeLoader = true;
+                $.each(self.apiCalls, function(i, item){
+                    if (item != null){
+                        closeLoader = false;
+                    }
+                });
+                if (closeLoader){
+                    $('.bigLoader').hide();
+                    self.apiCalls = {};
+                }
+                if(response.status == 3){
+                    //We are not logged in!
+//                    sp.hash('logout');
+                    user.loggedIn = 0;
+                    user.name = '';
+                    user.company = '';
+                    sp.staff.data.employees = {};
+                    $('.applicationContainer').fadeOut(500,function(){
+			window.location.reload();
+                        $('body').addClass('login');
+                        $('html').css('height','100%');
+                        $('.loginContainer').fadeIn(500);
                     });
-                    if (closeLoader){
-                        $('.bigLoader').hide();
-                        self.apiCalls = {};
-                    }
-                    if(response.status == 3){
-                        //We are not logged in!
-    //                    sp.hash('logout');
-                        user.loggedIn = 0;
-                        user.name = '';
-                        user.company = '';
-                        sp.staff.data.employees = {};
-                        $('.applicationContainer').fadeOut(500,function(){
-                            window.location.reload();
-                            $('body').addClass('login');
-                            $('html').css('height','100%');
-                            $('.loginContainer').fadeIn(500);
-                        });
-                    } else if(response.status == 1){
-                        if(typeof callback == 'function'){
-                            if (response.data == false || response.data == null){
-                                response.data = [];
-                            }
-                            callback.call(this,response);
+                } else if(response.status == 1){
+                    if(typeof callback == 'function'){
+                        if (response.data == false || response.data == null){
+                            response.data = [];
                         }
-                    } else {
-                        if(typeof errorCallback == 'function'){
-                            errorCallback.call(this,response);
-                        }
+                        callback.call(this,response);
                     }
-               } , 21000);
+                } else {
+                    if(typeof errorCallback == 'function'){
+                        errorCallback.call(this,response);
+                    }
+                }
             }
 
         });
