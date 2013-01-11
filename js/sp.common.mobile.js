@@ -112,6 +112,7 @@ ShiftPlanning.prototype.loadSubPage = function(obj, page, subpage) {
     if (page == 'schedule' && subpage == 'addShift') {
         console.log('test');
     } else {
+        console.log('wtf?');
         $(window).scrollTop(0);
     }
 }
