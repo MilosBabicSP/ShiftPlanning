@@ -74,7 +74,6 @@ ShiftPlanning.prototype.toggleMenu = function(){
 }
 
 ShiftPlanning.prototype.loadSubPage = function(obj, page, subpage) {
-    console.log(obj, page, subpage);
     if (subpage == 'logout'){
         sp.staff.logout();
         return false;
@@ -117,7 +116,11 @@ ShiftPlanning.prototype.loadSubPage = function(obj, page, subpage) {
     }
     
     sp.fixCheckboxes();
-    $(window).scrollTop(0);
+    if (page == 'schedule' && subpage == 'addShift') {
+        
+    } else {
+        $(window).scrollTop(0);
+    }
 }
 
 ShiftPlanning.prototype.initialize = function(){
