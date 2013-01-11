@@ -63,6 +63,10 @@ ShiftPlanningStaff.prototype.listEvents = function(){
             }
         }
     });
+    
+    $('#st_li_se_te').bind('keyup', function(e) {
+        $('#st_li_se_b').trigger(clickEvent);
+    })
     $('#st_li_ga').delegate('li', clickEvent, function(){
         var id = $(this).attr('staffId');
         if (sp.permissions.hasPermission('visible_staff_details')){
