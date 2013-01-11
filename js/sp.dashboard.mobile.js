@@ -196,6 +196,13 @@ ShiftPlanningDashboard.prototype.wallEvents = function(){
         
 	return true;
     });
+    
+    $('#da_wa_li').delegate('input[type=text]', 'keyup', function(e){
+        var code = (e.keyCode ? e.keyCode : e.which);
+        if (code == 13) {
+            $(this).parent().parent().find('input[type=submit]').trigger(clickEvent);
+        }
+    });
 }
 
 ShiftPlanningDashboard.prototype.filesEvents = function(){
