@@ -80,14 +80,6 @@ ShiftPlanning.prototype.loadSubPage = function(obj, page, subpage) {
         return false;
     }
     
-    this.globalLoader();
-    
-    setTimeout(function(){
-        if (sp.countObject( sp.apiCalls ) == 0){
-            $('.bigLoader').hide();
-        }
-    }, 500);
-    
     if (obj != ''){
         obj.parent().parent().find('li').removeClass('active');
         obj.parent().addClass('active');
@@ -110,7 +102,7 @@ ShiftPlanning.prototype.loadSubPage = function(obj, page, subpage) {
     
     $('.subNavigation div.' + page + ' .subnNav[page=' + page + '] li a[page=' + subpage + ']').parent().addClass('active');
     sp.hashChange = false;
-    sp.hash(page);
+    //sp.hash(page);
     
     if (typeof this[page] != 'undefined' && 'loadSubPageEvents' in this[page]){
         this[page].loadSubPageEvents(subpage);
@@ -120,7 +112,7 @@ ShiftPlanning.prototype.loadSubPage = function(obj, page, subpage) {
     if (page == 'schedule' && subpage == 'addShift') {
         console.log('test');
     } else {
-        $(window).scrollTop(0);
+        //$(window).scrollTop(0);
     }
 }
 
@@ -350,7 +342,7 @@ ShiftPlanning.prototype.showSuccess = function(text){
             $('body > .notification').fadeOut('fast', function(){
                 $('body > .notification').remove();
             });
-        }, 3000);
+        }, 2000);
     });
 }
 
@@ -362,7 +354,7 @@ ShiftPlanning.prototype.showError = function(text){
             $('body > .notification').fadeOut('fast', function(){
                 $('body > .notification').remove();
             });
-        }, 3000);
+        }, 2000);
     });
 }
 
