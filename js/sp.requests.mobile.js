@@ -437,7 +437,7 @@ ShiftPlanningRequests.prototype.shiftApprovalsEvents = function(){
         $(this).toggleClass('check');
     });
     
-    $('#rq_sa_sub .icoReqWor').bind(clickEvent, function(e){
+    $('#rq_sa_sub .approve').bind(clickEvent, function(e){
         e.preventDefault();
         self.saveShiftApprove();
     })
