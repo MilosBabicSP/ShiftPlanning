@@ -102,7 +102,7 @@ ShiftPlanning.prototype.loadSubPage = function(obj, page, subpage) {
     
     $('.subNavigation div.' + page + ' .subnNav[page=' + page + '] li a[page=' + subpage + ']').parent().addClass('active');
     sp.hashChange = false;
-    //sp.hash(page);
+    sp.hash(page);
     
     if (typeof this[page] != 'undefined' && 'loadSubPageEvents' in this[page]){
         this[page].loadSubPageEvents(subpage);
@@ -112,7 +112,7 @@ ShiftPlanning.prototype.loadSubPage = function(obj, page, subpage) {
     if (page == 'schedule' && subpage == 'addShift') {
         console.log('test');
     } else {
-        //$(window).scrollTop(0);
+        $(window).scrollTop(0);
     }
 }
 
