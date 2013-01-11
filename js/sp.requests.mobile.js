@@ -119,6 +119,11 @@ ShiftPlanningRequests.prototype.vacationEvents = function(){
     $('#rq_va_spd').bind(clickEvent, function(e){
         e.preventDefault();
         $('#rq_va_up .pastDate').toggleClass('hidden');
+        if ($('#rq_va_spd').html() == 'Show past dates') {
+            $('#rq_va_spd').html('Hide past dates');
+        } else if ($('#rq_va_spd').html() == 'Hide past dates') {
+            $('#rq_va_spd').html('Show past dates');
+        }
     });
     
     $('#rq_va').delegate('a.deleteVacation', clickEvent, function(e){
