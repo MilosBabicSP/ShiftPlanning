@@ -74,7 +74,6 @@ ShiftPlanning.prototype.toggleMenu = function(){
 }
 
 ShiftPlanning.prototype.loadSubPage = function(obj, page, subpage) {
-    console.log(obj, page, subpage);
     if (subpage == 'logout'){
         sp.staff.logout();
         return false;
@@ -102,7 +101,7 @@ ShiftPlanning.prototype.loadSubPage = function(obj, page, subpage) {
     
     $('.subNavigation div.' + page + ' .subnNav[page=' + page + '] li a[page=' + subpage + ']').parent().addClass('active');
     sp.hashChange = false;
-    //sp.hash(page);
+    sp.hash(page);
     
     if (typeof this[page] != 'undefined' && 'loadSubPageEvents' in this[page]){
         this[page].loadSubPageEvents(subpage);
@@ -110,9 +109,7 @@ ShiftPlanning.prototype.loadSubPage = function(obj, page, subpage) {
     
     sp.fixCheckboxes();
     if (page == 'schedule' && subpage == 'addShift') {
-        console.log('test');
     } else {
-        console.log('wtf?');
         $(window).scrollTop(0);
     }
 }

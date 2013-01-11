@@ -144,6 +144,9 @@ ShiftPlanning.prototype = {
         return obj;
     },
     hash: function(newHash){
+        if (newHash == window.location.hash.substring(1)){
+            return window.location.hash.substring(1);
+        }
         if(typeof newHash != 'undefined'){
             window.location.hash = newHash;
         }
