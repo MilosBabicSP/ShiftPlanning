@@ -118,7 +118,7 @@ ShiftPlanning.prototype.loadSubPage = function(obj, page, subpage) {
     
     sp.fixCheckboxes();
     if (page == 'schedule' && subpage == 'addShift') {
-        
+        console.log('test');
     } else {
         $(window).scrollTop(0);
     }
