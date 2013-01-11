@@ -74,6 +74,7 @@ ShiftPlanning.prototype.toggleMenu = function(){
 }
 
 ShiftPlanning.prototype.loadSubPage = function(obj, page, subpage) {
+    console.log(obj, page, subpage);
     if (subpage == 'logout'){
         sp.staff.logout();
         return false;
