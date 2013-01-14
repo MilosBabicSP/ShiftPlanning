@@ -181,6 +181,11 @@ ShiftPlanningReports.prototype.loadSubPageEvents = function(subpage){
         this.singleViewDisplay(this.cId);
     } else {
         var self = this;
+        var origin = this.page;
+        $('#reports .' + origin + ' .totals').hide();
+        $('#reports .' + origin + ' .noResults').hide();
+        $('#reports .' + origin + ' .notif').hide();
+        $('#reports .' + origin + ' .listReports').html(spView.ulLoader());
         this.page = subpage;
         setTimeout(function(){
             self.displayReports();
