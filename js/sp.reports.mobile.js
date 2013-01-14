@@ -104,6 +104,7 @@ ShiftPlanningReports.prototype.displayReports = function(){
     
     $('#reports .' + origin + ' .totals').show();
     $('#reports .' + origin + ' .noResults').hide();
+    $('#reports .' + origin + ' .notif').hide();
 
     var data = {
         type : page.toLowerCase()
