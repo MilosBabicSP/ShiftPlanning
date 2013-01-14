@@ -102,7 +102,7 @@ ShiftPlanningReports.prototype.displayReports = function(){
     var page = this.page;
     var origin = this.page;
     
-    $('#reports .' + origin + ' .totals').show();
+    $('#reports .' + origin + ' .totals').hide();
     $('#reports .' + origin + ' .noResults').hide();
     $('#reports .' + origin + ' .notif').hide();
     $('#reports .' + origin + ' .listReports').html(spView.ulLoader());
@@ -143,6 +143,8 @@ ShiftPlanningReports.prototype.displayReports = function(){
         if (response.data.length == 0){
             $('#reports .' + origin + ' .totals').hide();
             $('#reports .' + origin + ' .notif').show();
+        } else {
+            $('#reports .' + origin + ' .totals').show();
         }
         var total = {colspan : 5, regular : 0, special : 0, overtime : 0, total : 0, cost : 0}
         var d = []
