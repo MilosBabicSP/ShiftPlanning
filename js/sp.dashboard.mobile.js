@@ -620,6 +620,7 @@ ShiftPlanningDashboard.prototype.whosonnowSubEvents = function() {
 ShiftPlanningDashboard.prototype.dashboardSubEvents = function() {
     //$('.bigLoader').show();
     $('#da_widgets .widgets').html(spView.ulLoader());
+    $('#da_widgets ul.shifts.listing').hide();
     var calls = [
         ['timeclock.status','GET', {details : 1}],
         ['schedule.shifts','GET', {
