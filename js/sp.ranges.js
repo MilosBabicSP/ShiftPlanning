@@ -73,8 +73,8 @@ ShiftPlanningRanges.prototype.fixRanges = function(){
     });
     self.times[3] = {
         title : 'This Week',
-        start_time : Date.parse('sunday').add(sp.staff.admin.settings.startday - 1).days().getTime(),
-        end_time : Date.parse('next saturday').add(sp.staff.admin.settings.startday - 1).days().getTime()
+        start_time : (Date.parse('sunday').add(sp.staff.admin.settings.startday - 1).days().getTime() - 604800000),
+        end_time : (Date.parse('next saturday').add(sp.staff.admin.settings.startday - 1).days().getTime() - 604800000)
     }
     self.times[4] = {
         title : 'Last Week',
