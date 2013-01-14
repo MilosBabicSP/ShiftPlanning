@@ -155,8 +155,8 @@ span.input input[type=text]:focus, span.input textarea:focus {color:#444;}
 
 .msgHead {padding:15px 0;}
 
-.butDel {padding-left:30px !important; background:transparent url(../images/inbox_1.png) scroll no-repeat 7px 50%;}
-.butRpl {padding-left:30px !important; background:transparent url(../images/inbox_2.png) scroll no-repeat 7px 50%;}
+.butRpl {padding-left:30px !important; background:transparent url(../images/inbox_1.png) scroll no-repeat 7px 50%;}
+.butDel {padding-left:30px !important; background:transparent url(../images/inbox_2.png) scroll no-repeat 7px 50%;}
 .msgDel, .msgRpl {display:block; width:13px; height:13px; position:absolute; }
 ul.msgWall .msgRpl {top:20px; right:40px; background-position:0 0;}
 ul.msgWall .msgDel {top:20px; right:0; background-position:-13px 0;}
