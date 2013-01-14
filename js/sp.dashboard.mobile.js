@@ -659,6 +659,7 @@ ShiftPlanningDashboard.prototype.dashboardSubEvents = function() {
         $('#da_widgets .widgets').append($.tmpl($('#te_da_widget_schedule'), { month: sp.raw.config.today.mname.toUpperCase(), day: sp.raw.config.today.day, count: br } ));
         
         if ( response[3].data.length > 0 ) {
+            $('#da_widgets ul.shifts.listing').show();
             $('#da_widgets ul.shifts.listing').html($.tmpl($('#te_da_widget_shift'), response[3].data));
         } else {
             $('#da_widgets ul.shifts.listing').hide();
