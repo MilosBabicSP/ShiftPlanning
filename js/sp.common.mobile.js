@@ -320,7 +320,7 @@ ShiftPlanning.prototype.calculateMenuHeight = function () {
 }
 
 ShiftPlanning.prototype.globalLoader = function(){
-    $('.bigLoader').show();
+    //$('.bigLoader').show();
 }
 
 ShiftPlanning.prototype.fixCheckboxes = function(){
