@@ -1392,8 +1392,8 @@
                         <textarea></textarea>
                     </span>
                     <div class="title">
-                        <span class="fr"><a href="#" class="greyB"><?=_s('Cancel');?></a></span>
-                        <span class="fl"><a href="#" class="greenB"><span><?=_s('Send Message');?></span></a></span>
+                        <span class="fr"><a href="#" class="greenB"><span>Send Message</span></a></span>
+                        <span class="fl"><a href="#" class="greyB">Cancel</a></span>
                     </div>
                 </div>
                 <div class="title">
