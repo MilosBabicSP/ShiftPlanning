@@ -72,7 +72,7 @@ if (isset($_POST['application'])){
     unset($_POST['application']);
 }
 
-define('_jsV_', 18);
+define('_jsV_', 19);
 define('WWW_PATH', 'http://' . $_SERVER['SERVER_NAME'] . '/' . _ext_);
 define('LANG_PATH', 'http://' . $_SERVER['SERVER_NAME'] . '/');
 
