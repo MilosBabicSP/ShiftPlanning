@@ -274,7 +274,7 @@ ul.acceptors li span {display:block; margin:0 0 0 40px; line-height:15px;}
 ul.requests {overflow:hidden; font-size:14px;}
 ul.requests li {padding:10px 20px 10px 20px; border-bottom:solid 1px #DBDBDB; position:relative;}
 ul.requests li span {display:block; font-weight:bold; line-height:20px;}
-ul.requests li a {position:absolute; top:50%; right:0; margin:-15px 0 0;}
+ul.requests li a {position:absolute; top:50%; right:20px; margin:-15px 0 0;}
 
 .login {background-color:#F5F5F5; color: #666; font-size:14px; height:100%; overflow: auto;} 
 .login .logo {margin: 5px auto; display: block;}
