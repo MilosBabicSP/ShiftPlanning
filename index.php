@@ -550,8 +550,8 @@ if ($vtoken['data'] != '1') {
                             </a>
                             <ul class="subNav" id="rq_st_im_sm">
                                 <li class="single">
-                                    <a href="#" class="icoReqCan cancel">
-                                        <span></span>
+                                    <a href="#" class="cancel">
+                                        <span><img width="16" height="16" src="<?php echo _fCdnPath_; ?>images/del.png"></span></span>
                                     </a>
                                 </li>
                             </ul>
