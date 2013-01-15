@@ -289,6 +289,7 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
 							$.each(item.shifts,function(i,it){
 								var shifts = {};
 								shifts.id = i;
+                                shifts.shift_user = it.user_shift_id;
 								shifts.start = it.start;
 								d.shifts.push(shifts);
 							});
@@ -323,7 +324,7 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
 				}
 				var packedItems = []
 				selected.each(function(i,j){
-					packedItems.push($(j).attr('rel'));
+					packedItems.push($(j).attr('user_shift_id'));
 				});
 				var params = {};
 				params[field]=packedItems.join(',');
