@@ -850,8 +850,8 @@ ShiftPlanningSchedule.prototype.displayShifts = function(sDay){
             $('#sc_td .loading').hide();
             $('#sc_td .additional').show();
         }
-        var html = $('#sc_td_list isShit t:last').html();
-        $('#sc_td_list isShit t:last').html(html.substring(0, html.length - 2));
+        var html = $('#sc_td_list .isShit t:last').html();
+        $('#sc_td_list .isShit t:last').html(html.substring(0, html.length - 2));
     });
 }
 
