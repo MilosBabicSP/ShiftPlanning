@@ -937,6 +937,7 @@ ShiftPlanningRequests.prototype.addVacationRequest = function(obj){
     spModel.schedule.create('vacation', data, function(response){
         self.vacationSubEvents();
         obj.removeClass('loading');
+        $('#rq_va_wc').val('');
     });
 }
 
