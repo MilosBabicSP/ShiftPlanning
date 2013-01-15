@@ -525,9 +525,10 @@ ShiftPlanningRequests.prototype.overviewSubEvents = function(){
 
 ShiftPlanningRequests.prototype.vacationSubEvents = function(){
     var self = this;
+    $('#rq_va_wc').val('');
     
     if (sp.staff.admin.settings.book_days_off == 1){
-	$('#rq_va .newMsg').show();
+        $('#rq_va .newMsg').show();
         $('#rq_va .newMsg').next().show();
     } else {
 	$('#rq_va .newMsg').hide();
