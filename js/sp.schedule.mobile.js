@@ -821,7 +821,7 @@ ShiftPlanningSchedule.prototype.displayShifts = function(sDay){
     spModel.schedule.get('shifts', data, function(response){
         $('#sc_ca_bo').parent().removeClass('loading');
         if (response.data.length > 0){
-	    response.data = self.cleanPerms(response.data);
+            response.data = self.cleanPerms(response.data);
             if (self.page == 'month'){
                 self.fillCalendar(response.data);
                 $('#sc_td_list').html($.tmpl($('#te_sc_shifts_months'), self.shifts));
@@ -834,11 +834,11 @@ ShiftPlanningSchedule.prototype.displayShifts = function(sDay){
             }
             $('#sc_td_list').show();
             $('#sc_td .loading').hide();
-	    $('#sc_td_list .dTitle  span').each(function(){
+            $('#sc_td_list .dTitle  span').each(function(){
                 var o = $(this).find('t:last');
-		if ($(o).html() != null){
-		    $(o).html($(o).html().substr(0,($(o).html().length -2 )));
-		}
+                if ($(o).html() != null){
+                    $(o).html($(o).html().substr(0,($(o).html().length -2 )));
+                }
             });
         } else {
             if (self.page == 'month'){
@@ -850,6 +850,8 @@ ShiftPlanningSchedule.prototype.displayShifts = function(sDay){
             $('#sc_td .loading').hide();
             $('#sc_td .additional').show();
         }
+        var html = $('#sc_td_list isShit t:last').html();
+        $('#sc_td_list isShit t:last').html(html.substring(0, html.length - 2));
     });
 }
 
