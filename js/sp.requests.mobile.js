@@ -938,6 +938,8 @@ ShiftPlanningRequests.prototype.addVacationRequest = function(obj){
         self.vacationSubEvents();
         obj.removeClass('loading');
         $('#rq_va_wc').val('');
+        $('#rq_va_fr').val('');
+        $('#rq_va_to').val('');
     });
 }
 
