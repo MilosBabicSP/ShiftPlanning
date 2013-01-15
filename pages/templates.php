@@ -268,7 +268,7 @@
 			
     </script>
     <script id="te_sc_shift_release0" type="text/x-jquery-tmpl">
-		<li><span class="chk" rel ="${id}" ></span><img src="${avatar}"><span class="name">${name}</span></li>
+		<li><span class="chk" rel="${id}" user_shift_id="${user_shift_id}"></span><img src="${avatar}"><span class="name">${name}</span></li>
     </script>	
     <script id="te_sc_shift_release1" type="text/x-jquery-tmpl">
         <li><img src="${avatar}"><span class="name">${name}</span></li>
