@@ -526,6 +526,8 @@ ShiftPlanningRequests.prototype.overviewSubEvents = function(){
 ShiftPlanningRequests.prototype.vacationSubEvents = function(){
     var self = this;
     $('#rq_va_wc').val('');
+    $('#rq_va_fr').val('');
+    $('#rq_va_to').val('');
     
     if (sp.staff.admin.settings.book_days_off == 1){
         $('#rq_va .newMsg').show();
