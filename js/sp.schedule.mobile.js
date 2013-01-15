@@ -289,7 +289,7 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
 							$.each(item.shifts,function(i,it){
 								var shifts = {};
 								shifts.id = i;
-                                shifts.shift_user = it.user_shift_id;
+                                shifts.user_shift_id = it.user_shift_id;
 								shifts.start = it.start;
 								d.shifts.push(shifts);
 							});
