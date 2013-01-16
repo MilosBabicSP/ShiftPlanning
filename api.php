@@ -25,7 +25,7 @@ function _iapi($request_vars, $output='json', $dataOnly = false, $multi = false)
     }
     
     if($_POST['module'] == 'timeclock.clockin'){
-        var_dump($requests);
+        var_dump($request);
     }
     
     $ch = curl_init(API_URL);
