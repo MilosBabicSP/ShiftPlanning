@@ -24,6 +24,10 @@ function _iapi($request_vars, $output='json', $dataOnly = false, $multi = false)
         $request['module'] = $request_vars['module'];
     }
     
+    if ($requests['timeclock.clockin']) {
+        var_dump($requests);
+    }
+    
     $ch = curl_init(API_URL);
     curl_setopt($ch, CURLOPT_URL, API_URL);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
