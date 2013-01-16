@@ -324,7 +324,11 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
 				}
 				var packedItems = []
 				selected.each(function(i,j){
-					packedItems.push($(j).attr('user_shift_id'));
+                    if (field == 'swap' ) {
+                        packedItems.push($(j).attr('user_shift_id'));
+                    } else {
+                        packedItems.push($(j).attr('rel'));
+                    }
 				});
 				var params = {};
 				params[field]=packedItems.join(',');
