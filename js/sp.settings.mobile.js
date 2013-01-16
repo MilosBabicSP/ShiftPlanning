@@ -138,6 +138,7 @@ ShiftPlanningSettings.prototype.overviewEvents = function(){
 		$('#settings .main').hide();
 		$('#settings .main.'+subpage).show();
 		$('#settings .mainSub.settings').show();
+        sp.fixCheckboxes();
 	});	
 }
 ShiftPlanningSettings.prototype.overviewSubEvents = function(employee){

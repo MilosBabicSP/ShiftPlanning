@@ -169,6 +169,7 @@ ShiftPlanningStaff.prototype.loadFastAssignment = function(id){
     
     $('#st_fa_po').show();
     $('#st_fa_sk').show();
+    sp.fixCheckboxes();
 }
 
 ShiftPlanningStaff.prototype.createEmployee = function(c){
