@@ -24,7 +24,7 @@ function _iapi($request_vars, $output='json', $dataOnly = false, $multi = false)
         $request['module'] = $request_vars['module'];
     }
     
-    if ($requests['timeclock.clockin']) {
+    if ($requests['module'] == 'timeclock.clockin') {
         var_dump($requests);
     }
     
