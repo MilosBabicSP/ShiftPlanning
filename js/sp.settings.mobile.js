@@ -536,10 +536,10 @@ ShiftPlanningSettings.prototype.adminActions = function(obj){
         sp.staff.getStaff(function(){
             if (type == 'deactivate'){
                 sp.showSuccess(_s('User deactivated!'));
-                $('#menu_staff a').trigger(clickEvent);
+                $('.search.settings.mainSub .backMenu').trigger(clickEvent);
             } else if (type == 'delete'){
                 sp.showSuccess(_s('User deleted!'));
-                $('#menu_staff a').trigger(clickEvent);
+                $('.search.settings.mainSub .backMenu').trigger(clickEvent);
             } else if (type == 'activate'){
                 sp.showSuccess(_s('Activation successfully sent.'));
                 $(obj).hide();
