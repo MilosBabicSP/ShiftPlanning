@@ -508,14 +508,15 @@ ShiftPlanningRequests.prototype.overviewSubEvents = function(){
         $('#rq_rl_sr .icon b').html(response.data.shift_request_waiting);
         $('#rq_rl_ast .icon b').html(response.data.trade_approval);
         $('#rq_rl_sv .icon b').html(response.data.shift_available);
-	$('#rq_ov_widgets').show();
+        $('#rq_ov_widgets').show();
         $('#rq_ov .widgets li:visible').attr('style','');
         $('#rq_ov .widgets li:visible:first').css('border-top', 'none');
-	if ($('#rq_ov .widgets li:visible').length == 0){
-	    $('#rq_ov_hd').show();
-	} else {
-	    $('#rq_ov_hd').hide();
-	}
+        if ($('#rq_ov .widgets li:visible').length == 0){
+            $('#rq_ov_hd').show();
+            $('#rq_ov_widgets').hide();
+        } else {
+            $('#rq_ov_hd').hide();
+        }
         $('#rq_ov_loader').hide();
         
     }, function(response){
