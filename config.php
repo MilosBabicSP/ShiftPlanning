@@ -30,7 +30,7 @@ define('_touch_', 'app/iphone');
 
 
 
-if (IS_TEST_SERVER) {
+if (!IS_TEST_SERVER) {
 //    define('API_KEY', '79a331d71dc4d5edb4d7168f2de9c129bbf9e99a');
 //    define('API_URL', 'http://www.shiftplanning.com/api/');
     if (!isset($_POST['application'])) {
@@ -48,7 +48,7 @@ if (IS_TEST_SERVER) {
         define('API_KEY', '79a331d71dc4d5edb4d7168f2de9c129bbf9e99a');
     }
     //define('API_KEY', '49e4207b8459ef88e19de9b78b882ef15ec14d84');
-    define('API_URL', 'http://www.swapemplist-s.dev.shiftplanning.com/api/');
+    define('API_URL', 'http://www.staging-s.dev.shiftplanning.com/api/');
 } else {
     if (!isset($_POST['application'])) {
         //web mobile app
@@ -72,7 +72,7 @@ if (isset($_POST['application'])){
     unset($_POST['application']);
 }
 
-define('_jsV_', 18);
+define('_jsV_', 0);
 define('WWW_PATH', 'http://' . $_SERVER['SERVER_NAME'] . '/' . _ext_);
 define('LANG_PATH', 'http://' . $_SERVER['SERVER_NAME'] . '/');
 

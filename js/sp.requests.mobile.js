@@ -119,6 +119,11 @@ ShiftPlanningRequests.prototype.vacationEvents = function(){
     $('#rq_va_spd').bind(clickEvent, function(e){
         e.preventDefault();
         $('#rq_va_up .pastDate').toggleClass('hidden');
+        if ($('#rq_va_spd').html() == 'Show past dates') {
+            $('#rq_va_spd').html('Hide past dates');
+        } else if ($('#rq_va_spd').html() == 'Hide past dates') {
+            $('#rq_va_spd').html('Show past dates');
+        }
     });
     
     $('#rq_va').delegate('a.deleteVacation', clickEvent, function(e){
@@ -437,7 +442,7 @@ ShiftPlanningRequests.prototype.shiftApprovalsEvents = function(){
         $(this).toggleClass('check');
     });
     
-    $('#rq_sa_sub .icoReqWor').bind(clickEvent, function(e){
+    $('#rq_sa_sub .approve').bind(clickEvent, function(e){
         e.preventDefault();
         self.saveShiftApprove();
     })
@@ -445,6 +450,10 @@ ShiftPlanningRequests.prototype.shiftApprovalsEvents = function(){
 
 //sub events
 ShiftPlanningRequests.prototype.overviewSubEvents = function(){
+    $('#rq_ov_loader').show();
+    $('#rq_ov_widgets').hide();
+    $('#rq_ov_hd').hide();
+    $('#rq_ov_loader').html(spView.ulLoader());
     spModel.admin.get('nrequests', {}, function(response){
         if (typeof response.data.vacation == 'undefined'){
             response.data.vacation = 0;
@@ -490,7 +499,7 @@ ShiftPlanningRequests.prototype.overviewSubEvents = function(){
         }
         
         if (response.data.shift_available == 0){
-            $('#rq_rl_sv').parent().hide();
+            $('#rq_rl_sv').hide();
         } else {
             $('#rq_rl_sv').show();
         }
@@ -500,12 +509,17 @@ ShiftPlanningRequests.prototype.overviewSubEvents = function(){
         $('#rq_rl_sr .icon b').html(response.data.shift_request_waiting);
         $('#rq_rl_ast .icon b').html(response.data.trade_approval);
         $('#rq_rl_sv .icon b').html(response.data.shift_available);
-	
-	if ($('#rq_ov .widgets li:visible').length == 0){
-	    $('#rq_ov_hd').show();
-	} else {
-	    $('#rq_ov_hd').hide();
-	}
+        $('#rq_ov_widgets').show();
+        $('#rq_ov .widgets li:visible').attr('style','');
+        $('#rq_ov .widgets li:visible:first').css('border-top', 'none');
+        if ($('#rq_ov .widgets li:visible').length == 0){
+            $('#rq_ov_hd').show();
+            $('#rq_ov_widgets').hide();
+        } else {
+            $('#rq_ov_hd').hide();
+        }
+        $('#rq_ov_loader').hide();
+        
     }, function(response){
         sp.showError(response.error);
     });
@@ -513,9 +527,12 @@ ShiftPlanningRequests.prototype.overviewSubEvents = function(){
 
 ShiftPlanningRequests.prototype.vacationSubEvents = function(){
     var self = this;
+    $('#rq_va_wc').val('');
+    $('#rq_va_fr').val('');
+    $('#rq_va_to').val('');
     
     if (sp.staff.admin.settings.book_days_off == 1){
-	$('#rq_va .newMsg').show();
+        $('#rq_va .newMsg').show();
         $('#rq_va .newMsg').next().show();
     } else {
 	$('#rq_va .newMsg').hide();
@@ -607,8 +624,12 @@ ShiftPlanningRequests.prototype.vacationSubEvents = function(){
 }
 
 ShiftPlanningRequests.prototype.availableSubEvents = function() {
-    $('.bigLoader').show();
-    $('#da_widgets .timeClock.out, #da_widgets .timeClock.in').hide();
+    $('#rq_av_pu .icon b').html('');
+    $('#rq_av_sw .icon b').html('');
+    $('#rq_av_tr .icon b').html('');
+    $('#rq_av_pu_li').html(spView.ulLoader());
+    $('#rq_av_sw_li').html(spView.ulLoader());
+    $('#rq_av_tr_li').html(spView.ulLoader());
     var calls = [
         ['schedule.shifts','GET', {
             'mode': 'open'
@@ -623,16 +644,35 @@ ShiftPlanningRequests.prototype.availableSubEvents = function() {
         self.available.trade = sp.map(response[1].data);
         $('#rq_av_pu .icon b').html( sp.countResponse( response[0].data ) );
         $('#rq_av_pu_li').html($.tmpl($('#te_da_all_shiftV2'), sp.objToArray(response[0].data)));
+        
+        if ( sp.countResponse( response[0].data ) > 0 ) {
+            $('#rq_av_pu_li').show();
+        } else {
+            $('#rq_av_pu_li').hide();
+        }
+        
         $('#rq_av_sw .icon b').html( sp.countResponse( response[2].data ) );
         var swap = [];
         $.each(response[2].data,function(key,item){
                 item.avatar = sp.getAvatar(item.user);
                 swap.push(item);
         });
+        
+        if ( sp.countResponse( response[2].data ) > 0 ) {
+            $('#rq_av_sw_li').show();
+        } else {
+            $('#rq_av_sw_li').hide();
+        }
+        
         $('#rq_av_sw_li').html($.tmpl($('#te_da_all_shiftV2'), swap ));
         $('#rq_av_tr .icon b').html( sp.countResponse( response[1].data ) );
+        
+        if ( sp.countResponse( response[1].data ) > 0 ) {
+            $('#rq_av_tr_li').show();
+        } else {
+            $('#rq_av_tr_li').hide();
+        }
         $('#rq_av_tr_li').html($.tmpl($('#te_da_all_shiftV2'), sp.objToArray(response[1].data)));
-        $('.bigLoader').hide();
     });
 }
 
@@ -901,6 +941,9 @@ ShiftPlanningRequests.prototype.addVacationRequest = function(obj){
     spModel.schedule.create('vacation', data, function(response){
         self.vacationSubEvents();
         obj.removeClass('loading');
+        $('#rq_va_wc').val('');
+        $('#rq_va_fr').val('');
+        $('#rq_va_to').val('');
     });
 }
 

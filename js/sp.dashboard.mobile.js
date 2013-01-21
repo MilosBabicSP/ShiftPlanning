@@ -45,18 +45,18 @@ ShiftPlanningDashboard.prototype.loadSubPageEvents = function(subpage){
 }
 
 ShiftPlanningDashboard.prototype.dashboardEvents = function(){
-    $('#da_widgets .timeClock a').bind(clickEvent, function(e){
+    $('#da_widgets').delegate('.timeClock a',clickEvent, function(e){
         e.preventDefault();
         sp.loadSubPage('', 'timeClock', 'overview');
     });
     
-    $('#da_widgets .tradePage').bind(clickEvent, function(e){
+    $('#da_widgets').delegate('.tradePage',clickEvent, function(e){
         e.preventDefault();
         sp.loadSubPage('', 'requests', 'available');
     });
     
     
-    $('#da_widgets ul.shifts').delegate('a', clickEvent, function(e){
+    $('#da_widgets').delegate('ul.shifts a', clickEvent, function(e){
 	e.preventDefault();
 	$(this).addClass('loading');
 	spModel.schedule.get('shift', {
@@ -69,12 +69,12 @@ ShiftPlanningDashboard.prototype.dashboardEvents = function(){
 	});
     });
     
-    $('#da_widgets .schedule a').bind(clickEvent, function(e){
+    $('#da_widgets').delegate('.schedule a',clickEvent, function(e){
         e.preventDefault();
         $('#menu_schedule a').trigger(clickEvent);
     });
     
-    $('#da_widgets .user a').bind(clickEvent, function(e){
+    $('#da_widgets').delegate('.user a',clickEvent, function(e){
         e.preventDefault(); 
         $('#menu_settings a').trigger(clickEvent);
     });
@@ -195,6 +195,13 @@ ShiftPlanningDashboard.prototype.wallEvents = function(){
 	});
         
 	return true;
+    });
+    
+    $('#da_wa_li').delegate('input[type=text]', 'keyup', function(e){
+        var code = (e.keyCode ? e.keyCode : e.which);
+        if (code == 13) {
+            $(this).parent().parent().find('input[type=submit]').trigger(clickEvent);
+        }
     });
 }
 
@@ -519,6 +526,7 @@ ShiftPlanningDashboard.prototype.filesSubEvents = function(){
 }
 
 ShiftPlanningDashboard.prototype.upcomingShiftsSubEvents = function(){
+    $('#da_up_li').html(spView.ulLoader());
     var send = {
 	start_date: 'today', 
 	end_date: 'today +2 months', 
@@ -532,9 +540,9 @@ ShiftPlanningDashboard.prototype.upcomingShiftsSubEvents = function(){
 	}
 	if (data.length > 0){
 	    $('#da_up_li').html($.tmpl($('#te_da_widget_shift'), data));
+        } else {
+            $('#da_up_li').html(spView.emptyResult(_s('No upcoming shifts'), 'li'));
         }
-        
-        $('#da_up .shifts .icon b').html(data.length);
     });
 }
 
@@ -610,9 +618,9 @@ ShiftPlanningDashboard.prototype.whosonnowSubEvents = function() {
 }
 
 ShiftPlanningDashboard.prototype.dashboardSubEvents = function() {
-    $('#da_widgets .user .icon').html('<img src="' + sp.getAvatar() + '" height="50" width="50" />');
-    $('.bigLoader').show();
-    $('#da_widgets .timeClock.out, #da_widgets .timeClock.in').hide();
+    //$('.bigLoader').show();
+    $('#da_widgets .widgets').html(spView.ulLoader());
+    $('#da_widgets ul.shifts.listing').hide();
     var calls = [
         ['timeclock.status','GET', {details : 1}],
         ['schedule.shifts','GET', {
@@ -627,15 +635,16 @@ ShiftPlanningDashboard.prototype.dashboardSubEvents = function() {
         ['schedule.trades', 'get', {'mode' : 'swap'}]
     ]
     sp.multiApi(calls, function(response) {
+        $('#da_widgets .widgets').html('');
+        $('#da_widgets .widgets').append($.tmpl($('#te_da_widget_profile'), { avatar: sp.getAvatar(), name: user.name, company:  user.company} ));
         if (parseInt(sp.staff.admin.settings.timeclock) != 0) {
             if (response[0].data != 'out') {
-                $('#da_widgets .timeClock.in').show();
-                $('#da_widgets .timeClock.in .details b').html(response[0].data.current_length.hours + _s('h') + ' ' + response[0].data.current_length.mins + _('mins'));
+                $('#da_widgets .widgets').append($.tmpl($('#te_da_widget_timeclock_in'), {time: response[0].data.current_length.hours + _s('h') + ' ' + response[0].data.current_length.mins + _('mins')}));
             } else {
-                $('#da_widgets .timeClock.out').show();
+                $('#da_widgets .widgets').append($.tmpl($('#te_da_widget_timeclock_out')));
             }
         }
-        $('#da_widgets .tradePage .icon b').html((sp.countResponse(response[1].data) + sp.countResponse(response[2].data) + sp.countResponse(response[4].data)));
+        $('#da_widgets .widgets').append($.tmpl($('#te_da_widget_tradePage'), { count: (sp.countResponse(response[1].data) + sp.countResponse(response[2].data) + sp.countResponse(response[4].data))}));
         
         var br = 0;
         $.each(response[3].data, function(i, item) {
@@ -647,12 +656,17 @@ ShiftPlanningDashboard.prototype.dashboardSubEvents = function() {
             }
         });
         
-        $('#da_widgets .schedule .details p').html(i18n.format(i18n.plural('how much shifts you have today', 'You have <b>{count} shift</b> today', 'You have <b>{count} shifts</b> today', br), {count: br}));
-        $('#da_widgets .schedule .icon p').html(sp.raw.config.today.mname.toUpperCase());
-        $('#da_widgets .schedule .icon h3').html(sp.raw.config.today.day);
-        $('#da_widgets ul.shifts.listing').html($.tmpl($('#te_da_widget_shift'), response[3].data));
+        $('#da_widgets .widgets').append($.tmpl($('#te_da_widget_schedule'), { month: sp.raw.config.today.mname.toUpperCase(), day: sp.raw.config.today.day, count: br } ));
         
-        $('.bigLoader').hide();
+        if ( response[3].data.length > 0 ) {
+            $('#da_widgets ul.shifts.listing').show();
+            $('#da_widgets ul.shifts.listing').html($.tmpl($('#te_da_widget_shift'), response[3].data));
+        } else {
+            $('#da_widgets ul.shifts.listing').hide();
+        }
+        
+        
+        //$('.bigLoader').hide();
         $('.applicationContainer').fadeIn(500);
     });
 }

@@ -31,7 +31,7 @@ h5 {font-size:14px; font-weight:normal; color:#333;}
 
 .blackMask {left: 0px; right: 0px; top: 0px; bottom: 0px; background-color: #000000;opacity: 0.5; position: absolute; display:none; z-index: 999;}
 
-.bigLoader {left:0px; right:0px; top:0px; bottom:0px; position:absolute; display:none; z-index:998; background:#FFF url(../images/loaderBig.gif) scroll no-repeat 50% 100px;}
+.bigLoader {left:0px; right:0px; top:0px; bottom:0px; position:absolute; display:none; z-index:998; background:#FFF url(../images/loaderBig.gif) scroll no-repeat 50% 50%; }
 
 /*SPRITE*/
 .msgDel, .msgRpl, .cmtCount span.tip, ul.cmts, ul.cmts li.last input[type=submit], .search input[type=submit] {background-image:url(../images/icos.png); background-repeat:no-repeat;}
@@ -87,7 +87,7 @@ span.radio.over {background-position:-5px -1355px;}
 
 a.button {line-height:30px; display:block; padding:0 10px; color:#333; background-color:#f0f0f0; border:solid 1px #DBDBDB; border-radius:2px;}
 a.confirm {line-height:30px; display:block; padding:0 10px; color:#FFF; background-color:#6C732C; border:solid 1px #5F894D; border-radius:2px;cursor:pointer;}
-a.loading, button.loading {background:#FFF url(../images/loader.gif) scroll no-repeat 50% 50% !important;}
+a.loading, button.loading {background:url(../images/loader.gif) scroll no-repeat 50% 50% !important;}
 a.loading span, button.loading span {visibility:hidden;}
 div.loading, li.loading {background:transparent url(../images/loader.gif) scroll no-repeat 50% 50% !important; min-height:30px;}
 table.loading, tr.loading, ul.loading {background:transparent url(../images/loader.gif) scroll no-repeat 50% 50% !important;}
@@ -155,8 +155,8 @@ span.input input[type=text]:focus, span.input textarea:focus {color:#444;}
 
 .msgHead {padding:15px 0;}
 
-.butDel {padding-left:30px !important; background:transparent url(../images/inbox_1.png) scroll no-repeat 7px 50%;}
-.butRpl {padding-left:30px !important; background:transparent url(../images/inbox_2.png) scroll no-repeat 7px 50%;}
+.butRpl {padding-left:30px !important; background:transparent url(../images/inbox_1.png) scroll no-repeat 7px 50%;}
+.butDel {padding-left:30px !important; background:transparent url(../images/inbox_2.png) scroll no-repeat 7px 50%;}
 .msgDel, .msgRpl {display:block; width:13px; height:13px; position:absolute; }
 ul.msgWall .msgRpl {top:20px; right:40px; background-position:0 0;}
 ul.msgWall .msgDel {top:20px; right:0; background-position:-13px 0;}
@@ -237,16 +237,16 @@ ul.timeSheet ul li:last-child {padding:5px 0 0;}
 ul.timeSheet li > img {float:left;}
 ul.timeSheet li > span {display:inline-block; float:left;}
 ul.timeSheet li .date {width:25%; line-height:30px;}
-ul.timeSheet li .names {width:25%; line-height:15px;}
+ul.timeSheet li .names {width:25%; line-height:30px; font-size:11px;}
 ul.timeSheet li .names b {line-height: 35px; }
-ul.timeSheet li .twoLine {line-height:15px; padding:0 0 0 5px;}
+ul.timeSheet li .twoLine {line-height:15px; padding:0 0 0 5px; font-size:12px;}
 ul.timeSheet li .oneLine {line-height:30px; padding:0 0 0 5px;}
 ul.timeSheet li .stats {color:#999; font-size:13px;border: 1px solid #EAEAEA;border-radius: 3px 3px 3px 3px;margin-left:5px;margin-top:7px;}
-ul.timeSheet li .time {width:50%; text-align:center; color:#888; line-height:20px; font-size:13px;}
-ul.timeSheet li .time .tStart {background-color:#75BE66; display:inline-block; padding:5px; border-radius:2px; color:#FFF;}
-ul.timeSheet li .time .tEnd {background-color:#D15050; display:inline-block; padding:5px; border-radius:2px; color:#FFF;}
-ul.timeSheet li .time .tPending {background-color:#999; display:inline-block; padding:5px; border-radius:2px; color:#FFF;}
-ul.timeSheet li .last {width:25%; text-align:right; line-height:30px;}
+ul.timeSheet li .time {width:50%; text-align:center; color:#888; line-height:20px; font-size:12px;}
+ul.timeSheet li .time .tStart {background-color:#75BE66; display:inline-block; padding:5px; border-radius:2px; color:#FFF; width:48px;}
+ul.timeSheet li .time .tEnd {background-color:#D15050; display:inline-block; padding:5px; border-radius:2px; color:#FFF; width:48px;}
+ul.timeSheet li .time .tPending {background-color:#999; display:inline-block; padding:5px; border-radius:2px; color:#FFF; font-size:11px;}
+ul.timeSheet li .last {width:25%; text-align:right; line-height:30px; font-size:11px;}
 ul.timeSheet li .quarter:first-child {line-height:15px;}
 ul.timeSheet li .quarter {width:25%;}
 ul.timeSheet li .quarter.even span {margin:0 5px 0 0;}
@@ -275,6 +275,8 @@ ul.requests {overflow:hidden; font-size:14px;}
 ul.requests li {padding:10px 20px 10px 20px; border-bottom:solid 1px #DBDBDB; position:relative;}
 ul.requests li span {display:block; font-weight:bold; line-height:20px;}
 ul.requests li a {position:absolute; top:50%; right:0; margin:-15px 0 0;}
+
+#rq_st ul.requests li a {position:absolute; top:50%; right:20px; margin:-15px 0 0;}
 
 .login {background-color:#F5F5F5; color: #666; font-size:14px; height:100%; overflow: auto;} 
 .login .logo {margin: 5px auto; display: block;}
@@ -440,3 +442,10 @@ a.grey {display:block; color:#FFF; line-height:30px; text-align:center; backgrou
 #st_tp_menu {background: url("../images/shadow.png") repeat-x scroll 0 100% transparent;padding-bottom:3px;}
 #st_tp_menu tr td {text-align:center; line-height: 50px;}
 #st_tp_menu tr td.active {border-bottom: 3px solid #C52424;}
+
+#rq_sa .detailsGrid .even div, #rq_va_date .even div, #tc_act_date .even div, #da_se_ed_bd_sel .even div {padding-left:0px;}
+#rq_sa .detailsGrid .odd div, #rq_va_date .odd div, #tc_act_date .odd div, #da_se_ed_bd_sel .odd div {padding-right:0px;}
+
+#tc_dts_ul span.names b {font-weight: normal;}
+
+#rq_st_im_s .title1 {padding:5px 20px;}

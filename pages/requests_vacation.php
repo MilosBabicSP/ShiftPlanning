@@ -39,7 +39,7 @@
                 
             </select>
         </span>
-        <ul class="detailsGrid borTB">
+        <ul class="detailsGrid borTB" id="rq_va_date">
             <li>
                 <ul>                
                     <li class="even">
