@@ -16,7 +16,7 @@
 				</li>
 				</ul>
         <div class="trainingBar">
-            <?=_s('Progress: ')?><span id="user_progress">0</span>%
+            <?= _s('Progress: ') ?><span id="user_progress">0</span>%
             <div class="barholder">
                 <div class="progress" style="width:0%"></div>
             </div>

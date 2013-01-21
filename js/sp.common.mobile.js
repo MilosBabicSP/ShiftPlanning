@@ -75,7 +75,7 @@ ShiftPlanning.prototype.toggleMenu = function(){
 
 ShiftPlanning.prototype.loadSubPage = function(obj, page, subpage) {
     if (subpage == 'logout'){
-        sp.staff.logout();
+        this.staff.logout();
         return false;
     }
     
@@ -124,33 +124,33 @@ ShiftPlanning.prototype.initialize = function(){
         if (sp.hash().length > 0) {
             if(sp.hash() == 'logout')
             {
-                sp.staff.logout();
+                self.staff.logout();
                 return false;
             }
-            if ($('#menu [page=' + sp.hash() + ']').length > 0)
+            if ($('#menu [page=' + self.hash() + ']').length > 0)
             {
                 $('#pages > div').hide();
                 setTimeout(function(){
-                    $('#menu [page=' + sp.hash() + ']').parent().parent().find('li').removeClass('active');
-                    $('#menu [page=' + sp.hash() + ']').parent().addClass('active');
-                    self.loadPage(sp.hash());
+                    $('#menu [page=' + self.hash() + ']').parent().parent().find('li').removeClass('active');
+                    $('#menu [page=' + self.hash() + ']').parent().addClass('active');
+                    self.loadPage(self.hash());
                 }, 50);
             }
             else
             {
-                if(sp.hash() != 'login' && sp.hash() != 'logout')
+                if(self.hash() != 'login' && self.hash() != 'logout')
                 {
-                        user.loggedIn ? sp.hash('dashboard') : sp.hash('login') ;
+                        user.loggedIn ? self.hash('dashboard') : self.hash('login') ;
                 }
                 else
                 {
-                    if(sp.hash() == 'logout' && user.loggedIn)
+                    if(self.hash() == 'logout' && user.loggedIn)
                     {
-                            sp.staff.logout();
+                            self.staff.logout();
                     }
-                    if(sp.hash() == 'sp.hash()login' && user.loggedIn)
+                    if(self.hash() == 'login' && user.loggedIn)
                     {
-                            sp.hash('dashboard');
+                            self.hash('dashboard');
                     }
                 }
             }
@@ -210,7 +210,7 @@ ShiftPlanning.prototype.initialize = function(){
         }, 1000);
         $('#wrapper').width($(window).width());
         $('body').width($(window).width());
-        
+
         //all mainUser names to lead to settings 
         $('.userName').bind(clickEvent, function(){
             sp.loadSubPage('', 'settings', 'overview');
