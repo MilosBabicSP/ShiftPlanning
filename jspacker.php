@@ -32,7 +32,7 @@ class JSPacker {
 	    array_push($this->scripts, array('path' => $file, 'pack' => $compress));
 	} else {
 	    if (!IS_TEST_SERVER){
-		$path = 'http://' . _cdn_ . '.' ._domain_ . '/' . _touch_ . '/' . $file;
+		$path = 'http://www.' ._domain_ . '/' . _touch_ . '/' . $file;
 	    } else {
 		$path = WWW_PATH . $file;
 	    }
