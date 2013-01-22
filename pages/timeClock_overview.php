@@ -22,7 +22,7 @@
         <ul class="step">
             <li>
                 <div>
-                    <a href="#" id="tc_ov_ca" class="grey"><?=_s('Cancel')?></a>
+                    <a href="#" id="tc_ov_ca" class="grey"><?=_s('Remove')?></a>
                 </div>
             </li>
             <li>
