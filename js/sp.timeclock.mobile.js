@@ -431,6 +431,7 @@ ShiftPlanningTimeClock.prototype.getTimeSheets = function(){
 }
 
 ShiftPlanningTimeClock.prototype.getMyTimeSheets = function(){
+    $('#tc_dts_ul').html(spView.ulLoader());
     var self=this;
     var interval=$('#tc_dts_tr').val();
     var times={}

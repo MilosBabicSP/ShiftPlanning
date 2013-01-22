@@ -49,7 +49,7 @@
 					<div class="text">
 						<h4>Reason for request</h4>
 						<p>The more information you can provide the better odds your shift request will be successful.</p>
-						<textarea cols="20" rows="4" name="reason_trade1">Add reason...</textarea>
+						<textarea cols="20" rows="4" name="reason_trade1"></textarea>
 						<p>The more information you can provide the better odds your shift request will be successful.</p>
 					</div>
 				</div>				
@@ -104,7 +104,7 @@
 					<div class="text">
 						<h4>Reason for request</h4>
 						<p>The more information you can provide the better odds your shift request will be successful.</p>
-						<textarea cols="20" rows="4" name="reason_trade0">Add reason...</textarea>
+						<textarea cols="20" rows="4" name="reason_trade0"></textarea>
 						<p>The more information you can provide the better odds your shift request will be successful.</p>
 					</div>
 				</div>				

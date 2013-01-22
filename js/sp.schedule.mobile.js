@@ -289,7 +289,7 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
 							$.each(item.shifts,function(i,it){
 								var shifts = {};
 								shifts.id = i;
-								shifts.shift_user = it.user_shift_id;
+                                shifts.user_shift_id = it.user_shift_id;
 								shifts.start = it.start;
 								d.shifts.push(shifts);
 							});
@@ -324,7 +324,11 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
 				}
 				var packedItems = []
 				selected.each(function(i,j){
-					packedItems.push($(j).attr('shift_user'));
+                    if (field == 'swap' ) {
+                        packedItems.push($(j).attr('user_shift_id'));
+                    } else {
+                        packedItems.push($(j).attr('rel'));
+                    }
 				});
 				var params = {};
 				params[field]=packedItems.join(',');
@@ -822,7 +826,7 @@ ShiftPlanningSchedule.prototype.displayShifts = function(sDay){
     spModel.schedule.get('shifts', data, function(response){
         $('#sc_ca_bo').parent().removeClass('loading');
         if (response.data.length > 0){
-	    response.data = self.cleanPerms(response.data);
+            response.data = self.cleanPerms(response.data);
             if (self.page == 'month'){
                 self.fillCalendar(response.data);
                 $('#sc_td_list').html($.tmpl($('#te_sc_shifts_months'), self.shifts));
@@ -835,11 +839,11 @@ ShiftPlanningSchedule.prototype.displayShifts = function(sDay){
             }
             $('#sc_td_list').show();
             $('#sc_td .loading').hide();
-	    $('#sc_td_list .dTitle  span').each(function(){
+            $('#sc_td_list .dTitle  span').each(function(){
                 var o = $(this).find('t:last');
-		if ($(o).html() != null){
-		    $(o).html($(o).html().substr(0,($(o).html().length -2 )));
-		}
+                if ($(o).html() != null){
+                    $(o).html($(o).html().substr(0,($(o).html().length -2 )));
+                }
             });
         } else {
             if (self.page == 'month'){
@@ -850,6 +854,12 @@ ShiftPlanningSchedule.prototype.displayShifts = function(sDay){
             $('#sc_td_list').hide();
             $('#sc_td .loading').hide();
             $('#sc_td .additional').show();
+        }
+        var html = $('#sc_td_list .isShift t:last').html();
+        if (html != null) {
+            $('#sc_td_list .isShift p').each(function() {
+                $(this).find('t:last').html(html.substring(0, html.length - 2));
+            });
         }
     });
 }
