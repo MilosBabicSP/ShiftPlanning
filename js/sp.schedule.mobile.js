@@ -648,8 +648,8 @@ ShiftPlanningSchedule.prototype.resetPublishFields = function(f){
     }
     
     if (f){
-	$('#te_sc_shift_display_publish').hide();
-	$('#te_sc_shift_display_info').show();
+        $('#te_sc_shift_display_publish').hide();
+        $('#te_sc_shift_display_info').show();
     }
     
     $('#te_sc_shift_display_publish .radio').removeClass('check');
@@ -839,12 +839,12 @@ ShiftPlanningSchedule.prototype.displayShifts = function(sDay){
             }
             $('#sc_td_list').show();
             $('#sc_td .loading').hide();
-            $('#sc_td_list .dTitle  span').each(function(){
-                var o = $(this).find('t:last');
-                if ($(o).html() != null){
-                    $(o).html($(o).html().substr(0,($(o).html().length -2 )));
-                }
-            });
+//            $('#sc_td_list .dTitle  span').each(function(){
+//                var o = $(this).find('t:last');
+//                if ($(o).html() != null){
+//                    $(o).html($(o).html().substr(0,($(o).html().length -2 )));
+//                }
+//            });
         } else {
             if (self.page == 'month'){
                 if (typeof sDay != 'undefined'){
