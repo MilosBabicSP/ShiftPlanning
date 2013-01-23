@@ -1066,5 +1066,17 @@ ShiftPlanningSchedule.prototype.loadPage = function(){
     opt += spView.schedulerFilter();
     $('#sc_fl').html(opt);
     
+    var addButton = false;
+    $.each(this.schedules.data, function( i, item ) {
+        if ( item.perms == 2 ) {
+            addButton = true;
+            return true;
+        }
+    });
+    
+    if (!addButton) {
+        $('#sc_add').parent().hide();
+    }
+    
     this.generateCalendar();
 }
