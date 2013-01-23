@@ -855,16 +855,12 @@ ShiftPlanningSchedule.prototype.displayShifts = function(sDay){
             $('#sc_td .loading').hide();
             $('#sc_td .additional').show();
         }
-//        var html = $('#sc_td_list .isShift t:last').html();
-//        if (html != null) {
-//            $('#sc_td_list .isShift p').each(function() {
-//                var p = $(this).find('t:last');
-//                if ( p ) {
-//                    p.html(p.html().substring(0, p.html().length - 2));
-//                }
-//                console.log(p);
-//            });
-//        }
+        var html = $('#sc_td_list .isShift t:last').html();
+        if (html != null) {
+            $('#sc_td_list .isShift p').each(function() {
+                $(this).html($(this).html().substring(0, $(this).html().length - 2));
+            });
+        }
     });
 }
 
