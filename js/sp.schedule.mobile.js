@@ -158,6 +158,7 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
 						errorCallback();
 					}
 				},10000);
+				sp.showSuccess('Getting coordinates . . .');
 				navigator.geolocation.getCurrentPosition(
 					//success
 					function(response){
