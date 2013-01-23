@@ -839,12 +839,12 @@ ShiftPlanningSchedule.prototype.displayShifts = function(sDay){
             }
             $('#sc_td_list').show();
             $('#sc_td .loading').hide();
-//            $('#sc_td_list .dTitle  span').each(function(){
-//                var o = $(this).find('t:last');
-//                if ($(o).html() != null){
-//                    $(o).html($(o).html().substr(0,($(o).html().length -2 )));
-//                }
-//            });
+            $('#sc_td_list .dTitle  span').each(function(){
+                var o = $(this).find('t:last');
+                if ($(o).html() != null){
+                    $(o).html($(o).html().substr(0,($(o).html().length -2 )));
+                }
+            });
         } else {
             if (self.page == 'month'){
                 if (typeof sDay != 'undefined'){
@@ -856,11 +856,11 @@ ShiftPlanningSchedule.prototype.displayShifts = function(sDay){
             $('#sc_td .additional').show();
         }
         var html = $('#sc_td_list .isShift t:last').html();
-        if (html != null) {
-            $('#sc_td_list .isShift p').each(function() {
-                $(this).find('t:last').html(html.substring(0, html.length - 2));
-            });
-        }
+//        if (html != null) {
+//            $('#sc_td_list .isShift p').each(function() {
+//                $(this).find('t:last').html(html.substring(0, html.length - 2));
+//            });
+//        }
     });
 }
 
