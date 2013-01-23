@@ -157,7 +157,6 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
 						errorCallback();
 					}
 				},10000);
-				sp.showSuccess(_s('App will search your coordinates'));
 				navigator.geolocation.getCurrentPosition(
 					//success
 					function(response){
