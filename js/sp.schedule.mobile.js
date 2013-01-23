@@ -55,6 +55,9 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
             $('#sc_td .additional').hide();
             $('#sc_td_list').html('<ul class="shifts moved"></ul>');
             $('#sc_td_list ul').html($.tmpl($('#te_sc_shifts_new'), self.shifts[i].shifts));
+            $('#sc_td_list .isShift > p').each(function() {
+                $(this).html($(this).html().substring(0, $(this).html().length - 1));
+            });
         } else {
             $('#sc_td_list').hide();
             $('#sc_td .loading').hide();
