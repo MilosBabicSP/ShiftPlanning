@@ -846,8 +846,8 @@ ShiftPlanningSchedule.prototype.displayShifts = function(sDay){
                 }
             });
         } else {
-            if (self.page == 'month'){
-                if (typeof sDay != 'undefined'){
+            if (self.page == 'month') {
+                if (typeof sDay != 'undefined') {
                     $('#sc_ca_fi_' + sDay).trigger(clickEvent);
                 }
             }
@@ -858,7 +858,8 @@ ShiftPlanningSchedule.prototype.displayShifts = function(sDay){
         var html = $('#sc_td_list .isShift t:last').html();
         if (html != null) {
             $('#sc_td_list .isShift p').each(function() {
-                $(this).find('t:last').html($(this).find('t:last').html().substring(0, $(this).find('t:last').html().length - 2));
+                var p = $(this).find('t:last');
+                p.html(p.html().substring(0, p.html().length - 2));
             });
         }
     });
