@@ -1,5 +1,9 @@
 <div class="main overview" id="rq_ov">
-    <ul class="widgets">
+    <div class="title">
+        <h3><?= _s('Overview'); ?></h3>
+    </div>
+    <ul class="requests" id="rq_ov_loader"></ul>
+    <ul class="widgets" id="rq_ov_widgets">
         <li class="shifts" id="rq_rl_va">
             <a href="#" subpage="vacation">
                 <span class="icon">

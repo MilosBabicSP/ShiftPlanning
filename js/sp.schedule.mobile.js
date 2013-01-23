@@ -55,6 +55,9 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
             $('#sc_td .additional').hide();
             $('#sc_td_list').html('<ul class="shifts moved"></ul>');
             $('#sc_td_list ul').html($.tmpl($('#te_sc_shifts_new'), self.shifts[i].shifts));
+            $('#sc_td_list .isShift > p').each(function() {
+                $(this).html($(this).html().substring(0, $(this).html().length - 1));
+            });
         } else {
             $('#sc_td_list').hide();
             $('#sc_td .loading').hide();
@@ -289,7 +292,7 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
 							$.each(item.shifts,function(i,it){
 								var shifts = {};
 								shifts.id = i;
-								shifts.shift_user = it.user_shift_id;
+                                shifts.user_shift_id = it.user_shift_id;
 								shifts.start = it.start;
 								d.shifts.push(shifts);
 							});
@@ -324,7 +327,11 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
 				}
 				var packedItems = []
 				selected.each(function(i,j){
-					packedItems.push($(j).attr('shift_user'));
+                    if (field == 'swap' ) {
+                        packedItems.push($(j).attr('user_shift_id'));
+                    } else {
+                        packedItems.push($(j).attr('rel'));
+                    }
 				});
 				var params = {};
 				params[field]=packedItems.join(',');
@@ -644,8 +651,8 @@ ShiftPlanningSchedule.prototype.resetPublishFields = function(f){
     }
     
     if (f){
-	$('#te_sc_shift_display_publish').hide();
-	$('#te_sc_shift_display_info').show();
+        $('#te_sc_shift_display_publish').hide();
+        $('#te_sc_shift_display_info').show();
     }
     
     $('#te_sc_shift_display_publish .radio').removeClass('check');
@@ -822,7 +829,7 @@ ShiftPlanningSchedule.prototype.displayShifts = function(sDay){
     spModel.schedule.get('shifts', data, function(response){
         $('#sc_ca_bo').parent().removeClass('loading');
         if (response.data.length > 0){
-	    response.data = self.cleanPerms(response.data);
+            response.data = self.cleanPerms(response.data);
             if (self.page == 'month'){
                 self.fillCalendar(response.data);
                 $('#sc_td_list').html($.tmpl($('#te_sc_shifts_months'), self.shifts));
@@ -835,15 +842,15 @@ ShiftPlanningSchedule.prototype.displayShifts = function(sDay){
             }
             $('#sc_td_list').show();
             $('#sc_td .loading').hide();
-	    $('#sc_td_list .dTitle  span').each(function(){
+            $('#sc_td_list .dTitle  span').each(function(){
                 var o = $(this).find('t:last');
-		if ($(o).html() != null){
-		    $(o).html($(o).html().substr(0,($(o).html().length -2 )));
-		}
+                if ($(o).html() != null){
+                    $(o).html($(o).html().substr(0,($(o).html().length -2 )));
+                }
             });
         } else {
-            if (self.page == 'month'){
-                if (typeof sDay != 'undefined'){
+            if (self.page == 'month') {
+                if (typeof sDay != 'undefined') {
                     $('#sc_ca_fi_' + sDay).trigger(clickEvent);
                 }
             }
@@ -851,6 +858,9 @@ ShiftPlanningSchedule.prototype.displayShifts = function(sDay){
             $('#sc_td .loading').hide();
             $('#sc_td .additional').show();
         }
+        $('#sc_td_list .isShift > p').each(function() {
+            $(this).html($(this).html().substring(0, $(this).html().length - 1));
+        });
     });
 }
 
@@ -1055,6 +1065,18 @@ ShiftPlanningSchedule.prototype.loadPage = function(){
     }
     opt += spView.schedulerFilter();
     $('#sc_fl').html(opt);
+    
+    var addButton = false;
+    $.each(this.data.schedules, function( i, item ) {
+        if ( item.perms == 2 ) {
+            addButton = true;
+            return true;
+        }
+    });
+    
+    if (!addButton) {
+        $('#sc_add').parent().hide();
+    }
     
     this.generateCalendar();
 }

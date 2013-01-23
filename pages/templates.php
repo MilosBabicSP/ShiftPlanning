@@ -1,5 +1,70 @@
 <!-- ID rulez first is "te" shorten from template, next is 2 letter from module name, than 2 letter from page name, than 2 letters from page method -->
 <div id="templates">
+    <script id="te_da_widget_schedule" type="text/x-jquery-tmpl">
+        <li class="schedule">
+            <a href="#">
+                <span class="icon">
+                    <p>${month}</p>
+                    <h3>${day}</h3>
+                </span>
+                <span class="details">
+                    <h3>Scheduler</h3>
+                    <p>You have <b>${count} shift(s)</b> today</p>
+                </span>
+            </a>
+        </li>
+    </script>
+    <script id="te_da_widget_tradePage" type="text/x-jquery-tmpl">
+        <li class="shifts tradePage">
+            <a href="#">
+                <span class="icon">
+                    <b>${count}</b>
+                </span>
+                <span class="details">
+                    <p>Shifts available<br/>for <b>trade</b> or <b>pick-up</b></p>
+                </span>
+            </a>
+        </li>
+    </script>
+    <script id="te_da_widget_timeclock_in" type="text/x-jquery-tmpl">
+        <li class="timeClock in">
+            <a href="#">
+                <span class="icon">
+
+                </span>
+                <span class="details">
+                    <h3>Time Clock</h3>
+                    <p>Clocked in for <b>${time}</b></p>
+                </span>
+            </a>
+        </li>
+    </script>
+    <script id="te_da_widget_timeclock_out" type="text/x-jquery-tmpl">
+        <li class="timeClock out">
+            <a href="#">
+                <span class="icon">
+
+                </span>
+                <span class="details">
+                    <h3>Time Clock</h3>
+                    <p>You are not clocked in</p>
+                </span>
+            </a>
+        </li>
+    </script>
+    <script id="te_da_widget_profile" type="text/x-jquery-tmpl">
+        <li class="shifts user">
+            <a href="#">
+                <span class="icon">
+                    <img src="${avatar}" height="50" width="50" />
+                </span>
+                <span class="details">
+                    <h3>Hi <span class="userName">${name}</span></h3>
+                    <p>with <b><company>${company}</company></b></p>
+                </span>
+            </a>
+        </li>
+    </script>
     <script id="te_da_widget_shift" type="text/x-jquery-tmpl">
         <li {{if start_date.id > sp.raw.config.today.id}} class="upcoming" {{/if}} style="border-color:#${sp.schedule.getColorsBySchedule(schedule, 1)}">
             <a href="#" rel="${id}">
@@ -203,7 +268,7 @@
 			
     </script>
     <script id="te_sc_shift_release0" type="text/x-jquery-tmpl">
-		<li><span class="chk" rel ="${id}" ></span><img src="${avatar}"><span class="name">${name}</span></li>
+		<li><span class="chk" rel="${id}"></span><img src="${avatar}"><span class="name">${name}</span></li>
     </script>	
     <script id="te_sc_shift_release1" type="text/x-jquery-tmpl">
         <li><img src="${avatar}"><span class="name">${name}</span></li>
@@ -215,12 +280,10 @@
     </script>	
 	<script id="te_sc_trade_shifts_in" type="text/x-jquery-tmpl">
 		<li>  
-			<span class="checkbox" rel ="${id}" shift_user="${shift_user}">${start}</span>	                
+			<span class="checkbox" rel ="${id}" user_shift_id="${user_shift_id}">${start}</span>	                
         </li>
 	</script>
-    <script id="te_sc_shifts_names" type="text/x-jquery-tmpl">
-        <t>${name}, </t>
-    </script>
+    <script id="te_sc_shifts_names" type="text/x-jquery-tmpl">${name}, </script>
     <script id="te_sc_shifts" type="text/x-jquery-tmpl">
         <tr shiftId="${id}" class="isShift">
             <td class="dTime" style="background-color: #${sp.schedule.getColorsBySchedule(schedule)[1]}; color: #${sp.schedule.getColorsBySchedule(schedule)[2]}">${start_time.time} - ${end_time.time}</td>
@@ -1327,8 +1390,8 @@
                         <textarea></textarea>
                     </span>
                     <div class="title">
-                        <span class="fr"><a href="#" class="greenB"><span><?=_s('Send Message');?></span></a></span>
-                        <span class="fl"><a href="#" class="greyB"><?=_s('Cancel');?></a></span>
+                        <span class="fr"><a href="#" class="greenB"><span>Send Message</span></a></span>
+                        <span class="fl"><a href="#" class="greyB">Cancel</a></span>
                     </div>
                 </div>
                 <div class="title">

@@ -417,8 +417,6 @@ ShiftPlanningTimeClock.prototype.getTimeSheets = function(){
 	
     var p = new Date(times.start_time);
     var e = new Date(times.end_time);
-	console.log(p);
-	console.log(e);
     $('#tc_mts_sd_i').val(p.toString(cal.dformat));
     $('#tc_mts_ed_i').val(e.toString(cal.dformat));
     
@@ -431,6 +429,7 @@ ShiftPlanningTimeClock.prototype.getTimeSheets = function(){
 }
 
 ShiftPlanningTimeClock.prototype.getMyTimeSheets = function(){
+    $('#tc_dts_ul').html(spView.ulLoader());
     var self=this;
     var interval=$('#tc_dts_tr').val();
     var times={}

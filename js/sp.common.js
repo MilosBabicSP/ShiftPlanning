@@ -62,9 +62,9 @@ ShiftPlanning.prototype = {
         $.each(arguments,function(index, item) {
             data[index] = item;
         });
-        if (method.toLowerCase() == 'get') {
-            this.globalLoader();
-        }
+//        if (method.toLowerCase() == 'get') {
+//            this.globalLoader();
+//        }
         this.apiCalls[a] = $.ajax({
             url: 'api.php',
             dataType: 'json',
@@ -102,6 +102,9 @@ ShiftPlanning.prototype = {
                             response.data = [];
                         }
                         callback.call(this,response);
+//                        if (method.toLowerCase() == 'get') {
+//                            $(window).scrollTop(0);
+//                        }
                     }
                 } else {
                     if(typeof errorCallback == 'function'){
@@ -141,6 +144,9 @@ ShiftPlanning.prototype = {
         return obj;
     },
     hash: function(newHash){
+        if (newHash == window.location.hash.substring(1)){
+            return window.location.hash.substring(1);
+        }
         if(typeof newHash != 'undefined'){
             window.location.hash = newHash;
         }

@@ -138,6 +138,7 @@ ShiftPlanningSettings.prototype.overviewEvents = function(){
 		$('#settings .main').hide();
 		$('#settings .main.'+subpage).show();
 		$('#settings .mainSub.settings').show();
+        sp.fixCheckboxes();
 	});	
 }
 ShiftPlanningSettings.prototype.overviewSubEvents = function(employee){
@@ -520,36 +521,36 @@ ShiftPlanningSettings.prototype.adminActions = function(obj){
     var type = $(obj).attr('type');
     var method = 'update';
     var data = {
-	id : eId
+        id : eId
     }
     if (type == 'deactivate'){
-	data.status = -1
+        data.status = -1
     } else if (type == 'delete'){
-	method = 'delete'
+        method = 'delete'
     } else if (type == 'activate'){
-	data.send_activation = 1;
+        data.send_activation = 1;
     } else {
-	data.status = 1;
+        data.status = 1;
     }
     sp.api('staff.employee',method,data,function(response){
-	sp.staff.getStaff(function(){
-	    if (type == 'deactivate'){
-		sp.showSuccess(_s('User deactivated!'));
-		$('.subNavigation .staff .subWrapp a[subpage=list]').trigger(clickEvent);
-	    } else if (type == 'delete'){
-		sp.showSuccess(_s('User deleted!'));
-		$('.subNavigation .staff .subWrapp a[subpage=list]').trigger(clickEvent);
-	    } else if (type == 'activate'){
-		sp.showSuccess(_s('Activation successfully sent.'));
-		$(obj).hide();
-	    } else {
-		sp.showSuccess(_s('Employee activated successfully.'));
-		$('#da_se_ov_aa a[type=activate]').hide();
-		$(obj).hide();
-		$('#da_se_ov_st').html(_s('User Account is Enabled.'));
-	    }
-	});
+        sp.staff.getStaff(function(){
+            if (type == 'deactivate'){
+                sp.showSuccess(_s('User deactivated!'));
+                $('.search.settings.mainSub .backMenu').trigger(clickEvent);
+            } else if (type == 'delete'){
+                sp.showSuccess(_s('User deleted!'));
+                $('.search.settings.mainSub .backMenu').trigger(clickEvent);
+            } else if (type == 'activate'){
+                sp.showSuccess(_s('Activation successfully sent.'));
+                $(obj).hide();
+            } else {
+                sp.showSuccess(_s('Employee activated successfully.'));
+                $('#da_se_ov_aa a[type=activate]').hide();
+                $(obj).hide();
+                $('#da_se_ov_st').html(_s('User Account is Enabled.'));
+            }
+        });
     }, function(response){
-	sp.showError(response.error);
+        sp.showError(response.error);
     });
 }

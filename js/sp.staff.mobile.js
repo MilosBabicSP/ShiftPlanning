@@ -63,9 +63,14 @@ ShiftPlanningStaff.prototype.listEvents = function(){
             }
         }
     });
+    
+    $('#st_li_se_te').bind('keyup', function(e) {
+        $('#st_li_se_b').trigger(clickEvent);
+    })
     $('#st_li_ga').delegate('li', clickEvent, function(){
         var id = $(this).attr('staffId');
         if (sp.permissions.hasPermission('visible_staff_details')){
+            window.scrollTo( 0, 1 );
             self.displayEmployee(id);
         }
     });
@@ -164,6 +169,7 @@ ShiftPlanningStaff.prototype.loadFastAssignment = function(id){
     
     $('#st_fa_po').show();
     $('#st_fa_sk').show();
+    sp.fixCheckboxes();
 }
 
 ShiftPlanningStaff.prototype.createEmployee = function(c){
@@ -275,9 +281,6 @@ ShiftPlanningStaff.prototype.login = function(){
                                     $('html').css('height','auto');
                                     sp.hash('dashboard');
                                     self.prepareConfig();
-                                    $('.userName').html(user.name);
-                                    $('#da_widgets .user .icon').html('<img  height="40" width="40"  src="' + sp.getAvatar() + '" />');
-                                    $('company').html(user.company);
                                     sp.permissions.preparePermissions();
                                     spRanges.fixRanges();
                                     sp.staff.fixed.employees = sp.permissions.fixStaffListing();
