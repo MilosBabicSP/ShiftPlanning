@@ -206,7 +206,7 @@
                         {{/if}}
                     </div>
                     <div class="title1 wide">
-                            <a target="_blank" onclick = "void(0)" id="get_directions" href="http://${googleIp}/maps/?f=d&hl=en&geocode=&saddr=${user_location}&daddr=${location.address}&ie=UTF8&z=7&output=embed">Get directions</a>
+                            <a target="_blank" id="get_directions" href="{{if user_location != null}}http://${googleIp}/maps/?f=d&hl=en&geocode=&saddr=${user_location}&daddr=${location.address}&ie=UTF8&z=7&output=embed{{else}}#schedule{{/if}}">Get directions</a>
                     </div>
 		{{/if}}
 	    {{if employees.length > 0 }}
