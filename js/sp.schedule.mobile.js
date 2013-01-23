@@ -55,6 +55,9 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
             $('#sc_td .additional').hide();
             $('#sc_td_list').html('<ul class="shifts moved"></ul>');
             $('#sc_td_list ul').html($.tmpl($('#te_sc_shifts_new'), self.shifts[i].shifts));
+            $('#sc_td_list .isShift > p').each(function() {
+                $(this).html($(this).html().substring(0, $(this).html().length - 1));
+            });
         } else {
             $('#sc_td_list').hide();
             $('#sc_td .loading').hide();
@@ -648,8 +651,8 @@ ShiftPlanningSchedule.prototype.resetPublishFields = function(f){
     }
     
     if (f){
-	$('#te_sc_shift_display_publish').hide();
-	$('#te_sc_shift_display_info').show();
+        $('#te_sc_shift_display_publish').hide();
+        $('#te_sc_shift_display_info').show();
     }
     
     $('#te_sc_shift_display_publish .radio').removeClass('check');
@@ -846,8 +849,8 @@ ShiftPlanningSchedule.prototype.displayShifts = function(sDay){
                 }
             });
         } else {
-            if (self.page == 'month'){
-                if (typeof sDay != 'undefined'){
+            if (self.page == 'month') {
+                if (typeof sDay != 'undefined') {
                     $('#sc_ca_fi_' + sDay).trigger(clickEvent);
                 }
             }
@@ -855,12 +858,9 @@ ShiftPlanningSchedule.prototype.displayShifts = function(sDay){
             $('#sc_td .loading').hide();
             $('#sc_td .additional').show();
         }
-        var html = $('#sc_td_list .isShift t:last').html();
-        if (html != null) {
-            $('#sc_td_list .isShift p').each(function() {
-                $(this).find('t:last').html(html.substring(0, html.length - 2));
-            });
-        }
+        $('#sc_td_list .isShift > p').each(function() {
+            $(this).html($(this).html().substring(0, $(this).html().length - 1));
+        });
     });
 }
 
@@ -1065,6 +1065,18 @@ ShiftPlanningSchedule.prototype.loadPage = function(){
     }
     opt += spView.schedulerFilter();
     $('#sc_fl').html(opt);
+    
+    var addButton = false;
+    $.each(this.data.schedules, function( i, item ) {
+        if ( item.perms == 2 ) {
+            addButton = true;
+            return true;
+        }
+    });
+    
+    if (!addButton) {
+        $('#sc_add').parent().hide();
+    }
     
     this.generateCalendar();
 }
