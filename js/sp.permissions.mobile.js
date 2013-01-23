@@ -49,8 +49,6 @@ ShiftPlanningPermissions.prototype.preparePermissions = function(){
     //fix employee only perms
     if (group >= this.employee){        
         $('#da_se_ov_no, #da_se_ed_no').parents('.detailsGrid').remove();
-        
-        $('#sc_add').parent().remove();
 	
 	//remove manage timeclock
 	$('#tc_mts_sub_button').remove();
