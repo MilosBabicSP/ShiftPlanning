@@ -284,7 +284,7 @@
         </li>
 	</script>
     <script id="te_sc_shifts_names" type="text/x-jquery-tmpl">
-        <t>${name}, </t>
+        ${name}, 
     </script>
     <script id="te_sc_shifts" type="text/x-jquery-tmpl">
         <tr shiftId="${id}" class="isShift">
