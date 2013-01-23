@@ -130,35 +130,29 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
 	
 	$('.shiftDisplay ').delegate('#get_directions', clickEvent, function(e){
 		var that = this;
-		console.log('default click');
-		console.log(e.isDefaultPrevented());
-		//http://${googleIp}/maps/?f=d&hl=en&geocode=&saddr=${user_location}&daddr=${location.address}&ie=UTF8&z=7&output=embed
+		var msg = _s("There is no default address in your profile.Enter starting point address.");
 		if (self.shift.user_location == null){
-			console.log('not null');
 			var done =  false;
 			var errorCallback = function(response){
 				done = true;
+				msg = _s("Application didn't get GPS coordinates.Enter starting point address.");
 				promptLocation();
 			};
 			
 			var promptLocation =  function(){
-				var address = prompt (_s("Enter starting point address."),"");
+				var address = prompt (msg,"");
 				self.shift.user_location = address;
 				var href = 'http://'+googleIp+'/maps/?f=d&hl=en&geocode=&saddr='+address+'&daddr='+self.shift.location.address+'&ie=UTF8&z=7&output=embed';
 				$(that).attr('href',href);
 				if (address != null){
-					console.log('clicked triggered');
-//					$(that).click();
-					window.open(href, "_blank");
+					$(that)[0].click();
 				}else{
 					e.preventDefault();
 				}				
 			}
 			if(typeof navigator.geolocation != 'undefined' ){
-				console.log('not null prevented defult in geo locator');
 				e.preventDefault();
 				setTimeout(function(){
-					console.log('expired',done);
 					if(!done){
 						errorCallback();
 					}
@@ -173,8 +167,7 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
 							var href = 'http://'+googleIp+'/maps/?f=d&hl=en&geocode=&saddr='+self.shift.user_location+'&daddr='+self.shift.location.address+'&ie=UTF8&z=7&output=embed';						
 							$(that).attr('href',href);
 							done = true;
-//							$(that).trigger(clickEvent);
-							window.open(href, "_blank");
+							$(that)[0].click();
 						}
 					},
 					//error
