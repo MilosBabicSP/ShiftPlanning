@@ -145,7 +145,8 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
 				var href = 'http://'+googleIp+'/maps/?f=d&hl=en&geocode=&saddr='+address+'&daddr='+self.shift.location.address+'&ie=UTF8&z=7&output=embed';
 				$(that).attr('href',href);
 				if (address != null){
-					$(that)[0].click();
+//					$(that)[0].click();
+					window.open(href, "_blank");
 				}else{
 					e.preventDefault();
 				}				
@@ -166,7 +167,8 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
 							var href = 'http://'+googleIp+'/maps/?f=d&hl=en&geocode=&saddr='+self.shift.user_location+'&daddr='+self.shift.location.address+'&ie=UTF8&z=7&output=embed';						
 							$(that).attr('href',href);
 							done = true;
-							$(that)[0].click();
+//							$(that)[0].click();
+							window.open(href, "_blank");
 						}
 					},
 					//error
