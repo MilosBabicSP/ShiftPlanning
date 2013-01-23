@@ -1067,8 +1067,7 @@ ShiftPlanningSchedule.prototype.loadPage = function(){
     $('#sc_fl').html(opt);
     
     var addButton = false;
-    $.each(this.data, function( i, item ) {
-        console.log(item);
+    $.each(this.data.schedules, function( i, item ) {
         if ( item.perms == 2 ) {
             addButton = true;
             return true;
