@@ -858,10 +858,11 @@ ShiftPlanningSchedule.prototype.displayShifts = function(sDay){
         var html = $('#sc_td_list .isShift t:last').html();
         if (html != null) {
             $('#sc_td_list .isShift p').each(function() {
-                if ( p.length )
                 var p = $(this).find('t:last');
+                if ( p ) {
+                    p.html(p.html().substring(0, p.html().length - 2));
+                }
                 console.log(p);
-                p.html(p.html().substring(0, p.html().length - 2));
             });
         }
     });
