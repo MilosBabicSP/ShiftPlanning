@@ -855,9 +855,9 @@ ShiftPlanningSchedule.prototype.displayShifts = function(sDay){
             $('#sc_td .loading').hide();
             $('#sc_td .additional').show();
         }
-        $('#sc_td_list .isShift p').each(function() {
-            $(this).html($(this).html().substring(0, $(this).html().length - 2));
-        });
+//        $('#sc_td_list .isShift p').each(function() {
+//            $(this).html($(this).html().substring(0, $(this).html().length - 2));
+//        });
     });
 }
 
