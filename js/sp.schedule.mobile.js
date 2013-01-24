@@ -673,7 +673,6 @@ ShiftPlanningSchedule.prototype.shiftDisplaySubEvents = function(){
         this.shift.employees = [];
     }
 	this.shift.user_location=this.getLocation();
-	console.log(this.shift.user_location);
     $('#sc_shift_display').html($.tmpl($('#te_sc_shift_display'), this.shift));
     
     
@@ -827,7 +826,6 @@ ShiftPlanningSchedule.prototype.getLocation = function(){
 	if( sp.staff.admin.info.city ||  sp.staff.admin.info.state || sp.staff.admin.info.address ){
 		$.each(fields,function(i,f){
 			if ( sp.staff.admin.info[f] != '' ){
-				console.log(sp.staff.admin.info[f]);
 				loc.push(sp.staff.admin.info[f])
 			}
 		});
