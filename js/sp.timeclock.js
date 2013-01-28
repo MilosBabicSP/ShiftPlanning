@@ -14,7 +14,7 @@ ShiftPlanningTimeClock.prototype = {
             end_time : strtotime('now +1 day')
         },
         1 : {
-            start_time : strtotime('now -2 day'),
+            start_time : strtotime('now -1 day'),
             end_time : strtotime('now')
         },
         2 : {
