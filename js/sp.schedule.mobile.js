@@ -42,8 +42,7 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
         $('#sc_mo_di').html(Date.parse($.trim($('#sc_mo_di').html())).addMonths(1).toString('MMMM yyyy'));
         $('#sc_days_m').hide();
         self.displayShifts();
-    });
-    
+    });   
     
     $('#sc_ca_bo').delegate('td:not(.notM)', clickEvent, function(){
         $('#sc_ca_bo td').removeClass('today');
@@ -131,6 +130,61 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
             }
           }
     });
+	
+	$('.shiftDisplay ').delegate('#get_directions', clickEvent, function(e){
+		var that = this;
+		var msg = _s("There is no default address in your profile.Enter starting point address.");
+		if (self.shift.user_location == null){
+			var done =  false;
+			var errorCallback = function(response){
+				done = true;
+				msg = _s("Application didn't get GPS coordinates.Enter starting point address.");
+				promptLocation();
+			};
+			
+			var promptLocation =  function(){
+				var address = prompt (msg,"");
+				self.shift.user_location = address;
+				var href = 'http://'+googleIp+'/maps/?f=d&hl=en&geocode=&saddr='+address+'&daddr='+self.shift.location.address+'&ie=UTF8&z=7&output=embed';
+				$(that).attr('href',href);
+				if (address != null){
+//					$(that)[0].click();
+					window.open(href, "_blank");
+				}else{
+					e.preventDefault();
+				}				
+			}
+			if(typeof navigator.geolocation != 'undefined' ){
+				e.preventDefault();
+				setTimeout(function(){
+					if(!done){
+						errorCallback();
+					}
+				},10000);
+				sp.showSuccess('Getting coordinates . . .');
+				navigator.geolocation.getCurrentPosition(
+					//success
+					function(response){
+						if (typeof response != 'function' ){
+							var address = ''+response.coords.latitude + ','+ response.coords.longitude+'';
+							self.shift.user_location = address;
+							var href = 'http://'+googleIp+'/maps/?f=d&hl=en&geocode=&saddr='+self.shift.user_location+'&daddr='+self.shift.location.address+'&ie=UTF8&z=7&output=embed';						
+							$(that).attr('href',href);
+							done = true;
+//							$(that)[0].click();
+							window.open(href, "_blank");
+						}
+					},
+					//error
+					errorCallback
+				);
+			} else {
+				promptLocation();				
+			}
+
+		}
+		
+	}); 
     
     $('#schedule .addShift .backMenu').bind(clickEvent, function(e){
         e.preventDefault();
@@ -529,7 +583,6 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
             obj.removeClass('loading');
         })
     });
-	
 }
 
 ShiftPlanningSchedule.prototype.loadSubPageEvents = function(subpage){
@@ -622,7 +675,7 @@ ShiftPlanningSchedule.prototype.shiftDisplaySubEvents = function(){
     } else {
         this.shift.employees = [];
     }
-	this.shift.user_location=sp.staff.admin.info.city+','+sp.staff.admin.info.state+','+sp.staff.admin.info.address;
+	this.shift.user_location=this.getLocation();
     $('#sc_shift_display').html($.tmpl($('#te_sc_shift_display'), this.shift));
     
     
@@ -768,6 +821,21 @@ ShiftPlanningSchedule.prototype.addShiftSubEvents = function(){
     }
 
     this.edit = false;
+}
+
+ShiftPlanningSchedule.prototype.getLocation = function(){
+	var loc = [];
+	var fields = ['city','state','address'];
+	if( sp.staff.admin.info.city ||  sp.staff.admin.info.state || sp.staff.admin.info.address ){
+		$.each(fields,function(i,f){
+			if ( sp.staff.admin.info[f] != '' ){
+				loc.push(sp.staff.admin.info[f])
+			}
+		});
+		return loc.join(',');
+	}else{
+		return null;
+	}
 }
 
 ShiftPlanningSchedule.prototype.prepareStaff = function(staff){
