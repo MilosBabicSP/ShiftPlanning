@@ -20,14 +20,52 @@ ShiftPlanningTimeClock.prototype.overviewEvents = function(){
     var self = this;
     $('#tc_ov_ci').bind(clickEvent, function(e){
         e.preventDefault();
-        spModel.timeclock.get('clockin', {}, function(response){
-            $('#tc_ov_cb span.fr a').hide();
-            $('#tc_ov_cf').show();
-            $('#tc_ov_co').show();
-            $('#tc_ov_ca').attr('rel', response.data.id);
-            $('#tc_ov_no').val('');
-            $('#tc_ov_ss').val(0);
-        });
+		var data = {};
+		var done = false;
+		var apiCall = function(){
+			spModel.timeclock.get('clockin', data, function(response){
+				$('#tc_ov_cb span.fr a').hide();
+				$('#tc_ov_cf').show();
+				$('#tc_ov_co').show();
+				$('#tc_ov_ca').attr('rel', response.data.id);
+				$('#tc_ov_no').val('');
+				$('#tc_ov_ss').val(0);
+			});	
+		}
+		var errorCallback = function(){
+			done = true;
+			sp.showError(_s('Coordinates not available'));
+			setTimeout(apiCall, 2000);
+		}
+		
+		if (sp.staff.admin.business.pref_tc_gps == '1' && navigator.geolocation){
+			
+			setTimeout(function(){
+				if(!done){
+					errorCallback();
+				}
+			},10000);
+			
+			sp.showSuccess(_s('Getting Coordinates'));
+			
+			navigator.geolocation.getCurrentPosition(
+				//success
+				function(response){
+					if(typeof response != 'function'){
+						done = true;
+						data.latitude = response.coords.latitude;
+						data.longitude = response.coords.longitude;
+						setTimeout(apiCall,2000);
+					}
+				},
+				//errorCallback
+				errorCallback
+			);
+			
+		}else{
+			apiCall();
+		}
+        
     });
     
     $('#tc_ov_co').bind(clickEvent, function(e){
@@ -36,6 +74,21 @@ ShiftPlanningTimeClock.prototype.overviewEvents = function(){
 	var notes = $.trim($('#tc_ov_no').val());
 	if ($('#tc_ov_ss').val() != 0){
 	    data.schedule = $('#tc_ov_ss').val();
+	};
+	var done = false;
+	var apiCall = function(){
+        spModel.timeclock.get('clockout', data, function(response){
+            $('#tc_ov_cb span.fr a').hide();
+            $('#tc_ov_cf').hide();
+            $('#tc_ov_ci').show();
+        });		
+	};
+	var errorCallback = function(){
+		done = true;
+		sp.showError(_s('Coordinates not available'));
+		setTimeout(function(){
+			apiCall();				
+		}, 2000);
 	}
 	if(sp.staff.admin.business.pref_tc_require_pos && $('#tc_ov_ss').val() == 0){
 		sp.showError(_s('Please choose schedule first'));
@@ -50,11 +103,33 @@ ShiftPlanningTimeClock.prototype.overviewEvents = function(){
 		sp.showError(_s('Please provide some notes'));
 		return false;
 	}
-        spModel.timeclock.get('clockout', data, function(response){
-            $('#tc_ov_cb span.fr a').hide();
-            $('#tc_ov_cf').hide();
-            $('#tc_ov_ci').show();
-        });
+	
+	if (sp.staff.admin.business.pref_tc_gps == '1' && navigator.geolocation){
+		setTimeout(function(){
+			if(!done){
+				errorCallback();
+			}
+		},10000);
+
+		sp.showSuccess(_s('Getting Coordinates'));		
+		
+		navigator.geolocation.getCurrentPosition(
+			//success
+			function(response){
+				if(typeof response != 'function'){
+					done = true;
+					data.latitude = response.coords.latitude;
+					data.longitude = response.coords.longitude;
+					setTimeout(apiCall,2000);					
+				}
+			},
+			errorCallback
+		);
+		
+	} else {
+		apiCall()
+	}
+
     });
     
     $('#tc_ov_ss').bind('change', function(){
