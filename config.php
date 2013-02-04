@@ -48,7 +48,7 @@ if (IS_TEST_SERVER) {
         define('API_KEY', '79a331d71dc4d5edb4d7168f2de9c129bbf9e99a');
     }
     //define('API_KEY', '49e4207b8459ef88e19de9b78b882ef15ec14d84');
-    define('API_URL', 'http://www.staging-s.dev.shiftplanning.com/api/');
+    define('API_URL', 'http://www.clockproblems-s.dev.shiftplanning.com/api/');
 } else {
     if (!isset($_POST['application'])) {
         //web mobile app
