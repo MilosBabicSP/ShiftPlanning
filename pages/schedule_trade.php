@@ -73,7 +73,7 @@
 						<p>We have let the necessary people know that you need to have this shift cover. Please allow sufficient time for the parties involved to respond to your request.</p>
 						<p><b>Note</b> - There is no guarantee that another employee will be able cover your shift or that management will approve your request. </p>
 					</div>
-					<div class="text">
+					<div class="text" style="display:none;">
 						<h4>Notifications</h4>
 						<p>You have currently selected to receive notifications via <b>SMS &amp; Email</b></p>
 					</div>
@@ -128,7 +128,7 @@
 						<p>We have let the necessary people know that you need to have this shift cover. Please allow sufficient time for the parties involved to respond to your request.</p>
 						<p><b>Note</b> - There is no guarantee that another employee will be able cover your shift or that management will approve your request. </p>
 					</div>
-					<div class="text">
+					<div class="text" style="display:none;">
 						<h4>Notifications</h4>
 						<p>You have currently selected to receive notifications via <b>SMS &amp; Email</b></p>
 					</div>

@@ -277,6 +277,11 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
 						isAvail = item[0] == sp.staff.admin.info.id ? true : isAvail;
 					});
 				}
+				if( sp.staff.admin.business.pref_same_day_trades == '1' && ( response.data.length && response.data.staff.sameday.length > 0) ){
+					$.each(response.data.staff.sameday,function(key,item){
+						isAvail = item[0] == sp.staff.admin.info.id ? true : isAvail;
+					});
+				}
 				if (isAvail){
 					$(that).addClass('check');
 					$(that).parent().removeClass('loading');
@@ -610,10 +615,13 @@ ShiftPlanningSchedule.prototype.tradeSubEvents = function (){
 	$('#schedule .trade>div').hide();
 	$('#schedule .trade>div:first').show();
 	$('#cs_sh_trade ul.shifts').html($.tmpl($('#te_cs_sh'),this.shift));
-//	$('p[rel=formatted_date]').html(this.shift.start_date.weekday+','+this.shift.start_date.formatted);
-//	$('p[rel=formatted_time]').html(this.shift.start_time.time+'-'+this.shift.end_time.time);
-//	$('li[rel=schedule_background]').css('border-color',sp.schedule.getColorsBySchedule(this.shift.schedule)[0]);
-//	$('b[rel=schedule_name]').html(this.shift.schedule_name);
+	$('.tradepick li').show();
+	if(sp.staff.admin.settings.trade_shifts != '1'){
+		$('#release').parent().parent().hide();
+	}
+	if(sp.staff.admin.business.pref_swap_shifts != '1'){
+		$('#swap').parent().parent().hide();
+	}
 }
 
 ShiftPlanningSchedule.prototype.daySubEvents = function(){
@@ -681,7 +689,7 @@ ShiftPlanningSchedule.prototype.shiftDisplaySubEvents = function(){
     
     this.resetPublishFields(true);
     
-	if(this.shift.trades != null && this.shift.trades != ''){
+	if( (this.shift.trades != null && this.shift.trades != '') || (sp.staff.admin.settings.trade_shifts != '1' && sp.staff.admin.business.pref_swap_shifts != '1' ) ){
 		$('#sc_sub_shift_display a.trade').hide();
 	}else{
 		$.each(this.shift.employees, function(i,j){
