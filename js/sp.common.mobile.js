@@ -79,8 +79,7 @@ ShiftPlanning.prototype.loadSubPage = function(obj, page, subpage) {
         return false;
     }
 	
-	// if subpage doesn't exists, or if it is empty, first (default) subpage is loaded'
-	if($.trim(subpage)=='' || $('.subNav[page=' + page + '] li a[subpage=' + subpage + ']').length <= 0){
+	if($.trim(subpage)==''){
 		subpage = $('.subNav[page=' + page + '] li:first a').attr('subpage');
 	}
 	
