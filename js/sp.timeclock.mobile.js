@@ -323,7 +323,6 @@ ShiftPlanningTimeClock.prototype.overviewSubEvents = function(){
 		url: 'index.php?timezone=false&id=' + sp.staff.admin.info.id,
 		type: 'get',
 		success: function(response){
-			console.log(response);
 			$('#tc_ov_cb .icoClock').html(response);
 		}
 	});
