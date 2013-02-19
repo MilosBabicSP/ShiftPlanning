@@ -3,11 +3,13 @@ ShiftPlanningReports.prototype.initialize = function(){
     this.reports = [];
     $(document).ready(function(){
         self.allReportsEvents();
+		self.allReportsSubEvents(); // S.T. 18.02.2013. Transfered from loadPage
     });
 }
 
 ShiftPlanningReports.prototype.allReportsEvents = function(){
     var self = this;
+	
     $('#reports .advancedButton').bind(clickEvent, function(e){
         e.preventDefault();
         if ($(this).hasClass('advancedOpened')){
@@ -63,7 +65,7 @@ ShiftPlanningReports.prototype.allReportsSubEvents = function(){
     $('#reports .employeeSelector').html(spView.staffFilter());
     $('#reports .positionsSelector').html(spView.scheduleFilter());
     $('#reports .skillsSelector').html(spView.skillsFilter());
-    var times = spRanges.getRange('times', $('#reports .timeSelector:visible').val());
+    var times = spRanges.getRange('times', $('#reports .timeSelector').first().val());
     var s = new Date(times.start_time);
     var e = new Date(times.end_time);
     $('#reports .timeFromSelector').scroller('destroy');
@@ -202,5 +204,5 @@ ShiftPlanningReports.prototype.loadSubPageEvents = function(subpage){
 }
 
 ShiftPlanningReports.prototype.loadPage = function(){
-    this.allReportsSubEvents();
+    //this.allReportsSubEvents();
 }

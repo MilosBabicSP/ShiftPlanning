@@ -101,12 +101,10 @@ ShiftPlanning.prototype.loadSubPage = function(obj, page, subpage) {
     $('#menu .mainNav > li').removeClass('active');
     $('#menu_' + page).addClass('active');
     
-    $('.subNav[page=' + page + '] li').removeClass('active');
-    
-    $('.subNav[page=' + page + '] li a[subpage=' + subpage + ']').parent().addClass('active');
-	
-	// S.T. 18.02.2013. Added subpage name to hash tag, to make back button work on subpages
-	if(sp.hash() != page+'/'+subpage){
+	if($('.subNav[page=' + page + '] li a[subpage=' + subpage + ']' ).length > 0){
+		$('.subNav[page=' + page + '] li').removeClass('active');
+		$('.subNav[page=' + page + '] li a[subpage=' + subpage + ']').parent().addClass('active');
+		
 		sp.hash(page+'/'+subpage);
 	}
     
