@@ -79,6 +79,8 @@ ShiftPlanning.prototype.loadSubPage = function(obj, page, subpage) {
         return false;
     }
 	
+	$('.subNavigation').show();
+	
 	if($.trim(subpage)==''){
 		subpage = $('.subNav[page=' + page + '] li:first a').attr('subpage');
 	}

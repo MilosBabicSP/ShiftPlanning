@@ -3,7 +3,9 @@ ShiftPlanningReports.prototype.initialize = function(){
     this.reports = [];
     $(document).ready(function(){
         self.allReportsEvents();
-		self.allReportsSubEvents(); // S.T. 18.02.2013. Transfered from loadPage
+		if(user.loggedIn){
+			self.allReportsSubEvents(); // S.T. 18.02.2013. Transfered from loadPage
+		}
     });
 }
 
@@ -190,6 +192,7 @@ ShiftPlanningReports.prototype.loadSubPageEvents = function(subpage){
     if (subpage == 'singleViewDisplay'){
         this.singleViewDisplay(this.cId);
     } else {
+		this.allReportsSubEvents();
         var self = this;
         this.page = subpage;
         var origin = this.page;
@@ -204,5 +207,4 @@ ShiftPlanningReports.prototype.loadSubPageEvents = function(subpage){
 }
 
 ShiftPlanningReports.prototype.loadPage = function(){
-    //this.allReportsSubEvents();
 }
