@@ -86,7 +86,7 @@ ShiftPlanning.prototype.loadSubPage = function(obj, page, subpage) {
 	}
 	
 	// dirty fix for profile page, which is not in hashchange system
-	if(page == 'staff' && subpage == 'view'){
+	if(page == 'staff' && subpage == 'details'){
 		subpage = 'list';
 	}
 	
