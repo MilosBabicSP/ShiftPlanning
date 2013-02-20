@@ -85,6 +85,11 @@ ShiftPlanning.prototype.loadSubPage = function(obj, page, subpage) {
 		subpage = $('.subNav[page=' + page + '] li:first a').attr('subpage');
 	}
 	
+	// dirty fix for profile page, which is not in hashchange system
+	if(page == 'staff' && subpage == 'view'){
+		subpage = 'list';
+	}
+	
     if (obj != ''){
         obj.parent().parent().find('li').removeClass('active');
         obj.parent().addClass('active');

@@ -123,6 +123,7 @@ ShiftPlanningSettings.prototype.overviewEvents = function(){
     });
 	$('.settings .backMenu').bind(clickEvent, function(e){
 		e.preventDefault();
+		sp.hashChange = false;
 		sp.loadPage('staff');
 		$('.subNavigation').show();
 	});	
