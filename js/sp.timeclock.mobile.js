@@ -77,7 +77,11 @@ ShiftPlanningTimeClock.prototype.overviewEvents = function(){
 		};
 		
 		spModel.timeclock.create('preclockin', data, function(response){
-			$('#tc_ov_way_msg .sc_way_time_since').html(new Date().toString("hh:mmtt").toLowerCase());
+			var timeString = new Date(response.data.timestamp*1000).toString("hh:mmtt").toLowerCase();
+			if(timeString[0]=='0'){
+				timeString = timeString.substring(1)
+			}
+			$('#tc_ov_way_msg .sc_way_time_since').html(timeString);
 			$('#tc_ov_way_msg').show();
 			$('#tc_ov_way').hide();
 			$('#tc_ov_ci').show();
