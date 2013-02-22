@@ -176,7 +176,9 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
 						}
 					},
 					//error
-					errorCallback
+					errorCallback,
+					//force gps use
+					{ enableHighAccuracy: true }
 				);
 			} else {
 				promptLocation();				

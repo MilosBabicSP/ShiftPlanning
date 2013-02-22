@@ -48,6 +48,7 @@ ShiftPlanningTimeClock.prototype.overviewEvents = function(){
 			
 			sp.showSuccess(_s('Getting Coordinates'));
 			
+			
 			navigator.geolocation.getCurrentPosition(
 				//success
 				function(response){
@@ -59,7 +60,9 @@ ShiftPlanningTimeClock.prototype.overviewEvents = function(){
 					}
 				},
 				//errorCallback
-				errorCallback
+				errorCallback,
+				//force gps use
+				{ enableHighAccuracy: true }
 			);
 			
 		}else{
