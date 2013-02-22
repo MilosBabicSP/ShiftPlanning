@@ -59,7 +59,9 @@ ShiftPlanningTimeClock.prototype.overviewEvents = function(){
 					}
 				},
 				//errorCallback
-				errorCallback
+				errorCallback,
+				//force gps use
+				{ enableHighAccuracy: true }
 			);
 			
 		}else{
