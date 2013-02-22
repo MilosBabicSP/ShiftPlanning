@@ -206,7 +206,7 @@
                         {{/if}}
                     </div>
                     <div class="title1 wide">
-                            <a target="_blank" onclick = "void(0)" id="get_directions" href="http://${googleIp}/maps/?f=d&hl=en&geocode=&saddr=${user_location}&daddr=${location.address}&ie=UTF8&z=7&output=embed">Get directions</a>
+                            <a target="_blank" id="get_directions" href="{{if user_location != null}}http://${googleIp}/maps/?f=d&hl=en&geocode=&saddr=${user_location}&daddr=${location.address}&ie=UTF8&z=7&output=embed{{else}}#schedule{{/if}}">Get directions</a>
                     </div>
 		{{/if}}
 	    {{if employees.length > 0 }}
@@ -283,9 +283,7 @@
 			<span class="checkbox" rel ="${id}" user_shift_id="${user_shift_id}">${start}</span>	                
         </li>
 	</script>
-    <script id="te_sc_shifts_names" type="text/x-jquery-tmpl">
-        <t>${name}, </t>
-    </script>
+    <script id="te_sc_shifts_names" type="text/x-jquery-tmpl">${name}, </script>
     <script id="te_sc_shifts" type="text/x-jquery-tmpl">
         <tr shiftId="${id}" class="isShift">
             <td class="dTime" style="background-color: #${sp.schedule.getColorsBySchedule(schedule)[1]}; color: #${sp.schedule.getColorsBySchedule(schedule)[2]}">${start_time.time} - ${end_time.time}</td>
