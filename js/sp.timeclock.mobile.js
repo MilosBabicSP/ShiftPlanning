@@ -48,6 +48,7 @@ ShiftPlanningTimeClock.prototype.overviewEvents = function(){
 			
 			sp.showSuccess(_s('Getting Coordinates'));
 			
+			
 			navigator.geolocation.getCurrentPosition(
 				//success
 				function(response){
