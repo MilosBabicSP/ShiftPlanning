@@ -61,11 +61,16 @@ ShiftPlanningTimeClock.prototype.overviewEvents = function(){
 					}
 				},
 				//errorCallback
+<<<<<<< HEAD
 				errorCallback,
 				//force gps use
 				{ enableHighAccuracy: true }
 			);
-
+=======
+				errorCallback
+				);
+>>>>>>> staging
+			
 		}else{
 			apiCall();
 		}
