@@ -362,10 +362,13 @@ ShiftPlanningTimeClock.prototype.overviewSubEvents = function(){
 						$('#tc_ov_way_msg .sc_way_time_since').html(response.data.formatted);
 						$('#tc_ov_way_msg').show();
 						$('#tc_ov_ci').show();
+                        console.log(1)
 					}
 					else{
+                        console.log(2)
+
                         $('#tc_ov_ci').show();
-                        
+
 						if(sp.staff.admin.business.pref_pre_time_clock == '1'){
 							$('#tc_ov_way').show();
 						}
