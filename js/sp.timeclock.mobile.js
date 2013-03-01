@@ -99,10 +99,11 @@ ShiftPlanningTimeClock.prototype.overviewEvents = function(){
 			spModel.timeclock.get('clockout', data, function(response){
 				$('#tc_ov_cb span.fr a').hide();
 				$('#tc_ov_cf').hide();
+
+                $('#tc_ov_ci').show();
 				
 				if(sp.staff.admin.business.pref_pre_time_clock == '1'){
 					$('#tc_ov_way').show();
-					$('#tc_ov_ci').show();
 				}
 				if(sp.staff.admin.business.pref_mandatory_pre_time_clock == '1'){
 					$('#tc_ov_way').show();
@@ -177,10 +178,11 @@ ShiftPlanningTimeClock.prototype.overviewEvents = function(){
 		spModel.timeclock.dtc($(this).attr('rel'), function(){
 			$('#tc_ov_cb span.fr a').hide();
 			$('#tc_ov_cf').hide();
+
+            $('#tc_ov_ci').show();
 			
 			if(sp.staff.admin.business.pref_pre_time_clock == '1'){
 				$('#tc_ov_way').show();
-				$('#tc_ov_ci').show();
 			}
 			if(sp.staff.admin.business.pref_mandatory_pre_time_clock == '1'){
 				$('#tc_ov_way').show();
@@ -362,9 +364,10 @@ ShiftPlanningTimeClock.prototype.overviewSubEvents = function(){
 						$('#tc_ov_ci').show();
 					}
 					else{
+                        $('#tc_ov_ci').show();
+                        
 						if(sp.staff.admin.business.pref_pre_time_clock == '1'){
 							$('#tc_ov_way').show();
-							$('#tc_ov_ci').show();
 						}
 						if(sp.staff.admin.business.pref_mandatory_pre_time_clock == '1'){
 							$('#tc_ov_way').show();
