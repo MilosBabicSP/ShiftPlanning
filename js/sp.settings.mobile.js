@@ -5,6 +5,8 @@ ShiftPlanningSettings.prototype.initialize = function(){
 	})
 }
 ShiftPlanningSettings.prototype.loadSubPageEvents = function(subpage){
+	var self = this ;
+	//self.overviewSubEvents();
 	    if(subpage == 'recentShifts' || subpage == 'upcomingShifts'){
 			this.displayShifts(sp.staff.data.employees[$('#da_se_cur_us_id').val()],subpage);
 		}else{
@@ -121,8 +123,9 @@ ShiftPlanningSettings.prototype.overviewEvents = function(){
     });
 	$('.settings .backMenu').bind(clickEvent, function(e){
 		e.preventDefault();
+		sp.hashChange = false;
 		sp.loadPage('staff');
-		$('.subNavigation').show()
+		$('.subNavigation').show();
 	});	
 	$('#settings .mainSub.settings .subNav').delegate('a', clickEvent, function(e){
 		e.preventDefault();

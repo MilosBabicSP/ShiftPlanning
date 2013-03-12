@@ -147,6 +147,9 @@ ShiftPlanningStaff.prototype.fastAssignmentSubEvents = function(){
 
 //Functions
 ShiftPlanningStaff.prototype.displayEmployee = function(id){
+	sp.hashChange = false;
+	sp.hash('staff/details');
+	
     $('#st_tp_menu').hide();
     $('#pages > div').hide();
     $('#pages #settings .main').hide();
