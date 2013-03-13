@@ -78,7 +78,18 @@ ShiftPlanning.prototype.loadSubPage = function(obj, page, subpage) {
         this.staff.logout();
         return false;
     }
-    
+	
+	$('.subNavigation').show();
+	
+	if($.trim(subpage)==''){
+		subpage = $('.subNav[page=' + page + '] li:first a').attr('subpage');
+	}
+	
+	// dirty fix for profile page, which is not in hashchange system
+	if(page == 'staff' && subpage == 'details'){
+		subpage = 'list';
+	}
+	
     if (obj != ''){
         obj.parent().parent().find('li').removeClass('active');
         obj.parent().addClass('active');
@@ -97,11 +108,12 @@ ShiftPlanning.prototype.loadSubPage = function(obj, page, subpage) {
     $('#menu .mainNav > li').removeClass('active');
     $('#menu_' + page).addClass('active');
     
-    $('.subNavigation div.' + page + ' .subnNav[page=' + page + '] li').removeClass('active');
-    
-    $('.subNavigation div.' + page + ' .subnNav[page=' + page + '] li a[page=' + subpage + ']').parent().addClass('active');
-    sp.hashChange = false;
-    sp.hash(page);
+	if($('.subNav[page=' + page + '] li a[subpage=' + subpage + ']' ).length > 0){
+		$('.subNav[page=' + page + '] li').removeClass('active');
+		$('.subNav[page=' + page + '] li a[subpage=' + subpage + ']').parent().addClass('active');
+		
+		sp.hash(page+'/'+subpage);
+	}
     
     if (typeof this[page] != 'undefined' && 'loadSubPageEvents' in this[page]){
         this[page].loadSubPageEvents(subpage);
@@ -121,24 +133,45 @@ ShiftPlanning.prototype.initialize = function(){
             sp.hashChange = true;
             return false;
         }
+		
         if (sp.hash().length > 0) {
-            if(sp.hash() == 'logout')
+			var page = sp.hash();
+			var subpage = false;
+			// Check if the hash contains subpage
+			var subpagePosition = sp.hash().search("/");
+			
+			if(subpagePosition >= 0){
+				page = sp.hash().substring(0, subpagePosition);
+				subpage = sp.hash().substring(subpagePosition+1);
+			}
+			
+            if(page == 'logout')
             {
                 self.staff.logout();
                 return false;
             }
-            if ($('#menu [page=' + self.hash() + ']').length > 0)
-            {
-                $('#pages > div').hide();
-                setTimeout(function(){
-                    $('#menu [page=' + self.hash() + ']').parent().parent().find('li').removeClass('active');
-                    $('#menu [page=' + self.hash() + ']').parent().addClass('active');
-                    self.loadPage(self.hash());
-                }, 50);
-            }
+
+			
+            if ($('#menu [page=' + page + ']').length > 0)
+			{
+                 $('#pages > div').hide();
+                 setTimeout(function(){
+
+                    $('#menu [page=' + page + ']').parent().parent().find('li').removeClass('active');
+                    $('#menu [page=' + page + ']').parent().addClass('active');
+					
+					if(subpage){
+						self.loadSubPage('', page, subpage);
+					}
+					else{
+						self.loadPage(page);
+					}
+                    
+                 }, 50);
+			}
             else
             {
-                if(self.hash() != 'login' && self.hash() != 'logout')
+                if(page != 'login' && page != 'logout')
                 {
                         user.loggedIn ? self.hash('dashboard') : self.hash('login') ;
                 }
@@ -188,7 +221,15 @@ ShiftPlanning.prototype.initialize = function(){
         $('#menu .mainNav > li > a').bind(clickEvent, function(e){
             if ($(this).hasClass('exit')) return true;
             e.preventDefault();
-            if ( $(this).attr('page') == sp.hash() ) {
+			
+			var page = sp.hash();
+			// Check if the hash contains subpage
+			var subpagePosition = sp.hash().search("/");
+			if(subpagePosition >= 0){
+				page = sp.hash().substring(0, subpagePosition);
+			}
+			
+            if ( $(this).attr('page') == page ) {
                 self.toggleMenu();
                 return false;
             }
@@ -196,7 +237,10 @@ ShiftPlanning.prototype.initialize = function(){
                 self.toggleMenu();
             }
             sp.hashChange = true;
-            sp.hash($(this).attr('page'));
+			
+			page = $(this).attr('page');
+			var subpage = $('.subNav[page=' + page + '] li:first a').attr('subpage');
+            sp.hash(page + '/' + subpage);
         });
         $(window).hashchange();
         

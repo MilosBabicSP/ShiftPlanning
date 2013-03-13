@@ -596,6 +596,17 @@ ShiftPlanningSchedule.prototype.loadSubPageEvents = function(subpage){
     $('#sc_edit_id').val(0);
     $('.subNavigation').show();
     $('#sc_additional_menu').show();
+	$('#sc_to_sub').html(sp.raw.config.today.formatted);
+	
+	var opt = '';
+    opt += _s('<option value="employee">My Schedules</option>');
+    if ( parseInt( sp.staff.admin.settings.visible_overview ) == 1 || parseInt( sp.staff.admin.info.group ) < 5 ) {
+        opt += _s('<option value="overview">Schedule Overview</option>');
+    }
+    opt += spView.schedulerFilter();
+    $('#sc_fl').html(opt);
+	
+	
     if (subpage == 'shiftDisplay' || subpage == 'addShift' || subpage == 'trade'){
         $('.subNavigation').hide();
     }
@@ -607,7 +618,7 @@ ShiftPlanningSchedule.prototype.loadSubPageEvents = function(subpage){
 
 //sub events
 ShiftPlanningSchedule.prototype.todaySubEvents = function(){
-    $('#sc_to_sub').html(sp.raw.config.today.formatted);
+//    $('#sc_to_sub').html(sp.raw.config.today.formatted);
     $('#sc_to_sub').prev().html('Today');
     this.page = 'today';
     this.displayShifts();
@@ -1136,13 +1147,7 @@ ShiftPlanningSchedule.prototype.generateMiddle = function(currentDate){
 
 
 ShiftPlanningSchedule.prototype.loadPage = function(){
-    var opt = '';
-    opt += _s('<option value="employee">My Schedules</option>');
-    if ( parseInt( sp.staff.admin.settings.visible_overview ) == 1 || parseInt( sp.staff.admin.info.group ) < 5 ) {
-        opt += _s('<option value="overview">Schedule Overview</option>');
-    }
-    opt += spView.schedulerFilter();
-    $('#sc_fl').html(opt);
+
     
     var addButton = false;
     $.each(this.data.schedules, function( i, item ) {
