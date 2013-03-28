@@ -18,7 +18,6 @@ session_start();
 
 
 
-
 define('IS_TEST_SERVER', (strpos($_SERVER['SERVER_NAME'], '.dev.') !== false || strpos($_SERVER['SERVER_NAME'], '192.168') !== false) ? true : false);
 define('_lang_', $_SERVER['DOCUMENT_ROOT']);
 define('DEBUGGER', true);
@@ -28,6 +27,7 @@ define('_domain_', 'shiftplanning.com');
 define('_cdn_', 'cdn');
 define('_touch_', 'app/iphone');
 
+include(_root_ . 'config.assets.php');
 
 
 if (IS_TEST_SERVER) {

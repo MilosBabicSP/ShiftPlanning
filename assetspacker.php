@@ -1,12 +1,33 @@
 <?php
 
-class Assets {
+if(!defined(')root_')) define('_root_', dirname(__FILE__) . '/');
+include(_root_ . 'config.php');
+
+
+/**
+ * Class AssetsPacker
+ * 
+ * - cron-like assets packer
+ */
+
+class AssetsPacker {
 	
-	function __construct() {
+	private $_output = "";
+	private $_scripts  = array();
+	private $_build = false;
+	private $_build_path = "static/";
+	
+	public $reset = false;
+	public $store = false;
+	public $type = "js";
+	
+	
+	function __construct($output = "") {
 		
 	}
 	
-	function _build() {
+	
+	public function build() {
 		
 	}	
 	
