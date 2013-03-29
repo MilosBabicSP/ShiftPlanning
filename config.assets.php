@@ -3,8 +3,6 @@
 
 // const _version_
 
-define('_version_', 0);
-
 $packer = array();
 
 $packer['css'] = array(

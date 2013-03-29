@@ -141,7 +141,14 @@ class AssetsPacker {
 				
 			}
 			
-			//TODO - Closure compiler 
+			//TODO - Closure compiler
+			foreach( $packed as $name => $content ) {
+				$this->closure_compile($this->build_file_path . $name . '.tmp.js', $this->build_file_path . $name . '.js' );			
+			}
+			
+			file_put_contents($this->build_file_path . '.compiled', '');
+			
+			die();
 			
 		} else {
 			
@@ -173,6 +180,12 @@ class AssetsPacker {
 			throw new Exception("Your {$file} file doesn't exist");
 		
 		}
+		
+	}
+	
+	private function closure_compile( $input_file, $output_file ) {
+		
+		exec('java -jar ' . _root_ . 'includes/closure/compiler.jar --compilation_level SIMPLE_OPTIMIZATIONS --js ' . $input_file . ' --js_output_file ' . $output_file);
 		
 	}
 	
