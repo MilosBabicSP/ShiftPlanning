@@ -35,6 +35,11 @@ class AssetsPacker {
 		
 	}
 	
+	/**
+	 * BuildAssets method
+	 *
+	 */
+	
 	public function buildAssets() {
 		
 		if(!file_exists($this->build_file_path . '.build')){
@@ -44,11 +49,11 @@ class AssetsPacker {
 			
 			//check what to build
 			if( in_array('css', $this->type) ) {
-				$this->buildCssAssets( $this->assets );
+				$this->buildCssAssets();
 			}
 			
 			if( in_array('js', $this->type) ) {
-				$this->buildJsAssets( $this->assets );
+				$this->buildJsAssets();
 			}
 			
 		}
@@ -60,11 +65,11 @@ class AssetsPacker {
 	* 
 	*/
 	
-	public function buildCssAssets($assets=array()) {
+	public function buildCssAssets() {
 			
-		if(!empty($assets)) {
+		if(!empty($this->assets)) {
 			
-			foreach($assets['css'] as $packedName => $list){
+			foreach($this->assets['css'] as $packedName => $list){
 				
 				$packed = array();
 				
@@ -106,11 +111,11 @@ class AssetsPacker {
 	 *
 	 */
 	
-	public function buildJsAssets( $assets=array() ) {
+	public function buildJsAssets() {
 		
-		if(!empty($assets)) {
+		if(!empty($this->assets)) {
 			
-			foreach ($assets['js'] as $packedName => $list) {
+			foreach ($this->assets['js'] as $packedName => $list) {
 				
 				foreach ($list as $script) {
 					
@@ -174,7 +179,7 @@ class AssetsPacker {
 	
 }
 
-
+//define what you need to pack
 $assets_to_pack = array('css', 'js');
 
 $ap = new AssetsPacker($packer, $assets_to_pack);
