@@ -23,21 +23,35 @@ class AssetsPacker {
 	
 	
 	function __construct($assets = array(), $type = array()) {
+		
 		$this->assets = $assets;
 		$this->type = $type;
 		
 		//define build file path
 		$this->build_file_path = _root_ . $this->_build_path . _jsV_;
 		
-		//check what to build
-		if( in_array('css', $this->type) ) {
-			$this->buildCssAssets( $this->assets );
-		}
+		//build all assets
+		$this->buildAssets();
 		
-		if( in_array('js', $this->type) ) {
-			$this->buildJsAssets( $this->assets );
-		}
+	}
+	
+	public function buildAssets() {
 		
+		if(!file_exists($this->build_file_path . '.build')){
+			
+			//create .build file
+			//file_put_contents($this->build_file_path, '');
+			
+			//check what to build
+			if( in_array('css', $this->type) ) {
+				$this->buildCssAssets( $this->assets );
+			}
+			
+			if( in_array('js', $this->type) ) {
+				$this->buildJsAssets( $this->assets );
+			}
+			
+		}
 	}
 	
 	
@@ -47,49 +61,42 @@ class AssetsPacker {
 	*/
 	
 	public function buildCssAssets($assets=array()) {
-		
-		
-		if(!file_exists($this->build_file_path . '.build')){
 			
-			//file_put_contents($this->build_file_path, ''); //create file
+		if(!empty($assets)) {
 			
-			if(!empty($assets)) {
+			foreach($assets['css'] as $packedName => $list){
 				
-				foreach($assets['css'] as $packedName => $list){
+				$packed = array();
+				
+				foreach($list as $script) {
 					
-					$packed = array();
+					if(strpos($script, 'ttp:') || strpos($script, 'ttps:')) {
 					
-					foreach($list as $script) {
+						$tmp = file_get_contents($script);
 						
-						if(strpos($script, 'ttp:') || strpos($script, 'ttps:')) {
+					} else {
 						
-							$tmp = file_get_contents($script);
-							
-						} else {
-							
-							$tmp = $this->_outputBufferedFile($script);
-						}
-						
-						$tmp .= "\n\n";
-						$packed[] = $tmp;
+						$tmp = $this->_outputBufferedFile($script);
 					}
 					
-					$this->_output = str_replace(array("\r\n", "\n", "\r"), '', implode(' ', $packed));
-					//cache output name
-					$output_name = $this->build_file_path . $packedName;
-					file_put_contents($output_name . '.css', $this->_output);
-					file_put_contents($output_name . '.tmp.css', $this->_output);
-					
-					printf("Css file(s) written in {$output_name}.css \n");
-					
+					$tmp .= "\n\n";
+					$packed[] = $tmp;
 				}
 				
-			} else {
+				$this->_output = str_replace(array("\r\n", "\n", "\r"), '', implode(' ', $packed));
+				//cache output name
+				$output_name = $this->build_file_path . $packedName;
+				file_put_contents($output_name . '.css', $this->_output);
+				file_put_contents($output_name . '.tmp.css', $this->_output);
 				
-				throw new Exception("Your assets array is empty. Nothing to build.");
-			
+				printf("Css file(s) written in {$output_name}.css \n");
+				
 			}
 			
+		} else {
+			
+			throw new Exception("Your assets array is empty. Nothing to build.");
+		
 		}
 		
 	}
@@ -101,44 +108,40 @@ class AssetsPacker {
 	
 	public function buildJsAssets( $assets=array() ) {
 		
-		if(!file_exists($this->build_file_path . '.build')){
+		if(!empty($assets)) {
 			
-			if(!empty($assets)) {
+			foreach ($assets['js'] as $packedName => $list) {
 				
-				foreach ($assets['js'] as $packedName => $list) {
+				foreach ($list as $script) {
 					
-					foreach ($list as $script) {
+					if(strpos($script, 'ttp:') || strpos($script, 'ttps:')){
 						
-						if(strpos($script, 'ttp:') || strpos($script, 'ttps:')){
-							
-							$tmp = file_get_contents($script);
-							
-						} else {
-							
-							$tmp = $this->_outputBufferedFile($script);
-					
-						}
+						$tmp = file_get_contents($script);
 						
-						$tmp .= "\n\n";
-						//var_dump($script);
-						$packed[$packedName][] = $tmp;
+					} else {
 						
+						$tmp = $this->_outputBufferedFile($script);
+				
 					}
 					
-					$output_name = $this->build_file_path . $packedName;
-					file_put_contents($output_name . '.tmp.js', implode(' ', $packed[$packedName]));
-					printf("JS file(s) written in {$output_name}.tmp.js \n");
+					$tmp .= "\n\n";
+					//var_dump($script);
+					$packed[$packedName][] = $tmp;
 					
 				}
 				
-				//TODO - Closure compiler 
+				$output_name = $this->build_file_path . $packedName;
+				file_put_contents($output_name . '.tmp.js', implode(' ', $packed[$packedName]));
+				printf("JS file(s) written in {$output_name}.tmp.js \n");
 				
-			} else {
-				
-				throw new Exception("Your assets array is empty. Nothing to build.");
-			
 			}
 			
+			//TODO - Closure compiler 
+			
+		} else {
+			
+			throw new Exception("Your assets array is empty. Nothing to build.");
+		
 		}
 		
 	}
@@ -171,6 +174,8 @@ class AssetsPacker {
 	
 }
 
+
 $assets_to_pack = array('css', 'js');
+
 $ap = new AssetsPacker($packer, $assets_to_pack);
 //$ap->build($packer);
