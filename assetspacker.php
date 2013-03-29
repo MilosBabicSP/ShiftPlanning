@@ -67,11 +67,7 @@ class AssetsPacker {
 							
 						} else {
 							
-							ob_start();
-							include(_root_ . $script);
-							$tmp = ob_get_contents();
-							ob_end_clean();
-							
+							$tmp = $this->_outputBufferedFile($script);
 						}
 						
 						$tmp .= "\n\n";
@@ -119,15 +115,12 @@ class AssetsPacker {
 							
 						} else {
 							
-							ob_start();
-							include(_root_ . $script);
-							$tmp = ob_get_contents();
-							ob_end_clean();
+							$tmp = $this->_outputBufferedFile($script);
 					
 						}
 						
 						$tmp .= "\n\n";
-						var_dump($script);
+						//var_dump($script);
 						$packed[$packedName][] = $tmp;
 						
 					}
@@ -146,6 +139,31 @@ class AssetsPacker {
 			
 			}
 			
+		}
+		
+	}
+	
+	/**
+	 *
+	 *	@return String 
+	 */
+	
+	private function _outputBufferedFile( $file ) {
+		
+		
+		if(file_exists( $file )) {
+		
+			ob_start();
+			include(_root_ . $file);
+			$tmp = ob_get_contents();
+			ob_end_clean();
+			
+			return $tmp;
+		
+		} else {
+			
+			throw new Exception("Your {$file} file doesn't exist");
+		
 		}
 		
 	}
