@@ -37,12 +37,14 @@ if (isset($_GET['logout'])) {
     header('Location: ' . 'http://' . $fixed);
 }
 
-require_once('jspacker.php');
+//require_once('jspacker.php');
+require_once('AssetsEmbed.php');
+
 include 'i18n/lib/class.i18n.php';
 if (Functions::getInstance()->getCurrentLang() != 'en_US'):
     i18n::setLanguage(Functions::getInstance()->getCurrentLang(), _lang_ . '/lang/');
 endif;
-
+/*
 $jse = new JSPacker('sp.js');
 $cse = new JSPacker('sp.css', 'css');
 if (DEBUGGER) {
@@ -50,7 +52,7 @@ if (DEBUGGER) {
 } else {
     $encrypt = true;
 }
-
+*/
 if (Functions::getInstance()->isRememberMe()) {
     $_SESSION['api']['token'] = Functions::getInstance()->getCookie('shiftplanning_mobile_usertoken');
     $_SESSION['user']['employee']['name'] = Functions::getInstance()->getCookie('shiftplanning_mobile_username');
@@ -73,12 +75,15 @@ $googleIP = gethostbyname('www.google.com');
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Qwigley">
         <?php
+        /*
         $cse->_add('css/style.mobile.css', $encrypt);
 
         //main jquery
         $cse->_add('css/mobiscroll.css', $encrypt);
 
-        $cse->_dump();
+        $cse->_dump();*/
+        
+        $css = new AssetsEmbed('css', 'mobile');
         ?>
 
         <link rel="shortcut icon" href="http://cdn.shiftplanning.com/app/layout/1/images/favicon.ico" type="image/x-icon" id="favicon">
@@ -124,7 +129,8 @@ if ($vtoken['data'] != '1') {
 
         <!-- jQuery -->
         <?php
-        //json obj 
+        //json obj
+        /*
         $jse->_add('js/json2.js', $encrypt);
 
         //main jquery
@@ -192,8 +198,15 @@ if ($vtoken['data'] != '1') {
 
         //Loader
         $jse->_add('js/sp.common.mobile.js', $encrypt);
-
+        
         $jse->_dump();
+        */
+        
+        $js_ext = new AssetsEmbed('js', 'external');
+        $js_mob = new AssetsEmbed('js', 'mobile');
+        
+        // TODO: Validate closure compiler
+        
         ?>
         <script type="text/javascript">
             function init(){

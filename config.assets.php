@@ -16,6 +16,7 @@ $packer['css'] = array(
 
 $packer['js'] = array(
 	'external' => array(
+		'js/json2.js',
 		'js/jquery/jquery-1.6.4.min.js',
 		'js/jquery/jquery-ui.js',
 		'js/jquery/jquery.ba-hashchange.min.js',

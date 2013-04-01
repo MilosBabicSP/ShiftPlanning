@@ -7,10 +7,9 @@
 
 class AssetsPacker {
 	
-	private $_output = "";
 	private $_build = false;
 	
-	protected $_build_path = "static/";
+	protected $_build_path = "js/";
 	protected $build_file_path;
 
 	public $assets;

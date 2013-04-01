@@ -82,3 +82,4 @@ class AssetsEmbed extends AssetsPacker {
 
 
 //$test = new AssetsEmbed("js", 'mobile');
+//$test2 = new AssetsEmbed("js", 'external');
