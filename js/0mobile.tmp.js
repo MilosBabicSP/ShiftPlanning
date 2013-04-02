@@ -1,93 +1,4 @@
-var SPModelAdmin = function(){
-    this.model = 'admin';
-}
-
-SPModelAdmin.prototype.vacations = function(module, method, data, success, error){
-    sp.api(this.model + '.' + module, method, data, success, error);
-}
-
- var SPModelLocation = function(){
-    this.model = 'location';
-}
-
-
-SPModelLocation.prototype.locationsList = function(r){
-    if (typeof r != 'undefined' && r == true){
-        spModel.location.get('locations', {}, function(response){
-            sp.staff.raw.locations = response.data;
-            sp.staff.data.locations = sp.map(response.data);
-        });
-    } else {
-        return sp.staff.data.locations;
-    }
-}
-
- var SPModelMessaging = function(){
-    this.model = 'messaging';
-}
-
-SPModelMessaging.prototype.wall = function(module, method, data, success, error){
-    var self = this;
-    sp.api(this.model + '.' + module, method, data, function(response){
-        if(typeof success == 'function'){
-            if (method == 'get'){
-                response.data = self.prepareWallMessages(response.data);
-            }
-            success.call(this, response);
-        }
-    }, error);
-}
-
-
-SPModelMessaging.prototype.prepareWallMessages = function(response){
-    var data = [];
-               
-    $.each(response,function(){
-        var comments = [];
-        if(typeof this.comments != 'undefined'){
-            $.each(this.comments,function(){
-                comments.push({
-                    id: this.id,
-                    avatar: sp.getAvatar(this.user.id),
-                    userName: this.user.name,
-                    userId : this.user.id,
-                    time: $.timeago(new Date(this.date*1000)),
-                    comment: this.comment_formatted,
-                    full : true,
-                    owner : (parseInt(sp.staff.admin.info.group) <= 3 || this.user.id == sp.staff.admin.info.id) ? 1 : 0
-                });
-            });
-        }
-        data.push({
-            id: this.id,
-            avatar: sp.getAvatar(this.user.id),
-            userName: this.user.name,
-            userId : this.user.id,
-            time: $.timeago(new Date(this.date*1000)),
-            sticky: parseInt(this.sticky),
-            title: this.title_formatted,
-            post: this.post_formatted,
-            comments: comments,
-            owner : (parseInt(sp.staff.admin.info.group) <= 3 || this.user.id == sp.staff.admin.info.id) ? 1 : 0
-        });
-    });
-    return data;
-}
-
- var SPModelPayroll = function(){
-    this.model = 'payroll';
-}
-
-
- var SPModelRequests = function(){
-    this.model = 'requests';
-}
-
-SPModelRequests.prototype.vacations = function(module, method, data, success, error){
-    sp.api(this.model + '.' + module, method, data, success, error);
-}
-
- var SPModelSchedule = function(){
+var SPModelSchedule = function(){
     this.model = 'schedule';
 }
 
@@ -152,6 +63,85 @@ SPModelSchedule.prototype.allSchedules = function(r){
 }
 
 
+ var SPModelRequests = function(){
+    this.model = 'requests';
+}
+
+SPModelRequests.prototype.vacations = function(module, method, data, success, error){
+    sp.api(this.model + '.' + module, method, data, success, error);
+}
+
+ var SPModelAdmin = function(){
+    this.model = 'admin';
+}
+
+SPModelAdmin.prototype.vacations = function(module, method, data, success, error){
+    sp.api(this.model + '.' + module, method, data, success, error);
+}
+
+ var SPModelMessaging = function(){
+    this.model = 'messaging';
+}
+
+SPModelMessaging.prototype.wall = function(module, method, data, success, error){
+    var self = this;
+    sp.api(this.model + '.' + module, method, data, function(response){
+        if(typeof success == 'function'){
+            if (method == 'get'){
+                response.data = self.prepareWallMessages(response.data);
+            }
+            success.call(this, response);
+        }
+    }, error);
+}
+
+
+SPModelMessaging.prototype.prepareWallMessages = function(response){
+    var data = [];
+               
+    $.each(response,function(){
+        var comments = [];
+        if(typeof this.comments != 'undefined'){
+            $.each(this.comments,function(){
+                comments.push({
+                    id: this.id,
+                    avatar: sp.getAvatar(this.user.id),
+                    userName: this.user.name,
+                    userId : this.user.id,
+                    time: $.timeago(new Date(this.date*1000)),
+                    comment: this.comment_formatted,
+                    full : true,
+                    owner : (parseInt(sp.staff.admin.info.group) <= 3 || this.user.id == sp.staff.admin.info.id) ? 1 : 0
+                });
+            });
+        }
+        data.push({
+            id: this.id,
+            avatar: sp.getAvatar(this.user.id),
+            userName: this.user.name,
+            userId : this.user.id,
+            time: $.timeago(new Date(this.date*1000)),
+            sticky: parseInt(this.sticky),
+            title: this.title_formatted,
+            post: this.post_formatted,
+            comments: comments,
+            owner : (parseInt(sp.staff.admin.info.group) <= 3 || this.user.id == sp.staff.admin.info.id) ? 1 : 0
+        });
+    });
+    return data;
+}
+
+ var SPModelTimeClock = function(){
+    this.model = 'timeclock';
+}
+
+
+SPModelTimeClock.prototype.dtc = function(id, callback){
+    spModel.timeclock.del('timeclock', {id : id}, function(response){
+        callback(response);
+    });
+}
+
  var SPModelStaff = function(){
     this.model = 'staff';
 }
@@ -204,508 +194,30 @@ SPModelStaff.prototype.addEmployee = function(data){
     sp.staff.data.employees['' + data.id] = data
 }
 
- var SPModelTimeClock = function(){
-    this.model = 'timeclock';
+ var SPModelPayroll = function(){
+    this.model = 'payroll';
 }
 
 
-SPModelTimeClock.prototype.dtc = function(id, callback){
-    spModel.timeclock.del('timeclock', {id : id}, function(response){
-        callback(response);
-    });
+ var SPModelLocation = function(){
+    this.model = 'location';
+}
+
+
+SPModelLocation.prototype.locationsList = function(r){
+    if (typeof r != 'undefined' && r == true){
+        spModel.location.get('locations', {}, function(response){
+            sp.staff.raw.locations = response.data;
+            sp.staff.data.locations = sp.map(response.data);
+        });
+    } else {
+        return sp.staff.data.locations;
+    }
 }
 
  var SPModelTraining = function() {
 	this.model='training';
 }
-
- /**
- * @version: 1.0 Alpha-1
- */
-
-(function () {
-    var $D = Date,
-        $P = $D.prototype,
-        $C = $D.CultureInfo,
-        $f = [],
-        p = function (s, l) {
-            if (!l) {
-                l = 2;
-            }
-            return ("000" + s).slice(l * -1);
-        };
-
-    /**
-     * Converts a PHP format string to Java/.NET format string.
-     * A PHP format string can be used with .$format or .format.
-     * A Java/.NET format string can be used with .toString().
-     * The .parseExact function will only accept a Java/.NET format string
-     *
-     * Example
-     <pre>
-     var f1 = "%m/%d/%y"
-     var f2 = Date.normalizeFormat(f1); // "MM/dd/yy"
-
-     new Date().format(f1);    // "04/13/08"
-     new Date().$format(f1);   // "04/13/08"
-     new Date().toString(f2);  // "04/13/08"
-
-     var date = Date.parseExact("04/13/08", f2); // Sun Apr 13 2008
-     </pre>
-     * @param {String}   A PHP format string consisting of one or more format spcifiers.
-     * @return {String}  The PHP format converted to a Java/.NET format string.
-     */
-    $D.normalizeFormat = function (format) {
-        $f = [];
-        var t = new Date().$format(format);
-        return $f.join("");
-    };
-
-    /**
-     * Format a local Unix timestamp according to locale settings
-     *
-     * Example
-     <pre>
-     Date.strftime("%m/%d/%y", new Date());       // "04/13/08"
-     Date.strftime("c", "2008-04-13T17:52:03Z");  // "04/13/08"
-     </pre>
-     * @param {String}   A format string consisting of one or more format spcifiers [Optional].
-     * @param {Number}   The number representing the number of seconds that have elapsed since January 1, 1970 (local time).
-     * @return {String}  A string representation of the current Date object.
-     */
-    $D.strftime = function (format, time) {
-        return new Date(time * 1000).$format(format);
-    };
-
-    /**
-     * Parse any textual datetime description into a Unix timestamp.
-     * A Unix timestamp is the number of seconds that have elapsed since January 1, 1970 (midnight UTC/GMT).
-     *
-     * Example
-     <pre>
-     Date.strtotime("04/13/08");              // 1208044800
-     Date.strtotime("1970-01-01T00:00:00Z");  // 0
-     </pre>
-     * @param {String}   A format string consisting of one or more format spcifiers [Optional].
-     * @param {Object}   A string or date object.
-     * @return {String}  A string representation of the current Date object.
-     */
-    $D.strtotime = function (time) {
-        var d = $D.parse(time);
-        d.addMinutes(d.getTimezoneOffset() * -1);
-        return Math.round($D.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate(), d.getUTCHours(), d.getUTCMinutes(), d.getUTCSeconds(), d.getUTCMilliseconds()) / 1000);
-    };
-
-    /**
-     * Converts the value of the current Date object to its equivalent string representation using a PHP/Unix style of date format specifiers.
-     *
-     * The following descriptions are from http://www.php.net/strftime and http://www.php.net/manual/en/function.date.php.
-     * Copyright © 2001-2008 The PHP Group
-     *
-     * Format Specifiers
-     <pre>
-    Format  Description                                                                  Example
-    ------  ---------------------------------------------------------------------------  -----------------------
-     %a     abbreviated weekday name according to the current localed                    "Mon" through "Sun"
-     %A     full weekday name according to the current locale                            "Sunday" through "Saturday"
-     %b     abbreviated month name according to the current locale                       "Jan" through "Dec"
-     %B     full month name according to the current locale                              "January" through "December"
-     %c     preferred date and time representation for the current locale                "4/13/2008 12:33 PM"
-     %C     century number (the year divided by 100 and truncated to an integer)         "00" to "99"
-     %d     day of the month as a decimal number                                         "01" to "31"
-     %D     same as %m/%d/%y                                                             "04/13/08"
-     %e     day of the month as a decimal number, a single digit is preceded by a space  "1" to "31"
-     %g     like %G, but without the century                                             "08"
-     %G     The 4-digit year corresponding to the ISO week number (see %V).              "2008"
-            This has the same format and value as %Y, except that if the ISO week number
-            belongs to the previous or next year, that year is used instead.
-     %h     same as %b                                                                   "Jan" through "Dec"
-     %H     hour as a decimal number using a 24-hour clock                               "00" to "23"
-     %I     hour as a decimal number using a 12-hour clock                               "01" to "12"
-     %j     day of the year as a decimal number                                          "001" to "366"
-     %m     month as a decimal number                                                    "01" to "12"
-     %M     minute as a decimal number                                                   "00" to "59"
-     %n     newline character                                                            "\n"
-     %p     either "am" or "pm" according to the given time value, or the                "am" or "pm"
-            corresponding strings for the current locale
-     %r     time in a.m. and p.m. notation                                               "8:44 PM"
-     %R     time in 24 hour notation                                                     "20:44"
-     %S     second as a decimal number                                                   "00" to "59"
-     %t     tab character                                                                "\t"
-     %T     current time, equal to %H:%M:%S                                              "12:49:11"
-     %u     weekday as a decimal number ["1", "7"], with "1" representing Monday         "1" to "7"
-     %U     week number of the current year as a decimal number, starting with the       "0" to ("52" or "53")
-            first Sunday as the first day of the first week
-     %V     The ISO 8601:1988 week number of the current year as a decimal number,       "00" to ("52" or "53")
-            range 01 to 53, where week 1 is the first week that has at least 4 days
-            in the current year, and with Monday as the first day of the week.
-            (Use %G or %g for the year component that corresponds to the week number
-            for the specified timestamp.)
-     %W     week number of the current year as a decimal number, starting with the       "00" to ("52" or "53")
-            first Monday as the first day of the first week
-     %w     day of the week as a decimal, Sunday being "0"                               "0" to "6"
-     %x     preferred date representation for the current locale without the time        "4/13/2008"
-     %X     preferred time representation for the current locale without the date        "12:53:05"
-     %y     year as a decimal number without a century                                   "00" "99"
-     %Y     year as a decimal number including the century                               "2008"
-     %Z     time zone or name or abbreviation                                            "UTC", "EST", "PST"
-     %z     same as %Z
-     %%     a literal "%" character                                                      "%"
-
-     d      Day of the month, 2 digits with leading zeros                                "01" to "31"
-     D      A textual representation of a day, three letters                             "Mon" through "Sun"
-     j      Day of the month without leading zeros                                       "1" to "31"
-     l      A full textual representation of the day of the week (lowercase "L")         "Sunday" through "Saturday"
-     N      ISO-8601 numeric representation of the day of the week (added in PHP 5.1.0)  "1" (for Monday) through "7" (for Sunday)
-     S      English ordinal suffix for the day of the month, 2 characters                "st", "nd", "rd" or "th". Works well with j
-     w      Numeric representation of the day of the week                                "0" (for Sunday) through "6" (for Saturday)
-     z      The day of the year (starting from "0")                                      "0" through "365"
-     W      ISO-8601 week number of year, weeks starting on Monday                       "00" to ("52" or "53")
-     F      A full textual representation of a month, such as January or March           "January" through "December"
-     m      Numeric representation of a month, with leading zeros                        "01" through "12"
-     M      A short textual representation of a month, three letters                     "Jan" through "Dec"
-     n      Numeric representation of a month, without leading zeros                     "1" through "12"
-     t      Number of days in the given month                                            "28" through "31"
-     L      Whether it's a leap year                                                     "1" if it is a leap year, "0" otherwise
-     o      ISO-8601 year number. This has the same value as Y, except that if the       "2008"
-            ISO week number (W) belongs to the previous or next year, that year
-            is used instead.
-     Y      A full numeric representation of a year, 4 digits                            "2008"
-     y      A two digit representation of a year                                         "08"
-     a      Lowercase Ante meridiem and Post meridiem                                    "am" or "pm"
-     A      Uppercase Ante meridiem and Post meridiem                                    "AM" or "PM"
-     B      Swatch Internet time                                                         "000" through "999"
-     g      12-hour format of an hour without leading zeros                              "1" through "12"
-     G      24-hour format of an hour without leading zeros                              "0" through "23"
-     h      12-hour format of an hour with leading zeros                                 "01" through "12"
-     H      24-hour format of an hour with leading zeros                                 "00" through "23"
-     i      Minutes with leading zeros                                                   "00" to "59"
-     s      Seconds, with leading zeros                                                  "00" through "59"
-     u      Milliseconds                                                                 "54321"
-     e      Timezone identifier                                                          "UTC", "EST", "PST"
-     I      Whether or not the date is in daylight saving time (uppercase i)             "1" if Daylight Saving Time, "0" otherwise
-     O      Difference to Greenwich time (GMT) in hours                                  "+0200", "-0600"
-     P      Difference to Greenwich time (GMT) with colon between hours and minutes      "+02:00", "-06:00"
-     T      Timezone abbreviation                                                        "UTC", "EST", "PST"
-     Z      Timezone offset in seconds. The offset for timezones west of UTC is          "-43200" through "50400"
-            always negative, and for those east of UTC is always positive.
-     c      ISO 8601 date                                                                "2004-02-12T15:19:21+00:00"
-     r      RFC 2822 formatted date                                                      "Thu, 21 Dec 2000 16:01:07 +0200"
-     U      Seconds since the Unix Epoch (January 1 1970 00:00:00 GMT)                   "0"
-     </pre>
-     * @param {String}   A format string consisting of one or more format spcifiers [Optional].
-     * @return {String}  A string representation of the current Date object.
-     */
-    $P.$format = function (format) {
-        var x = this,
-            y,
-            t = function (v) {
-                $f.push(v);
-                return x.toString(v);
-            };
-
-        return format ? format.replace(/(%|\\)?.|%%/g,
-        function (m) {
-            if (m.charAt(0) === "\\" || m.substring(0, 2) === "%%") {
-                return m.replace("\\", "").replace("%%", "%");
-            }
-            switch (m) {
-            case "d":
-            case "%d":
-                return t("dd");
-            case "D":
-            case "%a":
-                return t("ddd");
-            case "j":
-            case "%e":
-                return t("d");
-            case "l":
-            case "%A":
-                return t("dddd");
-            case "N":
-            case "%u":
-                return x.getDay() + 1;
-            case "S":
-                return t("S");
-            case "w":
-            case "%w":
-                return x.getDay();
-            case "z":
-                return x.getOrdinalNumber();
-            case "%j":
-                return p(x.getOrdinalNumber(), 3);
-            case "%U":
-                var d1 = x.clone().set({month: 0, day: 1}).addDays(-1).moveToDayOfWeek(0),
-                    d2 = x.clone().addDays(1).moveToDayOfWeek(0, -1);
-                return (d2 < d1) ? "00" : p((d2.getOrdinalNumber() - d1.getOrdinalNumber()) / 7 + 1);
-            case "W":
-            case "%V":
-                return x.getISOWeek();
-            case "%W":
-                return p(x.getWeek());
-            case "F":
-            case "%B":
-                return t("MMMM");
-            case "m":
-            case "%m":
-                return t("MM");
-            case "M":
-            case "%b":
-            case "%h":
-                return t("MMM");
-            case "n":
-                return t("M");
-            case "t":
-                return $D.getDaysInMonth(x.getFullYear(), x.getMonth());
-            case "L":
-                return ($D.isLeapYear(x.getFullYear())) ? 1 : 0;
-            case "o":
-            case "%G":
-                return x.setWeek(x.getISOWeek()).toString("yyyy");
-            case "%g":
-                return x.$format("%G").slice(-2);
-            case "Y":
-            case "%Y":
-                return t("yyyy");
-            case "y":
-            case "%y":
-                return t("yy");
-            case "a":
-            case "%p":
-                return t("tt").toLowerCase();
-            case "A":
-                return t("tt").toUpperCase();
-            case "g":
-            case "%I":
-                return t("h");
-            case "G":
-                return t("H");
-            case "h":
-                return t("hh");
-            case "H":
-            case "%H":
-                return t("HH");
-            case "i":
-            case "%M":
-                return t("mm");
-            case "s":
-            case "%S":
-                return t("ss");
-            case "u":
-                return p(x.getMilliseconds(), 3);
-            case "I":
-                return (x.isDaylightSavingTime()) ? 1 : 0;
-            case "O":
-                return x.getUTCOffset();
-            case "P":
-                y = x.getUTCOffset();
-                return y.substring(0, y.length - 2) + ":" + y.substring(y.length - 2);
-            case "e":
-            case "T":
-            case "%z":
-            case "%Z":
-                return x.getTimezone();
-            case "Z":
-                return x.getTimezoneOffset() * -60;
-            case "B":
-                var now = new Date();
-                return Math.floor(((now.getHours() * 3600) + (now.getMinutes() * 60) + now.getSeconds() + (now.getTimezoneOffset() + 60) * 60) / 86.4);
-            case "c":
-                return x.toISOString().replace(/\"/g, "");
-            case "U":
-                return $D.strtotime("now");
-            case "%c":
-                return t("d") + " " + t("t");
-            case "%C":
-                return Math.floor(x.getFullYear() / 100 + 1);
-            case "%D":
-                return t("MM/dd/yy");
-            case "%n":
-                return "\\n";
-            case "%t":
-                return "\\t";
-            case "%r":
-                return t("hh:mm tt");
-            case "%R":
-                return t("H:mm");
-            case "%T":
-                return t("H:mm:ss");
-            case "%x":
-                return t("d");
-            case "%X":
-                return t("t");
-            default:
-                $f.push(m);
-			    return m;
-            }
-        }
-        ) : this._toString();
-    };
-
-    if (!$P.format) {
-        $P.format = $P.$format;
-    }
-}());
-
- /**
- * @version: 1.0 Alpha-1
- */
-
-if(!Date || !Date.CultureInfo || Date.CultureInfo.name==''){
-Date.CultureInfo={name:"en-US",englishName:"English (United States)",nativeName:"English (United States)",dayNames:["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],abbreviatedDayNames:["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],shortestDayNames:["Su","Mo","Tu","We","Th","Fr","Sa"],firstLetterDayNames:["S","M","T","W","T","F","S"],monthNames:["January","February","March","April","May","June","July","August","September","October","November","December"],abbreviatedMonthNames:["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],amDesignator:"AM",pmDesignator:"PM",firstDayOfWeek:0,twoDigitYearMax:2029,dateElementOrder:"mdy",formatPatterns:{shortDate:"M/d/yyyy",longDate:"dddd, MMMM dd, yyyy",shortTime:"h:mm tt",longTime:"h:mm:ss tt",fullDateTime:"dddd, MMMM dd, yyyy h:mm:ss tt",sortableDateTime:"yyyy-MM-ddTHH:mm:ss",universalSortableDateTime:"yyyy-MM-dd HH:mm:ssZ",rfc1123:"ddd, dd MMM yyyy HH:mm:ss GMT",monthDay:"MMMM dd",yearMonth:"MMMM, yyyy"},regexPatterns:{jan:/^jan(uary)?/i,feb:/^feb(ruary)?/i,mar:/^mar(ch)?/i,apr:/^apr(il)?/i,may:/^may/i,jun:/^jun(e)?/i,jul:/^jul(y)?/i,aug:/^aug(ust)?/i,sep:/^sep(t(ember)?)?/i,oct:/^oct(ober)?/i,nov:/^nov(ember)?/i,dec:/^dec(ember)?/i,sun:/^su(n(day)?)?/i,mon:/^mo(n(day)?)?/i,tue:/^tu(e(s(day)?)?)?/i,wed:/^we(d(nesday)?)?/i,thu:/^th(u(r(s(day)?)?)?)?/i,fri:/^fr(i(day)?)?/i,sat:/^sa(t(urday)?)?/i,future:/^next/i,past:/^last|past|prev(ious)?/i,add:/^(\+|aft(er)?|from|hence)/i,subtract:/^(\-|bef(ore)?|ago)/i,yesterday:/^yes(terday)?/i,today:/^t(od(ay)?)?/i,tomorrow:/^tom(orrow)?/i,now:/^n(ow)?/i,millisecond:/^ms|milli(second)?s?/i,second:/^sec(ond)?s?/i,minute:/^mn|min(ute)?s?/i,hour:/^h(our)?s?/i,week:/^w(eek)?s?/i,month:/^m(onth)?s?/i,day:/^d(ay)?s?/i,year:/^y(ear)?s?/i,shortMeridian:/^(a|p)/i,longMeridian:/^(a\.?m?\.?|p\.?m?\.?)/i,timezone:/^((e(s|d)t|c(s|d)t|m(s|d)t|p(s|d)t)|((gmt)?\s*(\+|\-)\s*\d\d\d\d?)|gmt|utc)/i,ordinalSuffix:/^\s*(st|nd|rd|th)/i,timeContext:/^\s*(\:|a(?!u|p)|p)/i},timezones:[{name:"UTC",offset:"-000"},{name:"GMT",offset:"-000"},{name:"EST",offset:"-0500"},{name:"EDT",offset:"-0400"},{name:"CST",offset:"-0600"},{name:"CDT",offset:"-0500"},{name:"MST",offset:"-0700"},{name:"MDT",offset:"-0600"},{name:"PST",offset:"-0800"},{name:"PDT",offset:"-0700"}]};
-}
-(function(){var $D=Date,$P=$D.prototype,$C=$D.CultureInfo,p=function(s,l){if(!l){l=2;}
-return("000"+s).slice(l*-1);};$P.clearTime=function(){this.setHours(0);this.setMinutes(0);this.setSeconds(0);this.setMilliseconds(0);return this;};$P.setTimeToNow=function(){var n=new Date();this.setHours(n.getHours());this.setMinutes(n.getMinutes());this.setSeconds(n.getSeconds());this.setMilliseconds(n.getMilliseconds());return this;};$D.today=function(){return new Date().clearTime();};$D.compare=function(date1,date2){if(isNaN(date1)||isNaN(date2)){throw new Error(date1+" - "+date2);}else if(date1 instanceof Date&&date2 instanceof Date){return(date1<date2)?-1:(date1>date2)?1:0;}else{throw new TypeError(date1+" - "+date2);}};$D.equals=function(date1,date2){return(date1.compareTo(date2)===0);};$D.getDayNumberFromName=function(name){var n=$C.dayNames,m=$C.abbreviatedDayNames,o=$C.shortestDayNames,s=name.toLowerCase();for(var i=0;i<n.length;i++){if(n[i].toLowerCase()==s||m[i].toLowerCase()==s||o[i].toLowerCase()==s){return i;}}
-return-1;};$D.getMonthNumberFromName=function(name){var n=$C.monthNames,m=$C.abbreviatedMonthNames,s=name.toLowerCase();for(var i=0;i<n.length;i++){if(n[i].toLowerCase()==s||m[i].toLowerCase()==s){return i;}}
-return-1;};$D.isLeapYear=function(year){return((year%4===0&&year%100!==0)||year%400===0);};$D.getDaysInMonth=function(year,month){return[31,($D.isLeapYear(year)?29:28),31,30,31,30,31,31,30,31,30,31][month];};$D.getTimezoneAbbreviation=function(offset){var z=$C.timezones,p;for(var i=0;i<z.length;i++){if(z[i].offset===offset){return z[i].name;}}
-return null;};$D.getTimezoneOffset=function(name){var z=$C.timezones,p;for(var i=0;i<z.length;i++){if(z[i].name===name.toUpperCase()){return z[i].offset;}}
-return null;};$P.clone=function(){return new Date(this.getTime());};$P.compareTo=function(date){return Date.compare(this,date);};$P.equals=function(date){return Date.equals(this,date||new Date());};$P.between=function(start,end){return this.getTime()>=start.getTime()&&this.getTime()<=end.getTime();};$P.isAfter=function(date){return this.compareTo(date||new Date())===1;};$P.isBefore=function(date){return(this.compareTo(date||new Date())===-1);};$P.isToday=function(){return this.isSameDay(new Date());};$P.isSameDay=function(date){return this.clone().clearTime().equals(date.clone().clearTime());};$P.addMilliseconds=function(value){this.setMilliseconds(this.getMilliseconds()+value);return this;};$P.addSeconds=function(value){return this.addMilliseconds(value*1000);};$P.addMinutes=function(value){return this.addMilliseconds(value*60000);};$P.addHours=function(value){return this.addMilliseconds(value*3600000);};$P.addDays=function(value){this.setDate(this.getDate()+value);return this;};$P.addWeeks=function(value){return this.addDays(value*7);};$P.addMonths=function(value){var n=this.getDate();this.setDate(1);this.setMonth(this.getMonth()+value);this.setDate(Math.min(n,$D.getDaysInMonth(this.getFullYear(),this.getMonth())));return this;};$P.addYears=function(value){return this.addMonths(value*12);};$P.add=function(config){if(typeof config=="number"){this._orient=config;return this;}
-var x=config;if(x.milliseconds){this.addMilliseconds(x.milliseconds);}
-if(x.seconds){this.addSeconds(x.seconds);}
-if(x.minutes){this.addMinutes(x.minutes);}
-if(x.hours){this.addHours(x.hours);}
-if(x.weeks){this.addWeeks(x.weeks);}
-if(x.months){this.addMonths(x.months);}
-if(x.years){this.addYears(x.years);}
-if(x.days){this.addDays(x.days);}
-return this;};var $y,$m,$d;$P.getWeek=function(){var a,b,c,d,e,f,g,n,s,w;$y=(!$y)?this.getFullYear():$y;$m=(!$m)?this.getMonth()+1:$m;$d=(!$d)?this.getDate():$d;if($m<=2){a=$y-1;b=(a/4|0)-(a/100|0)+(a/400|0);c=((a-1)/4|0)-((a-1)/100|0)+((a-1)/400|0);s=b-c;e=0;f=$d-1+(31*($m-1));}else{a=$y;b=(a/4|0)-(a/100|0)+(a/400|0);c=((a-1)/4|0)-((a-1)/100|0)+((a-1)/400|0);s=b-c;e=s+1;f=$d+((153*($m-3)+2)/5)+58+s;}
-g=(a+b)%7;d=(f+g-e)%7;n=(f+3-d)|0;if(n<0){w=53-((g-s)/5|0);}else if(n>364+s){w=1;}else{w=(n/7|0)+1;}
-$y=$m=$d=null;return w;};$P.getISOWeek=function(){$y=this.getUTCFullYear();$m=this.getUTCMonth()+1;$d=this.getUTCDate();return p(this.getWeek());};$P.setWeek=function(n){return this.moveToDayOfWeek(1).addWeeks(n-this.getWeek());};$D._validate=function(n,min,max,name){if(typeof n=="undefined"){return false;}else if(typeof n!="number"){throw new TypeError(n+" is not a Number.");}else if(n<min||n>max){throw new RangeError(n+" is not a valid value for "+name+".");}
-return true;};$D.validateMillisecond=function(value){return $D._validate(value,0,999,"millisecond");};$D.validateSecond=function(value){return $D._validate(value,0,59,"second");};$D.validateMinute=function(value){return $D._validate(value,0,59,"minute");};$D.validateHour=function(value){return $D._validate(value,0,23,"hour");};$D.validateDay=function(value,year,month){return $D._validate(value,1,$D.getDaysInMonth(year,month),"day");};$D.validateMonth=function(value){return $D._validate(value,0,11,"month");};$D.validateYear=function(value){return $D._validate(value,0,9999,"year");};$P.set=function(config){if($D.validateMillisecond(config.millisecond)){this.addMilliseconds(config.millisecond-this.getMilliseconds());}
-if($D.validateSecond(config.second)){this.addSeconds(config.second-this.getSeconds());}
-if($D.validateMinute(config.minute)){this.addMinutes(config.minute-this.getMinutes());}
-if($D.validateHour(config.hour)){this.addHours(config.hour-this.getHours());}
-if($D.validateMonth(config.month)){this.addMonths(config.month-this.getMonth());}
-if($D.validateYear(config.year)){this.addYears(config.year-this.getFullYear());}
-if($D.validateDay(config.day,this.getFullYear(),this.getMonth())){this.addDays(config.day-this.getDate());}
-if(config.timezone){this.setTimezone(config.timezone);}
-if(config.timezoneOffset){this.setTimezoneOffset(config.timezoneOffset);}
-if(config.week&&$D._validate(config.week,0,53,"week")){this.setWeek(config.week);}
-return this;};$P.moveToFirstDayOfMonth=function(){return this.set({day:1});};$P.moveToLastDayOfMonth=function(){return this.set({day:$D.getDaysInMonth(this.getFullYear(),this.getMonth())});};$P.moveToNthOccurrence=function(dayOfWeek,occurrence){var shift=0;if(occurrence>0){shift=occurrence-1;}
-else if(occurrence===-1){this.moveToLastDayOfMonth();if(this.getDay()!==dayOfWeek){this.moveToDayOfWeek(dayOfWeek,-1);}
-return this;}
-return this.moveToFirstDayOfMonth().addDays(-1).moveToDayOfWeek(dayOfWeek,+1).addWeeks(shift);};$P.moveToDayOfWeek=function(dayOfWeek,orient){var diff=(dayOfWeek-this.getDay()+7*(orient||+1))%7;return this.addDays((diff===0)?diff+=7*(orient||+1):diff);};$P.moveToMonth=function(month,orient){var diff=(month-this.getMonth()+12*(orient||+1))%12;return this.addMonths((diff===0)?diff+=12*(orient||+1):diff);};$P.getOrdinalNumber=function(){return Math.ceil((this.clone().clearTime()-new Date(this.getFullYear(),0,1))/86400000)+1;};$P.getTimezone=function(){return $D.getTimezoneAbbreviation(this.getUTCOffset());};$P.setTimezoneOffset=function(offset){var here=this.getTimezoneOffset(),there=Number(offset)*-6/10;return this.addMinutes(there-here);};$P.setTimezone=function(offset){return this.setTimezoneOffset($D.getTimezoneOffset(offset));};$P.hasDaylightSavingTime=function(){return(Date.today().set({month:0,day:1}).getTimezoneOffset()!==Date.today().set({month:6,day:1}).getTimezoneOffset());};$P.isDaylightSavingTime=function(){return(this.hasDaylightSavingTime()&&new Date().getTimezoneOffset()===Date.today().set({month:6,day:1}).getTimezoneOffset());};$P.getUTCOffset=function(){var n=this.getTimezoneOffset()*-10/6,r;if(n<0){r=(n-10000).toString();return r.charAt(0)+r.substr(2);}else{r=(n+10000).toString();return"+"+r.substr(1);}};$P.getElapsed=function(date){return(date||new Date())-this;};if(!$P.toISOString){$P.toISOString=function(){function f(n){return n<10?'0'+n:n;}
-return'"'+this.getUTCFullYear()+'-'+
-f(this.getUTCMonth()+1)+'-'+
-f(this.getUTCDate())+'T'+
-f(this.getUTCHours())+':'+
-f(this.getUTCMinutes())+':'+
-f(this.getUTCSeconds())+'Z"';};}
-$P._toString=$P.toString;$P.toString=function(format){var x=this;if(format&&format.length==1){var c=$C.formatPatterns;x.t=x.toString;switch(format){case"d":return x.t(c.shortDate);case"D":return x.t(c.longDate);case"F":return x.t(c.fullDateTime);case"m":return x.t(c.monthDay);case"r":return x.t(c.rfc1123);case"s":return x.t(c.sortableDateTime);case"t":return x.t(c.shortTime);case"T":return x.t(c.longTime);case"u":return x.t(c.universalSortableDateTime);case"y":return x.t(c.yearMonth);}}
-var ord=function(n){switch(n*1){case 1:case 21:case 31:return"st";case 2:case 22:return"nd";case 3:case 23:return"rd";default:return"th";}};return format?format.replace(/(\\)?(dd?d?d?|MM?M?M?|yy?y?y?|hh?|HH?|mm?|ss?|tt?|S)/g,function(m){if(m.charAt(0)==="\\"){return m.replace("\\","");}
-x.h=x.getHours;switch(m){case"hh":return p(x.h()<13?(x.h()===0?12:x.h()):(x.h()-12));case"h":return x.h()<13?(x.h()===0?12:x.h()):(x.h()-12);case"HH":return p(x.h());case"H":return x.h();case"mm":return p(x.getMinutes());case"m":return x.getMinutes();case"ss":return p(x.getSeconds());case"s":return x.getSeconds();case"yyyy":return p(x.getFullYear(),4);case"yy":return p(x.getFullYear());case"dddd":return $C.dayNames[x.getDay()];case"ddd":return $C.abbreviatedDayNames[x.getDay()];case"dd":return p(x.getDate());case"d":return x.getDate();case"MMMM":return $C.monthNames[x.getMonth()];case"MMM":return $C.abbreviatedMonthNames[x.getMonth()];case"MM":return p((x.getMonth()+1));case"M":return x.getMonth()+1;case"t":return x.h()<12?$C.amDesignator.substring(0,1):$C.pmDesignator.substring(0,1);case"tt":return x.h()<12?$C.amDesignator:$C.pmDesignator;case"S":return ord(x.getDate());default:return m;}}):this._toString();};}());
-(function(){var $D=Date,$P=$D.prototype,$C=$D.CultureInfo,$N=Number.prototype;$P._orient=+1;$P._nth=null;$P._is=false;$P._same=false;$P._isSecond=false;$N._dateElement="day";$P.next=function(){this._orient=+1;return this;};$D.next=function(){return $D.today().next();};$P.last=$P.prev=$P.previous=function(){this._orient=-1;return this;};$D.last=$D.prev=$D.previous=function(){return $D.today().last();};$P.is=function(){this._is=true;return this;};$P.same=function(){this._same=true;this._isSecond=false;return this;};$P.today=function(){return this.same().day();};$P.weekday=function(){if(this._is){this._is=false;return(!this.is().sat()&&!this.is().sun());}
-return false;};$P.at=function(time){return(typeof time==="string")?$D.parse(this.toString("d")+" "+time):this.set(time);};$N.fromNow=$N.after=function(date){var c={};c[this._dateElement]=this;return((!date)?new Date():date.clone()).add(c);};$N.ago=$N.before=function(date){var c={};c[this._dateElement]=this*-1;return((!date)?new Date():date.clone()).add(c);};var dx=("sunday monday tuesday wednesday thursday friday saturday").split(/\s/),mx=("january february march april may june july august september october november december").split(/\s/),px=("Millisecond Second Minute Hour Day Week Month Year").split(/\s/),pxf=("Milliseconds Seconds Minutes Hours Date Week Month FullYear").split(/\s/),nth=("final first second third fourth fifth").split(/\s/),de;$P.toObject=function(){var o={};for(var i=0;i<px.length;i++){o[px[i].toLowerCase()]=this["get"+pxf[i]]();}
-return o;};$D.fromObject=function(config){config.week=null;return Date.today().set(config);};var df=function(n){return function(){if(this._is){this._is=false;return this.getDay()==n;}
-if(this._nth!==null){if(this._isSecond){this.addSeconds(this._orient*-1);}
-this._isSecond=false;var ntemp=this._nth;this._nth=null;var temp=this.clone().moveToLastDayOfMonth();this.moveToNthOccurrence(n,ntemp);if(this>temp){throw new RangeError($D.getDayName(n)+" does not occur "+ntemp+" times in the month of "+$D.getMonthName(temp.getMonth())+" "+temp.getFullYear()+".");}
-return this;}
-return this.moveToDayOfWeek(n,this._orient);};};var sdf=function(n){return function(){var t=$D.today(),shift=n-t.getDay();if(n===0&&$C.firstDayOfWeek===1&&t.getDay()!==0){shift=shift+7;}
-return t.addDays(shift);};};for(var i=0;i<dx.length;i++){$D[dx[i].toUpperCase()]=$D[dx[i].toUpperCase().substring(0,3)]=i;$D[dx[i]]=$D[dx[i].substring(0,3)]=sdf(i);$P[dx[i]]=$P[dx[i].substring(0,3)]=df(i);}
-var mf=function(n){return function(){if(this._is){this._is=false;return this.getMonth()===n;}
-return this.moveToMonth(n,this._orient);};};var smf=function(n){return function(){return $D.today().set({month:n,day:1});};};for(var j=0;j<mx.length;j++){$D[mx[j].toUpperCase()]=$D[mx[j].toUpperCase().substring(0,3)]=j;$D[mx[j]]=$D[mx[j].substring(0,3)]=smf(j);$P[mx[j]]=$P[mx[j].substring(0,3)]=mf(j);}
-var ef=function(j){return function(){if(this._isSecond){this._isSecond=false;return this;}
-if(this._same){this._same=this._is=false;var o1=this.toObject(),o2=(arguments[0]||new Date()).toObject(),v="",k=j.toLowerCase();for(var m=(px.length-1);m>-1;m--){v=px[m].toLowerCase();if(o1[v]!=o2[v]){return false;}
-if(k==v){break;}}
-return true;}
-if(j.substring(j.length-1)!="s"){j+="s";}
-return this["add"+j](this._orient);};};var nf=function(n){return function(){this._dateElement=n;return this;};};for(var k=0;k<px.length;k++){de=px[k].toLowerCase();$P[de]=$P[de+"s"]=ef(px[k]);$N[de]=$N[de+"s"]=nf(de);}
-$P._ss=ef("Second");var nthfn=function(n){return function(dayOfWeek){if(this._same){return this._ss(arguments[0]);}
-if(dayOfWeek||dayOfWeek===0){return this.moveToNthOccurrence(dayOfWeek,n);}
-this._nth=n;if(n===2&&(dayOfWeek===undefined||dayOfWeek===null)){this._isSecond=true;return this.addSeconds(this._orient);}
-return this;};};for(var l=0;l<nth.length;l++){$P[nth[l]]=(l===0)?nthfn(-1):nthfn(l);}}());
-(function(){Date.Parsing={Exception:function(s){this.message="Parse error at '"+s.substring(0,10)+" ...'";}};var $P=Date.Parsing;var _=$P.Operators={rtoken:function(r){return function(s){var mx=s.match(r);if(mx){return([mx[0],s.substring(mx[0].length)]);}else{throw new $P.Exception(s);}};},token:function(s){return function(s){return _.rtoken(new RegExp("^\s*"+s+"\s*"))(s);};},stoken:function(s){return _.rtoken(new RegExp("^"+s));},until:function(p){return function(s){var qx=[],rx=null;while(s.length){try{rx=p.call(this,s);}catch(e){qx.push(rx[0]);s=rx[1];continue;}
-break;}
-return[qx,s];};},many:function(p){return function(s){var rx=[],r=null;while(s.length){try{r=p.call(this,s);}catch(e){return[rx,s];}
-rx.push(r[0]);s=r[1];}
-return[rx,s];};},optional:function(p){return function(s){var r=null;try{r=p.call(this,s);}catch(e){return[null,s];}
-return[r[0],r[1]];};},not:function(p){return function(s){try{p.call(this,s);}catch(e){return[null,s];}
-throw new $P.Exception(s);};},ignore:function(p){return p?function(s){var r=null;r=p.call(this,s);return[null,r[1]];}:null;},product:function(){var px=arguments[0],qx=Array.prototype.slice.call(arguments,1),rx=[];for(var i=0;i<px.length;i++){rx.push(_.each(px[i],qx));}
-return rx;},cache:function(rule){var cache={},r=null;return function(s){try{r=cache[s]=(cache[s]||rule.call(this,s));}catch(e){r=cache[s]=e;}
-if(r instanceof $P.Exception){throw r;}else{return r;}};},any:function(){var px=arguments;return function(s){var r=null;for(var i=0;i<px.length;i++){if(px[i]==null){continue;}
-try{r=(px[i].call(this,s));}catch(e){r=null;}
-if(r){return r;}}
-throw new $P.Exception(s);};},each:function(){var px=arguments;return function(s){var rx=[],r=null;for(var i=0;i<px.length;i++){if(px[i]==null){continue;}
-try{r=(px[i].call(this,s));}catch(e){throw new $P.Exception(s);}
-rx.push(r[0]);s=r[1];}
-return[rx,s];};},all:function(){var px=arguments,_=_;return _.each(_.optional(px));},sequence:function(px,d,c){d=d||_.rtoken(/^\s*/);c=c||null;if(px.length==1){return px[0];}
-return function(s){var r=null,q=null;var rx=[];for(var i=0;i<px.length;i++){try{r=px[i].call(this,s);}catch(e){break;}
-rx.push(r[0]);try{q=d.call(this,r[1]);}catch(ex){q=null;break;}
-s=q[1];}
-if(!r){throw new $P.Exception(s);}
-if(q){throw new $P.Exception(q[1]);}
-if(c){try{r=c.call(this,r[1]);}catch(ey){throw new $P.Exception(r[1]);}}
-return[rx,(r?r[1]:s)];};},between:function(d1,p,d2){d2=d2||d1;var _fn=_.each(_.ignore(d1),p,_.ignore(d2));return function(s){var rx=_fn.call(this,s);return[[rx[0][0],r[0][2]],rx[1]];};},list:function(p,d,c){d=d||_.rtoken(/^\s*/);c=c||null;return(p instanceof Array?_.each(_.product(p.slice(0,-1),_.ignore(d)),p.slice(-1),_.ignore(c)):_.each(_.many(_.each(p,_.ignore(d))),px,_.ignore(c)));},set:function(px,d,c){d=d||_.rtoken(/^\s*/);c=c||null;return function(s){var r=null,p=null,q=null,rx=null,best=[[],s],last=false;for(var i=0;i<px.length;i++){q=null;p=null;r=null;last=(px.length==1);try{r=px[i].call(this,s);}catch(e){continue;}
-rx=[[r[0]],r[1]];if(r[1].length>0&&!last){try{q=d.call(this,r[1]);}catch(ex){last=true;}}else{last=true;}
-if(!last&&q[1].length===0){last=true;}
-if(!last){var qx=[];for(var j=0;j<px.length;j++){if(i!=j){qx.push(px[j]);}}
-p=_.set(qx,d).call(this,q[1]);if(p[0].length>0){rx[0]=rx[0].concat(p[0]);rx[1]=p[1];}}
-if(rx[1].length<best[1].length){best=rx;}
-if(best[1].length===0){break;}}
-if(best[0].length===0){return best;}
-if(c){try{q=c.call(this,best[1]);}catch(ey){throw new $P.Exception(best[1]);}
-best[1]=q[1];}
-return best;};},forward:function(gr,fname){return function(s){return gr[fname].call(this,s);};},replace:function(rule,repl){return function(s){var r=rule.call(this,s);return[repl,r[1]];};},process:function(rule,fn){return function(s){var r=rule.call(this,s);return[fn.call(this,r[0]),r[1]];};},min:function(min,rule){return function(s){var rx=rule.call(this,s);if(rx[0].length<min){throw new $P.Exception(s);}
-return rx;};}};var _generator=function(op){return function(){var args=null,rx=[];if(arguments.length>1){args=Array.prototype.slice.call(arguments);}else if(arguments[0]instanceof Array){args=arguments[0];}
-if(args){for(var i=0,px=args.shift();i<px.length;i++){args.unshift(px[i]);rx.push(op.apply(null,args));args.shift();return rx;}}else{return op.apply(null,arguments);}};};var gx="optional not ignore cache".split(/\s/);for(var i=0;i<gx.length;i++){_[gx[i]]=_generator(_[gx[i]]);}
-var _vector=function(op){return function(){if(arguments[0]instanceof Array){return op.apply(null,arguments[0]);}else{return op.apply(null,arguments);}};};var vx="each any all".split(/\s/);for(var j=0;j<vx.length;j++){_[vx[j]]=_vector(_[vx[j]]);}}());(function(){var $D=Date,$P=$D.prototype,$C=$D.CultureInfo;var flattenAndCompact=function(ax){var rx=[];for(var i=0;i<ax.length;i++){if(ax[i]instanceof Array){rx=rx.concat(flattenAndCompact(ax[i]));}else{if(ax[i]){rx.push(ax[i]);}}}
-return rx;};$D.Grammar={};$D.Translator={hour:function(s){return function(){this.hour=Number(s);};},minute:function(s){return function(){this.minute=Number(s);};},second:function(s){return function(){this.second=Number(s);};},meridian:function(s){return function(){this.meridian=s.slice(0,1).toLowerCase();};},timezone:function(s){return function(){var n=s.replace(/[^\d\+\-]/g,"");if(n.length){this.timezoneOffset=Number(n);}else{this.timezone=s.toLowerCase();}};},day:function(x){var s=x[0];return function(){this.day=Number(s.match(/\d+/)[0]);};},month:function(s){return function(){this.month=(s.length==3)?"jan feb mar apr may jun jul aug sep oct nov dec".indexOf(s)/4:Number(s)-1;};},year:function(s){return function(){var n=Number(s);this.year=((s.length>2)?n:(n+(((n+2000)<$C.twoDigitYearMax)?2000:1900)));};},rday:function(s){return function(){switch(s){case"yesterday":this.days=-1;break;case"tomorrow":this.days=1;break;case"today":this.days=0;break;case"now":this.days=0;this.now=true;break;}};},finishExact:function(x){x=(x instanceof Array)?x:[x];for(var i=0;i<x.length;i++){if(x[i]){x[i].call(this);}}
-var now=new Date();if((this.hour||this.minute)&&(!this.month&&!this.year&&!this.day)){this.day=now.getDate();}
-if(!this.year){this.year=now.getFullYear();}
-if(!this.month&&this.month!==0){this.month=now.getMonth();}
-if(!this.day){this.day=1;}
-if(!this.hour){this.hour=0;}
-if(!this.minute){this.minute=0;}
-if(!this.second){this.second=0;}
-if(this.meridian&&this.hour){if(this.meridian=="p"&&this.hour<12){this.hour=this.hour+12;}else if(this.meridian=="a"&&this.hour==12){this.hour=0;}}
-if(this.day>$D.getDaysInMonth(this.year,this.month)){throw new RangeError(this.day+" is not a valid value for days.");}
-var r=new Date(this.year,this.month,this.day,this.hour,this.minute,this.second);if(this.timezone){r.set({timezone:this.timezone});}else if(this.timezoneOffset){r.set({timezoneOffset:this.timezoneOffset});}
-return r;},finish:function(x){x=(x instanceof Array)?flattenAndCompact(x):[x];if(x.length===0){return null;}
-for(var i=0;i<x.length;i++){if(typeof x[i]=="function"){x[i].call(this);}}
-var today=$D.today();if(this.now&&!this.unit&&!this.operator){return new Date();}else if(this.now){today=new Date();}
-var expression=!!(this.days&&this.days!==null||this.orient||this.operator);var gap,mod,orient;orient=((this.orient=="past"||this.operator=="subtract")?-1:1);if(!this.now&&"hour minute second".indexOf(this.unit)!=-1){today.setTimeToNow();}
-if(this.month||this.month===0){if("year day hour minute second".indexOf(this.unit)!=-1){this.value=this.month+1;this.month=null;expression=true;}}
-if(!expression&&this.weekday&&!this.day&&!this.days){var temp=Date[this.weekday]();this.day=temp.getDate();if(!this.month){this.month=temp.getMonth();}
-this.year=temp.getFullYear();}
-if(expression&&this.weekday&&this.unit!="month"){this.unit="day";gap=($D.getDayNumberFromName(this.weekday)-today.getDay());mod=7;this.days=gap?((gap+(orient*mod))%mod):(orient*mod);}
-if(this.month&&this.unit=="day"&&this.operator){this.value=(this.month+1);this.month=null;}
-if(this.value!=null&&this.month!=null&&this.year!=null){this.day=this.value*1;}
-if(this.month&&!this.day&&this.value){today.set({day:this.value*1});if(!expression){this.day=this.value*1;}}
-if(!this.month&&this.value&&this.unit=="month"&&!this.now){this.month=this.value;expression=true;}
-if(expression&&(this.month||this.month===0)&&this.unit!="year"){this.unit="month";gap=(this.month-today.getMonth());mod=12;this.months=gap?((gap+(orient*mod))%mod):(orient*mod);this.month=null;}
-if(!this.unit){this.unit="day";}
-if(!this.value&&this.operator&&this.operator!==null&&this[this.unit+"s"]&&this[this.unit+"s"]!==null){this[this.unit+"s"]=this[this.unit+"s"]+((this.operator=="add")?1:-1)+(this.value||0)*orient;}else if(this[this.unit+"s"]==null||this.operator!=null){if(!this.value){this.value=1;}
-this[this.unit+"s"]=this.value*orient;}
-if(this.meridian&&this.hour){if(this.meridian=="p"&&this.hour<12){this.hour=this.hour+12;}else if(this.meridian=="a"&&this.hour==12){this.hour=0;}}
-if(this.weekday&&!this.day&&!this.days){var temp=Date[this.weekday]();this.day=temp.getDate();if(temp.getMonth()!==today.getMonth()){this.month=temp.getMonth();}}
-if((this.month||this.month===0)&&!this.day){this.day=1;}
-if(!this.orient&&!this.operator&&this.unit=="week"&&this.value&&!this.day&&!this.month){return Date.today().setWeek(this.value);}
-if(expression&&this.timezone&&this.day&&this.days){this.day=this.days;}
-return(expression)?today.add(this):today.set(this);}};var _=$D.Parsing.Operators,g=$D.Grammar,t=$D.Translator,_fn;g.datePartDelimiter=_.rtoken(/^([\s\-\.\,\/\x27]+)/);g.timePartDelimiter=_.stoken(":");g.whiteSpace=_.rtoken(/^\s*/);g.generalDelimiter=_.rtoken(/^(([\s\,]|at|@|on)+)/);var _C={};g.ctoken=function(keys){var fn=_C[keys];if(!fn){var c=$C.regexPatterns;var kx=keys.split(/\s+/),px=[];for(var i=0;i<kx.length;i++){px.push(_.replace(_.rtoken(c[kx[i]]),kx[i]));}
-fn=_C[keys]=_.any.apply(null,px);}
-return fn;};g.ctoken2=function(key){return _.rtoken($C.regexPatterns[key]);};g.h=_.cache(_.process(_.rtoken(/^(0[0-9]|1[0-2]|[1-9])/),t.hour));g.hh=_.cache(_.process(_.rtoken(/^(0[0-9]|1[0-2])/),t.hour));g.H=_.cache(_.process(_.rtoken(/^([0-1][0-9]|2[0-3]|[0-9])/),t.hour));g.HH=_.cache(_.process(_.rtoken(/^([0-1][0-9]|2[0-3])/),t.hour));g.m=_.cache(_.process(_.rtoken(/^([0-5][0-9]|[0-9])/),t.minute));g.mm=_.cache(_.process(_.rtoken(/^[0-5][0-9]/),t.minute));g.s=_.cache(_.process(_.rtoken(/^([0-5][0-9]|[0-9])/),t.second));g.ss=_.cache(_.process(_.rtoken(/^[0-5][0-9]/),t.second));g.hms=_.cache(_.sequence([g.H,g.m,g.s],g.timePartDelimiter));g.t=_.cache(_.process(g.ctoken2("shortMeridian"),t.meridian));g.tt=_.cache(_.process(g.ctoken2("longMeridian"),t.meridian));g.z=_.cache(_.process(_.rtoken(/^((\+|\-)\s*\d\d\d\d)|((\+|\-)\d\d\:?\d\d)/),t.timezone));g.zz=_.cache(_.process(_.rtoken(/^((\+|\-)\s*\d\d\d\d)|((\+|\-)\d\d\:?\d\d)/),t.timezone));g.zzz=_.cache(_.process(g.ctoken2("timezone"),t.timezone));g.timeSuffix=_.each(_.ignore(g.whiteSpace),_.set([g.tt,g.zzz]));g.time=_.each(_.optional(_.ignore(_.stoken("T"))),g.hms,g.timeSuffix);g.d=_.cache(_.process(_.each(_.rtoken(/^([0-2]\d|3[0-1]|\d)/),_.optional(g.ctoken2("ordinalSuffix"))),t.day));g.dd=_.cache(_.process(_.each(_.rtoken(/^([0-2]\d|3[0-1])/),_.optional(g.ctoken2("ordinalSuffix"))),t.day));g.ddd=g.dddd=_.cache(_.process(g.ctoken("sun mon tue wed thu fri sat"),function(s){return function(){this.weekday=s;};}));g.M=_.cache(_.process(_.rtoken(/^(1[0-2]|0\d|\d)/),t.month));g.MM=_.cache(_.process(_.rtoken(/^(1[0-2]|0\d)/),t.month));g.MMM=g.MMMM=_.cache(_.process(g.ctoken("jan feb mar apr may jun jul aug sep oct nov dec"),t.month));g.y=_.cache(_.process(_.rtoken(/^(\d\d?)/),t.year));g.yy=_.cache(_.process(_.rtoken(/^(\d\d)/),t.year));g.yyy=_.cache(_.process(_.rtoken(/^(\d\d?\d?\d?)/),t.year));g.yyyy=_.cache(_.process(_.rtoken(/^(\d\d\d\d)/),t.year));_fn=function(){return _.each(_.any.apply(null,arguments),_.not(g.ctoken2("timeContext")));};g.day=_fn(g.d,g.dd);g.month=_fn(g.M,g.MMM);g.year=_fn(g.yyyy,g.yy);g.orientation=_.process(g.ctoken("past future"),function(s){return function(){this.orient=s;};});g.operator=_.process(g.ctoken("add subtract"),function(s){return function(){this.operator=s;};});g.rday=_.process(g.ctoken("yesterday tomorrow today now"),t.rday);g.unit=_.process(g.ctoken("second minute hour day week month year"),function(s){return function(){this.unit=s;};});g.value=_.process(_.rtoken(/^\d\d?(st|nd|rd|th)?/),function(s){return function(){this.value=s.replace(/\D/g,"");};});g.expression=_.set([g.rday,g.operator,g.value,g.unit,g.orientation,g.ddd,g.MMM]);_fn=function(){return _.set(arguments,g.datePartDelimiter);};g.mdy=_fn(g.ddd,g.month,g.day,g.year);g.ymd=_fn(g.ddd,g.year,g.month,g.day);g.dmy=_fn(g.ddd,g.day,g.month,g.year);g.date=function(s){return((g[$C.dateElementOrder]||g.mdy).call(this,s));};g.format=_.process(_.many(_.any(_.process(_.rtoken(/^(dd?d?d?|MM?M?M?|yy?y?y?|hh?|HH?|mm?|ss?|tt?|zz?z?)/),function(fmt){if(g[fmt]){return g[fmt];}else{throw $D.Parsing.Exception(fmt);}}),_.process(_.rtoken(/^[^dMyhHmstz]+/),function(s){return _.ignore(_.stoken(s));}))),function(rules){return _.process(_.each.apply(null,rules),t.finishExact);});var _F={};var _get=function(f){return _F[f]=(_F[f]||g.format(f)[0]);};g.formats=function(fx){if(fx instanceof Array){var rx=[];for(var i=0;i<fx.length;i++){rx.push(_get(fx[i]));}
-return _.any.apply(null,rx);}else{return _get(fx);}};g._formats=g.formats(["\"yyyy-MM-ddTHH:mm:ssZ\"","yyyy-MM-ddTHH:mm:ssZ","yyyy-MM-ddTHH:mm:ssz","yyyy-MM-ddTHH:mm:ss","yyyy-MM-ddTHH:mmZ","yyyy-MM-ddTHH:mmz","yyyy-MM-ddTHH:mm","ddd, MMM dd, yyyy H:mm:ss tt","ddd MMM d yyyy HH:mm:ss zzz","MMddyyyy","ddMMyyyy","Mddyyyy","ddMyyyy","Mdyyyy","dMyyyy","yyyy","Mdyy","dMyy","d"]);g._start=_.process(_.set([g.date,g.time,g.expression],g.generalDelimiter,g.whiteSpace),t.finish);g.start=function(s){try{var r=g._formats.call({},s);if(r[1].length===0){return r;}}catch(e){}
-return g._start.call({},s);};$D._parse=$D.parse;$D.parse=function(s){var r=null;if(!s){return null;}
-if(s instanceof Date){return s;}
-try{r=$D.Grammar.start.call({},s.replace(/^\s*(\S*(\s+\S+)*)\s*$/,"$1"));}catch(e){return null;}
-return((r[1].length===0)?r[0]:null);};$D.getParseFunction=function(fx){var fn=$D.Grammar.formats(fx);return function(s){var r=null;try{r=fn.call({},s);}catch(e){return null;}
-return((r[1].length===0)?r[0]:null);};};$D.parseExact=function(s,fx){return $D.getParseFunction(fx)(s);};}());
-
- function ShiftPlanningAdmin(){
-    this.initialize();
-    return true;
-}
-
-ShiftPlanningAdmin.prototype = {
-    initialize: function(){
-        
-    }
-    
-}
-
-
-
-
 
  function ShiftPlanning(){
     this.raw = {};
@@ -757,10 +269,10 @@ ShiftPlanning.prototype = {
             }
         });
     },
-    api: function(module, method, arguments, callback, errorCallback){
+    api: function(module, method, req_data, callback, errorCallback){
         var self = this;
         //check is same api call runing and if it's running don't alow new one
-        var a = module + '.' + method + '.' + JSON.stringify(arguments);
+        var a = module + '.' + method + '.' + JSON.stringify(req_data);
         if (typeof this.apiCalls[a] != 'undefined' && this.apiCalls[a] != null) {
             return false;
         }
@@ -768,7 +280,7 @@ ShiftPlanning.prototype = {
             module: module,
             method: method
         };
-        $.each(arguments,function(index, item) {
+        $.each(req_data,function(index, item) {
             data[index] = item;
         });
 //        if (method.toLowerCase() == 'get') {
@@ -971,458 +483,884 @@ ShiftPlanning.prototype = {
 
 
 
- //creation of touchmove event used for tablet/mobile devices
-var cal;
-var lastTouch;
-var clickEvent = 'click';
-var deviceAgent = navigator.userAgent.toLowerCase();
-var agentID = deviceAgent.match(/(iphone|ipod|ipad)/);
-
-var ua = navigator.userAgent.toLowerCase();
-var isAndroid = ua.indexOf("android") > -1; //&& ua.indexOf("mobile");
-
-if (agentID) {
-    clickEvent = 'click';
+ var ShiftPlanningModel = function(){
+    //do we run initialize
+    this.cache = {};
+    //current diff
+    this.diff = '';
 }
 
-jQuery.event.special.touch = {
-    setup: function(data,namespaces){
-        var elem = this, $elem = jQuery(elem);
-        if (window.Touch) {
-            $elem.bind('touchstart', jQuery.event.special.touch.onTouchStart);
-            $elem.bind('touchmove', jQuery.event.special.touch.onTouchMove);
-            $elem.bind('touchend', jQuery.event.special.touch.onTouchEnd);
-        } else {
-            $elem.bind('click', jQuery.event.special.touch.click);
-        }
-    },
-    click: function (event) {
-        event.type = "touch";
-        jQuery.event.handle.apply(this, arguments);
-    },
-
-    teardown: function (namespaces) {
-        var elem = this, $elem = jQuery(elem);
-        if (window.Touch) {
-            $elem.unbind('touchstart', jQuery.event.special.touch.onTouchStart);
-            $elem.unbind('touchmove', jQuery.event.special.touch.onTouchMove);
-            $elem.unbind('touchend', jQuery.event.special.touch.onTouchEnd);
-        } else {
-            $elem.unbind('click', jQuery.event.special.touch.click);
-        }
-    },
-
-    onTouchStart: function (e) {
-        this.moved = false;
-        lastTouch = e.originalEvent.targetTouches[0];
-    },
-
-    onTouchMove: function (e) {
-        this.moved = true;
-    },
-
-    onTouchEnd: function (event) {
-        if (!this.moved) {
-            event.type = "touch";
-            jQuery.event.handle.apply(this, arguments)
-        }
+ShiftPlanningModel.prototype.addModel = function(model, addClass){
+    //we extends add class with base methods and initalize it into model object
+    $.extend(addClass.prototype, spModel);
+    if (typeof this[model] == 'undefined'){
+        this[model] = new addClass;
     }
 }
 
-ShiftPlanning.prototype.toggleMenu = function(){
-    $('#menu').toggleClass('hidden');
-    $('#wrapper').toggleClass('extended');
-    
-    if ($('#wrapper').hasClass('extended')){
-        $('#wrapper').css('margin-left', 190);
-        $('#menu').css('margin-left', 0);
-        $('.blackMask').css('display','block');
-        $('.blackMask').css('opacity','0.5');
+ShiftPlanningModel.prototype.get = function(module, data, success, error){
+    var self = this;
+//    self.cacheDiff(data);
+//    if (self.isSetCache(module)){
+//        success(self.getCache(module));
+//    } else {
+        if (typeof this[module] == 'undefined'){
+            sp.api(this.model + '.' + module, 'get', data, function(response) {
+                //self.setCache(module, sp.map(response.data));
+                if(typeof success == 'function'){
+                    success.call(this, response);
+                }
+            }, function(response){
+                //self.clearCache(module);
+                sp.showError(response.error);
+                if(typeof error == 'function'){
+                    error.call(this, error);
+                }
+            });
+        } else {
+            this[module](module, 'get', data, function(response){
+                //self.setCache(module, sp.map(response.data));
+                if(typeof success == 'function'){
+                    success.call(this, response);
+                }
+            }, function(response){
+                //self.clearCache(module);
+                sp.showError(response.error);
+                if(typeof error == 'function'){
+                    error.call(this, response);
+                }
+            });
+        }
+    //}
+}
+
+ShiftPlanningModel.prototype.update = function(module, data, success, error){
+    var self = this;
+    //    self.cacheDiff(data);
+    //    if (self.isSetCache(module)){
+    //        success(self.getCache(module));
+    //    } else {
+    if (typeof this[module] == 'undefined'){
+        sp.api(this.model + '.' + module, 'update', data, function(response) {
+            //self.setCache(module, sp.map(response.data));
+            if(typeof success == 'function'){
+                success.call(this, response);
+            }
+        }, function(response){
+            //self.clearCache(module);
+            sp.showError(response.error);
+            if(typeof error == 'function'){
+                error.call(this, error);
+            }
+        });
     } else {
-        $('#wrapper').css('margin-left', 0);
-        $('#menu').css('margin-left', -190);
-        $('.blackMask').css('display','none');
-        $('.blackMask').css('opacity','0');
+        this[module](module, 'update', data, function(response){
+            //self.setCache(module, sp.map(response.data));
+            if(typeof success == 'function'){
+                success.call(this, response);
+            }
+        }, function(response){
+            //self.clearCache(module);
+            sp.showError(response.error);
+            if(typeof error == 'function'){
+                error.call(this, response);
+            }
+        });
     }
+//}
 }
 
-ShiftPlanning.prototype.loadSubPage = function(obj, page, subpage) {
-    if (subpage == 'logout'){
-        this.staff.logout();
+ShiftPlanningModel.prototype.create = function(module, data, success, error){
+    var self = this;
+    //    self.cacheDiff(data);
+    //    if (self.isSetCache(module)){
+    //        success(self.getCache(module));
+    //    } else {
+    if (typeof this[module] == 'undefined'){
+        sp.api(this.model + '.' + module, 'create', data, function(response) {
+            //self.setCache(module, sp.map(response.data));
+            if(typeof success == 'function'){
+                success.call(this, response);
+            }
+        }, function(response){
+            //self.clearCache(module);
+            sp.showError(response.error);
+            if(typeof error == 'function'){
+                error.call(this, error);
+            }
+        });
+    } else {
+        this[module](module, 'create', data, function(response){
+            //self.setCache(module, sp.map(response.data));
+            if(typeof success == 'function'){
+                success.call(this, response);
+            }
+        }, function(response){
+            //self.clearCache(module);
+            sp.showError(response.error);
+            if(typeof error == 'function'){
+                error.call(this, response);
+            }
+        });
+    }
+//}
+}
+
+ShiftPlanningModel.prototype.del = function(module, data, success, error){
+    var self = this;
+    //    self.cacheDiff(data);
+    //    if (self.isSetCache(module)){
+    //        success(self.getCache(module));
+    //    } else {
+    if (typeof this[module] == 'undefined'){
+        sp.api(this.model + '.' + module, 'delete', data, function(response) {
+            //self.setCache(module, sp.map(response.data));
+            if(typeof success == 'function'){
+                success.call(this, response);
+            }
+        }, function(response){
+            sp.showError(response.error);
+            if(typeof error == 'function'){
+                error.call(this, error);
+            }
+        });
+    } else {
+        this[module](module, 'delete', data, function(response){
+            //self.setCache(module, sp.map(response.data));
+            if(typeof success == 'function'){
+                success.call(this, response);
+            }
+        }, function(response){
+            sp.showError(response.error);
+            if(typeof error == 'function'){
+                error.call(this, error);
+            }
+        });
+    }
+//}
+}
+
+ShiftPlanningModel.prototype.set = function(module){
+    
+}
+
+ShiftPlanningModel.prototype.setCache = function(field, data){
+    if (typeof this.cache[field] == 'unfedined'){
+        this.cache[field] = {};
+    }
+    this.cache[field][this.diff] = data;
+}
+
+ShiftPlanningModel.prototype.clearCache = function(field){
+    this.cache[field] = {};
+}
+
+ShiftPlanningModel.prototype.getCache = function(field){
+    return this.cache[field];
+}
+
+ShiftPlanningModel.prototype.isSetCache = function(field){
+    if (typeof this.cache[field] != 'undefined' && this.cache[field].length > 0){
+        return true;
+    } else {
         return false;
     }
-	
-	$('.subNavigation').show();
-	
-	if($.trim(subpage)==''){
-		subpage = $('.subNav[page=' + page + '] li:first a').attr('subpage');
-	}
-	
-	// dirty fix for profile page, which is not in hashchange system
-	if(page == 'staff' && subpage == 'details'){
-		subpage = 'list';
-	}
-	
-    if (obj != ''){
-        obj.parent().parent().find('li').removeClass('active');
-        obj.parent().addClass('active');
-    }
-    
-    $('.subNavigation > div').hide();
-    $('.subNavigation > div.' + page).show();
-    
-    $('#pages > div').hide();
-    $('#pages #' + page + ' .main').hide();
-    $('#pages #' + page + ' .mainSub').hide();
-    $('#pages #' + page).show();
-    $('#pages #' + page + ' .main.' + subpage).show();
-    $('#pages #' + page + ' .mainSub.' + subpage).show();
-    
-    $('#menu .mainNav > li').removeClass('active');
-    $('#menu_' + page).addClass('active');
-    
-	if($('.subNav[page=' + page + '] li a[subpage=' + subpage + ']' ).length > 0){
-		$('.subNav[page=' + page + '] li').removeClass('active');
-		$('.subNav[page=' + page + '] li a[subpage=' + subpage + ']').parent().addClass('active');
-		
-		sp.hash(page+'/'+subpage);
-	}
-    
-    if (typeof this[page] != 'undefined' && 'loadSubPageEvents' in this[page]){
-        this[page].loadSubPageEvents(subpage);
-    }
-    
-    sp.fixCheckboxes();
-    if (page == 'schedule' && subpage == 'addShift') {
-    } else {
-        $(window).scrollTop(0);
-    }
 }
 
-ShiftPlanning.prototype.initialize = function(){
-    var self = this;
-    $(window).hashchange(function(){
-        if (sp.hashChange == false){
-            sp.hashChange = true;
-            return false;
-        }
-		
-        if (sp.hash().length > 0) {
-			var page = sp.hash();
-			var subpage = false;
-			// Check if the hash contains subpage
-			var subpagePosition = sp.hash().search("/");
-			
-			if(subpagePosition >= 0){
-				page = sp.hash().substring(0, subpagePosition);
-				subpage = sp.hash().substring(subpagePosition+1);
-			}
-			
-            if(page == 'logout')
-            {
-                self.staff.logout();
-                return false;
-            }
-
-			
-            if ($('#menu [page=' + page + ']').length > 0)
-			{
-                 $('#pages > div').hide();
-                 setTimeout(function(){
-
-                    $('#menu [page=' + page + ']').parent().parent().find('li').removeClass('active');
-                    $('#menu [page=' + page + ']').parent().addClass('active');
-					
-					if(subpage){
-						self.loadSubPage('', page, subpage);
-					}
-					else{
-						self.loadPage(page);
-					}
-                    
-                 }, 50);
-			}
-            else
-            {
-                if(page != 'login' && page != 'logout')
-                {
-                        user.loggedIn ? self.hash('dashboard') : self.hash('login') ;
-                }
-                else
-                {
-                    if(self.hash() == 'logout' && user.loggedIn)
-                    {
-                            self.staff.logout();
-                    }
-                    if(self.hash() == 'login' && user.loggedIn)
-                    {
-                            self.hash('dashboard');
-                    }
-                }
-            }
-        }
-    });  
-    $(document).ready(function(){
-        init();
-        $('.toggleMenu').bind(clickEvent, function(e){
-            e.stopPropagation();
-            e.preventDefault();
-            self.toggleMenu();
-        });
-        
-        
-        if(user.loggedIn){
-            $('.loginContainer').hide();
-            $('body').removeClass('login');
-            $('html').css('height','auto');
-            $('.applicationContainer').show();
-            if (sp.hash().length == 0 || sp.hash() == 'login'){
-                sp.hash('dashboard');
-            }
+//different data for same modul
+ShiftPlanningModel.prototype.cacheDiff = function(diff){
+    if (typeof diff != 'undefined'){
+        this.diff = JSON.stringify(diff);
+    } else {
+        if (this.diff.length == 0){
+            Log.log('Please set diff');
         } else {
-            $('.loginContainer').show();
-            $('body').addClass('login');
-            sp.hash('login');
-            $('#lo_u').focus();
+            return this.diff;
         }
-        
-        $('#wrapper .subNavigation .subNav:not(.notMain) a').bind(clickEvent, function(e){
-            e.preventDefault();
-            self.loadSubPage($(this), $(this).parent().parent().attr('page'), $(this).attr('subpage'));
-        });
-        
-        $('#menu .mainNav > li > a').bind(clickEvent, function(e){
-            if ($(this).hasClass('exit')) return true;
-            e.preventDefault();
-			
-			var page = sp.hash();
-			// Check if the hash contains subpage
-			var subpagePosition = sp.hash().search("/");
-			if(subpagePosition >= 0){
-				page = sp.hash().substring(0, subpagePosition);
-			}
-			
-            if ( $(this).attr('page') == page ) {
-                self.toggleMenu();
-                return false;
-            }
-            if ( $('#wrapper').hasClass('extended') ) {
-                self.toggleMenu();
-            }
-            sp.hashChange = true;
-			
-			page = $(this).attr('page');
-			var subpage = $('.subNav[page=' + page + '] li:first a').attr('subpage');
-            sp.hash(page + '/' + subpage);
-        });
-        $(window).hashchange();
-        
-        setInterval(function() {
-            $('#menu').css('height', self.calculateMenuHeight() );
-            var h = self.calculateMenuHeight();
-            $('#wrapper').css('min-height', (h > self.calculateWrapperHeight() ? h : self.calculateWrapperHeight()));
-            if ( $('.blackMask').css('opacity') == '0' ) {
-                $('.blackMask').hide();
-            }
-        }, 1000);
-        $('#wrapper').width($(window).width());
-        $('body').width($(window).width());
+    }
+    return true;
+}
 
-        //all mainUser names to lead to settings 
-        $('.userName').bind(clickEvent, function(){
-            sp.loadSubPage('', 'settings', 'overview');
+
+
+
+var spModel = new ShiftPlanningModel();
+
+
+//adding classes
+spModel.addModel('schedule', SPModelSchedule);
+spModel.addModel('requests', SPModelRequests);
+spModel.addModel('admin', SPModelAdmin);
+spModel.addModel('messaging', SPModelMessaging);
+spModel.addModel('timeclock', SPModelTimeClock);
+spModel.addModel('staff', SPModelStaff);
+spModel.addModel('payroll', SPModelPayroll);
+spModel.addModel('location', SPModelLocation);
+spModel.addModel('training', SPModelTraining);
+
+ var ShiftPlanningView = function(){
+    
+}
+
+ShiftPlanningView.prototype.optionSchedules = function(id, m, loc){
+    if (typeof m == 'undefined'){
+        m = false;
+    }
+    if (typeof loc == 'undefined'){
+        loc = false;
+    }
+    var opt;
+    var self = this;
+    var data;
+    if (typeof id == 'undefined' || id == 0){
+        data = spModel.schedule.allSchedules();
+    } else {
+        data = spModel.schedule.schedulesByUser(id, loc);
+    }
+    if (!m){
+        opt = '<option disabled="disabled" selected="selected" value="0">' + _('Select Schedule') + '</option>';
+    } else {
+        opt = '<option disabled="disabled" selected="selected" value="0">' + _('Select Schedule') + '</option>';
+    }
+    
+    if (!loc){
+        $.each(data, function(i, item){
+            if (self.checkPerm(item)){
+                opt += '<option value="' + i + '">' + ((typeof item == 'object') ? item.name : item) + '</option>';
+            }
+        });	
+    } else {
+        $.each(data, function(i, item){
+            opt += '<optgroup label="' + item.name + '">';
+            $.each(item.data, function(iL2, itemL2){
+                opt += '<option value="' + itemL2.id + '">' + itemL2.name +'</option>';
+            });
+            opt += '</optgroup>';
         });
-        
-        if (isAndroid){
-            $('#da_up_fi_hide').hide();
+    }
+
+    
+    return opt;
+}
+
+ShiftPlanningView.prototype.staffOption = function(notAdmin){
+    if (typeof notAdmin == 'undefined'){
+        notAdmin = false;
+    }
+    var opt;
+    if (notAdmin == false){
+        opt = '<option disabled="disabled" selected="selected" value="0">Select Employee</option>';
+        var l;
+        if (sp.staff.admin.info.group == 4){
+            l = sp.staff.fixed.employees;
+        } else {
+            l = spModel.staff.allStaff();
         }
-        
-//        $('.wrapper').bind('swipe', function(e) {
-//            var m = $('.wrapper').hasClass('extended');
-//            if (e.direction == 'right' && !m) {
-//                $('#menu').removeClass('hidden');
-//                $('#wrapper').addClass('extended');
-//                $('#wrapper').css('margin-left', 190);
-//                $('#menu').css('margin-left', 0);
-//                $('.blackMask').css('display','block');
-//                $('.blackMask').css('opacity','0.5');
-//            } else if (e.direction == 'left' && m) {
-//                $('#menu').addClass('hidden');
-//                $('#wrapper').removeClass('extended');
-//                $('#wrapper').css('margin-left', 0);
-//                $('#menu').css('margin-left', -190);
-//                $('.blackMask').css('display','none');
-//                $('.blackMask').css('opacity','0');
-//            }
-//        });
-//        //dragstart drag dragend
-//        var start = false;
-//        var element = 
-//        $('.wrapper').bind('dragstart', function(e){
-//            e.preventDefault();
-//            e.stopPropagation();
-//            $('.blackMask').css('display','block');
-//            $('.blackMask').css('opacity','0');
-//        });
-//        $('.wrapper').bind('drag', function(e){
-//            e.preventDefault();
-//            e.stopPropagation();
-//            var m = $('.wrapper').hasClass('extended');
-//            if (e.direction == 'left') {
-//                e.distanceX = 190 + parseInt(e.distanceX);
-//                if (Math.abs(parseInt(e.distanceX)) > 50 && m){
-//                    start = true;
-//                }
-//            } else {
-//                if (parseInt(e.distanceX) > 50 && !m){
-//                    start = true;
-//                }
-//            }
-//            element = 'wrapper';
-//            if (!start){
-//                return false;
-//            }
-//            if (e.distanceX <= 0){
-//                e.distanceX = 0;
-//            }
-//            if (e.distanceX >= 190){
-//                e.distanceX = 190;
-//            }
-//            if (start) {
-//                $('#wrapper').css('margin-left', parseInt(e.distanceX));
-//                $('#menu').css('margin-left',(-190 + parseInt(e.distanceX)) );   
-//                $('.blackMask').css('opacity',((0.5*parseInt(e.distanceX))/190).toFixed(1));
-//            }
-//        });
-//        
-//        $('.wrapper').bind('dragend', function(e){
-//            start = false;
-//            var len = parseInt($('#wrapper').css('margin-left'));
-//            if ( len > 90 ) {
-//                $('#menu').removeClass('hidden');
-//                $('#wrapper').addClass('extended');
-//                $('#wrapper').css('margin-left', 190);
-//                $('#menu').css('margin-left', 0);
-//                $('.blackMask').css('display','block');
-//                $('.blackMask').css('opacity','0.5');
-//            } else {
-//                $('#menu').addClass('hidden');
-//                $('#wrapper').removeClass('extended');
-//                $('#wrapper').css('margin-left', 0);
-//                $('#menu').css('margin-left', -190);
-//                $('.blackMask').css('display','none');
-//                $('.blackMask').css('opacity','0');
-//            }
-//        });
+        $.each(l, function(i, item){
+            opt += '<option value="' + item.id + '">' + ((typeof item == 'object') ? item.name : item) + '</option>';
+        });
+    } else {
+        opt = '<option value="' + sp.staff.admin.info.id + '">' + sp.staff.admin.info.name + '</option>';
+    }
+    return opt;
+}
+
+ShiftPlanningView.prototype.staffFilter = function(notAdmin){
+    if (typeof notAdmin == 'undefined'){
+        notAdmin = false;
+    }
+    var opt = '';
+    if (notAdmin == false){
+        if (sp.staff.admin.info.group <= 3){
+            opt = '<option value="0">All Employees</option>';
+        }
+        var l;
+	
+        if (sp.staff.admin.info.group == 4){
+            l = sp.staff.fixed.employees;
+        } else {
+            l = spModel.staff.allStaff();
+        }
+        $.each(l, function(i, item){
+            opt += '<option value="' + item.id + '">' + ((typeof item == 'object') ? item.name : item) + '</option>';
+        });
+    } else {
+        opt = '<option value="' + sp.staff.admin.info.id + '">' + sp.staff.admin.info.name + '</option>';
+    }
+    return opt;
+}
+
+ShiftPlanningView.prototype.scheduleFilter = function(id, deep){
+    if (typeof deep == 'undefined'){
+        deep = false;
+    }
+    var self = this;
+    var opt = '';
+    var data;
+    if (typeof id == 'undefined' || id == 0){
+        data = spModel.schedule.allSchedules();
+    } else {
+        data = spModel.schedule.schedulesByUser(id);
+    }
+    if (sp.staff.admin.info.group <= 3){
+        opt = '<option value="0">All Positions</option>';
+    }
+    
+    $.each(data, function(i, item){
+        if (self.checkPerm(item, deep)){
+            opt += '<option value="' + i + '">' + ((typeof item == 'object') ? item.name : item) + '</option>';
+        }
     });
     
-    $(window).bind('resize', function() {
-        $('#wrapper').width($(window).width());
-        $('body').width($(window).width());
-    });
+    return opt;
 }
 
-ShiftPlanning.prototype.calculateWrapperHeight = function() {
-    var wrapperHeight = $('#pages').height() + $('.subNavigation').height() + 20; 
-    return ($(window).height() > wrapperHeight) ? $(window).height() : wrapperHeight; 
-}
-
-ShiftPlanning.prototype.calculateMenuHeight = function () {
-    var h = this.calculateWrapperHeight();
-    if ( $('#menu .mainNav').height() + 150 > h) {
-        return $('#menu .mainNav').height() + 150;
+ShiftPlanningView.prototype.schedulerFilter = function(id, deep){
+    if (typeof deep == 'undefined'){
+        deep = false;
+    }
+    var self = this;
+    var data;
+    if (typeof id == 'undefined' || id == 0){
+        data = spModel.schedule.allSchedules();
     } else {
-        return h;
+        data = spModel.schedule.schedulesByUser(id);
+    }
+    var opt = '';
+    $.each(data, function(i, item){
+        if (self.checkPerm(item, deep)){
+            opt += '<option value="' + i + '">' + ((typeof item == 'object') ? item.name : item) + '</option>';
+        }
+    });
+    
+    return opt;
+}
+
+ShiftPlanningView.prototype.skillsFilter = function(notAdmin){
+    if (typeof notAdmin == 'undefined'){
+        notAdmin = false;
+    }
+    var opt;
+    if (notAdmin == false){
+        opt = '<option value="0">All Skills</option>';
+        $.each(spModel.staff.allSkills(), function(i, item){
+            opt += '<option value="' + item.id + '">' + ((typeof item == 'object') ? item.name : item) + '</option>';
+        });
+    } else {
+        opt = '<option value="' + sp.staff.admin.info.id + '">' + sp.staff.admin.info.name + '</option>';
+    }
+    return opt;
+}
+
+ShiftPlanningView.prototype.locationSelector = function(type){
+    if (typeof type == 'undefined'){
+        type = 2;
+    }
+    var opt = '<option value="0" selected="selected">' + ((type == 1) ? 'Select Location' : 'Select Work Site') + '</option>';
+    opt += '<optgroup lable="locations">';
+    $.each(spModel.location.locationsList(), function(i, item){
+        if (item.type == type){
+            opt += '<option value="' + item.id + '">' + item.name + '</option>';
+        }
+    });
+    opt += '</optgroup><optgroup><option value="add" type="' + type + '">' + ((type == 1) ? 'New Location?' : 'New Work Site?') + '</option></optgroup>';
+    return opt;
+}
+
+ShiftPlanningView.prototype.timeRanges = function(){
+    var times = spRanges.createSelector('times');
+    var res = '<option value="-1">Select</option>';
+    $.each(times, function(i, item){
+        res += '<option value="' + i + '" >' + item + '</option>'; 
+    });
+    
+    return res;
+}
+
+ShiftPlanningView.prototype.customFields = function(employee){ //gets employees custom fields and sends it to #da_se_ov_cu
+    var l = '';
+    var ch = '';
+    var res = '';
+    var br = 2;
+    var c = ''; 
+    if (typeof employee.custom != 'undefined'){
+        $.each(employee.custom, function(i, item){
+            if (item.toggle ==1) {
+                        c = 'check';
+                    }
+            
+        if (item.type != 4){
+            l += '<li>';
+            l += '<div>';
+            switch(item.type){
+                case '1':
+                    item.value = item.value == null ? '' : item.value ;
+                    l += '<label>' + item.name + ': <h4>' + item.value + '</h4></label>';
+                    break;
+                case '2':
+                    item.text = item.text == null ? '' : item.text ;
+                    l += '<label>' + item.name + ': <h4>' + item.text + '</h4></label>';
+                    break;
+                case '3':
+                    item.value = item.value == null ? '' : item.value ;
+                    l += '<label>' + item.name + ': <h4>' + item.value + '</h4></label>';
+                    break;
+            }
+            l += '</div>';
+            l += '</li>';
+        } else {
+            ch += '<li>'
+//            class="' + ((br % 2 == 0) ? 'even' : 'odd') + '">';
+            ch += '<span item="edit" class="checkbox ' + c + '" id=' + item.id + '>' + item.name + '</span>';
+            ch += '</li>';
+            br++; c='';
+    
+        }
+        
+        });
+    }
+      res = l +  ch ;
+     return (res.length > 0) ? res : this.emptyResult(_s('No custom fields to display'), 'li', 'noBorder');
+}
+
+ShiftPlanningView.prototype.editableCustomFields = function(employee){ //makes custom fields editable
+    var l = '', ch = '';
+    var res = '';
+    var br = 2;
+    var c = '';
+    if (typeof employee.custom != 'undefined'){
+        $.each (employee.custom, function (i, item) {
+            if (item.toggle ==1) {
+                c = 'check';
+            }
+             if (item.type != 4){
+                l += '<li>';
+                l += '<div>';
+                switch(item.type){
+                    case '1':
+                        l += '<label>' + item.name + ':</label><span class="input"><input item="edit" id="' + item.id + '" type="text" value="' + item.value + '" name=""></span>';
+                        break;
+                    case '2':
+                        l += '<label>' + item.name + ':</label><span class="input"><input item="edit" id="' + item.id + '" type="text" value="' + item.text + '" name=""></span>';
+                        break;
+                    case '3':
+                        l += '<label>' + item.name + ':</label>';
+                        l += '<span class="input"><select item="edit" id="' + item.id + '">';
+                        l += '<option>' + item.value + '</option>';
+                        var option = new Array();  // this will return an array with options from item.values
+                        option = item.values.split(",");
+                        $.each(option, function(a, opt){
+                            l += '<option>' + opt + '</option>';
+                        });
+                        l += '</select></span>';
+                        break;    
+                }
+                
+                l += '</div>';
+                l += '</li>';
+            } else {
+                 ch += '<li class="' + ((br % 2 == 0) ? 'even' : 'odd') + '">';
+                 ch += '<span item="edit" class="checkbox ' + c + '" id=' + item.id + '>' + item.name + '</span>';
+                 ch += '</li>';
+                 br++; c='';
+            }
+        }); 
+        res = l + '<li><ul>' + ch + '</ul></li>';
+    }
+   
+    return (res.length > 0) ? res : this.emptyResult(_s('No custom fields to display'), 'li', 'noBorder');
+}
+
+ShiftPlanningView.prototype.editableSchedules = function(employee){
+    var l = '';
+    var i = 2;
+    $.each(spModel.schedule.allSchedules(), function(i2, item){
+        var c = (typeof employee.schedules != 'undefined' && typeof employee.schedules[item.id] != 'undefined') ? 'check"' : '';
+        l += '<li class="' + ((i % 2 == 0) ? 'even' : 'odd') + '">';
+        l += '  <div>';
+        l += '      <span class="checkbox ' + c + '" itemId=' + item.id + '>' + item.name + '</span>';
+        l += '  </div>';
+        l += '</li>';
+        i++;
+    });
+    
+    return (l.length > 0) ? l : this.emptyResult(_s('No positions to display'), 'li', 'noBorder');
+}
+
+ShiftPlanningView.prototype.editableSkills = function(employee){
+    var l = '';
+    var i = 2;
+    $.each(spModel.staff.allSkills(), function(i2, item){
+        var c = (typeof employee.skills != 'undefined' && typeof employee.skills[item.id] != 'undefined') ? 'check' : '';
+        l += '<li class="' + ((i % 2 == 0) ? 'even' : 'odd') + '">';
+        l += '  <div>';
+        l += '      <span class="checkbox ' + c + '" itemId=' + item.id + '>' + item.name + '</span>';
+        l += '  </div>';
+        l += '</li>';
+        i++;
+    });
+    
+    return (l.length > 0) ? l : this.emptyResult(_s('No skills to display'), 'li', 'noBorder');
+}
+
+ShiftPlanningView.prototype.ulLoader = function(){
+    return '<li class="loading"></li>';
+}
+
+ShiftPlanningView.prototype.divLoader = function(){
+    return '<div class="loading"></div>';
+}
+
+ShiftPlanningView.prototype.emptyResult = function(text, tag, cl){
+    if (typeof cl == 'undefined'){
+        cl = '';
+    }
+    if (typeof tag == 'undefined'){
+        tag = 'div'
+    }
+    if (typeof text == 'undefined'){
+        text = _s('Na data for selected criteria!');
+    }
+    return '<' + tag + ' class="additional ' + cl + '"><p>' + text + '</p></' + tag + '>'
+}
+
+ShiftPlanningView.prototype.checkPerm = function(item, deep){
+    if (typeof deep == 'undefined'){
+        deep = false;
+    }
+    var c = 1;
+    if (deep){
+        c = 2;
+    }
+    var perm = true;
+    if (typeof item.perms != 'undefined'){
+        if (item.perms >= c){
+            perm = true;
+        } else {
+            perm = false;
+        }
+    }
+    return perm;
+}
+
+ShiftPlanningView.prototype.fixCurrency = function(cId, r){
+    if (typeof r == 'undefined'){
+        r = false;
+    }
+    var c = spRanges.currencies[cId];
+    
+    if (!r){
+        $('span.currency').html(c);
+    } else {
+        return c;
+    }
+    
+}
+
+ShiftPlanningView.prototype.bbc2HTML = function(S) {
+    if (S.indexOf('[') < 0) return S;
+
+    function X(p, f) {
+        return new RegExp(p, f)
+    }
+    function D(s) {
+        return rD.exec(s)
+    }
+    function R(s) {
+        return s.replace(rB, P)
+    }
+    function A(s, p) {
+        for (var i in p) s = s.replace(X(i, 'g'), p[i]); return s;
+    }
+
+    function P($0, $1, $2, $3) {
+        if ($3 && $3.indexOf('[') > -1) $3 = R($3);
+        switch ($1) {
+            case 'url':case 'anchor':case 'email':
+                return '<a '+ L[$1] + ($2||$3) +'">'+ $3 +'</a>';
+            case 'img':
+                var d = D($2);
+                return '<img src="'+ $3 +'"'+ (d ? ' width="'+ d[1] +'" height="'+ d[2] +'"' : '') +' alt="'+ (d ? '' : $2) +'" />';
+            case 'flash':case 'youtube':
+                var d = D($2)||[0, 425, 366];
+                return '<object type="application/x-shockwave-flash" data="'+ Y[$1] + $3 +'" width="'+ d[1] +'" height="'+ d[2] +'"><param name="movie" value="'+ Y[$1] + $3 +'" /></object>';
+            case 'float':
+                return '<span style="float: '+ $2 +'">'+ $3 +'</span>';
+            case 'left':case 'right':case 'center':case 'justify':
+                return '<div style="text-align: '+ $1 +'">'+ $3 +'</div>';
+            case 'google':case 'wikipedia':
+                return '<a href="'+ G[$1] + $3 +'">'+ $3 +'</a>';
+            case 'b':case 'i':case 'u':case 's':case 'sup':case 'sub':case 'h1':case 'h2':case 'h3':case 'h4':case 'h5':case 'h6':case 'table':case 'tr':case 'th':case 'td':
+                return '<'+ $1 +'>'+ $3 +'</'+ $1 +'>';
+            case 'row': case 'r':case 'header':case 'head':case 'h':case 'col':case 'c':
+                return '<'+ T[$1] +'>'+ $3 +'</'+ T[$1] +'>';
+            case 'acronym':case 'abbr':
+                return '<'+ $1 +' title="'+ $2 +'">'+ $3 +'</'+ $1 +'>';
+        }
+        return '['+ $1 + ($2 ? '='+ $2 : '') +']'+ $3 +'[/'+ $1 +']';
+    }
+
+    var rB = X('\\[([a-z][a-z0-9]*)(?:=([^\\]]+))?]((?:.|[\r\n])*?)\\[/\\1]', 'g'), rD = X('^(\\d+)x(\\d+)$');
+    var L = {
+        url: 'href="', 
+        'anchor': 'name="', 
+        email: 'href="mailto: '
+    };
+    var G = {
+        google: 'http://www.google.com/search?q=', 
+        wikipedia: 'http://www.wikipedia.org/wiki/'
+    };
+    var Y = {
+        youtube: 'http://www.youtube.com/v/', 
+        flash: ''
+    };
+    var T = {
+        row: 'tr', 
+        r: 'tr', 
+        header: 'th', 
+        head: 'th', 
+        h: 'th', 
+        col: 'td', 
+        c: 'td'
+    };
+    var C = {
+        notag: [{
+            '\\[': '&#91;', 
+            ']': '&#93;'
+        }, '', ''], 
+        code: [{
+            '<': '&lt;'
+        }, '<code><pre>', '</pre></code>']
+    };
+    C.php = [C.code[0], C.code[1]+ '&lt;?php ', '?>'+ C.code[2]];
+    var F = {
+        font: 'font-family:$1', 
+        size: 'font-size:$1px', 
+        color: 'color:$1'
+    };
+    var U = {
+        c: 'circle', 
+        d: 'disc', 
+        s: 'square', 
+        '1': 'decimal', 
+        a: 'lower-alpha', 
+        A: 'upper-alpha', 
+        i: 'lower-roman', 
+        I: 'upper-roman'
+    };
+    var I = {}, B = {};
+
+    for (var i in C) I['\\[('+ i +')]((?:.|[\r\n])*?)\\[/\\1]'] = function($0, $1, $2) {
+        return C[$1][1] + A($2, C[$1][0]) + C[$1][2]
+    };
+    for (var i in F) {
+        B['\\['+ i +'=([^\\]]+)]'] = '<span style="'+ F[i] +'">';
+        B['\\[/'+ i +']'] = '</span>';
+    }
+    B['\\[list]'] = '<ul>';
+    B['\\[list=(\\w)]'] = function($0, $1) {
+        return '<ul style="list-style-type: '+ (U[$1]||'disc') +'">'
+    };		
+    B['\\[/list]'] = '</ul>';
+    B['\\[\\*]'] = '<li>';
+	B['\\[/\\*]'] = '</li>';
+    B['\\[quote(?:=([^\\]]+))?]'] = function($0, $1) {
+        return '<div class="bb-quote">'+ ($1 ? $1 +' wrote' : 'Quote') +':<blockquote>'
+    };		
+    B['\\[/quote]'] = '</blockquote></div>';
+    B['\\[(hr|br)]'] = '<$1 />';
+    B['\\[sp]'] = '&nbsp;';
+    return R(A(A(S, I), B));
+}
+
+ShiftPlanningView.prototype.friendly_filesize = function(bytes) {
+    var labels = new Array('TB', 'GB', 'MB', 'kB', 'b');
+    var measurements = new Array(1099511627776, 1073741824, 1048576, 1024, 1);
+    for(var i=0; i<measurements.length; i++) {
+        var conv = bytes/measurements[i];
+        if(conv > 1) {
+            return Math.round(conv*10)/10+' '+labels[i];
+        }
     }
 }
 
-ShiftPlanning.prototype.globalLoader = function(){
-    //$('.bigLoader').show();
-}
+var spView = new ShiftPlanningView();
 
-ShiftPlanning.prototype.fixCheckboxes = function(){
-    $('#pages .checkbox:visible').removeClass('failsafe');
-    $('#pages .checkbox:visible').each(function(i, item){
-	if ($(this).outerHeight(true) > 45){
-	    $(this).addClass('failsafe');
+ var ShiftPlanningRanges = function(){
+    this.times = {
+	0 : {
+	    title : 'Today',
+	    start_time : Date.parse('today').getTime(),
+	    end_time : Date.parse('today').add(1).days().getTime()
+	},
+	1 : {
+	    title : 'Yesterday',
+	    start_time : Date.parse('yesterday').getTime(),
+	    end_time : Date.parse('yesterday').add(1).days().getTime()
+	},
+	2 : {
+	    title : 'Last 7 Days',
+	    start_time : strtotime('now -7 day')*1000,
+	    end_time : strtotime('tomorrow')*1000
+	},
+	3 : {
+	    title : 'This Week',
+	    start_time : Date.parse('sunday').getTime(),
+	    end_time : Date.parse('next saturday').getTime()
+	},
+	4 : {
+	    title : 'Last Week',
+	    start_time : Date.parse('today').moveToDayOfWeek(0).addWeeks(-2).getTime(),
+	    end_time : Date.parse('previous saturday').getTime()
+	},
+	5 : {
+	    title : 'This Month',
+	    start_time : strtotime('now -'+ (now().getDate() -1) + ' days')*1000,
+	    end_time : Date.parse('today').moveToLastDayOfMonth().getTime()
+	},
+	6 : {
+	    title : 'Last Month',
+	    start_time : strtotime('now -'+ (now().getDate() +30) + ' days')*1000,
+	    end_time : strtotime('now -'+ (now().getDate()) + ' days')*1000
+	},
+	7 : {
+	    title : 'One Year',
+	    start_time : strtotime('last year')*1000,
+	    end_time : strtotime('now')*1000
 	}
-    });
+    };
+    this.currencies = ['',
+            '$', '&#163;', '&#8364;', '&#8360;', '&#165;', '&#8361;', 'R', 'kr', '&#8369;', 'RM'
+    ]
+    this.weekdays = {
+            1:'Mon',
+            2:'Tue',
+            3:'Wed',
+            4:'Thu',
+            5:'Fri',
+            6:'Sat',
+            7:'Sun'
+    }
+    this.months = [
+            'Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'
+    ]
 }
 
-ShiftPlanning.prototype.showSuccess = function(text){
-    $('body').append('<div class="notification success hidden">' + text + '</div>');
-    $('body > .notification').css('top', $(document).scrollTop());
-    $('body > .notification').fadeIn('fast', function(){
-        setTimeout(function(){
-            $('body > .notification').fadeOut('fast', function(){
-                $('body > .notification').remove();
-            });
-        }, 2000);
+ShiftPlanningRanges.prototype.fixRanges = function(){
+    var self = this;
+    var czm = Date.parse('now').getTimezoneOffset() * 60 * 1000;
+    var tz = sp.staff.admin.settings.timezone;
+    var tzf = tz.split(',');
+    tzf = tzf[0].split(':');
+    var h = parseInt(tzf[0]) * 60*60;
+    var mp = (parseInt(tzf[0]) * 60*60)/Math.abs(parseInt(tzf[0]) * 60*60);
+    var min = (tzf[1] * 60);
+    $.each(this.times, function(i, item){
+	self.times[i].start_date = item.start_date + czm + (mp * (Math.abs(h) + min)) * 1000;
+	self.times[i].end_date = item.end_date + czm + (mp * (Math.abs(h) + min)) * 1000;
     });
+    self.times[3] = {
+        title : 'This Week',
+        start_time : Date.parse('sunday').add(sp.staff.admin.settings.startday - 1).days().getTime(),
+        end_time : Date.parse('next saturday').add(sp.staff.admin.settings.startday - 1).days().getTime()
+    }
+    self.times[4] = {
+        title : 'Last Week',
+        start_time : Date.parse('today').moveToDayOfWeek(0).addWeeks(-2).add(sp.staff.admin.settings.startday - 1).days().getTime(),
+        end_time : Date.parse('previous saturday').add(sp.staff.admin.settings.startday - 1).days().getTime()
+    }
 }
 
-ShiftPlanning.prototype.showError = function(text){
-    $('body').append('<div class="notification error hidden">' + text + '</div>');
-    $('body > .notification').css('top', $(document).scrollTop());
-    $('body > .notification').fadeIn('fast', function(){
-        setTimeout(function(){
-            $('body > .notification').fadeOut('fast', function(){
-                $('body > .notification').remove();
-            });
-        }, 2000);
-    });
+
+
+
+ShiftPlanningRanges.prototype.getRange = function(range, id){
+    return this[range][id];
 }
 
-function callAndroid(func, callback){
-    if (typeof Android != 'undefined'){
-	if (typeof func != 'undefined'){
-	    func = 'showToast';
-	}
-	return Android[func](function(res){
-	    if (typeof callback != 'undefined'){
-		callback(res);
-	    } else {
-		return res;
-	    }
+ShiftPlanningRanges.prototype.createSelector = function(range){
+    var res = [];
+    $.each(this[range], function(i, item){
+	res.push(item.title);
+    });
+    
+    return res;
+}
+
+var spRanges = new ShiftPlanningRanges();
+
+ function ShiftPlanningStaff(){
+    this.changed = true;
+    this.page = 6;
+    this.initialize();
+    return true;
+}
+
+ShiftPlanningStaff.prototype = {
+    data: {},
+    raw: {},
+    fixed : {},
+    admin: {},
+    initialize: function(){
+        
+    },
+    login: function(username, password){
+
+    },
+    loadPage : function(){
+        
+    }
+    
+}
+
+
+
+
+
+ function ShiftPlanningSchedule(){
+    this.initialize();
+    this.fix = 86000;
+    this.raw = {};
+    this.data = {};
+    this.prepared = {};
+    this.shifts = {};
+    this.shift = {};
+    this.loaded = false;
+    this.edit = false;
+    this.fromDashboard = false;
+    this.fromRecent = false ;
+    this.fromUpcoming = false ;
+    this.fromDashboardUpcoming = false;
+    this.fromStaff=false;
+	this.state =1;
+    this.settings = {
+        mode : 'employee',
+        start_date : 'yesterday',
+        end_date : 'yesterday'
+    };
+    this.page = 'today';
+    this.conflicts = {};
+    return true;
+}
+
+ShiftPlanningSchedule.prototype = {
+    initialize: function(){
+        
+    },
+    loadPage : function(){
+        
+    },
+    setConflicts : function(conf){
+	var self = this;
+	$.each(conf, function(i, item){
+	    self.conflicts[item.shift + ''] = item;
 	});
     }
     
-    return false;
 }
 
-//Initalizing javascript library
-var sp = new ShiftPlanning();
-ShiftPlanning.prototype.staff = new ShiftPlanningStaff();
-ShiftPlanning.prototype.schedule = new ShiftPlanningSchedule();
-ShiftPlanning.prototype.dashboard = new ShiftPlanningDashboard();
-ShiftPlanning.prototype.timeClock = new ShiftPlanningTimeClock();
-ShiftPlanning.prototype.reports = new ShiftPlanningReports();
-ShiftPlanning.prototype.requests = new ShiftPlanningRequests();
-ShiftPlanning.prototype.location = new ShiftPlanningLocation();
-ShiftPlanning.prototype.permissions = new ShiftPlanningPermissions();
-ShiftPlanning.prototype.training = new ShiftPlanningTraining();
-ShiftPlanning.prototype.settings = new ShiftPlanningSettings();
 
 
- var sp = new ShiftPlanning();
-ShiftPlanning.prototype.staff = new ShiftPlanningStaff();
-ShiftPlanning.prototype.schedule = new ShiftPlanningSchedule();
-ShiftPlanning.prototype.dashboard = new ShiftPlanningDashboard();
-ShiftPlanning.prototype.timeClock = new ShiftPlanningTimeClock();
-ShiftPlanning.prototype.reports = new ShiftPlanningReports();
-ShiftPlanning.prototype.requests = new ShiftPlanningRequests();
-ShiftPlanning.prototype.location = new ShiftPlanningLocation();
-ShiftPlanning.prototype.permissions = new ShiftPlanningPermissions();
-ShiftPlanning.prototype.training = new ShiftPlanningTraining();
-$(document).ready(function() {
-    $.ajax({
-        url: 'load.php',
-        success : function(res) {
-            $('#prepLoadFiles').after(res);
-            sp.initialize();
-        }
-    })
-});
 
 
  function ShiftPlanningDashboard(){
@@ -1442,6 +1380,563 @@ ShiftPlanningDashboard.prototype = {
 
 
 
+
+
+ function ShiftPlanningTimeClock(){
+    this.initialize();
+    this.timeSheetsData = {};
+    this.actco = false;
+    this.current = {};
+    this.edit = false;
+    return true;
+}
+
+ShiftPlanningTimeClock.prototype = {
+    times : {
+        0 : {
+            start_time : strtotime('now'),
+            end_time : strtotime('now +1 day')
+        },
+        1 : {
+            start_time : strtotime('now -1 day'),
+            end_time : strtotime('now')
+        },
+        2 : {
+            start_time : strtotime('now -7 day'),
+            end_time : strtotime('now +1 day')
+        },
+        3 : {
+            start_time : Date.parse('monday').getTime()/1000,
+            end_time : Date.parse('next sunday').getTime()/1000
+        },
+        4 : {
+            start_time : ((Date.parse('monday').getTime()/1000) - 604800),
+            end_time : Date.parse('sunday').getTime()/1000
+        }
+    }
+}
+
+ var ShiftPlanningReports = function(){
+    this.initialize();
+    this.locations = '';
+    this.positions = '';
+    this.employees = '';
+    this.skills = '';
+    this.page = 'allReports';
+    this.timeLine = '';
+}
+
+ShiftPlanningReports.prototype = {
+    initialize: function(){
+        //some event
+    },
+    loadPage : function(){
+    },    
+    times : {
+        0 : {
+            start_time : strtotime('now'),
+            end_time : strtotime('now +1 day')
+        },
+        1 : {
+            start_time : strtotime('now -2 day'),
+            end_time : strtotime('now')
+        },
+        2 : {
+            start_time : strtotime('now -7 day'),
+            end_time : strtotime('now')
+        },
+        3 : {
+            start_time : Date.parse('monday').getTime()/1000,
+            end_time : Date.parse('next sunday').getTime()/1000
+        },
+        4 : {
+            start_time : ((Date.parse('monday').getTime()/1000) - 604800),
+            end_time : Date.parse('sunday').getTime()/1000
+        },
+        5 : {
+            start_time : strtotime('now -'+ (now().getDate() -1) + ' days'),
+            end_time : strtotime('now +1 day')
+        },
+        6 : {
+            start_time : strtotime('now -'+ (now().getDate() +30) + ' days'),
+            end_time : strtotime('now -'+ (now().getDate() -1) + ' days')
+        },
+        7 : {
+            start_time : strtotime('last year'),
+            end_time : strtotime('now +1 day')
+        }
+    }
+}
+
+ var ShiftPlanningRequests = function(){
+    this.initialize();
+    this.positions = '';
+    this.employees = '';
+    this.shifts = [];
+    this.shiftsR = [];
+    this.vacations = [];
+	this.swaps = {};
+    this.current = {};
+    this.available = {};
+    this.trades = {
+        'manage': [],
+        'requested' : [],
+        'avaiting' : []
+    };
+}
+
+ShiftPlanningRequests.prototype = {
+    initialize: function(){
+        //some event
+    },
+    loadPage : function(){
+        
+    }
+}
+
+ function ShiftPlanningLocation(){
+    this.initialize();
+    return true;
+}
+
+ShiftPlanningLocation.prototype = {
+    data: {},
+    raw: {},
+    initialize: function(){
+        $(document).ready(function(){
+            $('#wrapper').delegate('select.locations', 'change', function(){
+                var obj = $(this);
+                if ($(this).val() == 'add'){
+                    var loc = prompt (_s("Enter location name."),"");
+                    if (loc != null){
+                        spModel.location.create('location', {name : loc, type : $(this).find('option:last').attr('type')}, function(response){
+                            obj.find('optgroup:first').append('<option value="' + response.data.id + '">' + response.data.name + '</option>');
+                            obj.val(obj.find('optgroup:first option:last').val());
+                            spModel.location.locationsList(true);
+                        });
+                    }
+                }
+            });
+        });
+    }
+    
+}
+
+
+
+ var ShiftPlanningPermissions = function(){
+    this.superUser = 1;
+    this.manager = 2;
+    this.supervisor = 3;
+    this.scheduler = 4;
+    this.employee = 5;
+    this.employees = {};
+    this.initialize();
+}
+
+ShiftPlanningPermissions.prototype = {
+    initialize : function(){
+        
+    }
+}
+
+ function ShiftPlanningTraining (){
+	this.initialize();
+	this.tmp_module = 0 ;
+	this.tmp_section = 0 ;
+	this.top = 0;
+	this.scrollWindow = false ;
+	this.trainings = {} ;
+	this.statistic = [] ;
+}
+
+ function ShiftPlanningSettings (){
+	this.initialize();
+}
+
+
+ ShiftPlanningStaff.prototype.initialize = function(){
+    var self = this;
+    $(document).ready(function(){
+        if (user.loggedIn == 1){
+            self.prepareConfig();
+        }
+        $('#lo_b').bind(clickEvent, function(){
+            self.login(); 
+        });
+	
+	$('#lo_f .checkbox').bind(clickEvent, function(){
+	    $(this).toggleClass('check');
+	});
+        
+        self.listEvents();
+        self.addStaffEvents();
+        self.fastAssignmentEvents();
+        
+    });
+}
+
+
+ShiftPlanningStaff.prototype.loadSubPageEvents = function(subpage){
+    $('#st_tp_menu').hide();
+    this[subpage + 'SubEvents']();
+}
+
+ShiftPlanningStaff.prototype.listEvents = function(){
+    var self = this;
+    $('#st_sn_ga').bind(clickEvent, function(){
+        if ($(this).hasClass('active')){
+            return false;
+        }
+        $('#st_sn_ga').addClass('active');
+        $('#st_sn_li').removeClass('active');
+        $('#st_li_ga').removeClass('small').addClass('big');
+    });
+    
+    $('#st_sn_li').bind(clickEvent, function(e){
+        if ($(this).hasClass('active')){
+            return false;
+        }
+        $('#st_sn_li').addClass('active');
+        $('#st_sn_ga').removeClass('active');
+        $('#st_li_ga').removeClass('big').addClass('small');
+    });
+    
+    $('#st_li_se_b').bind(clickEvent, function(e){
+        e.preventDefault();
+        var s = $('#st_li_se_te').val();
+        if (s.length == 0 || s == 'Search...'){
+            $('#st_li_ga li').show();
+            $('#st_li_ga').show();
+            $('#st_li .noResults').hide();
+        } else {
+            $('#st_li_ga li').hide();
+            $('#st_li_ga').show();
+            $('#st_li .noResults').hide();
+            $('#st_li_ga li').find('span:Contains("'+s+'")').parents('li').show();
+            if ($('#st_li_ga li').find('span:Contains("'+s+'")').parents('li').length == 0){
+                $('#st_li .noResults').show();
+                $('#st_li_ga').hide();
+            }
+        }
+    });
+    
+    $('#st_li_se_te').bind('keyup', function(e) {
+        $('#st_li_se_b').trigger(clickEvent);
+    })
+    $('#st_li_ga').delegate('li', clickEvent, function(){
+        var id = $(this).attr('staffId');
+        if (sp.permissions.hasPermission('visible_staff_details')){
+            window.scrollTo( 0, 1 );
+            self.displayEmployee(id);
+        }
+    });
+}
+
+ShiftPlanningStaff.prototype.addStaffEvents = function(){
+    var self = this;
+    $('#st_ae_sa').bind(clickEvent, function(){
+        $(this).toggleClass('check');
+    });
+    
+    $('#st_ae_ce_b').bind(clickEvent, function(e){
+        e.preventDefault();
+        self.createEmployee($(this));
+    });
+}
+
+ShiftPlanningStaff.prototype.fastAssignmentEvents = function(){
+    var self = this;
+    $('#st_fa_el').bind('change', function(){
+        self.loadFastAssignment($(this).val());
+    });
+    
+    $('#st_fa ul.detailsGrid ul').delegate('.checkbox', clickEvent, function(e){
+        var sid = $(this).attr('itemId');
+        var skills = ($(this).parents('.skills').length > 0) ? true : false;
+        var checked = ($(this).hasClass('check')) ? true : false;
+        var obj = this;
+	$(obj).parent().addClass('loading');
+        var data = {
+            id : $('#st_fa_cu').val()
+        }
+        if (skills){
+            if (checked) {
+                data.removeskill = sid;
+            } else {
+                data.addskill = sid;
+            }
+        } else {
+            if (checked) {
+                data.removeschedule = sid;
+            } else {
+                data.addschedule = sid;
+            }
+        }
+        spModel.staff.update('employee', data, function(response){
+            if (checked) {
+                $(obj).removeClass('check');
+            } else {
+                $(obj).addClass('check');
+            }
+	    $(obj).parent().removeClass('loading');
+            sp.settings.updateUser($('#st_fa_cu').val(), response, false);
+        });
+    });
+}
+
+ShiftPlanningStaff.prototype.listSubEvents = function(){
+    $('#st_tp_menu').show();
+    $('#st_li_ga').html($.tmpl($('#te_st_list'), spModel.staff.allStaff()));
+    $('#st_li_ga li').show();
+    $('#st_li_se_te').val('').trigger('blur');
+}
+
+ShiftPlanningStaff.prototype.addStaffSubEvents = function(){
+    this.resetAddEmployee();
+}
+
+ShiftPlanningStaff.prototype.fastAssignmentSubEvents = function(){
+    $('#st_fa_el').html(spView.staffOption());
+    $('#st_fa_po').hide();
+    $('#st_fa_sk').hide();
+}
+
+//Functions
+ShiftPlanningStaff.prototype.displayEmployee = function(id){
+	sp.hashChange = false;
+	sp.hash('staff/details');
+	
+    $('#st_tp_menu').hide();
+    $('#pages > div').hide();
+    $('#pages #settings .main').hide();
+    $('#pages #settings .mainSub').hide();
+    $('#pages #settings').show();
+    $('#da_se_overview').show();
+    sp.settings.overviewSubEvents(spModel.staff.getEmployeeById(id));
+    $('#settings .mainSub.settings .subNav li:first a').trigger(clickEvent);
+    $('.subNavigation').hide();	
+    $('#pages #settings .mainSub.settings').show();
+}
+
+
+//Get all fast assignment info.
+ShiftPlanningStaff.prototype.loadFastAssignment = function(id){
+    var employee = spModel.staff.getEmployeeById(id);
+    $('#st_fa_cu').val(id);
+    $('#st_fa_po ul.detailsGrid ul').html(spView.editableSchedules(employee));
+    $('#st_fa_sk ul.detailsGrid ul').html(spView.editableSkills(employee));
+    
+    $('#st_fa_po').show();
+    $('#st_fa_sk').show();
+    sp.fixCheckboxes();
+}
+
+ShiftPlanningStaff.prototype.createEmployee = function(c){
+    $(c).addClass('loading');
+    var self = this;
+    var data = {};
+    data.name = $('#st_ae_i_n').val();
+    //if ($.trim($('#st_ae_i_nn').val()).length > 0){
+        data.nick_name = $('#st_ae_i_nn').val();
+    //}
+    //if ($.trim($('#st_ae_i_e').val()).length > 0){
+        data.email = $('#st_ae_i_e').val();
+    //}
+    
+    //if ($.trim($('#st_ae_i_eid').val()).length > 0){
+        data.eid = $('#st_ae_i_eid').val();
+    //}
+    
+    //if ($.trim($('#st_ae_i_eid').val()).length > 0){
+        data.username = $('#st_ae_i_un').val();
+    //}
+    
+    //if ($.trim($('#st_ae_i_hw').val()).length > 0){
+        data.wage = $('#st_ae_i_hw').val();
+    //}
+    
+    //if ($.trim($('#st_ae_i_no').val()).length > 0){
+        data.notes = $('#st_ae_i_no').val();
+    //}
+    
+    if ($('#st_ae_sa').hasClass('check')){
+        data.send_activation = 1;
+    }
+    
+    spModel.staff.create('employee', data, function(response){
+        $(c).removeClass('loading');
+        spModel.staff.addEmployee(response.data);
+        self.displayEmployee(response.data.id);
+        sp.showSuccess(_s('Employee successfully created!'));
+    }, function(){
+        $(c).removeClass('loading');
+    });
+}
+
+
+ShiftPlanningStaff.prototype.resetAddEmployee = function(){
+    $('#st_ae_i_n').val('');
+    $('#st_ae_i_nn').val('');
+    $('#st_ae_i_e').val('');
+    $('#st_ae_i_eid').val('');
+    $('#st_ae_i_un').val('');
+    $('#st_ae_i_hw').val('');
+    $('#st_ae_i_no').val('');
+    $('#st_ae_sa').removeClass('check');
+}
+
+//Rest
+ShiftPlanningStaff.prototype.login = function(){
+    var u = $('#lo_u').val();
+    var p = $('#lo_p').val();
+    var self = this;
+    $('#lo_b').addClass('loading');
+    sp.api('staff.login', 'GET', {
+        username: u, 
+        password: p
+    }, function(loginResponse){
+        sp.staff.admin.info = loginResponse.data.employee;
+	if (loginResponse.data.employee.language == null){
+	    loginResponse.data.employee.language = loginResponse.data.business.language;
+	}
+	setCookie('shiftplanning_mobile_lang', loginResponse.data.employee.language, cookieExpire);
+	if (loginResponse.data.employee.language != 'en_US'){
+	    window.location.reload();
+	}
+        var calls = [
+        ['staff.employees','GET', {}],
+        ['schedule.schedules','GET', {
+            'perms':1
+        }],
+        ['admin.settings', 'GET', {}],
+        ['staff.skills', 'GET', {}],
+        ['location.locations', 'GET', {}]
+        ]
+        sp.multiApi(calls, function(response){
+            sp.api('api.config', 'GET', {}, function(config){
+                    sp.api('admin.business', 'GET', {},function(business){
+                            //was hitting the 5 request limit for multi api so we needed to send a separate call
+                            $('.loginContainer').fadeOut(500, function(){
+                                    $('#lo_b').removeClass('loading');
+                                    user.loggedIn = 1;
+                                    user.name = loginResponse.data.employee.name;
+                                    user.company = loginResponse.data.business.name;
+                                    user.phone = loginResponse.data.business.phone;
+                                    sp.staff.raw.employees = response[0].data;
+                                    sp.staff.data.employees = sp.map(response[0].data);
+                                    sp.schedule.raw.schedules = response[1].data;
+                                    sp.schedule.data.schedules = sp.map(response[1].data);
+                                    sp.staff.admin.settings = response[2].data;
+                                    sp.staff.raw.skills = response[3].data;
+                                    sp.staff.data.skills = sp.map(response[3].data);
+                                    sp.staff.raw.locations = response[4].data;
+                                    sp.staff.data.locations = sp.map(response[4].data);
+                                    sp.staff.admin.info.dfAvatar = sp.getAvatar(sp.staff.admin.info.id);
+                                    sp.raw.config = config.data;
+                                    sp.schedule.dateId = sp.raw.config.today.id;
+                                    sp.staff.admin.business = business.data;
+                                    $('body').removeClass('login');
+                                    $('.notification').remove();
+                                    $('html').css('height','auto');
+                                    sp.hash('dashboard');
+                                    self.prepareConfig();
+                                    sp.permissions.preparePermissions();
+                                    spRanges.fixRanges();
+                                    sp.staff.fixed.employees = sp.permissions.fixStaffListing();
+                                    sp.raw.config.today.formatted = Date.parse(sp.raw.config.today.formatted).toString(cal.dformat);
+                                    if ($('#lo_f .checkbox').hasClass('check')){
+                                        setCookie('shiftplanning_mobile_rememberme', 1, cookieExpire);
+                                        setCookie('shiftplanning_mobile_usertoken', loginResponse.token, cookieExpire);
+                                        setCookie('shiftplanning_mobile_userid', loginResponse.data.employee.id, cookieExpire);
+                                        setCookie('shiftplanning_mobile_username', user.name, cookieExpire);
+                                        setCookie('shiftplanning_mobile_usercompany', user.company, cookieExpire);
+                                        setCookie('shiftplanning_mobile_userphone', user.phone, cookieExpire);
+                                    }
+                            });
+                    });
+            });
+        });
+
+    }, function(response){
+        $('#lo_b').removeClass('loading');
+        $('.login .error').html(response.error);
+        $('.login .error').slideDown(500);
+        $('.login input:first').focus();
+        
+    });
+}
+
+
+ShiftPlanningStaff.prototype.logout = function(){
+    var c = confirm(_s('Are you sure you want to logout?'));
+    if (!c){
+		var h = $('#menu .mainNav .active').attr('id').split('_');
+		sp.hash(h[1]);		
+        return false;
+    }
+    sp.api('staff.logout', 'GET', {}, function(response){
+	setCookie('shiftplanning_mobile_rememberme', 0, cookieExpire);
+        window.location.reload();
+    }, function(response){
+        sp.showError(response.error);
+    });
+}
+
+
+ShiftPlanningStaff.prototype.prepareConfig = function(){
+    var currency = {
+        1: '$',
+        2: '&#163;',
+        3: '&#8364;',
+        4: '&#8360;',
+        5: '&#165;',
+        6: '&#8361;',
+        7: 'R',
+        8: 'kr',
+        9: '&#8369;',
+        10: 'RM'
+    }
+    var tmpDate = new Date();
+    var def = {
+        month: tmpDate.getMonth(), 
+        year: tmpDate.getFullYear(), 
+        day: tmpDate.getDate()
+    };
+    cal = {
+        startday: sp.staff.admin.settings.startday,
+        currency: currency[sp.staff.admin.settings.currency],
+        tmode: (sp.staff.admin.settings['24hr'] == "1"? 24 : 12),
+        tstring: (parseInt(sp.staff.admin.settings['24hr']) == 1) ? 'HH:mm' : 'h:mm tt',
+        dformat: sp.strReplace(['M','d', 'm', 'Y', 'j'], ['MMM', 'dd', 'MM', 'yyyy', 'd'], sp.staff.admin.settings.date),
+        dpformat: sp.strReplace(['d', 'm', 'Y', 'M', 'j'], ['dd', 'mm', 'yy', 'M', 'd'], sp.staff.admin.settings.date),
+        user: sp.staff.admin.info.id,
+        view: 'week',
+        mode: 'overview',
+        schedule: '',
+        lastlength: 8,
+        focus: 'employee',
+        today: tmpDate.getMonth()+'/'+tmpDate.getDate()+'/'+tmpDate.getFullYear(),
+        month: def.month,
+        year: def.year,
+        day: def.day,
+        firstday: '',
+        lastday: '' ,
+        cache: {},
+        lastcall: '',
+        firsttime: 0,
+        height: 960,
+        timeline: {},
+        shifts: {},
+        schedules: {},
+        locations: {},
+        skills: {},
+        employees: {},
+        total: {},
+        conflicts: {},
+        locked: 0
+    };    
+}
 
 
  ShiftPlanningDashboard.prototype.initialize = function(){
@@ -2578,671 +3073,773 @@ ShiftPlanningDashboard.prototype.loadPage = function(){
 
 
 
- function ShiftPlanningLocation(){
-    this.initialize();
-    return true;
-}
-
-ShiftPlanningLocation.prototype = {
-    data: {},
-    raw: {},
-    initialize: function(){
-        $(document).ready(function(){
-            $('#wrapper').delegate('select.locations', 'change', function(){
-                var obj = $(this);
-                if ($(this).val() == 'add'){
-                    var loc = prompt (_s("Enter location name."),"");
-                    if (loc != null){
-                        spModel.location.create('location', {name : loc, type : $(this).find('option:last').attr('type')}, function(response){
-                            obj.find('optgroup:first').append('<option value="' + response.data.id + '">' + response.data.name + '</option>');
-                            obj.val(obj.find('optgroup:first option:last').val());
-                            spModel.location.locationsList(true);
-                        });
-                    }
-                }
-            });
-        });
-    }
-    
-}
-
-
-
- function ShiftPlanningLogout(){
-    this.initialize();
-    return true;
-}
-
-ShiftPlanningLogout.prototype = {
-    initialize: function(){
-        
-    },
-    loadPage: function(){
-        sp.staff.logout();
-    }
-}
-
-
- function ShiftPlanningMessaging(){
-    this.initialize();
-    return true;
-}
-
-ShiftPlanningMessaging.prototype = {
-    initialize: function(){
-        
-    }
-    
-}
-
-
-
-
-
- var ShiftPlanningModal = function(){
-    this.data = null;
-    this.page = 9;
-    this.right = true;
-    this.left = false;
-    //initalize after load events
-    this.initialize();
-}
-
-ShiftPlanningModal.prototype = {
-    initialize: function(){
-        //some event
-    }
-}
-
- var ShiftPlanningModel = function(){
-    //do we run initialize
-    this.cache = {};
-    //current diff
-    this.diff = '';
-}
-
-ShiftPlanningModel.prototype.addModel = function(model, addClass){
-    //we extends add class with base methods and initalize it into model object
-    $.extend(addClass.prototype, spModel);
-    if (typeof this[model] == 'undefined'){
-        this[model] = new addClass;
-    }
-}
-
-ShiftPlanningModel.prototype.get = function(module, data, success, error){
-    var self = this;
-//    self.cacheDiff(data);
-//    if (self.isSetCache(module)){
-//        success(self.getCache(module));
-//    } else {
-        if (typeof this[module] == 'undefined'){
-            sp.api(this.model + '.' + module, 'get', data, function(response) {
-                //self.setCache(module, sp.map(response.data));
-                if(typeof success == 'function'){
-                    success.call(this, response);
-                }
-            }, function(response){
-                //self.clearCache(module);
-                sp.showError(response.error);
-                if(typeof error == 'function'){
-                    error.call(this, error);
-                }
-            });
-        } else {
-            this[module](module, 'get', data, function(response){
-                //self.setCache(module, sp.map(response.data));
-                if(typeof success == 'function'){
-                    success.call(this, response);
-                }
-            }, function(response){
-                //self.clearCache(module);
-                sp.showError(response.error);
-                if(typeof error == 'function'){
-                    error.call(this, response);
-                }
-            });
-        }
-    //}
-}
-
-ShiftPlanningModel.prototype.update = function(module, data, success, error){
-    var self = this;
-    //    self.cacheDiff(data);
-    //    if (self.isSetCache(module)){
-    //        success(self.getCache(module));
-    //    } else {
-    if (typeof this[module] == 'undefined'){
-        sp.api(this.model + '.' + module, 'update', data, function(response) {
-            //self.setCache(module, sp.map(response.data));
-            if(typeof success == 'function'){
-                success.call(this, response);
-            }
-        }, function(response){
-            //self.clearCache(module);
-            sp.showError(response.error);
-            if(typeof error == 'function'){
-                error.call(this, error);
-            }
-        });
-    } else {
-        this[module](module, 'update', data, function(response){
-            //self.setCache(module, sp.map(response.data));
-            if(typeof success == 'function'){
-                success.call(this, response);
-            }
-        }, function(response){
-            //self.clearCache(module);
-            sp.showError(response.error);
-            if(typeof error == 'function'){
-                error.call(this, response);
-            }
-        });
-    }
-//}
-}
-
-ShiftPlanningModel.prototype.create = function(module, data, success, error){
-    var self = this;
-    //    self.cacheDiff(data);
-    //    if (self.isSetCache(module)){
-    //        success(self.getCache(module));
-    //    } else {
-    if (typeof this[module] == 'undefined'){
-        sp.api(this.model + '.' + module, 'create', data, function(response) {
-            //self.setCache(module, sp.map(response.data));
-            if(typeof success == 'function'){
-                success.call(this, response);
-            }
-        }, function(response){
-            //self.clearCache(module);
-            sp.showError(response.error);
-            if(typeof error == 'function'){
-                error.call(this, error);
-            }
-        });
-    } else {
-        this[module](module, 'create', data, function(response){
-            //self.setCache(module, sp.map(response.data));
-            if(typeof success == 'function'){
-                success.call(this, response);
-            }
-        }, function(response){
-            //self.clearCache(module);
-            sp.showError(response.error);
-            if(typeof error == 'function'){
-                error.call(this, response);
-            }
-        });
-    }
-//}
-}
-
-ShiftPlanningModel.prototype.del = function(module, data, success, error){
-    var self = this;
-    //    self.cacheDiff(data);
-    //    if (self.isSetCache(module)){
-    //        success(self.getCache(module));
-    //    } else {
-    if (typeof this[module] == 'undefined'){
-        sp.api(this.model + '.' + module, 'delete', data, function(response) {
-            //self.setCache(module, sp.map(response.data));
-            if(typeof success == 'function'){
-                success.call(this, response);
-            }
-        }, function(response){
-            sp.showError(response.error);
-            if(typeof error == 'function'){
-                error.call(this, error);
-            }
-        });
-    } else {
-        this[module](module, 'delete', data, function(response){
-            //self.setCache(module, sp.map(response.data));
-            if(typeof success == 'function'){
-                success.call(this, response);
-            }
-        }, function(response){
-            sp.showError(response.error);
-            if(typeof error == 'function'){
-                error.call(this, error);
-            }
-        });
-    }
-//}
-}
-
-ShiftPlanningModel.prototype.set = function(module){
-    
-}
-
-ShiftPlanningModel.prototype.setCache = function(field, data){
-    if (typeof this.cache[field] == 'unfedined'){
-        this.cache[field] = {};
-    }
-    this.cache[field][this.diff] = data;
-}
-
-ShiftPlanningModel.prototype.clearCache = function(field){
-    this.cache[field] = {};
-}
-
-ShiftPlanningModel.prototype.getCache = function(field){
-    return this.cache[field];
-}
-
-ShiftPlanningModel.prototype.isSetCache = function(field){
-    if (typeof this.cache[field] != 'undefined' && this.cache[field].length > 0){
-        return true;
-    } else {
-        return false;
-    }
-}
-
-//different data for same modul
-ShiftPlanningModel.prototype.cacheDiff = function(diff){
-    if (typeof diff != 'undefined'){
-        this.diff = JSON.stringify(diff);
-    } else {
-        if (this.diff.length == 0){
-            Log.log('Please set diff');
-        } else {
-            return this.diff;
-        }
-    }
-    return true;
-}
-
-
-
-
-var spModel = new ShiftPlanningModel();
-
-
-//adding classes
-spModel.addModel('schedule', SPModelSchedule);
-spModel.addModel('requests', SPModelRequests);
-spModel.addModel('admin', SPModelAdmin);
-spModel.addModel('messaging', SPModelMessaging);
-spModel.addModel('timeclock', SPModelTimeClock);
-spModel.addModel('staff', SPModelStaff);
-spModel.addModel('payroll', SPModelPayroll);
-spModel.addModel('location', SPModelLocation);
-spModel.addModel('training', SPModelTraining);
-
- var ShiftPlanningPermissions = function(){
-    this.superUser = 1;
-    this.manager = 2;
-    this.supervisor = 3;
-    this.scheduler = 4;
-    this.employee = 5;
-    this.employees = {};
-    this.initialize();
-}
-
-ShiftPlanningPermissions.prototype = {
-    initialize : function(){
-        
-    }
-}
-
- ShiftPlanningPermissions.prototype.initialize = function(){
-    var self = this;
-    $(document).ready(function(){
-        if (user.loggedIn == 1){
-            self.preparePermissions();
-        }
-    });
-}
-
-
-//hide all html parts of system wich permissions i don't have
-ShiftPlanningPermissions.prototype.preparePermissions = function(){
-    //missing view reports
-    //missing edit profile
-    
-    var perms = sp.staff.admin.settings;
-    var group = sp.staff.admin.info.group
- 
-     //Message Wall (is vissible)
-    if (parseInt(perms.message_wall_on) == 0){
-        $('#da_wa_nm_b').remove();
-        $('#da_wa_nm_f').remove();
-        $('#da_wa_li').html(spView.emptyResult(_s('Message wall is off. Please contact your manager for more info.'), 'li'));
-    }
-    
-    //remove button for writing new wall message
-    if (group > this.supervisor && parseInt(perms.message_wall_emp) == 0){
-        $('#da_wa_nm_b').remove();
-        $('#da_wa_nm_f').remove();
-    }
-    
-    //Add class to ul to hide wall comments
-    if (parseInt(perms.message_wall_comments) == 0){
-        $('#da_wa_li').addClass('permMsgCommentOff');
-    }
-    
-    //remove button for inbox if perms aren't met'
-    if (group >= this.scheduler && parseInt(perms.pm) == 0){
-        $('#da_in_nm_b').unbind(clickEvent);
-        $('#da_in_nm_b').remove();
-	
-
-    }
-    
-    if (perms.shift_confirm == 0){
-	$('.subNavigation .reports a[subpage=confirmedHours]').remove();
-    }
-    
-    //fix employee only perms
-    if (group >= this.employee){        
-        $('#da_se_ov_no, #da_se_ed_no').parents('.detailsGrid').remove();
-	
-	//remove manage timeclock
-	$('#tc_mts_sub_button').remove();
-        $('#tc_mts').remove();
-	
-	$('.subNavigation .requests a[subpage=shiftApprovals]').remove();
-	$('#rq_sa').remove();
-    }
-    
-    if (group >= this.scheduler){
-
-        $('#menu_reports').remove();
-        $('#reports').remove();
-	
-	$('#settings .aPerm').remove();
-	
-	//remove staff fast assignment and add staff for employee
-        $('.subNavigation .staff a[subpage=addStaff]').remove();
-        $('.subNavigation .staff a[subpage=fastAssignment]').remove();
-        $('#staff .addStaff').remove();
-        $('#st_fa').remove();
-    }
-   
-    if (group > this.supervisor){
-//        $('#da_se_ov_aa').prev().remove();
-//        $('#da_se_ov_aa').remove();
-    }
-    
-    //Employees can manually add time clocks
-    if (group >= this.scheduler && parseInt(perms.tc_empl_addtime) == 0){
-        $('#tc_act_sub_button').remove();
-    }
-    
-    //Time Clock Module is on
-    if (parseInt(perms.timeclock) == 0){
-        $('#menu #menu_timeClock').unbind(clickEvent);
-        $('#da_widgets .timeClock').remove();
-        $('#menu #menu_timeClock').remove();
-        $('#timeClock').remove();
-        $('.subNavigation div.timeClock').remove();
-	$('.subNavigation .reports a[subpage=confirmedTimeSheets]').remove();
-    }
-
-    //Employees can view staff gallery
-    if (group >= this.employee && parseInt(perms.visible_staff) == 0){
-        $('#menu #menu_staff').unbind(clickEvent);
-        $('#menu #menu_staff').remove();
-        $('#staff').remove();
-        $('.subNavigation div.staff').remove();
-    }
-    
-    if ( group >= this.scheduler && parseInt( perms.edit_profile ) == 0 ) {
-        $('.subNavigation .settings .subNav a[subpage=edit]').hide();
-    }
-    
-/*    
-    //Employee can send private messages
-    if (group >= this.employee && parseInt(perms.pm) == 0){
-        $('#da_in_nm_b').unbind(clickEvent);
-        $('#da_in_nm_b').remove();
-    }
-    
-//    //Employee can view Who's on now
-//    if (group >= this.employee && parseInt(perms.on_now) == 0){
-//        $('#da_who').remove();
-//    }
-//      This doesn't exists on mobile version for now
-    
-
-    
-    //Employees can manually add time clocks
-    if (group >= this.employee && parseInt(perms.tc_empl_addtime) == 0){
-        $('#tc_mts_sub_button').parent().remove();
-        $('#tc_act_sub_button').remove();
-    }
-    
-    //Message Wall
-    if (parseInt(perms.message_wall_on) == 0){
-        $('#da_w').remove();
-        $('#da_nm_f').remove();
-        $('#da_w_title').remove();
-    }
-    
-    
-    if (group > this.manager && parseInt(perms.message_wall_emp) == 0){
-        $('#da_nmb').remove();
-        $('#da_nm_f').remove();
-    }
-    
-    if (group > this.supervisor){
-        $('#footer_manageTimeSheets').parent().remove();
-        $('#tc_manageTimeSheets').remove();
-        $('#footer_addEmployee').parent().remove();
-        $('#st_ae').remove();
-        $('#footer_fastAssignment').parent().remove();
-        $('#st_fa').remove();
-        $('#da_se_ov_p .aPerm').remove();
-        $('#menu_reports').remove();
-        $('#reports').remove();
-        $('#rq_rl_va, #rq_rl_sp, #rq_rl_sr, #rq_rl_ast').parent().hide();
-        $('#rq_rl .breaker').hide();
-        $('#rq_rl .breaker:last, #rq_rl .breaker:first,').show();
-    }
-    
-    if (group > this.scheduler){
-        $('#rq_va_rq').remove();
-        $('ul.requests a[subPage=shiftApprovals]').parent().remove();
-    }
-*/
-}
-
-ShiftPlanningPermissions.prototype.hasPermission = function(type){
-    var perms = sp.staff.admin.settings;
-    var group = sp.staff.admin.info.group;
-    switch (type){
-        case 'visible_staff_details':
-            //Employees can view staff contact details (staff gallery must be checked)
-            if (group >= this.employee && parseInt(perms.visible_staff_details) == 0){
-                return false;
-            }
-            break;
-        case 'edit_profile':
-            if (group > this.scheduler && parseInt(perms.edit_profile) == 0){
-                return false;
-            }
-            break;
-        case 'message_wall_comments':
-            if (group > this.manager && parseInt(perms.message_wall_comments) == 0){
-                return false;
-            }
-            break;
-
-    }
-    return true;
-}
-
-ShiftPlanningPermissions.prototype.fixStaffListing = function(){
-    var st = sp.staff.data.employees;
-    var sc = sp.schedule.clearSchedules();
-    var employees = {};
-    
-    $.each(sc, function(i, item){
-	$.each(st, function(eI, eItem){
-	    if (eItem.schedules != null && typeof eItem.schedules[item.id] != 'undefined'){
-		employees[eItem.id +''] = eItem;
-	    }
+ ShiftPlanningTimeClock.prototype.initialize = function(){
+	var self = this;
+	$(document).ready(function(){
+		self.overviewEvents();
+		self.addClockTimeEvents();
+		self.manageTimeSheetsEvents();
+		self.displayTimeSheetsEvents();
 	});
-    });
-    
-    return employees;
 }
 
-
- var ShiftPlanningRanges = function(){
-    this.times = {
-	0 : {
-	    title : 'Today',
-	    start_time : Date.parse('today').getTime(),
-	    end_time : Date.parse('today').add(1).days().getTime()
-	},
-	1 : {
-	    title : 'Yesterday',
-	    start_time : Date.parse('yesterday').getTime(),
-	    end_time : Date.parse('yesterday').add(1).days().getTime()
-	},
-	2 : {
-	    title : 'Last 7 Days',
-	    start_time : strtotime('now -7 day')*1000,
-	    end_time : strtotime('tomorrow')*1000
-	},
-	3 : {
-	    title : 'This Week',
-	    start_time : Date.parse('sunday').getTime(),
-	    end_time : Date.parse('next saturday').getTime()
-	},
-	4 : {
-	    title : 'Last Week',
-	    start_time : Date.parse('today').moveToDayOfWeek(0).addWeeks(-2).getTime(),
-	    end_time : Date.parse('previous saturday').getTime()
-	},
-	5 : {
-	    title : 'This Month',
-	    start_time : strtotime('now -'+ (now().getDate() -1) + ' days')*1000,
-	    end_time : Date.parse('today').moveToLastDayOfMonth().getTime()
-	},
-	6 : {
-	    title : 'Last Month',
-	    start_time : strtotime('now -'+ (now().getDate() +30) + ' days')*1000,
-	    end_time : strtotime('now -'+ (now().getDate()) + ' days')*1000
-	},
-	7 : {
-	    title : 'One Year',
-	    start_time : strtotime('last year')*1000,
-	    end_time : strtotime('now')*1000
+ShiftPlanningTimeClock.prototype.loadSubPageEvents = function(subpage){
+	$('.subNavigation').show();
+	if (subpage == 'displayTimeClock'){
+		$('.subNavigation').hide();
 	}
-    };
-    this.currencies = ['',
-            '$', '&#163;', '&#8364;', '&#8360;', '&#165;', '&#8361;', 'R', 'kr', '&#8369;', 'RM'
-    ]
-    this.weekdays = {
-            1:'Mon',
-            2:'Tue',
-            3:'Wed',
-            4:'Thu',
-            5:'Fri',
-            6:'Sat',
-            7:'Sun'
-    }
-    this.months = [
-            'Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'
-    ]
+	this[subpage + 'SubEvents']();
 }
 
-ShiftPlanningRanges.prototype.fixRanges = function(){
-    var self = this;
-    var czm = Date.parse('now').getTimezoneOffset() * 60 * 1000;
-    var tz = sp.staff.admin.settings.timezone;
-    var tzf = tz.split(',');
-    tzf = tzf[0].split(':');
-    var h = parseInt(tzf[0]) * 60*60;
-    var mp = (parseInt(tzf[0]) * 60*60)/Math.abs(parseInt(tzf[0]) * 60*60);
-    var min = (tzf[1] * 60);
-    $.each(this.times, function(i, item){
-	self.times[i].start_date = item.start_date + czm + (mp * (Math.abs(h) + min)) * 1000;
-	self.times[i].end_date = item.end_date + czm + (mp * (Math.abs(h) + min)) * 1000;
-    });
-    self.times[3] = {
-        title : 'This Week',
-        start_time : Date.parse('sunday').add(sp.staff.admin.settings.startday - 1).days().getTime(),
-        end_time : Date.parse('next saturday').add(sp.staff.admin.settings.startday - 1).days().getTime()
-    }
-    self.times[4] = {
-        title : 'Last Week',
-        start_time : Date.parse('today').moveToDayOfWeek(0).addWeeks(-2).add(sp.staff.admin.settings.startday - 1).days().getTime(),
-        end_time : Date.parse('previous saturday').add(sp.staff.admin.settings.startday - 1).days().getTime()
-    }
-}
+ShiftPlanningTimeClock.prototype.overviewEvents = function(){
+	var self = this;
+	$('#tc_ov_ci').bind(clickEvent, function(e){
+		e.preventDefault();
+		var data = {};
+		var done = false;
+		var apiCall = function(){
+			spModel.timeclock.get('clockin', data, function(response){
+				$('#tc_ov_cb span.fr a').hide();
+				$('#tc_ov_way_msg').hide();
+				$('#tc_ov_cf').show();
+				$('#tc_ov_co').show();
+				$('#tc_ov_ca').attr('rel', response.data.id);
+				$('#tc_ov_no').val('');
+				$('#tc_ov_ss').val(0);
+			});
+		}
+		var errorCallback = function(){
+			done = true;
+			sp.showError(_s('Coordinates not available'));
+			setTimeout(apiCall, 2000);
+		}
+		
+		if (sp.staff.admin.business.pref_tc_gps == '1' && navigator.geolocation){
+			
+			setTimeout(function(){
+				if(!done){
+					errorCallback();
+				}
+			},10000);
+			
+			sp.showSuccess(_s('Getting Coordinates'));
+			
+			navigator.geolocation.getCurrentPosition(
+				//success
+				function(response){
+					if(typeof response != 'function'){
+						done = true;
+						data.latitude = response.coords.latitude;
+						data.longitude = response.coords.longitude;
+						setTimeout(apiCall,2000);
+					}
+				},
+				//errorCallback
+				errorCallback
+				);
+			
+		}else{
+			apiCall();
+		}
+        
+	});
+	
+	$('#tc_ov_way').bind(clickEvent, function(e){
+		e.preventDefault();
+		
+		var data = {
+			employee : sp.staff.admin.info.id
+		};
+		
+		spModel.timeclock.create('preclockin', data, function(response){
+			$('#tc_ov_way_msg .sc_way_time_since').html(response.data.formatted);
+			$('#tc_ov_way_msg').show();
+			$('#tc_ov_way').hide();
+			$('#tc_ov_ci').show();
+		});
+	});
+	
+	$('#tc_ov_co').bind(clickEvent, function(e){
+		e.preventDefault();
+		var data = {}
+		var notes = $.trim($('#tc_ov_no').val());
+		if ($('#tc_ov_ss').val() != 0){
+			data.schedule = $('#tc_ov_ss').val();
+		}
+		var done = false;
+		var apiCall = function(){
+			spModel.timeclock.get('clockout', data, function(response){
+				$('#tc_ov_cb span.fr a').hide();
+				$('#tc_ov_cf').hide();
+				
+				if(sp.staff.admin.business.pref_pre_time_clock == '1'){
+					$('#tc_ov_way').show();
+					$('#tc_ov_ci').show();
+				}
+				if(sp.staff.admin.business.pref_mandatory_pre_time_clock == '1'){
+					$('#tc_ov_way').show();
+					$('#tc_ov_ci').hide();
+				}
+			});		
+		};
+		var errorCallback = function(){
+			done = true;
+			sp.showError(_s('Coordinates not available'));
+			setTimeout(function(){
+				apiCall();				
+			}, 2000);
+		}
+		if(sp.staff.admin.business.pref_tc_require_pos && $('#tc_ov_ss').val() == 0){
+			sp.showError(_s('Please choose schedule first'));
+			return false;
+		}
 
+		if (notes.length != 0 ){
+			data.notes = $('#tc_ov_no').val();
+		}
+	
+		if(sp.staff.admin.business.pref_tc_require_notes && notes.length == 0){
+			sp.showError(_s('Please provide some notes'));
+			return false;
+		}
+	
+		if (sp.staff.admin.business.pref_tc_gps == '1' && navigator.geolocation){
+			setTimeout(function(){
+				if(!done){
+					errorCallback();
+				}
+			},10000);
 
+			sp.showSuccess(_s('Getting Coordinates'));		
+		
+			navigator.geolocation.getCurrentPosition(
+				//success
+				function(response){
+					if(typeof response != 'function'){
+						done = true;
+						data.latitude = response.coords.latitude;
+						data.longitude = response.coords.longitude;
+						setTimeout(apiCall,2000);					
+					}
+				},
+				errorCallback
+				);
+		
+		} else {
+			apiCall()
+		}
 
-
-ShiftPlanningRanges.prototype.getRange = function(range, id){
-    return this[range][id];
-}
-
-ShiftPlanningRanges.prototype.createSelector = function(range){
-    var res = [];
-    $.each(this[range], function(i, item){
-	res.push(item.title);
-    });
+	});
+	
+	$('#tc_ov_ss').bind('change', function(){
+		self.saveClockInChanges();
+	});
     
-    return res;
+	//    $('#tc_ov_no').bind('blur', function(){
+	//        self.saveClockInChanges();
+	//    });
+    
+	$('#tc_ov_sa').bind(clickEvent, function(e){
+		e.preventDefault();
+		self.saveClockInChanges();
+	});
+    
+	$('#tc_ov_ca').bind(clickEvent, function(e){
+		e.preventDefault();
+		spModel.timeclock.dtc($(this).attr('rel'), function(){
+			$('#tc_ov_cb span.fr a').hide();
+			$('#tc_ov_cf').hide();
+			
+			if(sp.staff.admin.business.pref_pre_time_clock == '1'){
+				$('#tc_ov_way').show();
+				$('#tc_ov_ci').show();
+			}
+			if(sp.staff.admin.business.pref_mandatory_pre_time_clock == '1'){
+				$('#tc_ov_way').show();
+				$('#tc_ov_ci').hide();
+			}
+		});
+	})
 }
 
-var spRanges = new ShiftPlanningRanges();
-
- var ShiftPlanningReports = function(){
-    this.initialize();
-    this.locations = '';
-    this.positions = '';
-    this.employees = '';
-    this.skills = '';
-    this.page = 'allReports';
-    this.timeLine = '';
+ShiftPlanningTimeClock.prototype.manageTimeSheetsEvents = function(){
+	var self = this;
+	$('#tc_mts_adv').bind(clickEvent, function(e){
+		e.preventDefault();
+		if ($('#tc_mts_hiin').hasClass('hidden')){
+			$(this).html('Simple');
+		} else {
+			$(this).html('Advanced');
+		}
+		$('#tc_mts_hiin').toggleClass('hidden');
+	});
+    
+	$('#tc_mts_tr').bind('change', function(){
+		if ($(this).val() != '-1'){
+			self.getTimeSheets();
+		}
+	});
+    
+	$('#tc_mts_sh').delegate('li', clickEvent, function(e){
+		if (e.target.className != 'tPending'){
+			$(this).addClass('loading');
+			spModel.timeclock.get('timeclock', {
+				id : $(this).attr('timeclockId')
+			}, function(response){
+				self.current = response.data;
+				sp.loadSubPage('', 'timeClock', 'displayTimeClock');
+			});
+		}
+	});
+    
+	$('#timeClock .displayTimeClock .backMenu').bind(clickEvent, function(e){
+		e.preventDefault();
+		$('.subNavigation .timeClock li.active a').trigger(clickEvent);
+	});
+    
+	$('#tc_mts_hiin select, #tc_mts_au').bind('change', function(){
+		self.showHideTimeSheets();
+	});
+    
+	$('#tc_dtc_buttons a').bind(clickEvent, function(e){
+		e.preventDefault();
+		var id = $(this).attr('rel');
+		switch ($(this).attr('class')){
+			case 'approve':
+				spModel.timeclock.update('timeclock', {
+					id : id, 
+					approved : 1
+				}, function(){
+					sp.showSuccess(_s('Timeclock updated'));
+					$('.subNavigation .timeClock li.active a').trigger(clickEvent);
+				});
+				break;
+			case 'unapprove':
+				spModel.timeclock.update('timeclock', {
+					id : id, 
+					approved : 0
+				}, function(){
+					sp.showSuccess(_s('Timeclock updated'));
+					$('.subNavigation .timeClock li.active a').trigger(clickEvent);
+				});
+				break;
+			case 'edit':
+				self.edit = true;
+				$('#tc_act_onci').hide();
+				sp.loadSubPage('', 'timeClock', 'addClockTime');
+				break;
+			case 'delete':
+				var c = confirm(_s('Are you sure?'));
+				if (c){
+					spModel.timeclock.del('timeclock', {
+						id : id
+					}, function(){
+						$('.subNavigation .timeClock li.active a').trigger(clickEvent);
+					});
+				}
+				break;
+		}
+	});
+    
+	$('#tc_mts_sh').delegate('li span.tPending', clickEvent, function(e){
+		$(this).parent('li').addClass('loading');
+		spModel.timeclock.get('clockout', {
+			employee : $(this).attr('user')
+		}, function(){
+			sp.showSuccess(_s('User clocked out'));
+			self.getTimeSheets();
+		});
+	});
 }
 
-ShiftPlanningReports.prototype = {
-    initialize: function(){
-        //some event
-    },
-    loadPage : function(){
-    },    
-    times : {
-        0 : {
-            start_time : strtotime('now'),
-            end_time : strtotime('now +1 day')
-        },
-        1 : {
-            start_time : strtotime('now -2 day'),
-            end_time : strtotime('now')
-        },
-        2 : {
-            start_time : strtotime('now -7 day'),
-            end_time : strtotime('now')
-        },
-        3 : {
-            start_time : Date.parse('monday').getTime()/1000,
-            end_time : Date.parse('next sunday').getTime()/1000
-        },
-        4 : {
-            start_time : ((Date.parse('monday').getTime()/1000) - 604800),
-            end_time : Date.parse('sunday').getTime()/1000
-        },
-        5 : {
-            start_time : strtotime('now -'+ (now().getDate() -1) + ' days'),
-            end_time : strtotime('now +1 day')
-        },
-        6 : {
-            start_time : strtotime('now -'+ (now().getDate() +30) + ' days'),
-            end_time : strtotime('now -'+ (now().getDate() -1) + ' days')
-        },
-        7 : {
-            start_time : strtotime('last year'),
-            end_time : strtotime('now +1 day')
-        }
-    }
+ShiftPlanningTimeClock.prototype.addClockTimeEvents = function(){
+	var self = this;
+	$('#tc_act_onci').bind(clickEvent, function(){
+		$(this).toggleClass('check');
+		$('#tc_act .detailsGrid .odd').toggleClass('nonVisible');
+	});
+    
+	$('#tc_act_sa_b').bind(clickEvent, function(e){
+		e.preventDefault();
+		self.saveClockTime(false);
+	});
 }
+
+ShiftPlanningTimeClock.prototype.displayTimeSheetsEvents = function(){
+	var self=this;
+	$('#tc_dts_au').bind('change',function(){
+		self.showHideTimeSheetsPro();
+	})
+	$('#tc_dts_tr').bind('change',function(){
+		if($(this).val() != '-1'){
+			self.getMyTimeSheets();
+		}
+	})
+}
+
+ShiftPlanningTimeClock.prototype.displayTimeSheetsSubEvents = function (){
+	var self=this;
+	$('#tc_dts_tr').html(spView.timeRanges());
+	$('#tc_dts_tr').val(3);
+	this.getMyTimeSheets();
+//    spModel.timeclock.get('timeclocks',{},function(response){
+//        $('#tc_dts_ul').html($.tmpl($('#te_tc_dts_li'), response.data));
+//        
+//    })
+}
+
+ShiftPlanningTimeClock.prototype.overviewSubEvents = function(){
+	$('#tc_ov_cf').hide();
+	$('#tc_ov_cb span.fr a').hide();
+	$('#tc_ov_ss').html(spView.optionSchedules(sp.staff.admin.info.id));
+	$('#tc_ov_cb .icoClock').html('<time style="height:35px;display:block;">' + sp.raw.config.today.formatted + '</time>');
+    
+	$.ajax({
+		url: 'index.php?timezone=false&id=' + sp.staff.admin.info.id,
+		type: 'get',
+		success: function(response){
+			$('#tc_ov_cb .icoClock').html(response);
+		}
+	});
+    
+    
+    
+	if (parseInt(sp.staff.admin.settings.tc_terminal_lock) == 0){
+		$('#tc_ov_cb').show();
+		$('#tc_ov_ad').hide();
+		spModel.timeclock.get('status', {
+			details : 1
+		}, function(response){
+			$('#tc_ov_cb span.fr a').hide();
+			if (response.data != 'out'){
+				$('#tc_ov_cf').show();
+				$('#tc_ov_co').show();
+				$('#tc_ov_ca').attr('rel', response.data.id);
+				if (response.data.schedule != null){
+					$('#tc_ov_ss').val(response.data.schedule.id)
+				}
+				if (response.data.notes != null){
+					$('#tc_ov_no').val(response.data.notes);
+				}
+			} else {
+				$('#tc_ov_cf').hide();
+				
+				var data = {
+					employee : sp.staff.admin.info.id
+				};
+				spModel.timeclock.get('preclockin', data, function(response){
+					if(response.data.status == '0'){
+						$('#tc_ov_way_msg .sc_way_time_since').html(response.data.formatted);
+						$('#tc_ov_way_msg').show();
+						$('#tc_ov_ci').show();
+					}
+					else{
+						if(sp.staff.admin.business.pref_pre_time_clock == '1'){
+							$('#tc_ov_way').show();
+							$('#tc_ov_ci').show();
+						}
+						if(sp.staff.admin.business.pref_mandatory_pre_time_clock == '1'){
+							$('#tc_ov_way').show();
+							$('#tc_ov_ci').hide();
+						}
+					}
+				});
+			}
+		});
+	} else {
+		$('#tc_ov_cb').hide();
+		$('#tc_ov_cf').hide();
+		$('#tc_ov_ad').show();
+	}
+    
+
+    
+	$('#tc_ov_cb .icoClock time').html(sp.raw.config.today.formatted);
+	$('#tc_ov_cb .icoClock span').html(formatted('nowT'));
+}
+
+ShiftPlanningTimeClock.prototype.manageTimeSheetsSubEvents = function(){
+	var self = this;
+	var s = Date.parse('today at 9am');
+	var e = Date.parse('today at 5pm');
+    
+	var tf = (cal.tmode == 24)? 'HH:mm' : 'hh:mm tt';
+    
+	$('#tc_mts_sd_i').scroller('destroy');
+	$('#tc_mts_sd_i').val(s.toString(cal.dformat));
+	$('#tc_mts_sd_i').scroller({
+		preset : 'date',
+		dateFormat : (sp.strReplace(['MM','yyyy'],['mm','yy'],cal.dformat) == 'mmM d, yy') ? sp.strReplace(['MM','yyyy'],['mm','yy'],cal.dformat).substr(2, sp.strReplace(['MM','yyyy'],['mm','yy'],cal.dformat).length) : sp.strReplace(['MM','yyyy'],['mm','yy'],cal.dformat),
+		dateOrder: sp.strReplace(['MM','yyyy',' ','-','/'],['mm','yy','','',''],cal.dformat),
+		onSelect : function(){
+			$('#tc_mts_tr').val(-1);
+			self.getTimeSheets();
+		}
+	});
+    
+	$('#tc_mts_ed_i').scroller('destroy');
+	$('#tc_mts_ed_i').val(e.toString(cal.dformat));
+	$('#tc_mts_ed_i').scroller({
+		preset : 'date',
+		dateFormat : (sp.strReplace(['MM','yyyy'],['mm','yy'],cal.dformat) == 'mmM d, yy') ? sp.strReplace(['MM','yyyy'],['mm','yy'],cal.dformat).substr(2, sp.strReplace(['MM','yyyy'],['mm','yy'],cal.dformat).length) : sp.strReplace(['MM','yyyy'],['mm','yy'],cal.dformat),
+		dateOrder: sp.strReplace(['MM','yyyy',' ','-','/'],['mm','yy','','',''],cal.dformat),
+		onSelect : function(){
+			$('#tc_mts_tr').val(-1);
+			self.getTimeSheets();
+		}
+	});
+    
+    
+	$('#tc_mts_tr').html(spView.timeRanges());
+	$('#tc_mts_tr').val(3);
+    
+    
+	$('#tc_mts_scl').html(spView.scheduleFilter(0, true));
+	$('#tc_mts_eml').html(spView.staffFilter());
+	self.getTimeSheets();
+}
+
+ShiftPlanningTimeClock.prototype.addClockTimeSubEvents = function(){
+	var emp = {};
+	if (this.edit != false){
+		emp = this.current;
+		$('#tc_act .title h3').html(_s('Edit Clock Time'));
+		$('#tc_act_tc_id').removeClass('editOn').addClass('editOn');
+		$('#tc_act_tc_id').val(emp.id);
+		$('.addClockTime .odd').removeClass('nonVisible');
+		$('#tc_act_onci').removeClass('check');
+		emp.in_time.time = sp.strReplace(['am','pm'],[' AM',' PM'],emp.in_time.time);
+		emp.out_time.time = sp.strReplace(['am','pm'],[' AM',' PM'],emp.out_time.time);
+		emp.in_time.day = Date.parse(emp.in_time.day).toString(cal.dformat);
+		emp.out_time.day = Date.parse(emp.out_time.day).toString(cal.dformat);
+	} else {
+		$('#tc_act .title h3').html(_s('Add Clock Time'));
+		$('#tc_act_tc_id').removeClass('editOn');
+		$('#tc_act_onci').show();
+		emp.in_timestamp = Date.parse('today at 9am').getTime()/1000;
+		emp.out_timestamp = Date.parse('today at 5pm').getTime()/1000;
+	}
+    
+	$('#tc_act_sc').html(spView.optionSchedules(sp.staff.admin.info.group > 4 ? sp.staff.admin.info.id : 0));
+	$('#tc_act_em').html(spView.staffOption(sp.staff.admin.info.group > 4 ? true : false));
+    
+	var s = new Date(emp.in_timestamp*1000);
+	var e = new Date(emp.out_timestamp*1000);
+    
+	var tf = (cal.tmode == 24)? 'HH:mm' : 'hh:mm tt';
+    
+	$('#tc_act_tclin').scroller('destroy');
+	$('#tc_act_tclin').val((this.edit) ? emp.in_time.time : s.toString(tf));
+	$("#tc_act_tclin").scroller({
+		preset : 'time',
+		ampm: (cal.tmode==24?false:true),
+		stepMinute: 15,
+		timeFormat: sp.strReplace(['tt','mm'],['A','ii'],cal.tstring)
+	});
+    
+
+    
+	//$('#tc_act_c_co_dp_i').val(outD.toString(cal.dformat));
+    
+	$('#tc_act_tclou').scroller('destroy');
+	$('#tc_act_tclou').val((this.edit) ? emp.out_time.time : e.toString(tf));
+	$("#tc_act_tclou").scroller({
+		preset : 'time',
+		ampm: (cal.tmode==24?false:true),
+		stepMinute: 15,
+		timeFormat: sp.strReplace(['tt','mm'],['A','ii'],cal.tstring)
+	});
+    
+	$('#tc_act_c_cl_dp_i').scroller('destroy');
+	$('#tc_act_c_cl_dp_i').val((this.edit) ? emp.in_time.day : s.toString(cal.dformat));
+	$('#tc_act_c_cl_dp_i').scroller({
+		preset : 'date',
+		dateFormat : (sp.strReplace(['MM','yyyy'],['mm','yy'],cal.dformat) == 'mmM d, yy') ? sp.strReplace(['MM','yyyy'],['mm','yy'],cal.dformat).substr(2, sp.strReplace(['MM','yyyy'],['mm','yy'],cal.dformat).length) : sp.strReplace(['MM','yyyy'],['mm','yy'],cal.dformat),
+		dateOrder: sp.strReplace(['MM','yyyy',' ','-','/'],['mm','yy','','',''],cal.dformat)
+	});
+    
+	$('#tc_act_c_co_dp_i').scroller('destroy');
+	$('#tc_act_c_co_dp_i').val((this.edit) ? emp.out_time.day : e.toString(cal.dformat));
+	$('#tc_act_c_co_dp_i').scroller({
+		preset : 'date',
+		dateFormat : (sp.strReplace(['MM','yyyy'],['mm','yy'],cal.dformat) == 'mmM d, yy') ? sp.strReplace(['MM','yyyy'],['mm','yy'],cal.dformat).substr(2, sp.strReplace(['MM','yyyy'],['mm','yy'],cal.dformat).length) : sp.strReplace(['MM','yyyy'],['mm','yy'],cal.dformat),
+		dateOrder: sp.strReplace(['MM','yyyy',' ','-','/'],['mm','yy','','',''],cal.dformat)
+	});
+    
+    
+	$('#tc_act_no').val((this.edit) ? emp.notes : '');
+	$('#tc_act_em').val((this.edit) ? emp.employee.id : 0);
+	$('#tc_act_sc').val((this.edit) ? (emp.schedule != null) ? emp.schedule.id : 0 : 0);
+    
+	this.edit = false;
+}
+
+ShiftPlanningTimeClock.prototype.displayTimeClockSubEvents = function(){
+	this.current.employee.avatar = sp.getAvatar(this.current.employee.id);
+	$('#tc_dtc').html($.tmpl($('#te_tc_dtc'), this.current));
+	$('#tc_dtc_buttons a').attr('rel', this.current.id);
+    
+	if (parseInt(this.current.approved_by) != 0){
+		$('#tc_dtc_buttons a#tc_dtc_ap').removeClass('approve').removeClass('unapprove').addClass('unapprove');
+	} else {
+		$('#tc_dtc_buttons a#tc_dtc_ap').removeClass('approve').removeClass('unapprove').addClass('approve');
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Functions
+ShiftPlanningTimeClock.prototype.getTimeSheets = function(){
+	$('#tc_mts_sh').html(spView.divLoader());
+	var self = this;
+	var d = {};
+    
+	var period = $('#tc_mts_tr').val();
+	var times = {};
+	if (period != "-1"){
+		times = spRanges.getRange('times', period);
+	} else {
+		times = {
+			start_time : Date.parse($('#tc_mts_sd_i').val()).getTime(),
+			end_time : Date.parse($('#tc_mts_ed_i').val()).getTime()
+		}
+	}
+	
+	var p = new Date(times.start_time);
+	var e = new Date(times.end_time);
+	$('#tc_mts_sd_i').val(p.toString(cal.dformat));
+	$('#tc_mts_ed_i').val(e.toString(cal.dformat));
+    
+	d.start_date = p.toString(cal.dformat);
+	d.end_date = e.toString(cal.dformat);
+
+	spModel.timeclock.get('timeclocks', d, function(response){
+		self.renderManageTimeSheets(response.data); 
+	});
+}
+
+ShiftPlanningTimeClock.prototype.getMyTimeSheets = function(){
+	$('#tc_dts_ul').html(spView.ulLoader());
+	var self=this;
+	var interval=$('#tc_dts_tr').val();
+	var times={}
+	var params={}
+  
+	times=spRanges.getRange('times', interval);
+    
+	var startT = new Date(times.start_time);
+	var endT = new Date(times.end_time);
+    
+	params.start_date=startT.toString(cal.dformat);
+	params.end_date=endT.toString(cal.dformat);
+	params.employee=sp.staff.admin.info.id;
+    
+	spModel.timeclock.get('timeclocks',params,function(response){
+		$('#tc_dts_ul').html($.tmpl($('#te_tc_dts_li'), response.data));
+		self.showHideTimeSheetsPro();
+	} 
+	)
+}
+ShiftPlanningTimeClock.prototype.renderManageTimeSheets = function(data){
+	var l = data.length;
+	var res = {};
+	while (l--){
+		var item = data[l];
+		var ident = (Date.parse(item.in_time.day).getTime()/1000) + '';
+		if (typeof res[ident] == 'undefined'){
+			res[ident] = {
+				month : item.in_time.day,
+				rest : [],
+				ident : parseInt(ident)
+			}
+		}
+		var obj = this.rItem(item);
+		res[ident].rest.push(obj); 
+	}
+    
+	$.each(res, function(i, item){
+		res[i].rest.reverse();
+	});
+	var r = [];
+	var counter = 0;
+	$.each(res, function(i, item){
+		r[counter] = item;
+		counter++;
+	});
+	r.objSort('ident');
+	r.reverse();
+    
+    
+    
+	$('#tc_mts_sh').html('');
+	$('#tc_mts_sh').html($.tmpl($('#te_tc_mts_li'), r));
+    
+	this.showHideTimeSheets();
+}
+
+ShiftPlanningTimeClock.prototype.rItem = function(item){
+	var o = {};
+	var status = 2;
+	if (parseInt(item.approved_by) > 0){
+		status = 1;
+	}
+	var dl = (item.in_location == item.out_location) ? '0' : '1';
+	var sc = (item.schedule != null && typeof item.schedule.id != 'undefined') ? item.schedule.id : item.schedule;
+	var scn = (item.schedule != null && typeof item.schedule.name != 'undefined') ? item.schedule.name : '';
+	o = {
+		id : item.id,
+		name : item.employee.name,    
+		user : item.employee.id,
+		st : item.in_time,
+		out : item.out_time,
+		dl : dl,
+		length : item.length,
+		schedule : sc,
+		scn : scn,
+		status : status,
+		approved_by : item.approved_by
+	};
+    
+	return o;
+}
+
+ShiftPlanningTimeClock.prototype.showHideTimeSheetsPro = function (){
+	var sel=$('#tc_dts_au').val();
+	switch(sel){
+		case '2':
+			$('#tc_dts_ul li').hide();
+			$('#tc_dts_ul').find('li.app_0').show();
+			break;
+		case '1':
+			$('#tc_dts_ul li').show();
+			$('#tc_dts_ul').find('li.app_0').hide();
+			break;
+		case '0':
+			$('#tc_dts_ul li').show();
+			break;
+	}
+	var elm=$('#tc_dts_ul li:visible')
+	if(elm.length == 0){
+		$('#tc_dts_ul_msg').html(spView.emptyResult('No timesheets for selected filters'))  
+	}else{
+		$('#tc_dts_ul_msg').html('')
+	}
+}
+
+ShiftPlanningTimeClock.prototype.showHideTimeSheets = function(){
+	//$('#tc_mts_slist tr').removeClass('odd');
+	var s = parseInt($('#tc_mts_au').val());
+	var e = parseInt($('#tc_mts_eml').val());
+	var sc = parseInt($('#tc_mts_scl').val());
+	var search = '';
+	if (s != 0){
+		search += '.s_' + s;
+	}
+    
+	if (e != 0){
+		search += '.e_' + e;
+	}
+    
+	if (sc != 0){
+		search += '.sc_' + sc;
+	}
+    
+	$('#tc_mts_sh').find('li').hide();
+	$('#tc_mts_sh').find('li'+search).show();
+    
+	$('#tc_mts_sh div.title').hide();
+	$('#tc_mts_sh ul li:visible').parents('.timeSheet').prev().show();
+    
+	if ($('#tc_mts_sh ul li:visible').length > 0){
+		$('#tc_mts_sh').next().hide();
+	} else {
+		$('#tc_mts_sh').next().show();
+	}
+    
+//    $('#tc_mts_slist tr').each(function(i, item){
+//        if (i % 2 == 0){
+//            $(this).addClass('odd');
+//        }
+//    })
+}
+
+ShiftPlanningTimeClock.prototype.saveClockInChanges = function(){
+	var data = {
+		id : $('#tc_ov_ca').attr('rel')
+	}
+    
+	if ($('#tc_ov_ss').val() != 0){
+		data.schedule = $('#tc_ov_ss').val();
+	}
+    
+	if ($('#tc_ov_no').val() != 0){
+		data.notes = $('#tc_ov_no').val();
+	}
+    
+	spModel.timeclock.update('timeclock', data, function(){
+		sp.showSuccess(_s('Timeclock updated'));
+	});
+}
+
+ShiftPlanningTimeClock.prototype.saveClockTime = function(){
+	var data = {};
+	var f = 'get';
+	var module = 'timeclock.addclocktime';
+	var success = _s('Clock Time added');
+	if ($('#tc_act_tc_id').hasClass('editOn') == true){
+		f = 'update';
+		module = 'timeclock.timeclock'
+		data.id = $('#tc_act_tc_id').val();
+		success = _s('Clock time edited');
+		data.start_date = $('#tc_act_c_cl_dp_i').val() +' '+ $('#tc_act_tclin').val();
+		data.start_time = $('#tc_act_c_cl_dp_i').val() +' '+ $('#tc_act_tclin').val();  
+		data.end_date = $('#tc_act_c_co_dp_i').val() + ' ' + $('#tc_act_tclou').val();
+		data.end_time = $('#tc_act_c_co_dp_i').val() + ' ' + $('#tc_act_tclou').val();
+	} else {
+		data.datein = $('#tc_act_c_cl_dp_i').val() +' '+ $('#tc_act_tclin').val();    
+		data.dateout = $('#tc_act_c_co_dp_i').val() + ' ' + $('#tc_act_tclou').val();		
+	}
+    
+	data.schedule = $('#tc_act_sc').val();
+	data.employee = $('#tc_act_em').val();
+    	
+	if ( $('#tc_act_onci').hasClass('check') ) {
+		data.onlyin = 1;
+	}
+    
+	data.notes = $('#tc_act_no').val();
+    
+	sp.api(module, f, data, function(response){
+		sp.showSuccess(success);
+		setTimeout(function() {
+			var subpage = 'displayTimeSheets'
+			if(sp.staff.admin.info.group <=2){
+				subpage = 'manageTimeSheets';
+			}
+			$('.subNavigation div.timeClock ul.timeClock a[subpage='+subpage+']').trigger(clickEvent);
+		},400);        
+	}, function(response){
+		sp.showError(response.error);
+	});
+}
+
+
+ShiftPlanningTimeClock.prototype.loadPage = function(){
+    
+	}
+
 
  ShiftPlanningReports.prototype.initialize = function(){
     var self = this;
@@ -3455,32 +4052,6 @@ ShiftPlanningReports.prototype.loadSubPageEvents = function(subpage){
 ShiftPlanningReports.prototype.loadPage = function(){
 }
 
-
- var ShiftPlanningRequests = function(){
-    this.initialize();
-    this.positions = '';
-    this.employees = '';
-    this.shifts = [];
-    this.shiftsR = [];
-    this.vacations = [];
-	this.swaps = {};
-    this.current = {};
-    this.available = {};
-    this.trades = {
-        'manage': [],
-        'requested' : [],
-        'avaiting' : []
-    };
-}
-
-ShiftPlanningRequests.prototype = {
-    initialize: function(){
-        //some event
-    },
-    loadPage : function(){
-        
-    }
-}
 
  ShiftPlanningRequests.prototype.initialize = function(){
     var self = this;
@@ -4688,52 +5259,6 @@ ShiftPlanningRequests.prototype.loadPage = function(){
     }
 
 
- function ShiftPlanningSchedule(){
-    this.initialize();
-    this.fix = 86000;
-    this.raw = {};
-    this.data = {};
-    this.prepared = {};
-    this.shifts = {};
-    this.shift = {};
-    this.loaded = false;
-    this.edit = false;
-    this.fromDashboard = false;
-    this.fromRecent = false ;
-    this.fromUpcoming = false ;
-    this.fromDashboardUpcoming = false;
-    this.fromStaff=false;
-	this.state =1;
-    this.settings = {
-        mode : 'employee',
-        start_date : 'yesterday',
-        end_date : 'yesterday'
-    };
-    this.page = 'today';
-    this.conflicts = {};
-    return true;
-}
-
-ShiftPlanningSchedule.prototype = {
-    initialize: function(){
-        
-    },
-    loadPage : function(){
-        
-    },
-    setConflicts : function(conf){
-	var self = this;
-	$.each(conf, function(i, item){
-	    self.conflicts[item.shift + ''] = item;
-	});
-    }
-    
-}
-
-
-
-
-
  ShiftPlanningSchedule.prototype.initialize = function(){
     var self = this;
     $(document).ready(function(){
@@ -5899,10 +6424,570 @@ ShiftPlanningSchedule.prototype.loadPage = function(){
 }
 
 
- function ShiftPlanningSettings (){
-	this.initialize();
+ ShiftPlanningPermissions.prototype.initialize = function(){
+    var self = this;
+    $(document).ready(function(){
+        if (user.loggedIn == 1){
+            self.preparePermissions();
+        }
+    });
 }
 
+
+//hide all html parts of system wich permissions i don't have
+ShiftPlanningPermissions.prototype.preparePermissions = function(){
+    //missing view reports
+    //missing edit profile
+    
+    var perms = sp.staff.admin.settings;
+    var group = sp.staff.admin.info.group
+ 
+     //Message Wall (is vissible)
+    if (parseInt(perms.message_wall_on) == 0){
+        $('#da_wa_nm_b').remove();
+        $('#da_wa_nm_f').remove();
+        $('#da_wa_li').html(spView.emptyResult(_s('Message wall is off. Please contact your manager for more info.'), 'li'));
+    }
+    
+    //remove button for writing new wall message
+    if (group > this.supervisor && parseInt(perms.message_wall_emp) == 0){
+        $('#da_wa_nm_b').remove();
+        $('#da_wa_nm_f').remove();
+    }
+    
+    //Add class to ul to hide wall comments
+    if (parseInt(perms.message_wall_comments) == 0){
+        $('#da_wa_li').addClass('permMsgCommentOff');
+    }
+    
+    //remove button for inbox if perms aren't met'
+    if (group >= this.scheduler && parseInt(perms.pm) == 0){
+        $('#da_in_nm_b').unbind(clickEvent);
+        $('#da_in_nm_b').remove();
+	
+
+    }
+    
+    if (perms.shift_confirm == 0){
+	$('.subNavigation .reports a[subpage=confirmedHours]').remove();
+    }
+    
+    //fix employee only perms
+    if (group >= this.employee){        
+        $('#da_se_ov_no, #da_se_ed_no').parents('.detailsGrid').remove();
+	
+	//remove manage timeclock
+	$('#tc_mts_sub_button').remove();
+        $('#tc_mts').remove();
+	
+	$('.subNavigation .requests a[subpage=shiftApprovals]').remove();
+	$('#rq_sa').remove();
+    }
+    
+    if (group >= this.scheduler){
+
+        $('#menu_reports').remove();
+        $('#reports').remove();
+	
+	$('#settings .aPerm').remove();
+	
+	//remove staff fast assignment and add staff for employee
+        $('.subNavigation .staff a[subpage=addStaff]').remove();
+        $('.subNavigation .staff a[subpage=fastAssignment]').remove();
+        $('#staff .addStaff').remove();
+        $('#st_fa').remove();
+    }
+   
+    if (group > this.supervisor){
+//        $('#da_se_ov_aa').prev().remove();
+//        $('#da_se_ov_aa').remove();
+    }
+    
+    //Employees can manually add time clocks
+    if (group >= this.scheduler && parseInt(perms.tc_empl_addtime) == 0){
+        $('#tc_act_sub_button').remove();
+    }
+    
+    //Time Clock Module is on
+    if (parseInt(perms.timeclock) == 0){
+        $('#menu #menu_timeClock').unbind(clickEvent);
+        $('#da_widgets .timeClock').remove();
+        $('#menu #menu_timeClock').remove();
+        $('#timeClock').remove();
+        $('.subNavigation div.timeClock').remove();
+	$('.subNavigation .reports a[subpage=confirmedTimeSheets]').remove();
+    }
+
+    //Employees can view staff gallery
+    if (group >= this.employee && parseInt(perms.visible_staff) == 0){
+        $('#menu #menu_staff').unbind(clickEvent);
+        $('#menu #menu_staff').remove();
+        $('#staff').remove();
+        $('.subNavigation div.staff').remove();
+    }
+    
+    if ( group >= this.scheduler && parseInt( perms.edit_profile ) == 0 ) {
+        $('.subNavigation .settings .subNav a[subpage=edit]').hide();
+    }
+    
+/*    
+    //Employee can send private messages
+    if (group >= this.employee && parseInt(perms.pm) == 0){
+        $('#da_in_nm_b').unbind(clickEvent);
+        $('#da_in_nm_b').remove();
+    }
+    
+//    //Employee can view Who's on now
+//    if (group >= this.employee && parseInt(perms.on_now) == 0){
+//        $('#da_who').remove();
+//    }
+//      This doesn't exists on mobile version for now
+    
+
+    
+    //Employees can manually add time clocks
+    if (group >= this.employee && parseInt(perms.tc_empl_addtime) == 0){
+        $('#tc_mts_sub_button').parent().remove();
+        $('#tc_act_sub_button').remove();
+    }
+    
+    //Message Wall
+    if (parseInt(perms.message_wall_on) == 0){
+        $('#da_w').remove();
+        $('#da_nm_f').remove();
+        $('#da_w_title').remove();
+    }
+    
+    
+    if (group > this.manager && parseInt(perms.message_wall_emp) == 0){
+        $('#da_nmb').remove();
+        $('#da_nm_f').remove();
+    }
+    
+    if (group > this.supervisor){
+        $('#footer_manageTimeSheets').parent().remove();
+        $('#tc_manageTimeSheets').remove();
+        $('#footer_addEmployee').parent().remove();
+        $('#st_ae').remove();
+        $('#footer_fastAssignment').parent().remove();
+        $('#st_fa').remove();
+        $('#da_se_ov_p .aPerm').remove();
+        $('#menu_reports').remove();
+        $('#reports').remove();
+        $('#rq_rl_va, #rq_rl_sp, #rq_rl_sr, #rq_rl_ast').parent().hide();
+        $('#rq_rl .breaker').hide();
+        $('#rq_rl .breaker:last, #rq_rl .breaker:first,').show();
+    }
+    
+    if (group > this.scheduler){
+        $('#rq_va_rq').remove();
+        $('ul.requests a[subPage=shiftApprovals]').parent().remove();
+    }
+*/
+}
+
+ShiftPlanningPermissions.prototype.hasPermission = function(type){
+    var perms = sp.staff.admin.settings;
+    var group = sp.staff.admin.info.group;
+    switch (type){
+        case 'visible_staff_details':
+            //Employees can view staff contact details (staff gallery must be checked)
+            if (group >= this.employee && parseInt(perms.visible_staff_details) == 0){
+                return false;
+            }
+            break;
+        case 'edit_profile':
+            if (group > this.scheduler && parseInt(perms.edit_profile) == 0){
+                return false;
+            }
+            break;
+        case 'message_wall_comments':
+            if (group > this.manager && parseInt(perms.message_wall_comments) == 0){
+                return false;
+            }
+            break;
+
+    }
+    return true;
+}
+
+ShiftPlanningPermissions.prototype.fixStaffListing = function(){
+    var st = sp.staff.data.employees;
+    var sc = sp.schedule.clearSchedules();
+    var employees = {};
+    
+    $.each(sc, function(i, item){
+	$.each(st, function(eI, eItem){
+	    if (eItem.schedules != null && typeof eItem.schedules[item.id] != 'undefined'){
+		employees[eItem.id +''] = eItem;
+	    }
+	});
+    });
+    
+    return employees;
+}
+
+
+ ShiftPlanningTraining.prototype.initialize = function(){
+	var self= this ;
+	$(document).ready(function(){
+		self.overviewEvents();
+	})
+}
+ShiftPlanningTraining.prototype.loadSubPageEvents = function(subpage){
+	    this[subpage + 'SubEvents']();
+}
+ShiftPlanningTraining.prototype.overviewEvents = function(){
+		var self = this ;
+		$('#training .training .filters li a').bind(clickEvent,function(e){
+			e.preventDefault();
+			e.stopPropagation();
+			var subpage = $(this).attr('subpage');
+			$('#training .training .filters li').removeClass('active');
+			$(this).parent().addClass('active');
+			sp.loadSubPage('','training', subpage);
+		});
+		$('#training .training_sections').delegate('div[rel]',clickEvent,function(e){
+			sp.training.tmp_section = $(this).attr('rel');
+			sp.loadSubPage('', 'training', 'singleSection');
+		});
+		$('#training .training_singleSection').delegate('div[rel]',clickEvent,function(e){
+			sp.training.tmp_module = $(this).attr('rel');
+			sp.loadSubPage('', 'training', 'singleModule');
+		});
+		$('.training_module').delegate('a.confirm',clickEvent,function(e){
+		var module_id = $(this).attr('rel');
+		spModel.training.update('complete', {id:module_id},function(response){
+			sp.showSuccess('Finished');
+			setTimeout(function(){
+					$('.singleSection .backMenu').trigger(clickEvent)
+				},2500);			
+			});
+		});
+		$('.training_module').delegate('a#tr_send_signature',clickEvent, function(){
+			var module_id = $(this).attr('rel');
+			var signature = $('#digi_text').val();
+			$(this).addClass('loading');
+			var self = $(this);
+			spModel.training.update('complete', {id:module_id,signature:signature},function(response){
+			sp.showSuccess(response.data);
+			if(response.data === 'Signed'){
+				setTimeout(function(){
+						$('.singleSection .backMenu').trigger(clickEvent)
+					},2500);			
+				}else{
+					self.removeClass('loading');
+				}
+			});
+		});
+		$('.training_module').delegate('#show_all',clickEvent,function(){
+			$('.training_module div[sign=sign]').show();
+			$('#show_all').parent().remove();
+		})
+		$('.singleSection .backMenu').bind(clickEvent,function(e){
+			e.preventDefault();
+			e.stopPropagation();
+			$('.subNavigation .training li.active a').trigger(clickEvent);			
+		});
+		$('.singleModule .backMenu').bind(clickEvent,function(e){
+			e.preventDefault();
+			e.stopPropagation();
+			sp.loadSubPage('', 'training', 'singleSection');
+		});
+		$('.topicstatistic .backMenu').bind(clickEvent,function(e){
+			e.preventDefault();
+			e.stopPropagation();
+			sp.loadSubPage('', 'training', 'singleModule');
+		});
+		$('.singleModule .subMenu .topic_stat').bind(clickEvent,function(e){
+			e.preventDefault();
+			e.stopPropagation();
+			sp.loadSubPage('', 'training', 'topicstatistic');
+		});
+		$('.singleModule').delegate('#tr_send_comment',clickEvent,function(e){
+			e.preventDefault();
+			e.stopPropagation();
+			var text=$.trim($('#tr_comment').val());			
+			if(text.length > 0){
+				$(this).addClass('loading');
+				spModel.training.update('comments', {module_id:sp.training.tmp_module,text:text,type:1}, function(reponse){
+					sp.showSuccess('Comment added');
+					setTimeout(function(){
+							$('.singleModule .backMenu').trigger(clickEvent)
+						},2500);
+				});
+			}else{
+				sp.showError('Empty comment');
+			}
+		})
+}
+ShiftPlanningTraining.prototype.overviewSubEvents = function(){
+	$('.subNavigation').show();
+	$('.training').show();
+	if(sp.staff.admin.info.group <= 2){
+		$('.training  a[subpage=statistic]').parent().removeClass('hidden');
+	}
+}
+ShiftPlanningTraining.prototype.sectionsSubEvents = function (){
+	$('.subNavigation').show();
+	$('.training').show();
+	if(sp.staff.admin.info.group <= 2){
+		$('.training  a[subpage=statistic]').parent().removeClass('hidden');
+		$('.training .singleModule .subMenu').removeClass('hidden');		
+	}else{
+		//$('.trainingBar').css('margin','0 60px 0 0 ');
+	}
+	$('.training_sections').html(spView.ulLoader());
+	var s=[];
+	var m=[];
+	spModel.training.get('progress', {}, function(response){
+		if(typeof response.data[sp.staff.admin.info.id] != 'undefined'){
+			var percent = Math.round((response.data[sp.staff.admin.info.id].completed/response.data[sp.staff.admin.info.id].total)*100);
+			$('#user_progress').html(percent);
+			$('.progress').css('width',percent+'%');
+		}
+		sp.training.statistic = response.data;
+		spModel.training.get('sections', {}, function(response){
+			s = response.data;		
+			spModel.training.get('modules', {detailed:1}, function(response){
+				m = response.data;
+				var data = [];
+				for (var i=0;i<s.length;i++){
+					var mod=[];
+					s[i].notfinished_count = 0 ;
+					for(var j=0;j<m.length;j++){
+						if(s[i].id == m[j].section){
+							if(m[j].comment_type != 2){
+							mod.push(m[j]);
+							}
+							if(typeof m[j].employees != 'undefined' && typeof m[j].employees[sp.staff.admin.info.id] != 'undefined'){
+								m[j].finished_flag = m[j].employees[sp.staff.admin.info.id].finished ? '1' : '0' ;
+								if(m[j].finished_flag == '0'){s[i].notfinished_count ++ ;}
+								if(typeof m[j].employees[sp.staff.admin.info.id].outdated != 'undefined'){
+									m[j].finished_flag = '99' ;
+									s[i].notfinished_count ++ ;
+								}						
+							}
+						}
+					}
+					s[i].modules=mod;
+					if(s[i].modules.length > 0){
+						data.push(s[i]);
+						sp.training.trainings[s[i].id]=s[i];
+					}					
+				}
+				$('.training_sections').html($.tmpl($('#te_tr_sections'),data));
+				$('.training div.oneLine b').shorten();	
+                                
+                                if ( $('.training_sections > *').length == 0 ) {
+                                    $('.training_sections').html( spView.emptyResult( _s('No training topics.'), 'li') );
+                                }
+			})			
+		})		
+	})
+	
+}
+
+ShiftPlanningTraining.prototype.statisticSubEvents = function(){
+	$('.subNavigation').show();
+	$('.training').show();
+	$('.training_statistic').html(spView.divLoader());
+	if(sp.staff.admin.info.group > 2){
+		sp.showError('You have no permission');
+		setTimeout(function(){
+			sp.loadSubPage('', 'training', 'sections');
+		},1500);
+		return false;
+	}
+	setTimeout(function(){
+	var data = []
+	$.each(sp.training.statistic,function(){
+		if(this.completed == 0){
+			this.stat = 0
+		}else{
+			this.stat=Math.round((this.completed/this.total)*100);
+		}
+		this.avatar=sp.getAvatar(this.id)
+		data.push(this);
+	})
+	$('.training_statistic').html($.tmpl($('#te_tr_statistic'),data));		
+	},500);
+	
+}
+
+ShiftPlanningTraining.prototype.singleSectionSubEvents = function (){
+	$('.training_singleSection').html(spView.ulLoader());
+	$('#section_name').html(sp.training.trainings[sp.training.tmp_section].title)
+	setTimeout(function(){
+	var data = sp.training.trainings[sp.training.tmp_section].modules;
+	for (var i=0;i<sp.training.trainings[sp.training.tmp_section].modules.length;i++){
+		if( typeof sp.training.trainings[sp.training.tmp_section].modules[i].finished_flag == 'undefined'){
+			sp.training.trainings[sp.training.tmp_section].modules[i].finished_flag = -99 ;
+		}
+		if( sp.training.trainings[sp.training.tmp_section].modules[i].duedate != 0){
+			var today = new Date ();
+			var d= new Date(sp.training.trainings[sp.training.tmp_section].modules[i].duedate*1000);
+			var month = d.getMonth()>9?(d.getMonth()+1):'0'+(d.getMonth()+1);
+			sp.training.trainings[sp.training.tmp_section].modules[i].color = today > d ?'#8C1919':'green';
+			sp.training.trainings[sp.training.tmp_section].modules[i].duedate_formated = d.getDate()+'-'+month+'-'+d.getFullYear();
+		}
+	}
+	$('.training_singleSection').html($.tmpl($('#te_tr_singleSection'),sp.training.trainings[sp.training.tmp_section].modules));
+	$('.training div.oneLine b').shorten();
+	},500);
+	
+}
+
+ShiftPlanningTraining.prototype.singleModuleSubEvents = function () {
+	$('.training .training_module').html(spView.divLoader());
+	setTimeout(function(){
+	var data = {} ;
+	for (var i=0;i<sp.training.trainings[sp.training.tmp_section].modules.length;i++){
+		if(sp.training.tmp_module == sp.training.trainings[sp.training.tmp_section].modules[i].id){
+			data = sp.training.trainings[sp.training.tmp_section].modules[i] ;
+		}
+	}
+	
+	if(data.contents != null){
+		data.contents = data.contents.replace(/\n/g, '</p><br/><p>');	
+		data.contents=spView.bbc2HTML(data.contents);
+	}else{
+		data.contents = '';
+	}	
+	if(data.files.length > 0){
+		$.each(data.files,function(i,j){
+			this.file_size=spView.friendly_filesize(this.file_size);
+		})
+	}
+	//if it's comment training fetch comments  or signatures
+	if(data.comment_type == 1 || data.digital_signature == 1){
+	
+		if(data.comment_type == 1){
+				spModel.training.get('comments', {module_id:sp.training.tmp_module,type:1}, function(response){
+				var comments=[];
+				$.each(response.data,function(){
+					if(sp.staff.admin.info.group <= data.can_see_comment){
+						this.avatar=sp.getAvatar(this.user);					
+						comments.push(this);
+					}
+				});
+				data.comments=comments;
+				if(data.digital_signature == 1){
+					spModel.training.get('digital_signature', {module_id:data.id}, function(response){					
+					var signatures = [];
+					$.each(response.data,function(){
+						if(sp.staff.admin.info.group <=2){
+							this.avatar=sp.getAvatar(this.user);
+							signatures.push(this);
+						}else{
+							if(this.user == sp.staff.admin.info.id){
+								this.avatar=sp.getAvatar(this.user);
+								signatures.push(this);								
+							}
+						}
+					});
+					data.signatures=signatures;
+					$('.training_module').html($.tmpl($('#te_tr_module'),data));
+					var html = $('.training_module .wys');
+					html.html(html.text());
+					$.each(html.find('p'),function(){
+						if($(this).html().length == 0){
+							$(this).remove();
+						}
+					});
+					$('.confirm').remove();
+					$('div[sign=sign]:gt(5)').hide();
+					$('<div>',{'class':'title1 wide'}).html($('<a>',{text:'show more',id:'show_all',onclick:'void(0)'})).insertAfter($('div[sign=sign]:eq(5)'));
+					});
+				}else{
+					$('.training_module').html($.tmpl($('#te_tr_module'),data));
+					var html = $('.training_module .wys');
+					html.html(html.text());
+					$.each(html.find('p'),function(){
+						if($(this).html().length == 0){
+							$(this).remove();
+						}
+					});
+				}
+			});
+		}
+		if(data.digital_signature == 1 && data.comment_type == 0){
+				spModel.training.get('digital_signature', {module_id:data.id}, function(response){
+					var signatures = [];
+					$.each(response.data,function(){
+						if(sp.staff.admin.info.group <=2){
+							this.avatar=sp.getAvatar(this.user);
+							signatures.push(this);
+						}else{
+							if(this.user == sp.staff.admin.info.id){
+								this.avatar=sp.getAvatar(this.user);
+								signatures.push(this);								
+							}
+						}
+					});
+					data.signatures=signatures;
+					$('.training_module').html($.tmpl($('#te_tr_module'),data));
+					var html = $('.training_module .wys');
+					html.html(html.text());
+					$.each(html.find('p'),function(){
+						if($(this).html().length == 0){
+							$(this).remove();
+						}
+					});
+					$('.confirm').remove();
+					$('div[sign=sign]:gt(5)').hide();
+					$('<div>',{'class':'title1 wide'}).html($('<a>',{text:'show more',id:'show_all',onclick:'void(0)'})).insertAfter($('div[sign=sign]:eq(5)'));
+				});
+			}
+			
+			
+		}else{
+			$('.training_module').html($.tmpl($('#te_tr_module'),data));
+						var html = $('.training_module .wys');
+						html.html(html.text());
+						$.each(html.find('p'),function(){
+							if($(this).html().length == 0){
+								$(this).remove();
+							}
+						});					
+		}	
+	},500);
+		
+}
+
+ShiftPlanningTraining.prototype.topicstatisticSubEvents = function () {
+	$('.training_topic_stat').html(spView.divLoader());
+	if(sp.staff.admin.info.group > 2){
+		sp.showError('You have no permission');
+		setTimeout(function(){
+			sp.loadSubPage('', 'training', 'sections');
+		},1500);
+		return false;
+	}	
+	setTimeout(function(){
+	var data ={}
+	for (var i=0;i<sp.training.trainings[sp.training.tmp_section].modules.length;i++){
+		if(sp.training.tmp_module == sp.training.trainings[sp.training.tmp_section].modules[i].id){
+			data = sp.training.trainings[sp.training.tmp_section].modules[i] ;
+		}
+	}	
+	if(typeof data.employees != 'undefined' && typeof data.employees != null){
+		var emp = [];
+		$.each(data.employees,function(){
+			this.avatar = sp.getAvatar(this.id);
+			emp.push(this);
+		})
+		$('.training_topic_stat').html($.tmpl($('#te_tr_topic_statistic'),emp));
+	}else{
+		$('.training_topic_stat').html('No employees on assigned on this topic')
+	}	
+	},500);
+	
+}
+
+ShiftPlanningTraining.prototype.loadPage = function(){
+	
+}
 
  ShiftPlanningSettings.prototype.initialize = function(){
 	var self= this ;
@@ -6464,2099 +7549,436 @@ ShiftPlanningSettings.prototype.adminActions = function(obj){
     });
 }
 
- function ShiftPlanningShift(){
-    this.initialize();
+ //creation of touchmove event used for tablet/mobile devices
+var cal;
+var lastTouch;
+var clickEvent = 'click';
+var deviceAgent = navigator.userAgent.toLowerCase();
+var agentID = deviceAgent.match(/(iphone|ipod|ipad)/);
 
-    return true;
+var ua = navigator.userAgent.toLowerCase();
+var isAndroid = ua.indexOf("android") > -1; //&& ua.indexOf("mobile");
+
+if (agentID) {
+    clickEvent = 'click';
 }
 
-ShiftPlanningShift.prototype = {
-    initialize: function(){
-        
-    }
-    
-}
-
-
-
-
-
- function ShiftPlanningStaff(){
-    this.changed = true;
-    this.page = 6;
-    this.initialize();
-    return true;
-}
-
-ShiftPlanningStaff.prototype = {
-    data: {},
-    raw: {},
-    fixed : {},
-    admin: {},
-    initialize: function(){
-        
-    },
-    login: function(username, password){
-
-    },
-    loadPage : function(){
-        
-    }
-    
-}
-
-
-
-
-
- ShiftPlanningStaff.prototype.initialize = function(){
-    var self = this;
-    $(document).ready(function(){
-        if (user.loggedIn == 1){
-            self.prepareConfig();
-        }
-        $('#lo_b').bind(clickEvent, function(){
-            self.login(); 
-        });
-	
-	$('#lo_f .checkbox').bind(clickEvent, function(){
-	    $(this).toggleClass('check');
-	});
-        
-        self.listEvents();
-        self.addStaffEvents();
-        self.fastAssignmentEvents();
-        
-    });
-}
-
-
-ShiftPlanningStaff.prototype.loadSubPageEvents = function(subpage){
-    $('#st_tp_menu').hide();
-    this[subpage + 'SubEvents']();
-}
-
-ShiftPlanningStaff.prototype.listEvents = function(){
-    var self = this;
-    $('#st_sn_ga').bind(clickEvent, function(){
-        if ($(this).hasClass('active')){
-            return false;
-        }
-        $('#st_sn_ga').addClass('active');
-        $('#st_sn_li').removeClass('active');
-        $('#st_li_ga').removeClass('small').addClass('big');
-    });
-    
-    $('#st_sn_li').bind(clickEvent, function(e){
-        if ($(this).hasClass('active')){
-            return false;
-        }
-        $('#st_sn_li').addClass('active');
-        $('#st_sn_ga').removeClass('active');
-        $('#st_li_ga').removeClass('big').addClass('small');
-    });
-    
-    $('#st_li_se_b').bind(clickEvent, function(e){
-        e.preventDefault();
-        var s = $('#st_li_se_te').val();
-        if (s.length == 0 || s == 'Search...'){
-            $('#st_li_ga li').show();
-            $('#st_li_ga').show();
-            $('#st_li .noResults').hide();
+jQuery.event.special.touch = {
+    setup: function(data,namespaces){
+        var elem = this, $elem = jQuery(elem);
+        if (window.Touch) {
+            $elem.bind('touchstart', jQuery.event.special.touch.onTouchStart);
+            $elem.bind('touchmove', jQuery.event.special.touch.onTouchMove);
+            $elem.bind('touchend', jQuery.event.special.touch.onTouchEnd);
         } else {
-            $('#st_li_ga li').hide();
-            $('#st_li_ga').show();
-            $('#st_li .noResults').hide();
-            $('#st_li_ga li').find('span:Contains("'+s+'")').parents('li').show();
-            if ($('#st_li_ga li').find('span:Contains("'+s+'")').parents('li').length == 0){
-                $('#st_li .noResults').show();
-                $('#st_li_ga').hide();
-            }
+            $elem.bind('click', jQuery.event.special.touch.click);
         }
-    });
-    
-    $('#st_li_se_te').bind('keyup', function(e) {
-        $('#st_li_se_b').trigger(clickEvent);
-    })
-    $('#st_li_ga').delegate('li', clickEvent, function(){
-        var id = $(this).attr('staffId');
-        if (sp.permissions.hasPermission('visible_staff_details')){
-            window.scrollTo( 0, 1 );
-            self.displayEmployee(id);
-        }
-    });
-}
+    },
+    click: function (event) {
+        event.type = "touch";
+        jQuery.event.handle.apply(this, arguments);
+    },
 
-ShiftPlanningStaff.prototype.addStaffEvents = function(){
-    var self = this;
-    $('#st_ae_sa').bind(clickEvent, function(){
-        $(this).toggleClass('check');
-    });
-    
-    $('#st_ae_ce_b').bind(clickEvent, function(e){
-        e.preventDefault();
-        self.createEmployee($(this));
-    });
-}
-
-ShiftPlanningStaff.prototype.fastAssignmentEvents = function(){
-    var self = this;
-    $('#st_fa_el').bind('change', function(){
-        self.loadFastAssignment($(this).val());
-    });
-    
-    $('#st_fa ul.detailsGrid ul').delegate('.checkbox', clickEvent, function(e){
-        var sid = $(this).attr('itemId');
-        var skills = ($(this).parents('.skills').length > 0) ? true : false;
-        var checked = ($(this).hasClass('check')) ? true : false;
-        var obj = this;
-	$(obj).parent().addClass('loading');
-        var data = {
-            id : $('#st_fa_cu').val()
-        }
-        if (skills){
-            if (checked) {
-                data.removeskill = sid;
-            } else {
-                data.addskill = sid;
-            }
+    teardown: function (namespaces) {
+        var elem = this, $elem = jQuery(elem);
+        if (window.Touch) {
+            $elem.unbind('touchstart', jQuery.event.special.touch.onTouchStart);
+            $elem.unbind('touchmove', jQuery.event.special.touch.onTouchMove);
+            $elem.unbind('touchend', jQuery.event.special.touch.onTouchEnd);
         } else {
-            if (checked) {
-                data.removeschedule = sid;
-            } else {
-                data.addschedule = sid;
-            }
+            $elem.unbind('click', jQuery.event.special.touch.click);
         }
-        spModel.staff.update('employee', data, function(response){
-            if (checked) {
-                $(obj).removeClass('check');
-            } else {
-                $(obj).addClass('check');
-            }
-	    $(obj).parent().removeClass('loading');
-            sp.settings.updateUser($('#st_fa_cu').val(), response, false);
-        });
-    });
-}
+    },
 
-ShiftPlanningStaff.prototype.listSubEvents = function(){
-    $('#st_tp_menu').show();
-    $('#st_li_ga').html($.tmpl($('#te_st_list'), spModel.staff.allStaff()));
-    $('#st_li_ga li').show();
-    $('#st_li_se_te').val('').trigger('blur');
-}
+    onTouchStart: function (e) {
+        this.moved = false;
+        lastTouch = e.originalEvent.targetTouches[0];
+    },
 
-ShiftPlanningStaff.prototype.addStaffSubEvents = function(){
-    this.resetAddEmployee();
-}
+    onTouchMove: function (e) {
+        this.moved = true;
+    },
 
-ShiftPlanningStaff.prototype.fastAssignmentSubEvents = function(){
-    $('#st_fa_el').html(spView.staffOption());
-    $('#st_fa_po').hide();
-    $('#st_fa_sk').hide();
-}
-
-//Functions
-ShiftPlanningStaff.prototype.displayEmployee = function(id){
-	sp.hashChange = false;
-	sp.hash('staff/details');
-	
-    $('#st_tp_menu').hide();
-    $('#pages > div').hide();
-    $('#pages #settings .main').hide();
-    $('#pages #settings .mainSub').hide();
-    $('#pages #settings').show();
-    $('#da_se_overview').show();
-    sp.settings.overviewSubEvents(spModel.staff.getEmployeeById(id));
-    $('#settings .mainSub.settings .subNav li:first a').trigger(clickEvent);
-    $('.subNavigation').hide();	
-    $('#pages #settings .mainSub.settings').show();
-}
-
-
-//Get all fast assignment info.
-ShiftPlanningStaff.prototype.loadFastAssignment = function(id){
-    var employee = spModel.staff.getEmployeeById(id);
-    $('#st_fa_cu').val(id);
-    $('#st_fa_po ul.detailsGrid ul').html(spView.editableSchedules(employee));
-    $('#st_fa_sk ul.detailsGrid ul').html(spView.editableSkills(employee));
-    
-    $('#st_fa_po').show();
-    $('#st_fa_sk').show();
-    sp.fixCheckboxes();
-}
-
-ShiftPlanningStaff.prototype.createEmployee = function(c){
-    $(c).addClass('loading');
-    var self = this;
-    var data = {};
-    data.name = $('#st_ae_i_n').val();
-    //if ($.trim($('#st_ae_i_nn').val()).length > 0){
-        data.nick_name = $('#st_ae_i_nn').val();
-    //}
-    //if ($.trim($('#st_ae_i_e').val()).length > 0){
-        data.email = $('#st_ae_i_e').val();
-    //}
-    
-    //if ($.trim($('#st_ae_i_eid').val()).length > 0){
-        data.eid = $('#st_ae_i_eid').val();
-    //}
-    
-    //if ($.trim($('#st_ae_i_eid').val()).length > 0){
-        data.username = $('#st_ae_i_un').val();
-    //}
-    
-    //if ($.trim($('#st_ae_i_hw').val()).length > 0){
-        data.wage = $('#st_ae_i_hw').val();
-    //}
-    
-    //if ($.trim($('#st_ae_i_no').val()).length > 0){
-        data.notes = $('#st_ae_i_no').val();
-    //}
-    
-    if ($('#st_ae_sa').hasClass('check')){
-        data.send_activation = 1;
+    onTouchEnd: function (event) {
+        if (!this.moved) {
+            event.type = "touch";
+            jQuery.event.handle.apply(this, arguments)
+        }
     }
+}
+
+ShiftPlanning.prototype.toggleMenu = function(){
+    $('#menu').toggleClass('hidden');
+    $('#wrapper').toggleClass('extended');
     
-    spModel.staff.create('employee', data, function(response){
-        $(c).removeClass('loading');
-        spModel.staff.addEmployee(response.data);
-        self.displayEmployee(response.data.id);
-        sp.showSuccess(_s('Employee successfully created!'));
-    }, function(){
-        $(c).removeClass('loading');
-    });
+    if ($('#wrapper').hasClass('extended')){
+        $('#wrapper').css('margin-left', 190);
+        $('#menu').css('margin-left', 0);
+        $('.blackMask').css('display','block');
+        $('.blackMask').css('opacity','0.5');
+    } else {
+        $('#wrapper').css('margin-left', 0);
+        $('#menu').css('margin-left', -190);
+        $('.blackMask').css('display','none');
+        $('.blackMask').css('opacity','0');
+    }
 }
 
-
-ShiftPlanningStaff.prototype.resetAddEmployee = function(){
-    $('#st_ae_i_n').val('');
-    $('#st_ae_i_nn').val('');
-    $('#st_ae_i_e').val('');
-    $('#st_ae_i_eid').val('');
-    $('#st_ae_i_un').val('');
-    $('#st_ae_i_hw').val('');
-    $('#st_ae_i_no').val('');
-    $('#st_ae_sa').removeClass('check');
-}
-
-//Rest
-ShiftPlanningStaff.prototype.login = function(){
-    var u = $('#lo_u').val();
-    var p = $('#lo_p').val();
-    var self = this;
-    $('#lo_b').addClass('loading');
-    sp.api('staff.login', 'GET', {
-        username: u, 
-        password: p
-    }, function(loginResponse){
-        sp.staff.admin.info = loginResponse.data.employee;
-	if (loginResponse.data.employee.language == null){
-	    loginResponse.data.employee.language = loginResponse.data.business.language;
-	}
-	setCookie('shiftplanning_mobile_lang', loginResponse.data.employee.language, cookieExpire);
-	if (loginResponse.data.employee.language != 'en_US'){
-	    window.location.reload();
-	}
-        var calls = [
-        ['staff.employees','GET', {}],
-        ['schedule.schedules','GET', {
-            'perms':1
-        }],
-        ['admin.settings', 'GET', {}],
-        ['staff.skills', 'GET', {}],
-        ['location.locations', 'GET', {}]
-        ]
-        sp.multiApi(calls, function(response){
-            sp.api('api.config', 'GET', {}, function(config){
-                    sp.api('admin.business', 'GET', {},function(business){
-                            //was hitting the 5 request limit for multi api so we needed to send a separate call
-                            $('.loginContainer').fadeOut(500, function(){
-                                    $('#lo_b').removeClass('loading');
-                                    user.loggedIn = 1;
-                                    user.name = loginResponse.data.employee.name;
-                                    user.company = loginResponse.data.business.name;
-                                    user.phone = loginResponse.data.business.phone;
-                                    sp.staff.raw.employees = response[0].data;
-                                    sp.staff.data.employees = sp.map(response[0].data);
-                                    sp.schedule.raw.schedules = response[1].data;
-                                    sp.schedule.data.schedules = sp.map(response[1].data);
-                                    sp.staff.admin.settings = response[2].data;
-                                    sp.staff.raw.skills = response[3].data;
-                                    sp.staff.data.skills = sp.map(response[3].data);
-                                    sp.staff.raw.locations = response[4].data;
-                                    sp.staff.data.locations = sp.map(response[4].data);
-                                    sp.staff.admin.info.dfAvatar = sp.getAvatar(sp.staff.admin.info.id);
-                                    sp.raw.config = config.data;
-                                    sp.schedule.dateId = sp.raw.config.today.id;
-                                    sp.staff.admin.business = business.data;
-                                    $('body').removeClass('login');
-                                    $('.notification').remove();
-                                    $('html').css('height','auto');
-                                    sp.hash('dashboard');
-                                    self.prepareConfig();
-                                    sp.permissions.preparePermissions();
-                                    spRanges.fixRanges();
-                                    sp.staff.fixed.employees = sp.permissions.fixStaffListing();
-                                    sp.raw.config.today.formatted = Date.parse(sp.raw.config.today.formatted).toString(cal.dformat);
-                                    if ($('#lo_f .checkbox').hasClass('check')){
-                                        setCookie('shiftplanning_mobile_rememberme', 1, cookieExpire);
-                                        setCookie('shiftplanning_mobile_usertoken', loginResponse.token, cookieExpire);
-                                        setCookie('shiftplanning_mobile_userid', loginResponse.data.employee.id, cookieExpire);
-                                        setCookie('shiftplanning_mobile_username', user.name, cookieExpire);
-                                        setCookie('shiftplanning_mobile_usercompany', user.company, cookieExpire);
-                                        setCookie('shiftplanning_mobile_userphone', user.phone, cookieExpire);
-                                    }
-                            });
-                    });
-            });
-        });
-
-    }, function(response){
-        $('#lo_b').removeClass('loading');
-        $('.login .error').html(response.error);
-        $('.login .error').slideDown(500);
-        $('.login input:first').focus();
-        
-    });
-}
-
-
-ShiftPlanningStaff.prototype.logout = function(){
-    var c = confirm(_s('Are you sure you want to logout?'));
-    if (!c){
-		var h = $('#menu .mainNav .active').attr('id').split('_');
-		sp.hash(h[1]);		
+ShiftPlanning.prototype.loadSubPage = function(obj, page, subpage) {
+    if (subpage == 'logout'){
+        this.staff.logout();
         return false;
     }
-    sp.api('staff.logout', 'GET', {}, function(response){
-	setCookie('shiftplanning_mobile_rememberme', 0, cookieExpire);
-        window.location.reload();
-    }, function(response){
-        sp.showError(response.error);
-    });
-}
-
-
-ShiftPlanningStaff.prototype.prepareConfig = function(){
-    var currency = {
-        1: '$',
-        2: '&#163;',
-        3: '&#8364;',
-        4: '&#8360;',
-        5: '&#165;',
-        6: '&#8361;',
-        7: 'R',
-        8: 'kr',
-        9: '&#8369;',
-        10: 'RM'
-    }
-    var tmpDate = new Date();
-    var def = {
-        month: tmpDate.getMonth(), 
-        year: tmpDate.getFullYear(), 
-        day: tmpDate.getDate()
-    };
-    cal = {
-        startday: sp.staff.admin.settings.startday,
-        currency: currency[sp.staff.admin.settings.currency],
-        tmode: (sp.staff.admin.settings['24hr'] == "1"? 24 : 12),
-        tstring: (parseInt(sp.staff.admin.settings['24hr']) == 1) ? 'HH:mm' : 'h:mm tt',
-        dformat: sp.strReplace(['M','d', 'm', 'Y', 'j'], ['MMM', 'dd', 'MM', 'yyyy', 'd'], sp.staff.admin.settings.date),
-        dpformat: sp.strReplace(['d', 'm', 'Y', 'M', 'j'], ['dd', 'mm', 'yy', 'M', 'd'], sp.staff.admin.settings.date),
-        user: sp.staff.admin.info.id,
-        view: 'week',
-        mode: 'overview',
-        schedule: '',
-        lastlength: 8,
-        focus: 'employee',
-        today: tmpDate.getMonth()+'/'+tmpDate.getDate()+'/'+tmpDate.getFullYear(),
-        month: def.month,
-        year: def.year,
-        day: def.day,
-        firstday: '',
-        lastday: '' ,
-        cache: {},
-        lastcall: '',
-        firsttime: 0,
-        height: 960,
-        timeline: {},
-        shifts: {},
-        schedules: {},
-        locations: {},
-        skills: {},
-        employees: {},
-        total: {},
-        conflicts: {},
-        locked: 0
-    };    
-}
-
-
- function ShiftPlanningTimeClock(){
-    this.initialize();
-    this.timeSheetsData = {};
-    this.actco = false;
-    this.current = {};
-    this.edit = false;
-    return true;
-}
-
-ShiftPlanningTimeClock.prototype = {
-    times : {
-        0 : {
-            start_time : strtotime('now'),
-            end_time : strtotime('now +1 day')
-        },
-        1 : {
-            start_time : strtotime('now -1 day'),
-            end_time : strtotime('now')
-        },
-        2 : {
-            start_time : strtotime('now -7 day'),
-            end_time : strtotime('now +1 day')
-        },
-        3 : {
-            start_time : Date.parse('monday').getTime()/1000,
-            end_time : Date.parse('next sunday').getTime()/1000
-        },
-        4 : {
-            start_time : ((Date.parse('monday').getTime()/1000) - 604800),
-            end_time : Date.parse('sunday').getTime()/1000
-        }
-    }
-}
-
- ShiftPlanningTimeClock.prototype.initialize = function(){
-	var self = this;
-	$(document).ready(function(){
-		self.overviewEvents();
-		self.addClockTimeEvents();
-		self.manageTimeSheetsEvents();
-		self.displayTimeSheetsEvents();
-	});
-}
-
-ShiftPlanningTimeClock.prototype.loadSubPageEvents = function(subpage){
+	
 	$('.subNavigation').show();
-	if (subpage == 'displayTimeClock'){
-		$('.subNavigation').hide();
+	
+	if($.trim(subpage)==''){
+		subpage = $('.subNav[page=' + page + '] li:first a').attr('subpage');
 	}
-	this[subpage + 'SubEvents']();
+	
+	// dirty fix for profile page, which is not in hashchange system
+	if(page == 'staff' && subpage == 'details'){
+		subpage = 'list';
+	}
+	
+    if (obj != ''){
+        obj.parent().parent().find('li').removeClass('active');
+        obj.parent().addClass('active');
+    }
+    
+    $('.subNavigation > div').hide();
+    $('.subNavigation > div.' + page).show();
+    
+    $('#pages > div').hide();
+    $('#pages #' + page + ' .main').hide();
+    $('#pages #' + page + ' .mainSub').hide();
+    $('#pages #' + page).show();
+    $('#pages #' + page + ' .main.' + subpage).show();
+    $('#pages #' + page + ' .mainSub.' + subpage).show();
+    
+    $('#menu .mainNav > li').removeClass('active');
+    $('#menu_' + page).addClass('active');
+    
+	if($('.subNav[page=' + page + '] li a[subpage=' + subpage + ']' ).length > 0){
+		$('.subNav[page=' + page + '] li').removeClass('active');
+		$('.subNav[page=' + page + '] li a[subpage=' + subpage + ']').parent().addClass('active');
+		
+		sp.hash(page+'/'+subpage);
+	}
+    
+    if (typeof this[page] != 'undefined' && 'loadSubPageEvents' in this[page]){
+        this[page].loadSubPageEvents(subpage);
+    }
+    
+    sp.fixCheckboxes();
+    if (page == 'schedule' && subpage == 'addShift') {
+    } else {
+        $(window).scrollTop(0);
+    }
 }
 
-ShiftPlanningTimeClock.prototype.overviewEvents = function(){
-	var self = this;
-	$('#tc_ov_ci').bind(clickEvent, function(e){
-		e.preventDefault();
-		var data = {};
-		var done = false;
-		var apiCall = function(){
-			spModel.timeclock.get('clockin', data, function(response){
-				$('#tc_ov_cb span.fr a').hide();
-				$('#tc_ov_way_msg').hide();
-				$('#tc_ov_cf').show();
-				$('#tc_ov_co').show();
-				$('#tc_ov_ca').attr('rel', response.data.id);
-				$('#tc_ov_no').val('');
-				$('#tc_ov_ss').val(0);
-			});
-		}
-		var errorCallback = function(){
-			done = true;
-			sp.showError(_s('Coordinates not available'));
-			setTimeout(apiCall, 2000);
-		}
+ShiftPlanning.prototype.initialize = function(){
+    var self = this;
+    $(window).hashchange(function(){
+        if (sp.hashChange == false){
+            sp.hashChange = true;
+            return false;
+        }
 		
-		if (sp.staff.admin.business.pref_tc_gps == '1' && navigator.geolocation){
+        if (sp.hash().length > 0) {
+			var page = sp.hash();
+			var subpage = false;
+			// Check if the hash contains subpage
+			var subpagePosition = sp.hash().search("/");
 			
-			setTimeout(function(){
-				if(!done){
-					errorCallback();
-				}
-			},10000);
-			
-			sp.showSuccess(_s('Getting Coordinates'));
-			
-			navigator.geolocation.getCurrentPosition(
-				//success
-				function(response){
-					if(typeof response != 'function'){
-						done = true;
-						data.latitude = response.coords.latitude;
-						data.longitude = response.coords.longitude;
-						setTimeout(apiCall,2000);
-					}
-				},
-				//errorCallback
-				errorCallback
-				);
-			
-		}else{
-			apiCall();
-		}
-        
-	});
-	
-	$('#tc_ov_way').bind(clickEvent, function(e){
-		e.preventDefault();
-		
-		var data = {
-			employee : sp.staff.admin.info.id
-		};
-		
-		spModel.timeclock.create('preclockin', data, function(response){
-			$('#tc_ov_way_msg .sc_way_time_since').html(response.data.formatted);
-			$('#tc_ov_way_msg').show();
-			$('#tc_ov_way').hide();
-			$('#tc_ov_ci').show();
-		});
-	});
-	
-	$('#tc_ov_co').bind(clickEvent, function(e){
-		e.preventDefault();
-		var data = {}
-		var notes = $.trim($('#tc_ov_no').val());
-		if ($('#tc_ov_ss').val() != 0){
-			data.schedule = $('#tc_ov_ss').val();
-		}
-		var done = false;
-		var apiCall = function(){
-			spModel.timeclock.get('clockout', data, function(response){
-				$('#tc_ov_cb span.fr a').hide();
-				$('#tc_ov_cf').hide();
-				
-				if(sp.staff.admin.business.pref_pre_time_clock == '1'){
-					$('#tc_ov_way').show();
-					$('#tc_ov_ci').show();
-				}
-				if(sp.staff.admin.business.pref_mandatory_pre_time_clock == '1'){
-					$('#tc_ov_way').show();
-					$('#tc_ov_ci').hide();
-				}
-			});		
-		};
-		var errorCallback = function(){
-			done = true;
-			sp.showError(_s('Coordinates not available'));
-			setTimeout(function(){
-				apiCall();				
-			}, 2000);
-		}
-		if(sp.staff.admin.business.pref_tc_require_pos && $('#tc_ov_ss').val() == 0){
-			sp.showError(_s('Please choose schedule first'));
-			return false;
-		}
-
-		if (notes.length != 0 ){
-			data.notes = $('#tc_ov_no').val();
-		}
-	
-		if(sp.staff.admin.business.pref_tc_require_notes && notes.length == 0){
-			sp.showError(_s('Please provide some notes'));
-			return false;
-		}
-	
-		if (sp.staff.admin.business.pref_tc_gps == '1' && navigator.geolocation){
-			setTimeout(function(){
-				if(!done){
-					errorCallback();
-				}
-			},10000);
-
-			sp.showSuccess(_s('Getting Coordinates'));		
-		
-			navigator.geolocation.getCurrentPosition(
-				//success
-				function(response){
-					if(typeof response != 'function'){
-						done = true;
-						data.latitude = response.coords.latitude;
-						data.longitude = response.coords.longitude;
-						setTimeout(apiCall,2000);					
-					}
-				},
-				errorCallback
-				);
-		
-		} else {
-			apiCall()
-		}
-
-	});
-	
-	$('#tc_ov_ss').bind('change', function(){
-		self.saveClockInChanges();
-	});
-    
-	//    $('#tc_ov_no').bind('blur', function(){
-	//        self.saveClockInChanges();
-	//    });
-    
-	$('#tc_ov_sa').bind(clickEvent, function(e){
-		e.preventDefault();
-		self.saveClockInChanges();
-	});
-    
-	$('#tc_ov_ca').bind(clickEvent, function(e){
-		e.preventDefault();
-		spModel.timeclock.dtc($(this).attr('rel'), function(){
-			$('#tc_ov_cb span.fr a').hide();
-			$('#tc_ov_cf').hide();
-			
-			if(sp.staff.admin.business.pref_pre_time_clock == '1'){
-				$('#tc_ov_way').show();
-				$('#tc_ov_ci').show();
+			if(subpagePosition >= 0){
+				page = sp.hash().substring(0, subpagePosition);
+				subpage = sp.hash().substring(subpagePosition+1);
 			}
-			if(sp.staff.admin.business.pref_mandatory_pre_time_clock == '1'){
-				$('#tc_ov_way').show();
-				$('#tc_ov_ci').hide();
-			}
-		});
-	})
-}
+			
+            if(page == 'logout')
+            {
+                self.staff.logout();
+                return false;
+            }
 
-ShiftPlanningTimeClock.prototype.manageTimeSheetsEvents = function(){
-	var self = this;
-	$('#tc_mts_adv').bind(clickEvent, function(e){
-		e.preventDefault();
-		if ($('#tc_mts_hiin').hasClass('hidden')){
-			$(this).html('Simple');
-		} else {
-			$(this).html('Advanced');
-		}
-		$('#tc_mts_hiin').toggleClass('hidden');
-	});
-    
-	$('#tc_mts_tr').bind('change', function(){
-		if ($(this).val() != '-1'){
-			self.getTimeSheets();
-		}
-	});
-    
-	$('#tc_mts_sh').delegate('li', clickEvent, function(e){
-		if (e.target.className != 'tPending'){
-			$(this).addClass('loading');
-			spModel.timeclock.get('timeclock', {
-				id : $(this).attr('timeclockId')
-			}, function(response){
-				self.current = response.data;
-				sp.loadSubPage('', 'timeClock', 'displayTimeClock');
-			});
-		}
-	});
-    
-	$('#timeClock .displayTimeClock .backMenu').bind(clickEvent, function(e){
-		e.preventDefault();
-		$('.subNavigation .timeClock li.active a').trigger(clickEvent);
-	});
-    
-	$('#tc_mts_hiin select, #tc_mts_au').bind('change', function(){
-		self.showHideTimeSheets();
-	});
-    
-	$('#tc_dtc_buttons a').bind(clickEvent, function(e){
-		e.preventDefault();
-		var id = $(this).attr('rel');
-		switch ($(this).attr('class')){
-			case 'approve':
-				spModel.timeclock.update('timeclock', {
-					id : id, 
-					approved : 1
-				}, function(){
-					sp.showSuccess(_s('Timeclock updated'));
-					$('.subNavigation .timeClock li.active a').trigger(clickEvent);
-				});
-				break;
-			case 'unapprove':
-				spModel.timeclock.update('timeclock', {
-					id : id, 
-					approved : 0
-				}, function(){
-					sp.showSuccess(_s('Timeclock updated'));
-					$('.subNavigation .timeClock li.active a').trigger(clickEvent);
-				});
-				break;
-			case 'edit':
-				self.edit = true;
-				$('#tc_act_onci').hide();
-				sp.loadSubPage('', 'timeClock', 'addClockTime');
-				break;
-			case 'delete':
-				var c = confirm(_s('Are you sure?'));
-				if (c){
-					spModel.timeclock.del('timeclock', {
-						id : id
-					}, function(){
-						$('.subNavigation .timeClock li.active a').trigger(clickEvent);
-					});
-				}
-				break;
-		}
-	});
-    
-	$('#tc_mts_sh').delegate('li span.tPending', clickEvent, function(e){
-		$(this).parent('li').addClass('loading');
-		spModel.timeclock.get('clockout', {
-			employee : $(this).attr('user')
-		}, function(){
-			sp.showSuccess(_s('User clocked out'));
-			self.getTimeSheets();
-		});
-	});
-}
+			
+            if ($('#menu [page=' + page + ']').length > 0)
+			{
+                 $('#pages > div').hide();
+                 setTimeout(function(){
 
-ShiftPlanningTimeClock.prototype.addClockTimeEvents = function(){
-	var self = this;
-	$('#tc_act_onci').bind(clickEvent, function(){
-		$(this).toggleClass('check');
-		$('#tc_act .detailsGrid .odd').toggleClass('nonVisible');
-	});
-    
-	$('#tc_act_sa_b').bind(clickEvent, function(e){
-		e.preventDefault();
-		self.saveClockTime(false);
-	});
-}
-
-ShiftPlanningTimeClock.prototype.displayTimeSheetsEvents = function(){
-	var self=this;
-	$('#tc_dts_au').bind('change',function(){
-		self.showHideTimeSheetsPro();
-	})
-	$('#tc_dts_tr').bind('change',function(){
-		if($(this).val() != '-1'){
-			self.getMyTimeSheets();
-		}
-	})
-}
-
-ShiftPlanningTimeClock.prototype.displayTimeSheetsSubEvents = function (){
-	var self=this;
-	$('#tc_dts_tr').html(spView.timeRanges());
-	$('#tc_dts_tr').val(3);
-	this.getMyTimeSheets();
-//    spModel.timeclock.get('timeclocks',{},function(response){
-//        $('#tc_dts_ul').html($.tmpl($('#te_tc_dts_li'), response.data));
-//        
-//    })
-}
-
-ShiftPlanningTimeClock.prototype.overviewSubEvents = function(){
-	$('#tc_ov_cf').hide();
-	$('#tc_ov_cb span.fr a').hide();
-	$('#tc_ov_ss').html(spView.optionSchedules(sp.staff.admin.info.id));
-	$('#tc_ov_cb .icoClock').html('<time style="height:35px;display:block;">' + sp.raw.config.today.formatted + '</time>');
-    
-	$.ajax({
-		url: 'index.php?timezone=false&id=' + sp.staff.admin.info.id,
-		type: 'get',
-		success: function(response){
-			$('#tc_ov_cb .icoClock').html(response);
-		}
-	});
-    
-    
-    
-	if (parseInt(sp.staff.admin.settings.tc_terminal_lock) == 0){
-		$('#tc_ov_cb').show();
-		$('#tc_ov_ad').hide();
-		spModel.timeclock.get('status', {
-			details : 1
-		}, function(response){
-			$('#tc_ov_cb span.fr a').hide();
-			if (response.data != 'out'){
-				$('#tc_ov_cf').show();
-				$('#tc_ov_co').show();
-				$('#tc_ov_ca').attr('rel', response.data.id);
-				if (response.data.schedule != null){
-					$('#tc_ov_ss').val(response.data.schedule.id)
-				}
-				if (response.data.notes != null){
-					$('#tc_ov_no').val(response.data.notes);
-				}
-			} else {
-				$('#tc_ov_cf').hide();
-				
-				var data = {
-					employee : sp.staff.admin.info.id
-				};
-				spModel.timeclock.get('preclockin', data, function(response){
-					if(response.data.status == '0'){
-						$('#tc_ov_way_msg .sc_way_time_since').html(response.data.formatted);
-						$('#tc_ov_way_msg').show();
-						$('#tc_ov_ci').show();
+                    $('#menu [page=' + page + ']').parent().parent().find('li').removeClass('active');
+                    $('#menu [page=' + page + ']').parent().addClass('active');
+					
+					if(subpage){
+						self.loadSubPage('', page, subpage);
 					}
 					else{
-						if(sp.staff.admin.business.pref_pre_time_clock == '1'){
-							$('#tc_ov_way').show();
-							$('#tc_ov_ci').show();
-						}
-						if(sp.staff.admin.business.pref_mandatory_pre_time_clock == '1'){
-							$('#tc_ov_way').show();
-							$('#tc_ov_ci').hide();
-						}
+						self.loadPage(page);
 					}
-				});
+                    
+                 }, 50);
 			}
-		});
-	} else {
-		$('#tc_ov_cb').hide();
-		$('#tc_ov_cf').hide();
-		$('#tc_ov_ad').show();
-	}
-    
-
-    
-	$('#tc_ov_cb .icoClock time').html(sp.raw.config.today.formatted);
-	$('#tc_ov_cb .icoClock span').html(formatted('nowT'));
-}
-
-ShiftPlanningTimeClock.prototype.manageTimeSheetsSubEvents = function(){
-	var self = this;
-	var s = Date.parse('today at 9am');
-	var e = Date.parse('today at 5pm');
-    
-	var tf = (cal.tmode == 24)? 'HH:mm' : 'hh:mm tt';
-    
-	$('#tc_mts_sd_i').scroller('destroy');
-	$('#tc_mts_sd_i').val(s.toString(cal.dformat));
-	$('#tc_mts_sd_i').scroller({
-		preset : 'date',
-		dateFormat : (sp.strReplace(['MM','yyyy'],['mm','yy'],cal.dformat) == 'mmM d, yy') ? sp.strReplace(['MM','yyyy'],['mm','yy'],cal.dformat).substr(2, sp.strReplace(['MM','yyyy'],['mm','yy'],cal.dformat).length) : sp.strReplace(['MM','yyyy'],['mm','yy'],cal.dformat),
-		dateOrder: sp.strReplace(['MM','yyyy',' ','-','/'],['mm','yy','','',''],cal.dformat),
-		onSelect : function(){
-			$('#tc_mts_tr').val(-1);
-			self.getTimeSheets();
-		}
-	});
-    
-	$('#tc_mts_ed_i').scroller('destroy');
-	$('#tc_mts_ed_i').val(e.toString(cal.dformat));
-	$('#tc_mts_ed_i').scroller({
-		preset : 'date',
-		dateFormat : (sp.strReplace(['MM','yyyy'],['mm','yy'],cal.dformat) == 'mmM d, yy') ? sp.strReplace(['MM','yyyy'],['mm','yy'],cal.dformat).substr(2, sp.strReplace(['MM','yyyy'],['mm','yy'],cal.dformat).length) : sp.strReplace(['MM','yyyy'],['mm','yy'],cal.dformat),
-		dateOrder: sp.strReplace(['MM','yyyy',' ','-','/'],['mm','yy','','',''],cal.dformat),
-		onSelect : function(){
-			$('#tc_mts_tr').val(-1);
-			self.getTimeSheets();
-		}
-	});
-    
-    
-	$('#tc_mts_tr').html(spView.timeRanges());
-	$('#tc_mts_tr').val(3);
-    
-    
-	$('#tc_mts_scl').html(spView.scheduleFilter(0, true));
-	$('#tc_mts_eml').html(spView.staffFilter());
-	self.getTimeSheets();
-}
-
-ShiftPlanningTimeClock.prototype.addClockTimeSubEvents = function(){
-	var emp = {};
-	if (this.edit != false){
-		emp = this.current;
-		$('#tc_act .title h3').html(_s('Edit Clock Time'));
-		$('#tc_act_tc_id').removeClass('editOn').addClass('editOn');
-		$('#tc_act_tc_id').val(emp.id);
-		$('.addClockTime .odd').removeClass('nonVisible');
-		$('#tc_act_onci').removeClass('check');
-		emp.in_time.time = sp.strReplace(['am','pm'],[' AM',' PM'],emp.in_time.time);
-		emp.out_time.time = sp.strReplace(['am','pm'],[' AM',' PM'],emp.out_time.time);
-		emp.in_time.day = Date.parse(emp.in_time.day).toString(cal.dformat);
-		emp.out_time.day = Date.parse(emp.out_time.day).toString(cal.dformat);
-	} else {
-		$('#tc_act .title h3').html(_s('Add Clock Time'));
-		$('#tc_act_tc_id').removeClass('editOn');
-		$('#tc_act_onci').show();
-		emp.in_timestamp = Date.parse('today at 9am').getTime()/1000;
-		emp.out_timestamp = Date.parse('today at 5pm').getTime()/1000;
-	}
-    
-	$('#tc_act_sc').html(spView.optionSchedules(sp.staff.admin.info.group > 4 ? sp.staff.admin.info.id : 0));
-	$('#tc_act_em').html(spView.staffOption(sp.staff.admin.info.group > 4 ? true : false));
-    
-	var s = new Date(emp.in_timestamp*1000);
-	var e = new Date(emp.out_timestamp*1000);
-    
-	var tf = (cal.tmode == 24)? 'HH:mm' : 'hh:mm tt';
-    
-	$('#tc_act_tclin').scroller('destroy');
-	$('#tc_act_tclin').val((this.edit) ? emp.in_time.time : s.toString(tf));
-	$("#tc_act_tclin").scroller({
-		preset : 'time',
-		ampm: (cal.tmode==24?false:true),
-		stepMinute: 15,
-		timeFormat: sp.strReplace(['tt','mm'],['A','ii'],cal.tstring)
-	});
-    
-
-    
-	//$('#tc_act_c_co_dp_i').val(outD.toString(cal.dformat));
-    
-	$('#tc_act_tclou').scroller('destroy');
-	$('#tc_act_tclou').val((this.edit) ? emp.out_time.time : e.toString(tf));
-	$("#tc_act_tclou").scroller({
-		preset : 'time',
-		ampm: (cal.tmode==24?false:true),
-		stepMinute: 15,
-		timeFormat: sp.strReplace(['tt','mm'],['A','ii'],cal.tstring)
-	});
-    
-	$('#tc_act_c_cl_dp_i').scroller('destroy');
-	$('#tc_act_c_cl_dp_i').val((this.edit) ? emp.in_time.day : s.toString(cal.dformat));
-	$('#tc_act_c_cl_dp_i').scroller({
-		preset : 'date',
-		dateFormat : (sp.strReplace(['MM','yyyy'],['mm','yy'],cal.dformat) == 'mmM d, yy') ? sp.strReplace(['MM','yyyy'],['mm','yy'],cal.dformat).substr(2, sp.strReplace(['MM','yyyy'],['mm','yy'],cal.dformat).length) : sp.strReplace(['MM','yyyy'],['mm','yy'],cal.dformat),
-		dateOrder: sp.strReplace(['MM','yyyy',' ','-','/'],['mm','yy','','',''],cal.dformat)
-	});
-    
-	$('#tc_act_c_co_dp_i').scroller('destroy');
-	$('#tc_act_c_co_dp_i').val((this.edit) ? emp.out_time.day : e.toString(cal.dformat));
-	$('#tc_act_c_co_dp_i').scroller({
-		preset : 'date',
-		dateFormat : (sp.strReplace(['MM','yyyy'],['mm','yy'],cal.dformat) == 'mmM d, yy') ? sp.strReplace(['MM','yyyy'],['mm','yy'],cal.dformat).substr(2, sp.strReplace(['MM','yyyy'],['mm','yy'],cal.dformat).length) : sp.strReplace(['MM','yyyy'],['mm','yy'],cal.dformat),
-		dateOrder: sp.strReplace(['MM','yyyy',' ','-','/'],['mm','yy','','',''],cal.dformat)
-	});
-    
-    
-	$('#tc_act_no').val((this.edit) ? emp.notes : '');
-	$('#tc_act_em').val((this.edit) ? emp.employee.id : 0);
-	$('#tc_act_sc').val((this.edit) ? (emp.schedule != null) ? emp.schedule.id : 0 : 0);
-    
-	this.edit = false;
-}
-
-ShiftPlanningTimeClock.prototype.displayTimeClockSubEvents = function(){
-	this.current.employee.avatar = sp.getAvatar(this.current.employee.id);
-	$('#tc_dtc').html($.tmpl($('#te_tc_dtc'), this.current));
-	$('#tc_dtc_buttons a').attr('rel', this.current.id);
-    
-	if (parseInt(this.current.approved_by) != 0){
-		$('#tc_dtc_buttons a#tc_dtc_ap').removeClass('approve').removeClass('unapprove').addClass('unapprove');
-	} else {
-		$('#tc_dtc_buttons a#tc_dtc_ap').removeClass('approve').removeClass('unapprove').addClass('approve');
-	}
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Functions
-ShiftPlanningTimeClock.prototype.getTimeSheets = function(){
-	$('#tc_mts_sh').html(spView.divLoader());
-	var self = this;
-	var d = {};
-    
-	var period = $('#tc_mts_tr').val();
-	var times = {};
-	if (period != "-1"){
-		times = spRanges.getRange('times', period);
-	} else {
-		times = {
-			start_time : Date.parse($('#tc_mts_sd_i').val()).getTime(),
-			end_time : Date.parse($('#tc_mts_ed_i').val()).getTime()
-		}
-	}
-	
-	var p = new Date(times.start_time);
-	var e = new Date(times.end_time);
-	$('#tc_mts_sd_i').val(p.toString(cal.dformat));
-	$('#tc_mts_ed_i').val(e.toString(cal.dformat));
-    
-	d.start_date = p.toString(cal.dformat);
-	d.end_date = e.toString(cal.dformat);
-
-	spModel.timeclock.get('timeclocks', d, function(response){
-		self.renderManageTimeSheets(response.data); 
-	});
-}
-
-ShiftPlanningTimeClock.prototype.getMyTimeSheets = function(){
-	$('#tc_dts_ul').html(spView.ulLoader());
-	var self=this;
-	var interval=$('#tc_dts_tr').val();
-	var times={}
-	var params={}
-  
-	times=spRanges.getRange('times', interval);
-    
-	var startT = new Date(times.start_time);
-	var endT = new Date(times.end_time);
-    
-	params.start_date=startT.toString(cal.dformat);
-	params.end_date=endT.toString(cal.dformat);
-	params.employee=sp.staff.admin.info.id;
-    
-	spModel.timeclock.get('timeclocks',params,function(response){
-		$('#tc_dts_ul').html($.tmpl($('#te_tc_dts_li'), response.data));
-		self.showHideTimeSheetsPro();
-	} 
-	)
-}
-ShiftPlanningTimeClock.prototype.renderManageTimeSheets = function(data){
-	var l = data.length;
-	var res = {};
-	while (l--){
-		var item = data[l];
-		var ident = (Date.parse(item.in_time.day).getTime()/1000) + '';
-		if (typeof res[ident] == 'undefined'){
-			res[ident] = {
-				month : item.in_time.day,
-				rest : [],
-				ident : parseInt(ident)
-			}
-		}
-		var obj = this.rItem(item);
-		res[ident].rest.push(obj); 
-	}
-    
-	$.each(res, function(i, item){
-		res[i].rest.reverse();
-	});
-	var r = [];
-	var counter = 0;
-	$.each(res, function(i, item){
-		r[counter] = item;
-		counter++;
-	});
-	r.objSort('ident');
-	r.reverse();
-    
-    
-    
-	$('#tc_mts_sh').html('');
-	$('#tc_mts_sh').html($.tmpl($('#te_tc_mts_li'), r));
-    
-	this.showHideTimeSheets();
-}
-
-ShiftPlanningTimeClock.prototype.rItem = function(item){
-	var o = {};
-	var status = 2;
-	if (parseInt(item.approved_by) > 0){
-		status = 1;
-	}
-	var dl = (item.in_location == item.out_location) ? '0' : '1';
-	var sc = (item.schedule != null && typeof item.schedule.id != 'undefined') ? item.schedule.id : item.schedule;
-	var scn = (item.schedule != null && typeof item.schedule.name != 'undefined') ? item.schedule.name : '';
-	o = {
-		id : item.id,
-		name : item.employee.name,    
-		user : item.employee.id,
-		st : item.in_time,
-		out : item.out_time,
-		dl : dl,
-		length : item.length,
-		schedule : sc,
-		scn : scn,
-		status : status,
-		approved_by : item.approved_by
-	};
-    
-	return o;
-}
-
-ShiftPlanningTimeClock.prototype.showHideTimeSheetsPro = function (){
-	var sel=$('#tc_dts_au').val();
-	switch(sel){
-		case '2':
-			$('#tc_dts_ul li').hide();
-			$('#tc_dts_ul').find('li.app_0').show();
-			break;
-		case '1':
-			$('#tc_dts_ul li').show();
-			$('#tc_dts_ul').find('li.app_0').hide();
-			break;
-		case '0':
-			$('#tc_dts_ul li').show();
-			break;
-	}
-	var elm=$('#tc_dts_ul li:visible')
-	if(elm.length == 0){
-		$('#tc_dts_ul_msg').html(spView.emptyResult('No timesheets for selected filters'))  
-	}else{
-		$('#tc_dts_ul_msg').html('')
-	}
-}
-
-ShiftPlanningTimeClock.prototype.showHideTimeSheets = function(){
-	//$('#tc_mts_slist tr').removeClass('odd');
-	var s = parseInt($('#tc_mts_au').val());
-	var e = parseInt($('#tc_mts_eml').val());
-	var sc = parseInt($('#tc_mts_scl').val());
-	var search = '';
-	if (s != 0){
-		search += '.s_' + s;
-	}
-    
-	if (e != 0){
-		search += '.e_' + e;
-	}
-    
-	if (sc != 0){
-		search += '.sc_' + sc;
-	}
-    
-	$('#tc_mts_sh').find('li').hide();
-	$('#tc_mts_sh').find('li'+search).show();
-    
-	$('#tc_mts_sh div.title').hide();
-	$('#tc_mts_sh ul li:visible').parents('.timeSheet').prev().show();
-    
-	if ($('#tc_mts_sh ul li:visible').length > 0){
-		$('#tc_mts_sh').next().hide();
-	} else {
-		$('#tc_mts_sh').next().show();
-	}
-    
-//    $('#tc_mts_slist tr').each(function(i, item){
-//        if (i % 2 == 0){
-//            $(this).addClass('odd');
-//        }
-//    })
-}
-
-ShiftPlanningTimeClock.prototype.saveClockInChanges = function(){
-	var data = {
-		id : $('#tc_ov_ca').attr('rel')
-	}
-    
-	if ($('#tc_ov_ss').val() != 0){
-		data.schedule = $('#tc_ov_ss').val();
-	}
-    
-	if ($('#tc_ov_no').val() != 0){
-		data.notes = $('#tc_ov_no').val();
-	}
-    
-	spModel.timeclock.update('timeclock', data, function(){
-		sp.showSuccess(_s('Timeclock updated'));
-	});
-}
-
-ShiftPlanningTimeClock.prototype.saveClockTime = function(){
-	var data = {};
-	var f = 'get';
-	var module = 'timeclock.addclocktime';
-	var success = _s('Clock Time added');
-	if ($('#tc_act_tc_id').hasClass('editOn') == true){
-		f = 'update';
-		module = 'timeclock.timeclock'
-		data.id = $('#tc_act_tc_id').val();
-		success = _s('Clock time edited');
-		data.start_date = $('#tc_act_c_cl_dp_i').val() +' '+ $('#tc_act_tclin').val();
-		data.start_time = $('#tc_act_c_cl_dp_i').val() +' '+ $('#tc_act_tclin').val();  
-		data.end_date = $('#tc_act_c_co_dp_i').val() + ' ' + $('#tc_act_tclou').val();
-		data.end_time = $('#tc_act_c_co_dp_i').val() + ' ' + $('#tc_act_tclou').val();
-	} else {
-		data.datein = $('#tc_act_c_cl_dp_i').val() +' '+ $('#tc_act_tclin').val();    
-		data.dateout = $('#tc_act_c_co_dp_i').val() + ' ' + $('#tc_act_tclou').val();		
-	}
-    
-	data.schedule = $('#tc_act_sc').val();
-	data.employee = $('#tc_act_em').val();
-    	
-	if ( $('#tc_act_onci').hasClass('check') ) {
-		data.onlyin = 1;
-	}
-    
-	data.notes = $('#tc_act_no').val();
-    
-	sp.api(module, f, data, function(response){
-		sp.showSuccess(success);
-		setTimeout(function() {
-			var subpage = 'displayTimeSheets'
-			if(sp.staff.admin.info.group <=2){
-				subpage = 'manageTimeSheets';
-			}
-			$('.subNavigation div.timeClock ul.timeClock a[subpage='+subpage+']').trigger(clickEvent);
-		},400);        
-	}, function(response){
-		sp.showError(response.error);
-	});
-}
-
-
-ShiftPlanningTimeClock.prototype.loadPage = function(){
-    
-	}
-
-
- function ShiftPlanningTraining (){
-	this.initialize();
-	this.tmp_module = 0 ;
-	this.tmp_section = 0 ;
-	this.top = 0;
-	this.scrollWindow = false ;
-	this.trainings = {} ;
-	this.statistic = [] ;
-}
-
- ShiftPlanningTraining.prototype.initialize = function(){
-	var self= this ;
-	$(document).ready(function(){
-		self.overviewEvents();
-	})
-}
-ShiftPlanningTraining.prototype.loadSubPageEvents = function(subpage){
-	    this[subpage + 'SubEvents']();
-}
-ShiftPlanningTraining.prototype.overviewEvents = function(){
-		var self = this ;
-		$('#training .training .filters li a').bind(clickEvent,function(e){
-			e.preventDefault();
-			e.stopPropagation();
-			var subpage = $(this).attr('subpage');
-			$('#training .training .filters li').removeClass('active');
-			$(this).parent().addClass('active');
-			sp.loadSubPage('','training', subpage);
-		});
-		$('#training .training_sections').delegate('div[rel]',clickEvent,function(e){
-			sp.training.tmp_section = $(this).attr('rel');
-			sp.loadSubPage('', 'training', 'singleSection');
-		});
-		$('#training .training_singleSection').delegate('div[rel]',clickEvent,function(e){
-			sp.training.tmp_module = $(this).attr('rel');
-			sp.loadSubPage('', 'training', 'singleModule');
-		});
-		$('.training_module').delegate('a.confirm',clickEvent,function(e){
-		var module_id = $(this).attr('rel');
-		spModel.training.update('complete', {id:module_id},function(response){
-			sp.showSuccess('Finished');
-			setTimeout(function(){
-					$('.singleSection .backMenu').trigger(clickEvent)
-				},2500);			
-			});
-		});
-		$('.training_module').delegate('a#tr_send_signature',clickEvent, function(){
-			var module_id = $(this).attr('rel');
-			var signature = $('#digi_text').val();
-			$(this).addClass('loading');
-			var self = $(this);
-			spModel.training.update('complete', {id:module_id,signature:signature},function(response){
-			sp.showSuccess(response.data);
-			if(response.data === 'Signed'){
-				setTimeout(function(){
-						$('.singleSection .backMenu').trigger(clickEvent)
-					},2500);			
-				}else{
-					self.removeClass('loading');
-				}
-			});
-		});
-		$('.training_module').delegate('#show_all',clickEvent,function(){
-			$('.training_module div[sign=sign]').show();
-			$('#show_all').parent().remove();
-		})
-		$('.singleSection .backMenu').bind(clickEvent,function(e){
-			e.preventDefault();
-			e.stopPropagation();
-			$('.subNavigation .training li.active a').trigger(clickEvent);			
-		});
-		$('.singleModule .backMenu').bind(clickEvent,function(e){
-			e.preventDefault();
-			e.stopPropagation();
-			sp.loadSubPage('', 'training', 'singleSection');
-		});
-		$('.topicstatistic .backMenu').bind(clickEvent,function(e){
-			e.preventDefault();
-			e.stopPropagation();
-			sp.loadSubPage('', 'training', 'singleModule');
-		});
-		$('.singleModule .subMenu .topic_stat').bind(clickEvent,function(e){
-			e.preventDefault();
-			e.stopPropagation();
-			sp.loadSubPage('', 'training', 'topicstatistic');
-		});
-		$('.singleModule').delegate('#tr_send_comment',clickEvent,function(e){
-			e.preventDefault();
-			e.stopPropagation();
-			var text=$.trim($('#tr_comment').val());			
-			if(text.length > 0){
-				$(this).addClass('loading');
-				spModel.training.update('comments', {module_id:sp.training.tmp_module,text:text,type:1}, function(reponse){
-					sp.showSuccess('Comment added');
-					setTimeout(function(){
-							$('.singleModule .backMenu').trigger(clickEvent)
-						},2500);
-				});
-			}else{
-				sp.showError('Empty comment');
-			}
-		})
-}
-ShiftPlanningTraining.prototype.overviewSubEvents = function(){
-	$('.subNavigation').show();
-	$('.training').show();
-	if(sp.staff.admin.info.group <= 2){
-		$('.training  a[subpage=statistic]').parent().removeClass('hidden');
-	}
-}
-ShiftPlanningTraining.prototype.sectionsSubEvents = function (){
-	$('.subNavigation').show();
-	$('.training').show();
-	if(sp.staff.admin.info.group <= 2){
-		$('.training  a[subpage=statistic]').parent().removeClass('hidden');
-		$('.training .singleModule .subMenu').removeClass('hidden');		
-	}else{
-		//$('.trainingBar').css('margin','0 60px 0 0 ');
-	}
-	$('.training_sections').html(spView.ulLoader());
-	var s=[];
-	var m=[];
-	spModel.training.get('progress', {}, function(response){
-		if(typeof response.data[sp.staff.admin.info.id] != 'undefined'){
-			var percent = Math.round((response.data[sp.staff.admin.info.id].completed/response.data[sp.staff.admin.info.id].total)*100);
-			$('#user_progress').html(percent);
-			$('.progress').css('width',percent+'%');
-		}
-		sp.training.statistic = response.data;
-		spModel.training.get('sections', {}, function(response){
-			s = response.data;		
-			spModel.training.get('modules', {detailed:1}, function(response){
-				m = response.data;
-				var data = [];
-				for (var i=0;i<s.length;i++){
-					var mod=[];
-					s[i].notfinished_count = 0 ;
-					for(var j=0;j<m.length;j++){
-						if(s[i].id == m[j].section){
-							if(m[j].comment_type != 2){
-							mod.push(m[j]);
-							}
-							if(typeof m[j].employees != 'undefined' && typeof m[j].employees[sp.staff.admin.info.id] != 'undefined'){
-								m[j].finished_flag = m[j].employees[sp.staff.admin.info.id].finished ? '1' : '0' ;
-								if(m[j].finished_flag == '0'){s[i].notfinished_count ++ ;}
-								if(typeof m[j].employees[sp.staff.admin.info.id].outdated != 'undefined'){
-									m[j].finished_flag = '99' ;
-									s[i].notfinished_count ++ ;
-								}						
-							}
-						}
-					}
-					s[i].modules=mod;
-					if(s[i].modules.length > 0){
-						data.push(s[i]);
-						sp.training.trainings[s[i].id]=s[i];
-					}					
-				}
-				$('.training_sections').html($.tmpl($('#te_tr_sections'),data));
-				$('.training div.oneLine b').shorten();	
-                                
-                                if ( $('.training_sections > *').length == 0 ) {
-                                    $('.training_sections').html( spView.emptyResult( _s('No training topics.'), 'li') );
-                                }
-			})			
-		})		
-	})
-	
-}
-
-ShiftPlanningTraining.prototype.statisticSubEvents = function(){
-	$('.subNavigation').show();
-	$('.training').show();
-	$('.training_statistic').html(spView.divLoader());
-	if(sp.staff.admin.info.group > 2){
-		sp.showError('You have no permission');
-		setTimeout(function(){
-			sp.loadSubPage('', 'training', 'sections');
-		},1500);
-		return false;
-	}
-	setTimeout(function(){
-	var data = []
-	$.each(sp.training.statistic,function(){
-		if(this.completed == 0){
-			this.stat = 0
-		}else{
-			this.stat=Math.round((this.completed/this.total)*100);
-		}
-		this.avatar=sp.getAvatar(this.id)
-		data.push(this);
-	})
-	$('.training_statistic').html($.tmpl($('#te_tr_statistic'),data));		
-	},500);
-	
-}
-
-ShiftPlanningTraining.prototype.singleSectionSubEvents = function (){
-	$('.training_singleSection').html(spView.ulLoader());
-	$('#section_name').html(sp.training.trainings[sp.training.tmp_section].title)
-	setTimeout(function(){
-	var data = sp.training.trainings[sp.training.tmp_section].modules;
-	for (var i=0;i<sp.training.trainings[sp.training.tmp_section].modules.length;i++){
-		if( typeof sp.training.trainings[sp.training.tmp_section].modules[i].finished_flag == 'undefined'){
-			sp.training.trainings[sp.training.tmp_section].modules[i].finished_flag = -99 ;
-		}
-		if( sp.training.trainings[sp.training.tmp_section].modules[i].duedate != 0){
-			var today = new Date ();
-			var d= new Date(sp.training.trainings[sp.training.tmp_section].modules[i].duedate*1000);
-			var month = d.getMonth()>9?(d.getMonth()+1):'0'+(d.getMonth()+1);
-			sp.training.trainings[sp.training.tmp_section].modules[i].color = today > d ?'#8C1919':'green';
-			sp.training.trainings[sp.training.tmp_section].modules[i].duedate_formated = d.getDate()+'-'+month+'-'+d.getFullYear();
-		}
-	}
-	$('.training_singleSection').html($.tmpl($('#te_tr_singleSection'),sp.training.trainings[sp.training.tmp_section].modules));
-	$('.training div.oneLine b').shorten();
-	},500);
-	
-}
-
-ShiftPlanningTraining.prototype.singleModuleSubEvents = function () {
-	$('.training .training_module').html(spView.divLoader());
-	setTimeout(function(){
-	var data = {} ;
-	for (var i=0;i<sp.training.trainings[sp.training.tmp_section].modules.length;i++){
-		if(sp.training.tmp_module == sp.training.trainings[sp.training.tmp_section].modules[i].id){
-			data = sp.training.trainings[sp.training.tmp_section].modules[i] ;
-		}
-	}
-	
-	if(data.contents != null){
-		data.contents = data.contents.replace(/\n/g, '</p><br/><p>');	
-		data.contents=spView.bbc2HTML(data.contents);
-	}else{
-		data.contents = '';
-	}	
-	if(data.files.length > 0){
-		$.each(data.files,function(i,j){
-			this.file_size=spView.friendly_filesize(this.file_size);
-		})
-	}
-	//if it's comment training fetch comments  or signatures
-	if(data.comment_type == 1 || data.digital_signature == 1){
-	
-		if(data.comment_type == 1){
-				spModel.training.get('comments', {module_id:sp.training.tmp_module,type:1}, function(response){
-				var comments=[];
-				$.each(response.data,function(){
-					if(sp.staff.admin.info.group <= data.can_see_comment){
-						this.avatar=sp.getAvatar(this.user);					
-						comments.push(this);
-					}
-				});
-				data.comments=comments;
-				if(data.digital_signature == 1){
-					spModel.training.get('digital_signature', {module_id:data.id}, function(response){					
-					var signatures = [];
-					$.each(response.data,function(){
-						if(sp.staff.admin.info.group <=2){
-							this.avatar=sp.getAvatar(this.user);
-							signatures.push(this);
-						}else{
-							if(this.user == sp.staff.admin.info.id){
-								this.avatar=sp.getAvatar(this.user);
-								signatures.push(this);								
-							}
-						}
-					});
-					data.signatures=signatures;
-					$('.training_module').html($.tmpl($('#te_tr_module'),data));
-					var html = $('.training_module .wys');
-					html.html(html.text());
-					$.each(html.find('p'),function(){
-						if($(this).html().length == 0){
-							$(this).remove();
-						}
-					});
-					$('.confirm').remove();
-					$('div[sign=sign]:gt(5)').hide();
-					$('<div>',{'class':'title1 wide'}).html($('<a>',{text:'show more',id:'show_all',onclick:'void(0)'})).insertAfter($('div[sign=sign]:eq(5)'));
-					});
-				}else{
-					$('.training_module').html($.tmpl($('#te_tr_module'),data));
-					var html = $('.training_module .wys');
-					html.html(html.text());
-					$.each(html.find('p'),function(){
-						if($(this).html().length == 0){
-							$(this).remove();
-						}
-					});
-				}
-			});
-		}
-		if(data.digital_signature == 1 && data.comment_type == 0){
-				spModel.training.get('digital_signature', {module_id:data.id}, function(response){
-					var signatures = [];
-					$.each(response.data,function(){
-						if(sp.staff.admin.info.group <=2){
-							this.avatar=sp.getAvatar(this.user);
-							signatures.push(this);
-						}else{
-							if(this.user == sp.staff.admin.info.id){
-								this.avatar=sp.getAvatar(this.user);
-								signatures.push(this);								
-							}
-						}
-					});
-					data.signatures=signatures;
-					$('.training_module').html($.tmpl($('#te_tr_module'),data));
-					var html = $('.training_module .wys');
-					html.html(html.text());
-					$.each(html.find('p'),function(){
-						if($(this).html().length == 0){
-							$(this).remove();
-						}
-					});
-					$('.confirm').remove();
-					$('div[sign=sign]:gt(5)').hide();
-					$('<div>',{'class':'title1 wide'}).html($('<a>',{text:'show more',id:'show_all',onclick:'void(0)'})).insertAfter($('div[sign=sign]:eq(5)'));
-				});
-			}
-			
-			
-		}else{
-			$('.training_module').html($.tmpl($('#te_tr_module'),data));
-						var html = $('.training_module .wys');
-						html.html(html.text());
-						$.each(html.find('p'),function(){
-							if($(this).html().length == 0){
-								$(this).remove();
-							}
-						});					
-		}	
-	},500);
-		
-}
-
-ShiftPlanningTraining.prototype.topicstatisticSubEvents = function () {
-	$('.training_topic_stat').html(spView.divLoader());
-	if(sp.staff.admin.info.group > 2){
-		sp.showError('You have no permission');
-		setTimeout(function(){
-			sp.loadSubPage('', 'training', 'sections');
-		},1500);
-		return false;
-	}	
-	setTimeout(function(){
-	var data ={}
-	for (var i=0;i<sp.training.trainings[sp.training.tmp_section].modules.length;i++){
-		if(sp.training.tmp_module == sp.training.trainings[sp.training.tmp_section].modules[i].id){
-			data = sp.training.trainings[sp.training.tmp_section].modules[i] ;
-		}
-	}	
-	if(typeof data.employees != 'undefined' && typeof data.employees != null){
-		var emp = [];
-		$.each(data.employees,function(){
-			this.avatar = sp.getAvatar(this.id);
-			emp.push(this);
-		})
-		$('.training_topic_stat').html($.tmpl($('#te_tr_topic_statistic'),emp));
-	}else{
-		$('.training_topic_stat').html('No employees on assigned on this topic')
-	}	
-	},500);
-	
-}
-
-ShiftPlanningTraining.prototype.loadPage = function(){
-	
-}
-
- var user = {
-    loggedIn: 0,
-    name: '',
-    business: ''
-};
-
- var ShiftPlanningView = function(){
-    
-}
-
-ShiftPlanningView.prototype.optionSchedules = function(id, m, loc){
-    if (typeof m == 'undefined'){
-        m = false;
-    }
-    if (typeof loc == 'undefined'){
-        loc = false;
-    }
-    var opt;
-    var self = this;
-    var data;
-    if (typeof id == 'undefined' || id == 0){
-        data = spModel.schedule.allSchedules();
-    } else {
-        data = spModel.schedule.schedulesByUser(id, loc);
-    }
-    if (!m){
-        opt = '<option disabled="disabled" selected="selected" value="0">' + _('Select Schedule') + '</option>';
-    } else {
-        opt = '<option disabled="disabled" selected="selected" value="0">' + _('Select Schedule') + '</option>';
-    }
-    
-    if (!loc){
-        $.each(data, function(i, item){
-            if (self.checkPerm(item)){
-                opt += '<option value="' + i + '">' + ((typeof item == 'object') ? item.name : item) + '</option>';
-            }
-        });	
-    } else {
-        $.each(data, function(i, item){
-            opt += '<optgroup label="' + item.name + '">';
-            $.each(item.data, function(iL2, itemL2){
-                opt += '<option value="' + itemL2.id + '">' + itemL2.name +'</option>';
-            });
-            opt += '</optgroup>';
-        });
-    }
-
-    
-    return opt;
-}
-
-ShiftPlanningView.prototype.staffOption = function(notAdmin){
-    if (typeof notAdmin == 'undefined'){
-        notAdmin = false;
-    }
-    var opt;
-    if (notAdmin == false){
-        opt = '<option disabled="disabled" selected="selected" value="0">Select Employee</option>';
-        var l;
-        if (sp.staff.admin.info.group == 4){
-            l = sp.staff.fixed.employees;
-        } else {
-            l = spModel.staff.allStaff();
-        }
-        $.each(l, function(i, item){
-            opt += '<option value="' + item.id + '">' + ((typeof item == 'object') ? item.name : item) + '</option>';
-        });
-    } else {
-        opt = '<option value="' + sp.staff.admin.info.id + '">' + sp.staff.admin.info.name + '</option>';
-    }
-    return opt;
-}
-
-ShiftPlanningView.prototype.staffFilter = function(notAdmin){
-    if (typeof notAdmin == 'undefined'){
-        notAdmin = false;
-    }
-    var opt = '';
-    if (notAdmin == false){
-        if (sp.staff.admin.info.group <= 3){
-            opt = '<option value="0">All Employees</option>';
-        }
-        var l;
-	
-        if (sp.staff.admin.info.group == 4){
-            l = sp.staff.fixed.employees;
-        } else {
-            l = spModel.staff.allStaff();
-        }
-        $.each(l, function(i, item){
-            opt += '<option value="' + item.id + '">' + ((typeof item == 'object') ? item.name : item) + '</option>';
-        });
-    } else {
-        opt = '<option value="' + sp.staff.admin.info.id + '">' + sp.staff.admin.info.name + '</option>';
-    }
-    return opt;
-}
-
-ShiftPlanningView.prototype.scheduleFilter = function(id, deep){
-    if (typeof deep == 'undefined'){
-        deep = false;
-    }
-    var self = this;
-    var opt = '';
-    var data;
-    if (typeof id == 'undefined' || id == 0){
-        data = spModel.schedule.allSchedules();
-    } else {
-        data = spModel.schedule.schedulesByUser(id);
-    }
-    if (sp.staff.admin.info.group <= 3){
-        opt = '<option value="0">All Positions</option>';
-    }
-    
-    $.each(data, function(i, item){
-        if (self.checkPerm(item, deep)){
-            opt += '<option value="' + i + '">' + ((typeof item == 'object') ? item.name : item) + '</option>';
-        }
-    });
-    
-    return opt;
-}
-
-ShiftPlanningView.prototype.schedulerFilter = function(id, deep){
-    if (typeof deep == 'undefined'){
-        deep = false;
-    }
-    var self = this;
-    var data;
-    if (typeof id == 'undefined' || id == 0){
-        data = spModel.schedule.allSchedules();
-    } else {
-        data = spModel.schedule.schedulesByUser(id);
-    }
-    var opt = '';
-    $.each(data, function(i, item){
-        if (self.checkPerm(item, deep)){
-            opt += '<option value="' + i + '">' + ((typeof item == 'object') ? item.name : item) + '</option>';
-        }
-    });
-    
-    return opt;
-}
-
-ShiftPlanningView.prototype.skillsFilter = function(notAdmin){
-    if (typeof notAdmin == 'undefined'){
-        notAdmin = false;
-    }
-    var opt;
-    if (notAdmin == false){
-        opt = '<option value="0">All Skills</option>';
-        $.each(spModel.staff.allSkills(), function(i, item){
-            opt += '<option value="' + item.id + '">' + ((typeof item == 'object') ? item.name : item) + '</option>';
-        });
-    } else {
-        opt = '<option value="' + sp.staff.admin.info.id + '">' + sp.staff.admin.info.name + '</option>';
-    }
-    return opt;
-}
-
-ShiftPlanningView.prototype.locationSelector = function(type){
-    if (typeof type == 'undefined'){
-        type = 2;
-    }
-    var opt = '<option value="0" selected="selected">' + ((type == 1) ? 'Select Location' : 'Select Work Site') + '</option>';
-    opt += '<optgroup lable="locations">';
-    $.each(spModel.location.locationsList(), function(i, item){
-        if (item.type == type){
-            opt += '<option value="' + item.id + '">' + item.name + '</option>';
-        }
-    });
-    opt += '</optgroup><optgroup><option value="add" type="' + type + '">' + ((type == 1) ? 'New Location?' : 'New Work Site?') + '</option></optgroup>';
-    return opt;
-}
-
-ShiftPlanningView.prototype.timeRanges = function(){
-    var times = spRanges.createSelector('times');
-    var res = '<option value="-1">Select</option>';
-    $.each(times, function(i, item){
-        res += '<option value="' + i + '" >' + item + '</option>'; 
-    });
-    
-    return res;
-}
-
-ShiftPlanningView.prototype.customFields = function(employee){ //gets employees custom fields and sends it to #da_se_ov_cu
-    var l = '';
-    var ch = '';
-    var res = '';
-    var br = 2;
-    var c = ''; 
-    if (typeof employee.custom != 'undefined'){
-        $.each(employee.custom, function(i, item){
-            if (item.toggle ==1) {
-                        c = 'check';
+            else
+            {
+                if(page != 'login' && page != 'logout')
+                {
+                        user.loggedIn ? self.hash('dashboard') : self.hash('login') ;
+                }
+                else
+                {
+                    if(self.hash() == 'logout' && user.loggedIn)
+                    {
+                            self.staff.logout();
                     }
-            
-        if (item.type != 4){
-            l += '<li>';
-            l += '<div>';
-            switch(item.type){
-                case '1':
-                    item.value = item.value == null ? '' : item.value ;
-                    l += '<label>' + item.name + ': <h4>' + item.value + '</h4></label>';
-                    break;
-                case '2':
-                    item.text = item.text == null ? '' : item.text ;
-                    l += '<label>' + item.name + ': <h4>' + item.text + '</h4></label>';
-                    break;
-                case '3':
-                    item.value = item.value == null ? '' : item.value ;
-                    l += '<label>' + item.name + ': <h4>' + item.value + '</h4></label>';
-                    break;
+                    if(self.hash() == 'login' && user.loggedIn)
+                    {
+                            self.hash('dashboard');
+                    }
+                }
             }
-            l += '</div>';
-            l += '</li>';
+        }
+    });  
+    $(document).ready(function(){
+        init();
+        $('.toggleMenu').bind(clickEvent, function(e){
+            e.stopPropagation();
+            e.preventDefault();
+            self.toggleMenu();
+        });
+        
+        
+        if(user.loggedIn){
+            $('.loginContainer').hide();
+            $('body').removeClass('login');
+            $('html').css('height','auto');
+            $('.applicationContainer').show();
+            if (sp.hash().length == 0 || sp.hash() == 'login'){
+                sp.hash('dashboard');
+            }
         } else {
-            ch += '<li>'
-//            class="' + ((br % 2 == 0) ? 'even' : 'odd') + '">';
-            ch += '<span item="edit" class="checkbox ' + c + '" id=' + item.id + '>' + item.name + '</span>';
-            ch += '</li>';
-            br++; c='';
-    
+            $('.loginContainer').show();
+            $('body').addClass('login');
+            sp.hash('login');
+            $('#lo_u').focus();
         }
         
+        $('#wrapper .subNavigation .subNav:not(.notMain) a').bind(clickEvent, function(e){
+            e.preventDefault();
+            self.loadSubPage($(this), $(this).parent().parent().attr('page'), $(this).attr('subpage'));
         });
-    }
-      res = l +  ch ;
-     return (res.length > 0) ? res : this.emptyResult(_s('No custom fields to display'), 'li', 'noBorder');
-}
-
-ShiftPlanningView.prototype.editableCustomFields = function(employee){ //makes custom fields editable
-    var l = '', ch = '';
-    var res = '';
-    var br = 2;
-    var c = '';
-    if (typeof employee.custom != 'undefined'){
-        $.each (employee.custom, function (i, item) {
-            if (item.toggle ==1) {
-                c = 'check';
+        
+        $('#menu .mainNav > li > a').bind(clickEvent, function(e){
+            if ($(this).hasClass('exit')) return true;
+            e.preventDefault();
+			
+			var page = sp.hash();
+			// Check if the hash contains subpage
+			var subpagePosition = sp.hash().search("/");
+			if(subpagePosition >= 0){
+				page = sp.hash().substring(0, subpagePosition);
+			}
+			
+            if ( $(this).attr('page') == page ) {
+                self.toggleMenu();
+                return false;
             }
-             if (item.type != 4){
-                l += '<li>';
-                l += '<div>';
-                switch(item.type){
-                    case '1':
-                        l += '<label>' + item.name + ':</label><span class="input"><input item="edit" id="' + item.id + '" type="text" value="' + item.value + '" name=""></span>';
-                        break;
-                    case '2':
-                        l += '<label>' + item.name + ':</label><span class="input"><input item="edit" id="' + item.id + '" type="text" value="' + item.text + '" name=""></span>';
-                        break;
-                    case '3':
-                        l += '<label>' + item.name + ':</label>';
-                        l += '<span class="input"><select item="edit" id="' + item.id + '">';
-                        l += '<option>' + item.value + '</option>';
-                        var option = new Array();  // this will return an array with options from item.values
-                        option = item.values.split(",");
-                        $.each(option, function(a, opt){
-                            l += '<option>' + opt + '</option>';
-                        });
-                        l += '</select></span>';
-                        break;    
-                }
-                
-                l += '</div>';
-                l += '</li>';
-            } else {
-                 ch += '<li class="' + ((br % 2 == 0) ? 'even' : 'odd') + '">';
-                 ch += '<span item="edit" class="checkbox ' + c + '" id=' + item.id + '>' + item.name + '</span>';
-                 ch += '</li>';
-                 br++; c='';
+            if ( $('#wrapper').hasClass('extended') ) {
+                self.toggleMenu();
             }
-        }); 
-        res = l + '<li><ul>' + ch + '</ul></li>';
-    }
-   
-    return (res.length > 0) ? res : this.emptyResult(_s('No custom fields to display'), 'li', 'noBorder');
-}
+            sp.hashChange = true;
+			
+			page = $(this).attr('page');
+			var subpage = $('.subNav[page=' + page + '] li:first a').attr('subpage');
+            sp.hash(page + '/' + subpage);
+        });
+        $(window).hashchange();
+        
+        setInterval(function() {
+            $('#menu').css('height', self.calculateMenuHeight() );
+            var h = self.calculateMenuHeight();
+            $('#wrapper').css('min-height', (h > self.calculateWrapperHeight() ? h : self.calculateWrapperHeight()));
+            if ( $('.blackMask').css('opacity') == '0' ) {
+                $('.blackMask').hide();
+            }
+        }, 1000);
+        $('#wrapper').width($(window).width());
+        $('body').width($(window).width());
 
-ShiftPlanningView.prototype.editableSchedules = function(employee){
-    var l = '';
-    var i = 2;
-    $.each(spModel.schedule.allSchedules(), function(i2, item){
-        var c = (typeof employee.schedules != 'undefined' && typeof employee.schedules[item.id] != 'undefined') ? 'check"' : '';
-        l += '<li class="' + ((i % 2 == 0) ? 'even' : 'odd') + '">';
-        l += '  <div>';
-        l += '      <span class="checkbox ' + c + '" itemId=' + item.id + '>' + item.name + '</span>';
-        l += '  </div>';
-        l += '</li>';
-        i++;
-    });
-    
-    return (l.length > 0) ? l : this.emptyResult(_s('No positions to display'), 'li', 'noBorder');
-}
-
-ShiftPlanningView.prototype.editableSkills = function(employee){
-    var l = '';
-    var i = 2;
-    $.each(spModel.staff.allSkills(), function(i2, item){
-        var c = (typeof employee.skills != 'undefined' && typeof employee.skills[item.id] != 'undefined') ? 'check' : '';
-        l += '<li class="' + ((i % 2 == 0) ? 'even' : 'odd') + '">';
-        l += '  <div>';
-        l += '      <span class="checkbox ' + c + '" itemId=' + item.id + '>' + item.name + '</span>';
-        l += '  </div>';
-        l += '</li>';
-        i++;
-    });
-    
-    return (l.length > 0) ? l : this.emptyResult(_s('No skills to display'), 'li', 'noBorder');
-}
-
-ShiftPlanningView.prototype.ulLoader = function(){
-    return '<li class="loading"></li>';
-}
-
-ShiftPlanningView.prototype.divLoader = function(){
-    return '<div class="loading"></div>';
-}
-
-ShiftPlanningView.prototype.emptyResult = function(text, tag, cl){
-    if (typeof cl == 'undefined'){
-        cl = '';
-    }
-    if (typeof tag == 'undefined'){
-        tag = 'div'
-    }
-    if (typeof text == 'undefined'){
-        text = _s('Na data for selected criteria!');
-    }
-    return '<' + tag + ' class="additional ' + cl + '"><p>' + text + '</p></' + tag + '>'
-}
-
-ShiftPlanningView.prototype.checkPerm = function(item, deep){
-    if (typeof deep == 'undefined'){
-        deep = false;
-    }
-    var c = 1;
-    if (deep){
-        c = 2;
-    }
-    var perm = true;
-    if (typeof item.perms != 'undefined'){
-        if (item.perms >= c){
-            perm = true;
-        } else {
-            perm = false;
+        //all mainUser names to lead to settings 
+        $('.userName').bind(clickEvent, function(){
+            sp.loadSubPage('', 'settings', 'overview');
+        });
+        
+        if (isAndroid){
+            $('#da_up_fi_hide').hide();
         }
-    }
-    return perm;
+        
+//        $('.wrapper').bind('swipe', function(e) {
+//            var m = $('.wrapper').hasClass('extended');
+//            if (e.direction == 'right' && !m) {
+//                $('#menu').removeClass('hidden');
+//                $('#wrapper').addClass('extended');
+//                $('#wrapper').css('margin-left', 190);
+//                $('#menu').css('margin-left', 0);
+//                $('.blackMask').css('display','block');
+//                $('.blackMask').css('opacity','0.5');
+//            } else if (e.direction == 'left' && m) {
+//                $('#menu').addClass('hidden');
+//                $('#wrapper').removeClass('extended');
+//                $('#wrapper').css('margin-left', 0);
+//                $('#menu').css('margin-left', -190);
+//                $('.blackMask').css('display','none');
+//                $('.blackMask').css('opacity','0');
+//            }
+//        });
+//        //dragstart drag dragend
+//        var start = false;
+//        var element = 
+//        $('.wrapper').bind('dragstart', function(e){
+//            e.preventDefault();
+//            e.stopPropagation();
+//            $('.blackMask').css('display','block');
+//            $('.blackMask').css('opacity','0');
+//        });
+//        $('.wrapper').bind('drag', function(e){
+//            e.preventDefault();
+//            e.stopPropagation();
+//            var m = $('.wrapper').hasClass('extended');
+//            if (e.direction == 'left') {
+//                e.distanceX = 190 + parseInt(e.distanceX);
+//                if (Math.abs(parseInt(e.distanceX)) > 50 && m){
+//                    start = true;
+//                }
+//            } else {
+//                if (parseInt(e.distanceX) > 50 && !m){
+//                    start = true;
+//                }
+//            }
+//            element = 'wrapper';
+//            if (!start){
+//                return false;
+//            }
+//            if (e.distanceX <= 0){
+//                e.distanceX = 0;
+//            }
+//            if (e.distanceX >= 190){
+//                e.distanceX = 190;
+//            }
+//            if (start) {
+//                $('#wrapper').css('margin-left', parseInt(e.distanceX));
+//                $('#menu').css('margin-left',(-190 + parseInt(e.distanceX)) );   
+//                $('.blackMask').css('opacity',((0.5*parseInt(e.distanceX))/190).toFixed(1));
+//            }
+//        });
+//        
+//        $('.wrapper').bind('dragend', function(e){
+//            start = false;
+//            var len = parseInt($('#wrapper').css('margin-left'));
+//            if ( len > 90 ) {
+//                $('#menu').removeClass('hidden');
+//                $('#wrapper').addClass('extended');
+//                $('#wrapper').css('margin-left', 190);
+//                $('#menu').css('margin-left', 0);
+//                $('.blackMask').css('display','block');
+//                $('.blackMask').css('opacity','0.5');
+//            } else {
+//                $('#menu').addClass('hidden');
+//                $('#wrapper').removeClass('extended');
+//                $('#wrapper').css('margin-left', 0);
+//                $('#menu').css('margin-left', -190);
+//                $('.blackMask').css('display','none');
+//                $('.blackMask').css('opacity','0');
+//            }
+//        });
+    });
+    
+    $(window).bind('resize', function() {
+        $('#wrapper').width($(window).width());
+        $('body').width($(window).width());
+    });
 }
 
-ShiftPlanningView.prototype.fixCurrency = function(cId, r){
-    if (typeof r == 'undefined'){
-        r = false;
-    }
-    var c = spRanges.currencies[cId];
-    
-    if (!r){
-        $('span.currency').html(c);
+ShiftPlanning.prototype.calculateWrapperHeight = function() {
+    var wrapperHeight = $('#pages').height() + $('.subNavigation').height() + 20; 
+    return ($(window).height() > wrapperHeight) ? $(window).height() : wrapperHeight; 
+}
+
+ShiftPlanning.prototype.calculateMenuHeight = function () {
+    var h = this.calculateWrapperHeight();
+    if ( $('#menu .mainNav').height() + 150 > h) {
+        return $('#menu .mainNav').height() + 150;
     } else {
-        return c;
+        return h;
+    }
+}
+
+ShiftPlanning.prototype.globalLoader = function(){
+    //$('.bigLoader').show();
+}
+
+ShiftPlanning.prototype.fixCheckboxes = function(){
+    $('#pages .checkbox:visible').removeClass('failsafe');
+    $('#pages .checkbox:visible').each(function(i, item){
+	if ($(this).outerHeight(true) > 45){
+	    $(this).addClass('failsafe');
+	}
+    });
+}
+
+ShiftPlanning.prototype.showSuccess = function(text){
+    $('body').append('<div class="notification success hidden">' + text + '</div>');
+    $('body > .notification').css('top', $(document).scrollTop());
+    $('body > .notification').fadeIn('fast', function(){
+        setTimeout(function(){
+            $('body > .notification').fadeOut('fast', function(){
+                $('body > .notification').remove();
+            });
+        }, 2000);
+    });
+}
+
+ShiftPlanning.prototype.showError = function(text){
+    $('body').append('<div class="notification error hidden">' + text + '</div>');
+    $('body > .notification').css('top', $(document).scrollTop());
+    $('body > .notification').fadeIn('fast', function(){
+        setTimeout(function(){
+            $('body > .notification').fadeOut('fast', function(){
+                $('body > .notification').remove();
+            });
+        }, 2000);
+    });
+}
+
+function callAndroid(func, callback){
+    if (typeof Android != 'undefined'){
+	if (typeof func != 'undefined'){
+	    func = 'showToast';
+	}
+	return Android[func](function(res){
+	    if (typeof callback != 'undefined'){
+		callback(res);
+	    } else {
+		return res;
+	    }
+	});
     }
     
+    return false;
 }
 
-ShiftPlanningView.prototype.bbc2HTML = function(S) {
-    if (S.indexOf('[') < 0) return S;
+//Initalizing javascript library
+var sp = new ShiftPlanning();
+ShiftPlanning.prototype.staff = new ShiftPlanningStaff();
+ShiftPlanning.prototype.schedule = new ShiftPlanningSchedule();
+ShiftPlanning.prototype.dashboard = new ShiftPlanningDashboard();
+ShiftPlanning.prototype.timeClock = new ShiftPlanningTimeClock();
+ShiftPlanning.prototype.reports = new ShiftPlanningReports();
+ShiftPlanning.prototype.requests = new ShiftPlanningRequests();
+ShiftPlanning.prototype.location = new ShiftPlanningLocation();
+ShiftPlanning.prototype.permissions = new ShiftPlanningPermissions();
+ShiftPlanning.prototype.training = new ShiftPlanningTraining();
+ShiftPlanning.prototype.settings = new ShiftPlanningSettings();
 
-    function X(p, f) {
-        return new RegExp(p, f)
-    }
-    function D(s) {
-        return rD.exec(s)
-    }
-    function R(s) {
-        return s.replace(rB, P)
-    }
-    function A(s, p) {
-        for (var i in p) s = s.replace(X(i, 'g'), p[i]); return s;
-    }
-
-    function P($0, $1, $2, $3) {
-        if ($3 && $3.indexOf('[') > -1) $3 = R($3);
-        switch ($1) {
-            case 'url':case 'anchor':case 'email':
-                return '<a '+ L[$1] + ($2||$3) +'">'+ $3 +'</a>';
-            case 'img':
-                var d = D($2);
-                return '<img src="'+ $3 +'"'+ (d ? ' width="'+ d[1] +'" height="'+ d[2] +'"' : '') +' alt="'+ (d ? '' : $2) +'" />';
-            case 'flash':case 'youtube':
-                var d = D($2)||[0, 425, 366];
-                return '<object type="application/x-shockwave-flash" data="'+ Y[$1] + $3 +'" width="'+ d[1] +'" height="'+ d[2] +'"><param name="movie" value="'+ Y[$1] + $3 +'" /></object>';
-            case 'float':
-                return '<span style="float: '+ $2 +'">'+ $3 +'</span>';
-            case 'left':case 'right':case 'center':case 'justify':
-                return '<div style="text-align: '+ $1 +'">'+ $3 +'</div>';
-            case 'google':case 'wikipedia':
-                return '<a href="'+ G[$1] + $3 +'">'+ $3 +'</a>';
-            case 'b':case 'i':case 'u':case 's':case 'sup':case 'sub':case 'h1':case 'h2':case 'h3':case 'h4':case 'h5':case 'h6':case 'table':case 'tr':case 'th':case 'td':
-                return '<'+ $1 +'>'+ $3 +'</'+ $1 +'>';
-            case 'row': case 'r':case 'header':case 'head':case 'h':case 'col':case 'c':
-                return '<'+ T[$1] +'>'+ $3 +'</'+ T[$1] +'>';
-            case 'acronym':case 'abbr':
-                return '<'+ $1 +' title="'+ $2 +'">'+ $3 +'</'+ $1 +'>';
-        }
-        return '['+ $1 + ($2 ? '='+ $2 : '') +']'+ $3 +'[/'+ $1 +']';
-    }
-
-    var rB = X('\\[([a-z][a-z0-9]*)(?:=([^\\]]+))?]((?:.|[\r\n])*?)\\[/\\1]', 'g'), rD = X('^(\\d+)x(\\d+)$');
-    var L = {
-        url: 'href="', 
-        'anchor': 'name="', 
-        email: 'href="mailto: '
-    };
-    var G = {
-        google: 'http://www.google.com/search?q=', 
-        wikipedia: 'http://www.wikipedia.org/wiki/'
-    };
-    var Y = {
-        youtube: 'http://www.youtube.com/v/', 
-        flash: ''
-    };
-    var T = {
-        row: 'tr', 
-        r: 'tr', 
-        header: 'th', 
-        head: 'th', 
-        h: 'th', 
-        col: 'td', 
-        c: 'td'
-    };
-    var C = {
-        notag: [{
-            '\\[': '&#91;', 
-            ']': '&#93;'
-        }, '', ''], 
-        code: [{
-            '<': '&lt;'
-        }, '<code><pre>', '</pre></code>']
-    };
-    C.php = [C.code[0], C.code[1]+ '&lt;?php ', '?>'+ C.code[2]];
-    var F = {
-        font: 'font-family:$1', 
-        size: 'font-size:$1px', 
-        color: 'color:$1'
-    };
-    var U = {
-        c: 'circle', 
-        d: 'disc', 
-        s: 'square', 
-        '1': 'decimal', 
-        a: 'lower-alpha', 
-        A: 'upper-alpha', 
-        i: 'lower-roman', 
-        I: 'upper-roman'
-    };
-    var I = {}, B = {};
-
-    for (var i in C) I['\\[('+ i +')]((?:.|[\r\n])*?)\\[/\\1]'] = function($0, $1, $2) {
-        return C[$1][1] + A($2, C[$1][0]) + C[$1][2]
-    };
-    for (var i in F) {
-        B['\\['+ i +'=([^\\]]+)]'] = '<span style="'+ F[i] +'">';
-        B['\\[/'+ i +']'] = '</span>';
-    }
-    B['\\[list]'] = '<ul>';
-    B['\\[list=(\\w)]'] = function($0, $1) {
-        return '<ul style="list-style-type: '+ (U[$1]||'disc') +'">'
-    };		
-    B['\\[/list]'] = '</ul>';
-    B['\\[\\*]'] = '<li>';
-	B['\\[/\\*]'] = '</li>';
-    B['\\[quote(?:=([^\\]]+))?]'] = function($0, $1) {
-        return '<div class="bb-quote">'+ ($1 ? $1 +' wrote' : 'Quote') +':<blockquote>'
-    };		
-    B['\\[/quote]'] = '</blockquote></div>';
-    B['\\[(hr|br)]'] = '<$1 />';
-    B['\\[sp]'] = '&nbsp;';
-    return R(A(A(S, I), B));
-}
-
-ShiftPlanningView.prototype.friendly_filesize = function(bytes) {
-    var labels = new Array('TB', 'GB', 'MB', 'kB', 'b');
-    var measurements = new Array(1099511627776, 1073741824, 1048576, 1024, 1);
-    for(var i=0; i<measurements.length; i++) {
-        var conv = bytes/measurements[i];
-        if(conv > 1) {
-            return Math.round(conv*10)/10+' '+labels[i];
-        }
-    }
-}
-
-var spView = new ShiftPlanningView();
 
