@@ -7,9 +7,7 @@ $packer = array();
 
 $packer['css'] = array(
 	"mobile" => array(
-		'css/add2home.css',
 		'css/style.mobile.css',
-		'css/style_12.mobile.css',
 		'css/mobiscroll.css'
 	)
 );
