@@ -6,14 +6,14 @@
 $packer = array();
 
 $packer['css'] = array(
-	"mobile" => array(
+	"sp" => array(
 		'css/style.mobile.css',
 		'css/mobiscroll.css'
 	)
 );
 
 $packer['js'] = array(
-	'external' => array(
+	'sp' => array(
 		'js/json2.js',
 		'js/jquery/jquery-1.6.4.min.js',
 		'js/jquery/jquery.timeago.js',
@@ -35,10 +35,8 @@ $packer['js'] = array(
 		'js/plugins/hammer.js',
 		'js/plugins/jquery.hammer.js',
 		'js/plugins/jquery.specialevent.hammer.js',
-		'js/plugins/shorten.js'
-	),
+		'js/plugins/shorten.js',
 	
-	'mobile' => array(
 		//models
 		'js/models/sp.schedule.model.js',
 		'js/models/sp.requests.model.js',
@@ -81,7 +79,7 @@ $packer['js'] = array(
 		'js/sp.settings.mobile.js',
 		
 		//loader
-		'js/sp.common.mobile.js',
+		'js/sp.common.mobile.js'
 	)
 	
 	

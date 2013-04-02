@@ -48,7 +48,7 @@ class AssetsPacker {
 		if(!file_exists($this->build_file_path . '.build')){
 			
 			//create .build file
-			//file_put_contents($this->build_file_path, '');
+			file_put_contents($this->build_file_path . '.build', '');
 			
 			//check what to build
 			if( in_array('css', $this->type) ) {

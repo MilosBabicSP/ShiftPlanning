@@ -83,7 +83,7 @@ $googleIP = gethostbyname('www.google.com');
 
         $cse->_dump();*/
         
-        $css = new AssetsEmbed('css', 'mobile');
+        $css_sp = new AssetsEmbed('css', 'sp');
         ?>
 
         <link rel="shortcut icon" href="http://cdn.shiftplanning.com/app/layout/1/images/favicon.ico" type="image/x-icon" id="favicon">
@@ -202,8 +202,8 @@ if ($vtoken['data'] != '1') {
         $jse->_dump();
         */
         
-        $js_ext = new AssetsEmbed('js', 'external');
-        $js_mob = new AssetsEmbed('js', 'mobile');
+        $js_sp = new AssetsEmbed('js', 'sp');
+        
         
         // TODO: Validate closure compiler
         
