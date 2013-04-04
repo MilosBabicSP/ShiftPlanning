@@ -7,7 +7,7 @@ if (isset($_GET['timezone'])) {
     echo Functions::getInstance()->getCurrentTime();
     die();
 }
-
+ 
 if (isset($_GET['logout'])) {
     _iapi(array('module' => 'staff.logout', 'method' => 'GET'), 'json', true);
     $fixed = substr(WWW_PATH, 7);
