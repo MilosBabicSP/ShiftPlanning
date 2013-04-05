@@ -256,6 +256,7 @@ ShiftPlanningTimeClock.prototype.manageTimeSheetsEvents = function(){
                 break;
             case 'edit':
                 self.edit = true;
+                this.nesto = true;
                 $('#tc_act_onci').hide();
                 sp.loadSubPage('', 'timeClock', 'addClockTime');
                 break;
@@ -430,10 +431,11 @@ ShiftPlanningTimeClock.prototype.manageTimeSheetsSubEvents = function(){
     $('#tc_mts_eml').html(spView.staffFilter());
     self.getTimeSheets();
 }
+var nesto = false;
 
-ShiftPlanningTimeClock.prototype.addClockTimeSubEvents = function(){
+ShiftPlanningTimeClock.prototype.addClockTimeSubEvents = function(){    
     var emp = {};
-    if (this.edit != false){
+    if (this.nesto != false){
         emp = this.current;
         $('#tc_act .title h3').html(_s('Edit Clock Time'));
         $('#tc_act_tc_id').removeClass('editOn').addClass('editOn');
@@ -723,6 +725,8 @@ ShiftPlanningTimeClock.prototype.saveClockInChanges = function(){
     spModel.timeclock.update('timeclock', data, function(){
         sp.showSuccess(_s('Timeclock updated'));
     });
+    
+    this.nesto = false;
 }
 
 ShiftPlanningTimeClock.prototype.saveClockTime = function(){
