@@ -742,10 +742,10 @@ ShiftPlanningTimeClock.prototype.saveClockTime = function(){
         module = 'timeclock.timeclock'
         data.id = $('#tc_act_tc_id').val();
         success = _s('Clock time edited');
-        data.start_date = $('#tc_act_c_cl_dp_i').val() +' '+ $('#tc_act_tclin').val();
-        data.start_time = $('#tc_act_c_cl_dp_i').val() +' '+ $('#tc_act_tclin').val();  
-        data.end_date = $('#tc_act_c_co_dp_i').val() + ' ' + $('#tc_act_tclou').val();
-        data.end_time = $('#tc_act_c_co_dp_i').val() + ' ' + $('#tc_act_tclou').val();
+        data.start_date = $('#tc_act_c_cl_dp_i').val() ;
+        data.start_time = $('#tc_act_tclin').val();  
+        data.end_date = $('#tc_act_c_co_dp_i').val();
+        data.end_time = $('#tc_act_tclou').val();
     } else {
         data.datein = $('#tc_act_c_cl_dp_i').val() +' '+ $('#tc_act_tclin').val();    
         data.dateout = $('#tc_act_c_co_dp_i').val() + ' ' + $('#tc_act_tclou').val();       
