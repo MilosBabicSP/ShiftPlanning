@@ -234,6 +234,7 @@ ShiftPlanningTimeClock.prototype.manageTimeSheetsEvents = function(){
     $('#tc_dtc_buttons a').bind(clickEvent, function(e){
         //var self = this;        
         e.preventDefault();
+        e.stopPropagation();
         var id = $(this).attr('rel');
         switch ($(this).attr('class')){
             case 'approve':
@@ -435,7 +436,7 @@ var nesto = false;
 
 ShiftPlanningTimeClock.prototype.addClockTimeSubEvents = function(){    
     var emp = {};
-    console.log('edit='+self.edit);
+    console.log('edit='+self.edit);    
     self.edit = nesto;
     if (self.edit != false){        
         emp = this.current;
