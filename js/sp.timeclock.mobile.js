@@ -13,6 +13,7 @@ ShiftPlanningTimeClock.prototype.loadSubPageEvents = function(subpage){
     if (subpage == 'displayTimeClock'){
         $('.subNavigation').hide();
     }
+      timeClockEditing = false;
     this[subpage + 'SubEvents']();
 }
 
@@ -509,7 +510,6 @@ ShiftPlanningTimeClock.prototype.addClockTimeSubEvents = function(){
     $('#tc_act_sc').val((this.edit) ? (emp.schedule != null) ? emp.schedule.id : 0 : 0);
     
     this.edit = false;
-    timeClockEditing = false;
 }
 
 ShiftPlanningTimeClock.prototype.displayTimeClockSubEvents = function(){
