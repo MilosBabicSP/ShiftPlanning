@@ -256,7 +256,7 @@ ShiftPlanningTimeClock.prototype.manageTimeSheetsEvents = function(){
                 break;
             case 'edit':
                 self.edit = true;
-                this.nesto = true;
+                nesto = true;
                 $('#tc_act_onci').hide();
                 sp.loadSubPage('', 'timeClock', 'addClockTime');
                 break;
@@ -435,7 +435,7 @@ var nesto = false;
 
 ShiftPlanningTimeClock.prototype.addClockTimeSubEvents = function(){    
     var emp = {};
-    if (this.nesto != false){
+    if (nesto != false){
         emp = this.current;
         $('#tc_act .title h3').html(_s('Edit Clock Time'));
         $('#tc_act_tc_id').removeClass('editOn').addClass('editOn');
@@ -726,7 +726,7 @@ ShiftPlanningTimeClock.prototype.saveClockInChanges = function(){
         sp.showSuccess(_s('Timeclock updated'));
     });
     
-    this.nesto = false;
+    nesto = false;
 }
 
 ShiftPlanningTimeClock.prototype.saveClockTime = function(){
