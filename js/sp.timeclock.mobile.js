@@ -13,8 +13,7 @@ ShiftPlanningTimeClock.prototype.loadSubPageEvents = function(subpage){
     if (subpage == 'displayTimeClock'){
         $('.subNavigation').hide();
     }
-      timeClockEditing = false;
-    this[subpage + 'SubEvents']();
+     this[subpage + 'SubEvents']();
 }
 
 ShiftPlanningTimeClock.prototype.overviewEvents = function(){
@@ -234,7 +233,7 @@ ShiftPlanningTimeClock.prototype.manageTimeSheetsEvents = function(){
     
     $('#tc_dtc_buttons a').bind(clickEvent, function(e){
         //var self = this;        
-        timeClockEditing = false;
+       // timeClockEditing = false;
         e.preventDefault();
         e.stopPropagation();
         var id = $(this).attr('rel');
