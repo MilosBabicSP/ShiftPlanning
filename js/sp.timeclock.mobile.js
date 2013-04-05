@@ -440,6 +440,7 @@ ShiftPlanningTimeClock.prototype.addClockTimeSubEvents = function(){
     self.edit = timeClockEditing;
     if (self.edit != false){        
         emp = this.current;
+        $('$tc_act_em option[id='+emp.employee.id+']').attr("selected", "selected");
         $('#tc_act .title h3').html(_s('Edit Clock Time'));
         $('#tc_act_tc_id').removeClass('editOn').addClass('editOn');
         $('#tc_act_tc_id').val(emp.id);
