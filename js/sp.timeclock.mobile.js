@@ -232,6 +232,7 @@ ShiftPlanningTimeClock.prototype.manageTimeSheetsEvents = function(){
     });
     
     $('#tc_dtc_buttons a').bind(clickEvent, function(e){
+        var self = this;
         e.preventDefault();
         var id = $(this).attr('rel');
         switch ($(this).attr('class')){
