@@ -435,7 +435,8 @@ var nesto = false;
 
 ShiftPlanningTimeClock.prototype.addClockTimeSubEvents = function(){    
     var emp = {};
-    if (nesto != false){
+    self.edit = nesto;
+    if (self.edit != false){        
         emp = this.current;
         $('#tc_act .title h3').html(_s('Edit Clock Time'));
         $('#tc_act_tc_id').removeClass('editOn').addClass('editOn');
