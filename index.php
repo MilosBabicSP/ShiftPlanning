@@ -37,19 +37,13 @@ if (isset($_GET['logout'])) {
     header('Location: ' . 'http://' . $fixed);
 }
 
-require_once('jspacker.php');
+//require_once('jspacker.php');
+require_once('AssetsEmbed.php');
+
 include 'i18n/lib/class.i18n.php';
 if (Functions::getInstance()->getCurrentLang() != 'en_US'):
     i18n::setLanguage(Functions::getInstance()->getCurrentLang(), _lang_ . '/lang/');
 endif;
-
-$jse = new JSPacker('sp.js');
-$cse = new JSPacker('sp.css', 'css');
-if (DEBUGGER) {
-    $encrypt = false;
-} else {
-    $encrypt = true;
-}
 
 if (Functions::getInstance()->isRememberMe()) {
     $_SESSION['api']['token'] = Functions::getInstance()->getCookie('shiftplanning_mobile_usertoken');
@@ -73,12 +67,8 @@ $googleIP = gethostbyname('www.google.com');
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Qwigley">
         <?php
-        $cse->_add('css/style.mobile.css', $encrypt);
-
-        //main jquery
-        $cse->_add('css/mobiscroll.css', $encrypt);
-
-        $cse->_dump();
+        
+        $css_sp = new AssetsEmbed('css', 'sp');
         ?>
 
         <link rel="shortcut icon" href="http://cdn.shiftplanning.com/app/layout/1/images/favicon.ico" type="image/x-icon" id="favicon">
@@ -122,78 +112,11 @@ if ($vtoken['data'] != '1') {
 
         <!-- Core Parts -->
 
-        <!-- jQuery -->
+        <!-- JS files -->
         <?php
-        //json obj 
-        $jse->_add('js/json2.js', $encrypt);
-
-        //main jquery
-        $jse->_add('js/jquery/jquery-1.6.4.min.js', $encrypt);
-        $jse->_add('js/jquery/jquery.timeago.js', $encrypt);
-        $jse->_add('js/jquery/jquery.tmpl.js', $encrypt);
-        $jse->_add('js/jquery/jquery.ba-hashchange.min.js', $encrypt);
-        $jse->_add('js/jquery/jquery.contains.js', $encrypt);
-
-        //specially for mobile device.
-        $jse->_add('js/plugins/mobiscroll.min.js', $encrypt);
-
-        //models
-        $jse->_add('js/models/sp.schedule.model.js', $encrypt);
-        $jse->_add('js/models/sp.requests.model.js', $encrypt);
-        $jse->_add('js/models/sp.admin.model.js', $encrypt);
-        $jse->_add('js/models/sp.messaging.model.js', $encrypt);
-        $jse->_add('js/models/sp.timeclock.model.js', $encrypt);
-        $jse->_add('js/models/sp.staff.model.js', $encrypt);
-        $jse->_add('js/models/sp.payroll.model.js', $encrypt);
-        $jse->_add('js/models/sp.location.model.js', $encrypt);
-        $jse->_add('js/models/sp.training.model.js', $encrypt);
-
-        //plugins
-        $jse->_add('js/plugins/date.js', $encrypt);
-        $jse->_add('js/plugins/cookie.js', $encrypt);
-        $jse->_add('js/plugins/sp.cache.js', $encrypt);
-        $jse->_add('js/schedule/date.js', $encrypt);
-        $jse->_add('js/schedule/date.extras.js', $encrypt);
-        $jse->_add('js/plugins/objSort.js', $encrypt);
-        $jse->_add('js/plugins/outerClick.js', $encrypt);
-        $jse->_add('js/plugins/hammer.js', $encrypt);
-        $jse->_add('js/plugins/jquery.hammer.js', $encrypt);
-        $jse->_add('js/plugins/jquery.specialevent.hammer.js', $encrypt);
-        $jse->_add('js/plugins/shorten.js', $encrypt);
-
-        //system
-        $jse->_add('js/sp.common.js', $encrypt);
-        $jse->_add('js/sp.model.js', $encrypt);
-        $jse->_add('js/sp.view.js', $encrypt);
-        $jse->_add('js/sp.ranges.js', $encrypt);
-
-        //base
-        $jse->_add('js/sp.staff.js', $encrypt);
-        $jse->_add('js/sp.schedule.js', $encrypt);
-        $jse->_add('js/sp.dashboard.js', $encrypt);
-        $jse->_add('js/sp.timeclock.js', $encrypt);
-        $jse->_add('js/sp.reports.js', $encrypt);
-        $jse->_add('js/sp.requests.js', $encrypt);
-        $jse->_add('js/sp.location.js', $encrypt);
-        $jse->_add('js/sp.permissions.js', $encrypt);
-        $jse->_add('js/sp.training.js', $encrypt);
-        $jse->_add('js/sp.settings.js', $encrypt);
-
-        //extension
-        $jse->_add('js/sp.staff.mobile.js', $encrypt);
-        $jse->_add('js/sp.dashboard.mobile.js', $encrypt);
-        $jse->_add('js/sp.timeclock.mobile.js', $encrypt);
-        $jse->_add('js/sp.reports.mobile.js', $encrypt);
-        $jse->_add('js/sp.requests.mobile.js', $encrypt);
-        $jse->_add('js/sp.schedule.mobile.js', $encrypt);
-        $jse->_add('js/sp.permissions.mobile.js', $encrypt);
-        $jse->_add('js/sp.training.mobile.js', $encrypt);
-        $jse->_add('js/sp.settings.mobile.js', $encrypt);
-
-        //Loader
-        $jse->_add('js/sp.common.mobile.js', $encrypt);
-
-        $jse->_dump();
+        
+        $js_sp = new AssetsEmbed('js', 'sp');
+        
         ?>
         <script type="text/javascript">
             function init(){
