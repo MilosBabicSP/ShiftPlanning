@@ -787,8 +787,14 @@ ShiftPlanningTimeClock.prototype.loadPage = function(){
     }
 
 function checkTimes( data ){
+    var start_date_temp = data.start_date;
+    var end_date_temp = data.end_date;
 	console.log(JSON.stringify(data));
-	var comparedDates = dates.compare( new Date( data.start_date + " " + data.start_time ), new Date( data.end_date + " " + data.end_time ) );
+        if (cal.dpformat == 'mm/dd/yy'){
+            start_date_temp = start_date_temp.replace(/\//g, '.');
+            end_date_temp = end_date_temp.replace(/\//g, '.');
+        };
+	var comparedDates = dates.compare( new Date( checkFormatDate(start_date_temp) + " " + data.start_time ), new Date( checkFormatDate(end_date_temp) + " " + data.end_time ) );
 	if( comparedDates < 0 ){
 		console.log('datum je ok');
 		return true;
