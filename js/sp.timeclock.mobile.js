@@ -761,8 +761,8 @@ ShiftPlanningTimeClock.prototype.saveClockTime = function(){
     
    		if( checkTimes(data) == true || $('#tc_act .detailsGrid .odd').hasClass('nonVisible') ){
     	sp.api(module, f, data, function(response){
-			console.log("response: ");
-    		console.log(JSON.stringify(response));
+			//console.log("response: ");
+    		//console.log(JSON.stringify(response));
 			sp.showSuccess(success);
 			setTimeout(function(){
 				var subpage = 'displayTimeSheets'
