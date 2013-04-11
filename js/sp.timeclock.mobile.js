@@ -678,21 +678,22 @@ ShiftPlanningTimeClock.prototype.showHideTimeSheetsPro = function (){
     }
 }
 
-ShiftPlanningTimeClock.prototype.showHideTimeSheets = function(){
+ ShiftPlanningTimeClock.prototype.showHideTimeSheets = function(){
     //$('#tc_mts_slist tr').removeClass('odd');
     var s = parseInt($('#tc_mts_au').val());
     var e = parseInt($('#tc_mts_eml').val());
     var sc = parseInt($('#tc_mts_scl').val());
+	
     var search = '';
     if (s != 0){
         search += '.s_' + s;
     }
     
-    if (e != 0){
+    if (e != 0 && $('#tc_mts_eml').is("visible") ){
         search += '.e_' + e;
     }
     
-    if (sc != 0){
+    if (sc != 0 && $('#tc_mts_scl').is("visible") ){
         search += '.sc_' + sc;
     }
     
@@ -703,16 +704,10 @@ ShiftPlanningTimeClock.prototype.showHideTimeSheets = function(){
     $('#tc_mts_sh ul li:visible').parents('.timeSheet').prev().show();
     
     if ($('#tc_mts_sh ul li:visible').length > 0){
-        $('#tc_mts_sh').next().hide();
+		$('#tc_mts_sh').next().hide();
     } else {
-        $('#tc_mts_sh').next().show();
+		$('#tc_mts_sh').next().show();
     }
-    
-//    $('#tc_mts_slist tr').each(function(i, item){
-//        if (i % 2 == 0){
-//            $(this).addClass('odd');
-//        }
-//    })
 }
 
 ShiftPlanningTimeClock.prototype.saveClockInChanges = function(){
@@ -787,8 +782,8 @@ ShiftPlanningTimeClock.prototype.loadPage = function(){
     }
 
 function checkTimes( data ){
-    var start_date_temp = (data.start_date == 'undefined' ? data.datein: data.start_date);
-    var end_date_temp = (typeof data.end_date == 'undefined' ? data.dateout: data.end_date);
+    var start_date_temp = data.start_date ;
+    var end_date_temp = data.end_date;
 	console.log(JSON.stringify(data));
         if (cal.dpformat == 'mm/dd/yy'){
             start_date_temp = start_date_temp.replace(/\//g, '.');
