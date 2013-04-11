@@ -784,31 +784,27 @@ ShiftPlanningTimeClock.prototype.loadPage = function(){
     }
 
 function checkTimes( data ){
-	var start_date_temp = "";
-	var end_date_temp = "";
-	var splitedStart = "";
-	var splitedEnd = "";
 	var comparedDates = "";
 	
 	if( typeof data.start_date != "undefined" ){
-    	start_date_temp = data.start_date;
-    	end_date_temp = data.end_date;
+    	var start_date_temp = data.start_date;
+    	var end_date_temp = data.end_date;
+		var splitedStart = "";
+		var splitedEnd = "";
+		
 		if ( cal.dpformat == 'mm/dd/yy' ){
 			splitedStart = start_date_temp.split('/');
 			splitedEnd = end_date_temp.split('/');
 			
             start_date_temp = splitedStart[2] + '/' + splitedStart[0] + '/' + splitedStart[1];
             end_date_temp = splitedEnd[2] + '/' + splitedEnd[0] + '/' + splitedEnd[1];
-			
-			comparedDates = dates.compare( new Date( start_date_temp + " " + data.start_time ), new Date( end_date_temp + " " + data.end_time ) );
-        };
+        }
+		comparedDates = dates.compare( new Date( start_date_temp + " " + data.start_time ), new Date( end_date_temp + " " + data.end_time ) );
 	}else{
 		if( typeof data.onlyin != "undefined" ){
 			return true;
 		}else{
-    		start_date_temp = data.datein.split(' ');
-    		end_date_temp = data.dateout;
-			comparedDates = dates.compare( new Date( start_date_temp ), new Date( end_date_temp ) );
+			comparedDates = dates.compare( new Date( data.datein ), new Date( data.dateout ) );
 		}
 	}
 	
