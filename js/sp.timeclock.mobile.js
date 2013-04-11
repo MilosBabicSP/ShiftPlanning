@@ -789,7 +789,7 @@ function checkTimes( data ){
             start_date_temp = start_date_temp.replace(/\//g, '.');
             end_date_temp = end_date_temp.replace(/\//g, '.');
         };
-	var comparedDates = dates.compare( new Date( start_date_temp + " " + data.start_date ), new Date( end_date_temp + " " + data.end_date ) );
+	var comparedDates = dates.compare( new Date( start_date_temp + " " + data.start_time ), new Date( end_date_temp + " " + data.end_time ) );
 	if( comparedDates < 0 ){
 		console.log('datum je ok');
 		return true;
