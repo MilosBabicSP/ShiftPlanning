@@ -758,20 +758,22 @@ ShiftPlanningTimeClock.prototype.saveClockTime = function(){
     
     data.notes = $('#tc_act_no').val();
     
-   	if( checkTimes(data) == true ){
-        sp.api(module, f, data, function(response){
-        sp.showSuccess(success);
-        setTimeout(function() {
-            var subpage = 'displayTimeSheets'
-            if(sp.staff.admin.info.group <=2){
-                subpage = 'manageTimeSheets';
-            }
-            $('.subNavigation div.timeClock ul.timeClock a[subpage='+subpage+']').trigger(clickEvent);
-        },400);        
-    }, function(response){
-        sp.showError(response.error);
-    });
-    	}else{
+   		if( checkTimes(data) == true || $('#tc_act .detailsGrid .odd').hasClass('nonVisible') ){
+    	sp.api(module, f, data, function(response){
+			console.log("response: ");
+    		console.log(JSON.stringify(response));
+			sp.showSuccess(success);
+			setTimeout(function(){
+				var subpage = 'displayTimeSheets'
+				if(sp.staff.admin.info.group <=2){
+					subpage = 'manageTimeSheets';
+				}
+				$('.subNavigation div.timeClock ul.timeClock a[subpage='+subpage+']').trigger(clickEvent);
+			},400);
+		}, function(response){
+			sp.showError(response.error);
+		});
+	}else{
 		sp.showError("Please check your time and date input fields");
 	}
 }
@@ -782,23 +784,40 @@ ShiftPlanningTimeClock.prototype.loadPage = function(){
     }
 
 function checkTimes( data ){
-    var start_date_temp = data.start_date ;
-    var end_date_temp = data.end_date;
-	console.log(JSON.stringify(data));
-        if (cal.dpformat == 'mm/dd/yy'){
-            start_date_temp = start_date_temp.replace(/\//g, '.');
-            end_date_temp = end_date_temp.replace(/\//g, '.');
+	var start_date_temp = "";
+	var end_date_temp = "";
+	var splitedStart = "";
+	var splitedEnd = "";
+	var comparedDates = "";
+	
+	if( typeof data.start_date != "undefined" ){
+    	start_date_temp = data.start_date;
+    	end_date_temp = data.end_date;
+		if ( cal.dpformat == 'mm/dd/yy' ){
+			splitedStart = start_date_temp.split('/');
+			splitedEnd = end_date_temp.split('/');
+			
+            start_date_temp = splitedStart[2] + '/' + splitedStart[0] + '/' + splitedStart[1];
+            end_date_temp = splitedEnd[2] + '/' + splitedEnd[0] + '/' + splitedEnd[1];
+			
+			comparedDates = dates.compare( new Date( start_date_temp + " " + data.start_time ), new Date( end_date_temp + " " + data.end_time ) );
         };
-	var comparedDates = dates.compare( new Date( start_date_temp + " " + data.start_time ), new Date( end_date_temp + " " + data.end_time ) );
+	}else{
+		if( typeof data.onlyin != "undefined" ){
+			return true;
+		}else{
+    		start_date_temp = data.datein.split(' ');
+    		end_date_temp = data.dateout;
+			comparedDates = dates.compare( new Date( start_date_temp ), new Date( end_date_temp ) );
+		}
+	}
+	
 	if( comparedDates < 0 ){
-		console.log('datum je ok');
 		return true;
 	}else{
-		console.log('datum NIJE ok');
 		return false;
 	}
 }
-
 var dates = {
     convert:function(d) {
         // Converts the date in d to a date-object. The input can be:
