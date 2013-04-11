@@ -794,7 +794,7 @@ function checkTimes( data ){
             start_date_temp = start_date_temp.replace(/\//g, '.');
             end_date_temp = end_date_temp.replace(/\//g, '.');
         };
-	var comparedDates = dates.compare( new Date( start_date_temp + " " + data.start_time ), new Date( end_date_temp + " " + data.end_time ) );
+	var comparedDates = dates.compare( new Date( start_date_temp + " " + data.datein ), new Date( end_date_temp + " " + data.dateout ) );
 	if( comparedDates < 0 ){
 		console.log('datum je ok');
 		return true;
