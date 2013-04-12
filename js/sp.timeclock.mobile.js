@@ -7,15 +7,16 @@ ShiftPlanningTimeClock.prototype.initialize = function(){
         self.displayTimeSheetsEvents();
     });
 }
-
+var subpageTemp = '';
 ShiftPlanningTimeClock.prototype.loadSubPageEvents = function(subpage){
     $('.subNavigation').show();
     if (subpage == 'displayTimeClock'){
         $('.subNavigation').hide();
     };
-    console.log('loadSubPage='+subpage);
-    
-     this[subpage + 'SubEvents']();
+    if (!(subpageTemp == subpage && subpageTemp == 'addClockTime')){      
+        subpageTemp = subpage;
+        this[subpage + 'SubEvents']();
+    }
 }
 
 ShiftPlanningTimeClock.prototype.overviewEvents = function(){
@@ -234,7 +235,6 @@ ShiftPlanningTimeClock.prototype.manageTimeSheetsEvents = function(){
     });
     
     $('#tc_dtc_buttons a').bind(clickEvent, function(e){
-          console.log('bb');
         //var self = this;        
        // timeClockEditing = false;
         e.preventDefault();
@@ -263,7 +263,6 @@ ShiftPlanningTimeClock.prototype.manageTimeSheetsEvents = function(){
                 self.edit = true;
                 timeClockEditing = true;
                 $('#tc_act_onci').hide();   
-                console.log('aa');
                 sp.loadSubPage('', 'timeClock', 'addClockTime');
                 break;
             case 'delete':
