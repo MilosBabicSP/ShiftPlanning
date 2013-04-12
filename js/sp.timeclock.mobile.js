@@ -234,6 +234,7 @@ ShiftPlanningTimeClock.prototype.manageTimeSheetsEvents = function(){
     });
     
     $('#tc_dtc_buttons a').bind(clickEvent, function(e){
+          console.log('bb');
         //var self = this;        
        // timeClockEditing = false;
         e.preventDefault();
@@ -261,7 +262,8 @@ ShiftPlanningTimeClock.prototype.manageTimeSheetsEvents = function(){
             case 'edit':
                 self.edit = true;
                 timeClockEditing = true;
-                $('#tc_act_onci').hide();               
+                $('#tc_act_onci').hide();   
+                console.log('aa');
                 sp.loadSubPage('', 'timeClock', 'addClockTime');
                 break;
             case 'delete':
