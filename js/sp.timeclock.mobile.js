@@ -452,12 +452,14 @@ ShiftPlanningTimeClock.prototype.addClockTimeSubEvents = function(){
         emp.out_time.time = sp.strReplace(['am','pm'],[' AM',' PM'],emp.out_time.time);
         emp.in_time.day = Date.parse(emp.in_time.day).toString(cal.dformat);
         emp.out_time.day = Date.parse(emp.out_time.day).toString(cal.dformat);
+        console.log('1. self.edit='+self.edit);
     } else {
         $('#tc_act .title h3').html(_s('Add Clock Time'));
         $('#tc_act_tc_id').removeClass('editOn');
         $('#tc_act_onci').show();
         emp.in_timestamp = Date.parse('today at 9am').getTime()/1000;
         emp.out_timestamp = Date.parse('today at 5pm').getTime()/1000;
+         console.log('2. self.edit='+self.edit);
     }
     
     $('#tc_act_sc').html(spView.optionSchedules(sp.staff.admin.info.group > 4 ? sp.staff.admin.info.id : 0));
@@ -512,7 +514,7 @@ ShiftPlanningTimeClock.prototype.addClockTimeSubEvents = function(){
     $('#tc_act_sc').val((this.edit) ? (emp.schedule != null) ? emp.schedule.id : 0 : 0);
     
     this.edit = false;
-    timeClockEditing =false;
+ console.log('3. self.edit='+self.edit);
 }
 
 ShiftPlanningTimeClock.prototype.displayTimeClockSubEvents = function(){
