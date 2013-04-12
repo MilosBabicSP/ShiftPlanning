@@ -438,6 +438,7 @@ var timeClockEditing = false;
 ShiftPlanningTimeClock.prototype.addClockTimeSubEvents = function(){    
     var emp = {};  
     //this.edit = timeClockEditing;
+    colselo.log('0. this.edit='+this.edit);
     if (this.edit != false){        
         emp = this.current;
         $('#tc_etc_em option').attr("disabled", "");
@@ -514,7 +515,7 @@ ShiftPlanningTimeClock.prototype.addClockTimeSubEvents = function(){
     $('#tc_act_sc').val((this.edit) ? (emp.schedule != null) ? emp.schedule.id : 0 : 0);
     
     this.edit = false;
- console.log('3. self.edit='+self.edit);
+ console.log('3. this.edit='+this.edit);
 }
 
 ShiftPlanningTimeClock.prototype.displayTimeClockSubEvents = function(){
