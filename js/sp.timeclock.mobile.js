@@ -437,8 +437,8 @@ var timeClockEditing = false;
 
 ShiftPlanningTimeClock.prototype.addClockTimeSubEvents = function(){    
     var emp = {};  
-    self.edit = timeClockEditing;
-    if (self.edit != false){        
+    //this.edit = timeClockEditing;
+    if (this.edit != false){        
         emp = this.current;
         $('#tc_etc_em option').attr("disabled", "");
         $('#tc_act_em option').attr("selected", "");
@@ -452,14 +452,14 @@ ShiftPlanningTimeClock.prototype.addClockTimeSubEvents = function(){
         emp.out_time.time = sp.strReplace(['am','pm'],[' AM',' PM'],emp.out_time.time);
         emp.in_time.day = Date.parse(emp.in_time.day).toString(cal.dformat);
         emp.out_time.day = Date.parse(emp.out_time.day).toString(cal.dformat);
-        console.log('1. self.edit='+self.edit);
+        console.log('1. self.edit='+this.edit);
     } else {
         $('#tc_act .title h3').html(_s('Add Clock Time'));
         $('#tc_act_tc_id').removeClass('editOn');
         $('#tc_act_onci').show();
         emp.in_timestamp = Date.parse('today at 9am').getTime()/1000;
         emp.out_timestamp = Date.parse('today at 5pm').getTime()/1000;
-         console.log('2. self.edit='+self.edit);
+         console.log('2. self.edit='+this.edit);
     }
     
     $('#tc_act_sc').html(spView.optionSchedules(sp.staff.admin.info.group > 4 ? sp.staff.admin.info.id : 0));
