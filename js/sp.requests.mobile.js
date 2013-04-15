@@ -722,13 +722,23 @@ ShiftPlanningRequests.prototype.openShiftsSubEvents = function() {
             } else {
                 $('#rq_os_spr').show();
                 $('#rq_os_spr').next().hide();
-                response.data = self.prepareOpenShiftsNA(response.data);
+				try{
+					response.data = self.prepareOpenShiftsNA(response.data);
+            	}catch(excErr){
+            		console.log( "ERROR #1: " );
+            		//console.log( excErr );
+            	}
                 var d = [];
-                $.each(response.data, function(i, item){
-                    d[i] = item;
-                    d[i].avatar = (typeof sp.staff.data.employees[item.userid] != 'undefined' && typeof sp.staff.data.employees[item.userid].avatar != 'undefined' && sp.staff.data.employees[item.userid].avatar != '' && typeof sp.staff.data.employees[item.userid].avatar.small != 'undefined') ? sp.staff.data.employees[item.userid].avatar.small : 'images/no-avatar.png',
-                    d[i].rId = i;
-                });
+				try{
+					$.each(response.data, function(i, item){
+						d[i] = item;
+						d[i].avatar = (typeof sp.staff.data.employees[item.userid] != 'undefined' && typeof sp.staff.data.employees[item.userid].avatar != 'undefined' && sp.staff.data.employees[item.userid].avatar != '' && typeof sp.staff.data.employees[item.userid].avatar.small != 'undefined') ? sp.staff.data.employees[item.userid].avatar.small : 'images/no-avatar.png',
+						d[i].rId = i;
+					});
+            	}catch(excErr2){
+            		console.log( "ERROR #2: " );
+            		//console.log( excErr2 );
+            	}
                 self.shiftsR = d;
                 $('#rq_os_spr').html($.tmpl($('#te_da_all_shift'), response.data));
             }

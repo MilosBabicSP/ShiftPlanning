@@ -30,7 +30,7 @@ define('_touch_', 'app/iphone');
 include(_root_ . 'config.assets.php');
 
 
-if (IS_TEST_SERVER) {
+if (!IS_TEST_SERVER) {
 //    define('API_KEY', '79a331d71dc4d5edb4d7168f2de9c129bbf9e99a');
 //    define('API_URL', 'http://www.shiftplanning.com/api/');
     if (!isset($_POST['application'])) {
