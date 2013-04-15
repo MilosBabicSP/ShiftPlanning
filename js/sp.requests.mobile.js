@@ -560,9 +560,11 @@ ShiftPlanningRequests.prototype.vacationSubEvents = function(){
     
     
     if (sp.staff.admin.info.group <= 4){
+		console.log("sp.staff.admin.info.group is " + sp.staff.admin.info.group );
         spModel.schedule.get('vacations', {
             mode: 'manage'
         }, function(response){
+			console.log(JSON.stringify(response));
             if (response.data.length == 0){
                 $('#rq_va_rq').hide();
                 $('#rq_va_rq').next().show();
