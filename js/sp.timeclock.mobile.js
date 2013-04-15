@@ -7,13 +7,16 @@ ShiftPlanningTimeClock.prototype.initialize = function(){
         self.displayTimeSheetsEvents();
     });
 }
-
+var subpageTemp = '';
 ShiftPlanningTimeClock.prototype.loadSubPageEvents = function(subpage){
     $('.subNavigation').show();
     if (subpage == 'displayTimeClock'){
         $('.subNavigation').hide();
+    };
+    if (!(subpageTemp == subpage && subpageTemp == 'addClockTime')){      
+        subpageTemp = subpage;
+        this[subpage + 'SubEvents']();
     }
-    this[subpage + 'SubEvents']();
 }
 
 ShiftPlanningTimeClock.prototype.overviewEvents = function(){
@@ -232,7 +235,10 @@ ShiftPlanningTimeClock.prototype.manageTimeSheetsEvents = function(){
     });
     
     $('#tc_dtc_buttons a').bind(clickEvent, function(e){
+        //var self = this;        
+       // timeClockEditing = false;
         e.preventDefault();
+        e.stopPropagation();
         var id = $(this).attr('rel');
         switch ($(this).attr('class')){
             case 'approve':
@@ -255,7 +261,8 @@ ShiftPlanningTimeClock.prototype.manageTimeSheetsEvents = function(){
                 break;
             case 'edit':
                 self.edit = true;
-                $('#tc_act_onci').hide();
+                timeClockEditing = true;
+                $('#tc_act_onci').hide();   
                 sp.loadSubPage('', 'timeClock', 'addClockTime');
                 break;
             case 'delete':
@@ -429,11 +436,15 @@ ShiftPlanningTimeClock.prototype.manageTimeSheetsSubEvents = function(){
     $('#tc_mts_eml').html(spView.staffFilter());
     self.getTimeSheets();
 }
+var timeClockEditing = false;
 
-ShiftPlanningTimeClock.prototype.addClockTimeSubEvents = function(){
-    var emp = {};
-    if (this.edit != false){
+ShiftPlanningTimeClock.prototype.addClockTimeSubEvents = function(){    
+    var emp = {};  
+    if (this.edit != false){        
         emp = this.current;
+        $('#tc_etc_em option').attr("disabled", "");
+        $('#tc_act_em option').attr("selected", "");
+        $('#tc_act_em option[value='+emp.employee.id+']').attr("selected", "selected");
         $('#tc_act .title h3').html(_s('Edit Clock Time'));
         $('#tc_act_tc_id').removeClass('editOn').addClass('editOn');
         $('#tc_act_tc_id').val(emp.id);
@@ -669,21 +680,22 @@ ShiftPlanningTimeClock.prototype.showHideTimeSheetsPro = function (){
     }
 }
 
-ShiftPlanningTimeClock.prototype.showHideTimeSheets = function(){
+ ShiftPlanningTimeClock.prototype.showHideTimeSheets = function(){
     //$('#tc_mts_slist tr').removeClass('odd');
     var s = parseInt($('#tc_mts_au').val());
     var e = parseInt($('#tc_mts_eml').val());
     var sc = parseInt($('#tc_mts_scl').val());
+	
     var search = '';
     if (s != 0){
         search += '.s_' + s;
     }
     
-    if (e != 0){
+    if (e != 0 && $('#tc_mts_eml').is("visible") ){
         search += '.e_' + e;
     }
     
-    if (sc != 0){
+    if (sc != 0 && $('#tc_mts_scl').is("visible") ){
         search += '.sc_' + sc;
     }
     
@@ -694,16 +706,10 @@ ShiftPlanningTimeClock.prototype.showHideTimeSheets = function(){
     $('#tc_mts_sh ul li:visible').parents('.timeSheet').prev().show();
     
     if ($('#tc_mts_sh ul li:visible').length > 0){
-        $('#tc_mts_sh').next().hide();
+		$('#tc_mts_sh').next().hide();
     } else {
-        $('#tc_mts_sh').next().show();
+		$('#tc_mts_sh').next().show();
     }
-    
-//    $('#tc_mts_slist tr').each(function(i, item){
-//        if (i % 2 == 0){
-//            $(this).addClass('odd');
-//        }
-//    })
 }
 
 ShiftPlanningTimeClock.prototype.saveClockInChanges = function(){
@@ -722,6 +728,8 @@ ShiftPlanningTimeClock.prototype.saveClockInChanges = function(){
     spModel.timeclock.update('timeclock', data, function(){
         sp.showSuccess(_s('Timeclock updated'));
     });
+    
+    timeClockEditing = false;
 }
 
 ShiftPlanningTimeClock.prototype.saveClockTime = function(){
@@ -734,10 +742,10 @@ ShiftPlanningTimeClock.prototype.saveClockTime = function(){
         module = 'timeclock.timeclock'
         data.id = $('#tc_act_tc_id').val();
         success = _s('Clock time edited');
-        data.start_date = $('#tc_act_c_cl_dp_i').val() +' '+ $('#tc_act_tclin').val();
-        data.start_time = $('#tc_act_c_cl_dp_i').val() +' '+ $('#tc_act_tclin').val();  
-        data.end_date = $('#tc_act_c_co_dp_i').val() + ' ' + $('#tc_act_tclou').val();
-        data.end_time = $('#tc_act_c_co_dp_i').val() + ' ' + $('#tc_act_tclou').val();
+        data.start_date = $('#tc_act_c_cl_dp_i').val() ;
+        data.start_time = $('#tc_act_tclin').val();  
+        data.end_date = $('#tc_act_c_co_dp_i').val();
+        data.end_time = $('#tc_act_tclou').val();
     } else {
         data.datein = $('#tc_act_c_cl_dp_i').val() +' '+ $('#tc_act_tclin').val();    
         data.dateout = $('#tc_act_c_co_dp_i').val() + ' ' + $('#tc_act_tclou').val();       
@@ -752,21 +760,108 @@ ShiftPlanningTimeClock.prototype.saveClockTime = function(){
     
     data.notes = $('#tc_act_no').val();
     
-    sp.api(module, f, data, function(response){
-        sp.showSuccess(success);
-        setTimeout(function() {
-            var subpage = 'displayTimeSheets'
-            if(sp.staff.admin.info.group <=2){
-                subpage = 'manageTimeSheets';
-            }
-            $('.subNavigation div.timeClock ul.timeClock a[subpage='+subpage+']').trigger(clickEvent);
-        },400);        
-    }, function(response){
-        sp.showError(response.error);
-    });
+   		if( checkTimes(data) == true || $('#tc_act .detailsGrid .odd').hasClass('nonVisible') ){
+    	sp.api(module, f, data, function(response){
+			sp.showSuccess(success);
+			setTimeout(function(){
+				var subpage = 'displayTimeSheets'
+				if(sp.staff.admin.info.group <=2){
+					subpage = 'manageTimeSheets';
+				}
+				$('.subNavigation div.timeClock ul.timeClock a[subpage='+subpage+']').trigger(clickEvent);
+			},400);
+		}, function(response){
+			sp.showError(response.error);
+		});
+	}else{
+		sp.showError("Please check your time and date input fields");
+	}
 }
 
 
 ShiftPlanningTimeClock.prototype.loadPage = function(){
     
     }
+
+function checkTimes( data ){
+	var comparedDates = "";
+	
+	if( typeof data.start_date != "undefined" ){
+    	var start_date_temp = data.start_date;
+    	var end_date_temp = data.end_date;
+		var splitedStart = "";
+		var splitedEnd = "";
+		
+		if ( cal.dpformat == 'mm/dd/yy' ){
+			splitedStart = start_date_temp.split('/');
+			splitedEnd = end_date_temp.split('/');
+			
+            start_date_temp = splitedStart[2] + '/' + splitedStart[0] + '/' + splitedStart[1];
+            end_date_temp = splitedEnd[2] + '/' + splitedEnd[0] + '/' + splitedEnd[1];
+        }
+		comparedDates = dates.compare( new Date( start_date_temp + " " + data.start_time ), new Date( end_date_temp + " " + data.end_time ) );
+	}else{
+		if( typeof data.onlyin != "undefined" ){
+			return true;
+		}else{
+			comparedDates = dates.compare( new Date( data.datein ), new Date( data.dateout ) );
+		}
+	}
+	
+	if( comparedDates < 0 ){
+		return true;
+	}else{
+		return false;
+	}
+}
+var dates = {
+    convert:function(d) {
+        // Converts the date in d to a date-object. The input can be:
+        //   a date object: returned without modification
+        //  an array      : Interpreted as [year,month,day]. NOTE: month is 0-11.
+        //   a number     : Interpreted as number of milliseconds
+        //                  since 1 Jan 1970 (a timestamp) 
+        //   a string     : Any format supported by the javascript engine, like
+        //                  "YYYY/MM/DD", "MM/DD/YYYY", "Jan 31 2009" etc.
+        //  an object     : Interpreted as an object with year, month and date
+        //                  attributes.  **NOTE** month is 0-11.
+        return (
+            d.constructor === Date ? d :
+            d.constructor === Array ? new Date(d[0],d[1],d[2]) :
+            d.constructor === Number ? new Date(d) :
+            d.constructor === String ? new Date(d) :
+            typeof d === "object" ? new Date(d.year,d.month,d.date) :
+            NaN
+        );
+    },
+    compare:function(a,b) {
+        // Compare two dates (could be of any type supported by the convert
+        // function above) and returns:
+        //  -1 : if a < b
+        //   0 : if a = b
+        //   1 : if a > b
+        // NaN : if a or b is an illegal date
+        // NOTE: The code inside isFinite does an assignment (=).
+        return (
+            isFinite(a=this.convert(a).valueOf()) &&
+            isFinite(b=this.convert(b).valueOf()) ?
+            (a>b)-(a<b) :
+            NaN
+        );
+    },
+    inRange:function(d,start,end) {
+        // Checks if date in d is between dates in start and end.
+        // Returns a boolean or NaN:
+        //    true  : if d is between start and end (inclusive)
+        //    false : if d is before start or after end
+        //    NaN   : if one or more of the dates is illegal.
+        // NOTE: The code inside isFinite does an assignment (=).
+       return (
+            isFinite(d=this.convert(d).valueOf()) &&
+            isFinite(start=this.convert(start).valueOf()) &&
+            isFinite(end=this.convert(end).valueOf()) ?
+            start <= d && d <= end :
+            NaN
+        );
+    }
+}
