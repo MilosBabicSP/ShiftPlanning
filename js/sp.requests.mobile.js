@@ -725,8 +725,7 @@ ShiftPlanningRequests.prototype.openShiftsSubEvents = function() {
 				try{
 					response.data = self.prepareOpenShiftsNA(response.data);
             	}catch(excErr){
-            		console.log( "ERROR #1: " );
-            		//console.log( excErr );
+            		//console.log( " " );
             	}
                 var d = [];
 				try{
@@ -736,8 +735,7 @@ ShiftPlanningRequests.prototype.openShiftsSubEvents = function() {
 						d[i].rId = i;
 					});
             	}catch(excErr2){
-            		console.log( "ERROR #2: " );
-            		//console.log( excErr2 );
+            		//console.log( " " );
             	}
                 self.shiftsR = d;
                 $('#rq_os_spr').html($.tmpl($('#te_da_all_shift'), response.data));
@@ -1159,8 +1157,6 @@ ShiftPlanningRequests.prototype.prepareOpenShiftsNA = function(data){
 					full : item
 				};
 			});
-		} else {
-			console.log("++++ null je za ID: " + item.id );
 		}
     });
     var p = [];
