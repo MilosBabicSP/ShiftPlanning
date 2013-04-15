@@ -742,7 +742,7 @@ ShiftPlanningRequests.prototype.openShiftsSubEvents = function() {
                 self.shiftsR = d;
                 $('#rq_os_spr').html($.tmpl($('#te_da_all_shift'), response.data));
 				if( $("#rq_os_spr").children().length == 0 ){
-					$("#rq_os .additional").show();
+					$("#rq_os .additional").first().show();
 				}
             }
         }, function(response){
