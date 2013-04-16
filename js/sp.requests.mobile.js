@@ -563,7 +563,6 @@ ShiftPlanningRequests.prototype.vacationSubEvents = function(){
         spModel.schedule.get('vacations', {
             mode: 'manage'
         }, function(response){
-			//console.log(JSON.stringify(response));
             if (response.data.length == 0){
                 $('#rq_va_rq').hide();
                 $('#rq_va_rq').next().show();
