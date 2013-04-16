@@ -725,7 +725,7 @@ ShiftPlanningRequests.prototype.openShiftsSubEvents = function() {
 				try{
 					response.data = self.prepareOpenShiftsNA(response.data);
             	}catch(excErr){
-            		//console.log( " " );
+            		// better to catch then crash
             	}
                 var d = [];
 				try{
@@ -735,7 +735,7 @@ ShiftPlanningRequests.prototype.openShiftsSubEvents = function() {
 						d[i].rId = i;
 					});
             	}catch(excErr2){
-            		//console.log( " " );
+            		// better to catch then crash
             	}
                 self.shiftsR = d;
                 $('#rq_os_spr').html($.tmpl($('#te_da_all_shift'), response.data));
