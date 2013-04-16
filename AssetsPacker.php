@@ -171,7 +171,7 @@ class AssetsPacker {
 	private function _outputBufferedFile( $file ) {
 		
 		
-		if(file_exists( $file )) {
+		if(file_exists( _root_ . $file )) {
 		
 			ob_start();
 			include(_root_ . $file);
