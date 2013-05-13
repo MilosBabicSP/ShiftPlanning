@@ -31,9 +31,11 @@ class Functions{
     }
     
     function timezone(){
-	$this->settings = json_decode(_iapi(array('module' => 'admin.settings', 'method' => 'GET'), 'json', true), true);
-        $employee = json_decode(_iapi(array('module' => 'staff.employee', 'method' => 'GET', 'id' => $_GET['id']), 'json', true), true);
-	date_default_timezone_set($employee['timezone_info']['name']);
+		$this->settings = json_decode(_iapi(array('module' => 'admin.settings', 'method' => 'GET'), 'json', true), true);
+		$employee = json_decode(_iapi(array('module' => 'staff.employee', 'method' => 'GET', 'id' => $_GET['id']), 'json', true), true);
+		if(is_array($employee)){
+			date_default_timezone_set($employee['timezone_info']['name']);
+		}
     }
     
     function getCurrentTime(){
