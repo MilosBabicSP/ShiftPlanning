@@ -760,7 +760,7 @@ ShiftPlanningTimeClock.prototype.saveClockTime = function(){
     
     data.notes = $('#tc_act_no').val();
     
-   		if( checkTimes(data) == true || $('#tc_act .detailsGrid .odd').hasClass('nonVisible') ){
+   		if( checkTimes(data) === true || $('#tc_act .detailsGrid .odd').hasClass('nonVisible') ){
     	sp.api(module, f, data, function(response){
 			sp.showSuccess(success);
 			setTimeout(function(){
@@ -786,22 +786,29 @@ ShiftPlanningTimeClock.prototype.loadPage = function(){
 function checkTimes( data ){
 	var comparedDates = "";
 	
-	if( typeof data.start_date != "undefined" ){
+	if( typeof data.start_date !== "undefined" ){
     	var start_date_temp = data.start_date;
     	var end_date_temp = data.end_date;
 		var splitedStart = "";
 		var splitedEnd = "";
 		
-		if ( cal.dpformat == 'mm/dd/yy' ){
+		if ( cal.dpformat === 'mm/dd/yy' ){
 			splitedStart = start_date_temp.split('/');
 			splitedEnd = end_date_temp.split('/');
 			
             start_date_temp = splitedStart[2] + '/' + splitedStart[0] + '/' + splitedStart[1];
             end_date_temp = splitedEnd[2] + '/' + splitedEnd[0] + '/' + splitedEnd[1];
         }
+		if ( cal.dpformat === 'dd-mm-yy' ){
+			splitedStart = start_date_temp.split('-');
+			splitedEnd = end_date_temp.split('-');
+			
+            start_date_temp = splitedStart[2] + '/' + splitedStart[1] + '/' + splitedStart[0];
+            end_date_temp = splitedEnd[2] + '/' + splitedEnd[1] + '/' + splitedEnd[0];
+        }
 		comparedDates = dates.compare( new Date( start_date_temp + " " + data.start_time ), new Date( end_date_temp + " " + data.end_time ) );
 	}else{
-		if( typeof data.onlyin != "undefined" ){
+		if( typeof data.onlyin !== "undefined" ){
 			return true;
 		}else{
 			comparedDates = dates.compare( new Date( data.datein ), new Date( data.dateout ) );
