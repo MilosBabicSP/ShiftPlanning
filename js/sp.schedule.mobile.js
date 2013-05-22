@@ -717,6 +717,9 @@ ShiftPlanningSchedule.prototype.shiftDisplaySubEvents = function(){
     if (this.shift.location != 0){
         $('#sc_location_iframe').html('<iframe  id="map" width="100%" height="220" frameborder="0" scrolling="no" src="http://' + googleIp + '/maps/?f=d&source=s_d&saddr=' + this.shift.location.address + '&hl=en&z=15&output=embed"></iframe>');
     }
+	if( $("#te_sc_shift_display_info .title").html() !== null ){
+		$("#te_sc_shift_display_info .title").html($("#te_sc_shift_display_info .title").html().replace(/\n/g, "<br>"));
+	}
 }
 
 ShiftPlanningSchedule.prototype.resetPublishFields = function(f){
