@@ -821,8 +821,8 @@ function checkTimes( data ){
 				splitedStart = start_date_temp.split('/');
 				splitedEnd = end_date_temp.split('/');
 
-				start_date_temp = splitedStart[2] + '/' + splitedStart[0] + '/' + splitedStart[1];
-				end_date_temp = splitedEnd[2] + '/' + splitedEnd[0] + '/' + splitedEnd[1];
+				start_date_temp = splitedStart[2] + '/' + splitedStart[0] + '/' + splitedStart[1] + ' ' + data.datein.split(" ")[1];
+				end_date_temp = splitedEnd[2] + '/' + splitedEnd[0] + '/' + splitedEnd[1] + ' ' + data.dateout.split(" ")[1];
 			}else if ( cal.dpformat === 'dd-mm-yy' ){
 				start_date_temp = data.datein.split(" ")[0];
 				end_date_temp = data.dateout.split(" ")[0];
@@ -830,8 +830,8 @@ function checkTimes( data ){
 				splitedStart = start_date_temp.split('-');
 				splitedEnd = end_date_temp.split('-');
 
-				start_date_temp = splitedStart[2] + '/' + splitedStart[1] + '/' + splitedStart[0];
-				end_date_temp = splitedEnd[2] + '/' + splitedEnd[1] + '/' + splitedEnd[0];
+				start_date_temp = splitedStart[2] + '/' + splitedStart[1] + '/' + splitedStart[0] + ' ' + data.datein.split(" ")[1];
+				end_date_temp = splitedEnd[2] + '/' + splitedEnd[1] + '/' + splitedEnd[0] + ' ' + data.dateout.split(" ")[1];
 			}else{
 				start_date_temp = data.datein;
 				end_date_temp = data.dateout;
