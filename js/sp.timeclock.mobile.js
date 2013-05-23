@@ -787,6 +787,8 @@ function checkTimes( data ){
 	var comparedDates = "";
     	var start_date_temp;
     	var end_date_temp;
+		var start_time = "";
+		var end_time = "";
 		var splitedStart = "";
 		var splitedEnd = "";
 	
@@ -815,14 +817,24 @@ function checkTimes( data ){
 		if( typeof data.onlyin !== "undefined" ){
 			return true;
 		}else{
+			start_time = data.datein.split(" ")[1];
+			end_time = data.dateout.split(" ")[1];
+			
+			if( data.datein.split(" ").length > 2 ){
+				start_time += data.datein.split(" ")[2];
+			}
+			if( data.dateout.split(" ").length > 2 ){
+				end_time += data.dateout.split(" ")[2];
+			}
+			
 			if ( cal.dpformat === 'mm/dd/yy' ){
 				start_date_temp = data.datein.split(" ")[0];
 				end_date_temp = data.dateout.split(" ")[0];
 				splitedStart = start_date_temp.split('/');
 				splitedEnd = end_date_temp.split('/');
 
-				start_date_temp = splitedStart[2] + '/' + splitedStart[0] + '/' + splitedStart[1] + ' ' + data.datein.split(" ")[1];
-				end_date_temp = splitedEnd[2] + '/' + splitedEnd[0] + '/' + splitedEnd[1] + ' ' + data.dateout.split(" ")[1];
+				start_date_temp = splitedStart[2] + '/' + splitedStart[0] + '/' + splitedStart[1] + ' ' + start_time;
+				end_date_temp = splitedEnd[2] + '/' + splitedEnd[0] + '/' + splitedEnd[1] + ' ' + end_time;
 			}else if ( cal.dpformat === 'dd-mm-yy' ){
 				start_date_temp = data.datein.split(" ")[0];
 				end_date_temp = data.dateout.split(" ")[0];
@@ -830,8 +842,8 @@ function checkTimes( data ){
 				splitedStart = start_date_temp.split('-');
 				splitedEnd = end_date_temp.split('-');
 
-				start_date_temp = splitedStart[2] + '/' + splitedStart[1] + '/' + splitedStart[0] + ' ' + data.datein.split(" ")[1];
-				end_date_temp = splitedEnd[2] + '/' + splitedEnd[1] + '/' + splitedEnd[0] + ' ' + data.dateout.split(" ")[1];
+				start_date_temp = splitedStart[2] + '/' + splitedStart[1] + '/' + splitedStart[0] + ' ' + start_time;
+				end_date_temp = splitedEnd[2] + '/' + splitedEnd[1] + '/' + splitedEnd[0] + ' ' + end_time;
 			}else{
 				start_date_temp = data.datein;
 				end_date_temp = data.dateout;
