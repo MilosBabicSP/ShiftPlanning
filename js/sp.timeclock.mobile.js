@@ -821,10 +821,10 @@ function checkTimes( data ){
 			end_time = data.dateout.split(" ")[1];
 			
 			if( data.datein.split(" ").length > 2 ){
-				start_time += data.datein.split(" ")[2];
+				start_time += ' ' + data.datein.split(" ")[2];
 			}
 			if( data.dateout.split(" ").length > 2 ){
-				end_time += data.dateout.split(" ")[2];
+				end_time += ' ' + data.dateout.split(" ")[2];
 			}
 			
 			if ( cal.dpformat === 'mm/dd/yy' ){
