@@ -737,7 +737,7 @@ ShiftPlanningTimeClock.prototype.saveClockTime = function(){
     var f = 'get';
     var module = 'timeclock.addclocktime';
     var success = _s('Clock Time added');
-    if ($('#tc_act_tc_id').hasClass('editOn') == true){
+    if ( $('#tc_act_tc_id').hasClass('editOn') === true ){
         f = 'update';
         module = 'timeclock.timeclock'
         data.id = $('#tc_act_tc_id').val();
@@ -760,7 +760,7 @@ ShiftPlanningTimeClock.prototype.saveClockTime = function(){
     
     data.notes = $('#tc_act_no').val();
     
-   		if( checkTimes(data) == true || $('#tc_act .detailsGrid .odd').hasClass('nonVisible') ){
+	if( checkTimes(data) === true || $('#tc_act .detailsGrid .odd').hasClass('nonVisible') ){
     	sp.api(module, f, data, function(response){
 			sp.showSuccess(success);
 			setTimeout(function(){
@@ -785,26 +785,70 @@ ShiftPlanningTimeClock.prototype.loadPage = function(){
 
 function checkTimes( data ){
 	var comparedDates = "";
-	
-	if( typeof data.start_date != "undefined" ){
-    	var start_date_temp = data.start_date;
-    	var end_date_temp = data.end_date;
+    	var start_date_temp;
+    	var end_date_temp;
+		var start_time = "";
+		var end_time = "";
 		var splitedStart = "";
 		var splitedEnd = "";
+	
+	if( typeof data.start_date !== "undefined" ){
+    	start_date_temp = data.start_date;
+    	end_date_temp = data.end_date;
+		splitedStart = "";
+		splitedEnd = "";
 		
-		if ( cal.dpformat == 'mm/dd/yy' ){
+		if ( cal.dpformat === 'mm/dd/yy' ){
 			splitedStart = start_date_temp.split('/');
 			splitedEnd = end_date_temp.split('/');
 			
             start_date_temp = splitedStart[2] + '/' + splitedStart[0] + '/' + splitedStart[1];
             end_date_temp = splitedEnd[2] + '/' + splitedEnd[0] + '/' + splitedEnd[1];
         }
+		if ( cal.dpformat === 'dd-mm-yy' ){
+			splitedStart = start_date_temp.split('-');
+			splitedEnd = end_date_temp.split('-');
+			
+            start_date_temp = splitedStart[2] + '/' + splitedStart[1] + '/' + splitedStart[0];
+            end_date_temp = splitedEnd[2] + '/' + splitedEnd[1] + '/' + splitedEnd[0];
+        }
 		comparedDates = dates.compare( new Date( start_date_temp + " " + data.start_time ), new Date( end_date_temp + " " + data.end_time ) );
 	}else{
-		if( typeof data.onlyin != "undefined" ){
+		if( typeof data.onlyin !== "undefined" ){
 			return true;
 		}else{
-			comparedDates = dates.compare( new Date( data.datein ), new Date( data.dateout ) );
+			start_time = data.datein.split(" ")[1];
+			end_time = data.dateout.split(" ")[1];
+			
+			if( data.datein.split(" ").length > 2 ){
+				start_time += ' ' + data.datein.split(" ")[2];
+			}
+			if( data.dateout.split(" ").length > 2 ){
+				end_time += ' ' + data.dateout.split(" ")[2];
+			}
+			
+			if ( cal.dpformat === 'mm/dd/yy' ){
+				start_date_temp = data.datein.split(" ")[0];
+				end_date_temp = data.dateout.split(" ")[0];
+				splitedStart = start_date_temp.split('/');
+				splitedEnd = end_date_temp.split('/');
+
+				start_date_temp = splitedStart[2] + '/' + splitedStart[0] + '/' + splitedStart[1] + ' ' + start_time;
+				end_date_temp = splitedEnd[2] + '/' + splitedEnd[0] + '/' + splitedEnd[1] + ' ' + end_time;
+			}else if ( cal.dpformat === 'dd-mm-yy' ){
+				start_date_temp = data.datein.split(" ")[0];
+				end_date_temp = data.dateout.split(" ")[0];
+				
+				splitedStart = start_date_temp.split('-');
+				splitedEnd = end_date_temp.split('-');
+
+				start_date_temp = splitedStart[2] + '/' + splitedStart[1] + '/' + splitedStart[0] + ' ' + start_time;
+				end_date_temp = splitedEnd[2] + '/' + splitedEnd[1] + '/' + splitedEnd[0] + ' ' + end_time;
+			}else{
+				start_date_temp = data.datein;
+				end_date_temp = data.dateout;
+			}
+			comparedDates = dates.compare( new Date( start_date_temp ), new Date( end_date_temp ) );
 		}
 	}
 	
@@ -816,15 +860,17 @@ function checkTimes( data ){
 }
 var dates = {
     convert:function(d) {
-        // Converts the date in d to a date-object. The input can be:
-        //   a date object: returned without modification
-        //  an array      : Interpreted as [year,month,day]. NOTE: month is 0-11.
-        //   a number     : Interpreted as number of milliseconds
-        //                  since 1 Jan 1970 (a timestamp) 
-        //   a string     : Any format supported by the javascript engine, like
-        //                  "YYYY/MM/DD", "MM/DD/YYYY", "Jan 31 2009" etc.
-        //  an object     : Interpreted as an object with year, month and date
-        //                  attributes.  **NOTE** month is 0-11.
+		/*
+         Converts the date in d to a date-object. The input can be:
+           a date object: returned without modification
+          an array      : Interpreted as [year,month,day]. NOTE: month is 0-11.
+           a number     : Interpreted as number of milliseconds
+                          since 1 Jan 1970 (a timestamp) 
+           a string     : Any format supported by the javascript engine, like
+                          "YYYY/MM/DD", "MM/DD/YYYY", "Jan 31 2009" etc.
+          an object     : Interpreted as an object with year, month and date
+                          attributes.  **NOTE** month is 0-11.
+		*/
         return (
             d.constructor === Date ? d :
             d.constructor === Array ? new Date(d[0],d[1],d[2]) :
@@ -835,13 +881,15 @@ var dates = {
         );
     },
     compare:function(a,b) {
-        // Compare two dates (could be of any type supported by the convert
-        // function above) and returns:
-        //  -1 : if a < b
-        //   0 : if a = b
-        //   1 : if a > b
-        // NaN : if a or b is an illegal date
-        // NOTE: The code inside isFinite does an assignment (=).
+		/*
+         Compare two dates (could be of any type supported by the convert
+         function above) and returns:
+          -1 : if a < b
+           0 : if a = b
+           1 : if a > b
+         NaN : if a or b is an illegal date
+         NOTE: The code inside isFinite does an assignment (=).
+		*/
         return (
             isFinite(a=this.convert(a).valueOf()) &&
             isFinite(b=this.convert(b).valueOf()) ?
@@ -850,12 +898,14 @@ var dates = {
         );
     },
     inRange:function(d,start,end) {
-        // Checks if date in d is between dates in start and end.
-        // Returns a boolean or NaN:
-        //    true  : if d is between start and end (inclusive)
-        //    false : if d is before start or after end
-        //    NaN   : if one or more of the dates is illegal.
-        // NOTE: The code inside isFinite does an assignment (=).
+		/*
+         Checks if date in d is between dates in start and end.
+         Returns a boolean or NaN:
+            true  : if d is between start and end (inclusive)
+            false : if d is before start or after end
+            NaN   : if one or more of the dates is illegal.
+         NOTE: The code inside isFinite does an assignment (=).
+		*/
        return (
             isFinite(d=this.convert(d).valueOf()) &&
             isFinite(start=this.convert(start).valueOf()) &&
