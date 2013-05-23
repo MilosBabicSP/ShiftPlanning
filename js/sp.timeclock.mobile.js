@@ -737,7 +737,7 @@ ShiftPlanningTimeClock.prototype.saveClockTime = function(){
     var f = 'get';
     var module = 'timeclock.addclocktime';
     var success = _s('Clock Time added');
-    if ($('#tc_act_tc_id').hasClass('editOn') == true){
+    if ( $('#tc_act_tc_id').hasClass('editOn') === true ){
         f = 'update';
         module = 'timeclock.timeclock'
         data.id = $('#tc_act_tc_id').val();
@@ -760,7 +760,7 @@ ShiftPlanningTimeClock.prototype.saveClockTime = function(){
     
     data.notes = $('#tc_act_no').val();
     
-   		if( checkTimes(data) === true || $('#tc_act .detailsGrid .odd').hasClass('nonVisible') ){
+	if( checkTimes(data) === true || $('#tc_act .detailsGrid .odd').hasClass('nonVisible') ){
     	sp.api(module, f, data, function(response){
 			sp.showSuccess(success);
 			setTimeout(function(){
@@ -785,12 +785,16 @@ ShiftPlanningTimeClock.prototype.loadPage = function(){
 
 function checkTimes( data ){
 	var comparedDates = "";
-	
-	if( typeof data.start_date !== "undefined" ){
-    	var start_date_temp = data.start_date;
-    	var end_date_temp = data.end_date;
+    	var start_date_temp;
+    	var end_date_temp;
 		var splitedStart = "";
 		var splitedEnd = "";
+	
+	if( typeof data.start_date !== "undefined" ){
+    	start_date_temp = data.start_date;
+    	end_date_temp = data.end_date;
+		splitedStart = "";
+		splitedEnd = "";
 		
 		if ( cal.dpformat === 'mm/dd/yy' ){
 			splitedStart = start_date_temp.split('/');
@@ -811,7 +815,28 @@ function checkTimes( data ){
 		if( typeof data.onlyin !== "undefined" ){
 			return true;
 		}else{
-			comparedDates = dates.compare( new Date( data.datein ), new Date( data.dateout ) );
+			if ( cal.dpformat === 'mm/dd/yy' ){
+				start_date_temp = data.datein.split(" ")[0];
+				end_date_temp = data.dateout.split(" ")[0];
+				splitedStart = start_date_temp.split('/');
+				splitedEnd = end_date_temp.split('/');
+
+				start_date_temp = splitedStart[2] + '/' + splitedStart[0] + '/' + splitedStart[1];
+				end_date_temp = splitedEnd[2] + '/' + splitedEnd[0] + '/' + splitedEnd[1];
+			}else if ( cal.dpformat === 'dd-mm-yy' ){
+				start_date_temp = data.datein.split(" ")[0];
+				end_date_temp = data.dateout.split(" ")[0];
+				
+				splitedStart = start_date_temp.split('-');
+				splitedEnd = end_date_temp.split('-');
+
+				start_date_temp = splitedStart[2] + '/' + splitedStart[1] + '/' + splitedStart[0];
+				end_date_temp = splitedEnd[2] + '/' + splitedEnd[1] + '/' + splitedEnd[0];
+			}else{
+				start_date_temp = data.datein;
+				end_date_temp = data.dateout;
+			}
+			comparedDates = dates.compare( new Date( start_date_temp ), new Date( end_date_temp ) );
 		}
 	}
 	
