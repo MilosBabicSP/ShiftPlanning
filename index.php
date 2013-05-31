@@ -129,7 +129,7 @@ if ($vtoken['data'] != '1') {
                             sp.staff.admin.info = <?= _iapi(array('module' => 'staff.employee', 'method' => 'GET', 'id' => $_SESSION['user']['employee']['id']), 'json', true) ?>;
                             sp.staff.admin.business = <?= _iapi(array('module' => 'admin.business', 'method' => 'GET'), 'json', true) ?>;
                             var lang = sp.staff.admin.info.language;
-                            if (lang == null){
+                            if (lang == null || lang == ''){
                                 lang = sp.staff.admin.business.language;
                             }
                             if (lang != '<?php echo Functions::getInstance()->getCurrentLang(); ?>'){

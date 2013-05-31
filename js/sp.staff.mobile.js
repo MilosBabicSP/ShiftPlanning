@@ -244,7 +244,7 @@ ShiftPlanningStaff.prototype.login = function(){
 	    loginResponse.data.employee.language = loginResponse.data.business.language;
 	}
 	setCookie('shiftplanning_mobile_lang', loginResponse.data.employee.language, cookieExpire);
-	if (loginResponse.data.employee.language != 'en_US'){
+	if (loginResponse.data.employee.language != 'en_US' && loginResponse.data.employee.language != ''){
 	    window.location.reload();
 	}
         var calls = [
