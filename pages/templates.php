@@ -812,13 +812,13 @@
             <li class="odd">
                 <div>
                     <label><?=_s('Start Time');?></label>
-                    <b>${start_time.time}&nbsp;</b>
+                    <b>${start_time}&nbsp;</b>
                 </div>
             </li>
             <li class="even">
                 <div>
                     <label><?=_s('End Time');?></label>
-                    <b>${end_time.time}&nbsp;</b>
+                    <b>${end_time}&nbsp;</b>
                 </div>
             </li>
             <li class="odd">
@@ -948,13 +948,13 @@
             <li class="odd">
                 <div>
                     <label><?=_s('Start Time');?></label>
-                    <b>${start_time.time}&nbsp;</b>
+                    <b>${start_time}&nbsp;</b>
                 </div>
             </li>
             <li class="even">
                 <div>
                     <label><?=_s('End Time');?></label>
-                    <b>${end_time.time}&nbsp;</b>
+                    <b>${end_time}&nbsp;</b>
                 </div>
             </li>
             <li class="odd">
