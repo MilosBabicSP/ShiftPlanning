@@ -4,6 +4,11 @@ function _iapi($request_vars, $output='json', $dataOnly = false, $multi = false)
     //$request = $request_vars;
     $request['key'] = API_KEY;
     $request['token'] = ($_SESSION['api']['token'] ? $_SESSION['api']['token'] : '');
+
+    // Fix for this issue - https://shiftplanning.atlassian.net/browse/TAB-4
+    if(isset($request['token']) && is_array($request['token']) && isset($request['token']['token'])){
+        $request['token'] = $request['token']['token'];
+    }
     
     if( ( isset( $request_vars['data']['token'] ) || isset( $request_vars['token'] ) ) && $request['token'] == '' ){
         //die('uso je');
