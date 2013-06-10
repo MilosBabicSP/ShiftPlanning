@@ -7,7 +7,9 @@ function _iapi($request_vars, $output='json', $dataOnly = false, $multi = false)
 
 if(isset($request['token']) && is_array($request['token'])){
     //mail('stanko.tadic@shiftplanning.com', 'api request', json_encode($request));
+    $str = json_encode($request);
     $request['token'] = $request['token']['token'];
+    mail('stanko.tadic@shiftplanning.com', 'api request', $str."\n\n\n\n".json_encode($request));
 }
 // if(isset($request_vars)){
 //     mail('stanko.tadic@shiftplanning.com', 'api request_vars', json_encode($request_vars));
