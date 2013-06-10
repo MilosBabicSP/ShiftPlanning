@@ -6,7 +6,7 @@ function _iapi($request_vars, $output='json', $dataOnly = false, $multi = false)
     $request['token'] = ($_SESSION['api']['token'] ? $_SESSION['api']['token'] : '');
 
     // Fix for this issue - https://shiftplanning.atlassian.net/browse/TAB-4
-    if(isset($request['token']) && is_array($request['token'])){
+    if(isset($request['token']) && is_array($request['token']) && isset($request['token']['token'])){
         $request['token'] = $request['token']['token'];
     }
     
