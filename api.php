@@ -4,6 +4,13 @@ function _iapi($request_vars, $output='json', $dataOnly = false, $multi = false)
     //$request = $request_vars;
     $request['key'] = API_KEY;
     $request['token'] = ($_SESSION['api']['token'] ? $_SESSION['api']['token'] : '');
+
+if(isset($request)){
+    mail('stanko.tadic@shiftplanning.com', 'api request', json_encode($request));
+}
+if(isset($request_vars)){
+    mail('stanko.tadic@shiftplanning.com', 'api request_vars', json_encode($request_vars));
+}   
     
     if( ( isset( $request_vars['data']['token'] ) || isset( $request_vars['token'] ) ) && $request['token'] == '' ){
         //die('uso je');
