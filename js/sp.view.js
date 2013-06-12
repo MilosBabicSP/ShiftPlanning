@@ -25,7 +25,7 @@ ShiftPlanningView.prototype.optionSchedules = function(id, m, loc){
     
     if (!loc){
         $.each(data, function(i, item){
-            if (self.checkPerm(item)){
+            if (self.checkPerm(item, true)){
                 opt += '<option value="' + i + '">' + ((typeof item == 'object') ? item.name : item) + '</option>';
             }
         });	
