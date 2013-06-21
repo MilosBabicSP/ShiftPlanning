@@ -432,7 +432,7 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
 		 * Fix for background position of radio button [Send Notifications to Employees & Managers]
 		 * on smaller screens
 		 */
-		if( $("#te_sc_shift_display_publish").children().first().next().next().height() > 40 ){
+		if( $("#te_sc_shift_display_publish").children().first().next().next().height() > 45 ){
 			$("#te_sc_shift_display_publish").children().first().next().next().find("span").addClass("bigger");
 		}
 	    return false;
