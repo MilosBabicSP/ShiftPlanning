@@ -428,6 +428,16 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
 	    $('#te_sc_shift_display_info').hide();
 	    $('#te_sc_shift_display_publish').show();
 	    $(this).attr('first', 'false');
+		/**
+		 * Fix for background position of radio button [Send Notifications to Employees & Managers] and checkbox bellow
+		 * on smaller screens
+		 */
+		if( $("#te_sc_shift_display_publish").children().first().next().next().height() > 45 ){
+			$("#te_sc_shift_display_publish").children().first().next().next().find("span").addClass("bigger");
+		}
+		if( $("#te_sc_shift_display_publish").children().first().next().next().next().height() > 45 ){
+			$("#te_sc_shift_display_publish").children().first().next().next().next().find("span").addClass("bigger");
+		}
 	    return false;
 	}
 	var obj = $(this);
