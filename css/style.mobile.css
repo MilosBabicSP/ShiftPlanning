@@ -83,10 +83,10 @@ span.checkbox.disabled {background-position:-5px -905px;}
 
 span.radio {display:block; line-height:30px; padding:5px 0 5px 35px; background-position:-5px -1305px;}
 span.radio.bigger {background-position:-5px -1290px;}
-span.radio.bigger2 {background-position:-5px -591px;}
+span.checkbox.bigger {background-position:-5px -591px;}
 span.radio.check {background-position:-5px -1405px;}
 span.radio.check.bigger {background-position:-5px -1390px;}
-span.radio.check.bigger2 {background-position:-5px -691px;}
+span.checkbox.check.bigger {background-position:-5px -691px;}
 span.radio.over {background-position:-5px -1355px;}
 
 a.button {line-height:30px; display:block; padding:0 10px; color:#333; background-color:#f0f0f0; border:solid 1px #DBDBDB; border-radius:2px;}
