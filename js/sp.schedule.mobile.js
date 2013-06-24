@@ -434,6 +434,7 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
 		 */
 		if( $("#te_sc_shift_display_publish").children().first().next().next().height() > 45 ){
 			$("#te_sc_shift_display_publish").children().first().next().next().find("span").addClass("bigger");
+			$("#te_sc_shift_display_publish").children().first().next().next().next().find("span").addClass("bigger2");
 		}
 	    return false;
 	}
