@@ -34,6 +34,7 @@ ShiftPlanningTimeClock.prototype.overviewEvents = function(){
                 $('#tc_ov_ca').attr('rel', response.data.id);
                 $('#tc_ov_no').val('');
                 $('#tc_ov_ss').val(0);
+				$('#tc_ov_remote').val(0);
             });
         }
         var errorCallback = function(){
@@ -371,6 +372,17 @@ ShiftPlanningTimeClock.prototype.overviewSubEvents = function(){
                 if (response.data.notes != null){
                     $('#tc_ov_no').val(response.data.notes);
                 }
+				var eventKey = response.data.events ? response.data.events.length : false;
+				var events = response.data.events;
+				if(eventKey){
+					while(eventKey--){
+						if(events[eventKey].type == '4'){
+							$('#tc_ov_remote').val(events[eventKey].data.location);
+							break;
+						}
+					}
+				}
+				
             } else {
                 $('#tc_ov_cf').hide();
                 
