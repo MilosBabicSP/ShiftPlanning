@@ -34,6 +34,7 @@ ShiftPlanningTimeClock.prototype.overviewEvents = function(){
                 $('#tc_ov_ca').attr('rel', response.data.id);
                 $('#tc_ov_no').val('');
                 $('#tc_ov_ss').val(0);
+				$('#tc_ov_remote').val(0);
             });
         }
         var errorCallback = function(){
@@ -66,7 +67,7 @@ ShiftPlanningTimeClock.prototype.overviewEvents = function(){
                 //errorCallback
                 errorCallback,
                 //force gps use
-                { enableHighAccuracy: true }
+                {enableHighAccuracy: true}
             );
 
         }else{
@@ -176,6 +177,18 @@ ShiftPlanningTimeClock.prototype.overviewEvents = function(){
         self.saveClockInChanges();
     });
     
+	$('#tc_ov_remote').bind('change', function(){
+		var id = $(this).val();
+		var timeclock = $('#tc_ov_ca').attr('rel'); 
+		if(id>0 && timeclock){
+			sp.api('timeclock.event','CREATE',{timeclock:timeclock,type:'location',location:id}, function(response){
+				if(response.status == '1'){
+					sp.showSuccess('Remote Site Added!');
+				}
+			});
+		}
+	});
+	
     $('#tc_ov_ca').bind(clickEvent, function(e){
         e.preventDefault();
         spModel.timeclock.dtc($(this).attr('rel'), function(){
@@ -329,6 +342,7 @@ ShiftPlanningTimeClock.prototype.overviewSubEvents = function(){
     $('#tc_ov_cf').hide();
     $('#tc_ov_cb span.fr a').hide();
     $('#tc_ov_ss').html(spView.optionSchedules(sp.staff.admin.info.id));
+	$('#tc_ov_remote').html(spView.locationFields(2));
     $('#tc_ov_cb .icoClock').html('<time style="height:35px;display:block;">' + sp.raw.config.today.formatted + '</time>');
     
     $.ajax({
@@ -358,6 +372,17 @@ ShiftPlanningTimeClock.prototype.overviewSubEvents = function(){
                 if (response.data.notes != null){
                     $('#tc_ov_no').val(response.data.notes);
                 }
+				var eventKey = response.data.events ? response.data.events.length : false;
+				var events = response.data.events;
+				if(eventKey){
+					while(eventKey--){
+						if(events[eventKey].type == '4'){
+							$('#tc_ov_remote').val(events[eventKey].data.location);
+							break;
+						}
+					}
+				}
+				
             } else {
                 $('#tc_ov_cf').hide();
                 

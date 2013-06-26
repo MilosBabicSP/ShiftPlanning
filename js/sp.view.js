@@ -167,6 +167,20 @@ ShiftPlanningView.prototype.locationSelector = function(type){
     return opt;
 }
 
+ShiftPlanningView.prototype.locationFields = function( type ){
+	if (typeof type == 'undefined'){
+        type = 2;
+    }
+	var html = '<option value="0" selected="selected"> ' + ((type == 1) ? 'Select Location' : 'Select Work Site') + ' </option>'
+	$.each(spModel.location.locationsList(), function(i, item){
+        if (item.type == type){
+            html += '<option value="' + item.id + '">' + item.name + '</option>';
+        }
+    });
+	
+	return html;
+}
+
 ShiftPlanningView.prototype.timeRanges = function(){
     var times = spRanges.createSelector('times');
     var res = '<option value="-1">Select</option>';

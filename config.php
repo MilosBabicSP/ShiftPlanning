@@ -17,7 +17,6 @@ session_start();
 //}
 
 
-
 define('IS_TEST_SERVER', (strpos($_SERVER['SERVER_NAME'], '.dev.') !== false || strpos($_SERVER['SERVER_NAME'], '192.168') !== false) ? true : false);
 define('_lang_', $_SERVER['DOCUMENT_ROOT']);
 define('DEBUGGER', true);
