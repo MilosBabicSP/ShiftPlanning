@@ -103,7 +103,40 @@ ShiftPlanningPermissions.prototype.preparePermissions = function(){
     if ( group >= this.scheduler && parseInt( perms.edit_profile ) == 0 ) {
         $('.subNavigation .settings .subNav a[subpage=edit]').hide();
     }
+	var isChild = false;
+	console.log(sp.staff.admin.business.master, sp.staff.admin.business.franchise);
+	if(sp.staff.admin.business.master > 0){
+		isChild = true;
+	}
+	
+	if(sp.staff.admin.business.franchise > 0 && sp.staff.admin.business.franchise != sp.staff.admin.business.id){
+		console.log('child with parent');
+		isChild = true;
+	}
     
+	if(isChild){
+		if(typeof sp.staff.admin.business.group_platform_settings != 'undefined'){
+			var group_perms = '';
+			try{
+				group_perms = JSON.parse(sp.staff.admin.business.group_platform_settings);
+			}catch(e){
+				
+			}
+			console.log(group_perms);
+			if(group_perms.disallow_employee_create == '1'){
+				$('.staff a[subpage=addStaff]').hide()
+			}
+			if(group_perms.disallow_employee_activate == '1'){
+				$('.settings a[type=manualyActivate]').remove();
+			}
+			if(group_perms.disallow_employee_activate == '1'){
+				$('.settings a[type=deactivate]').remove();
+			}
+			if(group_perms.disallow_employee_delete == '1'){
+				$('.settings a[type=delete]').remove();
+			}
+		}
+	}
 /*    
     //Employee can send private messages
     if (group >= this.employee && parseInt(perms.pm) == 0){
