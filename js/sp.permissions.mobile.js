@@ -104,13 +104,11 @@ ShiftPlanningPermissions.prototype.preparePermissions = function(){
         $('.subNavigation .settings .subNav a[subpage=edit]').hide();
     }
 	var isChild = false;
-	console.log(sp.staff.admin.business.master, sp.staff.admin.business.franchise);
 	if(sp.staff.admin.business.master > 0){
 		isChild = true;
 	}
 	
 	if(sp.staff.admin.business.franchise > 0 && sp.staff.admin.business.franchise != sp.staff.admin.business.id){
-		console.log('child with parent');
 		isChild = true;
 	}
     
@@ -122,16 +120,14 @@ ShiftPlanningPermissions.prototype.preparePermissions = function(){
 			}catch(e){
 				
 			}
-			console.log(group_perms);
 			if(group_perms.disallow_employee_create == '1'){
 				$('.staff a[subpage=addStaff]').hide()
 			}
 			if(group_perms.disallow_employee_activate == '1'){
 				$('.settings a[type=manualyActivate]').remove();
-			}
-			if(group_perms.disallow_employee_activate == '1'){
 				$('.settings a[type=deactivate]').remove();
-			}
+				$('.settings a[type=activate]').remove();
+			}			
 			if(group_perms.disallow_employee_delete == '1'){
 				$('.settings a[type=delete]').remove();
 			}
