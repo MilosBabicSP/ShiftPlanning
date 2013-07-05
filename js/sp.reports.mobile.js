@@ -175,16 +175,12 @@ ShiftPlanningReports.prototype.displayReports = function(){
 ShiftPlanningReports.prototype.singleViewDisplay = function(id){
     $('#wrapper > .subNavigation').hide();
     try{
-        //console.log('before this.reports. for id=' + id);
         var item = this.reports[id];
-        //console.log('item setted successully');
-        //console.log(item);
         
         $('#re_di_item').html($.tmpl($('#te_re_' + this.page + '_' + (($('#reports .' + this.page + ' .re_groupResults').hasClass('check')) ? '1' : '0')), item));
         spView.fixCurrency(sp.staff.admin.settings.currency);
     } catch( err ){
-        console.log("Greska");
-        console.log(err);
+		// better to catch then crash
     }
 }
 

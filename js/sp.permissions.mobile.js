@@ -78,7 +78,7 @@ ShiftPlanningPermissions.prototype.preparePermissions = function(){
     }
     
     //Employees can manually add time clocks
-    if (group >= this.scheduler && parseInt(perms.tc_empl_addtime) == 0){
+    if (group > this.scheduler && parseInt(perms.tc_empl_addtime) == 0){
         $('#tc_act_sub_button').remove();
     }
     
@@ -103,7 +103,36 @@ ShiftPlanningPermissions.prototype.preparePermissions = function(){
     if ( group >= this.scheduler && parseInt( perms.edit_profile ) == 0 ) {
         $('.subNavigation .settings .subNav a[subpage=edit]').hide();
     }
+	var isChild = false;
+	if(sp.staff.admin.business.master > 0){
+		isChild = true;
+	}
+	
+	if(sp.staff.admin.business.franchise > 0 && sp.staff.admin.business.franchise != sp.staff.admin.business.id){
+		isChild = true;
+	}
     
+	if(isChild){
+		if(typeof sp.staff.admin.business.group_platform_settings != 'undefined'){
+			var group_perms = '';
+			try{
+				group_perms = JSON.parse(sp.staff.admin.business.group_platform_settings);
+			}catch(e){
+				
+			}
+			if(group_perms.disallow_employee_create == '1'){
+				$('.staff a[subpage=addStaff]').hide()
+			}
+			if(group_perms.disallow_employee_activate == '1'){
+				$('.settings a[type=manualyActivate]').remove();
+				$('.settings a[type=deactivate]').remove();
+				$('.settings a[type=activate]').remove();
+			}			
+			if(group_perms.disallow_employee_delete == '1'){
+				$('.settings a[type=delete]').remove();
+			}
+		}
+	}
 /*    
     //Employee can send private messages
     if (group >= this.employee && parseInt(perms.pm) == 0){

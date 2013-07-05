@@ -722,15 +722,26 @@ ShiftPlanningRequests.prototype.openShiftsSubEvents = function() {
             } else {
                 $('#rq_os_spr').show();
                 $('#rq_os_spr').next().hide();
-                response.data = self.prepareOpenShiftsNA(response.data);
+				try{
+					response.data = self.prepareOpenShiftsNA(response.data);
+            	}catch(excErr){
+            		// better to catch then crash
+            	}
                 var d = [];
-                $.each(response.data, function(i, item){
-                    d[i] = item;
-                    d[i].avatar = (typeof sp.staff.data.employees[item.userid] != 'undefined' && typeof sp.staff.data.employees[item.userid].avatar != 'undefined' && sp.staff.data.employees[item.userid].avatar != '' && typeof sp.staff.data.employees[item.userid].avatar.small != 'undefined') ? sp.staff.data.employees[item.userid].avatar.small : 'images/no-avatar.png',
-                    d[i].rId = i;
-                });
+				try{
+					$.each(response.data, function(i, item){
+						d[i] = item;
+						d[i].avatar = (typeof sp.staff.data.employees[item.userid] != 'undefined' && typeof sp.staff.data.employees[item.userid].avatar != 'undefined' && sp.staff.data.employees[item.userid].avatar != '' && typeof sp.staff.data.employees[item.userid].avatar.small != 'undefined') ? sp.staff.data.employees[item.userid].avatar.small : 'images/no-avatar.png',
+						d[i].rId = i;
+					});
+            	}catch(excErr2){
+            		// better to catch then crash
+            	}
                 self.shiftsR = d;
                 $('#rq_os_spr').html($.tmpl($('#te_da_all_shift'), response.data));
+				if( $("#rq_os_spr").children().length == 0 ){
+					$("#rq_os .additional").first().show();
+				}
             }
         }, function(response){
             sp.showError(response.error);
@@ -1122,29 +1133,31 @@ ShiftPlanningRequests.prototype.prepareSingleViewSwap = function(data){
 ShiftPlanningRequests.prototype.prepareOpenShiftsNA = function(data){
     var res = {};
     $.each(data, function(i, item){
-        $.each(item.requests, function(iV2, itemV2){
-            item.user_name = itemV2.name;
-            item.user_id = itemV2.id;
-            item.avatar = sp.getAvatar(itemV2.id);
-            res[item.user_id + item.start_date.formatted + item.start_time.time + item.end_time.time + item.schedule_name] = {
-                user_name : itemV2.name,
-                user_id : itemV2.id,
-                start_date : {
-                    formatted: item.start_date.formatted
-                },
-                start_time : {
-                    time : item.start_time.time
-                },
-                end_time : {
-                    time : item.end_time.time
-                },
-                schedule_name : item.schedule_name,
-                notes : item.notes,
-                id : item.id,
-                rId : item.request_id,
-                full : item
-            };
-        });
+    	if( item.requests != null ){
+			$.each(item.requests, function(iV2, itemV2){
+				item.user_name = itemV2.name;
+				item.user_id = itemV2.id;
+				item.avatar = sp.getAvatar(itemV2.id);
+				res[item.user_id + item.start_date.formatted + item.start_time.time + item.end_time.time + item.schedule_name] = {
+					user_name : itemV2.name,
+					user_id : itemV2.id,
+					start_date : {
+						formatted: item.start_date.formatted
+					},
+					start_time : {
+						time : item.start_time.time
+					},
+					end_time : {
+						time : item.end_time.time
+					},
+					schedule_name : item.schedule_name,
+					notes : item.notes,
+					id : item.id,
+					rId : item.request_id,
+					full : item
+				};
+			});
+		}
     });
     var p = [];
     $.each(res, function(i, item){

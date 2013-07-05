@@ -11,7 +11,7 @@
 					<div>
 						<a id="swap" class="green">Trade</a>
 						<p>
-							<?=_s('Will let you choose potential employees to pick-up this shift from you')?>
+							<?=_s('Will let you select shifts from other employees to trade this shift for')?>
 						</p>
 					</div>
 				</li>
@@ -19,7 +19,7 @@
 					<div>
 						<a  id="release" class="green">Release</a>
 						<p>
-							<?=_s('Will let you select shifts from other employees to trade this shift for')?>
+							<?=_s('Will let you choose potential employees to pick-up this shift from you')?>
 						</p>
 					</div>
 				</li>

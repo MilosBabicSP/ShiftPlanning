@@ -18,6 +18,11 @@
                 <select name="" id="tc_ov_ss">
                 </select>
             </span>
+			<label><?=_s('Remote Location')?></label>
+            <span class="input">
+                <select name="" id="tc_ov_remote">
+                </select>
+            </span>
             <label><?=_s('Notes')?></label>
             <span class="input">
                 <textarea id="tc_ov_no"></textarea>

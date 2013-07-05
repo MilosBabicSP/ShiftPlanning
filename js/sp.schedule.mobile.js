@@ -176,7 +176,9 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
 						}
 					},
 					//error
-					errorCallback
+					errorCallback,
+					//force gps use
+					{ enableHighAccuracy: true }
 				);
 			} else {
 				promptLocation();				
@@ -426,6 +428,16 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
 	    $('#te_sc_shift_display_info').hide();
 	    $('#te_sc_shift_display_publish').show();
 	    $(this).attr('first', 'false');
+		/**
+		 * Fix for background position of radio button [Send Notifications to Employees & Managers] and checkbox bellow
+		 * on smaller screens
+		 */
+		if( $("#te_sc_shift_display_publish").children().first().next().next().height() > 45 ){
+			$("#te_sc_shift_display_publish").children().first().next().next().find("span").addClass("bigger");
+		}
+		if( $("#te_sc_shift_display_publish").children().first().next().next().next().height() > 45 ){
+			$("#te_sc_shift_display_publish").children().first().next().next().next().find("span").addClass("bigger");
+		}
 	    return false;
 	}
 	var obj = $(this);
@@ -598,7 +610,7 @@ ShiftPlanningSchedule.prototype.loadSubPageEvents = function(subpage){
 	
 	var opt = '';
     opt += _s('<option value="employee">My Schedules</option>');
-    if ( parseInt( sp.staff.admin.settings.visible_overview ) == 1 || parseInt( sp.staff.admin.info.group ) < 5 ) {
+    if ( parseInt( sp.staff.admin.settings.visible_overview ) == 1 || parseInt( sp.staff.admin.info.group ) < 5 || parseInt(sp.staff.admin.settings.visible_own) == 1) {
         opt += _s('<option value="overview">Schedule Overview</option>');
     }
     opt += spView.schedulerFilter();
@@ -715,6 +727,9 @@ ShiftPlanningSchedule.prototype.shiftDisplaySubEvents = function(){
     if (this.shift.location != 0){
         $('#sc_location_iframe').html('<iframe  id="map" width="100%" height="220" frameborder="0" scrolling="no" src="http://' + googleIp + '/maps/?f=d&source=s_d&saddr=' + this.shift.location.address + '&hl=en&z=15&output=embed"></iframe>');
     }
+	if( $("#te_sc_shift_display_info .title").html() !== null ){
+		$("#te_sc_shift_display_info .title").html($("#te_sc_shift_display_info .title").html().replace(/\n/g, "<br>"));
+	}
 }
 
 ShiftPlanningSchedule.prototype.resetPublishFields = function(f){

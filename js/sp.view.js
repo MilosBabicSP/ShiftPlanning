@@ -25,7 +25,7 @@ ShiftPlanningView.prototype.optionSchedules = function(id, m, loc){
     
     if (!loc){
         $.each(data, function(i, item){
-            if (self.checkPerm(item)){
+            if (self.checkPerm(item, true)){
                 opt += '<option value="' + i + '">' + ((typeof item == 'object') ? item.name : item) + '</option>';
             }
         });	
@@ -165,6 +165,20 @@ ShiftPlanningView.prototype.locationSelector = function(type){
     });
     opt += '</optgroup><optgroup><option value="add" type="' + type + '">' + ((type == 1) ? 'New Location?' : 'New Work Site?') + '</option></optgroup>';
     return opt;
+}
+
+ShiftPlanningView.prototype.locationFields = function( type ){
+	if (typeof type == 'undefined'){
+        type = 2;
+    }
+	var html = '<option value="0" selected="selected"> ' + ((type == 1) ? 'Select Location' : 'Select Work Site') + ' </option>'
+	$.each(spModel.location.locationsList(), function(i, item){
+        if (item.type == type){
+            html += '<option value="' + item.id + '">' + item.name + '</option>';
+        }
+    });
+	
+	return html;
 }
 
 ShiftPlanningView.prototype.timeRanges = function(){
