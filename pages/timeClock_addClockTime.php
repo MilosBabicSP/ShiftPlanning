@@ -14,6 +14,11 @@
             <select id="tc_act_sc">
             </select>
         </span>
+		<label><?=_s('Remote Site')?></label>
+		<span class="input">
+			<select id="tc_act_loc">				
+			</select>
+		</span>
         <div>
             <ul class="detailsGrid borTB" id="tc_act_date">
                 <li>

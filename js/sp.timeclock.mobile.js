@@ -126,6 +126,11 @@ ShiftPlanningTimeClock.prototype.overviewEvents = function(){
             sp.showError(_s('Please choose schedule first'));
             return false;
         }
+		
+		if(sp.staff.admin.business.pref_tc_require_remote_site && $('#tc_ov_remote').val() == 0){
+			sp.showError(_s('Please choose remote site first'));
+            return false;
+		}
 
         if (notes.length != 0 ){
             data.notes = $('#tc_ov_no').val();
@@ -183,7 +188,19 @@ ShiftPlanningTimeClock.prototype.overviewEvents = function(){
 		if(id>0 && timeclock){
 			sp.api('timeclock.event','CREATE',{timeclock:timeclock,type:'location',location:id}, function(response){
 				if(response.status == '1'){
-					sp.showSuccess('Remote Site Added!');
+					sp.showSuccess('Remote Site Added');
+				}
+			});
+		}
+	});
+	$('#tc_act_loc').bind('change', function(){
+		var id = $(this).val();
+		var timeclock = self.current.id;
+		var isEdit = $('#tc_act_tc_id').hasClass('editOn');
+		if(isEdit && id>0 && timeclock){
+			sp.api('timeclock.event','CREATE',{timeclock:timeclock,type:'location',location:id}, function(response){
+				if(response.status == '1'){
+					sp.showSuccess('Remote Site Added');
 				}
 			});
 		}
@@ -488,6 +505,7 @@ ShiftPlanningTimeClock.prototype.addClockTimeSubEvents = function(){
     }
     
     $('#tc_act_sc').html(spView.optionSchedules(sp.staff.admin.info.group > 4 ? sp.staff.admin.info.id : 0));
+	$('#tc_act_loc').html(spView.locationSelector());
     $('#tc_act_em').html(spView.staffOption(sp.staff.admin.info.group > 4 ? true : false));
     
     var s = new Date(emp.in_timestamp*1000);
@@ -533,6 +551,15 @@ ShiftPlanningTimeClock.prototype.addClockTimeSubEvents = function(){
         dateOrder: sp.strReplace(['MM','yyyy',' ','-','/'],['mm','yy','','',''],cal.dformat)
     });
     
+	if(this.edit && this.current.events.length){
+		var evnts = this.current.events.length;
+		while(evnts--){
+			if(this.current.events[evnts].type == '4'){
+				$('#tc_act_loc').val(this.current.events[evnts].data.location);
+				break;
+			}
+		}
+	}
     
     $('#tc_act_no').val((this.edit) ? emp.notes : '');
     $('#tc_act_em').val((this.edit) ? emp.employee.id : 0);
@@ -773,7 +800,8 @@ ShiftPlanningTimeClock.prototype.saveClockTime = function(){
         data.end_time = $('#tc_act_tclou').val();
     } else {
         data.datein = $('#tc_act_c_cl_dp_i').val() +' '+ $('#tc_act_tclin').val();    
-        data.dateout = $('#tc_act_c_co_dp_i').val() + ' ' + $('#tc_act_tclou').val();       
+        data.dateout = $('#tc_act_c_co_dp_i').val() + ' ' + $('#tc_act_tclou').val();  
+		data.remote_site = $('#tc_act_loc').val();
     }
     
     data.schedule = $('#tc_act_sc').val();
