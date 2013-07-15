@@ -707,6 +707,7 @@ ShiftPlanningSchedule.prototype.shiftDisplaySubEvents = function(){
         this.shift.employees = [];
     }
 	this.shift.user_location=this.getLocation();
+	this.shift.locationName = this.getLocationName(this.shift.schedule);
     $('#sc_shift_display').html($.tmpl($('#te_sc_shift_display'), this.shift));
     
     
@@ -729,9 +730,6 @@ ShiftPlanningSchedule.prototype.shiftDisplaySubEvents = function(){
     }
 	if( $("#te_sc_shift_display_info .title").html() !== null ){
 		$("#te_sc_shift_display_info .title").html($("#te_sc_shift_display_info .title").html().replace(/\n/g, "<br>"));
-		var tmpLocName = this.getLocationName(this.shift.schedule);
-		console.log("tmpLocName => " + tmpLocName + " for schID => " + this.shift.schedule );
-		$('#te_sc_shift_display_info').find('b').append(' - ' + tmpLocName );
 	}
 }
 
@@ -924,12 +922,11 @@ ShiftPlanningSchedule.prototype.getLocationName = function(schId){
 		if( value.id == schId ){
 			var tmpSch = sp.schedule.data.schedules[index];
 			if( typeof tmpSch.location !== "undefined" ){
-				locName =  tmpSch.location.name;
+				locName =  "- " + tmpSch.location.name;
 			}
 			return;
 		}
 	});
-	console.log("aaaaaaaaaaa => " + locName );
 	return locName;
 }
 
