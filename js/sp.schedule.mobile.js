@@ -729,7 +729,9 @@ ShiftPlanningSchedule.prototype.shiftDisplaySubEvents = function(){
     }
 	if( $("#te_sc_shift_display_info .title").html() !== null ){
 		$("#te_sc_shift_display_info .title").html($("#te_sc_shift_display_info .title").html().replace(/\n/g, "<br>"));
-		$('#te_sc_shift_display_info').find('b').append(' - ' + sp.schedule.getLocationName(sp.schedule.shift.schedule));
+		var tmpLocName = this.getLocationName(this.shift.schedule);
+		console.log("tmpLocName => " + tmpLocName + " for schID => " + this.shift.schedule );
+		$('#te_sc_shift_display_info').find('b').append(' - ' + tmpLocName );
 	}
 }
 
@@ -921,8 +923,7 @@ ShiftPlanningSchedule.prototype.getLocationName = function(schId){
 		if( value.id == schId ){
 			var tmpSch = sp.schedule.data.schedules[index];
 			if( typeof tmpSch.location !== "undefined" ){
-				console.log(tmpSch.location.name);
-			   return tmpSch.location.name;
+				return tmpSch.location.name;
 			}else{
 				return '';
 			}
