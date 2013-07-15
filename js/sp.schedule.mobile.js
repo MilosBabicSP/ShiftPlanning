@@ -919,16 +919,18 @@ ShiftPlanningSchedule.prototype.nextPrevPrepare = function(type){
 }
 
 ShiftPlanningSchedule.prototype.getLocationName = function(schId){
+	var locName = "";
 	$.each(sp.schedule.data.schedules, function(index, value){
 		if( value.id == schId ){
 			var tmpSch = sp.schedule.data.schedules[index];
 			if( typeof tmpSch.location !== "undefined" ){
-				return tmpSch.location.name;
-			}else{
-				return '';
+				locName =  tmpSch.location.name;
 			}
+			return;
 		}
 	});
+	console.log("aaaaaaaaaaa => " + locName );
+	return locName;
 }
 
 ShiftPlanningSchedule.prototype.displayShifts = function(sDay){
