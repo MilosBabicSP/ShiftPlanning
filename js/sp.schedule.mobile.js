@@ -921,6 +921,7 @@ ShiftPlanningSchedule.prototype.getLocationName = function(schId){
 		if( value.id == schId ){
 			var tmpSch = sp.schedule.data.schedules[index];
 			if( typeof tmpSch.location !== "undefined" ){
+				console.log(tmpSch.location.name);
 			   return tmpSch.location.name;
 			}else{
 				return '';
