@@ -729,6 +729,7 @@ ShiftPlanningSchedule.prototype.shiftDisplaySubEvents = function(){
     }
 	if( $("#te_sc_shift_display_info .title").html() !== null ){
 		$("#te_sc_shift_display_info .title").html($("#te_sc_shift_display_info .title").html().replace(/\n/g, "<br>"));
+		$('#te_sc_shift_display_info').find('b').append(' - ' + sp.schedule.getLocationName(sp.schedule.shift.schedule));
 	}
 }
 
@@ -913,6 +914,19 @@ ShiftPlanningSchedule.prototype.nextPrevPrepare = function(type){
             }
         }
     }
+}
+
+ShiftPlanningSchedule.prototype.getLocationName = function(schId){
+	$.each(sp.schedule.data.schedules, function(index, value){
+		if( value.id == schId ){
+			var tmpSch = sp.schedule.data.schedules[index];
+			if( typeof tmpSch.location !== "undefined" ){
+			   return tmpSch.location.name;
+			}else{
+				return '';
+			}
+		}
+	});
 }
 
 ShiftPlanningSchedule.prototype.displayShifts = function(sDay){
