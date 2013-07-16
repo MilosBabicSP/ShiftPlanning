@@ -176,7 +176,7 @@
                             <p>${start_date.formatted}</p>
                             <p>${start_time.time} - ${end_time.time}</p> 
                         </span>
-                        <b>${schedule_name}</b><br/>
+                        <b>${schedule_name} ${locationName}</b><br/>
                         <p>${title} &nbsp;</p>
                     </a>
                 </li>
