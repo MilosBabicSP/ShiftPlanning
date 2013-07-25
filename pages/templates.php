@@ -117,7 +117,7 @@
                     <p>${start_date.formatted}</p>
                     <p>${start_time.time} - ${end_time.time}</p>
                 </span>
-                <b>${schedule_name}</b><br/>
+                <b>${schedule_name} ${sp.schedule.getLocationName(schedule)}</b><br/>
                 <p>{{if typeof employees != 'undefined' && employees != null}}{{tmpl(employees) "#te_sc_shifts_names"}}{{else}}&nbsp;{{/if}}</p>
             </a>
         </li>
