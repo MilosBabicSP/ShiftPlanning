@@ -115,6 +115,11 @@ ShiftPlanningDashboard.prototype.wallEvents = function(){
 	    return false;
 	}
 	data.post = $.trim($('#da_wa_nm_me').val());
+	if(data.post.length > 200){
+		sp.showError(_s('Message must be less than 200 characters.'));
+		obj.removeClass('loading');
+		return false;
+	}
 	spModel.messaging.create('wall', data, function(response){
 	    obj.removeClass('loading');
 	    $('#da_wa_nm_f').toggleClass('hidden');
@@ -175,7 +180,11 @@ ShiftPlanningDashboard.prototype.wallEvents = function(){
 	var id = $(this).attr('rel');
 	var post = $.trim($('#da_wa_msg_' + id + ' input[type=text]').val());
 	if (post.length == 0 || post == 'Write a comment...'){
-	    alert(_s('Please write your message'));
+	    sp.showError(_s('Please write your message'));
+	    return false;
+	}
+	if(post.length > 200){
+		sp.showError(_s('Comment must be less than 200 characters.'));
 	    return false;
 	}
 	spModel.messaging.create('wall', {
