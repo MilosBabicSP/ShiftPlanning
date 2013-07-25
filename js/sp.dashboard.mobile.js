@@ -183,8 +183,8 @@ ShiftPlanningDashboard.prototype.wallEvents = function(){
 	    sp.showError(_s('Please write your message'));
 	    return false;
 	}
-	if(post.length > 200){
-		sp.showError(_s('Comment must be less than 200 characters.'));
+	if(post.length > 255){
+		sp.showError(_s('Comment must be less than 255 characters.'));
 	    return false;
 	}
 	spModel.messaging.create('wall', {
