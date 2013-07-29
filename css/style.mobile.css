@@ -207,7 +207,7 @@ ul.filters li.last a {border-radius:0 2px 2px 0;}
 ul.msgWall {overflow:hidden;}
 ul.msgWall > li {padding:15px 0 0; border-bottom:solid 1px #DBDBDB; overflow:hidden; position:relative;}
 ul.msgWall > li > img {float:left; padding:5px 0 20px;}
-ul.msgWall > li > .msg {margin:0 0 0 60px; padding:0 0 20px;}
+ul.msgWall > li > .msg {margin:0 0 0 60px; padding:0 0 20px; word-wrap:break-word;}
 ul.msgWall > li p {padding:5px 0;}
 ul.msgWall > li .msg span{color:#999; display:block; line-height:20px;}
 
@@ -227,7 +227,7 @@ ul.detailsGrid ul li.odd div {margin:0 0 0 10px; padding-right: 20px;}
 ul.cmts {background-position:-40px 0; padding:10px 0 0;display:none;}
 ul.cmts li {padding:10px 15px 0; background-color:#f1f1f1; position:relative; overflow:hidden; border-bottom:solid 1px #e1e1e1;}
 ul.cmts li img {float:left; padding:5px 0 15px;}
-ul.cmts li .msg {margin:0 0 0 60px; padding:0 0 15px;}
+ul.cmts li .msg {margin:0 0 0 60px; padding:0 0 15px; word-wrap:break-word;}
 ul.cmts li.first {border-top:none;}
 ul.cmts li.last {border-bottom:none;}
 ul.cmts li.last span.input {margin:5px 30px 15px 0;}
