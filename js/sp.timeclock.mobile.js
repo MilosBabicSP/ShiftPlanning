@@ -226,7 +226,6 @@ ShiftPlanningTimeClock.prototype.overviewEvents = function(){
 	
 	$('#tc_ov_cn').bind(clickEvent, function(e){
 		e.preventDefault();
-		console.log('fuckin');
 		var timeclock = $('#tc_ov_ca').attr('rel');
 		sp.api('timeclock.event','CREATE',{timeclock:timeclock,type:'breakout'}, function(response){
 			if(response.status == '1'){
@@ -239,7 +238,6 @@ ShiftPlanningTimeClock.prototype.overviewEvents = function(){
 	
 	$('#tc_ov_cba').bind(clickEvent, function(e){
 		e.preventDefault();
-		console.log('why focker')
 		var timeclock = $('#tc_ov_ca').attr('rel');
 		sp.api('timeclock.event','CREATE',{timeclock:timeclock,type:'breakin'}, function(response){
 			if(response.status == '1'){
