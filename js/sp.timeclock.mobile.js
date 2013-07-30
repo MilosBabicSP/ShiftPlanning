@@ -222,7 +222,33 @@ ShiftPlanningTimeClock.prototype.overviewEvents = function(){
                 $('#tc_ov_ci').hide();
             }
         });
-    })
+    });
+	
+	$('#tc_ov_cn').bind(clickEvent, function(e){
+		e.preventDefault();
+		console.log('fuckin');
+		var timeclock = $('#tc_ov_ca').attr('rel');
+		sp.api('timeclock.event','CREATE',{timeclock:timeclock,type:'breakout'}, function(response){
+			if(response.status == '1'){
+				sp.showSuccess('Shift continued.');
+				$('.subNavigation .timeClock a[subpage=overview]').trigger(clickEvent);
+			}
+		});
+		
+	});
+	
+	$('#tc_ov_cba').bind(clickEvent, function(e){
+		e.preventDefault();
+		console.log('why focker')
+		var timeclock = $('#tc_ov_ca').attr('rel');
+		sp.api('timeclock.event','CREATE',{timeclock:timeclock,type:'breakin'}, function(response){
+			if(response.status == '1'){
+				sp.showSuccess('Break started.');
+				$('.subNavigation .timeClock a[subpage=overview]').trigger(clickEvent);
+			}
+		});
+		
+	});
 }
 
 ShiftPlanningTimeClock.prototype.manageTimeSheetsEvents = function(){
@@ -378,7 +404,17 @@ ShiftPlanningTimeClock.prototype.overviewSubEvents = function(){
         spModel.timeclock.get('status', {
             details : 1
         }, function(response){
-            $('#tc_ov_cb span.fr a').hide();
+            var events = response.data.events,
+				evLgth = events && events.length;
+			
+			if(events && events[evLgth - 1] && events[evLgth - 1].type == '1'){
+				$('#tc_ov_cn').show();
+				$('#tc_ov_cf').hide();
+				$('#tc_ov_ca').attr('rel', response.data.id);
+				return false;
+			}
+			
+			$('#tc_ov_cb span.fr a').hide();
             if (response.data != 'out'){
                 $('#tc_ov_cf').show();
                 $('#tc_ov_co').show();
@@ -411,8 +447,7 @@ ShiftPlanningTimeClock.prototype.overviewSubEvents = function(){
                         $('#tc_ov_way_msg .sc_way_time_since').html(response.data.formatted);
                         $('#tc_ov_way_msg').show();
                         $('#tc_ov_ci').show();
-                    }
-                    else{
+                    } else {
                         $('#tc_ov_ci').show();
                         
                         if(sp.staff.admin.business.pref_pre_time_clock == '1'){

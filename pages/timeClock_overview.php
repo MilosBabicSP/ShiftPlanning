@@ -3,6 +3,7 @@
         <span class="fr"><a href="#" id="tc_ov_way" class="greenB marginLeft10"><?=_s('I\'m on my way')?></a></span>
         <span class="fr"><a href="#" id="tc_ov_ci" class="greenB"><?=_s('Clock In')?></a></span>
         <span class="fr"><a href="#" id="tc_ov_co" class="greyB"><?=_s('Clock Out')?></a></span>
+		<span class="fr"><a href="#" id="tc_ov_cn" class="greyB"><?=_s('Continue')?></a></span>
         <div class="icoClock fl">
             <time>january 8, 2012</time>
             <span>13:55</span>
@@ -12,7 +13,9 @@
         <p><?= _s('You are on Your way since'); ?> <span class="sc_way_time_since"></span></p>
     </div>
     <div class="hidden" id="tc_ov_cf">
-        <div class="newMsg wide" id="tc_ov_cf">
+        
+		<div class="newMsg wide" id="tc_ov_cf">
+			<span><a href="#" id="tc_ov_cba" class="greyB"><?=_s('Break')?></a></span>
             <label><?=_s('Schedule')?></label>
             <span class="input">
                 <select name="" id="tc_ov_ss">
