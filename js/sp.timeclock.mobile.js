@@ -465,7 +465,11 @@ ShiftPlanningTimeClock.prototype.overviewSubEvents = function(){
         $('#tc_ov_ad').show();
     }
     
-
+	if(sp.staff.admin.business.pref_enable_break_button == '1'){
+		$('#tc_ov_cba').show();
+	} else {
+		$('#tc_ov_cba').hide();
+	}
     
     $('#tc_ov_cb .icoClock time').html(sp.raw.config.today.formatted);
     $('#tc_ov_cb .icoClock span').html(formatted('nowT'));
