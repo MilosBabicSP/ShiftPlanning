@@ -117,8 +117,10 @@ ShiftPlanning.prototype = {
     },
     loadPage: function(page){
         //Load the page from the module, handle this a little better
-        if(user.loggedIn){
+		console.log('paggeee', page);
+        if(user.loggedIn || page == 'privacy'){
             if(typeof this[page] != 'undefined'){
+				console.log('wuuut', $('#pages #' + page + ' > div'), $('#pages #' + page));
                 $('#pages #' + page + ' > div').hide();
                 $('#pages #' + page).show();
                 $('.subNavigation > div').hide();
