@@ -144,15 +144,15 @@ ShiftPlanning.prototype.initialize = function(){
 				page = sp.hash().substring(0, subpagePosition);
 				subpage = sp.hash().substring(subpagePosition+1);
 			}
-			console.log(page);
+			
             if(page == 'logout')
             {
                 self.staff.logout();
                 return false;
             }
 			
-			if(page == 'privacy'){
-				self.togglePrivacy();
+			if(page == 'privacy' || page == 'terms'){
+				self.togglePrivacy(false, page);
 				return false;
 			}
 
@@ -264,9 +264,14 @@ ShiftPlanning.prototype.initialize = function(){
         $('.userName').bind(clickEvent, function(){
             sp.loadSubPage('', 'settings', 'overview');
         });
-		$('#pr_back a').bind(clickEvent, function(e){
+		$('#pr_back a,#pr_back_down a').bind(clickEvent, function(e){
 			e.preventDefault();
-			sp.togglePrivacy('login');
+			sp.togglePrivacy('login', 'privacy');
+		});
+		
+		$('#terms_back a,#terms_back_down a').bind(clickEvent, function(e){
+			e.preventDefault();
+			sp.togglePrivacy('login', 'terms');
 		});
 		        
         if (isAndroid){
@@ -409,16 +414,16 @@ ShiftPlanning.prototype.showError = function(text){
     });
 }
 
-ShiftPlanning.prototype.togglePrivacy = function(page){
+ShiftPlanning.prototype.togglePrivacy = function(hash, page){
 	$('.loginContainer').toggle();
 	$('.applicationContainer').toggle();
 	$('#pages>div').toggle();
 	$('.subNavigation').toggle();
-	$('#pages #privacy').toggle();
-	if(page){
-		sp.hash(page);
+	$('#pages #' + page).toggle();
+	if(hash){
+		sp.hash(hash);
 	} else {
-		$('#pages #privacy .terms').load('loadHtml.php',{file: 'swap/tou.html'})
+		$('#pages #'+ page +' .termsuse').load('loadHtml.php',{file: page + '.html'})
 	}
 }
 

@@ -457,6 +457,6 @@ a.grey {display:block; color:#FFF; line-height:30px; text-align:center; backgrou
 .marginLeft10{ margin-left: 10px; }
 .noticeDiv{ background-color: #FEFFD9; color: #896519; padding: 15px 20px; border-bottom: 1px solid #DBDBDB; }
 
-.terms { padding:0 20px; line-height: 22px; }
-.terms ol { list-style: decimal outside none; padding:0 20px; }
-.terms img { vertical-align: baseline; }
+.termsuse { padding:0 20px; line-height: 22px; }
+.termsuse ol { list-style: decimal outside none; padding:0 20px; }
+.termsuse img { vertical-align: baseline; }

@@ -1,4 +1,4 @@
-<div class="terms">
+<div class="termsuse">
 	<h2>ShiftPlanning's Privacy Policy</h2>
 	<p>ShiftPlanning&copy; takes your privacy seriously. We have developed the following Privacy Policy for your protection.</p>
 

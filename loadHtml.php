@@ -1,7 +1,8 @@
 <?php
 require_once('config.php');
-	
-$url = API_URL.$_REQUEST['file'];
+$site_url = substr(API_URL, 0, strpos(API_URL, 'api/'));
+
+$url = $site_url . $_REQUEST['file'];
 
 $ch = curl_init($url);
 curl_setopt($ch, CURLOPT_URL, $url);
