@@ -117,7 +117,7 @@ ShiftPlanning.prototype = {
     },
     loadPage: function(page){
         //Load the page from the module, handle this a little better
-        if(user.loggedIn || page == 'privacy'){
+        if(user.loggedIn){
             if(typeof this[page] != 'undefined'){
                 $('#pages #' + page + ' > div').hide();
                 $('#pages #' + page).show();
