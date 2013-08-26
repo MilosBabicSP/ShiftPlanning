@@ -188,7 +188,7 @@ if ($vtoken['data'] != '1') {
                         <button id="lo_b"><span><?= _s('Login'); ?></span></button>
                     </form>
                     <div class="footerTxt">View in: Mobile | <a href="/app/?fullapp=true">Full Version</a><br>
-                        <a href="/terms/">Terms of Use</a> | <a href="/privacy/">Privacy Policy</a><br>
+                        <a href="#terms">Terms of Use</a> | <a href="#privacy">Privacy Policy</a><br>
                         &copy; 2012 ShiftPlanning</div>
                 </td>
             </tr>
@@ -230,7 +230,6 @@ if ($vtoken['data'] != '1') {
                     <?php Functions::getInstance()->loadFile('menus/settings') ?>
                 </div>
                 <div id="pages">
-                    <div class="bigLoader"></div>
                     <div class="dashboard" id="dashboard">
                         <div class="search settings mainSub">
                             <ul class="filters" style="width:270px">
@@ -586,7 +585,35 @@ if ($vtoken['data'] != '1') {
                             </ul>	
                         </div>						
                     </div>
-
+					
+					<div class="privacy" id="privacy">
+						<div class="subLevel mainSub" id="pr_back">
+                            <a class="backMenu" href="#">
+                                <img width="16" height="16" src="<?php echo _fCdnPath_; ?>images/arrow_back.png">
+                            </a>
+                        </div>
+						<?php Functions::getInstance()->loadFile('privacy_policy') ?>
+						<div class="subLevel mainSub" id="pr_back_down">
+                            <a class="backMenu" href="#">
+                                <img width="16" height="16" src="<?php echo _fCdnPath_; ?>images/arrow_back.png">
+                            </a>
+                        </div>
+					</div>
+					
+					<div class="terms" id="terms">
+						<div class="subLevel mainSub" id="terms_back">
+                            <a class="backMenu" href="#">
+                                <img width="16" height="16" src="<?php echo _fCdnPath_; ?>images/arrow_back.png">
+                            </a>
+                        </div>
+						<?php Functions::getInstance()->loadFile('terms_use') ?>
+						<div class="subLevel mainSub" id="terms_back_down">
+                            <a class="backMenu" href="#">
+                                <img width="16" height="16" src="<?php echo _fCdnPath_; ?>images/arrow_back.png">
+                            </a>
+                        </div>
+					</div>
+					
                 </div>
             </div>
         </div>
