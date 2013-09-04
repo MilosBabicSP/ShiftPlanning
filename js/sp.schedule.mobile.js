@@ -920,7 +920,7 @@ ShiftPlanningSchedule.prototype.getLocationName = function(schId){
 	var locName = "";
     if( sp.staff.admin.business.pref_show_location_in_shift == 1 ){
 		$.each(sp.schedule.data.schedules, function(index, value){
-			if( value.id === schId ){
+			if( value.id == schId ){
 				var tmpSch = sp.schedule.data.schedules[index];
 				if( typeof tmpSch.location !== "undefined" ){
 					locName =  " - " + tmpSch.location.name;
@@ -935,7 +935,7 @@ ShiftPlanningSchedule.prototype.getLocationName = function(schId){
 ShiftPlanningSchedule.prototype.getScheduleName = function(schId){
     var schName = "";
     $.each(sp.schedule.data.schedules, function(index, value){
-        if( value.id === schId ){
+        if( value.id == schId ){
             var tmpSch = sp.schedule.data.schedules[index];
             if( typeof tmpSch.name !== "undefined" ){
                 schName = tmpSch.name;
