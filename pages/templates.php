@@ -828,7 +828,7 @@
             <li class="odd">
                 <div>
                     <label><?=_s('Position');?></label>
-                    <b>{{if typeof position != 'undefined' }} ${position.name} {{/if}}&nbsp;</b>
+                    <b>{{if typeof hours.position != 'undefined' }} ${hours.position.name} {{/if}}&nbsp;</b>
                 </div>
             </li>
             <li class="even">
@@ -964,7 +964,7 @@
             <li class="odd">
                 <div>
                     <label><?=_s('Position');?></label>
-                    <b>{{if typeof position != 'undefined' }} ${position.name} {{/if}}&nbsp;</b>
+                    <b>{{if typeof hours.position != 'undefined' }} ${hours.position.name} {{/if}}&nbsp;</b>
                 </div>
             </li>
             <li class="even">
