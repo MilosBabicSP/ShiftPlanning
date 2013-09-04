@@ -160,7 +160,7 @@
 					<p >${start_date.weekday},${start_date.formatted}</p>
 					<p >${start_time.time}-${end_time.time}</p> 
 				</span>
-				<b>${schedule_name}</b><br>
+				<b>${schedule_name} ${sp.schedule.getLocationName(schedule)}</b><br>
 				{{if title != ''}}
 					<p>Desktop app</p>
 				{{/if}}
@@ -287,7 +287,7 @@
     <script id="te_sc_shifts" type="text/x-jquery-tmpl">
         <tr shiftId="${id}" class="isShift">
             <td class="dTime" style="background-color: #${sp.schedule.getColorsBySchedule(schedule)[1]}; color: #${sp.schedule.getColorsBySchedule(schedule)[2]}">${start_time.time} - ${end_time.time}</td>
-            <td class="dTitle {{if (published == 0 || (published < edited && published != 0)) && perms == 2 && sp.staff.admin.settings.draft == 1}}notPublished{{/if}}">${schedule_name}<br/>{{if typeof employees != 'undefined' && employees != null}}<span>{{tmpl(employees) "#te_sc_shifts_names"}}</span>{{/if}}</td>
+            <td class="dTitle {{if (published == 0 || (published < edited && published != 0)) && perms == 2 && sp.staff.admin.settings.draft == 1}}notPublished{{/if}}">${schedule_name}${sp.schedule.getLocationName(schedule)}<br/>{{if typeof employees != 'undefined' && employees != null}}<span>{{tmpl(employees) "#te_sc_shifts_names"}}</span>{{/if}}</td>
         </tr>
     </script>
     <script id="te_rq_sa_s_in" type="text/x-jquery-tmpl">
@@ -315,7 +315,7 @@
         </ul>
     </script>
     <script id="te_rq_sa_in" type="text/x-jquery-tmpl">
-        <li><span class="names">${schedule_name}</span><span class="time">${start_time.time} - ${end_time.time}</span><span class="last"><span class="checkbox" shiftId="${id}"></span></span></li>
+        <li><span class="names">${schedule_name}${sp.schedule.getLocationName(schedule)}</span><span class="time">${start_time.time} - ${end_time.time}</span><span class="last"><span class="checkbox" shiftId="${id}"></span></span></li>
     </script>
     <script id="te_rq_sa" type="text/x-jquery-tmpl">
         <div class="title">
@@ -333,7 +333,7 @@
                         <p>${start_date.formatted}</p>
                         <p>${full.start_time.time} - ${full.end_time.time}</p>
                     </span>
-                    <b>${schedule_name}</b><br/>
+                    <b>${schedule_name} ${sp.schedule.getLocationName(schedule)}</b><br/>
                     <p>${title} &nbsp;</p>
                 </a>
             </li>
@@ -369,7 +369,7 @@
         <li>
             <a href="#" rel="${rId}"><img width="43" height="30" src="<?php echo _fCdnPath_;?>images/NextMenu.png"></a>
             <span>${start_date}</span>
-            ${schedule_name}<br/>
+            ${schedule_name} ${sp.schedule.getLocationName(schedule)}<br/>
             ${hours}
         </li>
     </script>
@@ -381,7 +381,7 @@
                         <p>${start_date.formatted}</p>
                         <p>${start_time.time} - ${end_time.time}</p>
                     </span>
-                    <b>${schedule_name}</b><br/>
+                    <b>${schedule_name} ${sp.schedule.getLocationName(schedule)}</b><br/>
                     <p>${title} &nbsp;</p>
                 </a>
             </li>
@@ -406,7 +406,7 @@
         <li>
             <a href="#" rel="${rId}"><img width="43" height="30" src="<?php echo _fCdnPath_;?>images/NextMenu.png"></a>
             <span>${start_date.formatted}</span>
-            ${schedule_name}<br/>
+            ${schedule_name} ${sp.schedule.getLocationName(schedule)}<br/>
             ${start_time.time} - ${end_time.time}
         </li>
     </script>
@@ -419,7 +419,15 @@
             </div>
         </div>
         <div class="title1 sales">
-            <h3>${schedule_name}</h3>
+			{{if typeof shift_schedule != 'undefined' }}
+				<h3>${schedule_name} ${sp.schedule.getLocationName(shift_schedule)}</h3>
+			{{else}}
+				{{if typeof schedule_id != 'undefined' }}
+					<h3>${schedule_name} ${sp.schedule.getLocationName(schedule_id)}</h3>
+				{{else}}
+					<h3>${schedule_name} ${sp.schedule.getLocationName(schedule)}</h3>
+				{{/if}}
+			{{/if}}
         </div>
         <ul class="requests">
             <li>
@@ -441,7 +449,15 @@
             </div>
         </div>
         <div class="title1 sales wide">
-            <h3>${schedule_name}</h3>
+			{{if typeof shift_schedule !== 'undefined' }}
+				<h3>${schedule_name} ${sp.schedule.getLocationName(shift_schedule)}</h3>
+			{{else}}
+				{{if typeof schedule_id != 'undefined' }}
+					<h3>${schedule_name} ${sp.schedule.getLocationName(schedule_id)}</h3>
+				{{else}}
+					<h3>${schedule_name} ${sp.schedule.getLocationName(schedule)}</h3>
+				{{/if}}
+			{{/if}}
         </div>
         <ul class="requests">
             <li>
@@ -468,7 +484,15 @@
             </div>
         </div>
         <div class="title1 sales wide mar">
-            <h3>${schedule_name}</h3>
+			{{if typeof shift_schedule != 'undefined' }}
+				<h3>${schedule_name} ${sp.schedule.getLocationName(shift_schedule)}</h3>
+			{{else}}
+				{{if typeof schedule_id != 'undefined' }}
+					<h3>${schedule_name} ${sp.schedule.getLocationName(schedule_id)}</h3>
+				{{else}}
+					<h3>${schedule_name} ${sp.schedule.getLocationName(schedule)}</h3>
+				{{/if}}
+			{{/if}}
         </div>
         <ul class="requests">
             <li>
@@ -494,7 +518,15 @@
             </div>
         </div>
         <div class="title1 sales wide mar">
-            <h3>${name}</h3>
+			{{if typeof shift_schedule != 'undefined' }}
+				<h3>${name} ${sp.schedule.getLocationName(shift_schedule)}</h3>
+			{{else}}
+				{{if typeof schedule_id != 'undefined' }}
+					<h3>${name} ${sp.schedule.getLocationName(schedule_id)}</h3>
+				{{else}}
+					<h3>${name} ${sp.schedule.getLocationName(schedule)}</h3>
+				{{/if}}
+			{{/if}}
         </div>
         <ul class="requests">
             <li>
@@ -535,7 +567,7 @@
 						{{/if}}
 						{{/if}}
 						<div>
-							<span>${schedule_name}-${start_timestamp}</span>
+							<span>${schedule_name} ${sp.schedule.getLocationName(schedule)}-${start_timestamp}</span>
 						</div>
 					</div>				
 
@@ -587,7 +619,15 @@
     <script id="te_rq_st_ap" type="text/x-jquery-tmpl">
         <li>
             <a href="#" rel="${rId}"><img width="43" height="30" src="<?php echo _fCdnPath_;?>images/NextMenu.png"></a>
-            <span>${schedule_name}</span>
+			{{if typeof shift_schedule != 'undefined' }}
+				<span>${schedule_name} ${sp.schedule.getLocationName(shift_schedule)}</span>
+			{{else}}
+				{{if typeof schedule_id != 'undefined' }}
+					<span>${schedule_name} ${sp.schedule.getLocationName(schedule_id)}</span>
+				{{else}}
+					<span>${schedule_name} ${sp.schedule.getLocationName(schedule)}</span>
+				{{/if}}
+			{{/if}}
             ${shift_start_date.formatted} <br />
             ${shift_start_time}
         </li>
