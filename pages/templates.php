@@ -592,12 +592,12 @@
             <ul class="subMenu">
                 <li><span><?=_s('Accepted');?></span></li>
                 <li class="first">
-                    <a href="#" tradeId="${trade_id}" userId="${user}" class="accept" >
+                    <a href="#" tradeId="${trade_id}" userId="${user}" class="accept" shiftswap="${shift}" >
                         <span><img width="16" height="16" src="<?php echo _fCdnPath_;?>images/request_1.png"></span>
                     </a>
                 </li>
                 <li class="last">
-                    <a href="#" tradeId="${trade_id}" userId="${user}" class="reject" >
+                    <a href="#" tradeId="${trade_id}" userId="${user}" class="reject" shiftswap="${shift}"  >
                         <span><img width="16" height="16" src="<?php echo _fCdnPath_;?>images/request_2.png"></span>
                     </a>
                 </li>
