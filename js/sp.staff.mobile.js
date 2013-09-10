@@ -268,6 +268,15 @@ ShiftPlanningStaff.prototype.login = function(){
                                     user.phone = loginResponse.data.business.phone;
                                     sp.staff.raw.employees = response[0].data;
                                     sp.staff.data.employees = sp.map(response[0].data);
+									/**
+									* Following lines fixes the bug with a Empty Schedule list in TimeClock,
+									*	This happens when a simple employee can not see other employee's contact details
+									*	when that feature is disabled in Admin Account Settings
+									*/
+									if( sp.staff.raw.employees.length === 0 ){
+										sp.staff.raw.employees.push( sp.staff.admin.info );
+										sp.staff.data.employees = sp.map(sp.staff.raw.employees);
+									}
                                     sp.schedule.raw.schedules = response[1].data;
                                     sp.schedule.data.schedules = sp.map(response[1].data);
                                     sp.staff.admin.settings = response[2].data;

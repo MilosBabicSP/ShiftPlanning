@@ -918,16 +918,32 @@ ShiftPlanningSchedule.prototype.nextPrevPrepare = function(type){
 
 ShiftPlanningSchedule.prototype.getLocationName = function(schId){
 	var locName = "";
-	$.each(sp.schedule.data.schedules, function(index, value){
-		if( value.id == schId ){
-			var tmpSch = sp.schedule.data.schedules[index];
-			if( typeof tmpSch.location !== "undefined" ){
-				locName =  "- " + tmpSch.location.name;
+    if( sp.staff.admin.business.pref_show_location_in_shift == 1 ){
+		$.each(sp.schedule.data.schedules, function(index, value){
+			if( value.id == schId ){
+				var tmpSch = sp.schedule.data.schedules[index];
+				if( typeof tmpSch.location !== "undefined" ){
+					locName =  " - " + tmpSch.location.name;
+				}
+				return;
 			}
-			return;
-		}
-	});
+		});
+	}
 	return locName;
+}
+
+ShiftPlanningSchedule.prototype.getScheduleName = function(schId){
+    var schName = "";
+    $.each(sp.schedule.data.schedules, function(index, value){
+        if( value.id == schId ){
+            var tmpSch = sp.schedule.data.schedules[index];
+            if( typeof tmpSch.name !== "undefined" ){
+                schName = tmpSch.name;
+            }
+            return;
+        }
+    });
+    return schName;
 }
 
 ShiftPlanningSchedule.prototype.displayShifts = function(sDay){
