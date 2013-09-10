@@ -287,9 +287,7 @@ ShiftPlanningRequests.prototype.shiftTradesEvents = function(){
                 tradeType = "tradeswap";
                 data.shift_for_swap = $(this).attr('shiftswap');
             }
-        }catch(eee){
-            console.log("Err at #rq_st_mst_s .traders a => " + eee.getMessage() )
-        }
+        }catch(eee){}
 		
         spModel.schedule.update( tradeType, data, function(response){
             obj.removeClass('loading');
