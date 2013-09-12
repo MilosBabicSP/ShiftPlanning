@@ -35,6 +35,9 @@ ShiftPlanningTimeClock.prototype.overviewEvents = function(){
                 $('#tc_ov_no').val('');
                 $('#tc_ov_ss').val(0);
 				$('#tc_ov_remote').val(0);
+				if( typeof response.data.schedule !== "undefined" && response.data.schedule !== null && response.data.schedule !== "" ){
+					$("#tc_ov_ss").val( response.data.schedule.id );
+				}
             });
         }
         var errorCallback = function(){
