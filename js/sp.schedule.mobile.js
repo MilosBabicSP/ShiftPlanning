@@ -1167,9 +1167,7 @@ ShiftPlanningSchedule.prototype.generateMiddle = function(currentDate){
     var res = '';
     
     var daysArray = new Array();
-    console.log(s, e, startPosition, lM, bm, startDayLastMonth, cal.startday);
-	
-	
+    
     for (var i = startDayLastMonth; i <= lM; i++){
         daysArray.push('<td class="notM">' + i + '</td>');
     }
