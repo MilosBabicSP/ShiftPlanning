@@ -1120,7 +1120,7 @@ ShiftPlanningSchedule.prototype.generateTop = function(){
         }
     } else {
         for (var i = 0; i<7; i++){
-            res += '<th>' + daysOfWeekS[i] + '</th>';
+            res += '<th>' +  [i] + '</th>';
         }
     }
     
@@ -1147,6 +1147,8 @@ ShiftPlanningSchedule.prototype.generateMiddle = function(currentDate){
     
     //position from which we start calendar
     var startPosition = Date.parse(cD).moveToFirstDayOfMonth().getDay() - (cal.startday - 1);
+	
+	console.log(Date.parse(cD).moveToFirstDayOfMonth().getDay());
     
     //how much days had last month
     var lM = Date.parse($.trim($('#sc_to_sub').html())).addMonths(-1).moveToLastDayOfMonth().getDate();
@@ -1167,7 +1169,9 @@ ShiftPlanningSchedule.prototype.generateMiddle = function(currentDate){
     var res = '';
     
     var daysArray = new Array();
-    
+    console.log(s, e, startPosition, lM, bm, startDayLastMonth, cal.startday);
+	
+	
     for (var i = startDayLastMonth; i <= lM; i++){
         daysArray.push('<td class="notM">' + i + '</td>');
     }
