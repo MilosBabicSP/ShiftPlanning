@@ -83,7 +83,7 @@ ShiftPlanningView.prototype.staffMessagesOption = function(notAdmin){
 		var l = sp.staff.pvtMsg;
 		
         $.each(l, function(i, item){
-            opt += '<option value="' + item.id + '">' + ((typeof item == 'object') ? item.name : item) + '</option>';
+            opt += '<option value="' + i + '">' + item + '</option>';
         });
     } else {
         opt = '<option value="' + sp.staff.admin.info.id + '">' + sp.staff.admin.info.name + '</option>';
