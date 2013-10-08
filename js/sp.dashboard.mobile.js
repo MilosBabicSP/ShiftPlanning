@@ -569,7 +569,8 @@ ShiftPlanningDashboard.prototype.inboxSubEvents = function(){
 	$('#da_in_me').html(spView.emptyResult(_s('Something went wrong'), 'li'));
     });
     
-    $('#da_in_nm_to').html(spView.staffOption());
+    //$('#da_in_nm_to').html(spView.staffOption());
+    $('#da_in_nm_to').html(spView.staffMessagesOption());
 }
 
 //ShiftPlanningDashboard.prototype.settingsSubEvents = function(employee){

@@ -9,6 +9,7 @@ ShiftPlanningStaff.prototype = {
     data: {},
     raw: {},
     fixed : {},
+    pvtMsg : {},
     admin: {},
     initialize: function(){
         

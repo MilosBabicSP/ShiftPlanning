@@ -259,6 +259,9 @@ ShiftPlanningStaff.prototype.login = function(){
         sp.multiApi(calls, function(response){
             sp.api('api.config', 'GET', {}, function(config){
                     sp.api('admin.business', 'GET', {},function(business){
+							sp.api('messaging.employees', 'GET', {},function(pvtEmployees){
+								sp.staff.pvtMsg = pvtEmployees.data;
+							});
                             //was hitting the 5 request limit for multi api so we needed to send a separate call
                             $('.loginContainer').fadeOut(500, function(){
                                     $('#lo_b').removeClass('loading');
@@ -285,6 +288,7 @@ ShiftPlanningStaff.prototype.login = function(){
                                     sp.staff.raw.locations = response[4].data;
                                     sp.staff.data.locations = sp.map(response[4].data);
                                     sp.staff.admin.info.dfAvatar = sp.getAvatar(sp.staff.admin.info.id);
+									
                                     sp.raw.config = config.data;
                                     sp.schedule.dateId = sp.raw.config.today.id;
                                     sp.staff.admin.business = business.data;
