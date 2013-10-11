@@ -259,6 +259,9 @@ ShiftPlanningStaff.prototype.login = function(){
         sp.multiApi(calls, function(response){
             sp.api('api.config', 'GET', {}, function(config){
                     sp.api('admin.business', 'GET', {},function(business){
+							sp.api('messaging.employees', 'GET', {},function(pvtEmployees){
+								sp.staff.pvtMsg = pvtEmployees.data;
+							});
                             //was hitting the 5 request limit for multi api so we needed to send a separate call
                             $('.loginContainer').fadeOut(500, function(){
                                     $('#lo_b').removeClass('loading');
@@ -268,6 +271,15 @@ ShiftPlanningStaff.prototype.login = function(){
                                     user.phone = loginResponse.data.business.phone;
                                     sp.staff.raw.employees = response[0].data;
                                     sp.staff.data.employees = sp.map(response[0].data);
+									/**
+									* Following lines fixes the bug with a Empty Schedule list in TimeClock,
+									*	This happens when a simple employee can not see other employee's contact details
+									*	when that feature is disabled in Admin Account Settings
+									*/
+									if( sp.staff.raw.employees.length === 0 ){
+										sp.staff.raw.employees.push( sp.staff.admin.info );
+										sp.staff.data.employees = sp.map(sp.staff.raw.employees);
+									}
                                     sp.schedule.raw.schedules = response[1].data;
                                     sp.schedule.data.schedules = sp.map(response[1].data);
                                     sp.staff.admin.settings = response[2].data;
@@ -276,6 +288,7 @@ ShiftPlanningStaff.prototype.login = function(){
                                     sp.staff.raw.locations = response[4].data;
                                     sp.staff.data.locations = sp.map(response[4].data);
                                     sp.staff.admin.info.dfAvatar = sp.getAvatar(sp.staff.admin.info.id);
+									
                                     sp.raw.config = config.data;
                                     sp.schedule.dateId = sp.raw.config.today.id;
                                     sp.staff.admin.business = business.data;

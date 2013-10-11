@@ -150,6 +150,11 @@ ShiftPlanning.prototype.initialize = function(){
                 self.staff.logout();
                 return false;
             }
+			
+			if(page == 'privacy' || page == 'terms'){
+				self.togglePrivacy(false, page);
+				return false;
+			}
 
 			
             if ($('#menu [page=' + page + ']').length > 0)
@@ -259,7 +264,16 @@ ShiftPlanning.prototype.initialize = function(){
         $('.userName').bind(clickEvent, function(){
             sp.loadSubPage('', 'settings', 'overview');
         });
-        
+		$('#pr_back a,#pr_back_down a').bind(clickEvent, function(e){
+			e.preventDefault();
+			sp.togglePrivacy('login', 'privacy');
+		});
+		
+		$('#terms_back a,#terms_back_down a').bind(clickEvent, function(e){
+			e.preventDefault();
+			sp.togglePrivacy('login', 'terms');
+		});
+		        
         if (isAndroid){
             $('#da_up_fi_hide').hide();
         }
@@ -398,6 +412,19 @@ ShiftPlanning.prototype.showError = function(text){
             });
         }, 2000);
     });
+}
+
+ShiftPlanning.prototype.togglePrivacy = function(hash, page){
+	$('.loginContainer').toggle();
+	$('.applicationContainer').toggle();
+	$('#pages>div').toggle();
+	$('.subNavigation').toggle();
+	$('#pages #' + page).toggle();
+	if(hash){
+		sp.hash(hash);
+	} else {
+		$('#pages #'+ page +' .termsuse').load('loadHtml.php',{file: page + '.html'})
+	}
 }
 
 function callAndroid(func, callback){

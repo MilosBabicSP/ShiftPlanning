@@ -281,7 +281,15 @@ ShiftPlanningRequests.prototype.shiftTradesEvents = function(){
             data.action = 'reject';
         }
         
-        spModel.schedule.update('trade', data, function(response){
+        var tradeType = "trade";
+        try{
+            if( sp.requests.current.swap == "1" ){
+                tradeType = "tradeswap";
+                data.shift_for_swap = $(this).attr('shiftswap');
+            }
+        }catch(eee){}
+		
+        spModel.schedule.update( tradeType, data, function(response){
             obj.removeClass('loading');
             $('.subNavigation .requests li a[subpage=shiftTrades]').trigger(clickEvent);
         }, function(response){
@@ -313,8 +321,17 @@ ShiftPlanningRequests.prototype.shiftTradesEvents = function(){
         if ($(this).hasClass('deactivate')){
             data.action = 'deactivate';
         }
+		
+        var tradeType = "trade";
+        try{
+			if( sp.requests.current.swap == "1" ){
+				tradeType = "tradeswap";
+                data.shift_for_swap = $(this).attr('shiftswap');
+			}
+        }catch(eee){}
+		
         obj.addClass('loading');
-        spModel.schedule.update('trade', data, function(response){
+        spModel.schedule.update( tradeType, data, function(response){
             obj.removeClass('loading');
             if (data.action == 'activate'){
                 sp.showSuccess(_s('Shift trade accepted, waiting for potentional acceptors to accept.'));

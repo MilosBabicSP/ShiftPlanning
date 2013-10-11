@@ -23,10 +23,17 @@ ShiftPlanningView.prototype.optionSchedules = function(id, m, loc){
         opt = '<option disabled="disabled" selected="selected" value="0">' + _('Select Schedule') + '</option>';
     }
     
+    var loc2 = "";
     if (!loc){
         $.each(data, function(i, item){
+            loc2 = parseInt(i);
+            if( isNaN(loc2) ){
+                loc2 = "";
+            }else{
+                loc2 = sp.schedule.getLocationName(loc2);
+            }
             if (self.checkPerm(item, true)){
-                opt += '<option value="' + i + '">' + ((typeof item == 'object') ? item.name : item) + '</option>';
+                opt += '<option value="' + i + '">' + ((typeof item == 'object') ? item.name : item) + loc2 + '</option>';
             }
         });	
     } else {
@@ -58,6 +65,25 @@ ShiftPlanningView.prototype.staffOption = function(notAdmin){
         }
         $.each(l, function(i, item){
             opt += '<option value="' + item.id + '">' + ((typeof item == 'object') ? item.name : item) + '</option>';
+        });
+    } else {
+        opt = '<option value="' + sp.staff.admin.info.id + '">' + sp.staff.admin.info.name + '</option>';
+    }
+    return opt;
+}
+
+ShiftPlanningView.prototype.staffMessagesOption = function(notAdmin){
+    if (typeof notAdmin == 'undefined'){
+        notAdmin = false;
+    }
+    var opt;
+    if (notAdmin == false){
+        opt = '<option disabled="disabled" selected="selected" value="0">Select Employee</option>';
+        
+		var l = sp.staff.pvtMsg;
+		
+        $.each(l, function(i, item){
+            opt += '<option value="' + i + '">' + item + '</option>';
         });
     } else {
         opt = '<option value="' + sp.staff.admin.info.id + '">' + sp.staff.admin.info.name + '</option>';
@@ -106,9 +132,16 @@ ShiftPlanningView.prototype.scheduleFilter = function(id, deep){
         opt = '<option value="0">All Positions</option>';
     }
     
+    var loc = "";
     $.each(data, function(i, item){
         if (self.checkPerm(item, deep)){
-            opt += '<option value="' + i + '">' + ((typeof item == 'object') ? item.name : item) + '</option>';
+            loc = parseInt(i);
+            if( isNaN(loc) ){
+                loc = "";
+            }else{
+                loc = sp.schedule.getLocationName(loc);
+            }
+            opt += '<option value="' + i + '">' + ((typeof item == 'object') ? item.name : item) + loc + '</option>';
         }
     });
     
@@ -127,9 +160,16 @@ ShiftPlanningView.prototype.schedulerFilter = function(id, deep){
         data = spModel.schedule.schedulesByUser(id);
     }
     var opt = '';
+    var loc = "";
     $.each(data, function(i, item){
         if (self.checkPerm(item, deep)){
-            opt += '<option value="' + i + '">' + ((typeof item == 'object') ? item.name : item) + '</option>';
+            loc = parseInt(i);
+            if( isNaN(loc) ){
+                loc = "";
+            }else{
+                loc = sp.schedule.getLocationName(loc);
+            }
+            opt += '<option value="' + i + '">' + ((typeof item == 'object') ? item.name : item) + loc + '</option>';
         }
     });
     
@@ -292,7 +332,7 @@ ShiftPlanningView.prototype.editableSchedules = function(employee){
         var c = (typeof employee.schedules != 'undefined' && typeof employee.schedules[item.id] != 'undefined') ? 'check"' : '';
         l += '<li class="' + ((i % 2 == 0) ? 'even' : 'odd') + '">';
         l += '  <div>';
-        l += '      <span class="checkbox ' + c + '" itemId=' + item.id + '>' + item.name + '</span>';
+        l += '      <span class="checkbox ' + c + '" itemId=' + item.id + '>' + item.name + sp.schedule.getLocationName(item.id) + '</span>';
         l += '  </div>';
         l += '</li>';
         i++;

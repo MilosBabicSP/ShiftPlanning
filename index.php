@@ -122,12 +122,22 @@ if ($vtoken['data'] != '1') {
             function init(){
 <? if ($_SESSION['api']['token']) { ?>
                             sp.staff.raw.employees = <?= _iapi(array('module' => 'staff.employees', 'method' => 'GET'), 'json', true) ?>;
+                            sp.staff.pvtMsg = <?= _iapi(array('module' => 'messaging.employees', 'method' => 'GET'), 'json', true) ?>;
                             sp.staff.data.employees = sp.map(sp.staff.raw.employees);
                             sp.schedule.raw.schedules = <?= _iapi(array('module' => 'schedule.schedules', 'perms' => 1, 'method' => 'GET'), 'json', true) ?>;
                             sp.schedule.data.schedules = sp.map(sp.schedule.raw.schedules);
                             sp.staff.admin.settings = <?= _iapi(array('module' => 'admin.settings', 'method' => 'GET'), 'json', true) ?>;
                             sp.staff.admin.info = <?= _iapi(array('module' => 'staff.employee', 'method' => 'GET', 'id' => $_SESSION['user']['employee']['id']), 'json', true) ?>;
-                            sp.staff.admin.business = <?= _iapi(array('module' => 'admin.business', 'method' => 'GET'), 'json', true) ?>;
+                            /**
+							* Following lines fixes the bug with a Empty Schedule list in TimeClock,
+							*	This happens when a simple employee can not see other employee's contact details
+							*	when that feature is disabled in Admin Account Settings
+							*/
+							if( sp.staff.raw.employees.length === 0 ){
+								sp.staff.raw.employees.push( sp.staff.admin.info );
+								sp.staff.data.employees = sp.map(sp.staff.raw.employees);
+							}
+							sp.staff.admin.business = <?= _iapi(array('module' => 'admin.business', 'method' => 'GET'), 'json', true) ?>;
                             var lang = sp.staff.admin.info.language;
                             if (lang == null || lang == ''){
                                 lang = sp.staff.admin.business.language;
@@ -188,7 +198,7 @@ if ($vtoken['data'] != '1') {
                         <button id="lo_b"><span><?= _s('Login'); ?></span></button>
                     </form>
                     <div class="footerTxt">View in: Mobile | <a href="/app/?fullapp=true">Full Version</a><br>
-                        <a href="/terms/">Terms of Use</a> | <a href="/privacy/">Privacy Policy</a><br>
+                        <a href="#terms">Terms of Use</a> | <a href="#privacy">Privacy Policy</a><br>
                         &copy; 2012 ShiftPlanning</div>
                 </td>
             </tr>
@@ -230,7 +240,6 @@ if ($vtoken['data'] != '1') {
                     <?php Functions::getInstance()->loadFile('menus/settings') ?>
                 </div>
                 <div id="pages">
-                    <div class="bigLoader"></div>
                     <div class="dashboard" id="dashboard">
                         <div class="search settings mainSub">
                             <ul class="filters" style="width:270px">
@@ -586,7 +595,35 @@ if ($vtoken['data'] != '1') {
                             </ul>	
                         </div>						
                     </div>
-
+					
+					<div class="privacy" id="privacy">
+						<div class="subLevel mainSub" id="pr_back">
+                            <a class="backMenu" href="#">
+                                <img width="16" height="16" src="<?php echo _fCdnPath_; ?>images/arrow_back.png">
+                            </a>
+                        </div>
+						<?php Functions::getInstance()->loadFile('privacy_policy') ?>
+						<div class="subLevel mainSub" id="pr_back_down">
+                            <a class="backMenu" href="#">
+                                <img width="16" height="16" src="<?php echo _fCdnPath_; ?>images/arrow_back.png">
+                            </a>
+                        </div>
+					</div>
+					
+					<div class="terms" id="terms">
+						<div class="subLevel mainSub" id="terms_back">
+                            <a class="backMenu" href="#">
+                                <img width="16" height="16" src="<?php echo _fCdnPath_; ?>images/arrow_back.png">
+                            </a>
+                        </div>
+						<?php Functions::getInstance()->loadFile('terms_use') ?>
+						<div class="subLevel mainSub" id="terms_back_down">
+                            <a class="backMenu" href="#">
+                                <img width="16" height="16" src="<?php echo _fCdnPath_; ?>images/arrow_back.png">
+                            </a>
+                        </div>
+					</div>
+					
                 </div>
             </div>
         </div>
