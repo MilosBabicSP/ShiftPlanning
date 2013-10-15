@@ -20,7 +20,8 @@ if (isset($_GET['logout'])) {
         'shiftplanning_mobile_username',
         'shiftplanning_mobile_userid',
         'shiftplanning_mobile_usercompany',
-        'shiftplanning_mobile_userphone'
+        'shiftplanning_mobile_userphone',
+		'fallback_token'
     );
 
     if (isset($_SERVER['HTTP_COOKIE'])) {
