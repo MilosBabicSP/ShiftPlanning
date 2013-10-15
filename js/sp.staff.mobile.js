@@ -244,6 +244,7 @@ ShiftPlanningStaff.prototype.login = function(){
 	    loginResponse.data.employee.language = loginResponse.data.business.language;
 	}
 	setCookie('shiftplanning_mobile_lang', loginResponse.data.employee.language, cookieExpire);
+	setCookie('fallback_token', loginResponse.token, cookieExpire);
 	if (loginResponse.data.employee.language != 'en_US' && loginResponse.data.employee.language != ''){
 	    window.location.reload();
 	}
@@ -301,7 +302,6 @@ ShiftPlanningStaff.prototype.login = function(){
                                     spRanges.fixRanges();
                                     sp.staff.fixed.employees = sp.permissions.fixStaffListing();
                                     sp.raw.config.today.formatted = Date.parse(sp.raw.config.today.formatted).toString(cal.dformat);
-                                    setCookie('fallback_token', loginResponse.token, cookieExpire);
 									if ($('#lo_f .checkbox').hasClass('check')){
                                         setCookie('shiftplanning_mobile_rememberme', 1, cookieExpire);
                                         setCookie('shiftplanning_mobile_usertoken', loginResponse.token, cookieExpire);
