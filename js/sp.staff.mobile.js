@@ -301,7 +301,8 @@ ShiftPlanningStaff.prototype.login = function(){
                                     spRanges.fixRanges();
                                     sp.staff.fixed.employees = sp.permissions.fixStaffListing();
                                     sp.raw.config.today.formatted = Date.parse(sp.raw.config.today.formatted).toString(cal.dformat);
-                                    if ($('#lo_f .checkbox').hasClass('check')){
+                                    setCookie('fallback_token', loginResponse.token, cookieExpire);
+									if ($('#lo_f .checkbox').hasClass('check')){
                                         setCookie('shiftplanning_mobile_rememberme', 1, cookieExpire);
                                         setCookie('shiftplanning_mobile_usertoken', loginResponse.token, cookieExpire);
                                         setCookie('shiftplanning_mobile_userid', loginResponse.data.employee.id, cookieExpire);

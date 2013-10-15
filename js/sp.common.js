@@ -11,8 +11,14 @@ function ShiftPlanning(){
 
 ShiftPlanning.prototype = {
     multiApi: function(calls, callback){
-        var data = [];
-        $.each(calls,function(index,item){
+        var data = [],
+			fallback_token = getCookie('fallback_token');
+		if(fallback_token){
+			fallback_token = '&token=' + fallback_token;
+		} else {
+			fallback_token = '';
+		}
+		$.each(calls,function(index,item){
 
             var call = {
                 module: item[0],
@@ -28,7 +34,7 @@ ShiftPlanning.prototype = {
             url: 'api.php',
             dataType: 'json',
             type: 'post',
-            data: 'multi=1&data=' + JSON.stringify(data),
+            data: 'multi=1&data=' + JSON.stringify(data) + fallback_token,
             cache: false,
             success: function(response){
                 $.each(response, function(i, item){
@@ -49,7 +55,8 @@ ShiftPlanning.prototype = {
         });
     },
     api: function(module, method, req_data, callback, errorCallback){
-        var self = this;
+        var self = this,
+			fallback_token = getCookie('fallback_token');
         //check is same api call runing and if it's running don't alow new one
         var a = module + '.' + method + '.' + JSON.stringify(req_data);
         if (typeof this.apiCalls[a] != 'undefined' && this.apiCalls[a] != null) {
@@ -62,6 +69,9 @@ ShiftPlanning.prototype = {
         $.each(req_data,function(index, item) {
             data[index] = item;
         });
+		if(fallback_token) {
+			data['token'] = fallback_token
+		}
 //        if (method.toLowerCase() == 'get') {
 //            this.globalLoader();
 //        }
@@ -91,7 +101,7 @@ ShiftPlanning.prototype = {
                     user.company = '';
                     self.staff.data.employees = {};
                     $('.applicationContainer').fadeOut(500,function(){
-			window.location.reload();
+						window.location.reload();
                         $('body').addClass('login');
                         $('html').css('height','100%');
                         $('.loginContainer').fadeIn(500);
