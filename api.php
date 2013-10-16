@@ -61,7 +61,10 @@ function _iapi($request_vars, $output='json', $dataOnly = false, $multi = false)
     if(!$multi){
         if(isset($decoded['token']) && $_POST['module'] == 'staff.login'){
             $_SESSION['api']['token'] = $decoded['token'];
-            $_SESSION['user'] = $decoded['data'];
+			$_SESSION['user']['employee']['id'] = $decoded['data']['employee']['id'];
+			$_SESSION['user']['employee']['name'] = $decoded['data']['employee']['name'];
+			$_SESSION['user']['business']['name'] = $decoded['data']['business']['name'];
+			$_SESSION['user']['business']['phone'] = $decoded['data']['business']['phone'];
         }
 
         if($_POST['module'] == 'staff.logout'){
