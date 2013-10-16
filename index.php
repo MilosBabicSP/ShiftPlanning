@@ -20,7 +20,8 @@ if (isset($_GET['logout'])) {
         'shiftplanning_mobile_username',
         'shiftplanning_mobile_userid',
         'shiftplanning_mobile_usercompany',
-        'shiftplanning_mobile_userphone'
+        'shiftplanning_mobile_userphone',
+		'fallback_token'
     );
 
     if (isset($_SERVER['HTTP_COOKIE'])) {
@@ -122,6 +123,7 @@ if ($vtoken['data'] != '1') {
             function init(){
 <? if ($_SESSION['api']['token']) { ?>
                             sp.staff.raw.employees = <?= _iapi(array('module' => 'staff.employees', 'method' => 'GET'), 'json', true) ?>;
+                            sp.staff.pvtMsg = <?= _iapi(array('module' => 'messaging.employees', 'method' => 'GET'), 'json', true) ?>;
                             sp.staff.data.employees = sp.map(sp.staff.raw.employees);
                             sp.schedule.raw.schedules = <?= _iapi(array('module' => 'schedule.schedules', 'perms' => 1, 'method' => 'GET'), 'json', true) ?>;
                             sp.schedule.data.schedules = sp.map(sp.schedule.raw.schedules);

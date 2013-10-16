@@ -244,6 +244,7 @@ ShiftPlanningStaff.prototype.login = function(){
 	    loginResponse.data.employee.language = loginResponse.data.business.language;
 	}
 	setCookie('shiftplanning_mobile_lang', loginResponse.data.employee.language, cookieExpire);
+	setCookie('fallback_token', loginResponse.token, cookieExpire);
 	if (loginResponse.data.employee.language != 'en_US' && loginResponse.data.employee.language != ''){
 	    window.location.reload();
 	}
@@ -259,6 +260,9 @@ ShiftPlanningStaff.prototype.login = function(){
         sp.multiApi(calls, function(response){
             sp.api('api.config', 'GET', {}, function(config){
                     sp.api('admin.business', 'GET', {},function(business){
+							sp.api('messaging.employees', 'GET', {},function(pvtEmployees){
+								sp.staff.pvtMsg = pvtEmployees.data;
+							});
                             //was hitting the 5 request limit for multi api so we needed to send a separate call
                             $('.loginContainer').fadeOut(500, function(){
                                     $('#lo_b').removeClass('loading');
@@ -285,6 +289,7 @@ ShiftPlanningStaff.prototype.login = function(){
                                     sp.staff.raw.locations = response[4].data;
                                     sp.staff.data.locations = sp.map(response[4].data);
                                     sp.staff.admin.info.dfAvatar = sp.getAvatar(sp.staff.admin.info.id);
+									
                                     sp.raw.config = config.data;
                                     sp.schedule.dateId = sp.raw.config.today.id;
                                     sp.staff.admin.business = business.data;
@@ -297,7 +302,7 @@ ShiftPlanningStaff.prototype.login = function(){
                                     spRanges.fixRanges();
                                     sp.staff.fixed.employees = sp.permissions.fixStaffListing();
                                     sp.raw.config.today.formatted = Date.parse(sp.raw.config.today.formatted).toString(cal.dformat);
-                                    if ($('#lo_f .checkbox').hasClass('check')){
+									if ($('#lo_f .checkbox').hasClass('check')){
                                         setCookie('shiftplanning_mobile_rememberme', 1, cookieExpire);
                                         setCookie('shiftplanning_mobile_usertoken', loginResponse.token, cookieExpire);
                                         setCookie('shiftplanning_mobile_userid', loginResponse.data.employee.id, cookieExpire);

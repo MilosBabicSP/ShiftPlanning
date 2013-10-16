@@ -125,12 +125,12 @@ ShiftPlanningTimeClock.prototype.overviewEvents = function(){
                 apiCall();              
             }, 2000);
         }
-        if(sp.staff.admin.business.pref_tc_require_pos && $('#tc_ov_ss').val() == 0){
+        if(parseInt(sp.staff.admin.business.pref_tc_require_pos) && $('#tc_ov_ss').val() == 0){
             sp.showError(_s('Please choose schedule first'));
             return false;
         }
 		
-		if(sp.staff.admin.business.pref_tc_require_remote_site && $('#tc_ov_remote').val() == 0){
+		if(parseInt(sp.staff.admin.business.pref_tc_require_remote_site) && $('#tc_ov_remote').val() == 0){
 			sp.showError(_s('Please choose remote site first'));
             return false;
 		}

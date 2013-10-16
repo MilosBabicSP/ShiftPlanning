@@ -72,6 +72,25 @@ ShiftPlanningView.prototype.staffOption = function(notAdmin){
     return opt;
 }
 
+ShiftPlanningView.prototype.staffMessagesOption = function(notAdmin){
+    if (typeof notAdmin == 'undefined'){
+        notAdmin = false;
+    }
+    var opt;
+    if (notAdmin == false){
+        opt = '<option disabled="disabled" selected="selected" value="0">Select Employee</option>';
+        
+		var l = sp.staff.pvtMsg;
+		
+        $.each(l, function(i, item){
+            opt += '<option value="' + i + '">' + item + '</option>';
+        });
+    } else {
+        opt = '<option value="' + sp.staff.admin.info.id + '">' + sp.staff.admin.info.name + '</option>';
+    }
+    return opt;
+}
+
 ShiftPlanningView.prototype.staffFilter = function(notAdmin){
     if (typeof notAdmin == 'undefined'){
         notAdmin = false;
