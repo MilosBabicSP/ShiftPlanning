@@ -68,10 +68,7 @@ function _iapi($request_vars, $output='json', $dataOnly = false, $multi = false)
         }
 
         if($_POST['module'] == 'staff.logout' || $request_vars['module'] == 'staff.logout'){
-			var_dump($_SESSION);
             session_destroy();
-			die('AFTER');
-			var_dump($_SESSION);
         }
     } else {
         foreach($decoded as $key => $value){
