@@ -181,6 +181,7 @@ if ($vtoken['data'] != '1') {
     </head>
     <body onload="setTimeout(function() { window.scrollTo(0, 1) }, 100);" class="login">
         <div class="notification error"></div>
+		<? echo strlen( serialize( $_SESSION ) );?>
         <table height="100%" class="loginContainer" width="100%">
             <tr>
                 <td width="100%">
