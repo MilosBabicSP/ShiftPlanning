@@ -469,7 +469,7 @@ a.grey {display:block; color:#FFF; line-height:30px; text-align:center; backgrou
     left: 5%;
     top: 40px;
     position: absolute;
-    height: 192px;
+    height: 250px;
     display: none;
 }
 #gpsMap .mapImage{
