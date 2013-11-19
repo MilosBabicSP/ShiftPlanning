@@ -460,3 +460,32 @@ a.grey {display:block; color:#FFF; line-height:30px; text-align:center; backgrou
 .termsuse { padding:0 20px; line-height: 22px; }
 .termsuse ol { list-style: decimal outside none; padding:0 20px; }
 .termsuse img { vertical-align: baseline; }
+#gpsMap{
+    background-color: rgb(221, 221, 221);
+    top: 0px;
+    text-align: left;
+    z-index: 99999;
+    width: 90%;
+    left: 5%;
+    top: 40px;
+    position: absolute;
+    height: 192px;
+    display: none;
+}
+#gpsMap .mapImage{
+    display: inline-block;
+    width: 52%;
+    padding: 10px;
+}
+#gpsMap .question{
+    display: inline-block;
+    vertical-align: middle;
+    width: 36%;
+}
+#gpsMap .question a{
+    padding: 0px 10px;
+    margin: 10px;
+}
+#gpsMap .question a.green{
+    margin: 30px 10px 10px;
+}

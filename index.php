@@ -240,6 +240,14 @@ if ($vtoken['data'] != '1') {
                     <?php Functions::getInstance()->loadFile('menus/training') ?>
                     <?php Functions::getInstance()->loadFile('menus/settings') ?>
                 </div>
+                <div id="gpsMap">
+                    <img class="mapImage" src="">
+                    <div class="question">
+                        <span>Is this your current location?</span>
+                        <a href="#" id="gpsRetry" class="grey">Retry</a>
+                        <a href="#" id="gpsProceed" class="green">Correct</a>
+                    </div>
+                </div>
                 <div id="pages">
                     <div class="dashboard" id="dashboard">
                         <div class="search settings mainSub">
