@@ -247,11 +247,10 @@ if ($vtoken['data'] != '1') {
                         <a href="#" id="gpsRetry" class="grey">Retry</a>
                         <a href="#" id="gpsProceed" class="green">Correct</a>
                     </div>
-					<div calss="gpsNote">
+					<div class="gpsNote">
 						In order to get the most accurate data, please go in to your Location settings and enable <b>only GPS Satellites</b>.
 						<br/>This will take longer to get your current position, but the result will be correct.<br/>
 						Warning: Your location data can vary about 0.06-0.12 miles ( 100-200m ) or more, depending on your location.
-						
 					</div>
                 </div>
                 <div id="pages">
