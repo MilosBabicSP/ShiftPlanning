@@ -38,9 +38,9 @@ ShiftPlanningTimeClock.prototype.overviewEvents = function(){
         e.preventDefault();
         $("#gpsMap").hide();
         if( sp.timeClock.isClockedIn ){
-            setTimeout( apiCallOut, 500 );
+            setTimeout( sp.timeClock.apiCallOut, 500 );
         }else{
-            setTimeout( apiCallIn, 500 );
+            setTimeout( sp.timeClock.apiCallIn, 500 );
         }
     });
 
