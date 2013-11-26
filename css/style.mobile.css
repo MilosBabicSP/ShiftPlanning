@@ -469,23 +469,30 @@ a.grey {display:block; color:#FFF; line-height:30px; text-align:center; backgrou
     left: 5%;
     top: 40px;
     position: absolute;
-    height: 250px;
+    height: 90%;
     display: none;
 }
 #gpsMap .mapImage{
-    display: inline-block;
-    width: 52%;
-    padding: 10px;
+    text-align: center;
+	display: block;
+	width: 95%;
+	padding: 10px 5px;
+	margin: auto;
 }
 #gpsMap .question{
-    display: inline-block;
-    vertical-align: middle;
-    width: 36%;
+    text-align: center;
+	display: block;
+	width: 95%;
+	margin: 5px auto;
 }
 #gpsMap .question a{
-    padding: 0px 10px;
-    margin: 10px;
+    display: inline-block;
+	width: 30%;
+	padding: 0px 10px;
 }
 #gpsMap .question a.green{
-    margin: 30px 10px 10px;
+	margin: 0px 10px 0px 10px;
+}
+#gpsMap .gpsNote{
+	padding: 10px;
 }
