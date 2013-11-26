@@ -27,7 +27,11 @@ ShiftPlanningTimeClock.prototype.overviewEvents = function(){
         e.preventDefault();
 		e.stopPropagation();
         $("#gpsMap").hide();
-        $('#tc_ov_ci').click();
+        if( sp.timeClock.isClockedIn ){
+            $('#tc_ov_co').click();
+        }else{
+            $('#tc_ov_ci').click();
+        }
     });
 
     $('#gpsProceed').bind(clickEvent, function(e){
