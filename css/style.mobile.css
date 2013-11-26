@@ -496,3 +496,6 @@ a.grey {display:block; color:#FFF; line-height:30px; text-align:center; backgrou
 #gpsMap .gpsNote{
 	padding: 10px;
 }
+#tc_ov_note{
+    display: none;
+}

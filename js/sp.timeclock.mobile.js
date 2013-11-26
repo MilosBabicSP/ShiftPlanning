@@ -9,6 +9,7 @@ ShiftPlanningTimeClock.prototype.initialize = function(){
 }
 var subpageTemp = '';
 ShiftPlanningTimeClock.prototype.loadSubPageEvents = function(subpage){
+	$("#gpsMap").hide();
     $('.subNavigation').show();
     if (subpage == 'displayTimeClock'){
         $('.subNavigation').hide();
@@ -21,8 +22,27 @@ ShiftPlanningTimeClock.prototype.loadSubPageEvents = function(subpage){
 
 ShiftPlanningTimeClock.prototype.overviewEvents = function(){
     var self = this;
+	
+    $('#gpsRetry').bind(clickEvent, function(e){
+        e.preventDefault();
+		e.stopPropagation();
+        $("#gpsMap").hide();
+        $('#tc_ov_ci').click();
+    });
+
+    $('#gpsProceed').bind(clickEvent, function(e){
+        e.preventDefault();
+        $("#gpsMap").hide();
+        if( sp.timeClock.isClockedIn ){
+            setTimeout( apiCallOut, 500 );
+        }else{
+            setTimeout( apiCallIn, 500 );
+        }
+    });
+
     $('#tc_ov_ci').bind(clickEvent, function(e){
         e.preventDefault();
+		e.stopPropagation();
         var data = {};
         var done = false;
         var apiCall = function(){
@@ -382,6 +402,43 @@ ShiftPlanningTimeClock.prototype.displayTimeSheetsSubEvents = function (){
 //    })
 }
 
+ShiftPlanningTimeClock.prototype.isClockedIn = false;
+ShiftPlanningTimeClock.prototype.dataIn = {};
+ShiftPlanningTimeClock.prototype.dataOut = {};
+ShiftPlanningTimeClock.prototype.apiCallIn = function() {
+	spModel.timeclock.get('clockin', sp.timeClock.dataIn, function(response) {
+		$('#tc_ov_cb span.fr a').hide();
+		$('#tc_ov_way_msg').hide();
+		$('#tc_ov_cf').show();
+		$('#tc_ov_co').show();
+		$('#tc_ov_ca').attr('rel', response.data.id);
+		$('#tc_ov_no').val('');
+		$('#tc_ov_ss').val(0);
+		$('#tc_ov_remote').val(0);
+		if( typeof response.data.schedule !== "undefined" && response.data.schedule !== null && response.data.schedule !== "" ){
+			$("#tc_ov_ss").val( response.data.schedule.id );
+		}
+		sp.timeClock.isClockedIn = true;
+	});
+};
+ShiftPlanningTimeClock.prototype.apiCallOut = function() {
+	spModel.timeclock.get('clockout', sp.timeClock.dataOut, function(response) {
+		$('#tc_ov_cb span.fr a').hide();
+		$('#tc_ov_cf').hide();
+		$('#tc_ov_cn').hide();
+		$('#tc_ov_ci').show();
+
+		if(sp.staff.admin.business.pref_pre_time_clock == '1'){
+			$('#tc_ov_way').show();
+		}
+		if(sp.staff.admin.business.pref_mandatory_pre_time_clock == '1'){
+			$('#tc_ov_way').show();
+			$('#tc_ov_ci').hide();
+		}
+		sp.timeClock.isClockedIn = false;
+	});
+};
+
 ShiftPlanningTimeClock.prototype.overviewSubEvents = function(){
     $('#tc_ov_cf').hide();
     $('#tc_ov_cb span.fr a').hide();
@@ -417,6 +474,7 @@ ShiftPlanningTimeClock.prototype.overviewSubEvents = function(){
 			
 			$('#tc_ov_cb span.fr a').hide();
             if (response.data != 'out'){
+                sp.timeClock.isClockedIn = true;
                 $('#tc_ov_cf').show();
                 $('#tc_ov_co').show();
                 $('#tc_ov_ca').attr('rel', response.data.id);
@@ -438,6 +496,7 @@ ShiftPlanningTimeClock.prototype.overviewSubEvents = function(){
 				}
 				
             } else {
+                sp.timeClock.isClockedIn = false;
                 $('#tc_ov_cf').hide();
                 
                 var data = {
@@ -476,6 +535,15 @@ ShiftPlanningTimeClock.prototype.overviewSubEvents = function(){
     
     $('#tc_ov_cb .icoClock time').html(sp.raw.config.today.formatted);
     $('#tc_ov_cb .icoClock span').html(formatted('nowT'));
+	
+    /**
+    * Display message if GPS location is required
+    */
+    if (sp.staff.admin.business.pref_tc_gps == '1') {
+        $("#tc_ov_note").show();
+    }else{
+        $("#tc_ov_note").hide();
+    }
 }
 
 ShiftPlanningTimeClock.prototype.manageTimeSheetsSubEvents = function(){
