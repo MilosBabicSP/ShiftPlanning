@@ -647,7 +647,7 @@
         <li {{if start_day.id < sp.raw.config.today.id}} class="hidden pastDate"{{/if}} id="rq_va_tb_tr_${id}">
             {{if start_day.id >= sp.raw.config.today.id}}<a class="fr deleteVacation" href="#" rel="${id}"><img width="43" height="30" src="<?php echo _fCdnPath_;?>images/DelMenu.png"></a>{{/if}}
             <span>${start_day.formatted} - ${end_day.formatted}</span>
-            ${total_days + 1} <?=_s('Day(s), Approved');?>
+            ${total_days_alotted} <?=_s('Day(s), Approved');?>
         </li>
     </script>
     <script id="te_rq_va_aa" type="text/x-jquery-tmpl">
