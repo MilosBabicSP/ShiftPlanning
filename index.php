@@ -241,17 +241,17 @@ if ($vtoken['data'] != '1') {
                     <?php Functions::getInstance()->loadFile('menus/settings') ?>
                 </div>
                 <div id="gpsMap">
-                    <div class="mapImage"><iframe width="100%" height="100%" src="https://maps.google.com/maps?f=d&amp;source=s_d&amp;daddr=44.79819,20.479619&amp;hl=en&amp;z=19&amp;output=embed&amp;z=18"></iframe></div>
-					<span class="question">Is this your current location?</span>
+                    <div class="mapImage"></div>
+                    <span class="question">Is this your current location?</span>
                     <div class="question">
                         <a href="#" id="gpsRetry" class="grey">Retry</a>
-                        <a href="#" id="gpsProceed" class="green">Correct</a>
+                        <a href="#" id="gpsProceed" class="green">OK</a>
                     </div>
-					<div class="gpsNote">
-						In order to get the most accurate data, please go in to your Location settings and enable <b>only GPS Satellites</b>.
-						<br/>This will take longer to get your current position, but the result will be correct.<br/>
-						Warning: Your location data can vary about 0.06-0.12 miles ( 100-200m ) or more, depending on your location.
-					</div>
+                    <div class="gpsNote">
+                        In order to get the most accurate data, please go in to your Location settings and enable <b>only GPS Satellites</b>.
+                        <br/>This will take longer to get your current position, but the result will be more accurate.<br/>
+                        Warning: Your location data can vary about 0.06-0.12 miles ( 100-200m ) or more, depending on your location.
+                    </div>
                 </div>
                 <div id="pages">
                     <div class="dashboard" id="dashboard">

@@ -460,6 +460,8 @@ a.grey {display:block; color:#FFF; line-height:30px; text-align:center; backgrou
 .termsuse { padding:0 20px; line-height: 22px; }
 .termsuse ol { list-style: decimal outside none; padding:0 20px; }
 .termsuse img { vertical-align: baseline; }
+
+.confirmationNote{ margin: 0 20px;}
 #gpsMap{
     background-color: rgb(221, 221, 221);
     top: 0px;
@@ -469,13 +471,14 @@ a.grey {display:block; color:#FFF; line-height:30px; text-align:center; backgrou
     left: 5%;
     top: 40px;
     position: absolute;
-    height: 90%;
+    height: 95%;
     display: none;
 }
 #gpsMap .mapImage{
     text-align: center;
 	display: block;
 	width: 95%;
+	max-height: 50%;
 	padding: 10px 5px;
 	margin: auto;
 }

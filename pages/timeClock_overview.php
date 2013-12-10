@@ -10,7 +10,7 @@
         </div>
     </div>
 	<div class="title" id="tc_ov_note">Please enable GPS on your device, if it's not already turned ON, because it is required for clocking In and Out</div>
-    <div class="noticeDiv hidden" id="tc_ov_way_msg">
+	<div class="noticeDiv hidden" id="tc_ov_way_msg">
         <p><?= _s('You are on Your way since'); ?> <span class="sc_way_time_since"></span></p>
     </div>
     <div class="hidden" id="tc_ov_cf">
