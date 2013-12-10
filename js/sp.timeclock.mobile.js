@@ -96,13 +96,13 @@ ShiftPlanningTimeClock.prototype.overviewEvents = function(){
         var done = false;
         var errorCallback = function() {
             done = true;
-            if( typeof gpsCoords.coords == "undefined" ){
+            if( typeof sp.gpsCoords.coords == "undefined" ){
                 sp.showError(_s('Coordinates not available'));
                 setTimeout(sp.timeClock.apiCallIn, 1000);
             }else{
                 sp.showError(_s('New coordinates not available, using last known'));
-                sp.timeClock.dataIn.latitude = gpsCoords.coords.latitude;
-                sp.timeClock.dataIn.longitude = gpsCoords.coords.longitude;
+                sp.timeClock.dataIn.latitude = sp.gpsCoords.coords.latitude;
+                sp.timeClock.dataIn.longitude = sp.gpsCoords.coords.longitude;
                 $("#gpsMap .mapImage").html('<iframe  id="map" width="100%" height="50%" frameborder="0" scrolling="no" src="http://google.com/maps?f=d&source=s_d&daddr=' + sp.timeClock.dataIn.latitude + ',' + sp.timeClock.dataIn.longitude + '&hl=en&z=19&output=embed&z=18"></iframe>');
                 $("#gpsMap").show();
             }
@@ -152,12 +152,12 @@ ShiftPlanningTimeClock.prototype.overviewEvents = function(){
         var done = false;
         var errorCallback = function() {
             done = true;
-            if( typeof gpsCoords.coords == "undefined" ){
+            if( typeof sp.gpsCoords.coords == "undefined" ){
                 sp.showError(_s('Coordinates not available'));
                 setTimeout(sp.timeClock.apiCallOut, 1000);
             }else{
-                sp.timeClock.dataOut.latitude = gpsCoords.coords.latitude;
-                sp.timeClock.dataOut.longitude = gpsCoords.coords.longitude;
+                sp.timeClock.dataOut.latitude = sp.gpsCoords.coords.latitude;
+                sp.timeClock.dataOut.longitude = sp.gpsCoords.coords.longitude;
                 $("#gpsMap .mapImage").html('<iframe  id="map" width="100%" height="50%" frameborder="0" scrolling="no" src="http://google.com/maps?f=d&source=s_d&daddr=' + sp.timeClock.dataOut.latitude + ',' + sp.timeClock.dataOut.longitude + '&hl=en&z=19&output=embed&z=18"></iframe>');
                 $('#tc_ov_cf').hide();
                 $("#gpsMap").show();
