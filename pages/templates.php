@@ -654,7 +654,7 @@
         <li id="rq_va_tb_tr_${id}">
             <a class="fr deleteVacation" href="#" rel="${id}"><img width="43" height="30" src="<?php echo _fCdnPath_;?>images/DelMenu.png"></a>
             <span>${start_day.formatted} - ${end_day.formatted}</span>
-            ${length} <?=_s('Day(s), Pending');?>
+            ${total_days_alotted} <?=_s('Day(s), Pending');?>
         </li>
     </script>
     <script id="te_rq_va_ma_s" type="text/x-jquery-tmpl">
