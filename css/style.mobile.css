@@ -469,8 +469,7 @@ a.grey {display:block; color:#FFF; line-height:30px; text-align:center; backgrou
     z-index: 99999;
     width: 90%;
     left: 5%;
-    top: 40px;
-    position: absolute;
+    position: relative;
     height: 95%;
     display: none;
 }
