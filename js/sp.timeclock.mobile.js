@@ -70,6 +70,7 @@ ShiftPlanningTimeClock.prototype.overviewEvents = function(){
         e.stopPropagation();
         $("#gpsMap").hide();
         if( sp.timeClock.isClockedIn ){
+			$('#tc_ov_cb').show();
             $('#tc_ov_cf').show();
             $('#tc_ov_co').click();
         }else{
@@ -82,6 +83,7 @@ ShiftPlanningTimeClock.prototype.overviewEvents = function(){
         e.stopPropagation();
         $("#gpsMap").hide();
         if( sp.timeClock.isClockedIn ){
+			$('#tc_ov_cb').show();
             $('#tc_ov_cf').show();
             setTimeout( sp.timeClock.apiCallOut, 500 );
         }else{
@@ -104,6 +106,8 @@ ShiftPlanningTimeClock.prototype.overviewEvents = function(){
                 sp.timeClock.dataIn.latitude = sp.gpsCoords.coords.latitude;
                 sp.timeClock.dataIn.longitude = sp.gpsCoords.coords.longitude;
                 $("#gpsMap .mapImage").html('<iframe  id="map" width="100%" height="50%" frameborder="0" scrolling="no" src="http://google.com/maps?f=d&source=s_d&daddr=' + sp.timeClock.dataIn.latitude + ',' + sp.timeClock.dataIn.longitude + '&hl=en&z=19&output=embed&z=18"></iframe>');
+				$('#tc_ov_cb').hide();
+				$('#tc_ov_cf').hide();
                 $("#gpsMap").show();
             }
         }
@@ -159,6 +163,7 @@ ShiftPlanningTimeClock.prototype.overviewEvents = function(){
                 sp.timeClock.dataOut.latitude = sp.gpsCoords.coords.latitude;
                 sp.timeClock.dataOut.longitude = sp.gpsCoords.coords.longitude;
                 $("#gpsMap .mapImage").html('<iframe  id="map" width="100%" height="50%" frameborder="0" scrolling="no" src="http://google.com/maps?f=d&source=s_d&daddr=' + sp.timeClock.dataOut.latitude + ',' + sp.timeClock.dataOut.longitude + '&hl=en&z=19&output=embed&z=18"></iframe>');
+				$('#tc_ov_cb').hide();
                 $('#tc_ov_cf').hide();
                 $("#gpsMap").show();
             }
@@ -193,6 +198,7 @@ ShiftPlanningTimeClock.prototype.overviewEvents = function(){
                         sp.timeClock.dataOut.longitude = response.coords.longitude;
 
                         $("#gpsMap .mapImage").html('<iframe  id="map" width="100%" height="50%" frameborder="0" scrolling="no" src="http://google.com/maps?f=d&source=s_d&daddr=' + sp.timeClock.dataOut.latitude + ',' + sp.timeClock.dataOut.longitude + '&hl=en&z=19&output=embed&z=18"></iframe>');
+						$('#tc_ov_cb').hide();
                         $('#tc_ov_cf').hide();
                         $("#gpsMap").show();
                     }
@@ -420,6 +426,7 @@ ShiftPlanningTimeClock.prototype.apiCallIn = function() {
 	spModel.timeclock.get('clockin', sp.timeClock.dataIn, function(response) {
 		$('#tc_ov_cb span.fr a').hide();
 		$('#tc_ov_way_msg').hide();
+		$('#tc_ov_cb').show();
 		$('#tc_ov_cf').show();
 		$('#tc_ov_co').show();
 		$('#tc_ov_ca').attr('rel', response.data.id);
@@ -437,6 +444,7 @@ ShiftPlanningTimeClock.prototype.apiCallOut = function() {
 		$('#tc_ov_cb span.fr a').hide();
 		$('#tc_ov_cf').hide();
 		$('#tc_ov_cn').hide();
+		$('#tc_ov_cb').show();
 		$('#tc_ov_ci').show();
 
 		if(sp.staff.admin.business.pref_pre_time_clock == '1'){
