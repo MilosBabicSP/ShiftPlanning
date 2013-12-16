@@ -121,7 +121,7 @@ ShiftPlanningTimeClock.prototype.overviewEvents = function(){
                         sp.timeClock.dataIn.latitude = response.coords.latitude;
                         sp.timeClock.dataIn.longitude = response.coords.longitude;
                         $("#gpsMap .mapImage").html('<iframe  id="map" width="100%" height="50%" frameborder="0" scrolling="no" src="http://google.com/maps?f=d&source=s_d&daddr=' + sp.timeClock.dataIn.latitude + ',' + sp.timeClock.dataIn.longitude + '&hl=en&z=19&output=embed&z=18"></iframe>');
-
+						$('#tc_ov_cb').hide();
                         $("#gpsMap").show();
                     }
                 }, errorCallback
