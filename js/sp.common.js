@@ -266,7 +266,31 @@ ShiftPlanning.prototype = {
         }
         
         return res;
-    }
+    },getCurrentPosition: function( hndSucc, hndErr ){
+		if( typeof hndSucc == "undefined" ){
+			hndSucc = function( response ){
+				if (typeof response != 'function') {
+					sp.gpsCoords = response;
+				}
+			};
+		}
+
+		if( typeof hndErr == "undefined" ){
+			hndErr = function(gpsError){
+				if( typeof console != "undefined" ){
+					if( typeof console.log != "undefined" ){
+						console.log("getCurrentPosition No Coords ERROR => " + JSON.stringify( gpsError ) );
+					}
+				}
+			}
+		}
+		navigator.geolocation.getCurrentPosition( hndSucc, hndErr, sp.gpsOptions );
+	},gpsCoords: {},
+	gpsOptions: {
+		timeout: 30000,
+		enableHighAccuracy: true,
+		maximumAge: 2000
+	}
 }
 
 
