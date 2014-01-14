@@ -1,5 +1,25 @@
 <?php
 require_once('config.php');
+function getip(){
+
+	if (isset($_SERVER["HTTP_X_FORWARDED_FOR"])) {
+		$ip = $_SERVER["HTTP_X_FORWARDED_FOR"];
+	} else {
+		if (isset($_SERVER["HTTP_CLIENT_IP"])) {
+			$ip = $_SERVER["HTTP_CLIENT_IP"];
+		} else {
+			$ip = $_SERVER["REMOTE_ADDR"];
+		}
+	}
+	$tmp = explode(',', $ip);
+	if(_http_ == 'https'){
+		array_pop($tmp);
+	}
+	return array_pop($tmp);
+
+	#return isset($_SERVER['HTTP_X_FORWARDED_FOR']) ? $_SERVER['HTTP_X_FORWARDED_FOR'] : $_SERVER['REMOTE_ADDR'];
+
+}
 function _iapi($request_vars, $output='json', $dataOnly = false, $multi = false) { # array, json
     //$request = $request_vars;
     $request['key'] = API_KEY;
@@ -32,6 +52,7 @@ function _iapi($request_vars, $output='json', $dataOnly = false, $multi = false)
     $ch = curl_init(API_URL);
     curl_setopt($ch, CURLOPT_URL, API_URL);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+	curl_setopt($ch, CURLOPT_HTTPHEADER, array('REMOTE_ADDR: '.getip(), 'X_FORWARDED_FOR: '.getip()));
     curl_setopt($ch, CURLOPT_POST, 1);
     curl_setopt($ch, CURLOPT_POSTFIELDS, 'data='.urlencode(json_encode($request)));
 
