@@ -200,7 +200,7 @@ if ($vtoken['data'] != '1') {
                     </form>
                     <div class="footerTxt">View in: Mobile | <a href="/app/?fullapp=true">Full Version</a><br>
                         <a href="#terms">Terms of Use</a> | <a href="#privacy">Privacy Policy</a><br>
-                        &copy; 2012 ShiftPlanning</div>
+                        &copy; <?php date('Y');?> ShiftPlanning</div>
                 </td>
             </tr>
         </table>
