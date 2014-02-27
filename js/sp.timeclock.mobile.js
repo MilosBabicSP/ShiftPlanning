@@ -94,10 +94,7 @@ ShiftPlanningTimeClock.prototype.overviewEvents = function(){
     $('#tc_ov_ci').bind(clickEvent, function(e){
         e.preventDefault();
 		e.stopPropagation();
-        var data = {};
-        var done = false;
         var errorCallback = function() {
-            done = true;
             if( typeof sp.gpsCoords.coords == "undefined" ){
                 sp.showError(_s('Coordinates not available'));
                 setTimeout(sp.timeClock.apiCallIn, 1000);
@@ -148,10 +145,9 @@ ShiftPlanningTimeClock.prototype.overviewEvents = function(){
     
     $('#tc_ov_co').bind(clickEvent, function(e){
         e.preventDefault();
-        var data = {}
         var notes = $.trim($('#tc_ov_no').val());
         if ($('#tc_ov_ss').val() != 0){
-            data.schedule = $('#tc_ov_ss').val();
+            sp.timeClock.dataOut.schedule = $('#tc_ov_ss').val();
         }
         var done = false;
         var errorCallback = function() {
@@ -180,7 +176,7 @@ ShiftPlanningTimeClock.prototype.overviewEvents = function(){
 		}
 
         if (notes.length != 0 ){
-            data.notes = $('#tc_ov_no').val();
+            sp.timeClock.dataOut.notes = $('#tc_ov_no').val();
         }
     
         if(sp.staff.admin.business.pref_tc_require_notes && notes.length == 0){

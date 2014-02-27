@@ -140,7 +140,7 @@ if ($vtoken['data'] != '1') {
 							}
 							sp.staff.admin.business = <?= _iapi(array('module' => 'admin.business', 'method' => 'GET'), 'json', true) ?>;
                             var lang = sp.staff.admin.info.language;
-                            if (lang == null || lang == ''){
+                            if (lang == null || lang == '' || lang == 0){
                                 lang = sp.staff.admin.business.language;
                             }
                             if (lang != '<?php echo Functions::getInstance()->getCurrentLang(); ?>'){
