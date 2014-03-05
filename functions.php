@@ -42,6 +42,12 @@ class Functions{
 	$this->timezone();
 	return '<time>' . date($this->settings['date']) . '</time><span>' .  date(($this->settings['24hr'] == 1) ? "H:i" : "g:ia") . '</span>';
     }
+	
+	function getCurrentDateTime($dateFormat, $timeZone, $is24h = false){
+		date_default_timezone_set($timeZone);
+		return '<time>' . date($dateFormat) . '</time><span>' .  date(($is24h == true) ? "H:i" : "g:ia") . '</span>';
+	}
+
     
     
     
