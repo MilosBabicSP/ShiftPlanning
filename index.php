@@ -7,6 +7,12 @@ if (isset($_GET['timezone'])) {
     echo Functions::getInstance()->getCurrentTime();
     die();
 }
+
+if( isset($_GET['getDateTime']) ){
+	$is24 = ( isset( $_GET['24hr'] ) ? true : false );
+	echo Functions::getInstance()->getCurrentDateTime($_GET['dtFormat'], $_GET['tzName'], $is24);
+	die();
+}
  
 if (isset($_GET['logout'])) {
     _iapi(array('module' => 'staff.logout', 'method' => 'GET'), 'json', true);
