@@ -470,6 +470,7 @@ ShiftPlanningTimeClock.prototype.apiCallOut = function() {
 ShiftPlanningTimeClock.prototype.overviewSubEvents = function(){
     $('#tc_ov_cf').hide();
     $('#tc_ov_cb span.fr a').hide();
+	$('#tc_ov_way_msg').hide();
     $('#tc_ov_ss').html(spView.optionSchedules(sp.staff.admin.info.id));
 	$('#tc_ov_remote').html(spView.locationFields(2));
     $('#tc_ov_cb .icoClock').html('<time style="height:35px;display:block;">' + sp.raw.config.today.formatted + '</time>');
@@ -536,7 +537,6 @@ ShiftPlanningTimeClock.prototype.overviewSubEvents = function(){
                         $('#tc_ov_way_msg').show();
                         $('#tc_ov_ci').show();
                     } else {
-                        $('#tc_ov_way_msg').hide();
                         $('#tc_ov_ci').show();
                         
                         if(sp.staff.admin.business.pref_pre_time_clock == '1'){
