@@ -140,6 +140,9 @@ ShiftPlanningTimeClock.prototype.overviewEvents = function(){
             $('#tc_ov_way_msg').show();
             $('#tc_ov_way').hide();
             $('#tc_ov_ci').show();
+        }, function error(err){
+            /** Employee is already on the way */
+            $('.subNavigation .timeClock a[subpage=overview]').trigger(clickEvent);
         });
     });
     
@@ -268,8 +271,10 @@ ShiftPlanningTimeClock.prototype.overviewEvents = function(){
 				sp.showSuccess('Shift continued.');
 				$('.subNavigation .timeClock a[subpage=overview]').trigger(clickEvent);
 			}
-		});
-		
+		}, function error(err){
+            /** Employee is already Back on the Shift */
+            $('.subNavigation .timeClock a[subpage=overview]').trigger(clickEvent);
+        });
 	});
 	
 	$('#tc_ov_cba').bind(clickEvent, function(e){
@@ -278,10 +283,12 @@ ShiftPlanningTimeClock.prototype.overviewEvents = function(){
 		sp.api('timeclock.event','CREATE',{timeclock:timeclock,type:'breakin'}, function(response){
 			if(response.status == '1'){
 				sp.showSuccess('Break started.');
-				$('.subNavigation .timeClock a[subpage=overview]').trigger(clickEvent);
 			}
-		});
-		
+			$('.subNavigation .timeClock a[subpage=overview]').trigger(clickEvent);
+		}, function error(err){
+			/** Employee is already on a break */
+			$('.subNavigation .timeClock a[subpage=overview]').trigger(clickEvent);
+		});	
 	});
 }
 
@@ -433,6 +440,9 @@ ShiftPlanningTimeClock.prototype.apiCallIn = function() {
 			$("#tc_ov_ss").val( response.data.schedule.id );
 		}
 		sp.timeClock.isClockedIn = true;
+	}, function error(err){
+		/** Employee is already ClockedIn */
+		$('.subNavigation .timeClock a[subpage=overview]').trigger(clickEvent);
 	});
 };
 ShiftPlanningTimeClock.prototype.apiCallOut = function() {
@@ -451,12 +461,16 @@ ShiftPlanningTimeClock.prototype.apiCallOut = function() {
 			$('#tc_ov_ci').hide();
 		}
 		sp.timeClock.isClockedIn = false;
+	}, function error(err){
+		/** Employee is already ClockedOut */
+		$('.subNavigation .timeClock a[subpage=overview]').trigger(clickEvent);
 	});
 };
 
 ShiftPlanningTimeClock.prototype.overviewSubEvents = function(){
     $('#tc_ov_cf').hide();
     $('#tc_ov_cb span.fr a').hide();
+	$('#tc_ov_way_msg').hide();
     $('#tc_ov_ss').html(spView.optionSchedules(sp.staff.admin.info.id));
 	$('#tc_ov_remote').html(spView.locationFields(2));
     $('#tc_ov_cb .icoClock').html('<time style="height:35px;display:block;">' + sp.raw.config.today.formatted + '</time>');
