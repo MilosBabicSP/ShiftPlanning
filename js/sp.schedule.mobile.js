@@ -33,7 +33,7 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
     $('#sc_prev_month').bind(clickEvent, function(e){
         e.preventDefault();
         $('#sc_mo_di').html(Date.parse($.trim($('#sc_mo_di').html())).addMonths(-1).toString('MMMM yyyy'));
-        $('#sc_to_sub').html(Date.parse($.trim($('#sc_to_sub').html())).addMonths(-1).toString(cal.dformat));
+        $('#sc_to_sub').html(Date.parse($.trim($('#sc_to_sub').html())).addMonths(-1).moveToLastDayOfMonth().toString(cal.dformat));
         $('#sc_days_m').hide();
         self.displayShifts();
     });
@@ -41,7 +41,7 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
     $('#sc_next_month').bind(clickEvent, function(e){
         e.preventDefault();
         $('#sc_mo_di').html(Date.parse($.trim($('#sc_mo_di').html())).addMonths(1).toString('MMMM yyyy'));
-        $('#sc_to_sub').html(Date.parse($.trim($('#sc_to_sub').html())).addMonths(1).toString(cal.dformat));
+        $('#sc_to_sub').html(Date.parse($.trim($('#sc_to_sub').html())).addMonths(1).moveToLastDayOfMonth().toString(cal.dformat));
         $('#sc_days_m').hide();
         self.displayShifts();
     });   
