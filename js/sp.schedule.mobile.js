@@ -659,7 +659,7 @@ ShiftPlanningSchedule.prototype.daySubEvents = function(){
 ShiftPlanningSchedule.prototype.monthSubEvents = function(){
     this.page = 'month';
     $('#sc_to_sub').prev().html('Selected Day');
-    $('#sc_mo_di').html(Date.parseExact($.trim($('#sc_to_sub').html()), cal.dformat).add(1).day().toString('MMMM yyyy'));
+    $('#sc_mo_di').html(Date.parseExact($.trim($('#sc_to_sub').html()), cal.dformat).add(0).day().toString('MMMM yyyy'));
     this.displayShifts();
 }
 
