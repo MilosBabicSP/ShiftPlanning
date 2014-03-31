@@ -17,6 +17,7 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
         }
         self.displayShifts();
     });
+	
 
     $('#sc_prev_day').bind(clickEvent, function(e){
         e.preventDefault();
