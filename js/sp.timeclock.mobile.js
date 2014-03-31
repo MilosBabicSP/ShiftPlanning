@@ -975,78 +975,55 @@ ShiftPlanningTimeClock.prototype.loadPage = function(){
 
 function checkTimes( data ){
 	var comparedDates = "";
-    	var start_date_temp;
-    	var end_date_temp;
-		var start_time = "";
-		var end_time = "";
-		var splitedStart = "";
-		var splitedEnd = "";
-	
-	if( typeof data.start_date !== "undefined" ){
-    	start_date_temp = data.start_date;
-    	end_date_temp = data.end_date;
-		splitedStart = "";
-		splitedEnd = "";
-		
-		if ( cal.dpformat === 'mm/dd/yy' ){
-			splitedStart = start_date_temp.split('/');
-			splitedEnd = end_date_temp.split('/');
-			
-            start_date_temp = splitedStart[2] + '/' + splitedStart[0] + '/' + splitedStart[1];
-            end_date_temp = splitedEnd[2] + '/' + splitedEnd[0] + '/' + splitedEnd[1];
-        }
-		if ( cal.dpformat === 'dd-mm-yy' ){
-			splitedStart = start_date_temp.split('-');
-			splitedEnd = end_date_temp.split('-');
-			
-            start_date_temp = splitedStart[2] + '/' + splitedStart[1] + '/' + splitedStart[0];
-            end_date_temp = splitedEnd[2] + '/' + splitedEnd[1] + '/' + splitedEnd[0];
-        }
-		comparedDates = dates.compare( new Date( start_date_temp + " " + data.start_time ), new Date( end_date_temp + " " + data.end_time ) );
-	}else{
-		if( typeof data.onlyin !== "undefined" ){
-			return true;
-		}else{
-			start_time = data.datein.split(" ")[1];
-			end_time = data.dateout.split(" ")[1];
-			
-			if( data.datein.split(" ").length > 2 ){
-				start_time += ' ' + data.datein.split(" ")[2];
-			}
-			if( data.dateout.split(" ").length > 2 ){
-				end_time += ' ' + data.dateout.split(" ")[2];
-			}
-			
-			if ( cal.dpformat === 'mm/dd/yy' ){
-				start_date_temp = data.datein.split(" ")[0];
-				end_date_temp = data.dateout.split(" ")[0];
-				splitedStart = start_date_temp.split('/');
-				splitedEnd = end_date_temp.split('/');
+    var start_date_temp = "";
+    var end_date_temp = "";
+    var timeFormat = "hh:mm";
+    var timeFormatS = "h:mm";
+    var fullDFormat = "";
+    var fullDFormatS = "";
 
-				start_date_temp = splitedStart[2] + '/' + splitedStart[0] + '/' + splitedStart[1] + ' ' + start_time;
-				end_date_temp = splitedEnd[2] + '/' + splitedEnd[0] + '/' + splitedEnd[1] + ' ' + end_time;
-			}else if ( cal.dpformat === 'dd-mm-yy' ){
-				start_date_temp = data.datein.split(" ")[0];
-				end_date_temp = data.dateout.split(" ")[0];
-				
-				splitedStart = start_date_temp.split('-');
-				splitedEnd = end_date_temp.split('-');
+    if (typeof data.start_date != "undefined") {
+        start_date_temp = data.start_date + ' ' + data.start_time;
+        end_date_temp = data.end_date + ' ' + data.end_time;
+    } else {
+        if (typeof data.onlyin != "undefined") {
+            return true;
+        } else {
+            start_date_temp = data.datein;
+            end_date_temp = data.dateout;
+        }
+    }
 
-				start_date_temp = splitedStart[2] + '/' + splitedStart[1] + '/' + splitedStart[0] + ' ' + start_time;
-				end_date_temp = splitedEnd[2] + '/' + splitedEnd[1] + '/' + splitedEnd[0] + ' ' + end_time;
-			}else{
-				start_date_temp = data.datein;
-				end_date_temp = data.dateout;
-			}
-			comparedDates = dates.compare( new Date( start_date_temp ), new Date( end_date_temp ) );
-		}
-	}
-	
-	if( comparedDates < 0 ){
-		return true;
-	}else{
-		return false;
-	}
+    if( cal.tmode == "12" ){
+        timeFormat = "hh:mm tt";
+        timeFormatS = "h:mm tt";
+    }
+
+    fullDFormat = cal.dformat + ' ' + timeFormat;
+    fullDFormatS = cal.dformat + ' ' + timeFormatS;
+
+    var tmp_start_date_temp = new Date( Date.parseExact( start_date_temp, fullDFormat ) );
+    var tmp_end_date_temp = new Date( Date.parseExact( end_date_temp, fullDFormat ) );
+
+    if( tmp_start_date_temp.toString().indexOf(' 1970 ') >= 0 ){
+        start_date_temp = new Date( Date.parseExact( start_date_temp, fullDFormatS ) );
+    }else{
+        start_date_temp = tmp_start_date_temp;
+    }
+
+    if( tmp_end_date_temp.toString().indexOf(' 1970 ') >= 0 ){
+        end_date_temp = new Date( Date.parseExact( end_date_temp, fullDFormatS ) );
+    }else{
+        end_date_temp = tmp_end_date_temp;
+    }
+
+    comparedDates = dates.compare(new Date(start_date_temp), new Date(end_date_temp));
+
+    if (comparedDates < 0) {
+        return true;
+    } else {
+        return false;
+    }
 }
 var dates = {
     convert:function(d) {
