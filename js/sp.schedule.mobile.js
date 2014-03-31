@@ -948,6 +948,7 @@ ShiftPlanningSchedule.prototype.getScheduleName = function(schId){
     return schName;
 }
 
+
 ShiftPlanningSchedule.prototype.displayShifts = function(sDay){
     var self = this;
     if (this.page == 'month'){
