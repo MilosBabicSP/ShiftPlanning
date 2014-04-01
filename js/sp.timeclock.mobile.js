@@ -977,8 +977,8 @@ function checkTimes( data ){
 	var comparedDates = "";
     var start_date_temp = "";
     var end_date_temp = "";
-    var timeFormat = "hh:mm";
-    var timeFormatS = "h:mm";
+    var timeFormat = "HH:mm";
+    var timeFormatS = "H:mm";
     var fullDFormat = "";
     var fullDFormatS = "";
 
