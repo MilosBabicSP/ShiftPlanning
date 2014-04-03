@@ -763,6 +763,20 @@ ShiftPlanningSchedule.prototype.addShiftSubEvents = function(){
     var emp = {};
     if (this.edit != false){
         emp = this.shift;
+		if( emp.start_time.time.toLowerCase() == "midnight" ){
+			if( cal.tmode == 12 ){
+				emp.start_time.time = "12:00am";
+			}else{
+				emp.start_time.time = "00:00";
+			}
+		}
+		if( emp.end_time.time.toLowerCase() == "midnight" ){
+			if( cal.tmode == 12 ){
+				emp.end_time.time = "12:00am";
+			}else{
+				emp.end_time.time = "00:00";
+			}
+		}
         emp.start_date.formatted = Date.parse(emp.start_date.formatted + ' ' + emp.start_time.time).getTime()/1000;
         emp.end_date.formatted = Date.parse(emp.end_date.formatted + ' ' + emp.end_time.time).getTime()/1000;
         if (emp.schedule != null) $('#sc_add_sc').val(emp.schedule);
