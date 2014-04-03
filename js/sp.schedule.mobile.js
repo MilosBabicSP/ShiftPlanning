@@ -763,14 +763,14 @@ ShiftPlanningSchedule.prototype.addShiftSubEvents = function(){
     var emp = {};
     if (this.edit != false){
         emp = this.shift;
-		if( emp.start_time.time.toLowerCase() == "midnight" ){
+		if( emp.start_time.time.toLowerCase() == _s("midnight") ){
 			if( cal.tmode == 12 ){
 				emp.start_time.time = "12:00am";
 			}else{
 				emp.start_time.time = "00:00";
 			}
 		}
-		if( emp.end_time.time.toLowerCase() == "midnight" ){
+		if( emp.end_time.time.toLowerCase() == _s("midnight") ){
 			if( cal.tmode == 12 ){
 				emp.end_time.time = "12:00am";
 			}else{
