@@ -17,6 +17,7 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
         }
         self.displayShifts();
     });
+	
 
     $('#sc_prev_day').bind(clickEvent, function(e){
         e.preventDefault();
@@ -33,6 +34,7 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
     $('#sc_prev_month').bind(clickEvent, function(e){
         e.preventDefault();
         $('#sc_mo_di').html(Date.parse($.trim($('#sc_mo_di').html())).addMonths(-1).toString('MMMM yyyy'));
+        $('#sc_to_sub').html(Date.parse($.trim($('#sc_to_sub').html())).addMonths(-1).moveToLastDayOfMonth().toString(cal.dformat));
         $('#sc_days_m').hide();
         self.displayShifts();
     });
@@ -40,6 +42,7 @@ ShiftPlanningSchedule.prototype.allPageEvents = function(){
     $('#sc_next_month').bind(clickEvent, function(e){
         e.preventDefault();
         $('#sc_mo_di').html(Date.parse($.trim($('#sc_mo_di').html())).addMonths(1).toString('MMMM yyyy'));
+        $('#sc_to_sub').html(Date.parse($.trim($('#sc_to_sub').html())).addMonths(1).moveToLastDayOfMonth().toString(cal.dformat));
         $('#sc_days_m').hide();
         self.displayShifts();
     });   
@@ -656,7 +659,7 @@ ShiftPlanningSchedule.prototype.daySubEvents = function(){
 ShiftPlanningSchedule.prototype.monthSubEvents = function(){
     this.page = 'month';
     $('#sc_to_sub').prev().html('Selected Day');
-    $('#sc_mo_di').html(Date.parseExact($.trim($('#sc_to_sub').html()), cal.dformat).add(1).day().toString('MMMM yyyy'));
+    $('#sc_mo_di').html(Date.parseExact($.trim($('#sc_to_sub').html()), cal.dformat).add(0).day().toString('MMMM yyyy'));
     this.displayShifts();
 }
 

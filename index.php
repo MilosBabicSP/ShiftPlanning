@@ -7,6 +7,12 @@ if (isset($_GET['timezone'])) {
     echo Functions::getInstance()->getCurrentTime();
     die();
 }
+
+if( isset($_GET['getDateTime']) ){
+	$is24 = ( isset( $_GET['24hr'] ) ? true : false );
+	echo Functions::getInstance()->getCurrentDateTime($_GET['dtFormat'], $_GET['tzName'], $is24);
+	die();
+}
  
 if (isset($_GET['logout'])) {
     _iapi(array('module' => 'staff.logout', 'method' => 'GET'), 'json', true);
@@ -140,7 +146,7 @@ if ($vtoken['data'] != '1') {
 							}
 							sp.staff.admin.business = <?= _iapi(array('module' => 'admin.business', 'method' => 'GET'), 'json', true) ?>;
                             var lang = sp.staff.admin.info.language;
-                            if (lang == null || lang == ''){
+                            if (lang == null || lang == '' || lang == 0){
                                 lang = sp.staff.admin.business.language;
                             }
                             if (lang != '<?php echo Functions::getInstance()->getCurrentLang(); ?>'){
@@ -200,7 +206,7 @@ if ($vtoken['data'] != '1') {
                     </form>
                     <div class="footerTxt">View in: Mobile | <a href="/app/?fullapp=true">Full Version</a><br>
                         <a href="#terms">Terms of Use</a> | <a href="#privacy">Privacy Policy</a><br>
-                        &copy; 2012 ShiftPlanning</div>
+                        &copy; <?php echo date('Y');?> ShiftPlanning</div>
                 </td>
             </tr>
         </table>
@@ -239,6 +245,19 @@ if ($vtoken['data'] != '1') {
                     <?php Functions::getInstance()->loadFile('menus/reports') ?>
                     <?php Functions::getInstance()->loadFile('menus/training') ?>
                     <?php Functions::getInstance()->loadFile('menus/settings') ?>
+                </div>
+                <div id="gpsMap">
+                    <div class="mapImage"></div>
+                    <span class="question">Is this your current location?</span>
+                    <div class="question">
+                        <a href="#" id="gpsRetry" class="grey">Retry</a>
+                        <a href="#" id="gpsProceed" class="green">OK</a>
+                    </div>
+                    <div class="gpsNote">
+                        In order to get the most accurate data, please go in to your Location settings and enable <b>only GPS Satellites</b>.
+                        <br/>This will take longer to get your current position, but the result will be more accurate.<br/>
+                        Warning: Your location data can vary about 0.06-0.12 miles ( 100-200m ) or more, depending on your location.
+                    </div>
                 </div>
                 <div id="pages">
                     <div class="dashboard" id="dashboard">
