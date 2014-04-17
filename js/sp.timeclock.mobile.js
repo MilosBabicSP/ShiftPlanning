@@ -1002,22 +1002,22 @@ function checkTimes( data ){
     fullDFormat = cal.dformat + ' ' + timeFormat;
     fullDFormatS = cal.dformat + ' ' + timeFormatS;
 
-    var tmp_start_date_temp = Date.parseExact( start_date_temp, fullDFormat );
-    var tmp_end_date_temp = Date.parseExact( end_date_temp, fullDFormat );
+    var tmp_start_date_temp = new Date( Date.parseExact( start_date_temp, fullDFormat ) );
+    var tmp_end_date_temp = new Date( Date.parseExact( end_date_temp, fullDFormat ) );
 
     if( tmp_start_date_temp.toString().indexOf(' 1970 ') >= 0 ){
-        start_date_temp = Date.parseExact( start_date_temp, fullDFormatS );
+        start_date_temp = new Date( Date.parseExact( start_date_temp, fullDFormatS ) );
     }else{
         start_date_temp = tmp_start_date_temp;
     }
 
     if( tmp_end_date_temp.toString().indexOf(' 1970 ') >= 0 ){
-        end_date_temp = Date.parseExact( end_date_temp, fullDFormatS );
+        end_date_temp = new Date( Date.parseExact( end_date_temp, fullDFormatS ) );
     }else{
         end_date_temp = tmp_end_date_temp;
     }
 
-    comparedDates = dates.compare(start_date_temp, end_date_temp);
+    comparedDates = dates.compare(new Date(start_date_temp), new Date(end_date_temp));
 
     if (comparedDates < 0) {
         return true;
