@@ -11,7 +11,7 @@ ShiftPlanningReports.prototype.initialize = function(){
 
 ShiftPlanningReports.prototype.allReportsEvents = function(){
     var self = this;
-	
+
     $('#reports .advancedButton').bind(clickEvent, function(e){
         e.preventDefault();
         if ($(this).hasClass('advancedOpened')){
@@ -24,7 +24,7 @@ ShiftPlanningReports.prototype.allReportsEvents = function(){
             $(this).parents('.main').find('li.advancedMenu').toggleClass('hidden');
         }
     });
-    
+
     $('#reports .timeSelector').bind('change', function(ep){
         var val = $(this).val();
         if (val != '-1' && val != '99'){
@@ -36,22 +36,22 @@ ShiftPlanningReports.prototype.allReportsEvents = function(){
             self.displayReports();
         }
     });
-    
+
     $('#reports .checkbox').bind(clickEvent, function(){
         $(this).toggleClass('check');
         self.displayReports();
     });
-    
+
     $('#reports .employeeSelector, #reports .advancedMenu select').bind('change', function(){
         self.displayReports();
     });
-    
+
     $('#reports .listReports').delegate('a.fr', clickEvent, function(e){
         e.preventDefault();
         self.cId = $(this).attr('rel');
         sp.loadSubPage('', 'reports', 'singleViewDisplay');
     });
-    
+
     $('#re_si_inf').bind(clickEvent, function(e){
         e.preventDefault();
         $('#wrapper > .subNavigation').show();
@@ -81,7 +81,7 @@ ShiftPlanningReports.prototype.allReportsSubEvents = function(){
             self.displayReports();
         }
     });
-    
+
     $('#reports .timeToSelector').scroller('destroy');
     $('#reports .timeToSelector').val(e.toString(cal.dformat));
     $('#reports .timeToSelector').scroller({
@@ -99,13 +99,13 @@ ShiftPlanningReports.prototype.displayReports = function(){
     if (this.page == 'singleViewDisplay'){
         return false;
     }
-    
+
     sp.globalLoader();
-    
+
     var self = this;
     var page = this.page;
     var origin = this.page;
-    
+
     $('#reports .' + origin + ' .totals').hide();
     $('#reports .' + origin + ' .noResults').hide();
     $('#reports .' + origin + ' .notif').hide();
@@ -113,11 +113,11 @@ ShiftPlanningReports.prototype.displayReports = function(){
     var data = {
         type : page.toLowerCase()
     }
-    
+
     if (page == 'confirmedTimeSheets'){
-        data.type = 'timesheets'; 
+        data.type = 'timesheets';
     }
-    
+
     data.start_date = $('#reports .' + origin +' .timeFromSelector').val();
     data.end_date = $('#reports .' + origin +' .timeToSelector').val();
     $('#reports .' + origin +' time.from').html($('#reports .' + origin +' .timeFromSelector').val());
@@ -125,19 +125,19 @@ ShiftPlanningReports.prototype.displayReports = function(){
     data.schedule = $('#reports .' + origin + ' .positionsSelector').val();
     data.employee = $('#reports .' + origin + ' .employeeSelector').val();
     data.skill = $('#reports .' + origin + ' .skillsSelector').val();
-    
+
     if ($('#reports .' + origin + ' .re_deductBreaks').hasClass('check')){
         data.deduct_breaks = 1;
     } else {
         data.deduct_breaks = 0;
     }
-    
+
     if ($('#reports .' + origin + ' .re_groupResults').hasClass('check')){
         data.group_results = 1;
     } else {
         data.group_results = 0;
     }
-    
+
     if ($('#reports .' + origin + ' .re_showEmpty').hasClass('check')){
         data.show_empty = 1;
     } else {
@@ -153,14 +153,16 @@ ShiftPlanningReports.prototype.displayReports = function(){
         var total = {colspan : 5, regular : 0, special : 0, overtime : 0, total : 0, cost : 0}
         var d = []
         $.each(response.data, function(i, item){
-            total.regular = total.regular + Number(item.hours.regular);
-            total.special = total.special + Number(item.hours.special);
-            total.overtime = total.overtime + Number(item.hours.overtime);
-            total.total = total.total + Number(item.hours.total);
-            total.cost = total.cost + Number(item.hours.cost);
-            d[i] = item;
-            d[i].avatar = (typeof sp.staff.data.employees[item.userid] != 'undefined' && typeof sp.staff.data.employees[item.userid].avatar != 'undefined' && sp.staff.data.employees[item.userid].avatar != '' && typeof sp.staff.data.employees[item.userid].avatar.small != 'undefined') ? sp.staff.data.employees[item.userid].avatar.small : 'images/no-avatar.png',
-            d[i].rId = i;
+		    if( typeof item.hours != "undefined" ){
+				total.regular = total.regular + Number(item.hours.regular);
+				total.special = total.special + Number(item.hours.special);
+				total.overtime = total.overtime + Number(item.hours.overtime);
+				total.total = total.total + Number(item.hours.total);
+				total.cost = total.cost + Number(item.hours.cost);
+				d[i] = item;
+				d[i].avatar = (typeof sp.staff.data.employees[item.userid] != 'undefined' && typeof sp.staff.data.employees[item.userid].avatar != 'undefined' && sp.staff.data.employees[item.userid].avatar != '' && typeof sp.staff.data.employees[item.userid].avatar.small != 'undefined') ? sp.staff.data.employees[item.userid].avatar.small : 'images/no-avatar.png',
+				d[i].rId = i;
+			}
         });
         self.reports = d;
         $('#reports .' + origin + ' .listReports').html($.tmpl($('#te_re_info'), d));
@@ -176,7 +178,7 @@ ShiftPlanningReports.prototype.singleViewDisplay = function(id){
     $('#wrapper > .subNavigation').hide();
     try{
         var item = this.reports[id];
-        
+
         $('#re_di_item').html($.tmpl($('#te_re_' + this.page + '_' + (($('#reports .' + this.page + ' .re_groupResults').hasClass('check')) ? '1' : '0')), item));
         spView.fixCurrency(sp.staff.admin.settings.currency);
     } catch( err ){
