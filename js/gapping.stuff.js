@@ -422,7 +422,7 @@ function getCurrentPosition( hndSucc, hndErr ){
 
 function appReady() {
     console.log("dev is ready");
-
+    console.log("UserAgent => isAndroid => " + isAndroid );
     var samlDomainName = window.localStorage.getItem('shiftplanning_domain_name');
     $("#samlulr").val( samlDomainName );
 
