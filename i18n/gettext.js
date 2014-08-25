@@ -294,7 +294,6 @@ Gettext.prototype.try_load_lang = function() {
                     throw new Error("Error: Gettext 'try_load_lang_po' failed. Unable to exec xmlhttprequest for link ["+link.href+"]");
                 }
             } else {
-                // TODO: implement the other types (.mo)
                 throw new Error("TODO: link type ["+link.type+"] found, and support is planned, but not implemented at this time.");
             }
         }
@@ -578,7 +577,7 @@ Gettext.prototype.parse_po = function(data) {
         rv[""] = {};
     }
 
-    // TODO: XXX: if there are errors parsing, what do we want to do?
+    // XXX: if there are errors parsing, what do we want to do?
     // GNU Gettext silently ignores errors. So will we.
     // alert( "Errors parsing po file:\n" + errors.join("\n") );
 
@@ -1195,7 +1194,7 @@ Loaded locale data is currently cached class-wide. This means that if two script
 
 =back
 
-=head1 BUGS / TODO
+=head1 BUGS
 
 =over
 

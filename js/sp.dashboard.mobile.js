@@ -1,330 +1,317 @@
-ShiftPlanningDashboard.prototype.initialize = function(){
-    var self = this;
-    $(document).ready(function(){
-        self.dashboardEvents();
-	self.wallEvents();
-	self.inboxEvents();
-	self.settingsEvents();
-	self.upcomingShiftsEvents();
-	self.whosonnowEvents();
-	self.filesEvents();
-    self.fixes();
-    });
-}
-
-ShiftPlanningDashboard.prototype.loadSubPageEvents = function(subpage){
-    switch(subpage){
-	case 'wall':
-	    this.wallSubEvents();
-	    break;
-	case 'upcomingShifts':
-	    this.upcomingShiftsSubEvents();
-	    break;
-	case 'files':
-            this.filesSubEvents();
-            break;
-	case 'inbox':
-	    this.inboxSubEvents();
-	    break;
-	case 'settings':
-	    this.settingsSubEvents();
-	    break;
-	case 'whosonnow':
-	    this.whosonnowSubEvents();
-	    break;
-	case 'dashboard':
-            this.dashboardSubEvents();
-            break;
-	case 'logout':
-	    sp.staff.logout();
-	    break;
-	case 'pingUser':
-	    this.pingUser();
-	    break;
-    }
-}
-
-ShiftPlanningDashboard.prototype.dashboardEvents = function(){
-    $('#da_widgets').delegate('.timeClock a',clickEvent, function(e){
-        e.preventDefault();
-        sp.loadSubPage('', 'timeClock', 'overview');
-    });
-    
-    $('#da_widgets').delegate('.tradePage',clickEvent, function(e){
-        e.preventDefault();
-        sp.loadSubPage('', 'requests', 'available');
-    });
-    
-    
-    $('#da_widgets').delegate('ul.shifts a', clickEvent, function(e){
-	e.preventDefault();
-	$(this).addClass('loading');
-	spModel.schedule.get('shift', {
-	    id : $(this).attr('rel'), 
-	    detailed : 1
-	}, function(response){
-	    sp.schedule.fromDashboard = true;
-	    sp.schedule.shift = response.data;
-	    sp.loadSubPage('', 'schedule', 'shiftDisplay');
+ShiftPlanningDashboard.prototype.initialize = function() {
+	var self = this;
+	$(document).ready(function() {
+		self.dashboardEvents();
+		self.wallEvents();
+		self.inboxEvents();
+		self.settingsEvents();
+		self.upcomingShiftsEvents();
+		self.whosonnowEvents();
+		self.filesEvents();
+		self.fixes();
 	});
-    });
-    
-    $('#da_widgets').delegate('.schedule a',clickEvent, function(e){
-        e.preventDefault();
-        $('#menu_schedule a').trigger(clickEvent);
-    });
-    
-    $('#da_widgets').delegate('.user a',clickEvent, function(e){
-        e.preventDefault(); 
-        $('#menu_settings a').trigger(clickEvent);
-    });
 }
 
-ShiftPlanningDashboard.prototype.wallEvents = function(){
-    var self = this;
-    $('#da_wa_nm_b').bind(clickEvent, function(e){
-	e.preventDefault();
-	$('#da_wa_nm_f').toggleClass('hidden');
-	$('#da_wa_nm_ti').val('');
-	$('#da_wa_nm_me').val('');
-    });
-    
-    $('#da_wa_nm_st').bind(clickEvent, function(e){
-	e.preventDefault();
-	$(this).toggleClass('check');
-    });
-    
-    $('#da_wa_nm_ca').bind(clickEvent, function(e){
-	e.preventDefault();
-	$('#da_wa_nm_b').trigger(clickEvent);
-    });
-    
-    $('#da_wa_nm_sa').bind(clickEvent, function(e){
-	e.preventDefault();
-	var obj = $(this);
-	obj.addClass('loading');
-	var data = {};
-	if (sp.isL($('#da_wa_nm_ti').val())){
-	    data.title = $.trim($('#da_wa_nm_ti').val());
-	} else {
-	    data.title = '';
+ShiftPlanningDashboard.prototype.loadSubPageEvents = function(subpage) {
+	switch (subpage) {
+		case 'wall':
+			this.wallSubEvents();
+			break;
+		case 'upcomingShifts':
+			this.upcomingShiftsSubEvents();
+			break;
+		case 'files':
+			this.filesSubEvents();
+			break;
+		case 'inbox':
+			this.inboxSubEvents();
+			break;
+		case 'settings':
+			this.settingsSubEvents();
+			break;
+		case 'whosonnow':
+			this.whosonnowSubEvents();
+			break;
+		case 'dashboard':
+			this.dashboardSubEvents();
+			break;
+		case 'logout':
+			sp.staff.logout();
+			break;
+		case 'pingUser':
+			this.pingUser();
+			break;
 	}
-	
-	if (!sp.isL($('#da_wa_nm_me').val())){
-	    sp.showError(_s('Message must be entered'));
-	    return false;
-	}
-	data.post = $.trim($('#da_wa_nm_me').val());
-	if(data.post.length > 200){
-		sp.showError(_s('Message must be less than 200 characters.'));
-		obj.removeClass('loading');
-		return false;
-	}
-	spModel.messaging.create('wall', data, function(response){
-	    obj.removeClass('loading');
-	    $('#da_wa_nm_f').toggleClass('hidden');
-	    $('#da_wa_nm_ti').val('');
-	    $('#da_wa_nm_me').val('');
-	    self.wallSubEvents();
-	}, function(){
-	    obj.removeClass('loading');
+}
+
+ShiftPlanningDashboard.prototype.dashboardEvents = function() {
+	$('#da_widgets').delegate('.timeClock a', clickEvent, function(e) {
+		e.preventDefault();
+		//sp.hash('timeClock');
+		sp.loadSubPage('', 'timeClock', 'overview');
 	});
-    })
-    
-    $('#da_wa_li').delegate('.msgRpl, .cmtCount', clickEvent, function(e){
-	e.preventDefault();
-	var id = $(this).attr('rel');
-	if (!$('#da_wa_msg_' + id).find('.cmts').is(':visible')){
-	    $('#da_wa_msg_' + id).find('.cmtCount').hide();
-	    $('#da_wa_msg_' + id).find('.cmts').show();
-	    if ($(this).hasClass('msgRpl')){
-		$('#da_wa_msg_' + id).find('input[type=text]').focus();
-	    }
-	} else {
-	    if ($(this).hasClass('msgRpl')){
-		$('#da_wa_msg_' + id).find('input[type=text]').val($('#da_wa_msg_' + id).find('input[type=text]').attr('origin'));
-	    }
-	    $('#da_wa_msg_' + id).find('.cmtCount').show();
-	    $('#da_wa_msg_' + id).find('.cmts').hide();
-	}
-    });
-    
-    $('#da_wa_li').delegate('.msgDel', clickEvent, function(e){
-	e.preventDefault();
-	var obj = $(this);
-	var c = confirm(_s('Do you want to delete this message?'));
-	if (c){
-	    var id = $(this).attr('rel');
-	    var del = 'message';
-	    if ($(this).hasClass('comment')){
-		del = 'comment';
-	    }
-	    spModel.messaging.del('wall', {
-		id : id, 
-		'delete' : del
-	    }, function(response){
-		obj.parent().fadeOut('fast', function(){
-		    $(this).remove();
+
+	$('#da_widgets').delegate('.tradePage', clickEvent, function(e) {
+		e.preventDefault();
+		sp.loadSubPage('', 'requests', 'available');
+	});
+
+
+	$('#da_widgets').delegate('ul.shifts a', clickEvent, function(e) {
+		e.preventDefault();
+		$(this).addClass('loading');
+		spModel.schedule.get('shift', {
+			id: $(this).attr('rel'),
+			detailed: 1
+		}, function(response) {
+			sp.schedule.fromDashboard = true;
+			sp.schedule.shift = response.data;
+			sp.loadSubPage('', 'schedule', 'shiftDisplay');
 		});
-	    });
-	}
-    });
-
-    $('#da_wa_li').delegate('input[type=text]', 'focus', function(){
-	$(this).attr('origin',$(this).val());
-	$(this).val('');
-    });
-    
-    $('#da_wa_li').delegate('input[type=submit]', clickEvent, function(){
-	var obj = $(this);
-	var id = $(this).attr('rel');
-	var post = $.trim($('#da_wa_msg_' + id + ' input[type=text]').val());
-	if (post.length == 0 || post == 'Write a comment...'){
-	    sp.showError(_s('Please write your message'));
-	    return false;
-	}
-	if(post.length > 255){
-		sp.showError(_s('Comment must be less than 255 characters.'));
-	    return false;
-	}
-	spModel.messaging.create('wall', {
-	    post: post, 
-	    id: id
-	}, function(response) {
-	    var d = {
-		avatar : sp.staff.admin.info.dfAvatar,
-		id : id,
-		userName : sp.staff.admin.info.name,
-		comment: post,
-		time : 'Now',
-		full : false
-	    }
-	    obj.parent().before($.tmpl($('#te_da_wa_me_co'), d));
-	    $('#da_wa_msg_' + id + ' input[type=text]').val('Write a comment...');
 	});
-        
-	return true;
-    });
-    
-    $('#da_wa_li').delegate('input[type=text]', 'keyup', function(e){
-        var code = (e.keyCode ? e.keyCode : e.which);
-        if (code == 13) {
-            $(this).parent().parent().find('input[type=submit]').trigger(clickEvent);
-        }
-    });
+
+	$('#da_widgets').delegate('.schedule a', clickEvent, function(e) {
+		e.preventDefault();
+		$('#menu_schedule a').trigger(clickEvent);
+	});
+
+	$('#da_widgets').delegate('.user a', clickEvent, function(e) {
+		e.preventDefault();
+		$('#menu_settings a').trigger(clickEvent);
+	});
 }
 
-ShiftPlanningDashboard.prototype.filesEvents = function(){
+ShiftPlanningDashboard.prototype.wallEvents = function() {
+	var self = this;
+	$('#da_wa_nm_b').bind(clickEvent, function(e) {
+		e.preventDefault();
+		$('#da_wa_nm_f').toggleClass('hidden');
+		$('#da_wa_nm_ti').val('');
+		$('#da_wa_nm_me').val('');
+	});
+
+	$('#da_wa_nm_st').bind(clickEvent, function(e) {
+		e.preventDefault();
+		$(this).toggleClass('check');
+	});
+
+	$('#da_wa_nm_ca').bind(clickEvent, function(e) {
+		e.preventDefault();
+		$('#da_wa_nm_b').trigger(clickEvent);
+	});
+
+	$('#da_wa_nm_sa').bind(clickEvent, function(e) {
+		e.preventDefault();
+		var obj = $(this);
+		obj.addClass('loading');
+		var data = {};
+		if (sp.isL($('#da_wa_nm_ti').val())) {
+			data.title = $.trim($('#da_wa_nm_ti').val());
+		} else {
+			data.title = '';
+		}
+
+		if (!sp.isL($('#da_wa_nm_me').val())) {
+			sp.showError(_s('Message must be entered'));
+			return false;
+		}
+		data.post = $.trim($('#da_wa_nm_me').val());
+		spModel.messaging.create('wall', data, function(response) {
+			obj.removeClass('loading');
+			$('#da_wa_nm_f').toggleClass('hidden');
+			$('#da_wa_nm_ti').val('');
+			$('#da_wa_nm_me').val('');
+			self.wallSubEvents();
+		}, function() {
+			obj.removeClass('loading');
+		});
+	});
+
+	$('#da_wa_li').delegate('.msgRpl, .cmtCount', clickEvent, function(e) {
+		e.preventDefault();
+		var id = $(this).attr('rel');
+		if (!$('#da_wa_msg_' + id).find('.cmts').is(':visible')) {
+			$('#da_wa_msg_' + id).find('.cmtCount').hide();
+			$('#da_wa_msg_' + id).find('.cmts').show();
+			if ($(this).hasClass('msgRpl')) {
+				$('#da_wa_msg_' + id).find('input[type=text]').focus();
+			}
+		} else {
+			if ($(this).hasClass('msgRpl')) {
+				$('#da_wa_msg_' + id).find('input[type=text]').val($('#da_wa_msg_' + id).find('input[type=text]').attr('origin'));
+			}
+			$('#da_wa_msg_' + id).find('.cmtCount').show();
+			$('#da_wa_msg_' + id).find('.cmts').hide();
+		}
+	});
+
+	$('#da_wa_li').delegate('.msgDel', clickEvent, function(e) {
+		e.preventDefault();
+		var obj = $(this);
+		msgDeleteData.obj = obj;
+		msgDeleteData.id = $(this).attr('rel');
+		msgDeleteData.del = 'message';
+		if ($(this).hasClass('comment')) {
+			msgDeleteData.del = 'comment';
+		}
+		navigator.notification.confirm(_s('Do you want to delete this message?'), confDeleteMessage, "Delete Message");
+	});
+
+	$('#da_wa_li').delegate('input[type=text]', 'focus', function() {
+		$(this).attr('origin', $(this).val());
+		$(this).val('');
+	});
+
+	$('#da_wa_li').delegate('input[type=submit]', clickEvent, function() {
+		var obj = $(this);
+		var id = $(this).attr('rel');
+		var post = $.trim($('#da_wa_msg_' + id + ' input[type=text]').val());
+		if (post.length == 0 || post == 'Write a comment...') {
+			alert(_s('Please write your message'));
+			return false;
+		}
+		spModel.messaging.create('wall', {
+			post: post,
+			id: id
+		}, function(response) {
+			var d = {
+				avatar: sp.staff.admin.info.dfAvatar,
+				id: id,
+				userName: sp.staff.admin.info.name,
+				comment: post,
+				time: 'Now',
+				full: false
+			}
+			obj.parent().before($.tmpl($('#te_da_wa_me_co'), d));
+			$('#da_wa_msg_' + id + ' input[type=text]').val('Write a comment...');
+		});
+
+		return true;
+	});
+
+	$('#da_wa_li').delegate('input[type=text]', 'keyup', function(e) {
+		var code = (e.keyCode ? e.keyCode : e.which);
+		if (code == 13) {
+			$(this).parent().parent().find('input[type=submit]').trigger(clickEvent);
+		}
+	});
+}
+
+ShiftPlanningDashboard.prototype.filesEvents = function() {
+
+	$('#da_fi_list').delegate('li div', clickEvent, function(e) {
+		e.stopPropagation();
+		var id = $(this).find('a').attr('rel');
+		//downloadFile(id);
+
+		$('#da_fi_form').attr('action', _serverMob + 'api.php?module=admin.file&method=get&content=1&id=' + this.id + '&token=' + user.token);
+		$('#da_fi_form input[name=id]').val(id);
+		$('#da_fi_form input[name=token]').val(user.token);
+
+		//alert( "action: " + $('#da_fi_form').attr('action') + "\n");
+
+		$('#da_fi_form').submit();
+	});
 
 }
 
-ShiftPlanningDashboard.prototype.upcomingShiftsEvents = function(){
-    $('#da_up .shifts a').bind(clickEvent, function(e){
-        e.preventDefault();
-        sp.loadSubPage('', 'schedule', 'today');
-    });
-    
-    $('#da_up_li').delegate('li a', clickEvent, function(e){
-	e.preventDefault();
-	$(this).addClass('loading');
-	spModel.schedule.get('shift', {
-	    id : $(this).attr('rel'), 
-	    detailed : 1
-	}, function(response){
-	    sp.schedule.fromDashboardUpcoming = true;
-	    sp.schedule.shift = response.data;
-	    sp.loadSubPage('', 'schedule', 'shiftDisplay');
+ShiftPlanningDashboard.prototype.upcomingShiftsEvents = function() {
+	$('#da_up .shifts a').bind(clickEvent, function(e) {
+		e.preventDefault();
+		sp.loadSubPage('', 'schedule', 'today');
 	});
-    });
+
+	$('#da_up_li').delegate('li a', clickEvent, function(e) {
+		e.preventDefault();
+		$(this).addClass('loading');
+		spModel.schedule.get('shift', {
+			id: $(this).attr('rel'),
+			detailed: 1
+		}, function(response) {
+			sp.schedule.fromDashboardUpcoming = true;
+			sp.schedule.shift = response.data;
+			sp.loadSubPage('', 'schedule', 'shiftDisplay');
+		});
+	});
 }
 
-ShiftPlanningDashboard.prototype.inboxEvents = function(){
-    var self = this;
-    $('#da_in_me').delegate('.msgHead', clickEvent, function(e){
-	e.preventDefault();
-	var id = $(this).attr('messageId');
-	var obj = $(this);
-	if (obj.hasClass('extended')){
-	    obj.parent().toggleClass('extended');
-	} else {
-	    $(obj).addClass('loading');
-	    spModel.messaging.update('message', {
-		id : id, 
-		read : 1
-	    }, function(response){
-		obj.parent().toggleClass('extended');
-		obj.parent().removeClass('unread');
-		$(obj).removeClass('loading');
-	    });
-	}
-    });
-    
-    $('#da_in_nm_b, #da_in_nm_ca').bind(clickEvent, function(e){
-	e.preventDefault();
-	$('#da_in_nm_f').toggleClass('hidden');
-	$('#da_in_nm_ti').val('');
-	$('#da_in_nm_me').val('');
-	$('#da_in_nm_to').val(0);
-    });
-    
-    $('#da_in_nm_sa').bind(clickEvent, function(e){
-	self.sendMessage();
-    });
-    
-    $('#da_in_me').delegate('a.butRpl', clickEvent, function(e){
-	e.preventDefault();
-	var id = $(this).attr('rel');
-	$('#da_in_msg_' + id).find('.newMsg').show(function(){
-	    var obj = $(this);
-	    obj.find('input[type=text]').val('re: ' + $('#da_in_msg_' + id).find('.msgHead h5').html());
+ShiftPlanningDashboard.prototype.inboxEvents = function() {
+	var self = this;
+	$('#da_in_me').delegate('.msgHead', clickEvent, function(e) {
+		e.preventDefault();
+		var id = $(this).attr('messageId');
+		var obj = $(this);
+		if (obj.hasClass('extended')) {
+			obj.parent().toggleClass('extended');
+		} else {
+			$(obj).addClass('loading');
+			spModel.messaging.update('message', {
+				id: id,
+				read: 1
+			}, function(response) {
+				obj.parent().toggleClass('extended');
+				obj.parent().removeClass('unread');
+				$(obj).removeClass('loading');
+			});
+		}
 	});
-    });
-    
-    $('#da_in_me').delegate('a.butDel', clickEvent, function(e){
-	e.preventDefault();
-	var c = confirm(_s('Are you sure you want to delete this messaage?'));
-	if (!c){
-	    return false;
-	}
-	var id = $(this).attr('rel');
-	spModel.messaging.del('message', {
-	    id : id
-	}, function(response){
-	    $('#da_in_msg_' + id).fadeOut('fast', function(){
-		$(this).remove();
-	    });
+
+	$('#da_in_nm_b, #da_in_nm_ca').bind(clickEvent, function(e) {
+		e.preventDefault();
+		$('#da_in_nm_f').toggleClass('hidden');
+		$('#da_in_nm_ti').val('');
+		$('#da_in_nm_me').val('');
+		$('#da_in_nm_to').val(0);
 	});
-        
-    });
-    
-    $('#da_in_me').delegate('.msgBody .newMsg .title .fr', clickEvent, function(e){
-	e.preventDefault();
-	var obj = $(this).parents('.newMsg');
-	var curr = $(this).find('a');
-	curr.addClass('loading');
-	var data = {
-	    subject : obj.find('input[type=text]').val(),
-	    message : obj.find('textarea').val(),
-	    to : obj.find('input[type=hidden]').val()
-	};
-        
-	spModel.messaging.create('message', data, function(resonse){
-	    self.inboxSubEvents();
-	}, function(){
-	    curr.removeClass('loading');
+
+	$('#da_in_nm_sa').bind(clickEvent, function(e) {
+		self.sendMessage();
 	});
-    });
-    
-    $('#da_in_me').delegate('.msgBody .newMsg .title .fl', clickEvent, function(e){
-	e.preventDefault();
-	var obj = $(this).parents('.newMsg');
-	obj.find('input[type=text]').val('');
-	obj.find('textarea').val('');
-	obj.hide('fast');
-    });
+
+	$('#da_in_me').delegate('a.butRpl', clickEvent, function(e) {
+		e.preventDefault();
+		var id = $(this).attr('rel');
+		$('#da_in_msg_' + id).find('.newMsg').show(function() {
+			var obj = $(this);
+			obj.find('input[type=text]').val('re: ' + $('#da_in_msg_' + id).find('.msgHead h5').html());
+		});
+	});
+
+	$('#da_in_me').delegate('a.butDel', clickEvent, function(e) {
+		e.preventDefault();
+		msgDeleteData.obj = $(this);
+		msgDeleteData.id = $(this).attr('rel');
+		navigator.notification.confirm(_s('Do you want to delete this message?'), confDeleteMessageInbox, "Delete Message");
+	});
+
+	$('#da_in_me').delegate('.msgBody .newMsg .title .fr', clickEvent, function(e) {
+		e.preventDefault();
+		var obj = $(this).parents('.newMsg');
+		var curr = $(this).find('a');
+		curr.addClass('loading');
+		var data = {
+			subject: obj.find('input[type=text]').val(),
+			message: obj.find('textarea').val(),
+			to: obj.find('input[type=hidden]').val()
+		};
+
+		spModel.messaging.create('message', data, function(resonse) {
+			self.inboxSubEvents();
+		}, function() {
+			curr.removeClass('loading');
+		});
+	});
+
+	$('#da_in_me').delegate('.msgBody .newMsg .title .fl', clickEvent, function(e) {
+		e.preventDefault();
+		var obj = $(this).parents('.newMsg');
+		obj.find('input[type=text]').val('');
+		obj.find('textarea').val('');
+		obj.hide('fast');
+	});
 }
 
-ShiftPlanningDashboard.prototype.settingsEvents = function(){
+ShiftPlanningDashboard.prototype.settingsEvents = function() {
 //    var self = this;
 //    $('#dashboard .search.settings.mainSub li a').bind(clickEvent, function(e){
 //	e.preventDefault();
@@ -454,123 +441,123 @@ ShiftPlanningDashboard.prototype.settingsEvents = function(){
 //    })
 }
 
-ShiftPlanningDashboard.prototype.whosonnowEvents = function(){
-    var self=this;
-    
-    $('#da_wo .timeSheet').delegate('a.fr',clickEvent,function(e){
-	e.preventDefault();
-	self.pingID = $(this).attr('userID')
-	var employee=sp.staff.data.employees[self.pingID];
-	if(employee.cell_phone.length==0 && employee.email==null || employee.email.length == 0){
-	    sp.showError("This user haven't set cell phone or email");
-	}else{
-	    sp.loadSubPage('', 'dashboard', 'pingUser');
-	}
-        
-    })
-    $('#pingUser .backMenu').bind(clickEvent,function(e){
-	e.preventDefault();
-	$('#da_who_tmpl div').unbind(clickEvent);
-	$('#da_who_send').unbind(clickEvent);
-	$('.subNavigation .dashboard li.active a').trigger('click');
-    })
+ShiftPlanningDashboard.prototype.whosonnowEvents = function() {
+	var self = this;
+
+	$('#da_wo .timeSheet').delegate('a.fr', clickEvent, function(e) {
+		e.preventDefault();
+		self.pingID = $(this).attr('userID')
+		var employee = sp.staff.data.employees[self.pingID];
+		if (employee.cell_phone.length == 0 && employee.email == null || employee.email.length == 0) {
+			sp.showError("This user haven't set cell phone or email");
+		} else {
+			sp.loadSubPage('', 'dashboard', 'pingUser');
+		}
+
+	})
+	$('#pingUser .backMenu').bind(clickEvent, function(e) {
+		e.preventDefault();
+		$('#da_who_tmpl div').unbind(clickEvent);
+		$('#da_who_send').unbind(clickEvent);
+		$('.subNavigation .dashboard li.active a').trigger('click');
+	})
 }
 
 //sub page events
-ShiftPlanningDashboard.prototype.wallSubEvents = function(){
-    if (parseInt(sp.staff.admin.settings.message_wall_on) != 0){
-	$('#da_wa_li').html(spView.ulLoader());
-	spModel.messaging.get('wall', {}, function(response){
-	    if (response.data.length > 0){
-		$('#da_wa_li').html($.tmpl($('#te_da_wa_me'), response.data));
-	    } else {
-		$('#da_wa_li').html(spView.emptyResult(_s('No wall messages'), 'li'));
-	    }
-	}, function(){
-	    $('#da_wa_li').html(spView.emptyResult(_s('Something went wrong'), 'li'));
-	});
-    
-}
+ShiftPlanningDashboard.prototype.wallSubEvents = function() {
+	if (parseInt(sp.staff.admin.settings.message_wall_on) != 0) {
+		$('#da_wa_li').html(spView.ulLoader());
+		spModel.messaging.get('wall', {}, function(response) {
+			if (response.data.length > 0) {
+				$('#da_wa_li').html($.tmpl($('#te_da_wa_me'), response.data));
+			} else {
+				$('#da_wa_li').html(spView.emptyResult(_s('No wall messages'), 'li'));
+			}
+		}, function() {
+			$('#da_wa_li').html(spView.emptyResult(_s('Something went wrong'), 'li'));
+		});
+
+	}
 }
 
-ShiftPlanningDashboard.prototype.filesSubEvents = function(){
-    $('#da_fi_list').html(spView.ulLoader());
-    spModel.admin.get('files', {}, function(response){
-            $.each(response.data,function(){
-                    var str = this.secureurl;
-                    switch(this.extension){
-                            case 'jpg':
-                            case 'jpeg':
-                            case 'png':
-                            case 'bmp':
-                                    this.extraclass = 'image';
-                                    break;
-                            case 'txt':
-                            case 'doc':
-                                    this.extraclass = 'txt';
-                                    break;
-                            case 'xls':
-                            case 'csv':
-                                    this.extraclass = 'doc'
-                                    break;
-                            case 'pdf':
-                                    this.extraclass= 'pdf';
-                                    break;
-                            default:
-                                    this.extraclass= 'other'
-                                    break;		
-                    }
+ShiftPlanningDashboard.prototype.filesSubEvents = function() {
+	$('#da_fi_list').html(spView.ulLoader());
+	spModel.admin.get('files', {}, function(response) {
+		$.each(response.data, function() {
+			var str = this.secureurl;
+			switch (this.extension) {
+				case 'jpg':
+				case 'jpeg':
+				case 'png':
+				case 'bmp':
+					this.extraclass = 'image';
+					break;
+				case 'txt':
+				case 'doc':
+					this.extraclass = 'txt';
+					break;
+				case 'xls':
+				case 'csv':
+					this.extraclass = 'doc'
+					break;
+				case 'pdf':
+					this.extraclass = 'pdf';
+					break;
+				default:
+					this.extraclass = 'other'
+					break;
+			}
 //			this.secureurl=str.substring((str.indexOf("fid=")+4), str.length);
-                    this.file_size=spView.friendly_filesize(this.file_size);
-            });
-            if ( response.data.length == 0 ) {
-                $('#da_fi_list').html( spView.emptyResult( _s('Currently no files for download'), 'li') );
-            } else {
-                $('#da_fi_list').html($.tmpl($('#te_da_fi_list'),response.data));
-            }
-            
-
-            $('#da_fi_list li:even').addClass('regular');
-    });
+			this.file_size = spView.friendly_filesize(this.file_size);
+		});
+		if (response.data.length == 0) {
+			$('#da_fi_list').html(spView.emptyResult('Currently no files for download', 'li'));
+		} else {
+			$('#da_fi_list').html($.tmpl($('#te_da_fi_list'), response));
+		}
+		$('#da_fi_list li:even').addClass('regular');
+	});
 }
 
-ShiftPlanningDashboard.prototype.upcomingShiftsSubEvents = function(){
-    $('#da_up_li').html(spView.ulLoader());
-    var send = {
-	start_date: 'today', 
-	end_date: 'today +2 months', 
-	mode: 'employee'
-    };
-    send.employees = sp.staff.admin.info.id;
-    spModel.schedule.get('shifts', send, function(response){
-	var data = [];
-	if(typeof response.data != 'undefined' && response.data.length > 0){
-	    data = response.data;
-	}
-	if (data.length > 0){
-	    $('#da_up_li').html($.tmpl($('#te_da_widget_shift'), data));
-        } else {
-            $('#da_up_li').html(spView.emptyResult(_s('No upcoming shifts'), 'li'));
-        }
-    });
+ShiftPlanningDashboard.prototype.upcomingShiftsSubEvents = function() {
+	$('#da_up_li').html(spView.ulLoader());
+	var send = {
+		start_date: 'today',
+		end_date: 'today +2 months',
+		mode: 'employee'
+	};
+	send.employees = sp.staff.admin.info.id;
+	spModel.schedule.get('shifts', send, function(response) {
+		var data = [];
+		if (typeof response.data != 'undefined' && response.data.length > 0) {
+			data = response.data;
+		}
+		if (data.length > 0) {
+			$('#da_up_li').html($.tmpl($('#te_da_widget_shift'), data));
+		} else {
+			$('#da_up_li').html(spView.emptyResult('No upcoming shifts', 'li'));
+		}
+
+		$('#da_up .shifts .icon b').html(data.length);
+	});
 }
 
-ShiftPlanningDashboard.prototype.inboxSubEvents = function(){
-    $('#da_in_me').html(spView.ulLoader());
-    spModel.messaging.get('messages', {
-	mode : 'to'
-    }, function(response){
-	if (response.data.length > 0){
-	    $('#da_in_me').html($.tmpl($('#te_da_wa_in'), response.data));
-	} else {
-	    $('#da_in_me').html(spView.emptyResult(_s('No messages in your inbox'), 'li'));
-	}
-    }, function(response){
-	$('#da_in_me').html(spView.emptyResult(_s('Something went wrong'), 'li'));
-    });
-    
-    //$('#da_in_nm_to').html(spView.staffOption());
+ShiftPlanningDashboard.prototype.inboxSubEvents = function() {
+	$('#da_in_me').html(spView.ulLoader());
+	spModel.messaging.get('messages', {
+		mode: 'to'
+	}, function(response) {
+		if (response.data.length > 0) {
+			$('#da_in_me').html($.tmpl($('#te_da_wa_in'), response.data));
+		} else {
+			$('#da_in_me').html(spView.emptyResult(_s('No messages in your inbox'), 'li'));
+		}
+	}, function(response) {
+		$('#da_in_me').html(spView.emptyResult(_s('Something went wrong'), 'li'));
+	});
+
     $('#da_in_nm_to').html(spView.staffMessagesOption());
+
 }
 
 //ShiftPlanningDashboard.prototype.settingsSubEvents = function(employee){
@@ -623,317 +610,174 @@ ShiftPlanningDashboard.prototype.inboxSubEvents = function(){
 //}
 
 ShiftPlanningDashboard.prototype.whosonnowSubEvents = function() {
-    $('#wrapper > .subNavigation').show();
-    this.getWhosOn();        
+	$('#wrapper > .subNavigation').show();
+	this.getWhosOn();
 }
-
 ShiftPlanningDashboard.prototype.dashboardSubEvents = function() {
-    //$('.bigLoader').show();
-    $('#da_widgets .widgets').html(spView.ulLoader());
-    $('#da_widgets ul.shifts.listing').hide();
-    var calls = [
-        ['timeclock.status','GET', {details : 1}],
-        ['schedule.shifts','GET', {
-            'mode': 'open'
-        }],
-        ['schedule.trades','GET', {}],
-        ['schedule.shifts', 'GET', {
-            start_date: 'today', 
-            end_date: 'today +2 months', 
-            mode: 'employee'
-        }],
-        ['schedule.trades', 'get', {'mode' : 'swap'}]
-    ]
+	$('.applicationContainer').fadeIn(500);
+	//$('.bigLoader').show();
+	//$('#da_widgets .user .icon').html('<img src="' + sp.getAvatar() + '" height="50" width="50" />');
+	//$('#da_widgets .timeClock.out, #da_widgets .timeClock.in').hide();
+	$('#da_widgets .widgets').html(spView.ulLoader());
+	$('#da_widgets ul.shifts.listing').hide();
+
+	var releaseShiftsEnabled = (sp.staff.admin.business.pref_trade_shifts * 1) ? true : false;
+	var tradeShiftsEnabled = (sp.staff.admin.business.pref_swap_shifts * 1) ? true : false;
+
+	var calls = [
+		['timeclock.status', 'GET', {details: 1}],
+		['schedule.shifts', 'GET', {
+				'mode': 'open'
+			}],
+		['schedule.trades', 'GET', {}],
+		['schedule.shifts', 'GET', {
+				start_date: 'today',
+				end_date: 'today +2 months',
+				mode: 'employee'
+			}],
+		['schedule.trades', 'get', {'mode': 'swap'}]
+	]
     sp.multiApi(calls, function(response) {
-        $('#da_widgets .widgets').html('');
-        $('#da_widgets .widgets').append($.tmpl($('#te_da_widget_profile'), { avatar: sp.getAvatar(), name: user.name, company:  user.company} ));
-        if (parseInt(sp.staff.admin.settings.timeclock) != 0) {
-            if (response[0].data != 'out') {
-                $('#da_widgets .widgets').append($.tmpl($('#te_da_widget_timeclock_in'), {time: response[0].data.current_length.hours + _s('h') + ' ' + response[0].data.current_length.mins + _('mins')}));
+		$('#da_widgets .widgets').html('');
+		$('#da_widgets .widgets').append($.tmpl($('#te_da_widget_profile'), {avatar: sp.getAvatar(), name: user.name, company: user.company}));
+		if( sp.staff.admin.info.group * 1 != 7 ){
+            if (parseInt(sp.staff.admin.settings.timeclock) != 0) {
+                // CHECKING IF WE NEED TO START GPS TRACKING BACKGROUND SERVICE
+                gUtils.shouldStartService(response[0].data);
+                if ( typeof response[0].data.current_length != "undefined" ) {
+                    if (response[0].data != 'out') {
+        //			    if( typeof sp.staff.admin.business.pref_gps_tracker != "undefined" ){
+        //			        var gpsTracker = sp.staff.admin.business.pref_gps_tracker;
+        //			        if( gpsTracker != "0" ){
+        //                        tcServiceTimer = gpsTracker;
+        //                        tcPlugin.start(user.token, response[0].data.id);
+        //			        }else{
+        //                        tcPlugin.stop();
+        //			        }
+        //			    }
+        //
+                        var hs = response[0].data.current_length.hours;
+                        if(hs < 0){
+                            hs = 0;
+                        }
+                        var mns = response[0].data.current_length.mins;
+                        if(mns < 0){
+                            mns = 0;
+                        }
+                        $('#da_widgets .widgets').append($.tmpl($('#te_da_widget_timeclock_in'), {time: hs + _s('h') + ' ' + mns + _s('mins')}));
+                    } else {
+                        //tcPlugin.stop();
+                        $('#da_widgets .widgets').append($.tmpl($('#te_da_widget_timeclock_out')));
+                    }
+                }
+            }
+            if( releaseShiftsEnabled || tradeShiftsEnabled ){
+                $('#da_widgets .widgets').append($.tmpl($('#te_da_widget_tradePage'), {count: (sp.countResponse(response[1].data) + sp.countResponse(response[2].data) + sp.countResponse(response[4].data))}));
+            }
+            var br = 0;
+            $.each(response[3].data, function(i, item) {
+                if (item.start_date.id == sp.raw.config.today.id) {
+                    br++;
+                }
+                if (item.start_date.id > sp.raw.config.today) {
+                    return false;
+                }
+            });
+            $('#da_widgets .widgets').append($.tmpl($('#te_da_widget_schedule'), {month: sp.raw.config.today.mname.toUpperCase(), day: sp.raw.config.today.day, count: br}));
+
+            if (response[3].data.length > 0) {
+                $('#da_widgets ul.shifts.listing').show();
+                $('#da_widgets ul.shifts.listing').html($.tmpl($('#te_da_widget_shift'), response[3].data));
             } else {
-                $('#da_widgets .widgets').append($.tmpl($('#te_da_widget_timeclock_out')));
+                $('#da_widgets ul.shifts.listing').hide();
             }
         }
-        $('#da_widgets .widgets').append($.tmpl($('#te_da_widget_tradePage'), { count: (sp.countResponse(response[1].data) + sp.countResponse(response[2].data) + sp.countResponse(response[4].data))}));
-        
-        var br = 0;
-        $.each(response[3].data, function(i, item) {
-            if (item.start_date.id == sp.raw.config.today.id) {
-                br++;
-            }
-            if (item.start_date.id > sp.raw.config.today) {
-                return false;
-            }
-        });
-        
-        $('#da_widgets .widgets').append($.tmpl($('#te_da_widget_schedule'), { month: sp.raw.config.today.mname.toUpperCase(), day: sp.raw.config.today.day, count: br } ));
-        
-        if ( response[3].data.length > 0 ) {
-            $('#da_widgets ul.shifts.listing').show();
-            $('#da_widgets ul.shifts.listing').html($.tmpl($('#te_da_widget_shift'), response[3].data));
-        } else {
-            $('#da_widgets ul.shifts.listing').hide();
-        }
-        
-        
-        //$('.bigLoader').hide();
-        $('.applicationContainer').fadeIn(500);
-    });
+
+		//$('.bigLoader').hide();
+		//$('.applicationContainer').fadeIn(500);
+	});
 }
 
-//functions
-//ShiftPlanningDashboard.prototype.displayShifts = function (employee,from){
-//    var element;
-//    var notify;
-//	var desc=false;
-//    switch (from){
-//	case 'recentShifts':
-//	    $('#da_se_rs_li').html(spView.ulLoader());
-//	    var params={
-//		start_date: 'today -2 months', 
-//		end_date: 'yesterday', 
-//		mode: 'employee', 
-//		employees: employee.id
-//	    }
-//		desc = true ;
-//	    element=$('#da_se_rs_li');
-//	    notify='No recent shifts'
-//	    break;
-//	case 'upcomingShifts':
-//	    $('#da_se_us_li').html(spView.ulLoader());
-//	    var params={
-//		start_date: 'today ', 
-//		end_date: 'today +2 months', 
-//		mode: 'employee', 
-//		employees: employee.id
-//	    }
-//	    element=$('#da_se_us_li');
-//	    notify='No upcoming shifts'
-//	    break;
-//    }
-//    spModel.schedule.get('shifts',params,function(response){
-//	if(response.data == ""){
-//	    $(element).html(spView.emptyResult(notify))   
-//	}else{
-//		if(desc){
-//		desc = false ;
-//		var data =[];
-//		var j =response.data.length-1;
-//		for(var count=0;count<response.data.length;count++){
-//			data.push(response.data[j--]);
-//			}
-//			$(element).html($.tmpl($('#te_da_se_rs'),data));
-//		}else{
-//			$(element).html($.tmpl($('#te_da_se_rs'),response.data));   
-//		}
-//	}
-//    }) 
-//  
-//}
-
-//ShiftPlanningDashboard.prototype.prefillOverview = function(employee){
-//    var p = {};
-//    
-//    $.each(employee, function(i, item){
-//	if (item == null || item.length == 0){
-//	    item = '&nbsp;';
-//	}
-//	p[i] = item;
-//    });
-//    
-//    employee = p;
-//    //this page needs to be cached after first load and to be reprepared if data are changed - DONE
-//    $('#da_se_cur_us_id').val(employee.id);
-//    
-//    $('#da_se_ov_fn').html(employee.name);
-//    $('#da_se_ov_id').html(employee.eid);
-//    $('#da_se_ov_un').html(employee.username);
-//    $('#da_se_ov_mo').html(employee.cell_phone);
-//    $('#da_se_ov_ho').html(employee.home_phone);
-//	$('#da_se_ov_em').html(employee.email);
-//    if ($.trim(employee.wage).length != 0){
-//	$('#da_se_ov_wa').html(spView.fixCurrency(sp.staff.admin.settings.currency, true) + employee.wage);
-//    }
-//    
-//    var status_name = _s('Administrative accounts cannot be de-activated.');
-//    var status = _s('User has actived his/her account.');
-//    
-//    if (parseInt(employee.status) == 1 && parseInt(employee.group) > 2){
-//	status_name = _s('User Account is Enabled.');
-//    } else if (parseInt(employee.status) == 0 && parseInt(employee.group) > 2){
-//	status_name = _s('User Account is Enabled.');
-//	status = _s('User account is not activated.');
-//    }
-//    
-//    if (sp.staff.admin.info.group > 3){
-//	$('#da_se_ov_aa').hide();
-//	$('#da_se_ov_aa').prev().hide();
-//    } else {
-//	$('#da_se_ov_aa').prev().show();
-//	$('#da_se_ov_aa').show();
-//    }
-//    if (employee.status == 0){
-//	$('#da_se_ov_aa a[type=activate]').show();
-//	$('#da_se_ov_aa a[type=manualyActivate]').show();
-//    } else {
-//	$('#da_se_ov_aa a[type=activate]').hide();
-//	$('#da_se_ov_aa a[type=manualyActivate]').hide();
-//    }
-//    $('#da_se_ov_st').html(status);
-//    $('#da_se_ov_ac').html(status_name);
-//    
-//    //transfer month number into month name
-//    if (employee.birth_month != 0 && employee.birth_day != 0) {
-//	$('#da_se_ov_bd').html(months[employee.birth_month-1] + ' ' + employee.birth_day);
-//    } else {
-//	$('#da_se_ov_bd').html('&nbsp;');
-//    }
-//        
-//    
-//
-//    $('#da_se_ov_cu').html(spView.customFields(employee));
-//    $('#da_se_ov_po').html(spView.editableSchedules(employee));
-//
-//    $('#da_se_ov_sk').html(spView.editableSkills(employee));
-//    $('#da_se_ov_no').html((employee.notes.length > 0) ? employee.notes : '');
-//    $('#da_se_ov_pos').html('');
-//    if (typeof employee.schedules != 'undefined'){
-//	var pos = '';
-//	$.each(employee.schedules, function(i, item){
-//	    pos += item + ', ';
-//	});
-//	$('#da_se_ov_pos').html(pos.substr(0,pos.length - 2));
-//    }
-////approvers missing
-//}
-
-//ShiftPlanningDashboard.prototype.prepareEditDetails = function(employee){
-//    var p = {};
-//    $.each(employee, function(i, item){
-//	if (item == null || item.length == 0){
-//	    item = '';
-//	}
-//	p[i] = item;
-//    });
-//    
-//    employee = p;
-//    this.listLanguages();
-//    //this page needs to be cached after first load and to be reprepared if data are changed
-//    $('#da_se_ed_na').val(employee.name);
-//    $('#da_se_ed_em').val(employee.email);
-//    $('#da_se_ed_nn').val(employee.nick_name);
-//    $('#da_se_ed_us').val(employee.username);
-//    //mobile phone
-//    var mphone = (employee.cell_phone == null) ? '---'.split('-') : employee.cell_phone.split('-');
-//    $('#da_se_ed_mph_0').val(mphone[0]);
-//    $('#da_se_ed_mph_1').val(mphone[1]);
-//    $('#da_se_ed_mph_2').val(mphone[2]);
-//    //home phone
-//    var hphone = (employee.home_phone == null) ? '---'.split('-') : employee.home_phone.split('-');
-//    $('#da_se_ed_hph_0').val(hphone[0]);
-//    $('#da_se_ed_hph_1').val(hphone[1]);
-//    $('#da_se_ed_hph_2').val(hphone[2]);
-//    
-//    $('#da_se_ed_ad').val(employee.address);
-//    $('#da_se_ed_ci').val(employee.city);
-//    $('#da_se_ed_sp').val(employee.state);
-//    $('#da_se_ed_pz').val(employee.zip);
-//    
-//    $('#da_se_ed_bday_m').val(employee.birth_month);
-//    $('#da_se_ed_bday_d').val(employee.birth_day);
-//    $('#da_se_ed_no').val(employee.notes);
-//    
-//    //custome fields have to create divs
-//    $('#da_se_ed_cu').html(spView.editableCustomFields(employee));
-//    
-//    $('#da_se_ed_po').html(spView.editableSchedules(employee));
-//    $('#da_se_ed_sk').html(spView.editableSkills(employee));
-//    $('#da_se_ed_no').html((employee.notes != null && employee.notes.length > 0) ? employee.notes : '');
-//    
-//    $('#da_se_ed_lang').val(employee.language);
-//    
-//}
-
-ShiftPlanningDashboard.prototype.preparePasswordField = function(){
-    $('#da_se_pa_np').val('');
-    $('#da_se_pa_cp').val('');
+ShiftPlanningDashboard.prototype.preparePasswordField = function() {
+	$('#da_se_pa_np').val('');
+	$('#da_se_pa_cp').val('');
 }
 
-ShiftPlanningDashboard.prototype.getWhosOn = function () {
-    var data = [];
-    $('#da_wo_li').html(spView.ulLoader());
-    spModel.schedule.get('shifts', {
-	mode:'onnow'
-    }, function(response){
-	var count=0;
-	$.each(response.data, function(key,value){
-	    if( typeof value.employees != 'undefined' && value.employees != null){
-		$.each(value.employees, function(i,item){
-		    var d={
-			userID:item.id,
-			avatar:sp.getAvatar(item.id),
-			name:item.name,
-			position:value.schedule_name,
-			start_time:value.start_time.time,
-			end_time:value.end_time.time
-		    }
-		    count++;
-		    data.push(d)                        
+ShiftPlanningDashboard.prototype.getWhosOn = function() {
+	var data = [];
+	$('#da_wo_li').html(spView.ulLoader());
+	spModel.schedule.get('shifts', {
+		mode: 'onnow'
+	}, function(response) {
+		var count = 0;
+		$.each(response.data, function(key, value) {
+			if (typeof value.employees != 'undefined' && value.employees != null) {
+				$.each(value.employees, function(i, item) {
+					var d = {
+						userID: item.id,
+						avatar: sp.getAvatar(item.id),
+						name: item.name,
+						position: value.schedule_name,
+						start_time: value.start_time.time,
+						end_time: value.end_time.time
+					}
+					count++;
+					data.push(d)
+				})
+
+			}
 		})
-
-	    }
+		if (count == 0) {
+			$('#da_wo_li').html(spView.emptyResult('No one is scheduled to work right now.', 'li'))
+		} else {
+			$('#da_wo_li').html($.tmpl($('#te_da_onnow'), data));
+		}
 	})
-	if(count==0){
-	    $('#da_wo_li').html(spView.emptyResult('No one is scheduled to work right now.','li'))
-	}else{
-	    $('#da_wo_li').html($.tmpl($('#te_da_onnow'),data));
-	}
-    })    
 }
 //
 ShiftPlanningDashboard.prototype.pingUser = function(data) {
-    var self=this;
-    var employee=sp.staff.data.employees[self.pingID];
-    employee.company=user.company;
-    employee.company_phone=user.phone;
-    $('#wrapper > .subNavigation').hide();
-    $('#da_who_ping').html($.tmpl($('#te_da_ping'),employee));
-    
-    //binding ping actions
-    $('#da_who_tmpl div.title1').bind(clickEvent,function(){
-	$('#da_who_txt').val($(this).find('span').html())
-    })
-    $('#da_who_send').bind(clickEvent,function(e){
-	e.preventDefault();
-	self.sendPingMessage()
-    })          
+	var self = this;
+	var employee = sp.staff.data.employees[self.pingID];
+	employee.company = user.company;
+	employee.company_phone = user.phone;
+	$('#wrapper > .subNavigation').hide();
+	$('#da_who_ping').html($.tmpl($('#te_da_ping'), employee));
+
+	//binding ping actions
+	$('#da_who_tmpl div.title1').bind(clickEvent, function() {
+		$('#da_who_txt').val($(this).find('span').html())
+	})
+	$('#da_who_send').bind(clickEvent, function(e) {
+		e.preventDefault();
+		self.sendPingMessage()
+	})
 }
 
-ShiftPlanningDashboard.prototype.sendPingMessage = function(){
-    var txt=$('#da_who_txt').val();
-    spModel.staff.create('ping',{
-	to:this.pingID,
-	message:txt
-    },function(response){
-	sp.showSuccess('Ping sent to user');
-	setTimeout(function(){
-	    $('#pingUser .backMenu').trigger('click')
-	},3000)
-    })
+ShiftPlanningDashboard.prototype.sendPingMessage = function() {
+	var txt = $('#da_who_txt').val();
+	spModel.staff.create('ping', {
+		to: this.pingID,
+		message: txt
+	}, function(response) {
+		sp.showSuccess('Ping sent to user');
+		setTimeout(function() {
+			$('#pingUser .backMenu').trigger('click')
+		}, 3000)
+	})
 }
 
-ShiftPlanningDashboard.prototype.sendMessage = function(){
-    var self = this;
-    var data = {
-	subject : $('#da_in_nm_ti').val(),
-	message : $('#da_in_nm_me').val(),
-	to  : $('#da_in_nm_to').val()
-    }
-    
-    spModel.messaging.create('message', data, function(response){
-	$('#da_in_nm_b').trigger(clickEvent);
-	self.inboxSubEvents();
-    });
+ShiftPlanningDashboard.prototype.sendMessage = function() {
+	var self = this;
+	var data = {
+		subject: $('#da_in_nm_ti').val(),
+		message: $('#da_in_nm_me').val(),
+		to: $('#da_in_nm_to').val()
+	}
+
+	spModel.messaging.create('message', data, function(response) {
+		$('#da_in_nm_b').trigger(clickEvent);
+		self.inboxSubEvents();
+	});
 }
 
 //ShiftPlanningDashboard.prototype.changePassword = function (){
@@ -1117,26 +961,26 @@ ShiftPlanningDashboard.prototype.sendMessage = function(){
 //	});
 //    }
 //}
-ShiftPlanningDashboard.prototype.fixes = function(){
-    $('#dashboard .mainSub ul li a[subpage]').shorten();
-    $('.mainNav a[page]').shorten();
+ShiftPlanningDashboard.prototype.fixes = function() {
+	$('#dashboard .mainSub ul li a[subpage]').shorten();
+	$('.mainNav a[page]').shorten();
 }
 //get all staff and add it to main variables
-ShiftPlanningStaff.prototype.getStaff = function(callback){
-    sp.api('staff.employees','get',{},function(response){
-	sp.staff.raw.employees = response.data;
-	sp.staff.data.employees = sp.map(response.data);
-	if (typeof callback != 'undefined'){
-	    callback();
-	}
-    }, function(response){
-	sp.showError(response.error);
-    });   
+ShiftPlanningStaff.prototype.getStaff = function(callback) {
+	sp.api('staff.employees', 'get', {}, function(response) {
+		sp.staff.raw.employees = response.data;
+		sp.staff.data.employees = sp.map(response.data);
+		if (typeof callback != 'undefined') {
+			callback();
+		}
+	}, function(response) {
+		sp.showError(response.error);
+	});
 }
 
-ShiftPlanningDashboard.prototype.loadPage = function(){
-    
-    }
+ShiftPlanningDashboard.prototype.loadPage = function() {
+
+}
 
 
 

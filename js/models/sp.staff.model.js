@@ -4,7 +4,7 @@ var SPModelStaff = function(){
 
 SPModelStaff.prototype.allStaff = function(scheduleId){
     if (typeof scheduleId == 'undefined'){
-        return sp.staff.raw.employees;
+		return sp.staff.raw.employees;
     } else {
         spModel.staff.get('employees', {schedule : scheduleId}, function(response){
             return response.data;

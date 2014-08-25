@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html style="height:100%;">
+    <head>
+        <title>ShiftPlanning</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width" />
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" id="favicon">
+
+        <script src="js/cordova-2.4.0.js" type="text/javascript"></script>
+        <script src="js/json2.js" type="text/javascript"></script>
+
+        <!-- main jquery -->
+        <script src="js/jquery/jquery-1.10.2.min.js" type="text/javascript"></script>
+
+        <style>
+            .service-nav-holder{
+                width: 90%;
+                text-align: center;
+                margin:auto;
+                display: block;
+            }
+
+            .button{
+                color: #FFFFFF;
+                padding: 10px 15px;
+                margin: 0 5px 0 5px;
+                background-color: #7AA410;
+                display: inline-block;
+            }
+
+            .button.stop{
+                background-color: #43ACE8;
+            }
+
+        </style>
+    </head>
+    <body>
+        <H1>SERVICE TESTERA</H1>
+
+        <div class="service-nav-holder">
+            <div class="button" id="serviceStart">Start Service</div>
+            <div class="button stop" id="serviceStop">Stop Service</div>
+        </div>
+
+        <script type="text/javascript">
+            var $ = jQuery.noConflict();
+        </script>
+        <script src="gapped/gapConfig.js" type="text/javascript"></script>
+        <script src="gapped/backgroundService.js" type="text/javascript"></script>
+        <script src="gapped/GPSService.js" type="text/javascript"></script>
+        <script src="gapped/timeclock.js" type="text/javascript"></script>
+        <script src="gapped/gapUtils.js" type="text/javascript"></script>
+    </body>
+</html>

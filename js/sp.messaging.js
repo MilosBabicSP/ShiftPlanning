@@ -1,13 +1,13 @@
-function ShiftPlanningMessaging(){
-    this.initialize();
-    return true;
+function ShiftPlanningMessaging() {
+	this.initialize();
+	return true;
 }
 
 ShiftPlanningMessaging.prototype = {
-    initialize: function(){
-        
-    }
-    
+	initialize: function() {
+
+	}
+
 }
 
 

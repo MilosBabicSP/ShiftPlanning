@@ -1,26 +1,26 @@
-function ShiftPlanningStaff(){
-    this.changed = true;
-    this.page = 6;
-    this.initialize();
-    return true;
+function ShiftPlanningStaff() {
+	this.changed = true;
+	this.page = 6;
+	this.initialize();
+	return true;
 }
 
 ShiftPlanningStaff.prototype = {
-    data: {},
-    raw: {},
-    fixed : {},
+	data: {},
+	raw: {},
+	fixed: {},
     pvtMsg : {},
-    admin: {},
-    initialize: function(){
-        
-    },
-    login: function(username, password){
+	admin: {},
+	initialize: function() {
 
-    },
-    loadPage : function(){
-        
-    }
-    
+	},
+	login: function(username, password) {
+
+	},
+	loadPage: function() {
+
+	}
+
 }
 
 

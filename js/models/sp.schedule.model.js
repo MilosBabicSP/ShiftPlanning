@@ -43,7 +43,7 @@ SPModelSchedule.prototype.schedulesByUser = function(id, locations){
 	    return locs;
 	}
     } else {
-	return {};
+	return sp.staff.admin.info.schedules;
     }
 }
 
