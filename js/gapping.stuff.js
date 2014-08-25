@@ -1,26 +1,8 @@
-
-
-var intervalID;
-
-var prevHash = '';
-function isDataReady() {
-	intervalID = setInterval(showData, 200);
-}
 function _s(str){
     return str;
 }
 function _(str){
     return str;
-}
-function testCon() {
-
-}
-
-function showData() {
-//	if( $('li.timeClock').is(":visible") ){
-	clearInterval(intervalID);
-	$('.applicationContainer').fadeIn(500);
-//	}
 }
 function onFail(message) {
 	alert('Failed because: ' + message);
@@ -41,8 +23,6 @@ function getFile(fileID, filename){
     sp.showSuccess('Download of ' + filename + ' started.' );
     download( fURL, filename )
     return false;
-//http://www.shiftplanning.com/app/iphone/api.php?module=admin.file&method=get&content=1&id=${id}&token=${token}
-
 }
 
 function downloadFile(fileID) {
@@ -66,29 +46,7 @@ function download(remoteFile, localFileName) {
 
 			ft.download(remoteFile, localPath, function(entry) {
 				fp = entry.fullPath;
-				//jQuery('#downloadedFile').attr("href", entry.toURL() );
-				//urld = "file://" + fp;
-				//open the file in ChildBrowser
-				//cordova.exec("ChildBrowserCommand.showWebPage", encodeURI(urld) );
-				//alert(entry.fullPath);
-				//alert(entry.file);
-//                navigator.notification.confirm(
-//                    'File is saved in: ' + fp + '.\n Do You want to open it?',
-//                    function(button) {
-//                        if (button == 1) {
-//                            console.log("Otvori fajl");
-//				            //window.open(fp, "_blank");
-//				            window.open(fp, '_blank', 'location=no');
-//				            //cordova.exec("ChildBrowserCommand.showWebPage", encodeURI(fp) );
-//                        }else{
-//                            console.log("Nemoj da otvaras fajl");
-//                        }
-//                    },
-//                    "Open " + localFileName
-//                );
-
 				alert('File is saved in: ' + fp + '.');
-				//window.open("file://"+fp, "_blank");
 				entry.file(successFile, fail);
 			}, fail);
 
@@ -108,11 +66,6 @@ function onError(error) {
 	alert('code: ' + error.code + '\n' +
 			'message: ' + error.message + '\n');
 }
-function getLoc() {
-	alert("Local Started");
-	navigator.geolocation.getCurrentPosition(onSuccess, onError);
-}
-
 function onConfirm(button) {
 	if (button == 1) {
 		logUserOut();
@@ -345,99 +298,15 @@ function correctLoginHeight() {
 	setTimeout(function() {
 		window.scrollTo(0, 1);
 	}, 100);
-
-	//$("body").height($("body").height()+20);
-	//console.log("window.height: " + $(window).height());
-	//console.log("body.height: " + $("body").height());
-	//console.log("loginContainer.height: " + $(".loginContainer").height());
-
 	startBodyHeight = $("body").height();
-	/*
-	 $("#lo_f").focusin( function(){
-	 $(".loginForm").height( $(".loginForm").height() + 300 );
-	 });
-	 $("#lo_f").focusout( function(){
-	 $(".loginForm").height( $(".loginForm").height() - 300 );
-	 });
-	 */
-}
-
-var noInternetAccess = false;
-
-function checkConnection() {
-    if (typeof navigator.network !== "undefined" ){
-        if (typeof navigator.network.isReachable !== "undefined") {
-            //console.log("navigator.network.isReachable = " + navigator.network.isReachable);
-        } else {
-            //console.log("navigator.network = " + JSON.stringify(navigator.network));
-        }
-        //console.log("****** into checkConnection, internetInt = " + internetInt + ", connObject => " + JSON.stringify(navigator.network.connection));
-        //var networkState = navigator.connection.type;
-        var networkState = navigator.network.connection.type;
-
-        var states = {};
-        states[Connection.UNKNOWN] = 'Unknown connection';
-        states[Connection.ETHERNET] = 'Ethernet connection';
-        states[Connection.WIFI] = 'WiFi connection';
-        states[Connection.CELL_2G] = 'Cell 2G connection';
-        states[Connection.CELL_3G] = 'Cell 3G connection';
-        states[Connection.CELL_4G] = 'Cell 4G connection';
-        states[Connection.NONE] = 'No network connection';
-
-        //alert('Connection type: ' + states[networkState]);
-        //console.log("Connection.NONE = " + Connection.NONE + ", networkState = " + networkState);
-        if (Connection.NONE == networkState || networkState == 0) {
-            //console.log("****** ##### into checkConnection, Internet is NOT BACK, internetInt = " + internetInt);
-            noInternetAccess = true;
-        } else {
-            noInternetAccess = false;
-            //console.log("****** ++++ into checkConnection, Internet is BACK, internetInt = " + internetInt);
-            try {
-                clearInterval(internetInt);
-                window.location.repload();
-            } catch (ee) {
-                //console.log("Err: in checkConnection, when trying to clearInterval: Err => " + JSON.stringify(ee));
-                //console.log("Err: in checkConnection, when trying to clearInterval: internetInt => " + internetInt);
-            }
-            internetInt = 0;
-        }
-    }else{
-        //console.log("navigator.network = " + JSON.stringify(navigator));
-    }
-}
-
-var internetInt = 0;
-function lookForInternet() {
-	//console.log("into lookForInternet, internetInt = " + internetInt);
-	internetInt = setInterval(function() {
-		checkConnection();
-	}, 1000);
 }
 
 function internetNo() {
-	//if( internetInt == 0 ){
-	//	console.log("internetNo is called.");
-	//	checkConnection();
-	//	if( noInternetAccess == true ){
-	//		console.log("************** DATA: THERE IS NO INTERNET ");
-	$('#intCheck').show();
-	//		lookForInternet();
-	//	}
-	//}
+    // Do Stuff When user gets offline
 }
 
 function internetYeah() {
-	//console.log("internetYeah is called.");
-	$('#intCheck').hide();
-	/*
-	 try{
-	 clearInterval(internetInt);
-	 }catch(ee){
-	 //console.log("Err: in internetYeah, when trying to clearInterval: Err => " + JSON.stringify(ee) );
-	 //console.log("Err: in internetYeah, when trying to clearInterval: internetInt => " + internetInt );
-	 }
-	 internetInt = 0;
-	 */
+    // Do Stuff When user gets online
 }
 
 function online() {
@@ -594,7 +463,8 @@ function appReady() {
     gUtils.setupPlugins();
     //getMyIP();
 }
-//
+// ##########################################################################################
+// TODO: This can be implemented when Module TimeClock Locations Get is finished on BACKEND
 //function getMyIP(){
 //    var url = _server.replace(/api/g,'app') + 'desktop/connection_test.php?my_ip=true';
 //    console.log("getMyIP => URL => " + url );
@@ -628,40 +498,30 @@ function sKeyboardStates() {
 }
 
 function sKeyVisible() {
-	//console.log("PRE $(body).height => " + $("body").height());
-
 	if ($(".loginContainer").is(":visible")) {
 		if ($("body").height() < 250) {
 			console.log("$(body).height => je manji od 250");
-			//$("body").height( startBodyHeight );
 		}
 		$("body").height(startBodyHeight);
 	}
-	//console.log("POSLE $(body).height => " + $("body").height());
-	//console.log("Yay the keyboard is here");
 }
 
 function sKeyGone() {
-	//console.log("GONE PRE: $(body).height => " + $("body").height());
-	//console.log(" startBodyHeight => " + startBodyHeight);
-
 	if ($(".loginContainer").is(":visible")) {
 		$("body").css("height", "100%");
-		//$("body").height($("body").height()-20);
 	}
-	//console.log("GONE POSLE: $(body).height => " + $("body").height());
-	//console.log("Boo the keyboard is gone");
 }
 
-function decHeight() {
-	//$("body").height($("body").height()-20);
-	//console.log("AFTER: window.height: " + $(window).height());
-	//console.log("AFTER: body.height: " + $("body").height());
-	//console.log("AFTER: loginContainer.height: " + $(".loginContainer").height());
-}
 document.addEventListener("deviceready", appReady, false);
 
 
 //document.addEventListener("online", online, false);
 //document.addEventListener("offline", offline, false);
 //android:windowSoftInputMode="adjustUnspecified|stateUnchanged|adjustResize|adjustPan"
+
+var gapper = function(){};
+
+gapper.loadTemplates = function(){
+    console.log("gapper.loadTemplates => appPath => " + appPath );
+    $("#templates").load(appPath + "templates.html");
+};

@@ -190,6 +190,10 @@ ShiftPlanning.prototype.initialize = function() {
 ShiftPlanning.prototype.loadSite = function() {
 	var self = this;
 	console.log("Entered into => loadSite => href => " + window.location.href);
+    if( appPath == "" ){
+        appPath = window.location.href.replace(/index.html/g,'');
+        gapper.loadTemplates();
+    }
     if( window.location.hash.indexOf("token") > 0 ){
         var mSamlUrl = window.location.hash;
         var tToken = mSamlUrl.substring(mSamlUrl.indexOf('tok'));

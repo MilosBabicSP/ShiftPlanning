@@ -11,4 +11,5 @@ var _serverMob = "http://www.shiftplanning.com/app/iphone/";
 var _server = "http://www.shiftplanning.com/api/";
 // TODO: REPLACE API endpoint to LIVE
 _server = _serverDev;
+var appPath = "";
 //console.log("navigator.userAgent => " + navigator.userAgent);
