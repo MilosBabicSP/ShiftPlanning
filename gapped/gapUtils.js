@@ -13,7 +13,7 @@ var gUtils = function(){};
 
 gUtils.device = {
     isGap: true,
-    isAndroid: true,
+    isAndroid: isAndroid,
     Ready: function(){
         console.log("dev is ready");
 
@@ -25,44 +25,52 @@ gUtils.device = {
     }
 };
 
+gUtils.loadTemplates = function(){
+    $("#templates").load(appPath + "templates.html");
+};
+
 gUtils.shouldStartService = function(tcData){
-    try{
-        if (tcData != 'out') {
-        console.log("BUSINESS STUFF => " + JSON.stringify(sp.staff.admin.business.pref_gps_tracker));
-        if( typeof sp.staff.admin.business.pref_gps_tracker != "undefined" ){
-             var gpsTracker = sp.staff.admin.business.pref_gps_tracker;
-             if( gpsTracker != "0" ){
-                 tcServiceTimer = gpsTracker * 60 * 1000;
-                 //tcServiceTimer = gpsTracker;
-                 tcPlugin.start(user.token, tcData.id, _server);
+    if( isAndroid ){
+        try{
+            if (tcData != 'out') {
+            console.log("BUSINESS STUFF => " + JSON.stringify(sp.staff.admin.business.pref_gps_tracker));
+            if( typeof sp.staff.admin.business.pref_gps_tracker != "undefined" ){
+                 var gpsTracker = sp.staff.admin.business.pref_gps_tracker;
+                 if( gpsTracker != "0" ){
+                     tcServiceTimer = gpsTracker * 60 * 1000;
+                     //tcServiceTimer = gpsTracker;
+                     tcPlugin.start(user.token, tcData.id, _server);
+                 }else{
+                     tcPlugin.stop();
+                 }
              }else{
                  tcPlugin.stop();
              }
-         }else{
-             tcPlugin.stop();
-         }
-        }else{
-            tcPlugin.stop();
-        }
-    }catch(e){}
+            }else{
+                tcPlugin.stop();
+            }
+        }catch(e){}
+    }
 };
 
 gUtils.setupPlugins = function(){
 //    console.log("IN setupPlugins");
-    if (!window.plugins) {
-        window.plugins = {};
-    }
+    if( isAndroid ){
+        if (!window.plugins) {
+            window.plugins = {};
+        }
 
-    if (!window.plugins.GPSService) {
-        window.plugins.GPSService = cordova.require("cordova/plugin/GPSService");
-    }
+        if (!window.plugins.GPSService) {
+            window.plugins.GPSService = cordova.require("cordova/plugin/GPSService");
+        }
 
-    if (!window.plugins.timeclock) {
-        window.plugins.timeclock = cordova.require("cordova/plugin/Timeclock");
-    }
+        if (!window.plugins.timeclock) {
+            window.plugins.timeclock = cordova.require("cordova/plugin/Timeclock");
+        }
 
-    tcService = window.plugins.GPSService;
-    tcPlugin = window.plugins.timeclock;
+        tcService = window.plugins.GPSService;
+        tcPlugin = window.plugins.timeclock;
+    }
 
 //    console.log("END setupPlugins");
 

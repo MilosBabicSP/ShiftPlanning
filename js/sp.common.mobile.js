@@ -192,7 +192,7 @@ ShiftPlanning.prototype.loadSite = function() {
 	console.log("Entered into => loadSite => href => " + window.location.href);
     if( appPath == "" ){
         appPath = window.location.href.replace(/index.html/g,'');
-        gapper.loadTemplates();
+        gUtils.loadTemplates();
     }
     if( window.location.hash.indexOf("token") > 0 ){
         var mSamlUrl = window.location.hash;

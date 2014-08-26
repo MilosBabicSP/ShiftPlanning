@@ -409,6 +409,16 @@ ShiftPlanningStaff.prototype.login = function() {
             sp.staff.admin.info = loginResponse.data.employee;
             user.token = loginResponse.token;
 
+            if( sp.staff.admin.info.deactivated * 1 == 1 ){
+                user.loggedIn = 0;
+                user.name = '';
+                user.company = '';
+                sp.staff.data.employees = {};
+                $('#lo_b').removeClass('loading');
+                sp.showError(_s('This account has been deactivated.'));
+                $('.login input:first').focus();
+                return false;
+            }
             window.localStorage.setItem('shiftplanning_mobile_usertoken', loginResponse.token);
             window.localStorage.setItem('shiftplanning_mobile_userid', loginResponse.data.employee.id);
             window.localStorage.setItem('shiftplanning_mobile_username', u);

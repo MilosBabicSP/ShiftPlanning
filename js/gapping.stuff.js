@@ -518,10 +518,3 @@ document.addEventListener("deviceready", appReady, false);
 //document.addEventListener("online", online, false);
 //document.addEventListener("offline", offline, false);
 //android:windowSoftInputMode="adjustUnspecified|stateUnchanged|adjustResize|adjustPan"
-
-var gapper = function(){};
-
-gapper.loadTemplates = function(){
-    console.log("gapper.loadTemplates => appPath => " + appPath );
-    $("#templates").load(appPath + "templates.html");
-};
