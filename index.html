@@ -26,6 +26,7 @@
                 document.write('<link rel="apple-touch-icon-precomposed" href="images\/sc\/iPhone-57x57.png" \/>');
             }
         </script>
+
         <script src="i18n/gettext.js" type="text/javascript"></script>
         <script src="js/sp.user.js" type="text/javascript"></script>
         <script src="js/json2.js" type="text/javascript"></script>
@@ -40,12 +41,16 @@
         <script src="js/jquery/jquery.contains.js" type="text/javascript"></script>
         <script src="js/jquery/jquery.cookie.js" type="text/javascript"></script>
 
-        <script src="gapped/backgroundService.js" type="text/javascript"></script>
-        <script src="gapped/GPSService.js" type="text/javascript"></script>
-        <script src="gapped/timeclock.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            if( isAndroid ){
+                document.write('<script type="text\/javascript" src="gapped\/backgroundService.js"><\/s' + 'cript>');
+                document.write('<script type="text\/javascript" src="gapped\/GPSService.js.js"><\/s' + 'cript>');
+                document.write('<script type="text\/javascript" src="gapped\/timeclock.js.js"><\/s' + 'cript>');
+            }
+        </script>
         <script src="gapped/gapUtils.js" type="text/javascript"></script>
-
         <script src="js/gapping.stuff.js" type="text/javascript"></script>
+        
         <!-- specially for mobile device. -->
         <script src="js/plugins/mobiscroll.min.js" type="text/javascript"></script>
 
