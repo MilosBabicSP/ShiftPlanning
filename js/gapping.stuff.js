@@ -420,6 +420,7 @@ function getCurrentPosition( hndSucc, hndErr ){
     navigator.geolocation.getCurrentPosition( hndSucc, hndErr, gpsOptions );
 }
 
+var $ = jQuery.noConflict();
 function appReady() {
     console.log("dev is ready");
     console.log("UserAgent => isAndroid => " + isAndroid );
