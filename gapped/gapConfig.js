@@ -8,7 +8,7 @@ var myIPAddress = "";
 var appPath = "";
 var isAndroid = false;
 if( navigator.userAgent.indexOf("Android") >= 0 ){
-    isAndroid = true;
+	isAndroid = true;
 }
 
 // TODO: REPLACE API endpoint to LIVE
