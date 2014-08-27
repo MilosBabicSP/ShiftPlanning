@@ -425,8 +425,8 @@ function fixHTML(btnConfirm){
 			fixHTML(btnConfirm);
 		}else{
 			var tHtml = tmp.html();
-			tHtml = tHtml.replace(/&lt; /g, '<');
-			tHtml = tHtml.replace(/ &gt;/g, '>');
+			tHtml = tHtml.replace(/&lt;\ /g, '<');
+			tHtml = tHtml.replace(/\ &gt;/g, '>');
 			tmp.html( tHtml );
 			$('.training_module .wys').html( tmp.html() );
 			$('.training_module .wys').parent().parent().append( btnConfirm );
