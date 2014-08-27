@@ -233,6 +233,7 @@ ShiftPlanningTraining.prototype.singleSectionSubEvents = function() {
 	}, 500);
 
 }
+
 ShiftPlanningTraining.prototype.singleModuleSubEvents = function() {
 	$('.training .training_module').html(spView.divLoader());
     console.log("singleModuleSubEvents");
@@ -414,6 +415,7 @@ ShiftPlanningTraining.prototype.singleModuleSubEvents = function() {
 
                 $('.training_module .wys').html( $('.training_module .wys').html() + data.comms );
             }
+
 			fixHTML(btnConfirm);
         }, 10);
 	}, 500);
