@@ -752,27 +752,10 @@ ShiftPlanningSchedule.prototype.assignLocationNames = function(_shifts){
 
 ShiftPlanningSchedule.prototype.getLocationName = function(schId){
 	var locName = "";
-	console.log("location => getLocationName => schId => " + schId);
-	if( typeof sp.schedule != "undefined" ){
-	        console.log("location => getLocationName => sp.schedule => " + JSON.stringify(sp.schedule) );
-	    if( typeof sp.schedule.data != "undefined" ){
-	        console.log("location => getLocationName => sp.schedule.data => " + JSON.stringify(sp.schedule.data) );
-	        if( typeof sp.schedule.data.schedules != "undefined" ){
-	            console.log("location => getLocationName => schedules size => " + JSON.stringify(sp.schedule.data.schedules) );
-            }else{
-                console.log("location => getLocationName => sp.schedule.data.schedules => UNDEFINED" );
-            }
-        }else{
-            console.log("location => getLocationName => sp.schedule.data => UNDEFINED" );
-        }
-    }else{
-        console.log("location => getLocationName => sp.schedule => UNDEFINED" );
-    }
     if( sp.staff.admin.business.pref_show_location_in_shift == 1 || sp.staff.admin.info.group * 1 == 7){
         $.each(sp.schedule.data.schedules, function(index, value){
             if( value.id == schId ){
                 var tmpSch = sp.schedule.data.schedules[index];
-                console.log("location => getLocationName => tmpSch => " + JSON.stringify(tmpSch.location) );
                 if( typeof tmpSch.location !== "undefined" ){
                     locName =  "- " + tmpSch.location.name;
                 }
@@ -780,7 +763,6 @@ ShiftPlanningSchedule.prototype.getLocationName = function(schId){
             }
         });
     }
-    console.log("location => getLocationName => locName => " + locName );
 	return locName;
 }
 
