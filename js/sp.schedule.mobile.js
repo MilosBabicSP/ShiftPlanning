@@ -670,10 +670,7 @@ ShiftPlanningSchedule.prototype.shiftDisplaySubEvents = function() {
     }
 
 	var apiLoc = this.shift.user_location;
-	console.log("location => Shift => " + JSON.stringify(this.shift));
-	console.log("location => Shift => Schedule => " + JSON.stringify(this.shift.schedule));
 	this.shift.locationName = this.getLocationName(this.shift.schedule);
-	console.log("location => Shift => Schedule => " + this.shift.locationName);
 	$('#sc_shift_display').html($.tmpl($('#te_sc_shift_display'), this.shift));
 
     /*OVDE */
@@ -714,12 +711,13 @@ ShiftPlanningSchedule.prototype.shiftDisplaySubEvents = function() {
 	$('#sc_sub_shift_display ul a').attr('rel', this.shift.id);
 
 	if (this.shift.location != 0) {
-	    console.log("location => " + JSON.stringify( this.shift.location ) );
-	    console.log("map URL => " + this.shift.location.map );
         $("#locFinder").css('display', 'none');
 		$('#sc_location_iframe').html('<iframe  id="map" width="100%" height="220" frameborder="0" scrolling="no" src="' + this.shift.location.map + '&z=15&output=embed"></iframe>');
-	    console.log("map URL iz Frame-ta => " + $("#map").attr("src") );
-		$("#get_directions").attr("onclick", "openExtURL('" + this.shift.location.map + "')");
+		if( isAndroid ){
+			$("#get_directions").attr("onclick", "openExtURL('" + this.shift.location.map + "')");
+		}else{
+			$("#get_directions").attr("onclick", "window.open(encodeURI('" + this.shift.location.map + "'), '_blank')");
+		}
 	}
 
 	if ($("#te_sc_shift_display_info .title").html() !== null && typeof $("#te_sc_shift_display_info .title").html() !== "undefined" ) {
