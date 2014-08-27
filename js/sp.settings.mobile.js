@@ -29,7 +29,6 @@ ShiftPlanningSettings.prototype.overviewEvents = function() {
 
 	$('#da_se_ed_po .checkbox, #da_se_ov_po .checkbox, #da_se_ed_sk .checkbox, #da_se_ov_sk .checkbox').live(clickEvent, function(e) {
 		e.stopPropagation();
-		//console.log("clicked on .checkbox");
 		var sid = $(this).attr('itemId');
 		var skills = ($(this).parents('.skills').length > 0) ? true : false;
 		var checked = ($(this).hasClass('check')) ? true : false;
@@ -281,19 +280,13 @@ ShiftPlanningSettings.prototype.prefillOverview = function(employee) {
 	}
 	try{
 		$('#da_se_ov_po').html(spView.editableSchedules(employee));
-	}catch(e){
-		//console.log("prefillOverview ERROR 2: ");
-	}
+	}catch(e){}
 	try{
 		$('#da_se_ov_sk').html(spView.editableSkills(employee));
-	}catch(e){
-		//console.log("prefillOverview ERROR 3: ");
-	}
+	}catch(e){}
 	try{
 		$('#da_se_ov_no').html((employee.notes.length > 0) ? employee.notes : '');
-	}catch(e){
-		//console.log("prefillOverview ERROR 4: ");
-	}
+	}catch(e){}
 	$('#da_se_ov_pos').html('');
 	if (typeof employee.schedules != 'undefined') {
 		var pos = '';
@@ -301,9 +294,7 @@ ShiftPlanningSettings.prototype.prefillOverview = function(employee) {
 			$.each(employee.schedules, function(i, item) {
 				pos += item + ', ';
 			});
-		}catch(e){
-			//console.log("prefillOverview ERROR: ");
-		}
+		}catch(e){}
 		$('#da_se_ov_pos').html(pos.substr(0, pos.length - 2));
 	}
 	sp.fixCheckboxes();
