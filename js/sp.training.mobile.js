@@ -233,7 +233,7 @@ ShiftPlanningTraining.prototype.singleSectionSubEvents = function() {
 	}, 500);
 
 }
-
+var btnConfirm = "";
 ShiftPlanningTraining.prototype.singleModuleSubEvents = function() {
 	$('.training .training_module').html(spView.divLoader());
     console.log("singleModuleSubEvents");
@@ -382,7 +382,7 @@ ShiftPlanningTraining.prototype.singleModuleSubEvents = function() {
                 $('.training_module .wys').html( $('.training_module .wys').html() + data.attach );
             }
 
-            var btnConfirm = "";
+            btnConfirm = "";
             if( data.finished_flag == 99 ){
                 btnConfirm = "<a class='confirm confirmationNote' rel='" + data.id + "' onclick='sp.training.finishTopic(" + data.id + ");return false;'> I've Reviewed this </a>";
             }else if( data.finished_flag == 0 ){
@@ -415,18 +415,26 @@ ShiftPlanningTraining.prototype.singleModuleSubEvents = function() {
 
                 $('.training_module .wys').html( $('.training_module .wys').html() + data.comms );
             }
-
-            setTimeout(function(){
-                var tmp = $('.training_module .wys');
-                tmp.html( tmp.html().replace(/&lt;\ /g, '<').replace(/\ &gt;/g,'>') );
-                $('.training_module .wys').html( tmp.html() );
-                $('.training_module .wys').parent().parent().append( btnConfirm );
-            }, 500 );
-
+			fixHTML(btnConfirm);
         }, 10);
-
 	}, 500);
-
+}
+function fixHTML(btnConfirm){
+	setTimeout(function(){
+		var tmp = $('.training_module .wys');
+        if( typeof tmp.html() == "undefined" ){
+            console.log('tmp.html() is UNDEFINED');
+            fixHTML(btnConfirm);
+        }else{
+            console.log('tmp.html() is OK');
+            var tHtml = tmp.html();
+            tHtml = tHtml.replace(/&lt; /g, '<');
+            tHtml = tHtml.replace(/ &gt;/g,'>');
+            tmp.html( tHtml );
+			$('.training_module .wys').html( tmp.html() );
+			$('.training_module .wys').parent().parent().append( btnConfirm );
+		}
+	}, 500 );
 }
 function test(){
     //console.log("daaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");

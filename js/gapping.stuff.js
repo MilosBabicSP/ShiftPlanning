@@ -19,9 +19,14 @@ var onSuccess = function(position) {
 };
 function getFile(fileID, filename){
     var fURL = 'http://www.shiftplanning.com/app/iphone/api.php?module=admin.file&method=get&content=1&id=' + fileID + '&token=' + user.token;
+    console.log("USO U GET FILE");
     console.log( fURL, filename );
-    sp.showSuccess('Download of ' + filename + ' started.' );
-    download( fURL, filename )
+    if( isAndroid ){
+    	sp.showSuccess('Download of ' + filename + ' started.' );
+    	download( fURL, filename )
+	}else{
+		window.open(encodeURI(fURL ), '_blank');
+	}
     return false;
 }
 
