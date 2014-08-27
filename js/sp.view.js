@@ -32,7 +32,7 @@ ShiftPlanningView.prototype.optionSchedules = function(id, m, loc) {
                 loc2 = sp.schedule.getLocationName(loc2);
             }
 			if (self.checkPerm(item)) {
-				opt += '<option value="' + i + '">' + ((typeof item == 'object') ? item.name : item) + loc2 + '</option>';
+				opt += '<option value="' + i + '">' + ((typeof item == 'object') ? item.name : item) + " " + loc2 + '</option>';
 			}
 		});
 	} else {
@@ -140,7 +140,7 @@ ShiftPlanningView.prototype.scheduleFilter = function(id, deep) {
             }else{
                 loc = sp.schedule.getLocationName(loc);
             }
-			opt += '<option value="' + i + '">' + ((typeof item == 'object') ? item.name : item) + loc + '</option>';
+			opt += '<option value="' + i + '">' + ((typeof item == 'object') ? item.name : item) + " " + loc + '</option>';
 		}
 	});
 
@@ -169,7 +169,7 @@ ShiftPlanningView.prototype.schedulerFilter = function(id, deep) {
             }else{
                 loc = sp.schedule.getLocationName(loc);
             }
-			opt += '<option value="' + i + '">' + ((typeof item == 'object') ? item.name : item) + loc + '</option>';
+			opt += '<option value="' + i + '">' + ((typeof item == 'object') ? item.name : item) + " " + loc + '</option>';
 		}
 	});
 
