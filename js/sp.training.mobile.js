@@ -421,13 +421,13 @@ ShiftPlanningTraining.prototype.singleModuleSubEvents = function() {
 function fixHTML(btnConfirm){
 	setTimeout(function(){
 		var tmp = $('.training_module .wys');
-        if( typeof tmp.html() == "undefined" ){
-            fixHTML(btnConfirm);
-        }else{
-            var tHtml = tmp.html();
+		if( typeof tmp.html() == "undefined" ){
+			fixHTML(btnConfirm);
+		}else{
+			var tHtml = tmp.html();
 			tHtml = tHtml.replace(/&lt; /g, '<');
 			tHtml = tHtml.replace(/ &gt;/g, '>');
-            tmp.html( tHtml );
+			tmp.html( tHtml );
 			$('.training_module .wys').html( tmp.html() );
 			$('.training_module .wys').parent().parent().append( btnConfirm );
 		}
