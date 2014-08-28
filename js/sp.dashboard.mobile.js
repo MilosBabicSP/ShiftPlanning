@@ -641,35 +641,25 @@ ShiftPlanningDashboard.prototype.dashboardSubEvents = function() {
 		$('#da_widgets .widgets').html('');
 		$('#da_widgets .widgets').append($.tmpl($('#te_da_widget_profile'), {avatar: sp.getAvatar(), name: user.name, company: user.company}));
 		if( sp.staff.admin.info.group * 1 != 7 ){
-            if (parseInt(sp.staff.admin.settings.timeclock) != 0) {
+            if (parseInt(sp.staff.admin.settings.timeclock) != 0
+            		&& sp.staff.admin.business.pref_tc_terminal_lock * 1 == 0 ) {
                 // CHECKING IF WE NEED TO START GPS TRACKING BACKGROUND SERVICE
                 gUtils.shouldStartService(response[0].data);
-                if ( typeof response[0].data.current_length != "undefined" ) {
-                    if (response[0].data != 'out') {
-        //			    if( typeof sp.staff.admin.business.pref_gps_tracker != "undefined" ){
-        //			        var gpsTracker = sp.staff.admin.business.pref_gps_tracker;
-        //			        if( gpsTracker != "0" ){
-        //                        tcServiceTimer = gpsTracker;
-        //                        tcPlugin.start(user.token, response[0].data.id);
-        //			        }else{
-        //                        tcPlugin.stop();
-        //			        }
-        //			    }
-        //
-                        var hs = response[0].data.current_length.hours;
-                        if(hs < 0){
-                            hs = 0;
-                        }
-                        var mns = response[0].data.current_length.mins;
-                        if(mns < 0){
-                            mns = 0;
-                        }
-                        $('#da_widgets .widgets').append($.tmpl($('#te_da_widget_timeclock_in'), {time: hs + _s('h') + ' ' + mns + _s('mins')}));
-                    } else {
-                        //tcPlugin.stop();
-                        $('#da_widgets .widgets').append($.tmpl($('#te_da_widget_timeclock_out')));
-                    }
-                }
+				if (response[0].data != 'out') {
+					if ( typeof response[0].data.current_length != "undefined" ) {
+						var hs = response[0].data.current_length.hours;
+						if(hs < 0){
+							hs = 0;
+						}
+						var mns = response[0].data.current_length.mins;
+						if(mns < 0){
+							mns = 0;
+						}
+					}
+					$('#da_widgets .widgets').append($.tmpl($('#te_da_widget_timeclock_in'), {time: hs + _s('h') + ' ' + mns + _s('mins')}));
+				} else {
+					$('#da_widgets .widgets').append($.tmpl($('#te_da_widget_timeclock_out')));
+				}
             }
             if( releaseShiftsEnabled || tradeShiftsEnabled ){
                 $('#da_widgets .widgets').append($.tmpl($('#te_da_widget_tradePage'), {count: (sp.countResponse(response[1].data) + sp.countResponse(response[2].data) + sp.countResponse(response[4].data))}));
