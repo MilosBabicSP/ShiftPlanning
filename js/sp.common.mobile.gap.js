@@ -11,10 +11,13 @@ ShiftPlanning.prototype.training = new ShiftPlanningTraining();
 ShiftPlanning.prototype.settings = new ShiftPlanningSettings();
 $(document).ready(function() {
     $.ajax({
-        url: 'http://www.shiftplanning.com/app/iphone/load.php',
+        url: _serverMob+'load.php',
         success : function(res) {
             $('#prepLoadFiles').after(res);
             sp.initialize();
-        }
+		},
+		error : function(err, t, m){
+			console.log("Mobile GAP => " + JSON.stringify(err));
+		}
     })
 });
