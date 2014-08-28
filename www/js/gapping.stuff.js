@@ -431,7 +431,12 @@ function appReady() {
     console.log("UserAgent => isAndroid => " + isAndroid );
     var samlDomainName = window.localStorage.getItem('shiftplanning_domain_name');
     $("#samlulr").val( samlDomainName );
-
+	if( !isAndroid ){
+		var tmpVersion = device.version.substring(0,1);
+		if( tmpVersion*1 >= 7 ){
+			$("body").css("margin-top", "20px");
+		}
+	}
 	setTimeout(function() {
 		navigator.splashscreen.hide();
 	}, 1000);
