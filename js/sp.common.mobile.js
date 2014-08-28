@@ -210,9 +210,12 @@ ShiftPlanning.prototype.loadSite = function() {
                 window.localStorage.setItem('shiftplanning_mobile_userid', tToken[1].split('=')[1]);
             }
         }
-        window.location.reload();
+
+        gUtils.loadTemplates();
+		//sp.staff.loginWithToken();
+        //window.location.reload();
         //window.location.href = "file:///android_asset/www/index.html";
-        return;
+        //return;
     }
     init();
     $('.toggleMenu').bind(clickEvent, function(e){

@@ -272,7 +272,7 @@ ShiftPlanningStaff.prototype.loginWithToken = function() {
 	sp.api('staff.employee', 'GET', {
 		id: user.id
 	}, function(loginResponse) {
-//        console.log("LoginWithToken Response => " + JSON.stringify(loginResponse));
+        console.log("LoginWithToken Response => " + JSON.stringify(loginResponse));
         if( typeof loginResponse.data == "undefined" ){
             logUserOutLocal();
         }else{
@@ -339,7 +339,7 @@ ShiftPlanningStaff.prototype.loginWithToken = function() {
 
                         sp.staff.admin.business = confBusiness[1].data;
 
-                        console.log("BUSINESS  => " + JSON.stringify(confBusiness[1]) );
+                        //console.log("BUSINESS  => " + JSON.stringify(confBusiness[1]) );
                         user.company = sp.staff.admin.business.name;
                         //console.log("BUSINESS NAME USER => " + user.company );
 
