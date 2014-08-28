@@ -40,24 +40,15 @@ ShiftPlanning.prototype = {
 			reqs.push(call);
 		});
 
-//        var keya = {'key': '1b1933e7e0a9fdeca1be7801ada2e04ad1719454'};
-        data.key = '1b1933e7e0a9fdeca1be7801ada2e04ad1719454';
+		/** apiKey is defined in gapConfig.js */
+        data.key = apiKey;
         data.request = reqs;
 
-        //token: user.token
-		var tmp22 = 'key=1b1933e7e0a9fdeca1be7801ada2e04ad1719454&multi=1&data=' + encodeURIComponent(JSON.stringify(data));
+		var tmp22 = 'key=' + apiKey + '&multi=1&data=' + encodeURIComponent(JSON.stringify(data));
 
 		if ( tmpToken != "") {
 			tmp22 += '&token=' + tmpToken;
 		}
-
-//      tmp22 += '&application=android&tknhunt=1';
-//		tmp22 += '&application=android';
-
-        //console.log("TOKEN => " + tmpToken );
-        //console.log("MULTI CALLS => " + tmp22 );
-//        tmp22 = encodeURIComponent(tmp22);
-
 		var xhr = $.ajax({
 			url: _server + 'index.php',
 			dataType: 'json',
@@ -105,8 +96,9 @@ ShiftPlanning.prototype = {
 			return false;
 		}
 
+		/** apiKey is defined in gapConfig.js */
 		var data = {
-		    key: "1b1933e7e0a9fdeca1be7801ada2e04ad1719454",
+		    key: apiKey,
 			module: module,
 			method: method
 		};
@@ -122,9 +114,6 @@ ShiftPlanning.prototype = {
         //console.log("SINGLE REQUEST => " + JSON.stringify( data ) );
         data = encodeURIComponent(JSON.stringify( data ));
 
-		//if (method.toLowerCase() == 'get') {
-		//    this.globalLoader();
-		//}
 		this.apiCalls[a] = $.ajax({
 			url: _server + 'index.php',
 			dataType: 'json',
@@ -133,7 +122,6 @@ ShiftPlanning.prototype = {
 			cache: false,
 			success: function(response) {
                 //console.log("SINGLE RESPONSE => " + JSON.stringify(response) );
-                //console.log("SINGLE RESPONSE TOKEN => " + response.token );
 				self.apiCalls[a] = null;
 				var closeLoader = true;
 				$.each(self.apiCalls, function(i, item) {
@@ -146,7 +134,6 @@ ShiftPlanning.prototype = {
 					self.apiCalls = {};
 				}
 				if( response == null ){
-					//console.log("response is NULL");
 					callback.call(this, "");
 					return true;
 				}
@@ -162,7 +149,6 @@ ShiftPlanning.prototype = {
 					user.company = '';
 					self.staff.data.employees = {};
 
-					//window.location.reload();
                     logUserOutClearData();
 				} else if (response.status == 1) {
 					if (typeof callback == 'function') {
@@ -181,14 +167,15 @@ ShiftPlanning.prototype = {
 			},
 			error: function(errData, t, m) {
 				console.log("############## Api connection Error: " + JSON.stringify(errData) + ", t => " + JSON.stringify(t) + ", m => " + JSON.stringify(m));
-				alert("############## Api connection Error: " + JSON.stringify(errData) + ", t => " + JSON.stringify(t) + ", m => " + JSON.stringify(m));
 
                 sp.hashChange = true;
                 //alert("There has been a problem with an internet connection. Please check it and try again.");
                 sp.showError(_s('There has been a problem with an internet connection. Please check it and try again.'));
 				self.apiCalls[a] = null;
                 $('.bigLoader2').hide();
-				//window.location.reload();
+				if (typeof errorCallback == 'function') {
+					errorCallback.call(this, errData);
+				}
 				return false;
 			}
 
@@ -196,7 +183,6 @@ ShiftPlanning.prototype = {
 	},
 	loadPage: function(page) {
 		//Load the page from the module, handle this a little better
-		//console.log("loadPage => " + page );
 		if (user.loggedIn) {
 			if (typeof this[page] != 'undefined') {
 				$('#pages #' + page + ' > div').hide();
