@@ -26,6 +26,7 @@ gUtils.device = {
 };
 
 gUtils.loadTemplates = function(){
+	appPath = appPath.substring(0, appPath.indexOf('www')) + 'www/';
     $("#templates").load(appPath + "templates.html");
 };
 
