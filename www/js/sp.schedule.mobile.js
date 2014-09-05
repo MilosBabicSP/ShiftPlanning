@@ -256,7 +256,7 @@ ShiftPlanningSchedule.prototype.allPageEvents = function() {
 		e.preventDefault();
 		sp.loadSubPage('', 'schedule', 'trade');
 	});
-	$('#schedule .trade .tradepick a').live( clickEvent, function(e) {
+	$('#schedule .trade .tradepick a').bind( clickEvent, function(e) {
 		//console.log("clicked on A in trade");
 		e.preventDefault();
 		var type = $(this).attr('id');
@@ -273,7 +273,7 @@ ShiftPlanningSchedule.prototype.allPageEvents = function() {
 		}, 400);
 
 	});
-	$('#te_sc_shift_display_trade_swap .steps a,#te_sc_shift_display_trade_release .steps a').live(clickEvent, function(e) {
+	$('#te_sc_shift_display_trade_swap .steps a,#te_sc_shift_display_trade_release .steps a').bind(clickEvent, function(e) {
 		//console.log("clicked on .steps a in trade");
 		e.preventDefault();
 		var move = $(this).attr('id');
