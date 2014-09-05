@@ -99,7 +99,11 @@ function logUserOutLocal() {
     window.localStorage.removeItem('shiftplanning_mobile_userphone');
 
     sp.staff.data.employees = {};
-    sp.hash('login');
+	if( isAndroid ){
+    	sp.hash('login');
+	}else{
+		sp.hash('logout');
+	}
     window.location.reload();
 }
 
