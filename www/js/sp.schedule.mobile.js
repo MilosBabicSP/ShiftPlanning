@@ -716,7 +716,7 @@ ShiftPlanningSchedule.prototype.shiftDisplaySubEvents = function() {
 		if( isAndroid ){
 			$("#get_directions").attr("onclick", "openExtURL('" + this.shift.location.map + "')");
 		}else{
-			$("#get_directions").attr("onclick", "window.open(encodeURI('" + this.shift.location.map + "'), '_blank')");
+			$("#get_directions").attr("onclick", "window.open(decodeURI('" + this.shift.location.map + "'), '_blank')");
 		}
 	}
 
