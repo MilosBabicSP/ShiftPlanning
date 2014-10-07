@@ -61,13 +61,13 @@ ShiftPlanning.prototype.toggleMenu = function() {
 		$('#menu').css('margin-left', 0);
 		$('.blackMask').css('display', 'block');
 		$('.blackMask').css('opacity', '0.5');
-		$('.privacy-policy').css('display', 'block');
+        $('.privacy-policy').css('display', 'block');
 	} else {
 		$('#wrapper').css('margin-left', 0);
 		$('#menu').css('margin-left', -190);
 		$('.blackMask').css('display', 'none');
 		$('.blackMask').css('opacity', '0');
-		$('.privacy-policy').css('display', 'none');
+        $('.privacy-policy').css('display', 'none');
 	}
 }
 
@@ -380,6 +380,12 @@ ShiftPlanning.prototype.togglePrivacy = function(hash, page){
         });
         //console.log("togglePrivacy: Hash => " + hash + ", Page => " + page );
     }
+}
+
+ShiftPlanning.prototype.showPrivacyPolicy = function(){
+    this.toggleMenu();
+    $("#wrapper > #pages > div").css('display', "none");
+    $("#wrapper > #pages > div[id='privacy']").css('display', "block");
 }
 
 function callAndroid(func, callback) {

@@ -212,7 +212,7 @@
                     <li id="menu_logout"><a class="exit" href="#logout" page="logout">Logout</a></li>
                 </ul>
                 <a class="privacy-policy"
-                   href="http://www.shiftplanning.com/privacy/" target="_blank">Privacy Policy</a>
+                   onclick="sp.showPrivacyPolicy();">Privacy Policy</a>
             </div>
 
             <div id="wrapper" class="wrapper">
@@ -2718,8 +2718,8 @@
 					    </div>						
 					</div>
                     <div id="privacy" class="privacy">
-                        <div id="pr_back" class="subLevel mainSub">
-                            <a href="#" class="backMenu">
+                        <div class="subLevel mainSub">
+                            <a onclick="sp.loadPage(sp.hash())" class="backMenu">
                                 <img height="16" width="16" src="images/arrow_back.png">
                             </a>
                         </div>
@@ -2855,11 +2855,12 @@
                             <p>Anytime you visit a chat room or post a message to an online bulletin board, your e-mail address can be accessed by advertisers looking to compile lists for unsolicited commercial e-mail (also known as spam). Be sure that you only disclose your e-mail address in circumstances in which it is safe to do so. You should also be aware that any information you provide in these areas may be read, collected, and used by others who access them. To request removal of your personal information from our blog or community forum, contact us at <img src="http://www.shiftplanning.com/includes/functions/eimage.php" style="margin-bottom: -2px;">.  In some cases, we may not be able to remove your personal information, in which case we will let you know if we are unable to do so and why. Beware of scams in which persons unknown to you request your screen name, password, or credit card information. Make sure you verify the identity of anyone asking for personal information.</p>
                             <p>We also display personal testimonials of satisfied customers on our site in addition to other endorsements.  With your consent we may post your testimonial along with your name.  If you wish to update or delete your testimonial, you can contact us at <img src="http://www.shiftplanning.com/includes/functions/eimage.php" style="margin-bottom: -2px;">.
                             </p>
-                        </div>						<div id="pr_back_down" class="subLevel mainSub">
-                        <a href="#" class="backMenu">
-                            <img height="16" width="16" src="images/arrow_back.png">
-                        </a>
-                    </div>
+                        </div>
+                        <div class="subLevel mainSub">
+                            <a onclick="sp.loadPage(sp.hash())" class="backMenu">
+                                <img height="16" width="16" src="images/arrow_back.png">
+                            </a>
+                        </div>
                     </div>
                     <div id="terms" class="terms">
                         <div id="terms_back" class="subLevel mainSub">
