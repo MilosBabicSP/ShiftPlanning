@@ -325,7 +325,7 @@ table.day td.dTitle span {font-weight:normal; font-size:13px;}
 /*
     Application css
 */
-.applicationContainer {display:none;}
+.applicationContainer {display:none; position: relative;}
 body {display:none;}
 .hidden {display:none;}
 .nonVisible {visibility: hidden;}
@@ -343,6 +343,7 @@ body {display:none;}
 #da_in_me .additional {padding:15px 20px !important;}
 .noBorder {border:none !important;}
 .main.addShift.normal > .detailsGrid {border-bottom: none;}
+.privacy-policy {position: absolute; bottom: 0; padding: 0 0 10px 17px; float: left; display: none;}
 
 /*failsafe*/
 .checkbox.failsafe {line-height:15px;}

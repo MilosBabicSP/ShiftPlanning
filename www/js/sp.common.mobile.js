@@ -61,11 +61,13 @@ ShiftPlanning.prototype.toggleMenu = function() {
 		$('#menu').css('margin-left', 0);
 		$('.blackMask').css('display', 'block');
 		$('.blackMask').css('opacity', '0.5');
+		$('.privacy-policy').css('display', 'block');
 	} else {
 		$('#wrapper').css('margin-left', 0);
 		$('#menu').css('margin-left', -190);
 		$('.blackMask').css('display', 'none');
 		$('.blackMask').css('opacity', '0');
+		$('.privacy-policy').css('display', 'none');
 	}
 }
 
