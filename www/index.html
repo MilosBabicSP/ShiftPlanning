@@ -14,7 +14,7 @@
             var gap = true;
             var GAPPED = true;
             if( isAndroid ){
-                document.write('<script type="text\/javascript" src="js\/cordova-2.4.0.js"><\/s' + 'cript>');
+                document.write('<script type="text\/javascript" src="cordova.js"><\/s' + 'cript>');
             }else{
                 document.write('<script type="text\/javascript" src="js\/cordova-ios.js"><\/s' + 'cript>');
                 document.write('<meta name="apple-mobile-web-app-capable" content="yes" \/>');
@@ -42,7 +42,7 @@
 
         <script type="text/javascript">
             if( isAndroid ){
-                document.write('<script type="text\/javascript" src="gapped\/backgroundService.js"><\/s' + 'cript>');
+                document.write('<script type="text\/javascript" src="gapped\/backgroundService-3.1.0.js"><\/s' + 'cript>');
                 document.write('<script type="text\/javascript" src="gapped\/GPSService.js"><\/s' + 'cript>');
                 document.write('<script type="text\/javascript" src="gapped\/timeclock.js"><\/s' + 'cript>');
             }
