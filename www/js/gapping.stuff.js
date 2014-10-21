@@ -19,8 +19,9 @@ var onSuccess = function(position) {
 };
 function getFile(fileID, filename){
     var fURL = 'http://www.shiftplanning.com/app/iphone/api.php?module=admin.file&method=get&content=1&id=' + fileID + '&token=' + user.token;
-    console.log("USO U GET FILE");
-    console.log( fURL, filename );
+    console.log("USO U GET FILE" );
+    console.log( "URL => " + fURL );
+    console.log( "    FileName => " + filename );
     if( isAndroid ){
     	sp.showSuccess('Download of ' + filename + ' started.' );
     	download( fURL, filename )
@@ -41,29 +42,49 @@ function downloadFile(fileID) {
 	});
 }
 function download(remoteFile, localFileName) {
-	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem) {
-		fileSystem.root.getFile(localFileName, {create: true, exclusive: false}, function(fileEntry) {
-			var localPath = fileEntry.fullPath;
-			if (device.platform === "Android" && localPath.indexOf("file://") === 0) {
-				localPath = localPath.substring(7);
-			}
-			var ft = new FileTransfer();
+	console.log("============================ BEGIN of Download Function");
+    console.log( "download => remoteFile => " + remoteFile + ", localFileName => " + localFileName);
+    try{
+		window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem) {
+//		window.requestFileSystem(LocalFileSystem.TEMPORARY, 0, function(fileSystem) {
+	        console.log( "              IN => 1111" );
+			fileSystem.root.getFile(localFileName, {create: true, exclusive: false}, function(fileEntry) {
+	            console.log( "              IN => 2222 => fileEntry => " + JSON.stringify(fileEntry)  );
+	//			var localPath = fileEntry.fullPath;
+				var localPath = fileEntry.toURL();
+	            console.log( "              IN => 2222, localPath => " + localPath );
+	            if( isAndroid ){
+					if (localPath.indexOf("file://") === 0) {
+						localPath = localPath.substring(7);
+					}else if( localPath.indexOf('//') >= 0 ){
+						localPath = localPath.substring(localPath.indexOf('//')+2);
+					}
+				}
+	            console.log( "              IN => 2222, localPath AFTER => " + localPath );
+				var ft = new FileTransfer();
 
-			ft.download(remoteFile, localPath, function(entry) {
-				fp = entry.fullPath;
-				alert('File is saved in: ' + fp + '.');
-				entry.file(successFile, fail);
+				ft.download(remoteFile, localPath, function(entry) {
+	                console.log( "              IN => 3333 , entry.fullPath => " + entry.fullPath );
+					fp = entry.toURL();
+					alert('File is saved in: ' + fp + '.');
+					entry.file(successFile, fail);
+				}, fail);
+
 			}, fail);
 
-		}, fail);
-
-	}, fail);
-
+		}, function(err){
+			console.log("Error => FAILED => Download => " + JSON.stringify(err));
+		});
+	}catch(err){
+		console.log("Error => Download => " + JSON.stringify(err));
+	}
+	console.log("============================ END of Download Function");
 }
 function successFile(file) {
     sp.showSuccess('Download of ' + file.name + ' completed.' );
 }
 function fail(error) {
+	alert(JSON.stringify(error));
 	alert(error.code);
 }
 function onError(error) {
@@ -383,8 +404,9 @@ var gpsCoords = {};
 
 function openExtURL(what){
     console.log("openExtURL => URL => " + what );
-    console.log(JSON.stringify(window.nativeInterface));
-    window.nativeInterface.openInDeviceBrowser(what);
+    window.open(what, '_system');
+//    console.log(JSON.stringify(window.nativeInterface));
+//    window.nativeInterface.openInDeviceBrowser(what);
 }
 
 var gpsOptions = {

@@ -375,7 +375,7 @@ ShiftPlanningTraining.prototype.singleModuleSubEvents = function() {
                 data.attach = '<br/><div class="codebox">';
 
                 $.each(data.files, function(i, j) {
-                    data.attach += "&lt a onclick=\"getFile(" + this.id + ", \'" + this.filename + "\' );\" href='" + this.pretty_url + "' target='_blank' &gt " + this.filename + " &lt /a &gt(" + this.file_size + ")&lt br/ &gt &lt br/ &gt";
+                    data.attach += "&lt a onclick=\"getFile(" + this.id + ", \'" + this.filename + "\' );\" &gt " + this.filename + " &lt /a &gt(" + this.file_size + ")&lt br/ &gt &lt br/ &gt";
                 });
                 data.attach +="</div>";
 

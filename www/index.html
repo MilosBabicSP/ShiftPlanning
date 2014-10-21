@@ -14,7 +14,7 @@
             var gap = true;
             var GAPPED = true;
             if( isAndroid ){
-                document.write('<script type="text\/javascript" src="js\/cordova-2.4.0.js"><\/s' + 'cript>');
+                document.write('<script type="text\/javascript" src="cordova.js"><\/s' + 'cript>');
             }else{
                 document.write('<script type="text\/javascript" src="js\/cordova-ios.js"><\/s' + 'cript>');
                 document.write('<meta name="apple-mobile-web-app-capable" content="yes" \/>');
@@ -42,7 +42,7 @@
 
         <script type="text/javascript">
             if( isAndroid ){
-                document.write('<script type="text\/javascript" src="gapped\/backgroundService.js"><\/s' + 'cript>');
+                document.write('<script type="text\/javascript" src="gapped\/backgroundService-3.1.0.js"><\/s' + 'cript>');
                 document.write('<script type="text\/javascript" src="gapped\/GPSService.js"><\/s' + 'cript>');
                 document.write('<script type="text\/javascript" src="gapped\/timeclock.js"><\/s' + 'cript>');
             }
@@ -211,6 +211,8 @@
                     <li id="menu_settings"><a class="sett" href="#" page="settings" >Settings</a></li>
                     <li id="menu_logout"><a class="exit" href="#logout" page="logout">Logout</a></li>
                 </ul>
+                <a class="privacy-policy"
+                   onclick="sp.showPrivacyPolicy();">Privacy Policy</a>
             </div>
 
             <div id="wrapper" class="wrapper">
@@ -2716,8 +2718,8 @@
 					    </div>						
 					</div>
                     <div id="privacy" class="privacy">
-                        <div id="pr_back" class="subLevel mainSub">
-                            <a href="#" class="backMenu">
+                        <div class="subLevel mainSub">
+                            <a onclick="sp.loadPage(sp.hash().split('/')[0])" class="backMenu">
                                 <img height="16" width="16" src="images/arrow_back.png">
                             </a>
                         </div>
@@ -2734,6 +2736,11 @@
                             <p>
                                 ShiftPlanning&copy; has been awarded TRUSTe's Privacy Seal signifying that this privacy policy and practices have been reviewed by TRUSTe for compliance with TRUSTe's program requirements and TRUSTed Cloud Requirements including transparency, accountability and choice regarding the collection and use of your personal information. The TRUSTe program covers information that is collected through this Web site, www.shiftplanning.com and information that is collected through our Cloud platform, and mobile application.
                             </p>
+
+                            <a href="http://privacy-policy.truste.com/certified-policy/mobile/app/en/ShiftPlanning.com/index.html">
+                                <img style="border: none; padding: 10px 0;" src="./images/truste-seal.png" alt="Validate TRUSTe privacy certification">
+                            </a>
+
                             <p>
                                 TRUSTe's mission, as an independent third party, is to accelerate online trust among consumers and organizations globally through its leading privacy Trustmark and innovative trust solutions. If you have questions or complaints regarding our privacy policy or practices, please contact us at <img src="http://www.shiftplanning.com/includes/functions/eimage.php" style="margin-bottom: -2px;">. If you are not satisfied with our response you can contact TRUSTe here.
                             </p>
@@ -2853,11 +2860,12 @@
                             <p>Anytime you visit a chat room or post a message to an online bulletin board, your e-mail address can be accessed by advertisers looking to compile lists for unsolicited commercial e-mail (also known as spam). Be sure that you only disclose your e-mail address in circumstances in which it is safe to do so. You should also be aware that any information you provide in these areas may be read, collected, and used by others who access them. To request removal of your personal information from our blog or community forum, contact us at <img src="http://www.shiftplanning.com/includes/functions/eimage.php" style="margin-bottom: -2px;">.  In some cases, we may not be able to remove your personal information, in which case we will let you know if we are unable to do so and why. Beware of scams in which persons unknown to you request your screen name, password, or credit card information. Make sure you verify the identity of anyone asking for personal information.</p>
                             <p>We also display personal testimonials of satisfied customers on our site in addition to other endorsements.  With your consent we may post your testimonial along with your name.  If you wish to update or delete your testimonial, you can contact us at <img src="http://www.shiftplanning.com/includes/functions/eimage.php" style="margin-bottom: -2px;">.
                             </p>
-                        </div>						<div id="pr_back_down" class="subLevel mainSub">
-                        <a href="#" class="backMenu">
-                            <img height="16" width="16" src="images/arrow_back.png">
-                        </a>
-                    </div>
+                        </div>
+                        <div class="subLevel mainSub">
+                            <a onclick="sp.loadPage(sp.hash().split('/')[0])" class="backMenu">
+                                <img height="16" width="16" src="images/arrow_back.png">
+                            </a>
+                        </div>
                     </div>
                     <div id="terms" class="terms">
                         <div id="terms_back" class="subLevel mainSub">
