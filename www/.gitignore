@@ -1,3 +1,5 @@
 /nbproject/private/
 # OSX files
 .DS_Store
+cordova_plugins.js
+cordova.js
