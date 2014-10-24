@@ -714,7 +714,8 @@ ShiftPlanningSchedule.prototype.shiftDisplaySubEvents = function() {
         $("#locFinder").css('display', 'none');
 		$('#sc_location_iframe').html('<iframe  id="map" width="100%" height="220" frameborder="0" scrolling="no" src="' + this.shift.location.map + '&z=15&output=embed"></iframe>');
 		if( isAndroid ){
-			$("#get_directions").attr("onclick", "openExtURL('" + this.shift.location.map + "')");
+//			$("#get_directions").attr("onclick", "openExtURL('" + this.shift.location.map + "')");
+			$("#get_directions").attr("href", this.shift.location.map);
 		}else{
 			$("#get_directions").attr("onclick", "window.open(decodeURI('" + this.shift.location.map + "'), '_system')");
 		}
