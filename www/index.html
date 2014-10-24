@@ -13,10 +13,8 @@
         <script type="text/javascript" id="prepLoadFiles">
             var gap = true;
             var GAPPED = true;
-            if( isAndroid ){
                 document.write('<script type="text\/javascript" src="cordova.js"><\/s' + 'cript>');
-            }else{
-                document.write('<script type="text\/javascript" src="js\/cordova-ios.js"><\/s' + 'cript>');
+            if( !isAndroid ){
                 document.write('<meta name="apple-mobile-web-app-capable" content="yes" \/>');
                 document.write('<link rel="apple-touch-startup-image" href="images\/default.png" \/>');
                 document.write('<link rel="apple-touch-startup-image" href="images\/sc\/x320.png" media="screen and (max-device-width: 320px)" \/>');
@@ -2718,8 +2716,8 @@
 					    </div>						
 					</div>
                     <div id="privacy" class="privacy">
-                        <div class="subLevel mainSub">
-                            <a onclick="sp.loadPage(sp.hash().split('/')[0])" class="backMenu">
+                        <div id="pr_back" class="subLevel mainSub">
+                            <a href="#" class="backMenu">
                                 <img height="16" width="16" src="images/arrow_back.png">
                             </a>
                         </div>
@@ -2737,7 +2735,7 @@
                                 ShiftPlanning&copy; has been awarded TRUSTe's Privacy Seal signifying that this privacy policy and practices have been reviewed by TRUSTe for compliance with TRUSTe's program requirements and TRUSTed Cloud Requirements including transparency, accountability and choice regarding the collection and use of your personal information. The TRUSTe program covers information that is collected through this Web site, www.shiftplanning.com and information that is collected through our Cloud platform, and mobile application.
                             </p>
 
-                            <a href="http://privacy-policy.truste.com/certified-policy/mobile/app/en/ShiftPlanning.com/index.html">
+                            <a href="http://privacy-policy.truste.com/certified-policy/mobile/app/en/ShiftPlanning.com/" target="_system">
                                 <img style="border: none; padding: 10px 0;" src="./images/truste-seal.png" alt="Validate TRUSTe privacy certification">
                             </a>
 
@@ -2861,8 +2859,8 @@
                             <p>We also display personal testimonials of satisfied customers on our site in addition to other endorsements.  With your consent we may post your testimonial along with your name.  If you wish to update or delete your testimonial, you can contact us at <img src="http://www.shiftplanning.com/includes/functions/eimage.php" style="margin-bottom: -2px;">.
                             </p>
                         </div>
-                        <div class="subLevel mainSub">
-                            <a onclick="sp.loadPage(sp.hash().split('/')[0])" class="backMenu">
+                        <div id="pr_back" class="subLevel mainSub">
+                            <a href="#" class="backMenu">
                                 <img height="16" width="16" src="images/arrow_back.png">
                             </a>
                         </div>

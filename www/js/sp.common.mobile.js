@@ -295,7 +295,11 @@ ShiftPlanning.prototype.loadSite = function() {
 
     $('#pr_back a,#pr_back_down a').bind(clickEvent, function(e){
         e.preventDefault();
-        sp.togglePrivacy('login', 'privacy');
+		if( sp.hash() != "login" && sp.hash() != "privacy" ){
+			sp.loadPage(sp.hash());
+		}else{
+        	sp.togglePrivacy('login', 'privacy');
+		}
     });
 
     $('#terms_back a,#terms_back_down a').bind(clickEvent, function(e){

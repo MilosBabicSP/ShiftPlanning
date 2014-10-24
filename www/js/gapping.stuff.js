@@ -26,7 +26,7 @@ function getFile(fileID, filename){
     	sp.showSuccess('Download of ' + filename + ' started.' );
     	download( fURL, filename )
 	}else{
-		window.open(encodeURI(fURL ), '_blank');
+		window.open(encodeURI(fURL ), '_system');
 	}
     return false;
 }

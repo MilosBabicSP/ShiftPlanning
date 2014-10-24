@@ -185,11 +185,11 @@ module.exports = [
 module.exports.metadata = 
 // TOP OF METADATA
 {
-    "org.apache.cordova.splashscreen": "0.3.3",
-    "org.apache.cordova.inappbrowser": "0.5.2",
+    "org.apache.cordova.splashscreen": "0.3.4",
+    "org.apache.cordova.inappbrowser": "0.5.3",
     "org.apache.cordova.device": "0.2.12",
     "org.apache.cordova.file": "1.3.1",
-    "org.apache.cordova.file-transfer": "0.4.6"
+    "org.apache.cordova.file-transfer": "0.4.7"
 }
 // BOTTOM OF METADATA
 });
