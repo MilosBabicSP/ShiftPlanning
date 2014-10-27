@@ -31,6 +31,22 @@ function getFile(fileID, filename){
     return false;
 }
 
+function handleExternalURLs() {
+    // Handle click events for all external URLs
+    if (isAndroid) {
+        $(document).on('click', 'a[href^="http"]', function (e) {
+            var url = $(this).attr('href');
+            navigator.app.loadUrl(url, { openExternal: true });
+            e.preventDefault();
+        });
+    }else{
+        $(document).on('click', 'a[href^="http"]', function (e) {
+            var url = $(this).attr('href');
+            window.open(url, '_system');
+            e.preventDefault();
+        });
+    }
+}
 function downloadFile(fileID) {
 	alert('DownloadFile started for fileID: ' + fileID + ", with\n token: " + user.token);
 	sp.api('admin.file', 'GET', {
@@ -455,6 +471,7 @@ var $ = jQuery.noConflict();
 function appReady() {
     console.log("dev is ready");
     console.log("UserAgent => isAndroid => " + isAndroid );
+    handleExternalURLs();
     var samlDomainName = window.localStorage.getItem('shiftplanning_domain_name');
     $("#samlulr").val( samlDomainName );
 	if( !isAndroid ){
