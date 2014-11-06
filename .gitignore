@@ -1,3 +1,6 @@
 /nbproject/private/
 # OSX files
 .DS_Store
+# andorid studio
+.idea/*
+.idea/.name

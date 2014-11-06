@@ -28,10 +28,10 @@ ShiftPlanningTimeClock.prototype.dataOut = {};
 ShiftPlanningTimeClock.prototype.apiCallIn = function() {
     $("#gpsMap").hide();
     sp.showSuccess(_s('ClockingIn'));
-    //console.log("CLOCKIN REQUEST => " + JSON.stringify( sp.timeClock.dataIn ) );
+    console.log("CLOCKIN REQUEST => " + JSON.stringify( sp.timeClock.dataIn ) );
     spModel.timeclock.get('clockin', sp.timeClock.dataIn,
         function(response) {
-            //console.log("CLOCKIN RESPONSE => " + JSON.stringify( response ) );
+            console.log("CLOCKIN RESPONSE => " + JSON.stringify( response ) );
 
             // CHECKING IF WE NEED TO START GPS TRACKING BACKGROUND SERVICE
             gUtils.shouldStartService(response.data);
@@ -56,9 +56,9 @@ ShiftPlanningTimeClock.prototype.apiCallIn = function() {
 ShiftPlanningTimeClock.prototype.apiCallOut = function() {
     $("#gpsMap").hide();
     sp.showSuccess(_s('ClockingOut'));
-    //console.log("CLOCKOUT REQUEST => " + JSON.stringify( sp.timeClock.dataOut ) );
+    console.log("CLOCKOUT REQUEST => " + JSON.stringify( sp.timeClock.dataOut ) );
     spModel.timeclock.get('clockout', sp.timeClock.dataOut, function(response) {
-        //console.log("CLOCKOUT RESPONSE => " + JSON.stringify( response ) );
+        console.log("CLOCKOUT RESPONSE => " + JSON.stringify( response ) );
         // CHECKING IF WE NEED TO START GPS TRACKING BACKGROUND SERVICE
         gUtils.shouldStartService('out');
         $('#tc_ov_cb span.fr a').hide();
@@ -128,7 +128,7 @@ ShiftPlanningTimeClock.prototype.overviewEvents = function() {
             sp.showSuccess(_s('Getting Coordinates'));
             getCurrentPosition(
                 function(response) {
-                    //console.log("Location found => " + JSON.stringify( response ) );
+                    console.log("Location found => " + JSON.stringify( response ) );
                     if (typeof response != 'function') {
                         done = true;
                         sp.timeClock.dataIn.latitude = response.coords.latitude;
@@ -206,7 +206,7 @@ ShiftPlanningTimeClock.prototype.overviewEvents = function() {
 
             getCurrentPosition(
                 function(response) {
-                    //console.log("Location found => " + JSON.stringify( response ) );
+                    console.log("Location found => " + JSON.stringify( response ) );
                     if (typeof response != 'function') {
                         sp.timeClock.dataOut.latitude = response.coords.latitude;
                         sp.timeClock.dataOut.longitude = response.coords.longitude;
@@ -623,7 +623,7 @@ ShiftPlanningTimeClock.prototype.addClockTimeSubEvents = function() {
         $('.lblRemoteLoc').show();
     }
 
-    $('#tc_act_em').html(spView.staffOption(sp.staff.admin.info.group > 4 ? true : false));
+	spView._staffOption((sp.staff.admin.info.group > 4) ? true : false);
 
     var s = new Date(emp.in_timestamp * 1000);
     var e = new Date(emp.out_timestamp * 1000);
