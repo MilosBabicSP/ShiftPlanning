@@ -3,5 +3,6 @@
 .DS_Store
 
 # ingore android studio files
-.idea/.name
 .idea/*
+.idea/scopes/*
+.idea/.name
