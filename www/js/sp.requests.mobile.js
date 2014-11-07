@@ -292,7 +292,7 @@ ShiftPlanningRequests.prototype.shiftTradesEvents = function() {
                 data.shift_for_swap = $(this).attr('shiftswap');
             }
         }catch(eee){
-            console.log("Err at #rq_st_mst_s .traders a => " + eee.getMessage() )
+//            console.log("Err at #rq_st_mst_s .traders a => " + eee.getMessage() )
         }
 
 		spModel.schedule.update(tradeType, data, function(response) {
@@ -375,13 +375,25 @@ ShiftPlanningRequests.prototype.shiftApprovalsEvents = function() {
 	});
 
 	$('#rq_sa_ho .checkbox').live(clickEvent, function(e) {
-		var obj = $(this);
+		var obj = $(this), ul, li;
 		if (!obj.hasClass('check')) {
+			li = obj.parent().parent();
+			ul = li.parent();
+			
+			obj.addClass('check');
+			obj.next('img').show();
+			
 			var id = obj.attr('shiftId');
 			spModel.schedule.update('shiftapprove', {
 				id: id
 			}, function(response) {
-				obj.addClass('check');
+				li.remove();
+				
+				if (ul.find('li').length === 0) {
+					ul.prev('div').remove();
+					ul.remove();
+				}
+				
 				self.addShift(id, response.data);
 			}, function(response) {
 				sp.showError(response.error);

@@ -22,7 +22,8 @@ p {line-height:120%;}
 .fr {float:right !important;}
 .hidden {display:none;}
 label {font-size:14px; display:block; padding:3px 0;}
-
+.approve_wait {position: absolute; top: 38px; right: 25px; display: none;}
+.invisible_div {width: 24px; height: 24px; background: transparent; border: none; display: block; z-index: 10;}
 h1 {}
 h2 {}
 h3 {font-size:14px; line-height:30px;}
