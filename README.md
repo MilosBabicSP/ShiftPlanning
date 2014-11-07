@@ -85,11 +85,11 @@
     
 ##### Linking static files into app project
     $ cd ../finalgapios/
-    $ ln -s ../gaphtmlproduction/www/ www/
+    $ ln -s ../gaphtmlproduction/www/ www
 
 ##### Linking Cordova into static files
     $ cd ../gaphtmlproduction/www
-    $ ln -s ../../cordova_ios/www/plugins/ plugins/
+    $ ln -s ../../cordova_ios/www/plugins/ plugins
     $ ln -s ../../cordova_ios/www/cordova.js cordova.js
     $ ln -s ../../cordova_ios/www/cordova_plugins.js cordova_plugins.js
 
@@ -97,19 +97,19 @@
 
 ##### Linking static files into app project
     $ cd ../finalgapandroid360/assets/
-    $ ln -s ../../gaphtmlproduction/www/ www/
+    $ ln -s ../../gaphtmlproduction/www/ www
 
 ##### Linking Cordova into static files
     $ cd ../../gaphtmlproduction/www
-    $ ln -s ../../cordova_android/www/plugins/ plugins/
+    $ ln -s ../../cordova_android/www/plugins/ plugins
     $ ln -s ../../cordova_android/www/cordova.js cordova.js
     $ ln -s ../../cordova_android/www/cordova_plugins.js cordova_plugins.js
 
 ###Preparing NEW\_BRANCH for Pull Request
      
-#####Remove created simlinks for iOS
-    $ unlink www/
-
-#####Remove created simlinks for Android
-    $ unlink assets/www/
+#####Remove created simlinks
+    $ cd gaphtmlproduction/www
+    $ unlink plugins
+    $ unlink cordova.js
+    $ unlink cordova_plugins.js
 
