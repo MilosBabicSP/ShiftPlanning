@@ -21,3 +21,75 @@
 * Android APK file need to be attached on JIRA task and reference to testflight service need to be provided for iOS.
 * Remove cordova files/plugins from new branch.
 * Create pull request into branch 'gaphtmlproduction'
+
+
+##Steps To Start With New Project 
+
+### Checkout app project if not already:
+
+	iOS:
+		branch name: [ finalgapios ]
+
+	Android:
+		branch name: [ finalgapandroid360 ]
+
+
+###Checkout Cordova files/plugins:
+
+	iOS:
+		branch name: [ cordova_ios ]
+
+	Android:
+		branch name: [ cordova_android ]
+
+###Checkout Static Files (common for both platforms):
+	branch name: [ gaphtmlproduction ]
+
+###Project structure after checkouts for iOS:
+    $ ls -1
+      finalgapios
+      cordova_ios
+      gaphtmlproduction
+
+###Project structure after checkouts for Andorid:
+    $ ls -1
+      finalgapandroid360
+      cordova_android
+      gaphtmlproduction
+
+##Starting With New Task
+    $ git checkout gaphtmlproduction
+    $ git pull origin gaphtmlproduction
+    $ git check -b NEW_BRANCH_NAME
+
+###Link dependencies into app project for iOS
+    
+	# Linking static files into app project
+	$ cd finalgapios/
+	$ ln -s ../gaphtmlproduction/www www
+
+	# Linking Cordova into static files
+	$ cd ../gaphtmlproduction/www
+	$ ln -s ../../cordova_ios/www/plugins plugins
+	$ ln -s ../../cordova_ios/www/cordova.js cordova.js
+	$ ln -s ../../cordova_ios/www/cordova_plugins.js cordova_plugins.js
+
+###Link dependencies into app project for Android
+
+	# Linking static files into app project
+	$ cd finalgapandroid360/assets/
+	$ ln -s ../gaphtmlproduction/www www
+
+	# Linking Cordova into static files
+	$ cd ../gaphtmlproduction/www
+	$ ln -s ../../cordova_android/www/plugins plugins
+	$ ln -s ../../cordova_android/www/cordova.js cordova.js
+	$ ln -s ../../cordova_android/www/cordova_plugins.js cordova_plugins.js
+
+###Preparing NEW\_BRANCH for Pull Request
+     
+    #remove created simlinks for iOS
+    $ unlink www
+
+    #remove created simlinks for Android
+    $ unlink assets/www
