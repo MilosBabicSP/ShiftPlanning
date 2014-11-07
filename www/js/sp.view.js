@@ -49,6 +49,61 @@ ShiftPlanningView.prototype.optionSchedules = function(id, m, loc) {
 	return opt;
 }
 
+ShiftPlanningView.prototype.getEmployeeData = function(employee) {
+    var newItem;
+
+    if (typeof employee !== 'object') {
+        newItem = {
+            id: 0,
+            name: employee
+        };
+    } else {
+        newItem = employee;
+    }
+
+    return newItem;
+};
+
+ShiftPlanningView.prototype.generateList = function(event, notAdmin, list) {
+    var opt, item;
+
+    $('#tc_act_em').html('');
+
+    if (!notAdmin) {
+        $.each(list, function(i, employee) {
+            item = spView.getEmployeeData(employee);
+
+            $('<option />', {
+                value: item.id,
+                html: item.name
+            }).appendTo('#tc_act_em');
+        }.bind(this));
+    } else {
+        item = {
+            id: sp.staff.admin.info.id,
+            name: sp.staff.admin.info.name
+        };
+
+        $('<option />', {
+            value: item.id,
+            html: item.name
+        }).appendTo('#tc_act_em');
+    }
+
+    setTimeout(function() {
+        $('#tc_act_em:visible option[value="' + user.id + '"]').attr('selected', true);
+    }, 10);
+};
+
+ShiftPlanningView.prototype._staffOption = function(notAdmin) {
+    if (sp.staff.admin.info.group == 4) {
+        $.event.trigger('staff_list_load', [notAdmin, sp.staff.fixed.employees]);
+    } else {
+        $.event.trigger('staff_list_load', [notAdmin, sp.staff.raw.employees]);
+    }
+};
+
+
 ShiftPlanningView.prototype.staffOption = function(notAdmin) {
 	if (typeof notAdmin == 'undefined') {
 		notAdmin = false;
@@ -574,3 +629,4 @@ ShiftPlanningView.prototype.friendly_filesize = function(bytes) {
 }
 
 var spView = new ShiftPlanningView();
+$(document).on('staff_list_load', spView.generateList);
