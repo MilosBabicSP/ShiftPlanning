@@ -1,0 +1,1 @@
+alert(i18n.singular("Some text", 'Easy to use online workforce management software.'));

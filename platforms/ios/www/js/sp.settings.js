@@ -1,0 +1,3 @@
+function ShiftPlanningSettings (){
+	this.initialize();
+}

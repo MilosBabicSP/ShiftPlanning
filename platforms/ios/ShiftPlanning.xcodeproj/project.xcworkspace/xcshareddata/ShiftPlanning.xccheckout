@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>28CB2A9A-277B-4C16-A309-B06C287F2DC3</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>3776581C0C2FE1EC7E01BE6B490A0C20D9927C00</key>
+		<string>github.com:shiftplanning/shiftplanning-mobile.git</string>
+	</dict>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>3776581C0C2FE1EC7E01BE6B490A0C20D9927C00</key>
+		<string>gaphtmlproduction/</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>github.com:shiftplanning/shiftplanning-mobile.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>3776581C0C2FE1EC7E01BE6B490A0C20D9927C00</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>3776581C0C2FE1EC7E01BE6B490A0C20D9927C00</string>
+			<key>IDESourceControlWCCName</key>
+			<string>gaphtmlproduction</string>
+		</dict>
+	</array>
+</dict>
+</plist>
