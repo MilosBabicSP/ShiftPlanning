@@ -1,0 +1,17 @@
+{
+   "ShiftPlanning_js" : {
+      "" : {
+         "Plural-Forms" : "  nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;",
+         "MIME-Version" : "  ",
+         "POT-Creation-Date" : "  2011-11-16 16:07+0100",
+         "Language" : "  cs_CZ",
+         "Last-Translator" : "  ShiftPlanning <info@shiftplanning.com>",
+         "Content-Type" : "  text/plain; charset=UTF-8",
+         "PO-Revision-Date" : "  2011-11-16 16:07+0100",
+         "Language-Team" : "  ShiftPlanning <info@shiftplanning.com>",
+         "Content-Transfer-Encoding" : "  8bit",
+         "Report-Msgid-Bugs-To" : "  ",
+         "Project-Id-Version" : "  1.0"
+      }
+   }
+}
