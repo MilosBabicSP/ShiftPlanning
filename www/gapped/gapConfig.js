@@ -1,4 +1,4 @@
-var _serverDev = "https://www.sp1012-s.dev.shiftplanning.com/api/";
+var _serverDev = "https://www.production-s.dev.shiftplanning.com/api/";
 var _serverMob = "https://www.shiftplanning.com/app/iphone/";
 var _server = "https://www.shiftplanning.com/api/";
 var tcPlugin = function(){};
@@ -17,4 +17,4 @@ if( navigator.userAgent.indexOf("Android") >= 0 ){
 }
 
 // TODO: REPLACE API endpoint to LIVE
-//_server = _serverDev;
+_server = _serverDev;

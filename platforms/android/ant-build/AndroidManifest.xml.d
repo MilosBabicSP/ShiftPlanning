@@ -1,2 +1,2 @@
-/home/vukasin/Development/workspace/android/sp-mobile/gaphtmljs/platforms/android/ant-build/AndroidManifest.xml : \
-/home/vukasin/Development/workspace/android/sp-mobile/gaphtmljs/platforms/android/AndroidManifest.xml \
+/home/steewsc/AndroidStudioProjects/spmob/platforms/android/ant-build/AndroidManifest.xml : \
+/home/steewsc/AndroidStudioProjects/spmob/platforms/android/AndroidManifest.xml \
