@@ -3,4 +3,8 @@
     <string name="app_name">ShiftPlanning</string>
     <string name="launcher_name">@string/app_name</string>
     <string name="activity_name">@string/launcher_name</string>
+    <string name="menu_settings">Exit</string>
+    <string name="title_activity_main">ShiftPlanning</string>
+    <string name="title_activity_turn_gpson">TurnGPSOn</string>
+    <string name="action_settings">Settings</string>
 </resources>

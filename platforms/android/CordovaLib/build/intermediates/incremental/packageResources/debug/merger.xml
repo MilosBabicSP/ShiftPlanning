@@ -2,12 +2,12 @@
 <merger version="2" >
 
     <dataSet config="main" >
-        <source path="/home/vukasin/Development/workspace/android/sp-mobile/shiftplanning-mobile/platforms/android/CordovaLib/res" />
-        <source path="/home/vukasin/Development/workspace/android/sp-mobile/shiftplanning-mobile/platforms/android/CordovaLib/build/generated/res/rs/debug" />
-        <source path="/home/vukasin/Development/workspace/android/sp-mobile/shiftplanning-mobile/platforms/android/CordovaLib/build/generated/res/generated/debug" />
+        <source path="/home/vukasin/Development/workspace/android/sp-mobile/shiftplanning-mobile-android/platforms/android/CordovaLib/res" />
+        <source path="/home/vukasin/Development/workspace/android/sp-mobile/shiftplanning-mobile-android/platforms/android/CordovaLib/build/generated/res/rs/debug" />
+        <source path="/home/vukasin/Development/workspace/android/sp-mobile/shiftplanning-mobile-android/platforms/android/CordovaLib/build/generated/res/generated/debug" />
     </dataSet>
     <dataSet config="debug" >
-        <source path="/home/vukasin/Development/workspace/android/sp-mobile/shiftplanning-mobile/platforms/android/CordovaLib/src/debug/res" />
+        <source path="/home/vukasin/Development/workspace/android/sp-mobile/shiftplanning-mobile-android/platforms/android/CordovaLib/src/debug/res" />
     </dataSet>
 
 </merger>

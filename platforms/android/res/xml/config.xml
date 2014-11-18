@@ -1,17 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.shiftplanning.distribution" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.ShiftPlanning.app" version="2.0.32" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <preference name="loglevel" value="DEBUG" />
-    <name>ShiftPlanning</name>
-    <description>
-        A sample Apache Cordova application that responds to the deviceready event.
-    </description>
-    <author email="dev@cordova.apache.org" href="http://cordova.io">
-        Apache Cordova Team
-    </author>
-    <content src="index.html" />
-    <access origin="*" />
-    <preference name="StatusBarOverlaysWebView" value="false" />
-    <preference name="StatusBarBackgroundColor" value="#333333" />
     <feature name="Device">
         <param name="android-package" value="org.apache.cordova.device.Device" />
     </feature>
@@ -31,4 +20,16 @@
     <feature name="StatusBar">
         <param name="android-package" onload="true" value="org.apache.cordova.statusbar.StatusBar" />
     </feature>
+    <feature name="Notification">
+        <param name="android-package" value="org.apache.cordova.dialogs.Notification" />
+    </feature>
+    <name>ShiftPlanning</name>
+    <description>
+            ShiftPlanning - Employee Scheduling Software, Time Clock and Human Resources.
+    </description>
+    <author email="info@shiftplanning.com" href="http://www.shiftplanning.com">
+        ShiftPlanning Team
+    </author>
+    <content src="index.html" />
+    <access origin="*" />
 </widget>

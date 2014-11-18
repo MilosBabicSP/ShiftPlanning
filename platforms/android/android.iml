@@ -78,6 +78,7 @@
     <orderEntry type="jdk" jdkName="Android API 19 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="CordovaLib" exported="" />
+    <orderEntry type="library" name="backgroundserviceplugin-3.1.0" level="project" />
   </component>
 </module>
 

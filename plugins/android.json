@@ -31,6 +31,10 @@
                         {
                             "xml": "<feature name=\"StatusBar\"><param name=\"android-package\" onload=\"true\" value=\"org.apache.cordova.statusbar.StatusBar\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Notification\"><param name=\"android-package\" value=\"org.apache.cordova.dialogs.Notification\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -75,6 +79,9 @@
             "PACKAGE_NAME": "com.shiftplanning.distribution"
         },
         "org.apache.cordova.statusbar": {
+            "PACKAGE_NAME": "com.shiftplanning.distribution"
+        },
+        "org.apache.cordova.dialogs": {
             "PACKAGE_NAME": "com.shiftplanning.distribution"
         }
     },
