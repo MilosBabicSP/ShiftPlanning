@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.ShiftPlanning.app" version="2.0.32" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>ShiftPlanning</name>
+    <description>
+            ShiftPlanning - Employee Scheduling Software, Time Clock and Human Resources.
+    </description>
+    <author email="info@shiftplanning.com" href="http://www.shiftplanning.com">
+        ShiftPlanning Team
+    </author>
+
+    <content src="index.html" />
+    <access origin="*" />
+</widget>
