@@ -16,7 +16,8 @@ ShiftPlanningTimeClock.prototype.loadSubPageEvents = function(subpage) {
         $('.subNavigation').hide();
     }
     //this[subpage + 'SubEvents']();
-    if (!(subpageTemp == subpage && subpageTemp == 'addClockTime')) {
+
+    if (!(subpageTemp == subpage && subpageTemp == 'addClockTime') && !this.edit) {
         subpageTemp = subpage;
         this[subpage + 'SubEvents']();
     }
@@ -324,12 +325,17 @@ ShiftPlanningTimeClock.prototype.manageTimeSheetsEvents = function() {
     $('#tc_mts_sh li').live(clickEvent, function(e) {
         if (e.target.className != 'tPending') {
             $(this).addClass('loading');
-            spModel.timeclock.get('timeclock', {
-                id: $(this).attr('timeclockId')
-            }, function(response) {
-                self.current = response.data;
-                sp.loadSubPage('', 'timeClock', 'displayTimeClock');
-            });
+            spModel.timeclock.get(
+                'timeclock',
+                { id: $(this).attr('timeclockId') },
+                function (response) {
+                    self.current = response.data;
+                    sp.loadSubPage('', 'timeClock', 'displayTimeClock');
+                },
+                function (err) {
+                    console.log(JSON.stringify(err));
+                }
+            );
         }
     });
 
@@ -365,8 +371,9 @@ ShiftPlanningTimeClock.prototype.manageTimeSheetsEvents = function() {
             });
             break;
         case 'edit':
-            self.edit = true;
+            this.edit = true;
             $('#tc_act_onci').hide();
+            $('#tc_act_tc_id').addClass('editOn');
             sp.loadSubPage('', 'timeClock', 'addClockTime');
             break;
         case 'delete':
@@ -587,14 +594,16 @@ ShiftPlanningTimeClock.prototype.manageTimeSheetsSubEvents = function() {
 }
 
 ShiftPlanningTimeClock.prototype.addClockTimeSubEvents = function() {
-    var emp = {};
+    var employee, emp = {};
     if (this.edit != false) {
-        emp = this.current;
+        emp = timeClock = this.current;
+
         $('#tc_act .title h3').html(_s('Edit Clock Time'));
         $('#tc_act_tc_id').removeClass('editOn').addClass('editOn');
         $('#tc_act_tc_id').val(emp.id);
         $('.addClockTime .odd').removeClass('nonVisible');
         $('#tc_act_onci').removeClass('check');
+
         emp.in_time.time = sp.strReplace(['am', 'pm'], [' AM', ' PM'], emp.in_time.time);
         emp.out_time.time = sp.strReplace(['am', 'pm'], [' AM', ' PM'], emp.out_time.time);
         emp.in_time.day = Date.parse(emp.in_time.day).toString(cal.dformat);
@@ -623,7 +632,9 @@ ShiftPlanningTimeClock.prototype.addClockTimeSubEvents = function() {
         $('.lblRemoteLoc').show();
     }
 
-	spView._staffOption((sp.staff.admin.info.group > 4) ? true : false);
+    var preselect = (this.edit) ? true: undefined;
+
+	spView._staffOption((sp.staff.admin.info.group > 4) ? true : false, preselect);
 
     var s = new Date(emp.in_timestamp * 1000);
     var e = new Date(emp.out_timestamp * 1000);
@@ -744,9 +755,16 @@ ShiftPlanningTimeClock.prototype.getTimeSheets = function() {
     d.start_date = p.toString(cal.dformat);
     d.end_date = e.toString(cal.dformat);
 
-    spModel.timeclock.get('timeclocks', d, function(response) {
-        self.renderManageTimeSheets(response.data);
-    });
+    spModel.timeclock.get(
+        'timeclocks',
+        d,
+        function (response) {
+            self.renderManageTimeSheets(response.data);
+        },
+        function (err) {
+            console.log(JSON.stringify(err));
+        }
+    );
 }
 
 ShiftPlanningTimeClock.prototype.getMyTimeSheets = function() {
