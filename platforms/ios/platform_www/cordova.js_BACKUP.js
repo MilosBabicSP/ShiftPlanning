@@ -265,7 +265,7 @@ var cordova = {
         try {
             cordova.callbackFromNative(callbackId, true, args.status, [args.message], args.keepCallback);
         } catch (e) {
-            console.log("Error in success callback: " + callbackId + " = "+e);
+//            console.log("Error in success callback: " + callbackId + " = "+e);
         }
     },
 
@@ -278,7 +278,7 @@ var cordova = {
         try {
             cordova.callbackFromNative(callbackId, false, args.status, [args.message], args.keepCallback);
         } catch (e) {
-            console.log("Error in error callback: " + callbackId + " = "+e);
+//            console.log("Error in error callback: " + callbackId + " = "+e);
         }
     },
 
@@ -305,7 +305,7 @@ var cordova = {
             try {
                 func();
             } catch(e) {
-                console.log("Failed to run constructor: " + e);
+//                console.log("Failed to run constructor: " + e);
             }
         });
     }
@@ -475,7 +475,7 @@ function clobber(obj, key, value) {
 function assignOrWrapInDeprecateGetter(obj, key, value, message) {
     if (message) {
         utils.defineGetter(obj, key, function() {
-            console.log(message);
+//            console.log(message);
             delete obj[key];
             clobber(obj, key, value);
             return value;
@@ -956,9 +956,9 @@ function iOSExec() {
             service = splitCommand.join(".");
             actionArgs = Array.prototype.splice.call(arguments, 1);
 
-            console.log('The old format of this exec call has been removed (deprecated since 2.1). Change to: ' +
-                       "cordova.exec(null, null, \"" + service + "\", \"" + action + "\"," + JSON.stringify(actionArgs) + ");"
-            );
+//            console.log('The old format of this exec call has been removed (deprecated since 2.1). Change to: ' +
+//                       "cordova.exec(null, null, \"" + service + "\", \"" + action + "\"," + JSON.stringify(actionArgs) + ");"
+//            );
             return;
         } catch (e) {}
     }
@@ -1113,7 +1113,7 @@ module.exports = {
 
     // example: cordova.commandProxy.add("Accelerometer",{getCurrentAcceleration: function(successCallback, errorCallback, options) {...},...);
     add:function(id,proxyObj) {
-        console.log("adding proxy for " + id);
+//        console.log("adding proxy for " + id);
         CommandProxyMap[id] = proxyObj;
         return proxyObj;
     },
@@ -1146,14 +1146,14 @@ var platformInitChannelsArray = [channel.onNativeReady, channel.onPluginsReady];
 function logUnfiredChannels(arr) {
     for (var i = 0; i < arr.length; ++i) {
         if (arr[i].state != 2) {
-            console.log('Channel not fired: ' + arr[i].type);
+//            console.log('Channel not fired: ' + arr[i].type);
         }
     }
 }
 
 window.setTimeout(function() {
     if (channel.onDeviceReady.state != 2) {
-        console.log('deviceready has not fired after 5 seconds.');
+//        console.log('deviceready has not fired after 5 seconds.');
         logUnfiredChannels(platformInitChannelsArray);
         logUnfiredChannels(channel.deviceReadyChannelsArray);
     }
@@ -1265,14 +1265,14 @@ cordova.exec = require('cordova/exec');
 function logUnfiredChannels(arr) {
     for (var i = 0; i < arr.length; ++i) {
         if (arr[i].state != 2) {
-            console.log('Channel not fired: ' + arr[i].type);
+//            console.log('Channel not fired: ' + arr[i].type);
         }
     }
 }
 
 window.setTimeout(function() {
     if (channel.onDeviceReady.state != 2) {
-        console.log('deviceready has not fired after 5 seconds.');
+//        console.log('deviceready has not fired after 5 seconds.');
         logUnfiredChannels(platformInitChannelsArray);
         logUnfiredChannels(channel.deviceReadyChannelsArray);
     }
@@ -1569,7 +1569,7 @@ function findCordovaPath() {
 exports.load = function(callback) {
     var pathPrefix = findCordovaPath();
     if (pathPrefix === null) {
-        console.log('Could not find cordova.js script tag. Plugin loading may fail.');
+//        console.log('Could not find cordova.js script tag. Plugin loading may fail.');
         pathPrefix = '';
     }
     injectIfNecessary('cordova/plugin_list', pathPrefix + 'cordova_plugins.js', function() {
@@ -1745,9 +1745,9 @@ utils.extend = (function() {
  */
 utils.alert = function(msg) {
     if (window.alert) {
-        window.alert(msg);
+//        window.alert(msg);
     } else if (console && console.log) {
-        console.log(msg);
+//        console.log(msg);
     }
 };
 
