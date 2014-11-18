@@ -96,17 +96,17 @@ ShiftPlanningTimeClock.prototype.overviewEvents = function() {
         }
     });
 
-	$('#gpsProceed').bind(clickEvent, function(e){
-		e.preventDefault();
-		e.stopPropagation();
-		$("#gpsMap").hide();
-		if( sp.timeClock.isClockedIn ){
-			$('#tc_ov_cf').show();
-			setTimeout( sp.timeClock.apiCallOut, 500 );
-		}else{
-			setTimeout( sp.timeClock.apiCallIn, 500 );
-		}
-	});
+    $('#gpsProceed').bind(clickEvent, function(e){
+        e.preventDefault();
+        e.stopPropagation();
+        $("#gpsMap").hide();
+        if( sp.timeClock.isClockedIn ){
+            $('#tc_ov_cf').show();
+            setTimeout( sp.timeClock.apiCallOut, 500 );
+        }else{
+            setTimeout( sp.timeClock.apiCallIn, 500 );
+        }
+    });
 
     $('#tc_ov_ci').bind(clickEvent, function(e) {
         e.preventDefault();

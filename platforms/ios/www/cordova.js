@@ -958,7 +958,7 @@ function iOSExec() {
 
 //            console.log('The old format of this exec call has been removed (deprecated since 2.1). Change to: ' +
 //                       "cordova.exec(null, null, \"" + service + "\", \"" + action + "\"," + JSON.stringify(actionArgs) + ");"
-            );
+//           );
             return;
         } catch (e) {}
     }
