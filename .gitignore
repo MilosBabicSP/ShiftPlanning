@@ -2,7 +2,11 @@
 # OSX files
 .DS_Store
 
-# ingore android studio files
-.idea/*
-.idea/scopes/*
-.idea/.name
+platforms/android/CordovaLib/build/*
+platforms/android/ant-build/*
+platforms/android/CordovaLib/ant-build/
+
+platforms/android/android.iml
+platforms/android/CordovaLib/CordovaLib.iml
+
+nohup.out

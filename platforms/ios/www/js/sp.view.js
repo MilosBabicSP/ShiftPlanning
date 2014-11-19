@@ -64,7 +64,7 @@ ShiftPlanningView.prototype.getEmployeeData = function(employee) {
     return newItem;
 };
 
-ShiftPlanningView.prototype.generateList = function(event, notAdmin, list) {
+ShiftPlanningView.prototype.generateList = function(event, notAdmin, list, preselect) {
     var opt, item;
 
     $('#tc_act_em').html('');
@@ -90,16 +90,18 @@ ShiftPlanningView.prototype.generateList = function(event, notAdmin, list) {
         }).appendTo('#tc_act_em');
     }
 
-    setTimeout(function() {
-        $('#tc_act_em:visible option[value="' + user.id + '"]').attr('selected', true);
-    }, 10);
+    if(typeof preselect == "undefined"){
+        setTimeout(function() {
+            $('#tc_act_em:visible option[value="' + user.id + '"]').attr('selected', true);
+        }, 10);
+    }
 };
 
-ShiftPlanningView.prototype._staffOption = function(notAdmin) {
+ShiftPlanningView.prototype._staffOption = function(notAdmin, predefined) {
     if (sp.staff.admin.info.group == 4) {
-        $.event.trigger('staff_list_load', [notAdmin, sp.staff.fixed.employees]);
+        $.event.trigger('staff_list_load', [notAdmin, sp.staff.fixed.employees, predefined]);
     } else {
-        $.event.trigger('staff_list_load', [notAdmin, sp.staff.raw.employees]);
+        $.event.trigger('staff_list_load', [notAdmin, sp.staff.raw.employees, predefined]);
     }
 };
 

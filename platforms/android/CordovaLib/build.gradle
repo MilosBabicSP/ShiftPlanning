@@ -16,9 +16,6 @@
        specific language governing permissions and limitations
        under the License.
 */
-
-
-
 buildscript {
     repositories {
         mavenCentral()
@@ -28,9 +25,7 @@ buildscript {
         classpath 'com.android.tools.build:gradle:0.12.+'
     }
 }
-
 apply plugin: 'android-library'
-
 android {
     compileSdkVersion 19
     buildToolsVersion "19.1.0"
@@ -51,4 +46,7 @@ android {
             assets.srcDirs = ['assets']
         }
     }
+}
+
+dependencies {
 }
