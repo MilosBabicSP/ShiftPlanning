@@ -115,6 +115,7 @@ function onConfirm(button) {
 }
 
 function logUserOut() {
+	sp.hashChange = true;
 	sp.api('staff.logout', 'GET', {"session_destroy":1}, function(response) {
 		logUserOutLocal();
 	}, function(response) {

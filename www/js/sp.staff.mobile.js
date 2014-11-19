@@ -538,9 +538,16 @@ ShiftPlanningStaff.prototype.logoutResponse = function(button) {
 }
 
 ShiftPlanningStaff.prototype.logout = function() {
-	var c = confirm('Are you sure you want to logout?');
-	if( c ){
-	    logUserOut();
+    sp.hashChange = false;
+	try {
+        navigator.notification.confirm(
+			'Are you sure you want to logout?',
+			onConfirm,
+			'Log Out',
+			['Ok', 'Cancel']
+        );
+    } catch (ee) {
+        console.log("ERRORRRRR");
     }
 }
 
