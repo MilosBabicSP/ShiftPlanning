@@ -38,7 +38,11 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+<<<<<<< HEAD
             shouldBeEnabled = "Yes"
+=======
+            shouldBeEnabled = "No"
+>>>>>>> sp1169
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShiftPlanning/Plugins/org.apache.cordova.inappbrowser/CDVInAppBrowser.m"
@@ -54,7 +58,11 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+<<<<<<< HEAD
             shouldBeEnabled = "Yes"
+=======
+            shouldBeEnabled = "No"
+>>>>>>> sp1169
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShiftPlanning/Plugins/org.apache.cordova.inappbrowser/CDVInAppBrowser.m"
@@ -70,7 +78,11 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+<<<<<<< HEAD
             shouldBeEnabled = "Yes"
+=======
+            shouldBeEnabled = "No"
+>>>>>>> sp1169
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShiftPlanning/Plugins/org.apache.cordova.inappbrowser/CDVInAppBrowser.m"
@@ -86,7 +98,11 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+<<<<<<< HEAD
             shouldBeEnabled = "Yes"
+=======
+            shouldBeEnabled = "No"
+>>>>>>> sp1169
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShiftPlanning/Plugins/org.apache.cordova.inappbrowser/CDVInAppBrowser.m"
@@ -102,7 +118,11 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+<<<<<<< HEAD
             shouldBeEnabled = "Yes"
+=======
+            shouldBeEnabled = "No"
+>>>>>>> sp1169
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShiftPlanning/Plugins/org.apache.cordova.inappbrowser/CDVInAppBrowser.m"
@@ -118,7 +138,11 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+<<<<<<< HEAD
             shouldBeEnabled = "Yes"
+=======
+            shouldBeEnabled = "No"
+>>>>>>> sp1169
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShiftPlanning/Plugins/org.apache.cordova.inappbrowser/CDVInAppBrowser.m"
@@ -134,7 +158,11 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+<<<<<<< HEAD
             shouldBeEnabled = "Yes"
+=======
+            shouldBeEnabled = "No"
+>>>>>>> sp1169
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShiftPlanning/Plugins/org.apache.cordova.inappbrowser/CDVInAppBrowser.m"
@@ -150,7 +178,11 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+<<<<<<< HEAD
             shouldBeEnabled = "Yes"
+=======
+            shouldBeEnabled = "No"
+>>>>>>> sp1169
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShiftPlanning/Plugins/org.apache.cordova.inappbrowser/CDVInAppBrowser.m"
@@ -163,5 +195,24 @@
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
+<<<<<<< HEAD
+=======
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ShiftPlanning/Plugins/org.apache.cordova.inappbrowser/CDVInAppBrowser.m"
+            timestampString = "438016728.812385"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "107"
+            endingLineNumber = "107"
+            landmarkName = "-open:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+>>>>>>> sp1169
    </Breakpoints>
 </Bucket>

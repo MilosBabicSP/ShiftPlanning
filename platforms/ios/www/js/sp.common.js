@@ -215,6 +215,9 @@ ShiftPlanning.prototype = {
 		return obj;
 	},
 	hash: function(newHash) {
+		if( newHash == 'logout' || newHash == '#logout' ){
+			return window.location.hash.substring(1);
+		}
 		if (newHash == window.location.hash.substring(1)) {
 			return window.location.hash.substring(1);
 		}

@@ -49,11 +49,9 @@
       </dict>
     </dict>
     <key>CFBundleIdentifier</key>
-<<<<<<< HEAD
     <string>com.shiftplanning.distribution</string>
-=======
-    <string>com.ShiftPlanning.app</string>
->>>>>>> c8f2cd4382e0fe254818bafeab29e99732281573
+    <key>com.ShiftPlanning.app</key>
+    <string>com.shiftplanning.distribution</string>
     <key>CFBundleInfoDictionaryVersion</key>
     <string>7.0</string>
     <key>CFBundleName</key>

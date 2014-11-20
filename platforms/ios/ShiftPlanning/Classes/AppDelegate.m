@@ -19,7 +19,7 @@
 
 //
 //  AppDelegate.m
-//  ShiftPlanning
+//  shiftplanningapp
 //
 //  Created by ___FULLUSERNAME___ on ___DATE___.
 //  Copyright ___ORGANIZATIONNAME___ ___YEAR___. All rights reserved.
@@ -63,6 +63,7 @@
  */
 - (BOOL)application:(UIApplication*)application didFinishLaunchingWithOptions:(NSDictionary*)launchOptions
 {
+	[NewRelicAgent startWithApplicationToken:@"AA73e42b885fe376b78b74a61b8d5ff4b6bb0ea589"];
     CGRect screenBounds = [[UIScreen mainScreen] bounds];
 
 #if __has_feature(objc_arc)
@@ -92,7 +93,7 @@
 }
 
 // this happens while we are running ( in the background, or from within our own app )
-// only valid if ShiftPlanning-Info.plist specifies a protocol to handle
+// only valid if shiftplanningapp-Info.plist specifies a protocol to handle
 - (BOOL)application:(UIApplication*)application openURL:(NSURL*)url sourceApplication:(NSString*)sourceApplication annotation:(id)annotation
 {
     if (!url) {

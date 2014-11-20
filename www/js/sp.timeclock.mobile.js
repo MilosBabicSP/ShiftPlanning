@@ -9,6 +9,7 @@ ShiftPlanningTimeClock.prototype.initialize = function() {
 }
 
 var subpageTemp = '';
+var timeClockEditing = false;
 ShiftPlanningTimeClock.prototype.loadSubPageEvents = function(subpage) {
     $("#gpsMap").hide();
     $('.subNavigation').show();
@@ -17,7 +18,7 @@ ShiftPlanningTimeClock.prototype.loadSubPageEvents = function(subpage) {
     }
     //this[subpage + 'SubEvents']();
 
-    if (!(subpageTemp == subpage && subpageTemp == 'addClockTime') && !this.edit) {
+    if (!(subpageTemp == subpage && subpageTemp == 'addClockTime')) {
         subpageTemp = subpage;
         this[subpage + 'SubEvents']();
     }
@@ -371,9 +372,11 @@ ShiftPlanningTimeClock.prototype.manageTimeSheetsEvents = function() {
             });
             break;
         case 'edit':
+			self.edit = true;
+            timeClockEditing = true;
             this.edit = true;
             $('#tc_act_onci').hide();
-            $('#tc_act_tc_id').addClass('editOn');
+//            $('#tc_act_tc_id').addClass('editOn');
             sp.loadSubPage('', 'timeClock', 'addClockTime');
             break;
         case 'delete':
@@ -427,7 +430,7 @@ ShiftPlanningTimeClock.prototype.displayTimeSheetsSubEvents = function() {
     this.getMyTimeSheets();
     //    spModel.timeclock.get('timeclocks',{},function(response){
     //        $('#tc_dts_ul').html($.tmpl($('#te_tc_dts_li'), response.data));
-    //        
+    //
     //    })
 }
 
@@ -597,6 +600,8 @@ ShiftPlanningTimeClock.prototype.addClockTimeSubEvents = function() {
     var employee, emp = {};
     if (this.edit != false) {
         emp = timeClock = this.current;
+        $('#tc_etc_em option').attr("disabled", "");
+        $('#tc_act_em option').attr("selected", "");
 
         $('#tc_act .title h3').html(_s('Edit Clock Time'));
         $('#tc_act_tc_id').removeClass('editOn').addClass('editOn');
@@ -925,6 +930,7 @@ ShiftPlanningTimeClock.prototype.saveClockInChanges = function() {
     spModel.timeclock.update('timeclock', data, function() {
         sp.showSuccess(_s('Timeclock updated'));
     });
+	timeClockEditing = false;
 }
 
 ShiftPlanningTimeClock.prototype.saveClockTime = function() {
@@ -1035,7 +1041,7 @@ var dates = {
         //   a date object: returned without modification
         //  an array      : Interpreted as [year,month,day]. NOTE: month is 0-11.
         //   a number     : Interpreted as number of milliseconds
-        //                  since 1 Jan 1970 (a timestamp) 
+        //                  since 1 Jan 1970 (a timestamp)
         //   a string     : Any format supported by the javascript engine, like
         //                  "YYYY/MM/DD", "MM/DD/YYYY", "Jan 31 2009" etc.
         //  an object     : Interpreted as an object with year, month and date

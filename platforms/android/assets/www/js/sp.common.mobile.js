@@ -95,11 +95,18 @@ ShiftPlanning.prototype.loadSubPage = function(obj, page, subpage) {
 	$('#menu .mainNav > li').removeClass('active');
 	$('#menu_' + page).addClass('active');
 
-	$('.subNavigation div.' + page + ' .subnNav[page=' + page + '] li').removeClass('active');
+    if($('.subNav[page=' + page + '] li a[subpage=' + subpage + ']' ).length > 0){
+        $('.subNav[page=' + page + '] li').removeClass('active');
+        $('.subNav[page=' + page + '] li a[subpage=' + subpage + ']').parent().addClass('active');
 
-	$('.subNavigation div.' + page + ' .subnNav[page=' + page + '] li a[page=' + subpage + ']').parent().addClass('active');
-	sp.hashChange = false;
-	sp.hash(page);
+        sp.hash(page+'/'+subpage);
+    }
+
+//	$('.subNavigation div.' + page + ' .subnNav[page=' + page + '] li').removeClass('active');
+//
+//	$('.subNavigation div.' + page + ' .subnNav[page=' + page + '] li a[page=' + subpage + ']').parent().addClass('active');
+//	sp.hashChange = false;
+//	sp.hash(page);
 
 	if (typeof this[page] != 'undefined' && 'loadSubPageEvents' in this[page]) {
 		this[page].loadSubPageEvents(subpage);
