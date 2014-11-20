@@ -72,7 +72,7 @@ ShiftPlanning.prototype.toggleMenu = function() {
 }
 
 ShiftPlanning.prototype.loadSubPage = function(obj, page, subpage) {
-	if (subpage == 'logout') {
+	if (subpage == 'logout' || page == 'logout') {
 		this.staff.logout();
 		return false;
 	}
@@ -94,13 +94,23 @@ ShiftPlanning.prototype.loadSubPage = function(obj, page, subpage) {
 
 	$('#menu .mainNav > li').removeClass('active');
 	$('#menu_' + page).addClass('active');
-
+	
+	$('.subNavigation div.' + page + ' .subNav[page=' + page + '] li').removeClass('active');
+	$('.subNavigation div.' + page + ' .subNav[page=' + page + '] li a[subpage=' + subpage + ']').parent().addClass('active');
+	sp.hashChange = false;
+	sp.hash(page);
+/*
     if($('.subNav[page=' + page + '] li a[subpage=' + subpage + ']' ).length > 0){
         $('.subNav[page=' + page + '] li').removeClass('active');
         $('.subNav[page=' + page + '] li a[subpage=' + subpage + ']').parent().addClass('active');
-
-        sp.hash(page+'/'+subpage);
+		console.log("loadSubPage => page => " + page + ", subpage => " + subpage );
+		if(subpage.indexOf(page) >= 0){
+			sp.hash(subpage);
+		}else{
+			sp.hash(page+'/'+subpage);
+		}
     }
+	*/
 
 	if (typeof this[page] != 'undefined' && 'loadSubPageEvents' in this[page]) {
 		this[page].loadSubPageEvents(subpage);
@@ -262,6 +272,7 @@ ShiftPlanning.prototype.loadSite = function() {
         if ($(this).hasClass('exit') && $(this).attr('page') != 'logout') return true;
         e.preventDefault();
         if( $(this).attr('page') == "logout" || sp.hash() == "logout" ){
+			sp.hashChange = false;
             sp.staff.logout();
         }else{
             if ($(this).attr('page') == sp.hash() ){
@@ -271,9 +282,9 @@ ShiftPlanning.prototype.loadSite = function() {
             if ($('#wrapper').hasClass('extended') ){
                 self.toggleMenu();
             }
+			sp.hashChange = true;
+			sp.loadPage($(this).attr('page'));
         }
-        sp.hashChange = true;
-        sp.loadPage($(this).attr('page'));
     });
 
     $(window).hashchange();
