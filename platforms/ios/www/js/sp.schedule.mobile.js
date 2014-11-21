@@ -215,7 +215,7 @@ ShiftPlanningSchedule.prototype.allPageEvents = function() {
 			$(this).toggleClass('check');
 		}
 	})
-	$('#empList1 .checkbox').live(clickEvent, function(e) {
+	$('#empList1').on(clickEvent, '.checkbox', function(e) {
 	//$("#empList1").on(clickEvent, ".checkbox", function() {
 		//console.log("Employee selected");
 	//$('#empList1').delegate('.checkbox', clickEvent, function(e) {
@@ -437,7 +437,7 @@ ShiftPlanningSchedule.prototype.allPageEvents = function() {
 		$(this).addClass('check');
 	});
 
-	$('#sc_shift_display #te_sc_shift_display_publish .checkbox').live(clickEvent, function() {
+	$('#sc_shift_display #te_sc_shift_display_publish').on(clickEvent, '.checkbox', function() {
 		$(this).toggleClass('check');
 		$('#tc_sc_shift_display_publish_textarea').toggle();
 	});

@@ -13,7 +13,6 @@ function ShiftPlanning() {
 
 ShiftPlanning.prototype = {
 	multiApi: function(calls, callback) {
-		console.log("MULTI API: calls => " + JSON.stringify(calls) + ( new Date ) );
 		var data = {};
 		var reqs = [];
 
@@ -61,7 +60,6 @@ ShiftPlanning.prototype = {
 			data: tmp22,
 			cache: false,
 			success: function(response) {
-                console.log("MULTI RESPONSE => " + JSON.stringify(response));
 				$.each(response, function(i, item) {
                     //console.log("MULTI RESPONSE TOKEN=> " + item.token );
 
@@ -126,7 +124,6 @@ ShiftPlanning.prototype = {
 			data: "data="+data,
 			cache: false,
 			success: function(response) {
-                console.log("SINGLE RESPONSE => " + JSON.stringify(response) );
 				self.apiCalls[a] = null;
 				var closeLoader = true;
 				$.each(self.apiCalls, function(i, item) {
