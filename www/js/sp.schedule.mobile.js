@@ -46,8 +46,8 @@ ShiftPlanningSchedule.prototype.allPageEvents = function() {
 		self.displayShifts();
 	});
 
-
-	$('#sc_ca_bo td:not(.notM)').live(clickEvent, function() {
+	$('#sc_ca_bo').on(clickEvent, 'td:not(.notM)', function() {
+		console.log('JEste');
 		$('#sc_ca_bo td').removeClass('today');
 		$(this).addClass('today');
 		var i = $(this).attr('time');
@@ -501,7 +501,7 @@ ShiftPlanningSchedule.prototype.allPageEvents = function() {
 		});
 	});
 
-	$('#sc_add_user .checkbox').live(clickEvent, function() {
+	$('#sc_add_user').on(clickEvent, '.checkbox', function() {
 
 		var data = {
 			id: $('#sc_edit_id').val()
