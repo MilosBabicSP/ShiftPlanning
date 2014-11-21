@@ -84,4 +84,13 @@ gUtils.setupPlugins = function(){
 //    }, 15000);
 }
 
+gUtils.getMapStatic = function(latLong, cssClass){
+	if( typeof cssClass != 'undefined' ){
+		cssClass = ' class="' + cssClass + '" ';
+	}
+	var imgWidth = Math.floor($('#gpsMap').width() - 20);
+	var imgHeight = Math.floor($('#gpsMap').height() /2);
+	return '<img ' + cssClass + ' src="http://maps.google.com/maps/api/staticmap?center=' + latLong + '&zoom=16&size=' + imgWidth + 'x' + imgHeight + '&maptype=roadmap&markers=color:blue|label:P|' + latLong + '" />';
+	
+}
 //document.addEventListener("deviceready", gUtils.device.Ready, false);

@@ -122,7 +122,11 @@ ShiftPlanningTimeClock.prototype.overviewEvents = function() {
                 sp.showError(_s('New coordinates not available, using last known'));
                 sp.timeClock.dataIn.latitude = gpsCoords.coords.latitude;
                 sp.timeClock.dataIn.longitude = gpsCoords.coords.longitude;
+				var latLong = sp.timeClock.dataIn.latitude + ',' + sp.timeClock.dataIn.longitude;
+				$("#gpsMap .mapImage").html(gUtils.getMapStatic(latLong, 'static-map'));
+				/*
                 $("#gpsMap .mapImage").html('<iframe  id="map" width="100%" height="50%" frameborder="0" scrolling="no" src="http://google.com/maps?f=d&source=s_d&daddr=' + sp.timeClock.dataIn.latitude + ',' + sp.timeClock.dataIn.longitude + '&hl=en&z=19&output=embed&z=18"></iframe>');
+				*/
                 $("#gpsMap").show();
             }
         }
@@ -135,8 +139,11 @@ ShiftPlanningTimeClock.prototype.overviewEvents = function() {
                         done = true;
                         sp.timeClock.dataIn.latitude = response.coords.latitude;
                         sp.timeClock.dataIn.longitude = response.coords.longitude;
+						var latLong = sp.timeClock.dataIn.latitude + ',' + sp.timeClock.dataIn.longitude;
+						$("#gpsMap .mapImage").html(gUtils.getMapStatic(latLong, 'static-map'));
+						/*
                         $("#gpsMap .mapImage").html('<iframe  id="map" width="100%" height="50%" frameborder="0" scrolling="no" src="http://google.com/maps?f=d&source=s_d&daddr=' + sp.timeClock.dataIn.latitude + ',' + sp.timeClock.dataIn.longitude + '&hl=en&z=19&output=embed&z=18"></iframe>');
-
+						*/
                         $("#gpsMap").show();
                     }
                 }, errorCallback
@@ -178,7 +185,12 @@ ShiftPlanningTimeClock.prototype.overviewEvents = function() {
             }else{
                 sp.timeClock.dataOut.latitude = gpsCoords.coords.latitude;
                 sp.timeClock.dataOut.longitude = gpsCoords.coords.longitude;
+				
+				var latLong = sp.timeClock.dataOut.latitude + ',' + sp.timeClock.dataOut.longitude;
+				$("#gpsMap .mapImage").html(gUtils.getMapStatic(latLong, 'static-map'));
+				/*
                 $("#gpsMap .mapImage").html('<iframe  id="map" width="100%" height="50%" frameborder="0" scrolling="no" src="http://google.com/maps?f=d&source=s_d&daddr=' + sp.timeClock.dataOut.latitude + ',' + sp.timeClock.dataOut.longitude + '&hl=en&z=19&output=embed&z=18"></iframe>');
+				*/
                 $('#tc_ov_cf').hide();
                 $("#gpsMap").show();
             }
@@ -213,7 +225,11 @@ ShiftPlanningTimeClock.prototype.overviewEvents = function() {
                         sp.timeClock.dataOut.latitude = response.coords.latitude;
                         sp.timeClock.dataOut.longitude = response.coords.longitude;
 
+						var latLong = sp.timeClock.dataOut.latitude + ',' + sp.timeClock.dataOut.longitude;
+						$("#gpsMap .mapImage").html(gUtils.getMapStatic(latLong, 'static-map'));
+						/*
                         $("#gpsMap .mapImage").html('<iframe  id="map" width="100%" height="50%" frameborder="0" scrolling="no" src="http://google.com/maps?f=d&source=s_d&daddr=' + sp.timeClock.dataOut.latitude + ',' + sp.timeClock.dataOut.longitude + '&hl=en&z=19&output=embed&z=18"></iframe>');
+						*/
                         $('#tc_ov_cf').hide();
                         $("#gpsMap").show();
                     }
