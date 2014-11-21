@@ -339,7 +339,7 @@ ShiftPlanningTimeClock.prototype.manageTimeSheetsEvents = function() {
         }
     });
 
-    $('#tc_mts_sh li').live(clickEvent, function(e) {
+    $('#tc_mts_sh').on(clickEvent, 'li', function(e) {
         if (e.target.className != 'tPending') {
             $(this).addClass('loading');
             spModel.timeclock.get(
@@ -402,7 +402,7 @@ ShiftPlanningTimeClock.prototype.manageTimeSheetsEvents = function() {
         }
     });
 
-    $('#tc_mts_sh li span.tPending').live(clickEvent, function(e) {
+    $('#tc_mts_sh').on(clickEvent, 'li span.tPending', function(e) {
         $(this).parent('li').addClass('loading');
         spModel.timeclock.get('clockout', {
             employee: $(this).attr('user')
