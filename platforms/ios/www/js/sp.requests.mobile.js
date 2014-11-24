@@ -374,7 +374,7 @@ ShiftPlanningRequests.prototype.shiftApprovalsEvents = function() {
 		self.shiftApproveList();
 	});
 
-	$('#rq_sa_ho .checkbox').live(clickEvent, function(e) {
+	$('#rq_sa_ho').on(clickEvent, '.checkbox', function(e) {
 		var obj = $(this), ul, li;
 		if (!obj.hasClass('check')) {
 			li = obj.parent().parent();
@@ -441,11 +441,11 @@ ShiftPlanningRequests.prototype.shiftApprovalsEvents = function() {
 		}
 	});
 
-	$('#rq_sa_s .checkbox').live(clickEvent, function(e) {
+	$('#rq_sa_s').on(clickEvent, '.checkbox', function(e) {
 		$(this).toggleClass('check');
 	});
 
-	$('#rq_sa_sub .approve').bind(clickEvent, function(e) {
+	$('#rq_sa_sub').on(clickEvent, '.approve', function(e) {
 		e.preventDefault();
 		self.saveShiftApprove();
 	})

@@ -46,8 +46,8 @@ ShiftPlanningSchedule.prototype.allPageEvents = function() {
 		self.displayShifts();
 	});
 
-
-	$('#sc_ca_bo td:not(.notM)').live(clickEvent, function() {
+	$('#sc_ca_bo').on(clickEvent, 'td:not(.notM)', function() {
+		console.log('JEste');
 		$('#sc_ca_bo td').removeClass('today');
 		$(this).addClass('today');
 		var i = $(this).attr('time');
@@ -173,12 +173,17 @@ ShiftPlanningSchedule.prototype.allPageEvents = function() {
 		var shiftId = $(this).attr('rel');
 		var obj = $(this);
 		if ($(this).attr('first') == 'true') {
-			spModel.schedule.del('shift', {id: shiftId, rule: $('#te_sc_shift_display_delete .radio.check').attr('value')}, function(response) {
+			var deleteData  = {id: shiftId};
+			var deleteRule = $('#te_sc_shift_display_delete .radio.check').attr('value');
+			if( deleteRule.trim().length > 0 ){
+				deleteData['rule'] = deleteRule;
+			}
+			spModel.schedule.del('shift', deleteData, function(response) {
 				sp.showSuccess(response.data);
 				setTimeout(function() {
 					$('#schedule .shiftDisplay .backMenu').trigger(clickEvent)
 				}, 3000);
-			})
+			});
 			obj.attr('first', 'false');
 		} else {
 			spModel.schedule.get('shift', {id: shiftId, detailed: 1}, function(response) {
@@ -189,7 +194,7 @@ ShiftPlanningSchedule.prototype.allPageEvents = function() {
 						setTimeout(function() {
 							$('#schedule .shiftDisplay .backMenu').trigger(clickEvent)
 						}, 3000);
-					})
+					});
 				} else {
 					$('#te_sc_shift_display_info').hide();
 					$('#te_sc_shift_display_delete').show();
@@ -215,7 +220,7 @@ ShiftPlanningSchedule.prototype.allPageEvents = function() {
 			$(this).toggleClass('check');
 		}
 	})
-	$('#empList1 .checkbox').live(clickEvent, function(e) {
+	$('#empList1').on(clickEvent, '.checkbox', function(e) {
 	//$("#empList1").on(clickEvent, ".checkbox", function() {
 		//console.log("Employee selected");
 	//$('#empList1').delegate('.checkbox', clickEvent, function(e) {
@@ -426,18 +431,17 @@ ShiftPlanningSchedule.prototype.allPageEvents = function() {
 			});
 		}
 	});
-
-	$('#sc_shift_display #te_sc_shift_display_publish .radio').live(clickEvent, function() {
+	$('#sc_shift_display').on(clickEvent, '#te_sc_shift_display_publish .radio', function() {
 		$('#te_sc_shift_display_publish .radio').removeClass('check');
 		$(this).addClass('check');
 	});
 
-	$('#sc_shift_display #te_sc_shift_display_delete .radio').live(clickEvent, function() {
+	$('#sc_shift_display').on(clickEvent, '#te_sc_shift_display_delete .radio', function() {
 		$('#te_sc_shift_display_delete .radio').removeClass('check');
 		$(this).addClass('check');
 	});
 
-	$('#sc_shift_display #te_sc_shift_display_publish .checkbox').live(clickEvent, function() {
+	$('#sc_shift_display').on(clickEvent, '#te_sc_shift_display_publish .checkbox', function() {
 		$(this).toggleClass('check');
 		$('#tc_sc_shift_display_publish_textarea').toggle();
 	});
@@ -501,7 +505,7 @@ ShiftPlanningSchedule.prototype.allPageEvents = function() {
 		});
 	});
 
-	$('#sc_add_user .checkbox').live(clickEvent, function() {
+	$('#sc_add_user').on(clickEvent, '.checkbox', function() {
 
 		var data = {
 			id: $('#sc_edit_id').val()
