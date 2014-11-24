@@ -104,6 +104,15 @@ ShiftPlanningView.prototype._staffOption = function(notAdmin, predefined) {
         $.event.trigger('staff_list_load', [notAdmin, sp.staff.raw.employees, predefined]);
     }
 };
+ShiftPlanningView.prototype.leaveTypeList = function(list, selectBoxId) {
+    $("#" + selectBoxId).html('<option value="0" disabled="disabled">Select Leave Type</option>');
+    $.each(list, function(i, leaveType) {
+        $('<option />', {
+            value: leaveType.id,
+            html: leaveType.name
+        }).appendTo('#' + selectBoxId);
+    }.bind(this));
+};
 
 
 ShiftPlanningView.prototype.staffOption = function(notAdmin) {
