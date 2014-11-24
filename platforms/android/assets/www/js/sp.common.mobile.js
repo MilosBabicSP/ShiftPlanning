@@ -9,7 +9,7 @@ var ua = navigator.userAgent.toLowerCase();
 var isAndroid = ua.indexOf("android") > -1; //&& ua.indexOf("mobile");
 
 if (agentID) {
-	clickEvent = 'touch';
+	clickEvent = 'click';
 }
 
 jQuery.event.special.touch = {
@@ -72,7 +72,7 @@ ShiftPlanning.prototype.toggleMenu = function() {
 }
 
 ShiftPlanning.prototype.loadSubPage = function(obj, page, subpage) {
-	if (subpage == 'logout') {
+	if (subpage == 'logout' || page == 'logout') {
 		this.staff.logout();
 		return false;
 	}
@@ -94,19 +94,19 @@ ShiftPlanning.prototype.loadSubPage = function(obj, page, subpage) {
 
 	$('#menu .mainNav > li').removeClass('active');
 	$('#menu_' + page).addClass('active');
-
-    if($('.subNav[page=' + page + '] li a[subpage=' + subpage + ']' ).length > 0){
-        $('.subNav[page=' + page + '] li').removeClass('active');
-        $('.subNav[page=' + page + '] li a[subpage=' + subpage + ']').parent().addClass('active');
-
-        sp.hash(page+'/'+subpage);
-    }
-
-//	$('.subNavigation div.' + page + ' .subnNav[page=' + page + '] li').removeClass('active');
-//
-//	$('.subNavigation div.' + page + ' .subnNav[page=' + page + '] li a[page=' + subpage + ']').parent().addClass('active');
-//	sp.hashChange = false;
-//	sp.hash(page);
+	/*
+	$('.subNavigation div.' + page + ' .subNav[page=' + page + '] li').removeClass('active');
+	$('.subNavigation div.' + page + ' .subNav[page=' + page + '] li a[subpage=' + subpage + ']').parent().addClass('active');
+	sp.hashChange = false;
+	sp.hash(page);
+*/
+    if($('.subNavigation div.' + page + ' .subNav[page=' + page + '] li a[subpage=' + subpage + ']').length > 0){
+		$('.subNavigation div.' + page + ' .subNav[page=' + page + '] li').removeClass('active');
+		$('.subNavigation div.' + page + ' .subNav[page=' + page + '] li a[subpage=' + subpage + ']').parent().addClass('active');
+    }else{
+		sp.hashChange = false;
+	}
+	sp.hash(page);
 
 	if (typeof this[page] != 'undefined' && 'loadSubPageEvents' in this[page]) {
 		this[page].loadSubPageEvents(subpage);
@@ -268,6 +268,7 @@ ShiftPlanning.prototype.loadSite = function() {
         if ($(this).hasClass('exit') && $(this).attr('page') != 'logout') return true;
         e.preventDefault();
         if( $(this).attr('page') == "logout" || sp.hash() == "logout" ){
+			sp.hashChange = false;
             sp.staff.logout();
         }else{
             if ($(this).attr('page') == sp.hash() ){
@@ -277,9 +278,9 @@ ShiftPlanning.prototype.loadSite = function() {
             if ($('#wrapper').hasClass('extended') ){
                 self.toggleMenu();
             }
+			sp.hashChange = true;
+			sp.loadPage($(this).attr('page'));
         }
-        sp.hashChange = true;
-        sp.loadPage($(this).attr('page'));
     });
 
     $(window).hashchange();
