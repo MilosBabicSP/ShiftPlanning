@@ -17,7 +17,7 @@ ShiftPlanningSettings.prototype.loadPage = function() {
 ShiftPlanningSettings.prototype.overviewEvents = function() {
 	var self = this;
 
-	$('#da_se_ed_cu .checkbox').live(clickEvent, function() {
+	$('#da_se_ed_cu').on(clickEvent, '.checkbox', function() {
 		var obj = this;
 		var checked = ($(this).hasClass('check')) ? true : false;
 		if (checked) {
@@ -27,7 +27,7 @@ ShiftPlanningSettings.prototype.overviewEvents = function() {
 		}
 	});
 
-	$('#da_se_ed_po .checkbox, #da_se_ov_po .checkbox, #da_se_ed_sk .checkbox, #da_se_ov_sk .checkbox').live(clickEvent, function(e) {
+	$('#da_se_ed_po, #da_se_ov_po, #da_se_ed_sk, #da_se_ov_sk').on(clickEvent, '.checkbox', function(e) {
 		e.stopPropagation();
 		var sid = $(this).attr('itemId');
 		var skills = ($(this).parents('.skills').length > 0) ? true : false;

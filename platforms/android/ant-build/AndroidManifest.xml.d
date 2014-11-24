@@ -1,2 +1,2 @@
-/home/steewsc/AndroidStudioProjects/spmob/platforms/android/ant-build/AndroidManifest.xml : \
-/home/steewsc/AndroidStudioProjects/spmob/platforms/android/AndroidManifest.xml \
+/home/milos/Development/workspace/android/shiftplanning-mobile/platforms/android/ant-build/AndroidManifest.xml : \
+/home/milos/Development/workspace/android/shiftplanning-mobile/platforms/android/AndroidManifest.xml \

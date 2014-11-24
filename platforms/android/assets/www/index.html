@@ -43,7 +43,9 @@
                 document.write('<script type="text\/javascript" src="gapped\/backgroundService-3.1.0.js"><\/s' + 'cript>');
                 document.write('<script type="text\/javascript" src="gapped\/GPSService.js"><\/s' + 'cript>');
                 document.write('<script type="text\/javascript" src="gapped\/timeclock.js"><\/s' + 'cript>');
-            }
+            }else{
+                document.write('<script type="text\/javascript" src="js\/fastclick.js"><\/s' + 'cript>');
+			}
         </script>
         <script src="gapped/gapUtils.js" type="text/javascript"></script>
         <script src="js/gapping.stuff.js" type="text/javascript"></script>
@@ -207,7 +209,7 @@
                     <li id="menu_training"><a class="trai" href="#" page="training">Training</a></li>				
                     <li id="menu_reports"><a class="repo" href="#" page="reports" >Reports</a></li>
                     <li id="menu_settings"><a class="sett" href="#" page="settings" >Settings</a></li>
-                    <li id="menu_logout"><a class="exit" href="#logout" page="logout">Logout</a></li>
+                    <li id="menu_logout"><a class="exit" href="#" page="logout">Logout</a></li>
                 </ul>
                 <a class="privacy-policy"
                    onclick="sp.showPrivacyPolicy();">Privacy Policy</a>
@@ -2011,6 +2013,12 @@
 					            <span class="input">
 					                <select id="rq_va_en">
 					
+					                </select>
+					            </span>
+					            <label>Leave type</label>
+					            <span class="input">
+					                <select id="rq_va_lt">
+
 					                </select>
 					            </span>
 					            <ul class="detailsGrid borTB" id="rq_va_date">

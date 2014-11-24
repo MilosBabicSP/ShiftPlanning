@@ -517,6 +517,12 @@ function appReady() {
     */
     gUtils.setupPlugins();
     //getMyIP();
+
+    if( !isAndroid ){
+        window.addEventListener('load', function() {
+            new FastClick(document.body);
+        }, false);
+	}
 }
 // ##########################################################################################
 // TODO: This can be implemented when Module TimeClock Locations Get is finished on BACKEND

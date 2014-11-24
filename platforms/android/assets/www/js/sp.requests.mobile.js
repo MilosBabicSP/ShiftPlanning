@@ -374,7 +374,7 @@ ShiftPlanningRequests.prototype.shiftApprovalsEvents = function() {
 		self.shiftApproveList();
 	});
 
-	$('#rq_sa_ho .checkbox').live(clickEvent, function(e) {
+	$('#rq_sa_ho').on(clickEvent, '.checkbox', function(e) {
 		var obj = $(this), ul, li;
 		if (!obj.hasClass('check')) {
 			li = obj.parent().parent();
@@ -441,11 +441,11 @@ ShiftPlanningRequests.prototype.shiftApprovalsEvents = function() {
 		}
 	});
 
-	$('#rq_sa_s .checkbox').live(clickEvent, function(e) {
+	$('#rq_sa_s').on(clickEvent, '.checkbox', function(e) {
 		$(this).toggleClass('check');
 	});
 
-	$('#rq_sa_sub .approve').bind(clickEvent, function(e) {
+	$('#rq_sa_sub').on(clickEvent, '.approve', function(e) {
 		e.preventDefault();
 		self.saveShiftApprove();
 	})
@@ -539,6 +539,11 @@ ShiftPlanningRequests.prototype.vacationSubEvents = function() {
 	}
 
 	$('#rq_va_en').html(spView.staffOption((sp.staff.admin.info.group <= 4) ? false : true));
+	$('#rq_va_lt').html('<option selected=selected>Fetching Leave types</option>');
+	sp.requests.getLeaveTypes(function(response){
+	    sp.requests.leavetypes = response;
+	    spView.leaveTypeList(response, 'rq_va_lt');
+	}, function(e){});
 	$('#rq_va_spd').hide()
 
 
@@ -625,6 +630,19 @@ ShiftPlanningRequests.prototype.vacationSubEvents = function() {
 //    $('#rq_va_up').addClass('appHidden');
 }
 
+ShiftPlanningRequests.prototype.getLeaveTypes = function(success, error) {
+    sp.api('staff.leavetypes', 'get', {}, function(response) {
+        if (typeof success == 'function') {
+            success.call(this, response.data);
+        }
+        }, function(response) {
+            sp.showError(response.error);
+            if (typeof error == 'function') {
+                error.call(this, error);
+            }
+        }
+    );
+}
 ShiftPlanningRequests.prototype.availableSubEvents = function() {
 	$('#rq_av_pu .icon b').html('');
 	$('#rq_av_sw .icon b').html('');
@@ -947,10 +965,17 @@ ShiftPlanningRequests.prototype.addVacationRequest = function(obj) {
 		return false;
 	}
 
+	if( $('#rq_va_lt option:selected').val() == 0 ){
+		sp.showError(_s('Please select Leave Type'));
+		obj.removeClass('loading');
+		return false;
+	}
+
 	var data = {
 		start_date: $('#rq_va_fr').val(),
 		end_date: $('#rq_va_to').val(),
 		employee: $('#rq_va_en').val(),
+		leavetype: $('#rq_va_lt option:selected').val(),
 		comments: $('#rq_va_wc').val()
 	};
 
