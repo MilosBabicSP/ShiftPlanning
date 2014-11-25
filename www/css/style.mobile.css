@@ -84,9 +84,9 @@ h5 {font-size:14px; font-weight:normal; color:#333;}
 .fromI {background-position:-10px -1065px; padding:0 0 0 20px;}
 .untilI {background-position:-10px -1115px; padding:0 0 0 20px;}
 
-span.checkbox {display:block; line-height:30px; padding:5px 0 5px 35px; background-position:-5px -605px;}
+span.checkbox {display:block; min-height: 30px; line-height: 30px; padding: 5px 0px 5px 35px; background-position: -5px -605px;}
 span.checkbox.check {background-position:-5px -555px;}
-span.checkbox.disabled {background-position:-5px -905px;}
+span.checkbox.disabled {background-position:10px -890px;}
 
 span.radio {display:block; line-height:30px; padding:5px 0 5px 35px; background-position:-5px -1305px;}
 span.radio.bigger {background-position:-5px -1290px;}
@@ -262,8 +262,8 @@ ul.timeSheet li .quarter:first-child {line-height:15px;}
 ul.timeSheet li .quarter {width:25%;}
 ul.timeSheet li .quarter.even span {margin:0 5px 0 0;}
 ul.timeSheet li .quarter.odd span {margin:0 0 0 5px;}
-ul.timeSheet span.checkbox {padding:0; width:29px; height:30px; float:right; background-position:-5px -610px;}
-ul.timeSheet span.checkbox.check {background-position:-5px -560px;}
+ul.timeSheet span.checkbox {padding:15px; width:29px; height:30px; float:right; background-position:10px -595px;}
+ul.timeSheet span.checkbox.check {background-position:10px -545px;}
 
 ul.staff.big {overflow:hidden; padding:15px 10px; font-size:14px; text-align: center;}
 ul.staff.big li {position:relative; float:left; padding:5px 10px; width:80px; height:120px; overflow: hidden;}
