@@ -89,9 +89,12 @@ ShiftPlanningSchedule.prototype.allPageEvents = function() {
 	});
 
 	$('#schedule .shiftDisplay .backMenu').bind(clickEvent, function(e) {
+	//$('#schedule').on(clickEvent, '.shiftDisplay .backMenu' ,function(e) {
 		e.preventDefault();
 		e.stopPropagation();
-		$(tempShift).attr("first", false);
+		if( typeof tempShift != 'undefined' ){
+			$(tempShift).attr("first", false);
+		}
 		if (self.fromUpcoming) {
 			self.fromUpcoming = false;
 			$('.subNavigation').show();
@@ -130,7 +133,7 @@ ShiftPlanningSchedule.prototype.allPageEvents = function() {
 					$('.subNavigation').show();
 					$('.subNavigation .dashboard li a[subpage=upcomingShifts]').trigger(clickEvent);
 				} else {
-					if ($('#sc_sub_shift_display ul a.publish').attr('first') == 'false') {
+					if ($('#sc_sub_shift_display ul a.publish').tempShift == 'false') {
 						self.resetPublishFields(true);
 					} else {
 						$('.subNavigation .schedule .schedule li.active a').trigger(clickEvent);
