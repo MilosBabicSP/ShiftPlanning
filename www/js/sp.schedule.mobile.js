@@ -5,6 +5,8 @@ ShiftPlanningSchedule.prototype.initialize = function() {
 	});
 }
 
+var tempShift;
+
 ShiftPlanningSchedule.prototype.allPageEvents = function() {
 	var self = this;
 	$('#sc_fl').bind('change', function(e) {
@@ -89,6 +91,7 @@ ShiftPlanningSchedule.prototype.allPageEvents = function() {
 	$('#schedule .shiftDisplay .backMenu').bind(clickEvent, function(e) {
 		e.preventDefault();
 		e.stopPropagation();
+		$(tempShift).attr("first", false);
 		if (self.fromUpcoming) {
 			self.fromUpcoming = false;
 			$('.subNavigation').show();
@@ -172,6 +175,7 @@ ShiftPlanningSchedule.prototype.allPageEvents = function() {
 		e.preventDefault();
 		var shiftId = $(this).attr('rel');
 		var obj = $(this);
+		tempShift = obj;
 		if ($(this).attr('first') == 'true') {
 			var deleteData  = {id: shiftId};
 			var deleteRule = $('#te_sc_shift_display_delete .radio.check').attr('value');
@@ -200,7 +204,7 @@ ShiftPlanningSchedule.prototype.allPageEvents = function() {
 					$('#te_sc_shift_display_delete').show();
 					obj.attr('first', 'true');
 				}
-			})
+			});
 		}
 	});
 	$('#sc_sub_trade a.backMenu').bind(clickEvent, function(e) {
@@ -394,6 +398,7 @@ ShiftPlanningSchedule.prototype.allPageEvents = function() {
 	});
 	$('#sc_sub_shift_display ul a.publish').bind(clickEvent, function(e) {
 		e.preventDefault();
+		tempShift = $(this);
 		if ($(this).attr('first') == 'true') {
 			$('#te_sc_shift_display_info').hide();
 			$('#te_sc_shift_display_publish').show();
