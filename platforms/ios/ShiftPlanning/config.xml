@@ -47,6 +47,9 @@
     <feature name="Notification">
         <param name="ios-package" value="CDVNotification" />
     </feature>
+    <feature name="Console">
+        <param name="ios-package" value="CDVLogger" />
+    </feature>
     <name>ShiftPlanning</name>
     <description>
             ShiftPlanning - Employee Scheduling Software, Time Clock and Human Resources.

@@ -50,7 +50,7 @@ ShiftPlanning.prototype = {
 		}
 		
 		
-		console.log("MULTI API: calls => " + JSON.stringify(tmp22) );
+		//console.log("MULTI API: calls => " + JSON.stringify(tmp22) );
 		
 		
 		var xhr = $.ajax({
@@ -114,7 +114,7 @@ ShiftPlanning.prototype = {
 			data[index] = item;
 		});
 
-        console.log("SINGLE REQUEST => " + JSON.stringify( data ) );
+        //console.log("SINGLE REQUEST => " + JSON.stringify( data ) );
         data = encodeURIComponent(JSON.stringify( data ));
 
 		this.apiCalls[a] = $.ajax({

@@ -272,7 +272,7 @@ ShiftPlanningStaff.prototype.loginWithToken = function() {
 	sp.api('staff.employee', 'GET', {
 		id: user.id
 	}, function(loginResponse) {
-        console.log("LoginWithToken Response => " + JSON.stringify(loginResponse));
+        //console.log("LoginWithToken Response => " + JSON.stringify(loginResponse));
         if( typeof loginResponse.data == "undefined" ){
             logUserOutLocal();
         }else{
