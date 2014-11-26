@@ -1,5 +1,11 @@
 ShiftPlanningSchedule.prototype.initialize = function() {
 	var self = this;
+	this.moduleName = 'schedule';
+	if( initNeeded(this.moduleName) ){
+		initializeModule(this.moduleName);
+	}else{
+		return false;
+	}
 	$(document).ready(function() {
 		self.allPageEvents();
 	});
@@ -562,6 +568,10 @@ ShiftPlanningSchedule.prototype.allPageEvents = function() {
 }
 
 ShiftPlanningSchedule.prototype.loadSubPageEvents = function(subpage) {
+	if( initNeeded(this.moduleName) ){
+		this.initialize();
+		initializeModule(this.moduleName);
+	}
 	checkAccount();
 	$('#sc_edit_id').val(0);
 	$('.subNavigation').show();
@@ -1248,6 +1258,7 @@ ShiftPlanningSchedule.prototype.generateMiddle = function(currentDate) {
 
 
 ShiftPlanningSchedule.prototype.loadPage = function() {
+	this.moduleName = 'schedule';
 	var opt = '';
 	opt += _s('<option value="employee">My Schedules</option>');
 	if (parseInt(sp.staff.admin.settings.visible_overview) == 1 || parseInt(sp.staff.admin.info.group) < 5 || parseInt(sp.staff.admin.settings.visible_own) == 1) {
