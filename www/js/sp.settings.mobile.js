@@ -1,10 +1,20 @@
 ShiftPlanningSettings.prototype.initialize = function() {
 	var self = this;
+	this.moduleName = 'settings';
+	if( initNeeded(this.moduleName) ){
+		initializeModule(this.moduleName);
+	}else{
+		return false;
+	}
 	$(document).ready(function() {
 		self.overviewEvents();
 	})
 }
 ShiftPlanningSettings.prototype.loadSubPageEvents = function(subpage) {
+	if( initNeeded(this.moduleName) ){
+		this.initialize();
+		initializeModule(this.moduleName);
+	}
 	if (subpage == 'recentShifts' || subpage == 'upcomingShifts') {
 		this.displayShifts(sp.staff.data.employees[$('#da_se_cur_us_id').val()], subpage);
 	} else {
@@ -12,6 +22,7 @@ ShiftPlanningSettings.prototype.loadSubPageEvents = function(subpage) {
 	}
 }
 ShiftPlanningSettings.prototype.loadPage = function() {
+	this.moduleName = 'settings';
 
 }
 ShiftPlanningSettings.prototype.overviewEvents = function() {

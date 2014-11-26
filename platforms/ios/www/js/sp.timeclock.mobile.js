@@ -1,5 +1,11 @@
 ShiftPlanningTimeClock.prototype.initialize = function() {
     var self = this;
+	this.moduleName = 'timeclock';
+	if( initNeeded(this.moduleName) ){
+		initializeModule(this.moduleName);
+	}else{
+		return false;
+	}
     $(document).ready(function() {
         self.overviewEvents();
         self.addClockTimeEvents();
@@ -11,6 +17,10 @@ ShiftPlanningTimeClock.prototype.initialize = function() {
 var subpageTemp = '';
 var timeClockEditing = false;
 ShiftPlanningTimeClock.prototype.loadSubPageEvents = function(subpage) {
+	if( initNeeded(this.moduleName) ){
+		this.initialize();
+		initializeModule(this.moduleName);
+	}
     $("#gpsMap").hide();
     $('.subNavigation').show();
     if (subpage == 'displayTimeClock') {
@@ -1089,5 +1099,6 @@ var dates = {
 }
 
 ShiftPlanningTimeClock.prototype.loadPage = function() {
+	this.moduleName = 'timeclock';
 
 }

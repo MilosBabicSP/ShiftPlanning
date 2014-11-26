@@ -1,5 +1,11 @@
 ShiftPlanningRequests.prototype.initialize = function() {
 	var self = this;
+	this.moduleName = 'requests';
+	if( initNeeded(this.moduleName) ){
+		initializeModule(this.moduleName);
+	}else{
+		return false;
+	}
 	$(document).ready(function() {
 		self.overviewEvents();
 		self.vacationEvents();
@@ -12,6 +18,10 @@ ShiftPlanningRequests.prototype.initialize = function() {
 
 
 ShiftPlanningRequests.prototype.loadSubPageEvents = function(subpage) {
+	if( initNeeded(this.moduleName) ){
+		this.initialize();
+		initializeModule(this.moduleName);
+	}
 	$('.subNavigation').show();
 	switch (subpage) {
 		case 'overview':
@@ -1254,5 +1264,5 @@ ShiftPlanningRequests.prototype.fixShiftsApproval = function(data) {
 }
 
 ShiftPlanningRequests.prototype.loadPage = function() {
-
+	this.moduleName = 'requests';
 }
