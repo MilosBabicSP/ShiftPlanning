@@ -83,6 +83,9 @@
         },
         "org.apache.cordova.dialogs": {
             "PACKAGE_NAME": "com.shiftplanning.distribution"
+        },
+        "org.apache.cordova.console": {
+            "PACKAGE_NAME": "com.ShiftPlanning.app"
         }
     },
     "dependent_plugins": {}

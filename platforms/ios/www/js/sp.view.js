@@ -105,7 +105,7 @@ ShiftPlanningView.prototype._staffOption = function(notAdmin, predefined) {
     }
 };
 ShiftPlanningView.prototype.leaveTypeList = function(list, selectBoxId) {
-    $("#" + selectBoxId).html('<option value="0" disabled="disabled">Select Leave Type</option>');
+    $("#" + selectBoxId).html('<option value="-1" disabled="disabled">Select Leave Type</option><option value="0">Vacation</option>');
     $.each(list, function(i, leaveType) {
         $('<option />', {
             value: leaveType.id,

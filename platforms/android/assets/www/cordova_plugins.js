@@ -213,7 +213,8 @@ module.exports.metadata =
     "org.apache.cordova.inappbrowser": "0.5.3",
     "org.apache.cordova.splashscreen": "0.3.4",
     "org.apache.cordova.statusbar": "0.1.8",
-    "org.apache.cordova.dialogs": "0.2.10"
+    "org.apache.cordova.dialogs": "0.2.10",
+    "org.apache.cordova.console": "0.2.11"
 }
 // BOTTOM OF METADATA
 });
