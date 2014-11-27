@@ -140,15 +140,17 @@ function logUserOutLocal() {
 	if( isAndroid ){
     	sp.hash('login');
 	}else{
-		sp.hash('logout');
+		//sp.hash('logout');
 	}
 	
-	sp = undefined;
+	if(!isAndroid){
+		sp = undefined;
+	}
 	moduleInitialized = undefined;
 	window.localStorage.clear();
 	document.cookies = '';
 	document.clear();
-    window.location.reload();
+	window.location.reload();
 }
 
 function logUserOutClearData(){

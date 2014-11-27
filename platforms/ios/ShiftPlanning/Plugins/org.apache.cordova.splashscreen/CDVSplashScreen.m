@@ -43,6 +43,11 @@
     [self setVisible:NO];
 }
 
+- (void)close:(CDVInvokedUrlCommand*)command
+{
+    exit(0);
+}
+
 - (void)pageDidLoad
 {
     id autoHideSplashScreenValue = [self.commandDelegate.settings objectForKey:[@"AutoHideSplashScreen" lowercaseString]];
