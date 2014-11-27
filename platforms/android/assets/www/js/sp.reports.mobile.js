@@ -1,7 +1,15 @@
 ShiftPlanningReports.prototype.initialize = function() {
 	var self = this;
 	this.reports = [];
+	this.moduleName = 'reports';
+	if( initNeeded(this.moduleName) ){
+		initializeModule(this.moduleName);
+	}else{
+		return false;
+	}
 	$(document).ready(function() {
+		console.log("uso u doc ready u init za reports");
+		this.jeste = true;
 		self.allReportsEvents();
 	});
 }
@@ -33,12 +41,13 @@ ShiftPlanningReports.prototype.allReportsEvents = function() {
 		}
 	});
 
-	$('#reports .checkbox').bind(clickEvent, function() {
+	$('#reports .checkbox').bind(clickEvent, function(e) {
 		$(this).toggleClass('check');
 		self.displayReports();
 	});
 
-	$('#reports .employeeSelector, #reports .advancedMenu select').bind('change', function() {
+	$('#reports .employeeSelector, #reports .advancedMenu select').bind('change', function(e) {
+		e.stopPropagation();
 		self.displayReports();
 	});
 
@@ -50,12 +59,17 @@ ShiftPlanningReports.prototype.allReportsEvents = function() {
 
 	$('#re_si_inf').bind(clickEvent, function(e) {
 		e.preventDefault();
+		e.stopPropagation();
 		$('#wrapper > .subNavigation').show();
 		$('#wrapper > .subNavigation .reports li.active a').trigger(clickEvent);
 	});
 }
 
 ShiftPlanningReports.prototype.allReportsSubEvents = function() {
+	if( typeof this.jeste == undefined ){
+		console.log('jeste je undefined ;(');
+		this.allReportsEvents();
+	}
 	var self = this;
 	spView.fixCurrency(sp.staff.admin.settings.currency);
 	$('#reports .timeSelector').html(spView.timeRanges());
@@ -196,5 +210,10 @@ ShiftPlanningReports.prototype.loadSubPageEvents = function(subpage) {
 }
 
 ShiftPlanningReports.prototype.loadPage = function() {
+	this.moduleName = 'reports';
+	if( initNeeded(this.moduleName) ){
+		this.initialize();
+		initializeModule(this.moduleName);
+	}
 	this.allReportsSubEvents();
 }

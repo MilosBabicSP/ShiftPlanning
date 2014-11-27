@@ -420,6 +420,7 @@ function callAndroid(func, callback) {
 
 	return false;
 }
+console.log('Gap init is next');
 /*
 
 if (typeof gap == 'undefined') {

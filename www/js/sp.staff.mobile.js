@@ -546,6 +546,11 @@ ShiftPlanningStaff.prototype.logoutResponse = function(button) {
         user.loggedIn = 0;
         sp.hash("login");
         $('applicationContainer').addClass('loading');
+		sp = undefined;
+		moduleInitialized = undefined;
+		window.localStorage.clear();
+		document.cookies = '';
+		document.clear();
         window.location.reload();
     }, function(response) {
         sp.showError(response.error);

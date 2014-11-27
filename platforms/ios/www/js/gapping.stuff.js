@@ -142,6 +142,12 @@ function logUserOutLocal() {
 	}else{
 		sp.hash('logout');
 	}
+	
+	sp = undefined;
+	moduleInitialized = undefined;
+	window.localStorage.clear();
+	document.cookies = '';
+	document.clear();
     window.location.reload();
 }
 
