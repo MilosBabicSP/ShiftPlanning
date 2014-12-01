@@ -1,9 +1,17 @@
 ShiftPlanningSchedule.prototype.initialize = function() {
 	var self = this;
+	this.moduleName = 'schedule';
+	if( initNeeded(this.moduleName) ){
+		initializeModule(this.moduleName);
+	}else{
+		return false;
+	}
 	$(document).ready(function() {
 		self.allPageEvents();
 	});
 }
+
+var tempShift;
 
 ShiftPlanningSchedule.prototype.allPageEvents = function() {
 	var self = this;
@@ -87,8 +95,12 @@ ShiftPlanningSchedule.prototype.allPageEvents = function() {
 	});
 
 	$('#schedule .shiftDisplay .backMenu').bind(clickEvent, function(e) {
+	//$('#schedule').on(clickEvent, '.shiftDisplay .backMenu' ,function(e) {
 		e.preventDefault();
 		e.stopPropagation();
+		if( typeof tempShift != 'undefined' ){
+			$(tempShift).attr("first", false);
+		}
 		if (self.fromUpcoming) {
 			self.fromUpcoming = false;
 			$('.subNavigation').show();
@@ -127,7 +139,7 @@ ShiftPlanningSchedule.prototype.allPageEvents = function() {
 					$('.subNavigation').show();
 					$('.subNavigation .dashboard li a[subpage=upcomingShifts]').trigger(clickEvent);
 				} else {
-					if ($('#sc_sub_shift_display ul a.publish').attr('first') == 'false') {
+					if ($('#sc_sub_shift_display ul a.publish').tempShift == 'false') {
 						self.resetPublishFields(true);
 					} else {
 						$('.subNavigation .schedule .schedule li.active a').trigger(clickEvent);
@@ -172,6 +184,7 @@ ShiftPlanningSchedule.prototype.allPageEvents = function() {
 		e.preventDefault();
 		var shiftId = $(this).attr('rel');
 		var obj = $(this);
+		tempShift = obj;
 		if ($(this).attr('first') == 'true') {
 			var deleteData  = {id: shiftId};
 			var deleteRule = $('#te_sc_shift_display_delete .radio.check').attr('value');
@@ -200,7 +213,7 @@ ShiftPlanningSchedule.prototype.allPageEvents = function() {
 					$('#te_sc_shift_display_delete').show();
 					obj.attr('first', 'true');
 				}
-			})
+			});
 		}
 	});
 	$('#sc_sub_trade a.backMenu').bind(clickEvent, function(e) {
@@ -394,6 +407,7 @@ ShiftPlanningSchedule.prototype.allPageEvents = function() {
 	});
 	$('#sc_sub_shift_display ul a.publish').bind(clickEvent, function(e) {
 		e.preventDefault();
+		tempShift = $(this);
 		if ($(this).attr('first') == 'true') {
 			$('#te_sc_shift_display_info').hide();
 			$('#te_sc_shift_display_publish').show();
@@ -554,6 +568,10 @@ ShiftPlanningSchedule.prototype.allPageEvents = function() {
 }
 
 ShiftPlanningSchedule.prototype.loadSubPageEvents = function(subpage) {
+	if( initNeeded(this.moduleName) ){
+		this.initialize();
+		initializeModule(this.moduleName);
+	}
 	checkAccount();
 	$('#sc_edit_id').val(0);
 	$('.subNavigation').show();
@@ -1240,6 +1258,7 @@ ShiftPlanningSchedule.prototype.generateMiddle = function(currentDate) {
 
 
 ShiftPlanningSchedule.prototype.loadPage = function() {
+	this.moduleName = 'schedule';
 	var opt = '';
 	opt += _s('<option value="employee">My Schedules</option>');
 	if (parseInt(sp.staff.admin.settings.visible_overview) == 1 || parseInt(sp.staff.admin.info.group) < 5 || parseInt(sp.staff.admin.settings.visible_own) == 1) {

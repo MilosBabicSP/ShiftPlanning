@@ -420,10 +420,13 @@ function callAndroid(func, callback) {
 
 	return false;
 }
-
+console.log('Gap init is next');
+/*
 
 if (typeof gap == 'undefined') {
 //Initalizing javascript library
+
+	console.log("POZIVA SE INICIJALIZACIJA");
 	var sp = new ShiftPlanning();
 	ShiftPlanning.prototype.staff = new ShiftPlanningStaff();
 	ShiftPlanning.prototype.schedule = new ShiftPlanningSchedule();
@@ -436,3 +439,4 @@ if (typeof gap == 'undefined') {
 	ShiftPlanning.prototype.training = new ShiftPlanningTraining();
 	ShiftPlanning.prototype.settings = new ShiftPlanningSettings();
 }
+*/

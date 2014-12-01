@@ -1,5 +1,11 @@
 ShiftPlanningRequests.prototype.initialize = function() {
 	var self = this;
+	this.moduleName = 'requests';
+	if( initNeeded(this.moduleName) ){
+		initializeModule(this.moduleName);
+	}else{
+		return false;
+	}
 	$(document).ready(function() {
 		self.overviewEvents();
 		self.vacationEvents();
@@ -12,6 +18,10 @@ ShiftPlanningRequests.prototype.initialize = function() {
 
 
 ShiftPlanningRequests.prototype.loadSubPageEvents = function(subpage) {
+	if( initNeeded(this.moduleName) ){
+		this.initialize();
+		initializeModule(this.moduleName);
+	}
 	$('.subNavigation').show();
 	switch (subpage) {
 		case 'overview':
@@ -92,9 +102,10 @@ ShiftPlanningRequests.prototype.vacationEvents = function() {
 		$(this).addClass('loading');
 		self.addVacationRequest($(this));
 	});
-
+	console.log('readOnly => ' + $('#rq_va_to').attr('readonly'));
 	$('#rq_va_fr').scroller();
 	$('#rq_va_to').scroller();
+	console.log(' POSLE readOnly => ' + $('#rq_va_to').attr('readonly'));
 
 
 	$('#rq_va_rq a').live(clickEvent, function(e) {
@@ -965,7 +976,7 @@ ShiftPlanningRequests.prototype.addVacationRequest = function(obj) {
 		return false;
 	}
 
-	if( $('#rq_va_lt option:selected').val() == 0 ){
+	if( $('#rq_va_lt option:selected').val() == -1 ){
 		sp.showError(_s('Please select Leave Type'));
 		obj.removeClass('loading');
 		return false;
@@ -982,10 +993,15 @@ ShiftPlanningRequests.prototype.addVacationRequest = function(obj) {
 	spModel.schedule.create('vacation', data, function(response) {
 		self.vacationSubEvents();
 		obj.removeClass('loading');
+	}, function(er){
+		obj.removeClass('loading');
 	});
 }
 
 ShiftPlanningRequests.prototype.displayVacationRequest = function() {
+	if( this.current.leave_type == "0"){
+		this.current.leave_type_name = "Vacation";
+	}
 	$('#rq_va_ma_s').html($.tmpl($('#te_rq_va_ma_s'), this.current));
 }
 
@@ -1248,5 +1264,5 @@ ShiftPlanningRequests.prototype.fixShiftsApproval = function(data) {
 }
 
 ShiftPlanningRequests.prototype.loadPage = function() {
-
+	this.moduleName = 'requests';
 }

@@ -1,5 +1,11 @@
 ShiftPlanningDashboard.prototype.initialize = function() {
 	var self = this;
+	this.moduleName = 'dashboard';
+	if( initNeeded(this.moduleName) ){
+		initializeModule(this.moduleName);
+	}else{
+		return false;
+	}
 	$(document).ready(function() {
 		self.dashboardEvents();
 		self.wallEvents();
@@ -13,6 +19,12 @@ ShiftPlanningDashboard.prototype.initialize = function() {
 }
 
 ShiftPlanningDashboard.prototype.loadSubPageEvents = function(subpage) {
+	this.moduleName = 'dashboard';
+	if( initNeeded(this.moduleName) ){
+		this.initialize();
+		initializeModule(this.moduleName);
+	}
+
 	switch (subpage) {
 		case 'wall':
 			this.wallSubEvents();
@@ -969,7 +981,6 @@ ShiftPlanningStaff.prototype.getStaff = function(callback) {
 }
 
 ShiftPlanningDashboard.prototype.loadPage = function() {
-
 }
 
 

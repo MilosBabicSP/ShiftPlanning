@@ -140,9 +140,17 @@ function logUserOutLocal() {
 	if( isAndroid ){
     	sp.hash('login');
 	}else{
-		sp.hash('logout');
+		//sp.hash('logout');
 	}
-    window.location.reload();
+	
+	if(!isAndroid){
+		sp = undefined;
+	}
+	moduleInitialized = undefined;
+	window.localStorage.clear();
+	document.cookies = '';
+	document.clear();
+	window.location.reload();
 }
 
 function logUserOutClearData(){
@@ -468,10 +476,50 @@ function getCurrentPosition( hndSucc, hndErr ){
     navigator.geolocation.getCurrentPosition( hndSucc, hndErr, gpsOptions );
 }
 
+function initShiftPlanning(){
+	if( !isAndroid ){
+		console.log('initShiftPlanning ....');
+		ShiftPlanning.prototype.staff = new ShiftPlanningStaff();
+		ShiftPlanning.prototype.schedule = new ShiftPlanningSchedule();
+		ShiftPlanning.prototype.dashboard = new ShiftPlanningDashboard();
+		ShiftPlanning.prototype.timeClock = new ShiftPlanningTimeClock();
+		ShiftPlanning.prototype.reports = new ShiftPlanningReports();
+		ShiftPlanning.prototype.requests = new ShiftPlanningRequests();
+		ShiftPlanning.prototype.location = new ShiftPlanningLocation();
+		ShiftPlanning.prototype.permissions = new ShiftPlanningPermissions();
+		ShiftPlanning.prototype.training = new ShiftPlanningTraining();
+		ShiftPlanning.prototype.settings = new ShiftPlanningSettings();
+		$(document).ready(function() {
+			$.ajax({
+				url: _serverMob+'load.php',
+				success : function(res) {
+					$('#prepLoadFiles').after(res);
+					sp.initialize();
+				},
+				error : function(err, t, m){
+					console.log("Mobile GAP => " + JSON.stringify(err));
+				}
+			})
+		});
+	}
+}
+var moduleInitialized = [];
+function initNeeded(module){
+	console.log("initNeeded => " + module + ". is Needed =>  " + ( typeof moduleInitialized[module] == 'undefined' ));
+	return ( typeof moduleInitialized[module] == 'undefined' )
+}
+
+function initializeModule(module){
+	console.log("initializeModule => " + module);
+	moduleInitialized[module] = true;
+	console.log("is module: " + module + " initialized => " + !( typeof moduleInitialized[module] == 'undefined' ));
+}
+
 var $ = jQuery.noConflict();
 function appReady() {
     console.log("dev is ready");
     console.log("UserAgent => isAndroid => " + isAndroid );
+	//initShiftPlanning();
     handleExternalURLs();
     var samlDomainName = window.localStorage.getItem('shiftplanning_domain_name');
     $("#samlulr").val( samlDomainName );

@@ -1,5 +1,11 @@
 ShiftPlanningStaff.prototype.initialize = function() {
 	var self = this;
+	this.moduleName = 'staff';
+	if( initNeeded(this.moduleName) ){
+		initializeModule(this.moduleName);
+	}else{
+		return false;
+	}
 	//console.log("Entered into => initialize");
 	$(document).ready(function() {
 		if (user.loggedIn == 1) {
@@ -52,6 +58,11 @@ ShiftPlanningStaff.prototype.initialize = function() {
 
 
 ShiftPlanningStaff.prototype.loadSubPageEvents = function(subpage) {
+	this.moduleName = 'staff';
+	if( initNeeded(this.moduleName) ){
+		this.initialize();
+		initializeModule(this.moduleName);
+	}
 	$('#st_tp_menu').hide();
 	this[subpage + 'SubEvents']();
 }
@@ -272,7 +283,7 @@ ShiftPlanningStaff.prototype.loginWithToken = function() {
 	sp.api('staff.employee', 'GET', {
 		id: user.id
 	}, function(loginResponse) {
-        console.log("LoginWithToken Response => " + JSON.stringify(loginResponse));
+        //console.log("LoginWithToken Response => " + JSON.stringify(loginResponse));
         if( typeof loginResponse.data == "undefined" ){
             logUserOutLocal();
         }else{
@@ -500,14 +511,18 @@ ShiftPlanningStaff.prototype.login = function() {
                         window.localStorage.setItem('shiftplanning_mobile_rememberme', 1);
                         window.localStorage.setItem('shiftplanning_mobile_usercompany', user.company);
                         window.localStorage.setItem('shiftplanning_mobile_userphone', user.phone);
-
-                        sp.hash('dashboard');
-
+						//if( isAndroid ){
+							sp.hash('dashboard');
 //                        $('.applicationContainer').fadeIn(800, function(){
                             setTimeout(function(){
                                 $('.bigLoader2').hide();
                             }, 600);
 //                        });
+						//}else{
+						//	console.log("---------------");
+						//	sp.hash("");
+                		//	window.location.reload();
+						//}
                     });
                 });
             });
@@ -531,6 +546,11 @@ ShiftPlanningStaff.prototype.logoutResponse = function(button) {
         user.loggedIn = 0;
         sp.hash("login");
         $('applicationContainer').addClass('loading');
+		sp = undefined;
+		moduleInitialized = undefined;
+		window.localStorage.clear();
+		document.cookies = '';
+		document.clear();
         window.location.reload();
     }, function(response) {
         sp.showError(response.error);

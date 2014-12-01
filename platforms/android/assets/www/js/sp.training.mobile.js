@@ -1,10 +1,20 @@
 ShiftPlanningTraining.prototype.initialize = function() {
 	var self = this;
+	this.moduleName = 'training';
+	if( initNeeded(this.moduleName) ){
+		initializeModule(this.moduleName);
+	}else{
+		return false;
+	}
 	$(document).ready(function() {
 		self.overviewEvents();
 	})
 }
 ShiftPlanningTraining.prototype.loadSubPageEvents = function(subpage) {
+	if( initNeeded(this.moduleName) ){
+		this.initialize();
+		initializeModule(this.moduleName);
+	}
 	this[subpage + 'SubEvents']();
 }
 
@@ -470,5 +480,6 @@ ShiftPlanningTraining.prototype.topicstatisticSubEvents = function() {
 }
 
 ShiftPlanningTraining.prototype.loadPage = function() {
+	this.moduleName = 'training';
 
 }

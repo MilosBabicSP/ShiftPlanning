@@ -10,3 +10,4 @@ platforms/android/android.iml
 platforms/android/CordovaLib/CordovaLib.iml
 
 nohup.out
+www/.idea
