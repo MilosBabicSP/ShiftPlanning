@@ -2,7 +2,7 @@
 # OSX files
 .DS_Store
 
-/platforms/android/CordovaLib/build/*
+/platforms/android/CordovaLib/build
 /platforms/android/ant-build
 /platforms/android/CordovaLib/ant-build/
 
