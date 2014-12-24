@@ -49,7 +49,7 @@
       </dict>
     </dict>
     <key>CFBundleIdentifier</key>
-    <string>com.ShiftPlanning.app</string>
+    <string>com.shiftplanning.distribution</string>
     <key>com.ShiftPlanning.app</key>
     <string>com.shiftplanning.distribution</string>
     <key>CFBundleInfoDictionaryVersion</key>
