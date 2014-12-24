@@ -11,3 +11,6 @@
 
 /nohup.out
 /www/.idea
+
+/platforms/android/.gradle
+/platforms/android/.idea
