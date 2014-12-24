@@ -59,4 +59,7 @@
     </author>
     <content src="index.html" />
     <access origin="*" />
+    <feature name="NetworkStatus">
+        <param name="ios-package" value="CDVConnection" />
+    </feature>
 </widget>

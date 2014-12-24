@@ -2,12 +2,12 @@
 # OSX files
 .DS_Store
 
-platforms/android/CordovaLib/build/*
-platforms/android/ant-build/*
-platforms/android/CordovaLib/ant-build/
+/platforms/android/CordovaLib/build
+/platforms/android/ant-build
+/platforms/android/CordovaLib/ant-build/
 
-platforms/android/android.iml
-platforms/android/CordovaLib/CordovaLib.iml
+/platforms/android/android.iml
+/platforms/android/CordovaLib/CordovaLib.iml
 
-nohup.out
-www/.idea
+/nohup.out
+/www/.idea
