@@ -628,6 +628,7 @@ ShiftPlanningTimeClock.prototype.addClockTimeSubEvents = function() {
         emp = timeClock = this.current;
         $('#tc_etc_em option').attr("disabled", "");
         $('#tc_act_em option').attr("selected", "");
+        $('#tc_act_em').attr("disabled", "");
 
         $('#tc_act .title h3').html(_s('Edit Clock Time'));
         $('#tc_act_tc_id').removeClass('editOn').addClass('editOn');
@@ -642,6 +643,7 @@ ShiftPlanningTimeClock.prototype.addClockTimeSubEvents = function() {
     } else {
         $('#tc_act .title h3').html(_s('Add Clock Time'));
         $('#tc_act_tc_id').removeClass('editOn');
+        $('#tc_act_em').removeAttr('disabled');
         $('#tc_act_onci').show();
         emp.in_timestamp = Date.parse('today at 9am').getTime() / 1000;
         emp.out_timestamp = Date.parse('today at 5pm').getTime() / 1000;
