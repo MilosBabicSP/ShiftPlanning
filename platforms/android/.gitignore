@@ -14,5 +14,5 @@ out
 /build
 /.gradle
 /.idea
-
-
+/assets/www
+assets/www
