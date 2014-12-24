@@ -23,6 +23,9 @@
     <feature name="Notification">
         <param name="android-package" value="org.apache.cordova.dialogs.Notification" />
     </feature>
+    <feature name="NetworkStatus">
+        <param name="android-package" value="org.apache.cordova.networkinformation.NetworkManager" />
+    </feature>
     <name>ShiftPlanning</name>
     <description>
             ShiftPlanning - Employee Scheduling Software, Time Clock and Human Resources.
@@ -32,7 +35,4 @@
     </author>
     <content src="index.html" />
     <access origin="*" />
-    <feature name="NetworkStatus">
-        <param name="android-package" value="org.apache.cordova.networkinformation.NetworkManager" />
-    </feature>
 </widget>
