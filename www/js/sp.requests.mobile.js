@@ -927,11 +927,17 @@ ShiftPlanningRequests.prototype.shiftApproveList = function() {
 	}
 
 	spModel.schedule.get('shifts', data, function(response) {
-		if (response.data.length > 0) {
-			$('#rq_sa_ho').html($.tmpl($('#te_rq_sa'), self.prepareShiftApprovals(response.data)));
-		} else {
-			$('#rq_sa_ho').html(spView.emptyResult());
-		}
+		var permissions = sp.staff.admin.settings;
+
+        if(permissions['shift_confirm'] != 0) {
+            if (response.data.length > 0) {
+                $('#rq_sa_ho').html($.tmpl($('#te_rq_sa'), self.prepareShiftApprovals(response.data)));
+            } else {
+                $('#rq_sa_ho').html(spView.emptyResult());
+            }
+        } else {
+            $('#rq_sa_ho').html(spView.emptyResult('Your admin has disabled the shift approval feature'));
+        }
 	}, function(response) {
 		sp.showError(response.error);
 	});
