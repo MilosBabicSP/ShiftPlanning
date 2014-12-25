@@ -679,7 +679,7 @@ ShiftPlanningTimeClock.prototype.addClockTimeSubEvents = function() {
     $("#tc_act_tclin").scroller({
         preset: 'time',
         ampm: (cal.tmode == 24 ? false : true),
-        stepMinute: 15,
+        stepMinute: 1,
         timeFormat: sp.strReplace(['tt', 'mm'], ['A', 'ii'], cal.tstring)
     });
 
@@ -689,7 +689,7 @@ ShiftPlanningTimeClock.prototype.addClockTimeSubEvents = function() {
     $("#tc_act_tclou").scroller({
         preset: 'time',
         ampm: (cal.tmode == 24 ? false : true),
-        stepMinute: 15,
+        stepMinute: 1,
         timeFormat: sp.strReplace(['tt', 'mm'], ['A', 'ii'], cal.tstring)
     });
 
