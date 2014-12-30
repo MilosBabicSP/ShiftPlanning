@@ -53,6 +53,9 @@
     <feature name="NetworkStatus">
         <param name="ios-package" value="CDVConnection" />
     </feature>
+    <feature name="AppVersion">
+        <param name="ios-package" value="AppVersion" />
+    </feature>
     <name>ShiftPlanning</name>
     <description>
         ShiftPlanning combines all the best tools and capabilities of employee scheduling software, making an ideal product for your business...cutting-edge online features and ideal scheduling capabilities.

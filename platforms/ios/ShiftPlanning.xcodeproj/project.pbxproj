@@ -56,6 +56,7 @@
 		D7D1B4B61A1132A500744492 /* icon-120.png in Resources */ = {isa = PBXBuildFile; fileRef = D7D1B4B41A1132A500744492 /* icon-120.png */; };
 		ECBCBED75BFF42E5B5F590E8 /* CDVLocalFilesystem.m in Sources */ = {isa = PBXBuildFile; fileRef = 190FE74091964A1186217B18 /* CDVLocalFilesystem.m */; };
 		F7ECFDAAAC184CDBB3366FAC /* CDVAssetLibraryFilesystem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B61CBEA10D64CC6B2E30255 /* CDVAssetLibraryFilesystem.m */; };
+		83F257A5EBF44CD98DDE0A76 /* AppVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 332550E83B5D477EB21B6D92 /* AppVersion.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -148,6 +149,8 @@
 		EBA7719EF0174ED9A842317B /* CDVSplashScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDVSplashScreen.h; path = org.apache.cordova.splashscreen/CDVSplashScreen.h; sourceTree = "<group>"; };
 		F13A545E400046C9B11CBF0F /* CDVLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDVLocation.h; path = org.apache.cordova.geolocation/CDVLocation.h; sourceTree = "<group>"; };
 		F840E1F0165FE0F500CFE078 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = ShiftPlanning/config.xml; sourceTree = "<group>"; };
+		332550E83B5D477EB21B6D92 /* AppVersion.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "AppVersion.m"; path = "uk.co.whiteoctober.cordova.appversion/AppVersion.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		9327056D76ED4FAB85BC96B8 /* AppVersion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "AppVersion.h"; path = "uk.co.whiteoctober.cordova.appversion/AppVersion.h"; sourceTree = "<group>"; fileEncoding = 4; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -299,6 +302,8 @@
 				B278863F247D4C35898A9AB3 /* CDVStatusBar.h */,
 				7BEA4F07135841D380C52594 /* CDVNotification.m */,
 				DE55E81A62104B94AA6EFC1E /* CDVNotification.h */,
+				332550E83B5D477EB21B6D92 /* AppVersion.m */,
+				9327056D76ED4FAB85BC96B8 /* AppVersion.h */,
 			);
 			name = Plugins;
 			path = ShiftPlanning/Plugins;
@@ -513,6 +518,7 @@
 				A7D01DAC263C401090833F3B /* CDVLocation.m in Sources */,
 				90664083E04E4C3DAD79CE52 /* CDVStatusBar.m in Sources */,
 				783F0E1E1CEA4552B857F3BB /* CDVNotification.m in Sources */,
+				83F257A5EBF44CD98DDE0A76 /* AppVersion.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

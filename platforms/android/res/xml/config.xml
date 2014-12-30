@@ -26,6 +26,9 @@
     <feature name="NetworkStatus">
         <param name="android-package" value="org.apache.cordova.networkinformation.NetworkManager" />
     </feature>
+    <feature name="AppVersion">
+        <param name="android-package" value="uk.co.whiteoctober.cordova.AppVersion" />
+    </feature>
     <name>ShiftPlanning</name>
     <description>
             ShiftPlanning - Employee Scheduling Software, Time Clock and Human Resources.
