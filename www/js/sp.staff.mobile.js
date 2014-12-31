@@ -434,6 +434,10 @@ ShiftPlanningStaff.prototype.login = function() {
         if( typeof loginResponse.data == "undefined" ){
             logUserOutLocal();
         }else{
+			
+			sp.staff.admin.info = loginResponse.data.employee;
+            user.token = loginResponse.token;
+
 			cordova.getAppVersion(function(version) {
 				var date = new Date();
 				var logData = {	appVersion		: version,
@@ -444,7 +448,7 @@ ShiftPlanningStaff.prototype.login = function() {
 				
 				sp.api('mobile_log.log', 'CREATE',
 					{
-						employee_id : user.id,
+						employee_id : loginResponse.data.employee.id,
 						timestamp : date.toUTCString(),
 						log_data : JSON.stringify(logData)
 					}
@@ -452,11 +456,7 @@ ShiftPlanningStaff.prototype.login = function() {
 				},function(e){
 				});
 			});
-
-
-            sp.staff.admin.info = loginResponse.data.employee;
-            user.token = loginResponse.token;
-
+			
             if( sp.staff.admin.info.deactivated * 1 == 1 ){
                 user.loggedIn = 0;
                 user.name = '';
