@@ -278,6 +278,10 @@ ShiftPlanningStaff.prototype.loginWithToken = function() {
     sp.hashChange = false;
 	$('.loginContainer').addClass('loading');
 	$('.bigLoader2').show();
+	var applicationVersion;
+	cordova.getAppVersion(function(version) {
+    		applicationVersion = version;
+		});
 
 	sp.appendToken = true;
 	sp.api('staff.employee', 'GET', {
@@ -312,10 +316,23 @@ ShiftPlanningStaff.prototype.loginWithToken = function() {
                 ['location.locations', 'GET', {}]
             ]
             sp.multiApi(calls, function(response) {
+				
+				var date = new Date();
+				
+				
+				var logData = {	appVersion		: applicationVersion,
+								deviceName		: device.model,
+								deviceOS  		: device.platform,
+								deviceVersion 	: device.version,
+								conenctionType	: navigator.connection.type};
                 var calls2 = [
                 ['api.config', 'GET', {}],
                 ['admin.business', 'GET', {}],
-                ['messaging.employees', 'GET', {}]
+                ['messaging.employees', 'GET', {}],
+				['mobile_log.log', 'CREATE', {employee_id : user.id,
+											  timestamp : date.toUTCString(),
+											  log_data : JSON.stringify(logData)
+											   }]
                 ];
 
                 sp.multiApi(calls2, function(confBusiness) {
@@ -417,6 +434,26 @@ ShiftPlanningStaff.prototype.login = function() {
         if( typeof loginResponse.data == "undefined" ){
             logUserOutLocal();
         }else{
+			cordova.getAppVersion(function(version) {
+				var date = new Date();
+				var logData = {	appVersion		: version,
+								deviceName		: device.model,
+								deviceOS  		: device.platform,
+								deviceVersion 	: device.version,
+								conenctionType	: navigator.connection.type};
+				
+				sp.api('mobile_log.log', 'CREATE',
+					{
+						employee_id : user.id,
+						timestamp : date.toUTCString(),
+						log_data : JSON.stringify(logData)
+					}
+				,function(r) {
+				},function(e){
+				});
+			});
+
+
             sp.staff.admin.info = loginResponse.data.employee;
             user.token = loginResponse.token;
 

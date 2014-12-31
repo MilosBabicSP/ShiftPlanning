@@ -55,6 +55,10 @@
                         {
                             "xml": "<feature name=\"NetworkStatus\"><param name=\"ios-package\" value=\"CDVConnection\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"AppVersion\"><param name=\"ios-package\" value=\"AppVersion\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -141,6 +145,9 @@
         },
         "org.apache.cordova.network-information": {
             "PACKAGE_NAME": "com.ShiftPlanning.app"
+        },
+        "uk.co.whiteoctober.cordova.appversion": {
+            "PACKAGE_NAME": "com.shiftplanning.distribution"
         }
     },
     "dependent_plugins": {}
