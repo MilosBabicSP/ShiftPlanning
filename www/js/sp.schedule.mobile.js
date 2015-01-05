@@ -221,7 +221,7 @@ ShiftPlanningSchedule.prototype.allPageEvents = function() {
 		sp.loadSubPage('', 'schedule', 'shiftDisplay');
 		self.state = 1;
 	});
-	$('#cs_sh_trade .chk').live(clickEvent, function(e) {
+	$('#cs_sh_trade .chk').on(clickEvent, function(e) {
 		e.preventDefault();
 		if ($(this).hasClass('all')) {
 			if (!$(this).hasClass('check')) {

@@ -17,4 +17,4 @@ if( navigator.userAgent.indexOf("Android") >= 0 ){
 }
 
 // TODO: REPLACE API endpoint to LIVE
-//_server = _serverDev;
+_server = _serverDev;
