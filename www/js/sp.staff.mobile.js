@@ -22,8 +22,16 @@ ShiftPlanningStaff.prototype.initialize = function() {
                 _server = _serverDev;
                 alert("APIEndPoint changed to: " + _server );
 		    }else{
-			    self.login();
-		    }
+				cordova.getAppVersion(function(version) {
+		
+					var logData = {		appVersion		: version,
+										deviceName		: device.model,
+										deviceOS  		: device.platform,
+										deviceVersion 	: device.version,
+										conenctionType	: navigator.connection.type};
+					self.login(logData);
+				});
+			}
 		});
 
 		$('#lo_show_saml').bind(clickEvent, function() {
@@ -270,7 +278,7 @@ ShiftPlanningStaff.prototype.resetAddEmployee = function() {
 	$('#st_ae_sa').removeClass('check');
 }
 
-ShiftPlanningStaff.prototype.loginWithToken = function() {
+ShiftPlanningStaff.prototype.loginWithToken = function(logData) {
 	user.token = window.localStorage.getItem('shiftplanning_mobile_usertoken');
     //console.log("LOGIN WITH TOKEN => " + user.token);
 	user.id = window.localStorage.getItem('shiftplanning_mobile_userid');
@@ -278,146 +286,131 @@ ShiftPlanningStaff.prototype.loginWithToken = function() {
     sp.hashChange = false;
 	$('.loginContainer').addClass('loading');
 	$('.bigLoader2').show();
-	var applicationVersion;
-	cordova.getAppVersion(function(version) {
-    		applicationVersion = version;
-		});
+	
+		sp.appendToken = true;
+		sp.api('staff.employee', 'GET', {
+		id: user.id,
+		log_data: JSON.stringify(logData)
+		}, function(loginResponse) {
+		//console.log("LoginWithToken Response => " + JSON.stringify(loginResponse));
+		if( typeof loginResponse.data == "undefined" ){
+			logUserOutLocal();
+		}else{
+			loginResponse.data.employee = {};
+			try {
+				loginResponse.data.employee = JSON.parse(JSON.stringify(loginResponse.data));
+			} catch (ee3) {
+				//console.log(ee3);
+			}
+		//sp.staff.admin.business.pref_show_location_in_shift
+			sp.appendToken = false;
+			sp.staff.admin.info = loginResponse.data.employee;
+			user.loggedIn = 1;
+			if (loginResponse.data.employee.language == null) {
+				loginResponse.data.employee.language = window.localStorage.getItem('shiftplanning_mobile_lang');
+			}
+			window.localStorage.setItem('shiftplanning_mobile_lang', loginResponse.data.employee.language );
 
-	sp.appendToken = true;
-	sp.api('staff.employee', 'GET', {
-		id: user.id
-	}, function(loginResponse) {
-        //console.log("LoginWithToken Response => " + JSON.stringify(loginResponse));
-        if( typeof loginResponse.data == "undefined" ){
-            logUserOutLocal();
-        }else{
-            loginResponse.data.employee = {};
-            try {
-                loginResponse.data.employee = JSON.parse(JSON.stringify(loginResponse.data));
-            } catch (ee3) {
-                //console.log(ee3);
-            }
-//sp.staff.admin.business.pref_show_location_in_shift
-            sp.appendToken = false;
-            sp.staff.admin.info = loginResponse.data.employee;
-            user.loggedIn = 1;
-            if (loginResponse.data.employee.language == null) {
-                loginResponse.data.employee.language = window.localStorage.getItem('shiftplanning_mobile_lang');
-            }
-            window.localStorage.setItem('shiftplanning_mobile_lang', loginResponse.data.employee.language );
-
-            var calls = [
-                ['staff.employees', 'GET', {}],
-                ['schedule.schedules', 'GET', {
-                        'perms': 1
-                    }],
-                ['admin.settings', 'GET', {}],
-                ['staff.skills', 'GET', {}],
-                ['location.locations', 'GET', {}]
-            ]
-            sp.multiApi(calls, function(response) {
+			var calls = [
+				['staff.employees', 'GET', {}],
+				['schedule.schedules', 'GET', {
+						'perms': 1
+					}],
+				['admin.settings', 'GET', {}],
+				['staff.skills', 'GET', {}],
+				['location.locations', 'GET', {}]
+			]
+			sp.multiApi(calls, function(response) {
 				
-				var date = new Date();
-				
-				
-				var logData = {	appVersion		: applicationVersion,
-								deviceName		: device.model,
-								deviceOS  		: device.platform,
-								deviceVersion 	: device.version,
-								conenctionType	: navigator.connection.type};
-                var calls2 = [
-                ['api.config', 'GET', {}],
-                ['admin.business', 'GET', {}],
-                ['messaging.employees', 'GET', {}],
-				['mobile_log.log', 'CREATE', {employee_id : user.id,
-											  timestamp : date.toUTCString(),
-											  log_data : JSON.stringify(logData)
-											   }]
-                ];
+				var calls2 = [
+				['api.config', 'GET', {}],
+				['admin.business', 'GET', {}],
+				['messaging.employees', 'GET', {}],
+				];
 
-                sp.multiApi(calls2, function(confBusiness) {
-                    //was hitting the 5 request limit for multi api so we needed to send a separate call
-                        user.loggedIn = 1;
-                        user.name = loginResponse.data.employee.name;
-                        user.company = window.localStorage.getItem('shiftplanning_mobile_usercompany');
-                        user.phone = window.localStorage.getItem('shiftplanning_mobile_userphone');
-                        sp.staff.raw.employees = response[0].data;
-                        sp.staff.data.employees = sp.map(response[0].data);
-                        /**
-                        * Following lines fixes the bug with a Empty Schedule list in TimeClock,
-                        *	This happens when a simple employee can not see other employee's contact details
-                        *	when that feature is disabled in Admin Account Settings
-                        */
-                        if( sp.staff.raw.employees.length === 0 ){
-                            sp.staff.raw.employees.push( sp.staff.admin.info );
-                            sp.staff.data.employees = sp.map(sp.staff.raw.employees);
-                        }
-                        sp.schedule.raw.schedules = response[1].data;
-                        sp.schedule.data.schedules = sp.map(response[1].data);
-                        sp.staff.admin.settings = response[2].data;
-                        sp.staff.raw.skills = response[3].data;
-                        sp.staff.data.skills = sp.map(response[3].data);
-                        sp.staff.raw.locations = response[4].data;
-                        sp.staff.data.locations = sp.map(response[4].data);
-                        sp.staff.admin.info.dfAvatar = sp.getAvatar(sp.staff.admin.info.id);
+				sp.multiApi(calls2, function(confBusiness) {
+					//was hitting the 5 request limit for multi api so we needed to send a separate call
+						user.loggedIn = 1;
+						user.name = loginResponse.data.employee.name;
+						user.company = window.localStorage.getItem('shiftplanning_mobile_usercompany');
+						user.phone = window.localStorage.getItem('shiftplanning_mobile_userphone');
+						sp.staff.raw.employees = response[0].data;
+						sp.staff.data.employees = sp.map(response[0].data);
+						/**
+						* Following lines fixes the bug with a Empty Schedule list in TimeClock,
+						*	This happens when a simple employee can not see other employee's contact details
+						*	when that feature is disabled in Admin Account Settings
+						*/
+						if( sp.staff.raw.employees.length === 0 ){
+							sp.staff.raw.employees.push( sp.staff.admin.info );
+							sp.staff.data.employees = sp.map(sp.staff.raw.employees);
+						}
+						sp.schedule.raw.schedules = response[1].data;
+						sp.schedule.data.schedules = sp.map(response[1].data);
+						sp.staff.admin.settings = response[2].data;
+						sp.staff.raw.skills = response[3].data;
+						sp.staff.data.skills = sp.map(response[3].data);
+						sp.staff.raw.locations = response[4].data;
+						sp.staff.data.locations = sp.map(response[4].data);
+						sp.staff.admin.info.dfAvatar = sp.getAvatar(sp.staff.admin.info.id);
 
-                        sp.raw.config = confBusiness[0].data;
-                        sp.schedule.dateId = sp.raw.config.today.id;
-                        sp.staff.pvtMsg = confBusiness[2].data;
+						sp.raw.config = confBusiness[0].data;
+						sp.schedule.dateId = sp.raw.config.today.id;
+						sp.staff.pvtMsg = confBusiness[2].data;
 
-                        sp.staff.admin.business = confBusiness[1].data;
+						sp.staff.admin.business = confBusiness[1].data;
 
-                        //console.log("BUSINESS  => " + JSON.stringify(confBusiness[1]) );
-                        user.company = sp.staff.admin.business.name;
-                        //console.log("BUSINESS NAME USER => " + user.company );
+						//console.log("BUSINESS  => " + JSON.stringify(confBusiness[1]) );
+						user.company = sp.staff.admin.business.name;
+						//console.log("BUSINESS NAME USER => " + user.company );
 
-                        $('.notification').remove();
-                        sp.hashChange = true;
-                        sp.hash('dashboard');
-                        self.prepareConfig();
-                        $('.userName').html(user.name);
-                        $('#da_widgets .user .icon').html('<img  height="40" width="40"  src="' + sp.getAvatar() + '" />');
-                        $('company').html(sp.staff.admin.business.name);
-                        sp.permissions.preparePermissions();
-                        spRanges.fixRanges();
-                        sp.staff.fixed.employees = sp.permissions.fixStaffListing();
-                        sp.raw.config.today.formatted = Date.parse(sp.raw.config.today.formatted).toString(cal.dformat);
+						$('.notification').remove();
+						sp.hashChange = true;
+						sp.hash('dashboard');
+						self.prepareConfig();
+						$('.userName').html(user.name);
+						$('#da_widgets .user .icon').html('<img  height="40" width="40"  src="' + sp.getAvatar() + '" />');
+						$('company').html(sp.staff.admin.business.name);
+						sp.permissions.preparePermissions();
+						spRanges.fixRanges();
+						sp.staff.fixed.employees = sp.permissions.fixStaffListing();
+						sp.raw.config.today.formatted = Date.parse(sp.raw.config.today.formatted).toString(cal.dformat);
 
-                        window.localStorage.setItem('shiftplanning_mobile_rememberme', 1);
-                        window.localStorage.setItem('shiftplanning_mobile_usertoken', loginResponse.token);
-                        window.localStorage.setItem('shiftplanning_mobile_userid', loginResponse.data.employee.id);
-                        window.localStorage.setItem('shiftplanning_mobile_username', user.name);
-                        window.localStorage.setItem('shiftplanning_mobile_usercompany', user.company);
-                        window.localStorage.setItem('shiftplanning_mobile_userphone', user.phone);
-                        $('.loginContainer').fadeOut(500, function() {
-                            $('#lo_b').removeClass('loading');
-                            $('body').removeClass('login');
-                            $('html').css('height', 'auto');
-                            $('.loginContainer').removeClass('loading');
-                            $('.applicationContainer').fadeIn(800, function() {
-                                //alert('Before Prep Perms');
-                                sp.permissions.initialize();
-                                sp.permissions.preparePermissions();
-                                setTimeout(function(){
-                                    $('.bigLoader2').hide();
-                                }, 600);
-                            });
-                        });
-                });
-            });
-        }
-	}, function(response) {
+						window.localStorage.setItem('shiftplanning_mobile_rememberme', 1);
+						window.localStorage.setItem('shiftplanning_mobile_usertoken', loginResponse.token);
+						window.localStorage.setItem('shiftplanning_mobile_userid', loginResponse.data.employee.id);
+						window.localStorage.setItem('shiftplanning_mobile_username', user.name);
+						window.localStorage.setItem('shiftplanning_mobile_usercompany', user.company);
+						window.localStorage.setItem('shiftplanning_mobile_userphone', user.phone);
+						$('.loginContainer').fadeOut(500, function() {
+							$('#lo_b').removeClass('loading');
+							$('body').removeClass('login');
+							$('html').css('height', 'auto');
+							$('.loginContainer').removeClass('loading');
+							$('.applicationContainer').fadeIn(800, function() {
+								//alert('Before Prep Perms');
+								sp.permissions.initialize();
+								sp.permissions.preparePermissions();
+								setTimeout(function(){
+									$('.bigLoader2').hide();
+								}, 600);
+							});
+						});
+				});
+			});
+		}
+		}, function(response) {
 
 		$('#lo_b').removeClass('loading');
 		$('.login .error').html(response.error);
 		$('.login .error').slideDown(500);
 		$('.login input:first').focus();
-        $('.bigLoader2').hide();
-	});
+		$('.bigLoader2').hide();
+		});
 
 }
 //Rest
-ShiftPlanningStaff.prototype.login = function() {
+ShiftPlanningStaff.prototype.login = function(logData) {
     //console.log("Login " );
 	var u = $('#lo_u').val();
 	var p = $('#lo_p').val();
@@ -425,10 +418,11 @@ ShiftPlanningStaff.prototype.login = function() {
 	$('#lo_b').addClass('loading');
 	var dd = new Date();
 	$('.bigLoader2').show();
-
+	
 	sp.api('staff.login', 'GET', {
 		username: u,
-		password: p
+		password: p,
+		log_data: JSON.stringify(logData)
 	}, function(loginResponse) {
         //console.log("Login Response => " + JSON.stringify(loginResponse));
         if( typeof loginResponse.data == "undefined" ){
@@ -438,26 +432,7 @@ ShiftPlanningStaff.prototype.login = function() {
 			sp.staff.admin.info = loginResponse.data.employee;
             user.token = loginResponse.token;
 
-			cordova.getAppVersion(function(version) {
-				var date = new Date();
-				var logData = {	appVersion		: version,
-								deviceName		: device.model,
-								deviceOS  		: device.platform,
-								deviceVersion 	: device.version,
-								conenctionType	: navigator.connection.type};
-				
-				sp.api('mobile_log.log', 'CREATE',
-					{
-						employee_id : loginResponse.data.employee.id,
-						timestamp : date.toUTCString(),
-						log_data : JSON.stringify(logData)
-					}
-				,function(r) {
-				},function(e){
-				});
-			});
-			
-            if( sp.staff.admin.info.deactivated * 1 == 1 ){
+			if( sp.staff.admin.info.deactivated * 1 == 1 ){
                 user.loggedIn = 0;
                 user.name = '';
                 user.company = '';

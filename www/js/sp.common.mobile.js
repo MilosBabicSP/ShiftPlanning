@@ -246,7 +246,17 @@ ShiftPlanning.prototype.loadSite = function() {
         }
     } else {
         if( typeof tmpToken != "undefined" && "" != tmpToken && tmpToken !== null ){
-            sp.staff.loginWithToken();
+		cordova.getAppVersion(function(version) {
+			
+				
+			var logData = {			appVersion		: version,
+									deviceName		: device.model,
+									deviceOS  		: device.platform,
+									deviceVersion 	: device.version,
+									conenctionType	: navigator.connection.type};
+
+            sp.staff.loginWithToken(logData);
+			});
         }else{
             if( !$('.loginContainer').is(":visible") ){
                 $('.loginContainer').show();
