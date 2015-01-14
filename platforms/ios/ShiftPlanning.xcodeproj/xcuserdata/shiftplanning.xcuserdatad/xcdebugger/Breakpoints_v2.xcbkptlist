@@ -362,11 +362,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../www/js/sp.schedule.mobile.js"
-            timestampString = "438703696.752433"
+            timestampString = "442230495.105085"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "579"
-            endingLineNumber = "579"
+            startingLineNumber = "595"
+            endingLineNumber = "595"
             landmarkName = "ShiftPlanningSchedule.prototype.loadSubPageEvents"
             landmarkType = "7">
          </BreakpointContent>

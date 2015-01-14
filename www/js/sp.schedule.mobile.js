@@ -221,18 +221,18 @@ ShiftPlanningSchedule.prototype.allPageEvents = function() {
 		sp.loadSubPage('', 'schedule', 'shiftDisplay');
 		self.state = 1;
 	});
-	$('#cs_sh_trade .chk').on(clickEvent, function(e) {
-		e.preventDefault();
-		if ($(this).hasClass('all')) {
-			if (!$(this).hasClass('check')) {
-				$('#empList0 .chk').addClass('check');
-			} else {
-				$('#empList0 .chk').removeClass('check');
-			}
-		} else {
-			$(this).toggleClass('check');
-		}
-	})
+//	$('#cs_sh_trade').live(clickEvent, '.chk', function(e) {
+//		e.preventDefault();
+//		if ($(this).hasClass('all')) {
+//			if (!$(this).hasClass('check')) {
+//				$('#empList0 .chk').addClass('check');
+//			} else {
+//				$('#empList0 .chk').removeClass('check');
+//			}
+//		} else {
+//			$(this).toggleClass('check');
+//		}
+//	})
 	$('#empList1').on(clickEvent, '.checkbox', function(e) {
 	//$("#empList1").on(clickEvent, ".checkbox", function() {
 		//console.log("Employee selected");
@@ -351,6 +351,19 @@ ShiftPlanningSchedule.prototype.allPageEvents = function() {
 					$('#schedule .trade>div [step=step_' + self.state + ']').show();
 					$('span[rel=self_state]').html(self.state);
 					$(that).removeClass('loading');
+					
+					$('#empList0 li').live(clickEvent,  function(e) {
+							e.preventDefault();
+							if ($(this).children().first().hasClass('all')) {
+								if (!$(this).children().first().hasClass('check')) {
+										$('#empList0 .chk').addClass('check');
+									} else {
+										$('#empList0 .chk').removeClass('check');
+									}
+							} else {
+								$(this).children().first().toggleClass('check');
+							}
+						})
 				});
 				break;
 			case 3:
