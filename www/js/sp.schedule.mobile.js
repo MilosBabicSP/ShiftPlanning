@@ -243,7 +243,7 @@ ShiftPlanningSchedule.prototype.allPageEvents = function() {
 		$(this).parent().addClass('loading');
 		if (!$(this).hasClass('check') && !$(this).hasClass('disabled')) {
 			spModel.schedule.get('shift', {id: shiftId, detailed: 1}, function(response) {
-				var isAvail = false;
+				var isAvail = true;
 				if (response.data.length && response.data.staff.available.length > 0) {
 					$.each(response.data.staff.available, function(key, item) {
 						isAvail = item[0] == sp.staff.admin.info.id ? true : isAvail;
