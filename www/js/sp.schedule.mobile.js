@@ -392,9 +392,9 @@ ShiftPlanningSchedule.prototype.allPageEvents = function() {
 				params['reason'] = $('textarea[name=reason_trade' + type + ']').val();
 				$('textarea[name=reason_trade' + type + ']').val("");
 
-                //console.log("trade Call => " + call );
-                //console.log("trade Params => " + JSON.stringify(params) );
+                
 				spModel.schedule.create(call, params, function(response) {
+			
 					self.state = 3;
 					$('#schedule .trade>div [step^="step"]').hide();
 					$('#schedule .trade>div [step=step_' + self.state + ']').show();
