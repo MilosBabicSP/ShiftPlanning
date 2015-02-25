@@ -330,6 +330,7 @@ ShiftPlanningSchedule.prototype.allPageEvents = function() {
 							$.each(item.shifts, function(i, it) {
 								var shifts = {};
 								shifts.id = i;
+								shifts.user_id = key;
 								shifts.start = it.start;
 								shifts.user_shift_id = it.user_shift_id;
 								d.shifts.push(shifts);
@@ -351,7 +352,7 @@ ShiftPlanningSchedule.prototype.allPageEvents = function() {
 					$('#schedule .trade>div [step=step_' + self.state + ']').show();
 					$('span[rel=self_state]').html(self.state);
 					$(that).removeClass('loading');
-					
+
 					$('#empList0 li').live(clickEvent,  function(e) {
 							e.preventDefault();
 							if ($(this).children().first().hasClass('all')) {
@@ -377,6 +378,14 @@ ShiftPlanningSchedule.prototype.allPageEvents = function() {
 					self.state = self.state - 1;
 					return false;
 				}
+				
+				var reason = $('textarea[name=reason_trade' + type + ']').val();
+				if(reason === '') {
+					sp.showError(_s('Please provide a reason'));
+					$(that).removeClass('loading');
+					self.state = self.state - 1;
+					return false;
+				}
 				var packedItems = [];
 
 				selected.each(function(i, j) {
@@ -386,24 +395,43 @@ ShiftPlanningSchedule.prototype.allPageEvents = function() {
 						packedItems.push($(j).attr('rel'));
 					}
 				});
-				var params = {};
-				params[field] = packedItems.join(',');
-				params['shift'] = self.shift.id;
-				params['reason'] = $('textarea[name=reason_trade' + type + ']').val();
+				
 				$('textarea[name=reason_trade' + type + ']').val("");
 
-                
-				spModel.schedule.create(call, params, function(response) {
-			
-					self.state = 3;
-					$('#schedule .trade>div [step^="step"]').hide();
-					$('#schedule .trade>div [step=step_' + self.state + ']').show();
-					$('span[rel=self_state]').html(self.state);
-					$(that).removeClass('loading');
-					$('#cs_sh_trade .steps').hide();
-					$('#sc_sub_shift_display a.trade').hide();
-					self.state = 1;
+                var parameters = {};
+				parameters['shift_id'] = self.shift.id;
+
+				spModel.schedule.get('tradeswap', parameters, function(response, parameters) {
+
+					if(response.data.status == 0) {
+						
+						var params = {};
+						params[field] = packedItems.join(',');
+						params['shift'] = self.shift.id;
+						params['reason'] = $('textarea[name=reason_trade' + type + ']').val();
+						spModel.schedule.create(call, params, function(response) {
+							
+							self.state = 3;
+							$('#schedule .trade>div [step^="step"]').hide();
+							$('#schedule .trade>div [step=step_' + self.state + ']').show();
+							$('span[rel=self_state]').html(self.state);
+							$(that).removeClass('loading');
+							$('#cs_sh_trade .steps').hide();
+							$('#sc_sub_shift_display a.trade').hide();
+							self.state = 1;
+						});
+					} else {
+						self.state = 2;
+						sp.showError('Trade request for this shift already exists');
+						$('#schedule .trade>div [step^="step"]').hide();
+						$('#schedule .trade>div [step=step_' + self.state + ']').show();
+						$('span[rel=self_state]').html(self.state);
+						$(that).removeClass('loading');
+						$('#cs_sh_trade .steps').hide();
+						$('#sc_sub_shift_display a.trade').hide();
+					}
 				});
+					
 				self.state = 2;
 				break;
 			default:
@@ -892,7 +920,7 @@ ShiftPlanningSchedule.prototype.addShiftSubEvents = function() {
 	$("#sc_date_st").scroller({
 		preset: 'time',
 		ampm: (cal.tmode == 24 ? false : true),
-		stepMinute: 15,
+		stepMinute: 1,
 		timeFormat: sp.strReplace(['tt', 'mm'], ['A', 'ii'], cal.tstring)
 	});
 
@@ -902,7 +930,7 @@ ShiftPlanningSchedule.prototype.addShiftSubEvents = function() {
 	$("#sc_date_et").scroller({
 		preset: 'time',
 		ampm: (cal.tmode == 24 ? false : true),
-		stepMinute: 15,
+		stepMinute: 1,
 		timeFormat: sp.strReplace(['tt', 'mm'], ['A', 'ii'], cal.tstring)
 	});
 

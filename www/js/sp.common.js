@@ -12,7 +12,7 @@ function ShiftPlanning() {
 }
 
 ShiftPlanning.prototype = {
-	multiApi: function(calls, callback) {
+	multiApi: function(calls, callback, Synchronous) {
 		var data = {};
 		var reqs = [];
 
@@ -52,8 +52,7 @@ ShiftPlanning.prototype = {
 		
 		//console.log("MULTI API: calls => " + JSON.stringify(tmp22) );
 		
-		
-		var xhr = $.ajax({
+		var requestData = {
 			url: _server + 'index.php',
 			dataType: 'json',
 			type: 'post',
@@ -87,7 +86,13 @@ ShiftPlanning.prototype = {
                 console.log("############## Api connection Error in MULTI: " + JSON.stringify(errData) + ", t => " + JSON.stringify(t) + ", m => " + JSON.stringify(m));
                 alert("############## Api connection Error in MULTI: " + JSON.stringify(errData) + ", t => " + JSON.stringify(t) + ", m => " + JSON.stringify(m));
             }
-		});
+		};
+		
+		if (Synchronous === true) {
+			requestData.async = false;
+		}
+		
+		var xhr = $.ajax(requestData);
 	},
 	api: function(module, method, arguments, callback, errorCallback) {
 		var self = this;

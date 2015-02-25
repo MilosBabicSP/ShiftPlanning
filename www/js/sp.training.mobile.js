@@ -184,7 +184,7 @@ ShiftPlanningTraining.prototype.sectionsSubEvents = function() {
 				$('.training_sections').html($.tmpl($('#te_tr_sections'), data));
 				$('.training div.oneLine b').shorten();
 				if ($('.training_sections > *').length == 0) {
-					$('.training_sections').html(spView.emptyResult('No trainging topics.', 'li'));
+					$('.training_sections').html(spView.emptyResult('No training topics.', 'li'));
 				}
 			})
 		})

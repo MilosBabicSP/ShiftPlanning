@@ -1,5 +1,5 @@
 var _serverDev = "http://www.sp-1437-s.dev.shiftplanning.com/api/";
-var _serverMob = "http://www.shiftplanning.com/app/iphone/";
+var _serverMob = "https://www.shiftplanning.com/app/iphone/";
 var _server = "http://www.shiftplanning.com/api/";
 var tcPlugin = function(){};
 var tcService = function(){};
