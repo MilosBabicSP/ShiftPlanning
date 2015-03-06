@@ -89,9 +89,13 @@ ShiftPlanning.prototype = {
             }
 		});
 	},
-	api: function(module, method, arguments, callback, errorCallback) {
+	api: function(module, method, arguments, callback, errorCallback, synchronous) {
 		var self = this;
 
+		if(synchronous === 'undefined') {
+			synchronous = false;
+		}
+		
 		//check is same api call runing and if it's running don't alow new one
 		var a = module + '.' + method + '.' + JSON.stringify(arguments);
 		if (typeof this.apiCalls[a] != 'undefined' && this.apiCalls[a] != null) {
@@ -116,8 +120,8 @@ ShiftPlanning.prototype = {
 
         //console.log("SINGLE REQUEST => " + JSON.stringify( data ) );
         data = encodeURIComponent(JSON.stringify( data ));
-
-		this.apiCalls[a] = $.ajax({
+		
+		var requestData = {
 			url: _server + 'index.php',
 			dataType: 'json',
 			type: 'post',
@@ -181,7 +185,10 @@ ShiftPlanning.prototype = {
 				return false;
 			}
 
-		});
+		};
+		
+
+		this.apiCalls[a] = $.ajax(requestData);
 	},
 	loadPage: function(page) {
 		//Load the page from the module, handle this a little better

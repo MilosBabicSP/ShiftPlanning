@@ -674,40 +674,40 @@ ShiftPlanningTimeClock.prototype.addClockTimeSubEvents = function() {
 
     var tf = (cal.tmode == 24) ? 'HH:mm' : 'hh:mm tt';
 
-    $('#tc_act_tclin').scroller('destroy');
-    $('#tc_act_tclin').val((this.edit) ? emp.in_time.time : s.toString(tf));
-    $("#tc_act_tclin").scroller({
-        preset: 'time',
-        ampm: (cal.tmode == 24 ? false : true),
-        stepMinute: 1,
-        timeFormat: sp.strReplace(['tt', 'mm'], ['A', 'ii'], cal.tstring)
-    });
-
-    //$('#tc_act_c_co_dp_i').val(outD.toString(cal.dformat));
-    $('#tc_act_tclou').scroller('destroy');
-    $('#tc_act_tclou').val((this.edit) ? emp.out_time.time : e.toString(tf));
-    $("#tc_act_tclou").scroller({
-        preset: 'time',
-        ampm: (cal.tmode == 24 ? false : true),
-        stepMinute: 1,
-        timeFormat: sp.strReplace(['tt', 'mm'], ['A', 'ii'], cal.tstring)
-    });
-
-    $('#tc_act_c_cl_dp_i').scroller('destroy');
-    $('#tc_act_c_cl_dp_i').val((this.edit) ? emp.in_time.day : s.toString(cal.dformat));
-    $('#tc_act_c_cl_dp_i').scroller({
-        preset: 'date',
-        dateFormat: (sp.strReplace(['MM', 'yyyy'], ['mm', 'yy'], cal.dformat) == 'mmM d, yy') ? sp.strReplace(['MM', 'yyyy'], ['mm', 'yy'], cal.dformat).substr(2, sp.strReplace(['MM', 'yyyy'], ['mm', 'yy'], cal.dformat).length) : sp.strReplace(['MM', 'yyyy'], ['mm', 'yy'], cal.dformat),
-        dateOrder: sp.strReplace(['MM', 'yyyy', ' ', '-', '/'], ['mm', 'yy', '', '', ''], cal.dformat)
-    });
-
-    $('#tc_act_c_co_dp_i').scroller('destroy');
-    $('#tc_act_c_co_dp_i').val((this.edit) ? emp.out_time.day : e.toString(cal.dformat));
-    $('#tc_act_c_co_dp_i').scroller({
-        preset: 'date',
-        dateFormat: (sp.strReplace(['MM', 'yyyy'], ['mm', 'yy'], cal.dformat) == 'mmM d, yy') ? sp.strReplace(['MM', 'yyyy'], ['mm', 'yy'], cal.dformat).substr(2, sp.strReplace(['MM', 'yyyy'], ['mm', 'yy'], cal.dformat).length) : sp.strReplace(['MM', 'yyyy'], ['mm', 'yy'], cal.dformat),
-        dateOrder: sp.strReplace(['MM', 'yyyy', ' ', '-', '/'], ['mm', 'yy', '', '', ''], cal.dformat)
-    });
+//    $('#tc_act_tclin').scroller('destroy');
+//    $('#tc_act_tclin').val((this.edit) ? emp.in_time.time : s.toString(tf));
+//    $("#tc_act_tclin").scroller({
+//        preset: 'time',
+//        ampm: (cal.tmode == 24 ? false : true),
+//        stepMinute: 1,
+//        timeFormat: sp.strReplace(['tt', 'mm'], ['A', 'ii'], cal.tstring)
+//    });
+//
+//    //$('#tc_act_c_co_dp_i').val(outD.toString(cal.dformat));
+//    $('#tc_act_tclou').scroller('destroy');
+//    $('#tc_act_tclou').val((this.edit) ? emp.out_time.time : e.toString(tf));
+//    $("#tc_act_tclou").scroller({
+//        preset: 'time',
+//        ampm: (cal.tmode == 24 ? false : true),
+//        stepMinute: 1,
+//        timeFormat: sp.strReplace(['tt', 'mm'], ['A', 'ii'], cal.tstring)
+//    });
+//
+//    $('#tc_act_c_cl_dp_i').scroller('destroy');
+//    $('#tc_act_c_cl_dp_i').val((this.edit) ? emp.in_time.day : s.toString(cal.dformat));
+//    $('#tc_act_c_cl_dp_i').scroller({
+//        preset: 'date',
+//        dateFormat: (sp.strReplace(['MM', 'yyyy'], ['mm', 'yy'], cal.dformat) == 'mmM d, yy') ? sp.strReplace(['MM', 'yyyy'], ['mm', 'yy'], cal.dformat).substr(2, sp.strReplace(['MM', 'yyyy'], ['mm', 'yy'], cal.dformat).length) : sp.strReplace(['MM', 'yyyy'], ['mm', 'yy'], cal.dformat),
+//        dateOrder: sp.strReplace(['MM', 'yyyy', ' ', '-', '/'], ['mm', 'yy', '', '', ''], cal.dformat)
+//    });
+//
+//    $('#tc_act_c_co_dp_i').scroller('destroy');
+//    $('#tc_act_c_co_dp_i').val((this.edit) ? emp.out_time.day : e.toString(cal.dformat));
+//    $('#tc_act_c_co_dp_i').scroller({
+//        preset: 'date',
+//        dateFormat: (sp.strReplace(['MM', 'yyyy'], ['mm', 'yy'], cal.dformat) == 'mmM d, yy') ? sp.strReplace(['MM', 'yyyy'], ['mm', 'yy'], cal.dformat).substr(2, sp.strReplace(['MM', 'yyyy'], ['mm', 'yy'], cal.dformat).length) : sp.strReplace(['MM', 'yyyy'], ['mm', 'yy'], cal.dformat),
+//        dateOrder: sp.strReplace(['MM', 'yyyy', ' ', '-', '/'], ['mm', 'yy', '', '', ''], cal.dformat)
+//    });
 
     if(this.edit && this.current.events.length){
         var evnts = this.current.events.length;
@@ -966,20 +966,25 @@ ShiftPlanningTimeClock.prototype.saveClockTime = function() {
     var f = 'get';
     var module = 'timeclock.addclocktime';
     var success = _s('Clock Time added');
+	var startDateTime = $('#tc_act_tclin').val().split('T');
+	var endDateTime = $('#tc_act_tclou').val().split('T');
+
     if ($('#tc_act_tc_id').hasClass('editOn') == true) {
         f = 'update';
         module = 'timeclock.timeclock'
         data.id = $('#tc_act_tc_id').val();
         success = _s('Clock time edited');
-
-        data.start_date = $('#tc_act_c_cl_dp_i').val();
-        data.start_time = $('#tc_act_tclin').val();
-        data.end_date = $('#tc_act_c_co_dp_i').val();
-        data.end_time = $('#tc_act_tclou').val();
+		
+		
+        data.start_date = startDateTime[0];
+        data.start_time = startDateTime[1];
+        data.end_date = endDateTime[0];
+        data.end_time = endDateTime[1];
 
     } else {
-        data.datein = $('#tc_act_c_cl_dp_i').val() + ' ' + $('#tc_act_tclin').val();
-        data.dateout = $('#tc_act_c_co_dp_i').val() + ' ' + $('#tc_act_tclou').val();
+        data.datein = startDateTime[0] + ' ' + startDateTime[1];
+        data.dateout = endDateTime[0] + ' ' + endDateTime[1];
+
         data.remote_site = $('#tc_act_loc').val();
     }
 
@@ -1039,17 +1044,17 @@ function checkTimes(data) {
     fullDFormat = cal.dformat + ' ' + timeFormat;
     fullDFormatS = cal.dformat + ' ' + timeFormatS;
 
-    var tmp_start_date_temp = Date.parseExact( start_date_temp, fullDFormat ) ;
-    var tmp_end_date_temp = Date.parseExact( end_date_temp, fullDFormat );
+    var tmp_start_date_temp = Date.parse( start_date_temp, fullDFormat ) ;
+    var tmp_end_date_temp = Date.parse( end_date_temp, fullDFormat );
 
     if( tmp_start_date_temp == null ){
-        start_date_temp = Date.parseExact( start_date_temp, fullDFormatS );
+        start_date_temp = Date.parse( start_date_temp, fullDFormatS );
     }else{
         start_date_temp = tmp_start_date_temp;
     }
 
     if( tmp_end_date_temp == null ){
-        end_date_temp = Date.parseExact( end_date_temp, fullDFormatS );
+        end_date_temp = Date.parse( end_date_temp, fullDFormatS );
     }else{
         end_date_temp = tmp_end_date_temp;
     }

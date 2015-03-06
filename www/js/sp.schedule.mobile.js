@@ -221,18 +221,6 @@ ShiftPlanningSchedule.prototype.allPageEvents = function() {
 		sp.loadSubPage('', 'schedule', 'shiftDisplay');
 		self.state = 1;
 	});
-//	$('#cs_sh_trade').live(clickEvent, '.chk', function(e) {
-//		e.preventDefault();
-//		if ($(this).hasClass('all')) {
-//			if (!$(this).hasClass('check')) {
-//				$('#empList0 .chk').addClass('check');
-//			} else {
-//				$('#empList0 .chk').removeClass('check');
-//			}
-//		} else {
-//			$(this).toggleClass('check');
-//		}
-//	})
 	$('#empList1').on(clickEvent, '.checkbox', function(e) {
 	//$("#empList1").on(clickEvent, ".checkbox", function() {
 		//console.log("Employee selected");
@@ -353,7 +341,7 @@ ShiftPlanningSchedule.prototype.allPageEvents = function() {
 					$('span[rel=self_state]').html(self.state);
 					$(that).removeClass('loading');
 
-					$('#empList0 li').live(clickEvent,  function(e) {
+					$('#empList0 li').bind(clickEvent,  function(e) {
 							e.preventDefault();
 							if ($(this).children().first().hasClass('all')) {
 								if (!$(this).children().first().hasClass('check')) {
@@ -368,6 +356,7 @@ ShiftPlanningSchedule.prototype.allPageEvents = function() {
 				});
 				break;
 			case 3:
+				
 				var selected = $('#empList' + type + ' .check:not(.all)');
 				var call = type == '0' ? 'trade' : 'tradeswap';
 				var field = type == '0' ? 'tradewith' : 'swap';
@@ -399,9 +388,15 @@ ShiftPlanningSchedule.prototype.allPageEvents = function() {
 				$('textarea[name=reason_trade' + type + ']').val("");
 
                 var parameters = {};
-				parameters['shift_id'] = self.shift.id;
+				
+				var apiArg = 'id';
+				if(call === 'tradeswap') {
+					apiArg = 'shift_id';
+				}
+				
+				parameters[apiArg] = self.shift.id;
 
-				spModel.schedule.get('tradeswap', parameters, function(response, parameters) {
+				spModel.schedule.get(call, parameters, function(response) {
 
 					if(response.data.status == 0) {
 						
@@ -431,7 +426,7 @@ ShiftPlanningSchedule.prototype.allPageEvents = function() {
 						$('#sc_sub_shift_display a.trade').hide();
 					}
 				});
-					
+			
 				self.state = 2;
 				break;
 			default:
@@ -517,14 +512,18 @@ ShiftPlanningSchedule.prototype.allPageEvents = function() {
 		var obj = $(this);
 		var isEdit = ($('#sc_edit_id').val() != 0) ? true : false;
 		obj.addClass('loading');
+		
+		var startDateTime = $('#sc_date_st').val().split('T');
+		var endDateTime = $('#sc_date_et').val().split('T');
+		
 		var data = {
 			schedule: $('#sc_add_sc').val(),
 			location: $('#sc_add_lo').val(),
 			title: $('#sc_add_ti').val(),
-			start_time: $('#sc_date_st').val(),
-			end_time: $('#sc_date_et').val(),
-			start_date: $('#sc_date_sd').val(),
-			end_date: $('#sc_date_ed').val(),
+			start_time: startDateTime[1],
+			end_time: endDateTime[1],
+			start_date: startDateTime[0],
+			end_date: endDateTime[0],
 			notes: $('#sc_add_no').val()
 		}
 
@@ -915,40 +914,40 @@ ShiftPlanningSchedule.prototype.addShiftSubEvents = function() {
 
 	var tf = (cal.tmode == 24) ? 'HH:mm' : 'hh:mm tt';
 
-	$('#sc_date_st').scroller('destroy');
-	$('#sc_date_st').val(s.toString(tf));
-	$("#sc_date_st").scroller({
-		preset: 'time',
-		ampm: (cal.tmode == 24 ? false : true),
-		stepMinute: 1,
-		timeFormat: sp.strReplace(['tt', 'mm'], ['A', 'ii'], cal.tstring)
-	});
-
-
-	$('#sc_date_et').scroller('destroy');
-	$('#sc_date_et').val(e.toString(tf));
-	$("#sc_date_et").scroller({
-		preset: 'time',
-		ampm: (cal.tmode == 24 ? false : true),
-		stepMinute: 1,
-		timeFormat: sp.strReplace(['tt', 'mm'], ['A', 'ii'], cal.tstring)
-	});
-
-	$('#sc_date_sd').scroller('destroy');
-	$('#sc_date_sd').val(s.toString(cal.dformat));
-	$('#sc_date_sd').scroller({
-		preset: 'date',
-		dateFormat: (sp.strReplace(['MM', 'yyyy'], ['mm', 'yy'], cal.dformat) == 'mmM d, yy') ? sp.strReplace(['MM', 'yyyy'], ['mm', 'yy'], cal.dformat).substr(2, sp.strReplace(['MM', 'yyyy'], ['mm', 'yy'], cal.dformat).length) : sp.strReplace(['MM', 'yyyy'], ['mm', 'yy'], cal.dformat),
-		dateOrder: sp.strReplace(['MM', 'yyyy', ' ', '-', '/'], ['mm', 'yy', '', '', ''], cal.dformat)
-	});
-
-	$('#sc_date_ed').scroller('destroy');
-	$('#sc_date_ed').val(e.toString(cal.dformat));
-	$('#sc_date_ed').scroller({
-		preset: 'date',
-		dateFormat: (sp.strReplace(['MM', 'yyyy'], ['mm', 'yy'], cal.dformat) == 'mmM d, yy') ? sp.strReplace(['MM', 'yyyy'], ['mm', 'yy'], cal.dformat).substr(2, sp.strReplace(['MM', 'yyyy'], ['mm', 'yy'], cal.dformat).length) : sp.strReplace(['MM', 'yyyy'], ['mm', 'yy'], cal.dformat),
-		dateOrder: sp.strReplace(['MM', 'yyyy', ' ', '-', '/'], ['mm', 'yy', '', '', ''], cal.dformat)
-	});
+//	$('#sc_date_st').scroller('destroy');
+//	$('#sc_date_st').val(s.toString(tf));
+//	$('#sc_date_st').scroller({
+//		preset: 'time',
+//		ampm: (cal.tmode == 24 ? false : true),
+//		stepMinute: 1,
+//		timeFormat: sp.strReplace(['tt', 'mm'], ['A', 'ii'], cal.tstring)
+//	});
+//
+//
+//	$('#sc_date_et').scroller('destroy');
+//	$('#sc_date_et').val(e.toString(tf));
+//	$('#sc_date_et').scroller({
+//		preset: 'time',
+//		ampm: (cal.tmode == 24 ? false : true),
+//		stepMinute: 1,
+//		timeFormat: sp.strReplace(['tt', 'mm'], ['A', 'ii'], cal.tstring)
+//	});
+	
+//	$('#sc_date_sd').scroller('destroy');
+//	$('#sc_date_sd').val(s.toString(cal.dformat));
+//	$('#sc_date_sd').scroller({
+//		preset: 'date',
+//		dateFormat: (sp.strReplace(['MM', 'yyyy'], ['mm', 'yy'], cal.dformat) == 'mmM d, yy') ? sp.strReplace(['MM', 'yyyy'], ['mm', 'yy'], cal.dformat).substr(2, sp.strReplace(['MM', 'yyyy'], ['mm', 'yy'], cal.dformat).length) : sp.strReplace(['MM', 'yyyy'], ['mm', 'yy'], cal.dformat),
+//		dateOrder: sp.strReplace(['MM', 'yyyy', ' ', '-', '/'], ['mm', 'yy', '', '', ''], cal.dformat)
+//	});
+	
+//	$('#sc_date_ed').scroller('destroy');
+//	$('#sc_date_ed').val(e.toString(cal.dformat));
+//	$('#sc_date_ed').scroller({
+//		preset: 'date',
+//		dateFormat: (sp.strReplace(['MM', 'yyyy'], ['mm', 'yy'], cal.dformat) == 'mmM d, yy') ? sp.strReplace(['MM', 'yyyy'], ['mm', 'yy'], cal.dformat).substr(2, sp.strReplace(['MM', 'yyyy'], ['mm', 'yy'], cal.dformat).length) : sp.strReplace(['MM', 'yyyy'], ['mm', 'yy'], cal.dformat),
+//		dateOrder: sp.strReplace(['MM', 'yyyy', ' ', '-', '/'], ['mm', 'yy', '', '', ''], cal.dformat)
+//	});
 
 
 	$('#sc_add_no').val((this.edit) ? emp.notes : '');

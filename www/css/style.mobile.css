@@ -166,6 +166,13 @@ span.input input[type=text]:focus, span.input textarea:focus {color:#444;}
 
 .msgHead {padding:15px 0;}
 
+
+#sc_date_st 	{width: 200px;}
+#sc_date_et 	{width: 200px;}
+#tc_act_tclin 	{width: 200px;}
+#tc_act_tclou 	{width: 200px;}
+span.input_datetime {padding:5px; width:250px; background:#FFF url(../images/input_bg.png) scroll repeat-x 0 0;}
+
 .butRpl {padding-left:30px !important; background:transparent url(../images/inbox_1.png) scroll no-repeat 7px 50%;}
 .butDel {padding-left:30px !important; background:transparent url(../images/inbox_2.png) scroll no-repeat 7px 50%;}
 .msgDel, .msgRpl {display:block; width:13px; height:13px; position:absolute; }
