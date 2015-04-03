@@ -103,8 +103,8 @@ ShiftPlanningRequests.prototype.vacationEvents = function() {
 		self.addVacationRequest($(this));
 	});
 	console.log('readOnly => ' + $('#rq_va_to').attr('readonly'));
-	$('#rq_va_fr').scroller();
-	$('#rq_va_to').scroller();
+//	$('#rq_va_fr').scroller();
+//	$('#rq_va_to').scroller();
 	console.log(' POSLE readOnly => ' + $('#rq_va_to').attr('readonly'));
 
 
