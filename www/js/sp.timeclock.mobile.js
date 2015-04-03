@@ -539,6 +539,7 @@ ShiftPlanningTimeClock.prototype.overviewSubEvents = function() {
                 var data = {
                     employee: sp.staff.admin.info.id
                 };
+				//just a simple comment
                 spModel.timeclock.get('preclockin', data, function(response) {
                     if (response.data.status == '0') {
                         $('#tc_ov_way_msg .sc_way_time_since').html(response.data.formatted);
