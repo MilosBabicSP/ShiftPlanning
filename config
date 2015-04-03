@@ -1,0 +1,25 @@
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+	ignorecase = true
+	precomposeunicode = true
+[remote "origin"]
+	url = git@github.com:shiftplanning/shiftplanning-mobile.git
+	fetch = +refs/heads/*:refs/remotes/origin/*
+[branch "master"]
+	remote = origin
+	merge = refs/heads/master
+[branch "gaphtmlproduction"]
+	remote = origin
+	merge = refs/heads/gaphtmlproduction
+[branch "sp-1061_sp-1064"]
+	remote = origin
+	merge = refs/heads/sp-1061_sp-1064
+[branch "sp1169"]
+	remote = origin
+	merge = refs/heads/sp1169
+[branch "sp-1305"]
+	remote = origin
+	merge = refs/heads/sp-1305
